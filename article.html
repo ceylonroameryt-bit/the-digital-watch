@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Can You Still Trust What You See and Hear Online? — The Digital Watch</title>
+  <meta name="description"
+    content="An in-depth cybersecurity analysis on how generative AI, voice cloning, synthetic identities, and deepfakes are dismantling traditional authenticity signals online.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Can You Still Trust What You See and Hear Online?">
+  <meta property="og:description"
+    content="Voice cloning takes 3 seconds. Synthetic IDs could cost $23B by 2030. How AI is changing online fraud.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=4">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>DW</text></svg>">
+</head>
+
+<body>
+
+  <div id="reading-progress"></div>
+  <div id="toast-container"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">DW</div>
+        <div>
+          <div class="brand-name">The Digital Watch</div>
+          <div class="brand-sub">Cybersecurity Research</div>
+        </div>
+      </a>
+      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#series">Series</a></li>
+        <li><a href="article.html" class="active">Research</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="#" onclick="copyLink();return false;" class="cta">Share ↗</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <!-- Series Callout Banner -->
+          <div class="art-series-banner">
+            <div class="art-series-info">
+              <span class="art-series-tag">Series</span>
+              <span>Part of <strong>Cybersecurity for Everyone</strong> · Episode 01 of 10</span>
+            </div>
+            <a href="index.html#series" class="art-series-link">View 10-Part Syllabus →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="index.html#series">Series: Cybersecurity for Everyone</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Episode 01</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat">Episode 01</span>
+            <span class="art-dot">·</span>
+            <span>Threat Intelligence</span>
+            <span class="art-dot">·</span>
+            <span>September 15, 2026</span>
+            <span class="art-dot">·</span>
+            <span>7 min read</span>
+          </div>
+
+          <h1 class="art-h1">Can You Still Trust What You See and Hear Online?</h1>
+
+          <div class="art-byline">
+            <div class="art-av">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Writer · The Digital Watch · Digital Literacy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero SVG -->
+        <div class="art-hero-svg">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="AI identity fraud — shield split between real and synthetic face">
+            <circle cx="160" cy="120" r="96" fill="#EEF2FF" opacity=".55" />
+            <circle cx="160" cy="120" r="64" fill="#DBEAFE" opacity=".35" />
+            <!-- Shield -->
+            <path d="M160 36 L208 58 L208 116 Q208 158 160 180 Q112 158 112 116 L112 58 Z" fill="white" stroke="#1D4ED8"
+              stroke-width="2.5" />
+            <!-- Left half: clean/real -->
+            <clipPath id="h1l">
+              <rect x="112" y="36" width="48" height="144" />
+            </clipPath>
+            <g clip-path="url(#h1l)">
+              <circle cx="160" cy="108" r="24" fill="#BFDBFE" />
+              <circle cx="160" cy="97" r="10" fill="#1D4ED8" opacity=".5" />
+              <path d="M140 128 Q160 118 180 128" stroke="#1D4ED8" stroke-width="2" fill="none"
+                stroke-linecap="round" />
+            </g>
+            <!-- Right half: pixel fragments -->
+            <clipPath id="h1r">
+              <rect x="160" y="36" width="48" height="144" />
+            </clipPath>
+            <g clip-path="url(#h1r)">
+              <rect x="162" y="86" width="11" height="11" rx="2.5" fill="#93C5FD" opacity=".75" />
+              <rect x="175" y="81" width="9" height="9" rx="2" fill="#F59E0B" opacity=".65" />
+              <rect x="164" y="99" width="13" height="13" rx="3" fill="#1D4ED8" opacity=".4" />
+              <rect x="179" y="95" width="10" height="10" rx="2.5" fill="#60A5FA" opacity=".5" />
+              <rect x="163" y="114" width="11" height="11" rx="2.5" fill="#F59E0B" opacity=".42" />
+              <rect x="177" y="110" width="9" height="9" rx="2" fill="#1D4ED8" opacity=".3" />
+              <rect x="165" y="128" width="10" height="10" rx="2.5" fill="#93C5FD" opacity=".5" />
+              <rect x="178" y="124" width="11" height="11" rx="2.5" fill="#F59E0B" opacity=".45" />
+            </g>
+            <line x1="160" y1="42" x2="160" y2="174" stroke="#1D4ED8" stroke-width="1.5" stroke-dasharray="4 3"
+              opacity=".35" />
+            <path d="M140 130 L149 139 L180 114" stroke="#1D4ED8" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <!-- AI chip -->
+            <rect x="144" y="14" width="32" height="20" rx="7" fill="#1D4ED8" />
+            <text x="160" y="28" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="10"
+              font-weight="800">AI</text>
+            <line x1="160" y1="34" x2="160" y2="42" stroke="#1D4ED8" stroke-width="2" opacity=".5" />
+            <!-- Waveforms left -->
+            <rect x="38" y="113" width="4" height="8" rx="2" fill="#1D4ED8" opacity=".3" />
+            <rect x="45" y="107" width="4" height="20" rx="2" fill="#1D4ED8" opacity=".5" />
+            <rect x="52" y="99" width="4" height="36" rx="2" fill="#1D4ED8" opacity=".7" />
+            <rect x="59" y="107" width="4" height="20" rx="2" fill="#1D4ED8" opacity=".5" />
+            <rect x="66" y="113" width="4" height="8" rx="2" fill="#1D4ED8" opacity=".3" />
+            <!-- Hex grid right -->
+            <path d="M256 148 L268 141 L280 148 L280 162 L268 169 L256 162 Z" stroke="#1D4ED8" stroke-width="1.2"
+              fill="#EEF2FF" opacity=".7" />
+            <path d="M240 164 L250 158 L260 164 L260 176 L250 182 L240 176 Z" stroke="#60A5FA" stroke-width="1"
+              fill="#DBEAFE" opacity=".5" />
+            <path d="M264 130 L272 125 L280 130 L280 140 L272 145 L264 140 Z" stroke="#93C5FD" stroke-width="1"
+              fill="#EEF2FF" opacity=".6" />
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <div class="art-layout">
+
+    <div class="art-center">
+
+      <!-- Horizontal Action & Metadata Strip -->
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">Episode
+            01</span>
+          <span class="chip">Digital Safety</span>
+          <span class="chip">AI & Deepfakes</span>
+          <span class="chip">Voice Cloning</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 7 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" onclick="toggleLike()" title="Like this research"
+            aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" onclick="addClap()" title="Applaud this research"
+            aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">3 sec</div>
+          <div class="stat-l">Voice Clone</div>
+          <div class="stat-s">85% match accuracy</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">48%</div>
+          <div class="stat-l">Human Detection</div>
+          <div class="stat-s">Identifying synthetic speech</div>
+        </div>
+      </div>
+
+      <div class="art-text">
+
+        <p>AI has become part of everyday life very quickly. We use it to write emails, generate images, summarize
+          documents, translate languages and help with work. But the same technology is also making online scams much
+          harder to recognise.</p>
+
+        <p>A scam email used to have obvious warning signs: spelling mistakes, strange wording or a suspicious link.
+          Today, AI can help scammers create professional messages, realistic images, cloned voices and convincing fake
+          videos.</p>
+
+        <p>The basic idea behind fraud hasn't changed. Someone still wants to convince another person to send money,
+          reveal information or provide access to an account. What has changed is <strong>how convincing and scalable
+            that deception can be.</strong></p>
+
+        <p>The scale is already significant. Consumer losses reported to the FBI's IC3 reached <strong>$16.6 billion in
+            2024</strong>.</p>
+
+        <!-- S1 -->
+        <h2 id="s1">When Recognising a Voice Isn't Enough</h2>
+
+        <!-- SVG: Voice cloning -->
+        <div class="sec-svg" aria-label="Voice cloning process diagram">
+          <svg viewBox="0 0 520 160" width="520" height="160" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="3-second audio sample fed into AI producing a synthetic clone">
+            <!-- Person icon left -->
+            <circle cx="58" cy="80" r="28" fill="#EEF2FF" stroke="#1D4ED8" stroke-width="2" />
+            <circle cx="58" cy="70" r="10" fill="#1D4ED8" opacity=".5" />
+            <path d="M44 92 Q58 84 72 92" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" fill="none" />
+            <text x="58" y="122" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="10"
+              font-weight="600">Real Voice</text>
+            <!-- Waveform -->
+            <rect x="100" y="78" width="7" height="4" rx="2" fill="#94A3B8" />
+            <rect x="111" y="67" width="7" height="26" rx="2" fill="#1D4ED8" opacity=".9" />
+            <rect x="122" y="59" width="7" height="42" rx="2" fill="#1D4ED8" />
+            <rect x="133" y="69" width="7" height="22" rx="2" fill="#1D4ED8" opacity=".8" />
+            <rect x="144" y="61" width="7" height="38" rx="2" fill="#3B82F6" />
+            <rect x="155" y="71" width="7" height="18" rx="2" fill="#1D4ED8" opacity=".7" />
+            <rect x="166" y="57" width="7" height="46" rx="2" fill="#1D4ED8" />
+            <rect x="177" y="67" width="7" height="26" rx="2" fill="#3B82F6" opacity=".8" />
+            <rect x="188" y="78" width="7" height="4" rx="2" fill="#94A3B8" />
+            <!-- Dotted line to AI -->
+            <line x1="100" y1="80" x2="218" y2="80" stroke="#1D4ED8" stroke-width="1.5" stroke-dasharray="4 3"
+              opacity=".35" />
+            <!-- AI chip -->
+            <rect x="218" y="60" width="44" height="40" rx="9" fill="#1D4ED8" />
+            <text x="240" y="85" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="12"
+              font-weight="800">AI</text>
+            <!-- "3 seconds" label -->
+            <rect x="207" y="106" width="66" height="20" rx="7" fill="#EEF2FF" stroke="#1D4ED8" stroke-width="1" />
+            <text x="240" y="120" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="9.5"
+              font-weight="700">3 seconds</text>
+            <!-- Output waveform (amber = synthetic) -->
+            <rect x="274" y="78" width="7" height="4" rx="2" fill="#94A3B8" />
+            <rect x="285" y="65" width="7" height="30" rx="2" fill="#F59E0B" opacity=".9" />
+            <rect x="296" y="57" width="7" height="46" rx="2" fill="#F59E0B" />
+            <rect x="307" y="67" width="7" height="26" rx="2" fill="#F59E0B" opacity=".8" />
+            <rect x="318" y="61" width="7" height="38" rx="2" fill="#FBBF24" />
+            <rect x="329" y="71" width="7" height="18" rx="2" fill="#F59E0B" opacity=".7" />
+            <rect x="340" y="59" width="7" height="42" rx="2" fill="#F59E0B" />
+            <rect x="351" y="67" width="7" height="26" rx="2" fill="#FBBF24" opacity=".8" />
+            <rect x="362" y="78" width="7" height="4" rx="2" fill="#94A3B8" />
+            <line x1="262" y1="80" x2="274" y2="80" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4 3"
+              opacity=".4" />
+            <!-- Cloned person icon right -->
+            <circle cx="420" cy="80" r="28" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2" stroke-dasharray="5 3" />
+            <circle cx="420" cy="70" r="10" fill="#F59E0B" opacity=".5" />
+            <path d="M406 92 Q420 84 434 92" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" fill="none"
+              stroke-dasharray="4 2" />
+            <text x="420" y="122" text-anchor="middle" fill="#92400E" font-family="DM Sans,system-ui" font-size="10"
+              font-weight="600">AI Clone</text>
+            <!-- 85% label -->
+            <rect x="452" y="62" width="52" height="36" rx="8" fill="white" stroke="#F59E0B" stroke-width="1.2" />
+            <text x="478" y="78" text-anchor="middle" fill="#F59E0B" font-family="DM Sans,system-ui" font-size="13"
+              font-weight="800">85%</text>
+            <text x="478" y="91" text-anchor="middle" fill="#92400E" font-family="DM Sans,system-ui"
+              font-size="8">match</text>
+          </svg>
+        </div>
+
+        <p>According to the research underpinning this analysis, as little as <strong>three seconds of recorded
+            audio</strong> can produce an 85% voice match. Human listeners correctly identified synthetic speech only
+          <strong>48% of the time</strong> — no better than a coin flip.</p>
+
+        <div class="pq">"If someone you know calls with an unusual request, recognising their voice may no longer be
+          enough to confirm their identity."</div>
+
+        <p>This doesn't mean distrusting every phone call. It means changing how we verify unusual requests. Calling
+          back on a known number — or asking something only they would know — is now better practice than relying on
+          voice alone.</p>
+
+        <!-- S2 -->
+        <h2 id="s2">Deepfakes Are More Than Fake Celebrity Videos</h2>
+
+        <!-- SVG: Deepfake KYC -->
+        <div class="sec-svg" aria-label="Deepfake KYC bypass illustration">
+          <svg viewBox="0 0 480 160" width="480" height="160" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Camera scanning face for KYC, AI generating synthetic face to bypass it">
+            <!-- Phone left (KYC) -->
+            <rect x="28" y="36" width="88" height="100" rx="12" fill="#EEF2FF" stroke="#1D4ED8" stroke-width="2" />
+            <rect x="42" y="54" width="60" height="54" rx="6" fill="#DBEAFE" opacity=".4" stroke="#1D4ED8"
+              stroke-width="1.5" />
+            <circle cx="72" cy="78" r="14" fill="#1D4ED8" opacity=".18" stroke="#1D4ED8" stroke-width="1.5" />
+            <circle cx="72" cy="73" r="6" fill="#1D4ED8" opacity=".45" />
+            <path d="M62 88 Q72 82 82 88" stroke="#1D4ED8" stroke-width="1.5" fill="none" stroke-linecap="round" />
+            <!-- Scan brackets -->
+            <path d="M46 58 L46 65 L53 65" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+            <path d="M98 58 L98 65 L91 65" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+            <path d="M46 104 L46 97 L53 97" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+            <path d="M98 104 L98 97 L91 97" stroke="#3B82F6" stroke-width="2" stroke-linecap="round" />
+            <text x="72" y="126" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="9.5"
+              font-weight="600">KYC Check</text>
+            <!-- Arrow to AI box -->
+            <defs>
+              <marker id="m1" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#1D4ED8" />
+              </marker>
+              <marker id="m2" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#EF4444" />
+              </marker>
+            </defs>
+            <path d="M120 86 L170 86" stroke="#1D4ED8" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#m1)" />
+            <!-- AI generation box -->
+            <rect x="174" y="62" width="82" height="48" rx="10" fill="#1D4ED8" />
+            <text x="215" y="84" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="10"
+              font-weight="700">Deepfake</text>
+            <text x="215" y="99" text-anchor="middle" fill="rgba(255,255,255,.65)" font-family="DM Sans,system-ui"
+              font-size="9">Generator</text>
+            <!-- Arrow to synthetic output -->
+            <path d="M258 86 L306 86" stroke="#EF4444" stroke-width="2" stroke-dasharray="5 3" marker-end="url(#m2)" />
+            <!-- Phone right (synthetic) -->
+            <rect x="310" y="36" width="88" height="100" rx="12" fill="#FEF2F2" stroke="#EF4444" stroke-width="2"
+              stroke-dasharray="6 3" />
+            <rect x="324" y="54" width="60" height="54" rx="6" fill="#FEE2E2" opacity=".4" stroke="#EF4444"
+              stroke-width="1.5" stroke-dasharray="5 2" />
+            <circle cx="354" cy="78" r="14" fill="#EF4444" opacity=".1" stroke="#EF4444" stroke-width="1.5"
+              stroke-dasharray="4 2" />
+            <!-- Fragment pixels -->
+            <rect x="344" y="68" width="7" height="7" rx="2" fill="#EF4444" opacity=".4" />
+            <rect x="354" y="65" width="5" height="5" rx="1.5" fill="#F87171" opacity=".5" />
+            <rect x="362" y="70" width="8" height="8" rx="2" fill="#EF4444" opacity=".3" />
+            <rect x="347" y="78" width="5" height="5" rx="1.5" fill="#F87171" opacity=".55" />
+            <rect x="358" y="76" width="7" height="7" rx="2" fill="#EF4444" opacity=".4" />
+            <rect x="344" y="87" width="6" height="6" rx="2" fill="#F87171" opacity=".35" />
+            <rect x="356" y="86" width="8" height="8" rx="2" fill="#EF4444" opacity=".3" />
+            <text x="354" y="126" text-anchor="middle" fill="#EF4444" font-family="DM Sans,system-ui" font-size="9.5"
+              font-weight="600">Synthetic Bypass</text>
+            <!-- Warning badge -->
+            <circle cx="392" cy="42" r="12" fill="#EF4444" />
+            <text x="392" y="47" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="12"
+              font-weight="800">!</text>
+            <!-- Stats right -->
+            <rect x="408" y="68" width="58" height="32" rx="8" fill="white" stroke="#EF4444" stroke-width="1.2" />
+            <text x="437" y="82" text-anchor="middle" fill="#EF4444" font-family="DM Sans,system-ui" font-size="12"
+              font-weight="800">56%</text>
+            <text x="437" y="93" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="8">human
+              detect</text>
+          </svg>
+        </div>
+
+        <p>Deepfakes are usually associated with fake celebrity clips or misinformation, but they are also becoming a
+          practical cybersecurity problem. Many companies now verify customers remotely using video-based KYC. Attackers
+          are attempting to use synthetic video to imitate facial movements, blinking and head rotations to bypass these
+          systems.</p>
+
+        <div class="pq">The question is changing from <strong>"Does this person look real?"</strong> to <strong>"Can we
+            verify that this person is real?"</strong></div>
+
+        <!-- S3 -->
+        <h2 id="s3">Some Fake Identities Don't Belong to Anyone</h2>
+
+        <!-- SVG: Frankenstein ID -->
+        <div class="sec-svg" aria-label="Synthetic Frankenstein ID construction diagram">
+          <svg viewBox="0 0 500 150" width="500" height="150" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Stolen SSN plus AI-generated face equals synthetic identity used for credit fraud">
+            <!-- Document card -->
+            <rect x="28" y="28" width="108" height="96" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="2" />
+            <rect x="42" y="42" width="34" height="34" rx="6" fill="#EEF2FF" stroke="#1D4ED8" stroke-width="1.5" />
+            <circle cx="59" cy="55" r="8" fill="#1D4ED8" opacity=".3" />
+            <path d="M47 72 Q59 66 71 72" stroke="#1D4ED8" stroke-width="1.5" fill="none" stroke-linecap="round" />
+            <!-- Fragment pixels on face -->
+            <rect x="57" y="42" width="8" height="8" rx="2" fill="#F59E0B" opacity=".5" />
+            <rect x="66" y="48" width="7" height="7" rx="2" fill="#3B82F6" opacity=".4" />
+            <rect x="61" y="58" width="9" height="9" rx="2" fill="#EF4444" opacity=".3" />
+            <!-- Text lines -->
+            <rect x="82" y="46" width="42" height="5" rx="2" fill="#CBD5E1" />
+            <rect x="82" y="56" width="36" height="4" rx="2" fill="#E2E8F0" />
+            <rect x="82" y="65" width="40" height="4" rx="2" fill="#E2E8F0" />
+            <!-- Stolen SSN -->
+            <rect x="42" y="84" width="80" height="18" rx="5" fill="#FEF2F2" stroke="#EF4444" stroke-width="1"
+              stroke-dasharray="4 2" />
+            <text x="82" y="97" text-anchor="middle" fill="#EF4444" font-family="DM Sans,system-ui" font-size="9"
+              font-weight="600">⚠ Stolen SSN</text>
+            <text x="82" y="138" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="10"
+              font-weight="600">"Frankenstein ID"</text>
+
+            <!-- + -->
+            <text x="152" y="88" fill="#1D4ED8" font-size="26" font-weight="800"
+              font-family="DM Sans,system-ui">+</text>
+
+            <!-- AI photo box -->
+            <rect x="172" y="46" width="72" height="64" rx="10" fill="#EEF2FF" stroke="#1D4ED8" stroke-width="2" />
+            <circle cx="208" cy="68" r="12" fill="#1D4ED8" opacity=".18" />
+            <circle cx="208" cy="63" r="5" fill="#1D4ED8" opacity=".45" />
+            <path d="M198" y="78" Q208 72 218 78" stroke="#1D4ED8" stroke-width="1.5" fill="none"
+              stroke-linecap="round" />
+            <text x="208" y="102" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="9"
+              font-weight="700">AI Photo</text>
+            <text x="208" y="138" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="10"
+              font-weight="600">Generated Face</text>
+
+            <!-- = -->
+            <text x="257" y="88" fill="#1D4ED8" font-size="26" font-weight="800"
+              font-family="DM Sans,system-ui">=</text>
+
+            <!-- Credit card result -->
+            <defs>
+              <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1D4ED8" />
+                <stop offset="100%" stop-color="#3B82F6" />
+              </linearGradient>
+            </defs>
+            <rect x="278" y="36" width="130" height="80" rx="14" fill="url(#cg)" />
+            <circle cx="302" cy="60" r="14" fill="rgba(255,255,255,.08)" />
+            <circle cx="320" cy="60" r="14" fill="rgba(255,255,255,.06)" />
+            <text x="343" y="66" text-anchor="middle" fill="rgba(255,255,255,.45)" font-family="DM Sans,system-ui"
+              font-size="17" font-weight="800">CREDIT</text>
+            <text x="343" y="84" text-anchor="middle" fill="rgba(255,255,255,.75)" font-family="DM Sans,system-ui"
+              font-size="9" font-weight="500">**** **** **** ????</text>
+            <text x="343" y="99" text-anchor="middle" fill="rgba(255,255,255,.5)" font-family="DM Sans,system-ui"
+              font-size="8">Synthetic Identity</text>
+            <text x="343" y="138" text-anchor="middle" fill="#EF4444" font-family="DM Sans,system-ui" font-size="10"
+              font-weight="700">$23B projected by 2030</text>
+          </svg>
+        </div>
+
+        <p>AI fraud isn't limited to impersonating real people. Criminals create <strong>synthetic identities</strong> —
+          "Frankenstein IDs" — combining a stolen Social Security number with a fabricated name, date of birth and an
+          AI-generated photograph. Over time, that identity builds credit before being used to obtain large loans or
+          credit lines. Synthetic identity fraud is projected to cause at least <strong>$23 billion in losses by
+            2030</strong>.</p>
+
+        <!-- S4 -->
+        <h2 id="s4">AI Is Changing Phishing Too</h2>
+
+        <!-- SVG: Phishing / BEC -->
+        <div class="sec-svg" aria-label="AI-powered phishing and BEC attack diagram">
+          <svg viewBox="0 0 480 150" width="480" height="150" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="AI robot sends personalised phishing emails to target person, resulting in BEC wire fraud">
+            <!-- Robot sender -->
+            <rect x="18" y="40" width="60" height="72" rx="10" fill="#EEF2FF" stroke="#1D4ED8" stroke-width="2" />
+            <rect x="30" y="52" width="36" height="28" rx="6" fill="#DBEAFE" opacity=".5" />
+            <circle cx="43" cy="66" r="5" fill="#1D4ED8" opacity=".7" />
+            <circle cx="54" cy="66" r="5" fill="#1D4ED8" opacity=".7" />
+            <rect x="36" y="74" width="26" height="3" rx="1.5" fill="#1D4ED8" opacity=".3" />
+            <text x="48" y="106" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="9"
+              font-weight="600">AI Sender</text>
+            <!-- Flying emails -->
+            <path d="M82 76 L160 76" stroke="#1D4ED8" stroke-width="1.5" stroke-dasharray="5 3" opacity=".4" />
+            <rect x="92" y="58" width="32" height="22" rx="4" fill="white" stroke="#1D4ED8" stroke-width="1.5" />
+            <path d="M92 64 L108 72 L124 64" stroke="#1D4ED8" stroke-width="1.2" fill="none" stroke-linecap="round" />
+            <rect x="110" y="66" width="32" height="22" rx="4" fill="white" stroke="#3B82F6" stroke-width="1.5" />
+            <path d="M110 72 L126 80 L142 72" stroke="#3B82F6" stroke-width="1.2" fill="none" stroke-linecap="round" />
+            <!-- Target person -->
+            <circle cx="220" cy="76" r="30" fill="#FEF2F2" stroke="#EF4444" stroke-width="2" />
+            <circle cx="220" cy="65" r="11" fill="#EF4444" opacity=".25" />
+            <path d="M205 88 Q220 80 235 88" stroke="#EF4444" stroke-width="1.8" fill="none" stroke-linecap="round" />
+            <!-- Hook -->
+            <path d="M220 43 Q242 32 242 52 Q242 68 220 68" stroke="#EF4444" stroke-width="2.5" stroke-linecap="round"
+              fill="none" />
+            <path d="M218 68 L225 75 L217 78" stroke="#EF4444" stroke-width="2" stroke-linecap="round" fill="none" />
+            <!-- Arrow to BEC box -->
+            <defs>
+              <marker id="m3" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+                <path d="M0,0 L6,3 L0,6 Z" fill="#EF4444" />
+              </marker>
+            </defs>
+            <path d="M252 76 L294 76" stroke="#EF4444" stroke-width="1.8" stroke-dasharray="5 3"
+              marker-end="url(#m3)" />
+            <!-- BEC box -->
+            <rect x="298" y="50" width="96" height="52" rx="10" fill="#FEF2F2" stroke="#EF4444" stroke-width="2" />
+            <text x="346" y="71" text-anchor="middle" fill="#EF4444" font-family="DM Sans,system-ui" font-size="11"
+              font-weight="700">BEC Fraud</text>
+            <text x="346" y="86" text-anchor="middle" fill="#EF4444" font-family="DM Sans,system-ui" font-size="9"
+              opacity=".7">Wire Transfer</text>
+            <path d="M346 32 L356 52 L336 52 Z" fill="#F59E0B" />
+            <text x="346" y="48" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="9"
+              font-weight="800">!</text>
+            <!-- Personalised badge -->
+            <rect x="402" y="60" width="62" height="18" rx="7" fill="white" stroke="#1D4ED8" stroke-width="1" />
+            <text x="433" y="73" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="8"
+              font-weight="700">Personalised</text>
+            <rect x="402" y="82" width="62" height="18" rx="7" fill="white" stroke="#1D4ED8" stroke-width="1" />
+            <text x="433" y="95" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="8"
+              font-weight="700">Context-aware</text>
+          </svg>
+        </div>
+
+        <p>Traditional phishing advice: check the grammar, look for unusual wording. That advice isn't useless — but it
+          isn't enough anymore. Generative AI can produce professional, contextually appropriate messages that pass
+          every surface check.</p>
+
+        <p>Business Email Compromise (BEC) is particularly important because a fraudulent payment request doesn't
+          necessarily contain malware or a suspicious attachment. Sometimes <strong>the message itself is the
+            attack</strong>. From a SOC perspective, this is a meaningful shift — security teams can't rely entirely on
+          traditional indicators of compromise when the attack is based on <strong>identity, context and human
+            behaviour</strong>.</p>
+
+        <!-- S5 -->
+        <h2 id="s5">AI Is Also Part of the Defense</h2>
+
+        <!-- SVG: Defense comparison -->
+        <div class="sec-svg" aria-label="Human detection vs AI defense system comparison">
+          <svg viewBox="0 0 480 160" width="480" height="160" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Human detects synthetic voice at 48% while AI achieves 94% detection accuracy">
+            <!-- Shield centre -->
+            <path d="M240 26 L274 42 L274 90 Q274 122 240 140 Q206 122 206 90 L206 42 Z" fill="#EEF2FF" stroke="#1D4ED8"
+              stroke-width="2.2" />
+            <path d="M240 42 L260 52 L260 82 Q260 104 240 116 Q220 104 220 82 L220 52 Z" fill="#DBEAFE" opacity=".5" />
+            <path d="M228 82 L236 90 L254 70" stroke="#1D4ED8" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <text x="240" y="148" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="9.5"
+              font-weight="600">AI Defense</text>
+
+            <!-- Left: human 48% -->
+            <circle cx="82" cy="82" r="34" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="6 3" />
+            <text x="82" y="76" text-anchor="middle" fill="#EF4444" font-family="DM Sans,system-ui" font-size="18"
+              font-weight="800">48%</text>
+            <text x="82" y="91" text-anchor="middle" fill="#EF4444" font-family="DM Sans,system-ui"
+              font-size="9">Human</text>
+            <text x="82" y="130" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui"
+              font-size="9">Detection rate</text>
+            <path d="M118 82 L204 82" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="4 3" opacity=".45" />
+
+            <!-- Right: AI 94% -->
+            <circle cx="398" cy="82" r="34" fill="#ECFDF5" stroke="#10B981" stroke-width="2" />
+            <text x="398" y="76" text-anchor="middle" fill="#10B981" font-family="DM Sans,system-ui" font-size="18"
+              font-weight="800">94%</text>
+            <text x="398" y="91" text-anchor="middle" fill="#10B981" font-family="DM Sans,system-ui" font-size="9">AI
+              System</text>
+            <text x="398" y="130" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui"
+              font-size="9">Detection rate</text>
+            <path d="M362 82 L276 82" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4 3" opacity=".5" />
+
+            <!-- Signal labels above shield -->
+            <rect x="150" y="12" width="70" height="17" rx="6" fill="white" stroke="#3B82F6" stroke-width="1" />
+            <text x="185" y="24" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="8.5"
+              font-weight="600">Spectral jitter</text>
+            <rect x="262" y="12" width="70" height="17" rx="6" fill="white" stroke="#3B82F6" stroke-width="1" />
+            <text x="297" y="24" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="8.5"
+              font-weight="600">Blood-flow scan</text>
+          </svg>
+        </div>
+
+        <p>Organizations are also deploying machine intelligence to identify suspicious behaviour. <strong>Behavioral
+            profiling</strong> examines device information, typing behaviour, mouse movements and session context —
+          asking not just "did you enter the right password?" but "does your entire behaviour pattern match the
+          legitimate user?"</p>
+
+        <div class="t-wrap">
+          <table class="t">
+            <thead>
+              <tr>
+                <th>Attack Vector</th>
+                <th>Human Baseline</th>
+                <th>AI Defense System</th>
+                <th>Primary Signal</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Synthetic Voice Cloning</strong></td>
+                <td>48% (Coin-flip)</td>
+                <td>94.3% Accuracy</td>
+                <td>Spectral envelope &amp; micro-jitter</td>
+              </tr>
+              <tr>
+                <td><strong>Deepfake KYC Video</strong></td>
+                <td>56% Accuracy</td>
+                <td>98.7% Accuracy</td>
+                <td>Sub-dermal blood flow &amp; micro-textures</td>
+              </tr>
+              <tr>
+                <td><strong>Contextual Spearphishing</strong></td>
+                <td>High urgency vulnerability</td>
+                <td>Behavioral &amp; NLP scoring</td>
+                <td>Sentiment deviation &amp; domain entropy</td>
+              </tr>
+              <tr>
+                <td><strong>Identity Proofing</strong></td>
+                <td>Visual / Face Matching</td>
+                <td>Cryptographic Zero Trust</td>
+                <td>FIDO2 / Hardware out-of-band keys</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- S6 -->
+        <h2 id="s6">What Can We Actually Do?</h2>
+
+        <p>When an unusual request involves <strong>money, passwords, account access or sensitive information</strong>,
+          verify it through another channel:</p>
+
+        <div class="ck-card">
+          <div class="ck-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            Personal &amp; Operational Defense Playbook
+          </div>
+          <div class="ck-row">
+            <div class="ck-dot">✓</div>
+            <div><strong>Out-of-Band Callback:</strong> If someone calls claiming to be your bank or employer, hang up
+              and call them using a trusted number from an official directory.</div>
+          </div>
+          <div class="ck-row">
+            <div class="ck-dot">✓</div>
+            <div><strong>Secret Codewords:</strong> Families and finance teams can establish a private offline phrase
+              for emergencies and urgent wire requests.</div>
+          </div>
+          <div class="ck-row">
+            <div class="ck-dot">✓</div>
+            <div><strong>Resist Urgency:</strong> When an attacker applies pressure to act immediately, slowing down and
+              validating is always the better decision.</div>
+          </div>
+          <div class="ck-row">
+            <div class="ck-dot">✓</div>
+            <div><strong>Hardware Security Keys:</strong> Move beyond SMS OTPs to FIDO2 / WebAuthn hardware keys to stop
+              credential harvesting.</div>
+          </div>
+        </div>
+
+        <!-- S7 -->
+        <h2 id="s7">The Bigger Change</h2>
+
+        <p>The most important part of AI-enabled fraud isn't simply that criminals have another technology available.
+          It's that the signals we've traditionally associated with authenticity are becoming weaker:</p>
+
+        <ul>
+          <li>A professional email doesn't necessarily mean the sender is legitimate.</li>
+          <li>A familiar voice doesn't necessarily prove who's speaking.</li>
+          <li>A realistic photograph doesn't necessarily represent a real person.</li>
+          <li>And video increasingly needs verification rather than automatic trust.</li>
+        </ul>
+
+        <div class="pq" style="font-weight:600;font-style:normal;border-left-color:var(--blue);">
+          "Verification is becoming more important than appearance. When something important feels unusual — verify it
+          independently before acting."
+        </div>
+
+        <!-- SOURCES -->
+        <div class="sources-section" id="sources">
+          <h2 style="border:none;padding:0;margin-bottom:4px;" id="s8">Sources &amp; Methodology</h2>
+          <p class="src-sub">This brief was compiled using multiple primary sources, AI-assisted research synthesis, and
+            operational threat intelligence. Statistics are cited from the originating sources below.</p>
+          <div class="src-list">
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#EEF2FF;">🔬</div>
+              <div>
+                <div class="src-name">Google NotebookLM — AI Research Synthesis</div>
+                <div class="src-desc">Used to ground, synthesise, and cross-reference multiple primary research
+                  documents. NotebookLM generated structured summaries and verified factual claims against the uploaded
+                  source corpus.</div>
+                <a href="https://notebook.google.com/notebook/1b92ec03-d1bb-4ad2-bb74-eb96686959c6?artifactId=1bde40ca-1d96-40c3-b49b-5e36791b9495"
+                  class="src-link" target="_blank" rel="noopener">View NotebookLM Artifact ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#ECFDF5;">🖥️</div>
+              <div>
+                <div class="src-name">SOC Platform — Operational Threat Intelligence</div>
+                <div class="src-desc">Threat telemetry, detection signatures, and operational case data from Security
+                  Operations Centre work across banking, aviation, and telecommunications. Anonymised and aggregated per
+                  data governance policy.</div>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FEF2F2;">📊</div>
+              <div>
+                <div class="src-name">FBI IC3 — 2024 Internet Crime Report</div>
+                <div class="src-desc">Source for the $16.6 billion consumer fraud loss figure.</div>
+                <a href="https://www.ic3.gov/AnnualReport/Reports/2024_IC3Report.pdf" class="src-link" target="_blank"
+                  rel="noopener">FBI IC3 2024 Report ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0F9FF;">🏛️</div>
+              <div>
+                <div class="src-name">NCSC — AI &amp; Cyber Threat Landscape 2025</div>
+                <div class="src-desc">National Cyber Security Centre guidance on AI lowering the barrier for threat
+                  actors, covering AI-assisted reconnaissance, social engineering, and malware development.</div>
+                <a href="https://www.ncsc.gov.uk/collection/ai-and-cyber-security" class="src-link" target="_blank"
+                  rel="noopener">NCSC AI Guidance ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FFFBEB;">🔎</div>
+              <div>
+                <div class="src-name">Europol Innovation Lab — AI in Crime Report</div>
+                <div class="src-desc">Analysis of criminal use of generative AI. Source for the $23B synthetic identity
+                  fraud projection.</div>
+                <a href="https://www.europol.europa.eu/publications-events/publications/facing-reality-law-enforcement-and-challenge-of-deepfakes"
+                  class="src-link" target="_blank" rel="noopener">Europol Deepfakes Report ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F8FAFC;">📄</div>
+              <div>
+                <div class="src-name">University of Waterloo — Voice Cloning Detection Study (2024)</div>
+                <div class="src-desc">Source for the 3-second audio / 85% voice match figure and the 48% human listener
+                  accuracy finding in synthetic speech identification.</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /art-text -->
+
+      <!-- FEEDBACK & DISCUSSION SECTION -->
+      <section class="feedback-section" id="feedback" aria-label="Reader Feedback and Discussion">
+
+        <!-- Header -->
+        <div class="fb-header">
+          <div class="fb-badge">
+            <span>💬</span> Reader Feedback &amp; Analysis Review
+          </div>
+          <h2 class="fb-title">Was this brief insightful?</h2>
+          <p class="fb-sub">
+            Your feedback directly shapes the next 9 installments of <strong>Cybersecurity for Everyone</strong>. React
+            below, share observations from your SOC or workplace, or ask a question.
+          </p>
+        </div>
+
+        <!-- 1-Click Reactions Bar -->
+        <div class="fb-reactions-box">
+          <div class="fb-react-prompt">Quick Reactions</div>
+          <div class="fb-reactions-bar">
+            <button class="fb-react-btn" data-reaction="helpful" data-label="Helpful Analysis"
+              aria-label="Helpful Analysis">
+              <span>👍</span> Helpful Analysis <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="insight" data-label="Eye-Opening" aria-label="Eye-Opening">
+              <span>💡</span> Eye-Opening <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="actionable" data-label="Actionable for Defense"
+              aria-label="Actionable for Defense">
+              <span>🛡️</span> Actionable for SOC <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="bookmark" data-label="Saved &amp; Bookmarked"
+              aria-label="Saved &amp; Bookmarked">
+              <span>🔖</span> Bookmarked <span class="fb-cnt">0</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Feedback Form -->
+        <div class="fb-form-box">
+          <div class="fb-form-title">
+            <span>✍️</span> Leave Feedback or Ask the Analyst
+          </div>
+
+          <!-- Category Chips -->
+          <div class="fb-chips" role="radiogroup" aria-label="Feedback category">
+            <button type="button" class="fb-chip-opt selected" data-category="General Feedback">💬 General
+              Feedback</button>
+            <button type="button" class="fb-chip-opt" data-category="Question for Analyst">❓ Question for
+              Analyst</button>
+            <button type="button" class="fb-chip-opt" data-category="SOC Observation">🛡️ SOC Observation</button>
+            <button type="button" class="fb-chip-opt" data-category="Episode Topic Request">💡 Topic Request for Ep
+              02–10</button>
+          </div>
+
+          <form id="fbForm">
+            <div class="fb-form-grid">
+              <div>
+                <label for="fbName"
+                  style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Name or
+                  Handle <span style="font-weight:400;color:var(--ink-5);">(Optional)</span></label>
+                <input type="text" id="fbName" class="fb-input" placeholder="e.g. Alex M. or Anonymous">
+              </div>
+              <div>
+                <label for="fbRole"
+                  style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Role /
+                  Organisation <span style="font-weight:400;color:var(--ink-5);">(Optional)</span></label>
+                <input type="text" id="fbRole" class="fb-input" placeholder="e.g. SOC Analyst / Security Lead">
+              </div>
+            </div>
+
+            <div>
+              <label for="fbMessage"
+                style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Feedback or
+                Comment <span style="color:#EF4444;">*</span></label>
+              <textarea id="fbMessage" class="fb-textarea" required
+                placeholder="What did you think of the voice cloning breakdown? Have you experienced AI impersonation attempts in your team? Any questions for Poorna?"></textarea>
+            </div>
+
+            <div class="fb-form-foot">
+              <span class="fb-anon-note">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                No account required · Comments moderated for technical discussion
+              </span>
+              <button type="submit" class="fb-submit-btn">
+                Post Feedback
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Practitioner Discussion & Comments Stream -->
+        <div class="fb-discussion-box">
+          <div class="fb-disc-title">
+            <span>Practitioner Discussion &amp; Feedback</span>
+            <span style="font-size:.72rem;color:var(--ink-5);text-transform:none;font-weight:600;">Community
+              responses</span>
+          </div>
+
+          <div class="fb-comments-list" id="fbCommentsList">
+
+            <!-- Pinned author note -->
+            <div class="fb-comment is-author">
+              <div class="fb-c-top">
+                <div class="fb-c-user">
+                  <div class="fb-c-av">PS</div>
+                  <div>
+                    <div class="fb-c-name">Poorna Sujampathi Rathnayaka</div>
+                    <div class="fb-c-role">Author · The Digital Watch</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <span class="fb-c-badge" style="background:#1D4ED8;color:#fff;border-color:#1D4ED8;">📌 Pinned Analyst
+                    Note</span>
+                  <span class="fb-c-time">Author</span>
+                </div>
+              </div>
+              <p class="fb-c-body">
+                Thanks for reading Episode 01. I started this because I kept noticing that everywhere online people only
+                talk about cybersecurity in very technical ways — and most people are left with no real idea of what's
+                actually happening in the digital world. If this made sense to you, or if you have a question, leave a
+                comment below. Episode 02 is coming soon.
+              </p>
+            </div>
+
+            <!-- Clean empty state for reader feedback -->
+            <div class="fb-empty-state" id="fbEmptyState"
+              style="text-align:center;padding:28px 20px;border:1px dashed var(--border-2);border-radius:var(--r);background:var(--bg);color:var(--ink-4);margin-top:12px;">
+              <div style="font-size:1.4rem;margin-bottom:6px;">💬</div>
+              <div style="font-weight:700;font-size:.88rem;color:var(--ink-2);margin-bottom:4px;">No reader feedback yet
+              </div>
+              <p style="font-size:.78rem;color:var(--ink-4);max-width:360px;margin:0 auto;">Be the first to share your
+                thoughts, ask a question, or tell me if something wasn't clear. All comments welcome.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Author card -->
+      <div class="auth-card" id="about">
+        <div class="auth-top">
+          <div class="auth-av">PS</div>
+          <div>
+            <div class="auth-name">Poorna Sujampathi Rathnayaka</div>
+            <div class="auth-role">Writer · The Digital Watch · Digital Literacy</div>
+          </div>
+        </div>
+        <div class="auth-body">
+          <p class="auth-desc">I started The Digital Watch because everywhere online people only talk about
+            cybersecurity in technical terms — and most people are left without a proper understanding of how the
+            digital world works. I work in cybersecurity, but I write here for everyone. No jargon. Just clear, honest
+            explanations.</p>
+          <div class="auth-links">
+            <a href="https://sujampathirathnayaka.com/" class="au-btn pf" target="_blank" rel="noopener">🌐
+              Portfolio</a>
+            <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" class="au-btn li" target="_blank"
+              rel="noopener">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/sujampathi" class="au-btn gh" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERIES ROADMAP (Relocated cleanly to article bottom) -->
+      <div class="series-nav-card" id="series-curriculum">
+        <div class="series-nav-header">
+          <div class="series-nav-title">
+            <span class="series-nav-badge">Complete Series Roadmap</span>
+            <h4>Cybersecurity for Everyone (10 Episodes)</h4>
+          </div>
+          <span class="series-nav-status">Currently Reading: Episode 01</span>
+        </div>
+        <div class="series-nav-grid">
+          <a href="article.html" class="series-nav-item active">
+            <span class="series-nav-num">01</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Can You Still Trust What You See and Hear Online?</span>
+              <span class="series-nav-tag">Active Episode · Published</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">02</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Someone Has Your Email Address. Now What?</span>
+              <span class="series-nav-tag">Episode 02 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">03</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">I Clicked a Phishing Link. What Should I Do?</span>
+              <span class="series-nav-tag">Episode 03 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">04</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Password Wasn't Hacked. Your Session Was Stolen.</span>
+              <span class="series-nav-tag">Episode 04 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">05</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Why the Padlock Doesn't Mean a Website Is Safe</span>
+              <span class="series-nav-tag">Episode 05 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">06</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Are Passkeys Finally Going to Kill Passwords?</span>
+              <span class="series-nav-tag">Episode 06 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">07</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">The Fake Recruiter in Your LinkedIn Inbox</span>
+              <span class="series-nav-tag">Episode 07 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">08</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">How Much Can a Scammer Learn About You in 10 Minutes?</span>
+              <span class="series-nav-tag">Episode 08 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">09</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Bank Is Calling. Or Is It?</span>
+              <span class="series-nav-tag">Episode 09 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">10</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">What Happens to Your Information After a Data Breach?</span>
+              <span class="series-nav-tag">Episode 10 · Coming Soon</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Related / Up Next in Series -->
+      <div class="related">
+        <div class="sec-h"
+          style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <span class="sec-lbl" style="color:var(--blue);">Cybersecurity for Everyone</span>
+            <div style="font-family:var(--f-d);font-size:1.15rem;font-weight:800;color:var(--ink);margin-top:4px;">Up
+              Next in the Series</div>
+          </div>
+          <a href="index.html#series"
+            style="font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:5px;">
+            View All 10 Episodes in Series →
+          </a>
+        </div>
+        <div class="rel-grid">
+
+          <!-- Episode 02 -->
+          <div class="art-card">
+            <div class="card-svg" style="background:linear-gradient(135deg,#EFF6FF 0%,#F1F5F9 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <rect x="55" y="38" width="90" height="60" rx="8" fill="white" stroke="#3B82F6" stroke-width="1.8" />
+                <path d="M55 46 L100 75 L145 46" stroke="#3B82F6" stroke-width="1.6" fill="none"
+                  stroke-linecap="round" />
+                <circle cx="165" cy="55" r="26" stroke="#EF4444" stroke-width="1.2" opacity=".3" />
+                <circle cx="165" cy="55" r="16" stroke="#EF4444" stroke-width="1.3" opacity=".5" />
+                <circle cx="165" cy="55" r="5" fill="#EF4444" />
+                <line x1="165" y1="34" x2="165" y2="76" stroke="#EF4444" stroke-width="1" stroke-dasharray="2 2"
+                  opacity=".5" />
+                <line x1="144" y1="55" x2="186" y2="55" stroke="#EF4444" stroke-width="1" stroke-dasharray="2 2"
+                  opacity=".5" />
+              </svg>
+              <span class="card-svg-label">Episode 02</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Someone Has Your Email Address. Now What?</h3>
+              <p class="card-ex">What automated crawlers, credential stuffing bots, and spear-phishers do once your
+                email leaks, and how to lockdown your perimeter.</p>
+              <div class="card-foot"><span>Identity Recon · OSINT</span><span class="soon">Coming Soon</span></div>
+            </div>
+          </div>
+
+          <!-- Episode 03 -->
+          <div class="art-card">
+            <div class="card-svg" style="background:linear-gradient(135deg,#FEF2F2 0%,#FFF7ED 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M118 36 L118 90 L130 78 L138 98 L146 95 L138 74 L154 74 Z" fill="white" stroke="#EF4444"
+                  stroke-width="2" stroke-linejoin="round" />
+                <circle cx="118" cy="36" r="8" stroke="#EF4444" stroke-width="1.5" opacity=".35" />
+                <circle cx="118" cy="36" r="16" stroke="#EF4444" stroke-width="1" opacity=".18" />
+                <rect x="40" y="60" width="64" height="48" rx="8" fill="white" stroke="#EF4444" stroke-width="1.8" />
+                <path d="M40 71 L72 87 L104 71" stroke="#EF4444" stroke-width="1.5" fill="none" />
+                <path d="M72 51 Q90 40 90 56 Q90 70 72 70" stroke="#EF4444" stroke-width="2.2" fill="none"
+                  stroke-linecap="round" />
+                <path d="M70 70 L76 77 L68 79" stroke="#EF4444" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              </svg>
+              <span class="card-svg-label">Episode 03</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">I Clicked a Phishing Link. What Should I Do?</h3>
+              <p class="card-ex">A 5-minute emergency playbook for suspicious clicks: assessing payload execution,
+                killing sessions, and revoking OAuth app grants.</p>
+              <div class="card-foot"><span>Incident Response · Triage</span><span class="soon">Coming Soon</span></div>
+            </div>
+          </div>
+
+          <!-- Episode 04 -->
+          <div class="art-card">
+            <div class="card-svg" style="background:linear-gradient(135deg,#F5F3FF 0%,#EDE9FE 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <circle cx="90" cy="72" r="28" fill="#FDE68A" stroke="#D97706" stroke-width="1.8" />
+                <circle cx="82" cy="64" r="4" fill="#92400E" />
+                <circle cx="100" cy="62" r="3.5" fill="#92400E" />
+                <circle cx="89" cy="78" r="3" fill="#92400E" />
+                <circle cx="102" cy="77" r="3" fill="#92400E" />
+                <path d="M120 72 Q144 72 160 58" stroke="#8B5CF6" stroke-width="1.8" stroke-dasharray="3 2" />
+                <rect x="160" y="46" width="38" height="34" rx="6" fill="white" stroke="#7C3AED" stroke-width="1.5" />
+                <path d="M168 46 L168 38 Q168 30 179 30 Q190 30 190 38" stroke="#7C3AED" stroke-width="1.6"
+                  fill="none" />
+              </svg>
+              <span class="card-svg-label">Episode 04</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Your Password Wasn't Hacked. Your Session Was Stolen.</h3>
+              <p class="card-ex">Why 2FA won't stop infostealers like Lumma and RedLine that dump active session cookies
+                directly from your browser memory.</p>
+              <div class="card-foot"><span>Token Theft · Infostealers</span><span class="soon">Coming Soon</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /art-center -->
+  </div><!-- /art-layout -->
+
+  <!-- FLOATING BOTTOM DOCK -->
+  <aside class="floating-dock" aria-label="Reading Controls">
+    <button class="dock-btn btn-like" onclick="toggleLike()" aria-label="Like article">
+      <span class="dock-emoji like-heart">🤍</span>
+      <span class="dock-count like-count">0</span>
+    </button>
+    <button class="dock-btn btn-clap" onclick="addClap()" aria-label="Applaud research">
+      <span class="dock-emoji">👏</span>
+      <span class="dock-count clap-count">0</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#feedback" class="dock-btn" aria-label="Jump to discussion">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+      <span class="dock-label">Feedback</span>
+    </a>
+    <button class="dock-btn btn-share" onclick="copyLink()" aria-label="Copy link">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+      <span class="dock-label">Share</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#series-curriculum" class="dock-series-pill" title="Series: Cybersecurity for Everyone">
+      <span class="dock-pulse"></span>
+      Ep 01 of 10
+    </a>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-in">
+        <a href="index.html" class="foot-brand">The Digital Watch</a>
+        <span>&copy; 2026 Poorna Sujampathi Rathnayaka · All rights reserved</span>
+        <div class="foot-links">
+          <a href="index.html">Home</a>
+          <a href="article.html">Research</a>
+          <a href="#sources">Sources</a>
+          <a href="index.html#about">About</a>
+          <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank"
+            rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js?v=4"></script>
+</body>
+
+</html>
