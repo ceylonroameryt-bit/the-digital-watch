@@ -322,11 +322,23 @@ body {
 }
 .feat-card:hover .feat-cta { background: #1e40af; }
 
-/* Featured card SVG panel */
+/* Featured card SVG/image panel */
 .feat-svg {
-  background: var(--grad);
+  position: relative;
+  overflow: hidden;
+  background: #0B132B;
   display: flex; align-items: center; justify-content: center;
   min-height: 280px;
+}
+.feat-svg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s cubic-bezier(.16, 1, .3, 1);
+}
+.feat-card:hover .feat-svg img {
+  transform: scale(1.05);
 }
 
 /* Article grid (upcoming) */
@@ -440,13 +452,19 @@ body {
 .art-aname { font-weight: 600; color: var(--ink); font-size: .84rem; }
 .art-arole { font-size: .76rem; color: var(--ink-4); margin-top: 1px; }
 
-/* Hero SVG panel */
+/* Hero SVG/image panel */
 .art-hero-svg {
   border-radius: 16px; overflow: hidden;
   box-shadow: var(--sh-xl);
-  background: #EEF2FF;
+  background: #0B132B;
   aspect-ratio: 4/3;
   display: flex; align-items: center; justify-content: center;
+}
+.art-hero-svg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* Layout: clean centered single reading column (no cramped left rail) */
