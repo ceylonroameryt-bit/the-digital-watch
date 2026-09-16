@@ -151,11 +151,19 @@ body {
 
 .h-title {
   font-family: var(--f-d);
-  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
-  font-weight: 800; line-height: 1.09; letter-spacing: -.04em;
+  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+  font-weight: 800; line-height: 1.12; letter-spacing: -.035em;
   color: var(--ink); margin-bottom: 18px;
+  text-wrap: balance;
 }
-.h-title em { font-style: normal; color: var(--blue); }
+.h-title .h-line { display: inline-block; }
+.h-title em {
+  font-style: normal;
+  display: inline-block;
+  background: linear-gradient(135deg, #1D4ED8 0%, #2563EB 50%, #0284C7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 .h-desc { font-size: 1.05rem; color: var(--ink-4); max-width: 500px; line-height: 1.72; margin-bottom: 36px; }
 

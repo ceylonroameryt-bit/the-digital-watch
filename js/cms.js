@@ -15,8 +15,8 @@ const DW_KEYS = {
 /* ── DEFAULT SEED DATA ─────────────────────────────────────── */
 const DEFAULT_SETTINGS = {
   blogName:    'Cyber Insight',
-  tagline:     'Making sense of the digital world.',
-  description: 'Everyone talks about cybersecurity in technical terms. This blog explains what\'s actually happening online — simply, honestly, and in plain language. No jargon required.',
+  tagline:     'Clear insight into the digital world.',
+  description: 'Everyone talks about cybersecurity in technical terms. Cyber Insight breaks down what\'s actually happening online — simply, honestly, and in plain language. No jargon required.',
   authorName:  'Poorna Sujampathi Rathnayaka',
   authorInitials: 'PS',
   authorRole:  'Writer · Cyber Insight · Digital Literacy',
