@@ -1,4 +1,4 @@
-# The Digital Watch — Cybersecurity Research Blog
+﻿# Cyber Insight — Cybersecurity Research Blog
 
 A standalone cybersecurity research blog by **Poorna Sujampathi Rathnayaka**.
 

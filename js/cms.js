@@ -1,5 +1,5 @@
-/* ============================================================
-   cms.js — The Digital Watch CMS Bridge
+﻿/* ============================================================
+   cms.js — Cyber Insight CMS Bridge
    Reads posts & settings from localStorage and renders them
    dynamically on the public-facing pages (index.html, article.html)
    ============================================================ */
@@ -14,13 +14,13 @@ const DW_KEYS = {
 
 /* ── DEFAULT SEED DATA ─────────────────────────────────────── */
 const DEFAULT_SETTINGS = {
-  blogName:    'The Digital Watch',
+  blogName:    'Cyber Insight',
   tagline:     'Making sense of the digital world.',
   description: 'Everyone talks about cybersecurity in technical terms. This blog explains what\'s actually happening online — simply, honestly, and in plain language. No jargon required.',
   authorName:  'Poorna Sujampathi Rathnayaka',
   authorInitials: 'PS',
-  authorRole:  'Writer · The Digital Watch · Digital Literacy',
-  authorBio:   'I started The Digital Watch because everywhere online people only talk about cybersecurity in technical terms — and most people are left without a proper understanding of how the digital world works. I work in cybersecurity, but I write here for everyone. No jargon. Just clear, honest explanations.',
+  authorRole:  'Writer · Cyber Insight · Digital Literacy',
+  authorBio:   'I started Cyber Insight because everywhere online people only talk about cybersecurity in technical terms — and most people are left without a proper understanding of how the digital world works. I work in cybersecurity, but I write here for everyone. No jargon. Just clear, honest explanations.',
   portfolioUrl: 'https://sujampathirathnayaka.com/',
   linkedinUrl:  'https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/',
   seriesName:   'Cybersecurity for Everyone',

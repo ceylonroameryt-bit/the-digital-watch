@@ -1,5 +1,5 @@
-/* ============================================================
-   admin.js — The Digital Watch Admin Panel Logic
+﻿/* ============================================================
+   admin.js — Cyber Insight Admin Panel Logic
    Handles: auth, CRUD for posts, settings management, UI
    ============================================================ */
 
