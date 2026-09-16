@@ -425,13 +425,17 @@ function getAdminComments() {
   try {
     const raw = localStorage.getItem('ci_reader_comments_v1');
     if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed)) return parsed;
+      let parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        return parsed.filter(c => c && !['fb-01', 'fb-02', 'fb-03'].includes(c.id));
+      }
     }
     const old = localStorage.getItem('threatbrief_user_comments_v3');
     if (old) {
-      const parsedOld = JSON.parse(old);
-      if (Array.isArray(parsedOld)) return parsedOld;
+      let parsedOld = JSON.parse(old);
+      if (Array.isArray(parsedOld)) {
+        return parsedOld.filter(c => c && !['fb-01', 'fb-02', 'fb-03'].includes(c.id));
+      }
     }
     return [];
   } catch(e) { return []; }

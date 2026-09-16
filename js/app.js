@@ -258,62 +258,42 @@ function initFeedback() {
   const emptyState = fbContainer.querySelector('#fbEmptyState');
   const COMMENTS_KEY = 'ci_reader_comments_v1';
 
-  const DEFAULT_READER_COMMENTS = [
-    {
-      id: 'fb-01',
-      name: 'Marcus Vance',
-      role: 'Senior SOC Analyst · Enterprise Defense',
-      category: 'SOC Observation',
-      message: 'The 3-second voice clone telemetry matches what we are seeing in recent targeted CEO fraud attempts. Attackers are pulling audio snippets directly from executives\' LinkedIn videos and earnings call webcasts. Excellent, clear breakdown.',
-      time: '2 days ago'
-    },
-    {
-      id: 'fb-02',
-      name: 'Elena Rostova',
-      role: 'IT Security Lead',
-      category: 'General Feedback',
-      message: 'Appreciate that this explains the verification gap in plain English without drowning readers in cryptographic jargon. Shared this with our non-technical staff as required reading for our quarterly security awareness cycle.',
-      time: 'Yesterday'
-    },
-    {
-      id: 'fb-03',
-      name: 'David K.',
-      role: 'Infrastructure Engineer',
-      category: 'Question for Analyst',
-      message: 'Question for Poorna: For internal family safety words or out-of-band challenge phrases, do you recommend periodic rotation, or does that lead to people forgetting them in an emergency?',
-      time: '5 hours ago'
-    }
-  ];
-
   function getComments() {
     try {
       const stored = localStorage.getItem(COMMENTS_KEY);
       if (stored) {
-        const parsed = JSON.parse(stored);
-        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        let parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) {
+          // Filter out any fake/sample comments
+          const cleaned = parsed.filter(c => c && !['fb-01', 'fb-02', 'fb-03'].includes(c.id));
+          if (cleaned.length !== parsed.length) {
+            localStorage.setItem(COMMENTS_KEY, JSON.stringify(cleaned));
+          }
+          return cleaned;
+        }
       }
       
-      // Migrate from old storage keys if any exist
+      // Check legacy keys for any real user comments
       const oldKeys = ['threatbrief_user_comments_v3', 'threatbrief_user_comments_v2', 'threatbrief_user_comments', 'dw_user_comments'];
       for (const k of oldKeys) {
         const oldRaw = localStorage.getItem(k);
         if (oldRaw) {
           try {
-            const oldList = JSON.parse(oldRaw);
-            if (Array.isArray(oldList) && oldList.length > 0) {
-              const combined = [...oldList, ...DEFAULT_READER_COMMENTS];
-              localStorage.setItem(COMMENTS_KEY, JSON.stringify(combined));
-              return combined;
+            let oldList = JSON.parse(oldRaw);
+            if (Array.isArray(oldList)) {
+              oldList = oldList.filter(c => c && !['fb-01', 'fb-02', 'fb-03'].includes(c.id));
+              if (oldList.length > 0) {
+                localStorage.setItem(COMMENTS_KEY, JSON.stringify(oldList));
+                return oldList;
+              }
             }
           } catch(e) {}
         }
       }
 
-      // Default seed comments
-      localStorage.setItem(COMMENTS_KEY, JSON.stringify(DEFAULT_READER_COMMENTS));
-      return DEFAULT_READER_COMMENTS;
+      return [];
     } catch(e) {
-      return DEFAULT_READER_COMMENTS;
+      return [];
     }
   }
 
