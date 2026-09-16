@@ -427,14 +427,11 @@ function getAdminComments() {
     if (raw) {
       let parsed = JSON.parse(raw);
       if (Array.isArray(parsed)) {
-        return parsed.filter(c => c && !['fb-01', 'fb-02', 'fb-03'].includes(c.id));
-      }
-    }
-    const old = localStorage.getItem('threatbrief_user_comments_v3');
-    if (old) {
-      let parsedOld = JSON.parse(old);
-      if (Array.isArray(parsedOld)) {
-        return parsedOld.filter(c => c && !['fb-01', 'fb-02', 'fb-03'].includes(c.id));
+        const cleaned = parsed.filter(c => c && !['fb-01', 'fb-02', 'fb-03'].includes(c.id) && !(c.message && c.message.includes('gffdghxdfhxdfghxfgd')));
+        if (cleaned.length !== parsed.length) {
+          localStorage.setItem('ci_reader_comments_v1', JSON.stringify(cleaned));
+        }
+        return cleaned;
       }
     }
     return [];

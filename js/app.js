@@ -258,14 +258,21 @@ function initFeedback() {
   const emptyState = fbContainer.querySelector('#fbEmptyState');
   const COMMENTS_KEY = 'ci_reader_comments_v1';
 
+  function isSpamOrTest(c) {
+    if (!c) return true;
+    if (['fb-01', 'fb-02', 'fb-03'].includes(c.id)) return true;
+    const msg = (c.message || '').toLowerCase();
+    if (msg.includes('gffdghxdfhxdfghxfgd')) return true;
+    return false;
+  }
+
   function getComments() {
     try {
       const stored = localStorage.getItem(COMMENTS_KEY);
       if (stored) {
         let parsed = JSON.parse(stored);
         if (Array.isArray(parsed)) {
-          // Filter out any fake/sample comments
-          const cleaned = parsed.filter(c => c && !['fb-01', 'fb-02', 'fb-03'].includes(c.id));
+          const cleaned = parsed.filter(c => !isSpamOrTest(c));
           if (cleaned.length !== parsed.length) {
             localStorage.setItem(COMMENTS_KEY, JSON.stringify(cleaned));
           }
@@ -281,13 +288,15 @@ function initFeedback() {
           try {
             let oldList = JSON.parse(oldRaw);
             if (Array.isArray(oldList)) {
-              oldList = oldList.filter(c => c && !['fb-01', 'fb-02', 'fb-03'].includes(c.id));
+              oldList = oldList.filter(c => !isSpamOrTest(c));
               if (oldList.length > 0) {
                 localStorage.setItem(COMMENTS_KEY, JSON.stringify(oldList));
+                localStorage.removeItem(k);
                 return oldList;
               }
             }
           } catch(e) {}
+          localStorage.removeItem(k);
         }
       }
 
