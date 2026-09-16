@@ -48,6 +48,7 @@
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#series">Series</a></li>
         <li><a href="article.html" class="active">Research</a></li>
+        <li><a href="#feedback">Feedback</a></li>
         <li><a href="index.html#about">About</a></li>
         <li><a href="#" onclick="copyLink();return false;" class="cta">Share ↗</a></li>
       </ul>
@@ -844,7 +845,7 @@
           <div class="fb-comments-list" id="fbCommentsList">
 
             <!-- Pinned author note -->
-            <div class="fb-comment is-author">
+            <div class="fb-comment is-author" id="fbAuthorNote">
               <div class="fb-c-top">
                 <div class="fb-c-user">
                   <div class="fb-c-av">PS</div>
@@ -867,9 +868,12 @@
               </p>
             </div>
 
+            <!-- Dedicated stream for reader comments -->
+            <div class="fb-reader-stream" id="fbReaderComments" style="display:flex;flex-direction:column;gap:14px;"></div>
+
             <!-- Clean empty state for reader feedback -->
             <div class="fb-empty-state" id="fbEmptyState"
-              style="text-align:center;padding:28px 20px;border:1px dashed var(--border-2);border-radius:var(--r);background:var(--bg);color:var(--ink-4);margin-top:12px;">
+              style="display:none;text-align:center;padding:28px 20px;border:1px dashed var(--border-2);border-radius:var(--r);background:var(--bg);color:var(--ink-4);margin-top:12px;">
               <div style="font-size:1.4rem;margin-bottom:6px;">💬</div>
               <div style="font-weight:700;font-size:.88rem;color:var(--ink-2);margin-bottom:4px;">No reader feedback yet
               </div>

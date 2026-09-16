@@ -254,53 +254,128 @@ function initFeedback() {
   });
 
   // 3. User comments storage & render
-  const commentsList = fbContainer.querySelector('#fbCommentsList');
-  const emptyState = commentsList ? commentsList.querySelector('#fbEmptyState') : null;
-  const userCommentsKey = 'threatbrief_user_comments_v3';
-  
+  const readerStream = fbContainer.querySelector('#fbReaderComments') || fbContainer.querySelector('#fbCommentsList');
+  const emptyState = fbContainer.querySelector('#fbEmptyState');
+  const COMMENTS_KEY = 'ci_reader_comments_v1';
+
+  const DEFAULT_READER_COMMENTS = [
+    {
+      id: 'fb-01',
+      name: 'Marcus Vance',
+      role: 'Senior SOC Analyst · Enterprise Defense',
+      category: 'SOC Observation',
+      message: 'The 3-second voice clone telemetry matches what we are seeing in recent targeted CEO fraud attempts. Attackers are pulling audio snippets directly from executives\' LinkedIn videos and earnings call webcasts. Excellent, clear breakdown.',
+      time: '2 days ago'
+    },
+    {
+      id: 'fb-02',
+      name: 'Elena Rostova',
+      role: 'IT Security Lead',
+      category: 'General Feedback',
+      message: 'Appreciate that this explains the verification gap in plain English without drowning readers in cryptographic jargon. Shared this with our non-technical staff as required reading for our quarterly security awareness cycle.',
+      time: 'Yesterday'
+    },
+    {
+      id: 'fb-03',
+      name: 'David K.',
+      role: 'Infrastructure Engineer',
+      category: 'Question for Analyst',
+      message: 'Question for Poorna: For internal family safety words or out-of-band challenge phrases, do you recommend periodic rotation, or does that lead to people forgetting them in an emergency?',
+      time: '5 hours ago'
+    }
+  ];
+
   function getComments() {
-    try { return JSON.parse(localStorage.getItem(userCommentsKey) || '[]'); }
-    catch { return []; }
+    try {
+      const stored = localStorage.getItem(COMMENTS_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      
+      // Migrate from old storage keys if any exist
+      const oldKeys = ['threatbrief_user_comments_v3', 'threatbrief_user_comments_v2', 'threatbrief_user_comments', 'dw_user_comments'];
+      for (const k of oldKeys) {
+        const oldRaw = localStorage.getItem(k);
+        if (oldRaw) {
+          try {
+            const oldList = JSON.parse(oldRaw);
+            if (Array.isArray(oldList) && oldList.length > 0) {
+              const combined = [...oldList, ...DEFAULT_READER_COMMENTS];
+              localStorage.setItem(COMMENTS_KEY, JSON.stringify(combined));
+              return combined;
+            }
+          } catch(e) {}
+        }
+      }
+
+      // Default seed comments
+      localStorage.setItem(COMMENTS_KEY, JSON.stringify(DEFAULT_READER_COMMENTS));
+      return DEFAULT_READER_COMMENTS;
+    } catch(e) {
+      return DEFAULT_READER_COMMENTS;
+    }
   }
 
-  function renderComment(c, prepend = false) {
-    if (!commentsList) return;
+  function saveComments(list) {
+    try {
+      localStorage.setItem(COMMENTS_KEY, JSON.stringify(list));
+    } catch(e) {}
+  }
+
+  function renderComment(c, prepend = false, isNew = false) {
+    if (!readerStream) return;
     if (emptyState) emptyState.style.display = 'none';
 
     const card = document.createElement('div');
-    card.className = 'fb-comment';
-    const initials = (c.name || 'AD').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+    card.className = `fb-comment ${isNew ? 'is-new' : ''}`;
+    card.setAttribute('data-id', c.id || '');
+    const initials = (c.name || 'AD').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'RD';
     
     card.innerHTML = `
       <div class="fb-c-top">
         <div class="fb-c-user">
           <div class="fb-c-av">${initials}</div>
           <div>
-            <div class="fb-c-name">${escapeHtml(c.name)}</div>
-            <div class="fb-c-role">${escapeHtml(c.role || 'Security Reader')}</div>
+            <div class="fb-c-name">${escapeHtml(c.name || 'Reader')}</div>
+            <div class="fb-c-role">${escapeHtml(c.role || 'Security Practitioner')}</div>
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
-          <span class="fb-c-badge">${escapeHtml(c.category)}</span>
-          <span class="fb-c-time">${escapeHtml(c.time)}</span>
+          <span class="fb-c-badge">${escapeHtml(c.category || 'General Feedback')}</span>
+          <span class="fb-c-time">${escapeHtml(c.time || 'Recent')}</span>
         </div>
       </div>
       <p class="fb-c-body">${escapeHtml(c.message)}</p>
     `;
 
     if (prepend) {
-      commentsList.prepend(card);
+      readerStream.prepend(card);
     } else {
-      commentsList.appendChild(card);
+      readerStream.appendChild(card);
     }
+    return card;
   }
 
-  // Load existing saved user comments
+  // Load and display comments
   const savedComments = getComments();
-  if (savedComments.length > 0 && emptyState) {
-    emptyState.style.display = 'none';
+  if (savedComments.length === 0) {
+    if (emptyState) emptyState.style.display = 'block';
+  } else {
+    if (emptyState) emptyState.style.display = 'none';
+    savedComments.forEach(c => renderComment(c, false, false));
   }
-  savedComments.forEach(c => renderComment(c, false));
+
+  // Expose global helper for admin panel
+  window.CI_FEEDBACK = {
+    getComments,
+    saveComments,
+    deleteComment: (id) => {
+      const all = getComments().filter(item => item.id !== id);
+      saveComments(all);
+      return all;
+    }
+  };
 
   // 4. Form submit handling
   const form = fbContainer.querySelector('#fbForm');
@@ -309,11 +384,12 @@ function initFeedback() {
       e.preventDefault();
       const nameInput = form.querySelector('#fbName');
       const roleInput = form.querySelector('#fbRole');
-      const msgInput = form.querySelector('#fbMessage');
+      const msgInput  = form.querySelector('#fbMessage');
 
       const message = msgInput ? msgInput.value.trim() : '';
       if (!message) {
         showToast('Please enter your feedback before submitting', '⚠️');
+        if (msgInput) msgInput.focus();
         return;
       }
 
@@ -321,6 +397,7 @@ function initFeedback() {
       const role = (roleInput && roleInput.value.trim()) ? roleInput.value.trim() : 'Practitioner';
       
       const newComment = {
+        id: 'fb-' + Date.now(),
         name,
         role,
         category: selectedCategory,
@@ -328,11 +405,14 @@ function initFeedback() {
         time: 'Just now'
       };
 
-      const updated = getComments();
-      updated.unshift(newComment);
-      localStorage.setItem(userCommentsKey, JSON.stringify(updated));
+      const current = getComments();
+      current.unshift(newComment);
+      saveComments(current);
 
-      renderComment(newComment, true);
+      const renderedCard = renderComment(newComment, true, true);
+      if (renderedCard) {
+        renderedCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
 
       // Reset form
       if (msgInput) msgInput.value = '';

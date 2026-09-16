@@ -1091,6 +1091,16 @@ body {
   background: #F8FAFF;
 }
 
+@keyframes commentFlash {
+  0% { background: #EFF6FF; border-color: #3B82F6; }
+  100% { background: #fff; border-color: var(--border); }
+}
+
+.fb-comment.is-new {
+  animation: commentFlash 2s ease-out;
+  border-color: #3B82F6;
+}
+
 .fb-c-top {
   display: flex;
   align-items: center;

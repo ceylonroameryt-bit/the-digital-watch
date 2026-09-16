@@ -49,7 +49,7 @@ function saveSettings(s){ (window.CI_CMS || window.DW_CMS).saveSettings(s); }
 
 /* ── NAVIGATION ─────────────────────────────────────────────── */
 let currentPanel = 'dashboard';
-const panels = ['dashboard', 'posts', 'editor', 'settings'];
+const panels = ['dashboard', 'posts', 'editor', 'settings', 'feedback'];
 
 function navigate(panel, extra = {}) {
   currentPanel = panel;
@@ -65,12 +65,14 @@ function navigate(panel, extra = {}) {
     posts:     'Posts & Episodes',
     editor:    extra.isNew ? 'New Post' : 'Edit Post',
     settings:  'Site Settings',
+    feedback:  'Reader Feedback & Comments',
   }[panel] || panel;
 
   if (panel === 'dashboard') renderDashboard();
   if (panel === 'posts')     renderPostsTable();
   if (panel === 'editor')    renderEditor(extra.post || null);
   if (panel === 'settings')  renderSettings();
+  if (panel === 'feedback')  renderAdminFeedback();
 
   // Update URL hash
   history.replaceState({}, '', `#${panel}`);
@@ -81,11 +83,14 @@ function renderDashboard() {
   const posts = getPosts();
   const published = posts.filter(p => p.status === 'published');
   const drafts    = posts.filter(p => p.status !== 'published');
+  const comments  = getAdminComments();
 
   _setText('statTotal',     posts.length);
   _setText('statPublished', published.length);
   _setText('statDrafts',    drafts.length);
   _setText('statSeries',    1);
+  _setText('statFeedback',  comments.length);
+  _setText('feedbackBadge', comments.length);
 
   const list = document.getElementById('recentPostsList');
   if (!list) return;
@@ -408,7 +413,91 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function updateNavBadges() {
   const posts = getPosts();
-  const published = posts.filter(p => p.status === 'published').length;
   const badge = document.getElementById('postsBadge');
   if (badge) badge.textContent = posts.length;
+  const fbBadge = document.getElementById('feedbackBadge');
+  const comments = getAdminComments();
+  if (fbBadge) fbBadge.textContent = comments.length;
+}
+
+/* ── READER FEEDBACK MANAGEMENT ──────────────────────────────── */
+function getAdminComments() {
+  try {
+    const raw = localStorage.getItem('ci_reader_comments_v1');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) return parsed;
+    }
+    const old = localStorage.getItem('threatbrief_user_comments_v3');
+    if (old) {
+      const parsedOld = JSON.parse(old);
+      if (Array.isArray(parsedOld)) return parsedOld;
+    }
+    return [];
+  } catch(e) { return []; }
+}
+
+function saveAdminComments(list) {
+  try {
+    localStorage.setItem('ci_reader_comments_v1', JSON.stringify(list));
+  } catch(e) {}
+}
+
+function renderAdminFeedback() {
+  const container = document.getElementById('adminFeedbackList');
+  if (!container) return;
+  const comments = getAdminComments();
+  _setText('feedbackBadge', comments.length);
+  _setText('statFeedback', comments.length);
+
+  if (comments.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center;padding:44px 20px;color:var(--ink-4);">
+        <div style="font-size:2.2rem;margin-bottom:10px;">💬</div>
+        <div style="font-weight:700;font-size:1.05rem;color:var(--ink);">No reader comments yet</div>
+        <p style="font-size:.85rem;margin-top:6px;max-width:380px;margin-left:auto;margin-right:auto;">Feedback and questions submitted on your articles will appear here automatically.</p>
+      </div>`;
+    return;
+  }
+
+  container.innerHTML = comments.map((c, idx) => {
+    const id = c.id || String(idx);
+    const initials = (c.name || 'AD').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'RD';
+    return `
+    <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,0.02);">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--blue-bg);color:var(--blue);font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;border:1px solid var(--blue-bdr);">
+            ${_esc(initials)}
+          </div>
+          <div>
+            <div style="font-weight:700;font-size:.92rem;color:var(--ink);">${_esc(c.name || 'Anonymous Reader')}</div>
+            <div style="font-size:.78rem;color:var(--ink-4);">${_esc(c.role || 'Security Practitioner')}</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span style="background:var(--blue-bg);color:var(--blue);font-size:.72rem;font-weight:700;padding:4px 9px;border-radius:6px;border:1px solid var(--blue-bdr);">
+            ${_esc(c.category || 'General Feedback')}
+          </span>
+          <span style="font-size:.75rem;color:var(--ink-5);">${_esc(c.time || 'Recent')}</span>
+          <button onclick="deleteAdminComment('${id}')" style="background:#FEE2E2;color:#DC2626;border:none;padding:5px 10px;border-radius:6px;font-size:.75rem;font-weight:700;cursor:pointer;">
+            Delete
+          </button>
+        </div>
+      </div>
+      <p style="font-size:.88rem;line-height:1.65;color:var(--ink-2);margin:0;padding:8px 12px;background:var(--bg);border-radius:6px;white-space:pre-wrap;">${_esc(c.message)}</p>
+    </div>
+  `;
+  }).join('');
+}
+
+function deleteAdminComment(id) {
+  showModal('Delete Feedback?', 'Are you sure you want to remove this reader comment from the blog?', () => {
+    let comments = getAdminComments();
+    comments = comments.filter((c, idx) => (c.id ? c.id !== id : String(idx) !== String(id)));
+    saveAdminComments(comments);
+    renderAdminFeedback();
+    hideModal();
+    toast('Feedback deleted', 'info');
+  });
 }
