@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    cms.js — Cyber Insight CMS Bridge
    Reads posts & settings from localStorage and renders them
    dynamically on the public-facing pages (index.html, article.html)
@@ -63,8 +63,17 @@ function getPosts() {
 
 function getSettings() {
   try {
-    const raw = localStorage.getItem(DW_KEYS.settings);
-    return raw ? Object.assign({}, DEFAULT_SETTINGS, JSON.parse(raw)) : DEFAULT_SETTINGS;
+    let raw = localStorage.getItem(CI_KEYS.settings) || localStorage.getItem('dw_blog_settings');
+    if (!raw) return DEFAULT_SETTINGS;
+    const parsed = JSON.parse(raw);
+    if (parsed.blogName === 'The Digital Watch') parsed.blogName = DEFAULT_SETTINGS.blogName;
+    if (parsed.authorRole && parsed.authorRole.includes('The Digital Watch')) {
+      parsed.authorRole = parsed.authorRole.replace(/The Digital Watch/g, 'Cyber Insight');
+    }
+    if (parsed.authorBio && parsed.authorBio.includes('The Digital Watch')) {
+      parsed.authorBio = parsed.authorBio.replace(/The Digital Watch/g, 'Cyber Insight');
+    }
+    return Object.assign({}, DEFAULT_SETTINGS, parsed);
   } catch(e) { return DEFAULT_SETTINGS; }
 }
 
@@ -248,4 +257,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Expose for admin use
-window.DW_CMS = { getPosts, getSettings, savePosts, saveSettings, DW_KEYS, DEFAULT_POSTS, DEFAULT_SETTINGS };
+window.CI_CMS = { getPosts, getSettings, savePosts, saveSettings, CI_KEYS, DW_KEYS: CI_KEYS, DEFAULT_POSTS, DEFAULT_SETTINGS };
+window.DW_CMS = window.CI_CMS;

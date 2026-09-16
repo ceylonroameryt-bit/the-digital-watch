@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    admin.js — Cyber Insight Admin Panel Logic
    Handles: auth, CRUD for posts, settings management, UI
    ============================================================ */
@@ -6,7 +6,7 @@
 'use strict';
 
 /* ── AUTH ───────────────────────────────────────────────────── */
-const ADMIN_PASSWORD = 'digitalwatch2026';
+const ADMIN_PASSWORD = 'cyberinsight2026';
 const AUTH_KEY = 'dw_admin_auth';
 
 function isLoggedIn() {
@@ -41,11 +41,11 @@ function toast(msg, type = 'info') {
   }, 2800);
 }
 
-/* ── STORAGE (delegates to cms.js window.DW_CMS) ──────────── */
-function getPosts()     { return window.DW_CMS.getPosts(); }
-function getSettings()  { return window.DW_CMS.getSettings(); }
-function savePosts(p)   { window.DW_CMS.savePosts(p); }
-function saveSettings(s){ window.DW_CMS.saveSettings(s); }
+/* ── STORAGE (delegates to cms.js (window.CI_CMS || window.DW_CMS)) ──────────── */
+function getPosts()     { return (window.CI_CMS || window.DW_CMS).getPosts(); }
+function getSettings()  { return (window.CI_CMS || window.DW_CMS).getSettings(); }
+function savePosts(p)   { (window.CI_CMS || window.DW_CMS).savePosts(p); }
+function saveSettings(s){ (window.CI_CMS || window.DW_CMS).saveSettings(s); }
 
 /* ── NAVIGATION ─────────────────────────────────────────────── */
 let currentPanel = 'dashboard';
@@ -283,7 +283,7 @@ function saveSettings_() {
 
 function resetToDefaults() {
   showModal('Reset to Defaults?', 'This will reset all settings to the original defaults. Posts will not be affected.', () => {
-    saveSettings(window.DW_CMS.DEFAULT_SETTINGS);
+    saveSettings((window.CI_CMS || window.DW_CMS).DEFAULT_SETTINGS);
     renderSettings();
     hideModal();
     toast('Settings reset to defaults', 'info');
