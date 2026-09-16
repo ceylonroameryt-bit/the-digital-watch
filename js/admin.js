@@ -14,7 +14,8 @@ function isLoggedIn() {
 }
 
 function login(pw) {
-  if (pw === 'admin' || pw === ADMIN_PASSWORD) {
+  const clean = (pw || '').trim();
+  if (clean === 'admin' || clean === ADMIN_PASSWORD) {
     sessionStorage.setItem(AUTH_KEY, 'ok');
     return true;
   }
@@ -341,6 +342,10 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         document.getElementById('loginError').classList.add('show');
       }
+    });
+
+    document.getElementById('loginPw')?.addEventListener('input', () => {
+      document.getElementById('loginError')?.classList.remove('show');
     });
   }
 

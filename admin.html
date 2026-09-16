@@ -496,33 +496,36 @@
               </div>
             </div>
 
-            <!-- ═══ FEEDBACK PANEL ═══ -->
-            <div class="panel" id="panel-feedback">
-              <div class="section-head" style="margin-bottom:20px;">
-                <div>
-                  <div class="section-title">Reader Feedback &amp; Comments</div>
-                  <div class="section-sub">Live responses and questions submitted by readers on your articles</div>
-                </div>
-                <div style="display:flex;gap:10px;">
-                  <a href="article.html#feedback" target="_blank" class="btn-secondary"
-                    style="padding:9px 14px;font-size:.8rem;text-decoration:none;">
-                    💬 View on Article
-                  </a>
-                  <button class="btn-primary" id="refreshFbBtn" onclick="renderAdminFeedback()"
-                    style="width:auto;margin-top:0;padding:9px 14px;font-size:.8rem;">
-                    🔄 Refresh List
-                  </button>
-                </div>
-              </div>
+          </div><!-- /editor-wrap -->
+        </div><!-- /panel-settings -->
 
-              <div class="admin-card">
-                <div id="adminFeedbackList" style="display:flex;flex-direction:column;gap:12px;"></div>
-              </div>
+        <!-- ═══ FEEDBACK PANEL ═══ -->
+        <div class="panel" id="panel-feedback">
+          <div class="section-head" style="margin-bottom:20px;">
+            <div>
+              <div class="section-title">Reader Feedback &amp; Comments</div>
+              <div class="section-sub">Live responses and questions submitted by readers on your articles</div>
             </div>
+            <div style="display:flex;gap:10px;">
+              <a href="article.html#feedback" target="_blank" class="btn-secondary"
+                style="padding:9px 14px;font-size:.8rem;text-decoration:none;">
+                💬 View on Article
+              </a>
+              <button class="btn-primary" id="refreshFbBtn" onclick="renderAdminFeedback()"
+                style="width:auto;margin-top:0;padding:9px 14px;font-size:.8rem;">
+                🔄 Refresh List
+              </button>
+            </div>
+          </div>
 
-          </div><!-- /admin-content -->
-        </div><!-- /admin-main -->
-      </div><!-- /admin-shell -->
+          <div class="admin-card">
+            <div id="adminFeedbackList" style="display:flex;flex-direction:column;gap:12px;"></div>
+          </div>
+        </div><!-- /panel-feedback -->
+
+      </div><!-- /admin-content -->
+    </div><!-- /admin-main -->
+  </div><!-- /admin-shell -->
 
       <!-- ══ DELETE CONFIRM MODAL ══ -->
       <div class="modal-overlay hidden" id="modalOverlay">
