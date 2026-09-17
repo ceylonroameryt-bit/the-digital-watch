@@ -1736,14 +1736,12 @@ body {
 }
 
 #google_translate_element {
-  position: absolute !important;
-  top: -9999px !important;
-  left: -9999px !important;
-  width: 1px !important;
-  height: 1px !important;
-  overflow: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+  width: 220px;
+  height: 50px;
+  overflow: hidden;
 }
 
 #goog-gt-tt,

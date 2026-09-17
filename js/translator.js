@@ -6,6 +6,21 @@
 
 'use strict';
 
+// ── GLOBAL GOOGLE TRANSLATE CALLBACK ─────────────────────────
+window.googleTranslateElementInit = function () {
+  try {
+    if (window.google && window.google.translate && window.google.translate.TranslateElement) {
+      new window.google.translate.TranslateElement({
+        pageLanguage: 'en',
+        autoDisplay: false,
+        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  } catch (e) {
+    console.warn('Google Translate initialization note:', e);
+  }
+};
+
 (function () {
   // Comprehensive 106+ curated languages with flags, native scripts, and regions
   const LANGUAGES = [
@@ -126,9 +141,6 @@
     { code: 'ht', name: 'Haitian Creole', native: 'Kreyòl Ayisyen', flag: '🇭🇹', region: 'americas' }
   ];
 
-  // Current filter state
-  let currentRegionFilter = 'all';
-
   // Helper to get active language code from cookies or storage
   function getCurrentLang() {
     const match = document.cookie.match(/(?:^|;\s*)googtrans=\/[^/]+\/([^;]+)/);
@@ -138,7 +150,7 @@
     return localStorage.getItem('ci_lang_code') || 'en';
   }
 
-  // Set Google Translate cookie
+  // Set Google Translate cookie across all scopes
   function setTranslateCookie(langCode) {
     const val = `/en/${langCode}`;
     const host = window.location.hostname;
@@ -178,17 +190,22 @@
 
     setTranslateCookie(langCode);
 
-    const combo = document.querySelector('.goog-te-combo');
+    // Try finding the Google Translate combo box
+    const combo = document.querySelector('.goog-te-combo') || document.querySelector('#google_translate_element select');
     if (combo) {
       combo.value = langCode;
-      combo.dispatchEvent(new Event('change'));
+      combo.dispatchEvent(new Event('change', { bubbles: true }));
+      if (typeof combo.onchange === 'function') {
+        combo.onchange();
+      }
       updateUI();
       closeAllDropdowns();
       if (typeof window.showToast === 'function') {
         const found = LANGUAGES.find(l => l.code === langCode);
-        window.showToast(`Translating to ${found ? found.name : langCode}...`, '🌐');
+        window.showToast(`Translating page to ${found ? found.name : langCode}...`, '🌐');
       }
     } else {
+      // Reload page so Google Translate reads googtrans cookie on boot
       window.location.reload();
     }
   }
@@ -282,34 +299,16 @@
     if (floatingBtn) {
       floatingBtn.classList.toggle('has-translation', isTranslated);
     }
-  }
 
-  // Mount Google Translate Host Element & Script
-  function initGoogleTranslate() {
-    if (!document.getElementById('google_translate_element')) {
-      const host = document.createElement('div');
-      host.id = 'google_translate_element';
-      document.body.appendChild(host);
-    }
-
-    window.ciGoogleTranslateCallback = function () {
-      if (window.google && window.google.translate) {
-        new window.google.translate.TranslateElement({
-          pageLanguage: 'en',
-          autoDisplay: false,
-          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
+    // Update external fallback links
+    document.querySelectorAll('.lang-external-link').forEach(link => {
+      if (isTranslated) {
+        link.href = `https://translate.google.com/translate?sl=en&tl=${curCode}&u=${encodeURIComponent(window.location.href)}`;
+        link.style.display = 'inline-block';
+      } else {
+        link.style.display = 'none';
       }
-    };
-
-    if (!document.getElementById('google-translate-script')) {
-      const s = document.createElement('script');
-      s.id = 'google-translate-script';
-      s.type = 'text/javascript';
-      s.async = true;
-      s.src = 'https://translate.google.com/translate_a/element.js?cb=ciGoogleTranslateCallback';
-      document.head.appendChild(s);
-    }
+    });
   }
 
   // Build Navbar Language Dropdown
@@ -351,7 +350,7 @@
             <button type="button" class="lang-chip" data-region="popular">⭐ Popular</button>
             <button type="button" class="lang-chip" data-region="asia">🌏 Asia/Pacific</button>
             <button type="button" class="lang-chip" data-region="europe">🌍 Europe</button>
-            <button type="button" class="lang-chip" data-region="mideast_africa">🕌 MidEast & Africa</button>
+            <button type="button" class="lang-chip" data-region="mideast_africa">MidEast & Africa</button>
           </div>
 
           <div class="lang-search-box">
@@ -368,6 +367,9 @@
             <button type="button" class="lang-reset-btn" id="langNavReset">
               <span>↺</span> Reset to Original English
             </button>
+            <a href="#" class="lang-external-link" target="_blank" rel="noopener" style="display:none;margin-top:6px;font-size:.74rem;color:var(--blue);text-decoration:none;">
+              ↗ Open in Google Translate Web
+            </a>
           </div>
         </div>
       </div>
@@ -470,6 +472,9 @@
           <button type="button" class="lang-reset-btn" id="langFloatReset">
             <span>↺</span> Reset to Original English
           </button>
+          <a href="#" class="lang-external-link" target="_blank" rel="noopener" style="display:none;margin-top:6px;font-size:.74rem;color:var(--blue);text-decoration:none;">
+            ↗ Open in Google Translate Web
+          </a>
         </div>
       </div>
     `;
@@ -538,17 +543,40 @@
 
   // Initialize
   function init() {
-    initGoogleTranslate();
+    // If google translate already loaded, run init
+    if (window.google && window.google.translate) {
+      window.googleTranslateElementInit();
+    }
+
     setupNavbarDropdown();
     setupFloatingButton();
     updateUI();
 
-    // Lock body top offset if Google Translate injects styles
+    // If a language was selected, keep combo synchronized as soon as it mounts
+    const cur = getCurrentLang();
+    if (cur && cur !== 'en') {
+      let tries = 0;
+      const syncInterval = setInterval(() => {
+        tries++;
+        const combo = document.querySelector('.goog-te-combo') || document.querySelector('#google_translate_element select');
+        if (combo) {
+          if (combo.value !== cur) {
+            combo.value = cur;
+            combo.dispatchEvent(new Event('change', { bubbles: true }));
+            if (typeof combo.onchange === 'function') combo.onchange();
+          }
+          clearInterval(syncInterval);
+        }
+        if (tries > 20) clearInterval(syncInterval);
+      }, 300);
+    }
+
+    // Lock body top offset so Google Translate's iframe banner never pushes the page down
     setInterval(() => {
       if (document.body.style.top && document.body.style.top !== '0px') {
         document.body.style.top = '0px';
       }
-    }, 400);
+    }, 300);
   }
 
   if (document.readyState === 'loading') {

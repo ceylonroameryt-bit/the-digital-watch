@@ -11,6 +11,7 @@ const DW_KEYS = {
   settings: 'dw_settings',
   series:   'dw_series',
 };
+const CI_KEYS = DW_KEYS;
 
 /* ── DEFAULT SEED DATA ─────────────────────────────────────── */
 const DEFAULT_SETTINGS = {
