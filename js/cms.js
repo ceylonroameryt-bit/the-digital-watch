@@ -43,7 +43,7 @@ const DEFAULT_POSTS = [
     content: '',
     seriesName: 'Cybersecurity for Everyone',
   },
-  { id:'ep02-someone-has-your-email', episodeNum:2, title:'Someone Has Your Email Address. Now What?', slug:'ep02-someone-has-your-email', category:'Email Security', tags:['Phishing','Spam'], readTime:'6 min read', date:'', status:'draft', summary:'Your email address is more than just a contact detail. Here\'s what attackers can do once they have it — and how to limit the damage.', content:'', seriesName:'Cybersecurity for Everyone' },
+  { id:'ep02-someone-has-your-email', episodeNum:2, title:'Someone Has Your Email Address. Now What?', slug:'ep02-someone-has-your-email', category:'Identity Recon', tags:['Account Takeover','Phishing','MFA'], readTime:'7 min read', date:'September 18, 2026', status:'published', summary:'Your email address is the primary anchor of your digital footprint. What automated crawlers, credential stuffing bots, and spear-phishers do once it leaks, and how to lockdown your perimeter.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep03-clicked-phishing-link', episodeNum:3, title:'I Clicked a Phishing Link. What Should I Do?', slug:'ep03-clicked-phishing-link', category:'Phishing', tags:['Phishing','Quick Action'], readTime:'5 min read', date:'', status:'draft', summary:'A step-by-step guide for the moments right after you realise you may have clicked something you shouldn\'t have.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep04-session-was-stolen', episodeNum:4, title:'Your Password Wasn\'t Hacked. Your Session Was Stolen.', slug:'ep04-session-was-stolen', category:'Account Security', tags:['Session Hijacking','Cookies'], readTime:'7 min read', date:'', status:'draft', summary:'Changing your password doesn\'t always help. Here\'s how attackers steal your login session without ever knowing your password.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep05-padlock-doesnt-mean-safe', episodeNum:5, title:'Why the Padlock Doesn\'t Mean a Website Is Safe', slug:'ep05-padlock-doesnt-mean-safe', category:'Web Safety', tags:['HTTPS','Scam Websites'], readTime:'5 min read', date:'', status:'draft', summary:'The padlock icon in your browser means the connection is encrypted — not that the website is trustworthy. Here\'s what to actually look for.', content:'', seriesName:'Cybersecurity for Everyone' },
@@ -58,7 +58,16 @@ const DEFAULT_POSTS = [
 function getPosts() {
   try {
     const raw = localStorage.getItem(DW_KEYS.posts);
-    return raw ? JSON.parse(raw) : DEFAULT_POSTS;
+    if (!raw) return DEFAULT_POSTS;
+    const list = JSON.parse(raw);
+    const ep2 = list.find(p => p.id === 'ep02-someone-has-your-email' || p.episodeNum === 2);
+    if (ep2 && ep2.status !== 'published') {
+      ep2.status = 'published';
+      ep2.date = 'September 18, 2026';
+      ep2.readTime = '7 min read';
+      savePosts(list);
+    }
+    return list;
   } catch(e) { return DEFAULT_POSTS; }
 }
 
@@ -136,7 +145,7 @@ function renderIndex() {
 
 function _renderEpCard(post) {
   const isPub = post.status === 'published';
-  const href = isPub ? `article.html?id=${post.slug}` : '#';
+  const href = post.episodeNum === 1 ? 'article.html' : post.episodeNum === 2 ? 'article-02.html' : (isPub ? `article.html?id=${post.slug}` : '#');
   return `
   <${isPub ? 'a href="'+href+'"' : 'div'} class="ep-card ${isPub ? 'is-published' : ''}">
     <div class="ep-svg-thumb" style="background:linear-gradient(135deg,${_epGradient(post.episodeNum)});">
@@ -163,7 +172,7 @@ function _renderEpCard(post) {
 function _epGradient(n) {
   const g = [
     '#EFF6FF 0%, #DBEAFE 100%',
-    '#F0FDF4 0%, #DCFCE7 100%',
+    '#EFF6FF 0%, #DBEAFE 100%',
     '#FFFBEB 0%, #FEF3C7 100%',
     '#FFF1F2 0%, #FFE4E6 100%',
     '#F5F3FF 0%, #EDE9FE 100%',
@@ -185,6 +194,15 @@ function _epSvgContent(n, isPub) {
       <circle cx="136" cy="74" r="3" fill="white" opacity=".6"/>
       <text x="140" y="132" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="11">Can you still trust what you see?</text>`;
   }
+  if (n === 2) {
+    // Envelope / OSINT illustration for ep02
+    return `<rect x="70" y="45" width="105" height="70" rx="9" fill="white" stroke="#1D4ED8" stroke-width="2"/>
+      <path d="M70 54 L122.5 88 L175 54" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      <circle cx="196" cy="62" r="26" stroke="#EF4444" stroke-width="1.2" opacity=".3"/>
+      <circle cx="196" cy="62" r="6" fill="#EF4444"/>
+      <line x1="196" y1="36" x2="196" y2="88" stroke="#EF4444" stroke-width="1" stroke-dasharray="3 2" opacity=".5"/>
+      <text x="140" y="132" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="11">Identity Exposure &amp; OSINT</text>`;
+  }
   // Generic episode SVG with episode number
   return `<circle cx="140" cy="68" r="38" fill="white" stroke="#CBD5E1" stroke-width="1.5" opacity=".8"/>
     <text x="140" y="62" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="11" font-weight="600">Episode</text>
@@ -195,7 +213,11 @@ function _epSvgContent(n, isPub) {
 /* ── PAGE RENDERER — ARTICLE ────────────────────────────────── */
 function renderArticle() {
   const params = new URLSearchParams(window.location.search);
-  const id = params.get('id') || 'ep01-can-you-still-trust';
+  const id = params.get('id') || (window.location.pathname.includes('02') ? 'ep02-someone-has-your-email' : 'ep01-can-you-still-trust');
+  if (id === 'ep02-someone-has-your-email' && !window.location.pathname.includes('02')) {
+    window.location.replace('article-02.html');
+    return;
+  }
   const posts = getPosts();
   const settings = getSettings();
   const post = posts.find(p => p.slug === id || p.id === id) || posts[0];
@@ -225,7 +247,8 @@ function renderArticle() {
     seriesNavGrid.innerHTML = allPosts.map(p => {
       const isActive = p.slug === post.slug;
       const isPub = p.status === 'published';
-      return `<${isPub ? 'a href="article.html?id='+p.slug+'"' : 'span'} class="series-nav-item ${isActive ? 'active' : ''}">
+      const epHref = p.episodeNum === 1 ? 'article.html' : p.episodeNum === 2 ? 'article-02.html' : `article.html?id=${p.slug}`;
+      return `<${isPub ? 'a href="'+epHref+'"' : 'span'} class="series-nav-item ${isActive ? 'active' : ''}">
         <span class="series-nav-num">${_pad(p.episodeNum)}</span>
         <span>${_esc(p.title)}</span>
       </${isPub ? 'a' : 'span'}>`;

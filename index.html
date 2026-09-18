@@ -6,13 +6,34 @@
   <title>Cyber Insight — Cybersecurity Research by Poorna Sujampathi</title>
   <meta name="description" content="In-depth cybersecurity research on AI threats, phishing, identity fraud, and more. Written from the SOC floor by Poorna Sujampathi Rathnayaka.">
   <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Cyber Insight — Cybersecurity Research">
   <meta property="og:description" content="Research from the SOC floor. AI fraud, phishing, identity theft, and what security teams actually need to know.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Cyber Insight",
+    "url": "https://sujampathirathnayaka.com/",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "copyrightYear": 2026,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    },
+    "description": "In-depth cybersecurity research on AI threats, phishing, identity fraud, and online safety."
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=4">
+  <link rel="stylesheet" href="styles/main.css?v=6">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
 </head>
 <body data-page="index">
@@ -40,7 +61,7 @@
         <li><a href="article.html">Articles</a></li>
         <li><a href="article.html#feedback">Feedback</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="article.html" class="cta">Read Ep 01 →</a></li>
+        <li><a href="article.html" class="cta" id="navStartReadingBtn">Start Reading →</a></li>
       </ul>
     </div>
   </nav>
@@ -56,7 +77,7 @@
           <p class="h-desc">Everyone talks about cybersecurity in technical terms. <strong>Cyber Insight</strong> breaks down what's actually happening online — simply, honestly, and in plain language. No jargon required.</p>
           <div class="h-stats">
             <div><div class="h-stat-n">10 Parts</div><div class="h-stat-l">Recurring Series</div></div>
-            <div><div class="h-stat-n">Ep 01</div><div class="h-stat-l">Live Now ✅</div></div>
+            <div><div class="h-stat-n">Ep 02</div><div class="h-stat-l">Live Now ✅</div></div>
           </div>
         </div>
 
@@ -166,11 +187,11 @@
         <!-- Progress Tracker -->
         <div class="series-tracker">
           <div class="series-tracker-top">
-            <span>Series Progress: <span class="stat">Episode 01 of 10 Released</span></span>
-            <span class="stat">10% Complete</span>
+            <span>Series Progress: <span class="stat">Episode 02 of 10 Released</span></span>
+            <span class="stat">20% Complete</span>
           </div>
-          <div class="series-progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
-            <div class="series-progress-fill"></div>
+          <div class="series-progress-bar" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+            <div class="series-progress-fill" style="width:20%;"></div>
           </div>
         </div>
       </div>
@@ -184,8 +205,8 @@
         </div>
         <div class="series-tabs" role="tablist" aria-label="Filter series episodes">
           <button class="series-tab-btn active" data-filter="all" role="tab" aria-selected="true">All Episodes (10)</button>
-          <button class="series-tab-btn" data-filter="published" role="tab" aria-selected="false">Published (1)</button>
-          <button class="series-tab-btn" data-filter="upcoming" role="tab" aria-selected="false">Upcoming (9)</button>
+          <button class="series-tab-btn" data-filter="published" role="tab" aria-selected="false">Published (2)</button>
+          <button class="series-tab-btn" data-filter="upcoming" role="tab" aria-selected="false">Upcoming (8)</button>
         </div>
       </div>
 
@@ -243,13 +264,13 @@
           </div>
         </a>
 
-        <!-- Episode 02 -->
-        <div class="ep-card">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #EFF6FF 0%, #F1F5F9 100%);">
+        <!-- Episode 02: Published ✅ -->
+        <a href="article-02.html" class="ep-card is-published" aria-label="Read Episode 02: Someone Has Your Email Address. Now What?">
+          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);">
             <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <!-- Envelope -->
-              <rect x="70" y="45" width="105" height="70" rx="9" fill="white" stroke="#3B82F6" stroke-width="2"/>
-              <path d="M70 54 L122.5 88 L175 54" stroke="#3B82F6" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+              <rect x="70" y="45" width="105" height="70" rx="9" fill="white" stroke="#1D4ED8" stroke-width="2"/>
+              <path d="M70 54 L122.5 88 L175 54" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round" fill="none"/>
               <!-- Email text tag inside -->
               <rect x="88" y="78" width="69" height="7" rx="3.5" fill="#DBEAFE"/>
               <rect x="88" y="90" width="46" height="6" rx="3" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1"/>
@@ -263,7 +284,7 @@
               <rect x="42" y="85" width="34" height="18" rx="5" fill="#FEE2E2" stroke="#EF4444" stroke-width="1"/>
               <text x="59" y="97" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="8" font-weight="700">LEAK</text>
             </svg>
-            <span class="ep-badge-pill">Episode 02</span>
+            <span class="ep-badge-pill" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">✅ Ep 02 · Live</span>
           </div>
           <div class="ep-body">
             <div class="ep-header-meta">
@@ -273,11 +294,11 @@
             <h3 class="ep-title">Someone Has Your Email Address. Now What?</h3>
             <p class="ep-summary">Your email address is the primary anchor of your digital footprint. What automated crawlers, credential stuffing bots, and spear-phishers do once it leaks, and how to lockdown your perimeter.</p>
             <div class="ep-foot">
-              <span class="ep-status-tag upcoming">Coming Soon</span>
-              <span>Identity Exposure</span>
+              <span class="ep-status-tag published">✅ Published · 7 min</span>
+              <span class="ep-read-btn">Read Episode →</span>
             </div>
           </div>
-        </div>
+        </a>
 
         <!-- Episode 03 -->
         <div class="ep-card">
@@ -599,14 +620,60 @@
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="wrap">
-      <div class="foot-in">
-        <a href="index.html" class="foot-brand">Cyber Insight</a>
-        <span>&copy; 2026 Poorna Sujampathi Rathnayaka · All rights reserved</span>
-        <div class="foot-links">
-          <a href="index.html">Home</a>
-          <a href="article.html">Articles</a>
-          <a href="#about">About</a>
-          <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, and digital literacy for everyone.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Editorial Series</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio & AI Trust</a></li>
+              <li><a href="article-02.html">Ep 02: Email OSINT & Perimeter Defense</a></li>
+              <li><a href="#series">View 10-Part Curriculum</a></li>
+              <li><a href="article.html#feedback">Submit Reader Feedback</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Author & Contact</div>
+            <ul class="foot-nav-list">
+              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Portfolio ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="#about">About the Author</a></li>
+              <li><a href="mailto:sujampathirathnayaka@gmail.com">Contact Editorial Desk</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal & Research Disclaimer -->
+      <div class="foot-disclaimer">
+        <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is authored by Poorna Sujampathi Rathnayaka for non-commercial educational, threat awareness, and digital literacy purposes. All third-party trademarks, company names, CVE IDs, and security advisories referenced are the property of their respective copyright holders. Fair use citations for educational security awareness are permitted with direct attribution and canonical link.
+      </div>
+
+      <div class="foot-bottom">
+        <div>
+          &copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.
+        </div>
+        <div class="foot-bottom-links">
+          <a href=".well-known/security.txt" target="_blank" rel="noopener noreferrer">Vulnerability Disclosure</a>
+          <span>·</span>
+          <a href="#about">Ethics &amp; Methodology</a>
+          <span>·</span>
+          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
         </div>
       </div>
     </div>

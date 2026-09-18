@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /admin.html
+Disallow: /*.bak$
+Allow: /
+Allow: /article.html
+Allow: /article-02.html
+Allow: /assets/
+Allow: /styles/
+Allow: /js/
+
+# Security Vulnerability Reporting (RFC 9116)
+Contact: mailto:security@sujampathirathnayaka.com
+Security: https://sujampathirathnayaka.com/.well-known/security.txt

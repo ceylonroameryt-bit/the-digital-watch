@@ -150,6 +150,36 @@ As AI improves for both attackers and defenders, cybersecurity will have to adap
 `
   },
   {
+    id: "someone-has-your-email-address-now-what",
+    title: "Someone Has Your Email Address. Now What?",
+    subtitle: "From OSINT identity linkage and credential stuffing to AiTM reverse proxies and OAuth consent phishing: what adversaries do once your email leaks.",
+    category: "Identity Security",
+    categoryClass: "cat-identity",
+    tags: ["OSINT", "AiTM Phishing", "OAuth Abuse", "Credential Stuffing", "MFA", "FIDO2", "Passkeys"],
+    coverImage: "assets/images/email_leak_recon.jpg",
+    author: {
+      name: "Poorna Sujampathi Rathnayaka",
+      handle: "@sujampathi",
+      role: "Cybersecurity Analyst & Digital Literacy Researcher",
+      avatar: "PS"
+    },
+    publishedAt: "September 18, 2026",
+    readTime: "7 min read",
+    cvssScore: "8.6 HIGH",
+    cvssClass: "cvss-high",
+    mitreId: "T1589.002 &bull; T1566 &bull; T1539",
+    mitreName: "Adversary-in-the-Middle & OAuth Consent Phishing",
+    featured: false,
+    summary: "Your email address is the master recovery root of your digital perimeter. As documented by Microsoft and the FBI, attackers combine breach databases, search engine ad poisoning, and reverse proxies to capture credentials and authenticated session cookies.",
+    content: `
+Your email address is probably already out there somewhere. That might sound worrying, but think about how often you give it away. You use it to order food, buy clothes, apply for jobs, book flights, create social media accounts, sign up for free trials and register for websites you may never visit again.
+
+Most of the time, we don't think twice about it. Then a company announces a data breach and suddenly you see the words: **"Your email address may have been exposed."**
+
+The real question isn't *"Someone has my email—am I hacked?"* It's **"What can they do with it next?"**
+`
+  },
+  {
     id: "edr-bypass-direct-syscalls",
     title: "Anatomy of an EDR Bypass: Direct Syscalls and Hell's Gate Technique in 2026",
     subtitle: "Bypassing userland API hooks in modern Endpoint Detection and Response systems using dynamic SSN resolution.",
@@ -674,6 +704,121 @@ Get-CimInstance -Namespace root\\subscription -ClassName __EventConsumer
 | **03** | Blacklist C2 IP addresses at Perimeter Firewall | SecOps | ✅ COMPLETE |
 | **04** | Dual KRBTGT rotation | AD Admin | 🔄 IN PROGRESS |
 | **05** | Deploy offline cold-storage backup verification | SysAdmin | ⏳ QUEUED |
+    `
+  },
+  {
+    id: "someone-has-your-email-address-now-what",
+    title: "Someone Has Your Email Address. Now What?",
+    subtitle: "From OSINT reconnaissance to AiTM session hijacking and OAuth consent phishing: what attackers do once they have your email address, and how to lock down your perimeter.",
+    category: "Identity & Account Security",
+    categoryClass: "cat-identity",
+    tags: ["Account Takeover", "Phishing", "MFA Bypass", "OSINT", "Credential Stuffing", "AiTM", "OAuth", "FIDO2"],
+    coverImage: "assets/images/email_exposure_hero.jpg",
+    author: {
+      name: "Poorna Sujampathi Rathnayaka",
+      handle: "@ceylonroameryt",
+      role: "Writer · Cyber Insight · Digital Literacy",
+      avatar: "PS"
+    },
+    publishedAt: "September 18, 2026",
+    readTime: "7 min read",
+    cvssScore: "8.8 HIGH",
+    cvssClass: "cvss-high",
+    mitreId: "T1589.002 · T1566 · T1539",
+    mitreName: "Email Address Harvest · Phishing · Session Cookie Theft",
+    featured: false,
+    episodeNum: 2,
+    seriesName: "Cybersecurity for Everyone",
+    slug: "article-02.html",
+    summary: "Your email address is the primary anchor of your digital footprint. Once it leaks, automated crawlers, credential stuffing bots, and spear-phishers use it as a starting point for OSINT reconnaissance, AiTM session hijacking, and OAuth consent phishing that can bypass SMS-based MFA entirely.",
+    content: `
+Your email address is probably already out there somewhere.
+
+That might sound worrying, but think about how often you give it away. You use it to order food, buy clothes, apply for jobs, book flights, create social media accounts, sign up for free trials and register for websites you may never visit again. Most of the time, we don't think twice about it.
+
+Then a company announces a data breach and suddenly you see the words: **"Your email address may have been exposed."**
+
+So, what does that actually mean? Has someone hacked your email? Do you need to create a new address? Should you change every password you have?
+
+**Usually, no.** Someone knowing your email address doesn't automatically give them access to your inbox. But an email address can be a surprisingly useful starting point.
+
+The real question isn't *"Someone has my email—am I hacked?"*
+
+It's **"What can they do with it next?"**
+
+---
+
+## It Might Start With a Simple Search
+
+Imagine your email address appears in an old data breach. Someone takes that address and searches for it online. Maybe it leads to your LinkedIn profile. Now they know your name, where you work and what you do. Maybe you've used a similar username on Instagram or another platform.
+
+Another old breach might connect the same address to a phone number or username. None of these things is necessarily serious on its own. **The problem is that small pieces of information can start connecting.**
+
+> "Once someone knows a little about you, it's much easier to send you something you're likely to believe."
+
+---
+
+## Then an Email Arrives
+
+You open your inbox and see a familiar security alert. It looks normal — fine grammar, the right logo, sounds exactly like a real notification. So you click. The login page looks familiar too. You enter your email and password. **And that's really all the attacker needed.**
+
+The FBI describes this pattern in its account-takeover fraud guidance. Criminals use emails, texts, phone calls and fake websites that imitate legitimate financial institutions or cloud services. Sometimes the message even says there's fraud happening on your account — that's what makes it effective. You're not thinking "I'm giving someone my password." You're thinking: **"I'm protecting my account."**
+
+---
+
+## The Old "Look for Spelling Mistakes" Advice Isn't Enough
+
+For years, terrible grammar was the easiest way to spot phishing. But clean grammar doesn't prove anything anymore. Generative AI can produce professional emails in seconds. A fake HR message can sound exactly like HR. A fake recruiter can sound exactly like a recruiter.
+
+So instead of only asking *"Does this email look fake?"*, ask:
+
+> **"Why is this email asking me to do this?"**
+
+---
+
+## Sometimes There Isn't Even a Suspicious Email
+
+In 2025, the FBI warned about criminals creating **fake employee self-service websites**. Criminals purchased search-engine advertisements that imitated legitimate organisations and directed employees to fake websites designed to harvest credentials — targeting payroll services, unemployment programs and health savings accounts, with attackers attempting to divert direct-deposit payments.
+
+**You didn't necessarily click a suspicious email. You simply searched for a website and clicked the wrong top result.**
+
+---
+
+## What If They Have an Old Password Too?
+
+Imagine a shopping website you used several years ago suffers a breach. Your email and password are exposed. But you used that same password somewhere else.
+
+An attacker doesn't have to "hack" your second service. They simply try the credentials across thousands of major sites simultaneously — a technique known as **credential stuffing**. A dedicated password manager solves this: completely unique, complex passwords for every website without having to memorize them.
+
+---
+
+## Your Inbox Is More Valuable Than You Might Think
+
+Your primary email account contains receipts, bank alerts, travel bookings, job applications, and — most importantly — **password reset confirmations**. That last category is the critical one. Whoever controls your email address can request a password reset for almost every other account you own.
+
+---
+
+## What About Multi-Factor Authentication?
+
+Two-step verification adds a valuable barrier. But attackers have developed techniques to work around some forms of it.
+
+One is **adversary-in-the-middle (AiTM) phishing**. You visit a fake website that connects your browser directly to the real service through a reverse proxy. Your credentials pass straight through. Your MFA code passes through too. But the attacker captures your **authenticated session cookie** — and can replay it from anywhere, even after you've logged out.
+
+Microsoft Threat Intelligence documented an AiTM campaign that targeted over **10,000 organisations** — using stolen session cookies to initiate Business Email Compromise fraud within the same session.
+
+Another technique is **OAuth consent phishing**. The attacker doesn't need your password at all. They create a legitimate-looking app and direct you to a real login page — where you grant that app permission to read your email. There's no password theft. The app simply has standing access until you revoke it.
+
+---
+
+## What Can You Do?
+
+1. **Use a password manager.** Unique passwords everywhere — credential stuffing stops working immediately.
+2. **Use a FIDO2 hardware key or passkey.** This is the gold standard. Unlike SMS or TOTP codes, FIDO2 credentials are cryptographically bound to the legitimate website and cannot be replayed through a proxy.
+3. **Use a separate, private email for account recovery.** Don't publish it, don't use it for newsletters. It exists only as a recovery route.
+4. **Navigate directly, not via search or email links.** Bookmark the important sites. When you need to log in, type the address or use your bookmark — not a link from an email, and not the first search result.
+5. **Review connected apps.** Go to Google or Microsoft account settings and remove apps you don't recognise or no longer use.
+
+> **Don't let an unexpected message decide how you reach your account.** That decision — going directly to the real site — is itself a security control.
     `
   }
 ];

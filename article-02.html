@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Someone Has Your Email Address. Now What? — Cyber Insight</title>
+  <meta name="description"
+    content="An exposed email address isn't just a leak—it's the starting point for OSINT reconnaissance, adversary-in-the-middle phishing, consent phishing, and credential stuffing. What attackers do next, and how to defend.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Someone Has Your Email Address. Now What?">
+  <meta property="og:description"
+    content="What attackers can do once they have your email address, how AiTM & OAuth consent phishing bypass MFA, and how to lockdown your perimeter.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Someone Has Your Email Address. Now What?",
+    "description": "An exposed email address isn't just a leak—it's the starting point for OSINT reconnaissance, adversary-in-the-middle phishing, consent phishing, and credential stuffing. What attackers do next, and how to defend.",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cyber Insight",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "datePublished": "2026-09-18",
+    "copyrightYear": 2026,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=6">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
+</head>
+
+<body data-page="article" data-article-id="ep02">
+
+  <div id="reading-progress"></div>
+  <div id="toast-container"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">CI</div>
+        <div>
+          <div class="brand-name">Cyber Insight</div>
+          <div class="brand-sub">Cybersecurity Research</div>
+        </div>
+      </a>
+      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#series">Series</a></li>
+        <li><a href="article-02.html" class="active">Research</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="article.html" class="cta">← Ep 01</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <!-- Series Callout Banner -->
+          <div class="art-series-banner">
+            <div class="art-series-info">
+              <span class="art-series-tag">Series</span>
+              <span>Part of <strong>Cybersecurity for Everyone</strong> · Episode 02 of 10</span>
+            </div>
+            <a href="index.html#series" class="art-series-link">View 10-Part Syllabus →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="index.html#series">Series: Cybersecurity for Everyone</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Episode 02</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat">Episode 02</span>
+            <span class="art-dot">·</span>
+            <span>Identity &amp; Account Security</span>
+            <span class="art-dot">·</span>
+            <span>September 18, 2026</span>
+            <span class="art-dot">·</span>
+            <span>7 min read</span>
+          </div>
+
+          <h1 class="art-h1">Someone Has Your Email Address. Now What?</h1>
+
+          <div class="art-byline">
+            <div class="art-av">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Writer · Cyber Insight · Digital Literacy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero SVG: Email Exposure & Reconnaissance Radar -->
+        <div class="art-hero-svg">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Email exposure radar and recon graph connecting identities">
+            <circle cx="160" cy="120" r="100" fill="#EEF2FF" opacity=".6" />
+            <circle cx="160" cy="120" r="72" fill="#DBEAFE" opacity=".4" />
+            <circle cx="160" cy="120" r="44" fill="#BFDBFE" opacity=".35" />
+            
+            <!-- Radar scan sweep -->
+            <path d="M160 120 L230 50 A100 100 0 0 1 260 120 Z" fill="url(#sweepGrad)" opacity=".25" />
+            <defs>
+              <linearGradient id="sweepGrad" x1="160" y1="120" x2="260" y2="50">
+                <stop offset="0%" stop-color="#1D4ED8" stop-opacity="0" />
+                <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.8" />
+              </linearGradient>
+            </defs>
+
+            <!-- Main Central Envelope -->
+            <rect x="105" y="82" width="110" height="74" rx="10" fill="white" stroke="#1D4ED8" stroke-width="2.5" />
+            <path d="M105 92 L160 128 L215 92" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" fill="none" />
+            
+            <!-- Inner email address placeholder -->
+            <rect x="122" y="120" width="76" height="7" rx="3.5" fill="#DBEAFE" />
+            <rect x="122" y="132" width="50" height="6" rx="3" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1" />
+
+            <!-- Satellite Threat Nodes -->
+            <!-- LinkedIn / Work Node (Top-Right) -->
+            <circle cx="248" cy="62" r="18" fill="white" stroke="#0284C7" stroke-width="2" />
+            <path d="M195 95 L232 72" stroke="#0284C7" stroke-width="1.8" stroke-dasharray="3 2" />
+            <text x="248" y="66" text-anchor="middle" fill="#0284C7" font-family="DM Sans,system-ui" font-size="10" font-weight="800">in</text>
+
+            <!-- Breach Database / Password Node (Top-Left) -->
+            <circle cx="70" cy="62" r="18" fill="#FEF2F2" stroke="#EF4444" stroke-width="2" />
+            <path d="M125 95 L88 72" stroke="#EF4444" stroke-width="1.8" stroke-dasharray="3 2" />
+            <text x="70" y="66" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="11" font-weight="800">***</text>
+
+            <!-- Session Cookie Node (Bottom-Right) -->
+            <circle cx="236" cy="178" r="17" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2" />
+            <path d="M195 145 L222 165" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="3 2" />
+            <text x="236" y="182" text-anchor="middle" fill="#B45309" font-family="DM Sans,system-ui" font-size="9" font-weight="700">AiTM</text>
+
+            <!-- Recovery Shield Node (Bottom-Left) -->
+            <circle cx="84" cy="178" r="17" fill="#F0FDF4" stroke="#16A34A" stroke-width="2" />
+            <path d="M125 145 L98 165" stroke="#16A34A" stroke-width="1.8" stroke-dasharray="3 2" />
+            <path d="M84 170 L91 174 L91 182 Q91 187 84 189 Q77 187 77 182 L77 174 Z" fill="#DCFCE7" stroke="#16A34A" stroke-width="1.2" />
+
+            <!-- Warning Badge on central envelope -->
+            <circle cx="215" cy="82" r="10" fill="#EF4444" stroke="white" stroke-width="2" />
+            <text x="215" y="86" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="11" font-weight="800">!</text>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <div class="art-layout">
+
+    <div class="art-center">
+
+      <!-- Horizontal Action & Metadata Strip -->
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">Episode 02</span>
+          <span class="chip">Identity Recon</span>
+          <span class="chip">Account Security</span>
+          <span class="chip">Phishing &amp; MFA</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 7 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" onclick="toggleLike()" title="Like this research"
+            aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" onclick="addClap()" title="Applaud this research"
+            aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">10,000+</div>
+          <div class="stat-l">Organizations Targeted</div>
+          <div class="stat-s">Documented in Microsoft AiTM campaign</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">1 in 3</div>
+          <div class="stat-l">Account Takeovers</div>
+          <div class="stat-s">Leverage credentials from past breaches</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">FIDO2</div>
+          <div class="stat-l">Gold Standard</div>
+          <div class="stat-s">CISA-recommended phishing-resistant MFA</div>
+        </div>
+      </div>
+
+      <div class="art-text">
+
+        <p>Your email address is probably already out there somewhere.</p>
+
+        <p>That might sound worrying, but think about how often you give it away. You use it to order food, buy clothes, apply for jobs, book flights, create social media accounts, sign up for free trials and register for websites you may never visit again. Most of the time, we don't think twice about it.</p>
+
+        <p>Then a company announces a data breach and suddenly you see the words:</p>
+
+        <div class="pq" style="border-left-color:#EF4444;color:#B91C1C;background:#FEF2F2;font-style:normal;font-weight:700;">
+          "Your email address may have been exposed."
+        </div>
+
+        <p>So, what does that actually mean? Has someone hacked your email? Do you need to create a new address? Should you change every password you have?</p>
+
+        <p><strong>Usually, no.</strong> Someone knowing your email address doesn't automatically give them access to your inbox. But an email address can be a surprisingly useful starting point.</p>
+
+        <p>The real question isn't <em>"Someone has my email—am I hacked?"</em></p>
+
+        <p>It's <strong>"What can they do with it next?"</strong></p>
+
+        <!-- S1 -->
+        <h2 id="s1">It Might Start With a Simple Search</h2>
+
+        <!-- SVG: OSINT Connection Graph -->
+        <div class="sec-svg" aria-label="OSINT connection graph diagram">
+          <svg viewBox="0 0 520 170" width="520" height="170" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Email node connecting to LinkedIn work profile, birth year inference, and old breach records">
+            <!-- Central Node -->
+            <rect x="180" y="58" width="160" height="54" rx="10" fill="#1D4ED8" />
+            <text x="260" y="80" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="11" font-weight="700">samanthasmith1992@...</text>
+            <text x="260" y="98" text-anchor="middle" fill="#BFDBFE" font-family="DM Sans,system-ui" font-size="9.5">Anchor Identity Identifier</text>
+
+            <!-- Line Left to Breach -->
+            <path d="M180 85 L120 48" stroke="#EF4444" stroke-width="1.8" stroke-dasharray="4 3" />
+            <rect x="20" y="24" width="100" height="50" rx="8" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.5" />
+            <text x="70" y="44" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="10" font-weight="700">Breach Database</text>
+            <text x="70" y="60" text-anchor="middle" fill="#7F1D1D" font-family="DM Sans,system-ui" font-size="8.5">Old Passwords &amp; Phone</text>
+
+            <!-- Line Bottom-Left to Username -->
+            <path d="M180 95 L120 128" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="4 3" />
+            <rect x="20" y="104" width="100" height="50" rx="8" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.5" />
+            <text x="70" y="124" text-anchor="middle" fill="#D97706" font-family="DM Sans,system-ui" font-size="10" font-weight="700">Social Profiles</text>
+            <text x="70" y="140" text-anchor="middle" fill="#92400E" font-family="DM Sans,system-ui" font-size="8.5">Shared Handles &amp; Bio</text>
+
+            <!-- Line Right to LinkedIn -->
+            <path d="M340 85 L400 48" stroke="#0284C7" stroke-width="1.8" stroke-dasharray="4 3" />
+            <rect x="400" y="24" width="100" height="50" rx="8" fill="#F0F9FF" stroke="#0284C7" stroke-width="1.5" />
+            <text x="450" y="44" text-anchor="middle" fill="#0284C7" font-family="DM Sans,system-ui" font-size="10" font-weight="700">LinkedIn Recon</text>
+            <text x="450" y="60" text-anchor="middle" fill="#0369A1" font-family="DM Sans,system-ui" font-size="8.5">Employer &amp; Position</text>
+
+            <!-- Line Bottom-Right to Inferred Bio -->
+            <path d="M340 95 L400 128" stroke="#10B981" stroke-width="1.8" stroke-dasharray="4 3" />
+            <rect x="400" y="104" width="100" height="50" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="1.5" />
+            <text x="450" y="124" text-anchor="middle" fill="#059669" font-family="DM Sans,system-ui" font-size="10" font-weight="700">Personal Metadata</text>
+            <text x="450" y="140" text-anchor="middle" fill="#065F46" font-family="DM Sans,system-ui" font-size="8.5">Name &amp; Birth Year (1992)</text>
+          </svg>
+        </div>
+
+        <p>Imagine your email address appears in an old data breach. Someone takes that address and searches for it online.</p>
+
+        <p>Maybe it leads to your LinkedIn profile. Now they know your name, where you work and what you do. Maybe you've used a similar username on Instagram or another platform. Or perhaps your email address itself gives something away: <code>samanthasmith1992@...</code>. There's already a possible name and birth year.</p>
+
+        <p>Another old breach might connect the same address to a phone number or username. None of these things is necessarily serious on its own. <strong>The problem is that small pieces of information can start connecting.</strong></p>
+
+        <div class="pq">"Once someone knows a little about you, it's much easier to send you something you're likely to believe."</div>
+
+        <!-- S2 -->
+        <h2 id="s2">Then an Email Arrives</h2>
+
+        <p>You open your inbox one morning and see a familiar security alert:</p>
+
+        <!-- Mock Phishing Email Card -->
+        <div style="background:#F8FAFC;border:1px solid var(--border-2);border-radius:var(--r);padding:20px;margin:24px 0;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border-2);">
+            <div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div>
+            <span style="font-weight:700;font-size:.9rem;color:var(--ink);">Security Notification</span>
+            <span style="font-size:.75rem;color:var(--ink-4);margin-left:auto;">Today, 08:14 AM</span>
+          </div>
+          <div style="font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:8px;">Unusual sign-in detected</div>
+          <p style="font-size:.86rem;color:var(--ink-3);margin:0 0 16px 0;line-height:1.5;">We noticed a login to your account from a new device. If this wasn't you, please review your recent activity immediately to safeguard your data.</p>
+          <a href="#s2" onclick="return false;" style="display:inline-block;background:#1D4ED8;color:white;padding:9px 18px;border-radius:6px;font-size:.82rem;font-weight:700;text-decoration:none;pointer-events:none;">Review Activity →</a>
+        </div>
+
+        <p>It looks normal. The grammar is fine. The logo looks right. The message sounds exactly like the kind of security notification you've received before. So you click.</p>
+
+        <p>The login page looks familiar too. You enter your email and password. <strong>And that's really all the attacker needed.</strong></p>
+
+        <p>The FBI describes this exact pattern in its guidance on account-takeover fraud. Criminals use emails, texts, phone calls and fake websites that imitate legitimate financial institutions or cloud services. Victims enter their credentials believing they're dealing with the real organisation.</p>
+
+        <p>Sometimes the message even says there's fraud happening on your account. That's what makes it effective. You're not thinking: <em>"I'm giving someone my password."</em> You're thinking: <strong>"I'm protecting my account."</strong></p>
+
+        <!-- S3 -->
+        <h2 id="s3">The Old “Look for Spelling Mistakes” Advice Isn't Enough</h2>
+
+        <p>For years, one of the easiest ways to recognise phishing was terrible writing. We all remember messages like:</p>
+
+        <blockquote style="background:#FFF1F2;border-left:4px solid #F43F5E;padding:12px 16px;border-radius:4px;color:#9F1239;margin:16px 0;font-family:monospace;font-size:.88rem;">
+          "Dear customer your account have problem kindly login immediately."
+        </blockquote>
+
+        <p>Those scams still exist. But clean grammar doesn't prove anything anymore. Generative AI can produce professional emails in seconds. If someone already knows your name, employer or another detail about you, they can make the message feel even more relevant:</p>
+
+        <ul class="styled-list" style="margin:16px 0 20px 20px;">
+          <li>A fake HR message can sound exactly like HR.</li>
+          <li>A fake recruiter can sound exactly like a recruiter.</li>
+          <li>A fake customer-support message can sound exactly like customer support.</li>
+        </ul>
+
+        <p>So instead of only asking: <em>"Does this email look fake?"</em>, there is a far better question:</p>
+
+        <div class="pq" style="font-weight:700;font-style:normal;border-left-color:var(--blue);color:var(--blue);">
+          "Why is this email asking me to do this?"
+        </div>
+
+        <p>Especially if "this" means logging in, sending money, downloading an archive or providing sensitive personal information.</p>
+
+        <!-- S4 -->
+        <h2 id="s4">Sometimes There Isn't Even a Suspicious Email</h2>
+
+        <p>This is where things get more interesting. In 2025, the FBI warned about criminals creating <strong>fake employee self-service websites</strong>.</p>
+
+        <!-- SVG: Malicious Search Engine Ads / Redirection -->
+        <div class="sec-svg" aria-label="Malicious search ad spoofing portal diagram">
+          <svg viewBox="0 0 520 160" width="520" height="160" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Search engine sponsored ad redirecting user to fraudulent login page">
+            <!-- Search bar mockup -->
+            <rect x="30" y="24" width="220" height="34" rx="8" fill="white" stroke="#CBD5E1" stroke-width="1.5" />
+            <text x="44" y="45" fill="#64748B" font-family="DM Sans,system-ui" font-size="10">🔍 Acme Corp Employee Portal</text>
+
+            <!-- Sponsored Ad Result -->
+            <rect x="30" y="66" width="220" height="74" rx="8" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.5" />
+            <rect x="42" y="76" width="34" height="15" rx="3" fill="#EF4444" />
+            <text x="59" y="87" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8" font-weight="800">SPONSORED</text>
+            <text x="82" y="88" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="10" font-weight="700">Acme Employee Portal - Login</text>
+            <text x="42" y="106" fill="#059669" font-family="DM Sans,system-ui" font-size="8.5">https://acme-portal-login.net/auth</text>
+            <text x="42" y="124" fill="#991B1B" font-family="DM Sans,system-ui" font-size="8">⚠️ Fake Clone targeting Payroll &amp; HSA</text>
+
+            <!-- Connecting arrow -->
+            <path d="M256 103 L314 103" stroke="#EF4444" stroke-width="2" stroke-dasharray="5 3" />
+            <polygon points="318,103 310,98 310,108" fill="#EF4444" />
+
+            <!-- Fake Portal Destination -->
+            <rect x="324" y="36" width="166" height="104" rx="10" fill="white" stroke="#EF4444" stroke-width="2" />
+            <rect x="324" y="36" width="166" height="24" rx="10" fill="#FEE2E2" />
+            <text x="407" y="52" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="9.5" font-weight="700">Fake Portal Interface</text>
+            <rect x="344" y="70" width="126" height="18" rx="4" fill="#F1F5F9" stroke="#CBD5E1" />
+            <text x="352" y="82" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="8">username@company.com</text>
+            <rect x="344" y="94" width="126" height="18" rx="4" fill="#F1F5F9" stroke="#CBD5E1" />
+            <text x="352" y="106" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="8">••••••••••••</text>
+            <rect x="344" y="118" width="126" height="14" rx="4" fill="#DC2626" />
+            <text x="407" y="128" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8" font-weight="700">Intercept Credentials</text>
+          </svg>
+        </div>
+
+        <p>Imagine you want to check your payslip. You search for your company's employee portal. A result appears near the top. The company name looks correct, so you click it. The website looks normal. You enter your username and password.</p>
+
+        <p><strong>Except it isn't your company's website.</strong></p>
+
+        <p>According to the FBI, criminals have purchased search-engine advertisements that imitate legitimate organisations and direct employees to fake websites designed to harvest credentials. These schemes have directly targeted payroll services, unemployment programs and health savings accounts (HSAs), with attackers attempting to divert direct-deposit payments.</p>
+
+        <p>That's worth thinking about because <em>you didn't necessarily click a suspicious email</em>. You simply searched for a website and clicked the wrong top result. The FBI continued warning about related redirection techniques in 2026, including fraudulent advertisements and compromised websites that funnel users toward clone login portals.</p>
+
+        <!-- S5 -->
+        <h2 id="s5">What If They Have an Old Password Too?</h2>
+
+        <p>Now the situation escalates. Imagine a shopping website you used several years ago suffers a breach. Your email and password are exposed. You've forgotten about the account completely. But there's one problem:</p>
+
+        <p><strong>You used that same password somewhere else.</strong></p>
+
+        <p>An attacker doesn't necessarily have to "hack" your second service. They simply try the credentials they already have across thousands of major sites simultaneously—a technique known as <strong>credential stuffing</strong>.</p>
+
+        <p>The FBI specifically highlights credentials obtained from previous data breaches as one of the primary mechanisms criminals use to execute account takeover. If one random e-commerce shop gets breached, the damage should stop there. A dedicated password manager makes this straightforward: you get completely unique, complex passwords for every single website without having to memorize them.</p>
+
+        <!-- S6 -->
+        <h2 id="s6">Your Inbox Is More Valuable Than You Might Think</h2>
+
+        <p>There's another reason your primary email account deserves more protection than virtually any other account you own. Open your inbox right now and observe what is stored there:</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:20px 0;">
+          <div style="background:var(--bg-2);border:1px solid var(--border-2);padding:10px 14px;border-radius:8px;font-size:.85rem;color:var(--ink-2);">📦 Amazon &amp; Delivery Receipts</div>
+          <div style="background:var(--bg-2);border:1px solid var(--border-2);padding:10px 14px;border-radius:8px;font-size:.85rem;color:var(--ink-2);">🏦 Bank &amp; Credit Alerts</div>
+          <div style="background:var(--bg-2);border:1px solid var(--border-2);padding:10px 14px;border-radius:8px;font-size:.85rem;color:var(--ink-2);">✈️ Travel &amp; Hotel Bookings</div>
+          <div style="background:var(--bg-2);border:1px solid var(--border-2);padding:10px 14px;border-radius:8px;font-size:.85rem;color:var(--ink-2);">☁️ Cloud Storage Alerts</div>
+          <div style="background:var(--bg-2);border:1px solid var(--border-2);padding:10px 14px;border-radius:8px;font-size:.85rem;color:var(--ink-2);">💼 Job Applications &amp; Resumes</div>
+          <div style="background:var(--bg-2);border:1px solid var(--border-2);padding:10px 14px;border-radius:8px;font-size:.85rem;color:var(--ink-2);">🔑 Password Reset Confirmations</div>
+        </div>
+
+        <p>Your inbox quietly contains an architectural map of your entire digital footprint. If someone gains access to it, they don't need to guess where you have accounts. Your emails tell them. Then they can visit any of those services and click:</p>
+
+        <div class="pq" style="border-left-color:#3B82F6;color:#1D4ED8;background:#EFF6FF;font-style:normal;font-weight:700;">
+          "Forgot password?"
+        </div>
+
+        <p>And where does the password-reset link arrive? <strong>Back in the inbox they already control.</strong> That is why your primary email isn't just another account—it is the master recovery root for your entire digital existence.</p>
+
+        <!-- S7 -->
+        <h2 id="s7">“But I Have MFA”</h2>
+
+        <p>Multi-factor authentication (MFA) is still one of the most effective security safeguards you can enable. But there is a critical distinction that many users miss: <strong>MFA does not mean you can safely type your password into any website that looks legitimate.</strong></p>
+
+        <!-- SVG: AiTM Reverse Proxy Diagram -->
+        <div class="sec-svg" aria-label="Adversary-in-the-Middle AiTM reverse proxy architecture">
+          <svg viewBox="0 0 520 180" width="520" height="180" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="User connects to AiTM proxy which forwards to real service and steals authenticated session cookie">
+            <!-- Victim User -->
+            <rect x="20" y="55" width="100" height="70" rx="10" fill="#EEF2FF" stroke="#1D4ED8" stroke-width="2" />
+            <circle cx="70" cy="80" r="12" fill="#1D4ED8" opacity=".2" />
+            <circle cx="70" cy="76" r="6" fill="#1D4ED8" />
+            <text x="70" y="112" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="9" font-weight="700">Victim User</text>
+
+            <!-- Arrow 1 -->
+            <path d="M120 90 L200 90" stroke="#1D4ED8" stroke-width="2" />
+            <polygon points="204,90 196,86 196,94" fill="#1D4ED8" />
+            <text x="160" y="82" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="8">Types Pwd + MFA</text>
+
+            <!-- AiTM Reverse Proxy Center -->
+            <rect x="208" y="35" width="124" height="110" rx="12" fill="#FEF2F2" stroke="#EF4444" stroke-width="2" stroke-dasharray="6 3" />
+            <rect x="220" y="47" width="100" height="24" rx="6" fill="#EF4444" />
+            <text x="270" y="63" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="9.5" font-weight="800">AiTM Proxy</text>
+            <text x="270" y="90" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="8.5">Relays credentials &amp; OTP</text>
+            <rect x="220" y="105" width="100" height="26" rx="6" fill="#FEE2E2" stroke="#EF4444" />
+            <text x="270" y="122" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="9" font-weight="700">🍪 Cookie Intercepted</text>
+
+            <!-- Arrow 2 -->
+            <path d="M332 90 L400 90" stroke="#10B981" stroke-width="2" />
+            <polygon points="404,90 396,86 396,94" fill="#10B981" />
+            <text x="368" y="82" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="8">Relays Auth</text>
+
+            <!-- Legitimate Cloud Service Right -->
+            <rect x="408" y="55" width="94" height="70" rx="10" fill="#ECFDF5" stroke="#10B981" stroke-width="2" />
+            <text x="455" y="85" text-anchor="middle" fill="#047857" font-family="DM Sans,system-ui" font-size="10" font-weight="800">Real Cloud</text>
+            <text x="455" y="100" text-anchor="middle" fill="#065F46" font-family="DM Sans,system-ui" font-size="8.5">Issues Session Token</text>
+          </svg>
+        </div>
+
+        <p>Microsoft Threat Intelligence documented a massive phishing campaign attempting to compromise more than <strong>10,000 organizations</strong> using an <strong>Adversary-in-the-Middle (AiTM)</strong> technique. In this attack, the user enters their password and successfully enters their MFA code. However, the attacker's server sits transparently between the user and the genuine service.</p>
+
+        <p>Because the authentication succeeds against the legitimate server, the service returns an authenticated session cookie. The proxy captures this session cookie. The attacker can then replay that cookie in their own browser and access the mailbox indefinitely—without needing to know the password or repeat the MFA prompt. Microsoft observed these compromised accounts immediately leveraged for Business Email Compromise (BEC) and unauthorized financial routing.</p>
+
+        <p>The takeaway is not that MFA is obsolete—it stops the vast majority of opportunistic attacks. But security has evolved beyond traditional SMS or app codes. For critical accounts, <strong>CISA recommends FIDO-based phishing-resistant authentication</strong>, specifically hardware security keys (like YubiKeys) and passkeys. Hardware-bound WebAuthn credentials cryptographically bind the authentication handshake to the exact URL domain in your browser bar, rendering reverse proxies completely powerless.</p>
+
+        <!-- S8 -->
+        <h2 id="s8">Sometimes Nobody Needs to Steal Your Password</h2>
+
+        <p>Here is another sophisticated vector that is frequently overlooked. You have seen buttons like:</p>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin:16px 0;">
+          <div style="background:white;border:1px solid #CBD5E1;padding:8px 16px;border-radius:6px;font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:8px;">
+            <span style="color:#4285F4;font-weight:800;">G</span> Continue with Google
+          </div>
+          <div style="background:white;border:1px solid #CBD5E1;padding:8px 16px;border-radius:6px;font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:8px;">
+            <span style="color:#00A4EF;font-weight:800;">⊞</span> Sign in with Microsoft
+          </div>
+        </div>
+
+        <p>You sign in normally. Then an authorization prompt appears:</p>
+
+        <div style="background:#FFFBEB;border:1px solid #FCD34D;border-radius:var(--r);padding:18px;margin:18px 0;max-width:420px;">
+          <div style="font-weight:700;font-size:.9rem;color:#92400E;margin-bottom:8px;">"Productivity Assistant" requests permission to:</div>
+          <ul style="margin:0 0 14px 18px;font-size:.82rem;color:#78350F;line-height:1.6;">
+            <li>Read your mail and contacts</li>
+            <li>Access your cloud files</li>
+            <li>Maintain data access when you are offline</li>
+          </ul>
+          <button style="background:#1D4ED8;color:white;border:none;padding:7px 16px;border-radius:5px;font-weight:700;font-size:.8rem;pointer-events:none;">Allow</button>
+        </div>
+
+        <p>Most people skim past this screen and instinctively click <strong>Allow</strong>. But in an attack known as <strong>consent phishing</strong>, that permission grant is exactly what the adversary is hunting for.</p>
+
+        <p>Microsoft warns that malicious OAuth applications can gain persistent API-level access to legitimate cloud mailboxes, OneDrive documents and tenant configurations after an unwitting user grants permission. <strong>Your password wasn't stolen. Your MFA was not bypassed. You logged in legitimately and authorized the wrong application.</strong></p>
+
+        <p>It is vital to regularly review connected third-party applications in your Google or Microsoft security dashboards and revoke access to tools you no longer recognize.</p>
+
+        <!-- S9 -->
+        <h2 id="s9">Should You Have More Than One Email Address?</h2>
+
+        <p>You don't need five different inboxes just to browse the web safely. But using one single email address for every newsletter, receipt, job board and bank ties your entire digital identity to a single string of characters.</p>
+
+        <p>A sensible strategy is to keep an <strong>everyday address</strong> for shopping, rewards programs and casual registrations, while reserving a <strong>hardened primary address</strong> strictly for banking, government identities and primary security recoveries.</p>
+
+        <p><strong>Email aliases</strong> (like iCloud Hide My Email, SimpleLogin, or DuckDuckGo Email Protection) offer another layer. By giving each merchant a unique forwarding alias, you immediately shrink your blast radius: if an obscure retailer is breached, that exposed address points nowhere else in your life.</p>
+
+        <!-- S10 -->
+        <h2 id="s10">Don't Ignore the Small Things Either</h2>
+
+        <p>Attacks don't always announce themselves with flashing warning sirens. Frequently, the initial indicators are subtle:</p>
+
+        <ul class="styled-list" style="margin:16px 0 20px 20px;">
+          <li>A password-reset code for an account you haven't logged into in months.</li>
+          <li>A device sign-in notification from an unfamiliar suburb or operating system.</li>
+          <li>An obscure $1.00 pre-authorization charge on your banking statement.</li>
+        </ul>
+
+        <p>None of these proves an active breach, but they warrant immediate out-of-band inspection. Never click the link contained inside the notification itself. That underpins the single most critical habit in this entire guide:</p>
+
+        <div class="pq" style="font-size:1.12rem;font-weight:800;border-left-color:var(--blue);color:var(--blue);background:var(--blue-light);">
+          "Don't let an unexpected message decide how you reach your account."
+        </div>
+
+        <p>If your bank emails you, open the verified banking app directly. If Microsoft warns of suspicious sign-ins, navigate to <code>account.microsoft.com</code> manually in a clean browser tab. If Amazon reports delivery problems, open Amazon yourself. <strong>You already know how to reach these services; you never need the hyperlink inside the email.</strong></p>
+
+        <!-- S11 -->
+        <h2 id="s11">So, Someone Has Your Email. What Now?</h2>
+
+        <p>Don't panic. An exposed email address is not the same as a compromised inbox, and it does not mean an adversary has control of your accounts. But it is an invaluable catalyst to audit and harden your perimeter.</p>
+
+        <!-- Checklist Box -->
+        <div style="background:var(--bg-2);border:1px solid var(--border-2);border-radius:var(--r);padding:24px;margin:24px 0;">
+          <div style="font-family:var(--f-d);font-size:1.05rem;font-weight:800;color:var(--ink);margin-bottom:14px;">
+            🛡️ Immediate Perimeter Hardening Checklist
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px;font-size:.88rem;color:var(--ink-2);">
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="color:#16A34A;font-weight:800;">✓</span>
+              <div><strong>Ensure Primary Password is Unique:</strong> Your primary email must never share a password with any other service. Use a password manager.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="color:#16A34A;font-weight:800;">✓</span>
+              <div><strong>Upgrade to Phishing-Resistant MFA:</strong> Turn on passkeys or hardware security keys (FIDO2) where supported. Deprecate SMS verification where possible.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="color:#16A34A;font-weight:800;">✓</span>
+              <div><strong>Audit Active Sessions &amp; Sign-ins:</strong> Check your email provider's recent activity log. Terminate all sessions you do not immediately recognize.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="color:#16A34A;font-weight:800;">✓</span>
+              <div><strong>Inspect Mail Forwarding &amp; Rules:</strong> Threat actors frequently create quiet forwarding rules (e.g., forwarding emails containing "statement" or "invoice" to external addresses).</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="color:#16A34A;font-weight:800;">✓</span>
+              <div><strong>Review Connected OAuth Applications:</strong> Prune third-party apps connected via "Sign in with Google/Microsoft" that you no longer actively use.</div>
+            </div>
+            <div style="display:flex;gap:10px;align-items:flex-start;">
+              <span style="color:#16A34A;font-weight:800;">✓</span>
+              <div><strong>Validate Recovery Routing:</strong> Ensure your recovery phone number and backup recovery email are accurate, active, and accessible only to you.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- S12 -->
+        <h2 id="s12">Your Email Address Isn't Really the Problem</h2>
+
+        <p>Someone knowing your email address is not unusual. For most of us, it is already cataloged somewhere across the public internet. That does not mean you have been hacked.</p>
+
+        <p>The crucial factor is what happens next:</p>
+
+        <ul class="styled-list" style="margin:16px 0 20px 20px;">
+          <li>An email address leads to a public LinkedIn profile.</li>
+          <li>The profile reveals your employer, division, and peers.</li>
+          <li>An older breach dump contributes a phone number and past passwords.</li>
+          <li>That metadata makes a phishing lure or spoofed portal extraordinarily persuasive.</li>
+          <li>A reused password grants access to a secondary service.</li>
+          <li>And access to the inbox unlocks the ability to reset passwords across everything else.</li>
+        </ul>
+
+        <p>None of those pieces has to be particularly catastrophic on its own. <strong>The risk comes from connecting them.</strong></p>
+
+        <p>So if you discover that your email address has been exposed in a breach, don't waste time stressing over the fact that someone has it. Ask a far more constructive question:</p>
+
+        <div class="pq" style="font-weight:700;font-style:normal;border-left-color:var(--blue);color:var(--ink);">
+          "What else could someone reach from the information they already have?"
+        </div>
+
+        <p>Then take the steps above to make sure the answer is: <strong>Not very much.</strong></p>
+
+        <!-- SOURCES -->
+        <div class="sources-section" id="sources">
+          <h2 style="border:none;padding:0;margin-bottom:4px;" id="s13">Sources &amp; Further Reading</h2>
+          <p class="src-sub">This brief synthesises technical case studies, threat intelligence telemetry, and official cyber defense advisories. Statistics and attack mechanics are grounded in the authoritative sources below.</p>
+          <div class="src-list">
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FEF2F2;">🏛️</div>
+              <div>
+                <div class="src-name">FBI Internet Crime Complaint Center (IC3) — Account Takeover Fraud</div>
+                <div class="src-desc">Official FBI guidance detailing how threat actors combine phishing, search engine ad spoofing, credentials from previous breaches, and MFA interception to execute account takeover.</div>
+                <a href="https://www.ic3.gov/CrimeInfo/AccountTakeover"
+                  class="src-link" target="_blank" rel="noopener">Read FBI Account Takeover Guidance ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FFFBEB;">⚠️</div>
+              <div>
+                <div class="src-name">FBI IC3 — Cyber Criminals Impersonating Employee Self-Service Websites (April 2025)</div>
+                <div class="src-desc">PSA examining criminal procurement of search-engine advertisements to direct corporate staff to counterfeit portals targeting payroll, unemployment funds, and health savings accounts.</div>
+                <a href="https://www.ic3.gov/PSA/2025/PSA250424"
+                  class="src-link" target="_blank" rel="noopener">Read FBI PSA Warning ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#EFF6FF;">🔬</div>
+              <div>
+                <div class="src-name">Microsoft Threat Intelligence — From Cookie Theft to BEC</div>
+                <div class="src-desc">Telemetry investigation documenting an Adversary-in-the-Middle (AiTM) campaign targeting over 10,000 organizations, extracting authenticated session cookies to bypass MFA and deploy BEC fraud.</div>
+                <a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/"
+                  class="src-link" target="_blank" rel="noopener">Read Microsoft AiTM Investigation ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0F9FF;">📊</div>
+              <div>
+                <div class="src-name">Microsoft Threat Intelligence — Multi-stage AiTM Phishing and BEC Campaign</div>
+                <div class="src-desc">Case study showing cookie replay mechanics and detailing how a single hijacked enterprise mailbox was exploited to transmit over 16,000 subsequent spearphishing lures.</div>
+                <a href="https://www.microsoft.com/en-us/security/blog/2023/06/08/detecting-and-mitigating-a-multi-stage-aitm-phishing-and-bec-campaign/"
+                  class="src-link" target="_blank" rel="noopener">Read Multi-Stage BEC Case Study ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FDF4FF;">🛡️</div>
+              <div>
+                <div class="src-name">Microsoft Learn — Protect Against Consent Phishing</div>
+                <div class="src-desc">Technical breakdown of illicit OAuth application registration, permissions harvesting (Mail.Read, Files.ReadWrite), and enterprise defense configurations.</div>
+                <a href="https://learn.microsoft.com/en-us/entra/identity/enterprise-apps/protect-against-consent-phishing"
+                  class="src-link" target="_blank" rel="noopener">Microsoft Consent Phishing Documentation ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#ECFDF5;">🔑</div>
+              <div>
+                <div class="src-name">CISA — More Than a Password</div>
+                <div class="src-desc">Cybersecurity and Infrastructure Security Agency guidance classifying FIDO/WebAuthn as the primary standard for phishing-resistant authentication and deprecating SMS-based OTP.</div>
+                <a href="https://www.cisa.gov/ncas/tips/st05-012"
+                  class="src-link" target="_blank" rel="noopener">Read CISA MFA Guidance ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F8FAFC;">📱</div>
+              <div>
+                <div class="src-name">CISA — Mobile Communications Best Practice Guidance</div>
+                <div class="src-desc">Federal recommendations identifying hardware security keys as the highest assurance tier, designating passkeys as viable alternatives, and detailing perimeter isolation strategies.</div>
+                <a href="https://www.cisa.gov/sites/default/files/2024-12/guidance-mobile-communications-best-practices.pdf"
+                  class="src-link" target="_blank" rel="noopener">Download CISA Mobile Guidance PDF ↗</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div><!-- /art-text -->
+
+      <!-- SERIES SEQUENTIAL TRANSITION BANNER -->
+      <div class="next-episode-banner">
+        <div class="next-ep-left">
+          <span class="next-ep-eyebrow">
+            <span>📘</span> Episode 01 of Series
+          </span>
+          <h3 class="next-ep-title">Catch Up on Episode 01: Can You Still Trust What You See and Hear Online?</h3>
+          <p class="next-ep-summary">
+            Missed the series premiere? Explore how voice cloning from 3 seconds of audio and synthetic identity fraud are transforming online scams, and how to verify authenticity.
+          </p>
+        </div>
+        <a href="article.html" class="next-ep-btn" title="Read Episode 01">
+          ← Read Episode 01
+        </a>
+      </div>
+
+      <!-- FEEDBACK & DISCUSSION SECTION -->
+      <section class="feedback-section" id="feedback" aria-label="Reader Feedback and Discussion">
+
+        <div class="fb-header">
+          <span class="fb-badge">Community Discussion</span>
+          <h3 class="fb-title">Reader Feedback &amp; Analysis</h3>
+          <p class="fb-sub">
+            Your feedback shapes the remaining installments of <strong>Cybersecurity for Everyone</strong>. React below, share observations from your organization, or ask a question.
+          </p>
+        </div>
+
+        <!-- 1-Click Reactions Bar -->
+        <div class="fb-reactions-box">
+          <div class="fb-react-prompt">Quick Reactions</div>
+          <div class="fb-reactions-bar">
+            <button class="fb-react-btn" data-reaction="helpful" data-label="Helpful Analysis"
+              aria-label="Helpful Analysis">
+              <span>👍</span> Helpful Analysis <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="insight" data-label="Eye-Opening" aria-label="Eye-Opening">
+              <span>💡</span> Eye-Opening <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="actionable" data-label="Actionable Perimeter Defense"
+              aria-label="Actionable Perimeter Defense">
+              <span>🛡️</span> Actionable for Defense <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="bookmark" data-label="Saved &amp; Bookmarked"
+              aria-label="Saved &amp; Bookmarked">
+              <span>🔖</span> Bookmarked <span class="fb-cnt">0</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Feedback Form -->
+        <div class="fb-form-box">
+          <div class="fb-form-title">
+            <span>✍️</span> Leave Feedback or Ask Poorna
+          </div>
+
+          <!-- Category Chips -->
+          <div class="fb-chips" role="radiogroup" aria-label="Feedback category">
+            <button type="button" class="fb-chip-opt selected" data-category="General Feedback">💬 General Feedback</button>
+            <button type="button" class="fb-chip-opt" data-category="Question for Analyst">❓ Question for Poorna</button>
+            <button type="button" class="fb-chip-opt" data-category="AiTM / Phishing Observation">🛡️ Phishing Observation</button>
+            <button type="button" class="fb-chip-opt" data-category="Topic Request">💡 Topic Request for Ep 03–10</button>
+          </div>
+
+          <form id="fbForm">
+            <div class="fb-form-grid">
+              <div>
+                <label for="fbName"
+                  style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Name or Handle <span style="font-weight:400;color:var(--ink-5);">(Optional)</span></label>
+                <input type="text" id="fbName" class="fb-input" placeholder="e.g. Alex M. or Anonymous">
+              </div>
+              <div>
+                <label for="fbRole"
+                  style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Role / Organisation <span style="font-weight:400;color:var(--ink-5);">(Optional)</span></label>
+                <input type="text" id="fbRole" class="fb-input" placeholder="e.g. IT Administrator / Security Lead">
+              </div>
+            </div>
+
+            <div>
+              <label for="fbMessage"
+                style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Feedback or Comment <span style="color:#EF4444;">*</span></label>
+              <textarea id="fbMessage" class="fb-textarea" required
+                placeholder="What did you think of the AiTM session cookie breakdown? Have you experienced suspicious search ad redirections? Any questions for Poorna?"></textarea>
+            </div>
+
+            <div class="fb-form-foot">
+              <span class="fb-anon-note">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                No account required · Comments moderated for constructive discussion
+              </span>
+              <button type="submit" class="fb-submit-btn">
+                Post Feedback
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Practitioner Discussion Stream -->
+        <div class="fb-discussion-box">
+          <div class="fb-disc-title">
+            <span>Practitioner Discussion &amp; Feedback</span>
+            <span style="font-size:.72rem;color:var(--ink-5);text-transform:none;font-weight:600;">Episode 02 responses</span>
+          </div>
+
+          <div class="fb-comments-list" id="fbCommentsList">
+            <div class="fb-reader-stream" id="fbReaderComments" style="display:flex;flex-direction:column;gap:14px;"></div>
+
+            <div class="fb-empty-state" id="fbEmptyState"
+              style="text-align:center;padding:28px 20px;border:1px dashed var(--border-2);border-radius:var(--r);background:var(--bg);color:var(--ink-4);margin-top:12px;">
+              <div style="font-size:1.4rem;margin-bottom:6px;">💬</div>
+              <div style="font-weight:700;font-size:.88rem;color:var(--ink-2);margin-bottom:4px;">No reader feedback yet on Episode 02</div>
+              <p style="font-size:.78rem;color:var(--ink-4);max-width:360px;margin:0 auto;">Be the first to share your thoughts, ask a question, or discuss your account security posture. All comments welcome.</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- Author card -->
+      <div class="auth-card" id="about">
+        <div class="auth-top">
+          <div class="auth-av">PS</div>
+          <div>
+            <div class="auth-name">Poorna Sujampathi Rathnayaka</div>
+            <div class="auth-role">Writer · Cyber Insight · Digital Literacy</div>
+          </div>
+        </div>
+        <div class="auth-body">
+          <p class="auth-desc">I started Cyber Insight because everywhere online people only talk about
+            cybersecurity in technical terms — and most people are left without a proper understanding of how the
+            digital world works. I work in cybersecurity, but I write here for everyone. No jargon. Just clear, honest
+            explanations.</p>
+          <div class="auth-links">
+            <a href="https://sujampathirathnayaka.com/" class="au-btn pf" target="_blank" rel="noopener">🌐 Portfolio</a>
+            <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" class="au-btn li" target="_blank" rel="noopener">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/sujampathi" class="au-btn gh" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- SERIES ROADMAP -->
+      <div class="series-nav-card" id="series-curriculum">
+        <div class="series-nav-header">
+          <div class="series-nav-title">
+            <span class="series-nav-badge">Complete Series Roadmap</span>
+            <h4>Cybersecurity for Everyone (10 Episodes)</h4>
+          </div>
+          <span class="series-nav-status">Currently Reading: Episode 02</span>
+        </div>
+        <div class="series-nav-grid" id="seriesNavGrid">
+          <a href="article.html" class="series-nav-item">
+            <span class="series-nav-num">01</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Can You Still Trust What You See and Hear Online?</span>
+              <span class="series-nav-tag" style="color:#16A34A;background:#DCFCE7;">Episode 01 · Published</span>
+            </div>
+          </a>
+          <a href="article-02.html" class="series-nav-item active">
+            <span class="series-nav-num">02</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Someone Has Your Email Address. Now What?</span>
+              <span class="series-nav-tag">Active Episode · Published</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">03</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">I Clicked a Phishing Link. What Should I Do?</span>
+              <span class="series-nav-tag">Episode 03 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">04</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Password Wasn't Hacked. Your Session Was Stolen.</span>
+              <span class="series-nav-tag">Episode 04 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">05</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Why the Padlock Doesn't Mean a Website Is Safe</span>
+              <span class="series-nav-tag">Episode 05 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">06</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Are Passkeys Finally Going to Kill Passwords?</span>
+              <span class="series-nav-tag">Episode 06 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">07</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">The Fake Recruiter in Your LinkedIn Inbox</span>
+              <span class="series-nav-tag">Episode 07 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">08</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">How Much Can a Scammer Learn About You in 10 Minutes?</span>
+              <span class="series-nav-tag">Episode 08 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">09</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Bank Is Calling. Or Is It?</span>
+              <span class="series-nav-tag">Episode 09 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">10</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">What Happens to Your Information After a Data Breach?</span>
+              <span class="series-nav-tag">Episode 10 · Coming Soon</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Related / Up Next in Series -->
+      <div class="related">
+        <div class="sec-h"
+          style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <span class="sec-lbl" style="color:var(--blue);">Cybersecurity for Everyone</span>
+            <div style="font-family:var(--f-d);font-size:1.15rem;font-weight:800;color:var(--ink);margin-top:4px;">Series Navigation</div>
+          </div>
+          <a href="index.html#series"
+            style="font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:5px;">
+            View All 10 Episodes in Series →
+          </a>
+        </div>
+        <div class="rel-grid">
+
+          <!-- Previous: Episode 01 -->
+          <a href="article.html" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
+            <div class="card-svg" style="background:linear-gradient(135deg,#EEF2FF 0%,#DBEAFE 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <circle cx="120" cy="70" r="48" fill="#EEF2FF" opacity=".7"/>
+                <path d="M120 22 L146 34 L146 66 Q146 90 120 102 Q94 90 94 66 L94 34 Z" fill="white" stroke="#1D4ED8" stroke-width="1.8"/>
+                <circle cx="120" cy="58" r="10" fill="#1D4ED8" opacity=".2"/>
+                <circle cx="120" cy="54" r="4" fill="#1D4ED8"/>
+              </svg>
+              <span class="card-svg-label" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">← Previous · Ep 01</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Can You Still Trust What You See and Hear Online?</h3>
+              <p class="card-ex">Voice cloning takes 3 seconds of audio. When appearance can no longer be trusted, verification protocols must take over.</p>
+              <div class="card-foot"><span>Threat Intel · AI Scams</span><span style="color:#16A34A;font-weight:700;">Read Ep 01 →</span></div>
+            </div>
+          </a>
+
+          <!-- Next: Episode 03 -->
+          <div class="art-card">
+            <div class="card-svg" style="background:linear-gradient(135deg,#FEF2F2 0%,#FFF7ED 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M118 36 L118 90 L130 78 L138 98 L146 95 L138 74 L154 74 Z" fill="white" stroke="#EF4444"
+                  stroke-width="2" stroke-linejoin="round" />
+                <circle cx="118" cy="36" r="8" stroke="#EF4444" stroke-width="1.5" opacity=".35" />
+                <circle cx="118" cy="36" r="16" stroke="#EF4444" stroke-width="1" opacity=".18" />
+                <rect x="40" y="60" width="64" height="48" rx="8" fill="white" stroke="#EF4444" stroke-width="1.8" />
+                <path d="M40 71 L72 87 L104 71" stroke="#EF4444" stroke-width="1.5" fill="none" />
+                <path d="M72 51 Q90 40 90 56 Q90 70 72 70" stroke="#EF4444" stroke-width="2.2" fill="none"
+                  stroke-linecap="round" />
+              </svg>
+              <span class="card-svg-label">Up Next · Ep 03</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">I Clicked a Phishing Link. What Should I Do?</h3>
+              <p class="card-ex">A calm, actionable five-minute emergency protocol for containment when you suspect you just gave away credentials.</p>
+              <div class="card-foot"><span>Phishing Response</span><span class="soon">Coming Soon</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /art-center -->
+
+  </div><!-- /art-layout -->
+
+  <!-- STICKY BOTTOM DOCK -->
+  <aside class="art-dock" aria-label="Article actions and reactions">
+    <button class="dock-btn btn-like" onclick="toggleLike()" aria-label="Like article">
+      <span class="dock-emoji like-heart">🤍</span>
+      <span class="dock-count like-count">0</span>
+    </button>
+    <button class="dock-btn btn-clap" onclick="addClap()" aria-label="Applaud research">
+      <span class="dock-emoji">👏</span>
+      <span class="dock-count clap-count">0</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#feedback" class="dock-btn" aria-label="Jump to discussion">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+      <span class="dock-label">Feedback</span>
+    </a>
+    <button class="dock-btn btn-share" onclick="copyLink()" aria-label="Copy link">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+      <span class="dock-label">Share</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#series-curriculum" class="dock-series-pill" title="Series: Cybersecurity for Everyone">
+      <span class="dock-pulse"></span>
+      Ep 02 of 10
+    </a>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, and digital literacy for everyone.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Series Navigation</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio & AI Trust</a></li>
+              <li><a href="article-02.html">Ep 02: Email OSINT & Perimeter Defense</a></li>
+              <li><a href="index.html#series">View Full Curriculum (10 Episodes)</a></li>
+              <li><a href="#feedback">Submit Article Feedback</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Author & Verification</div>
+            <ul class="foot-nav-list">
+              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Poorna's Portfolio ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn Research ↗</a></li>
+              <li><a href="#sources">Citations &amp; Methodology</a></li>
+              <li><a href="mailto:sujampathirathnayaka@gmail.com">Contact Editorial Desk</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal & Research Disclaimer -->
+      <div class="foot-disclaimer">
+        <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is authored by Poorna Sujampathi Rathnayaka for non-commercial educational, threat awareness, and digital literacy purposes. All third-party trademarks, company names, CVE IDs, and security advisories referenced are the property of their respective copyright holders. Fair use citations for educational security awareness are permitted with direct attribution and canonical link.
+      </div>
+
+      <div class="foot-bottom">
+        <div>
+          &copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.
+        </div>
+        <div class="foot-bottom-links">
+          <a href=".well-known/security.txt" target="_blank" rel="noopener noreferrer">Vulnerability Disclosure</a>
+          <span>·</span>
+          <a href="index.html#about">Ethics &amp; Methodology</a>
+          <span>·</span>
+          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element"></div>
+  <script src="js/cms.js?v=5"></script>
+  <script src="js/app.js?v=5"></script>
+  <script src="js/translator.js?v=5"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>

@@ -126,6 +126,206 @@ body {
 .nav-links .cta { background: var(--blue); color: #fff !important; font-weight: 600; padding: 8px 16px; border-radius: var(--r-sm); }
 .nav-links .cta:hover { background: #1e40af; }
 
+
+/* ── Next Episode Banner ── */
+.next-episode-banner {
+  margin: 44px 0 0;
+  border: 1.5px solid var(--blue-bdr);
+  border-radius: var(--r);
+  background: linear-gradient(135deg, #EFF6FF 0%, #FFFFFF 60%, #DBEAFE 100%);
+  padding: 26px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  box-shadow: var(--sh-sm);
+  transition: var(--t);
+}
+.next-episode-banner:hover {
+  border-color: var(--blue);
+  box-shadow: var(--sh-md);
+}
+.next-ep-left {
+  flex: 1;
+}
+.next-ep-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--blue);
+  margin-bottom: 6px;
+}
+.next-ep-title {
+  font-family: var(--f-d);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-bottom: 6px;
+}
+.next-ep-summary {
+  font-size: .86rem;
+  color: var(--ink-4);
+  line-height: 1.5;
+  max-width: 560px;
+}
+.next-ep-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--blue);
+  color: #fff !important;
+  font-weight: 700;
+  font-size: .88rem;
+  padding: 12px 22px;
+  border-radius: 9px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: var(--t);
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.25);
+}
+.next-ep-btn:hover {
+  background: #1e40af;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(29, 78, 216, 0.35);
+}
+
+/* ── Enhanced Footer & Legal Framework ── */
+.site-footer {
+  background: #0B1120;
+  color: #94A3B8;
+  border-top: 1px solid #1E293B;
+  padding: 48px 0 36px;
+  font-size: .82rem;
+}
+.foot-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+.foot-brand-col {
+  max-width: 440px;
+}
+.foot-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  margin-bottom: 12px;
+}
+.foot-brand-mark {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--blue);
+  color: #fff;
+  font-family: var(--f-d);
+  font-weight: 800;
+  font-size: .8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.foot-brand-text {
+  font-family: var(--f-d);
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.02em;
+}
+.foot-desc {
+  font-size: .8rem;
+  line-height: 1.6;
+  color: #64748B;
+  margin-bottom: 14px;
+}
+.foot-nav-cols {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.foot-col-title {
+  font-family: var(--f-d);
+  font-size: .76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #E2E8F0;
+  margin-bottom: 12px;
+}
+.foot-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.foot-nav-list a {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: var(--t);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.foot-nav-list a:hover {
+  color: #38BDF8;
+}
+.foot-disclaimer {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 24px 0;
+  font-size: .74rem;
+  line-height: 1.6;
+  color: #64748B;
+}
+.foot-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-top: 8px;
+  font-size: .76rem;
+  color: #64748B;
+}
+.foot-bottom-links {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.foot-bottom-links a {
+  color: #94A3B8;
+  text-decoration: none;
+  transition: var(--t);
+}
+.foot-bottom-links a:hover {
+  color: #fff;
+}
+.foot-security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(16, 185, 129, 0.12);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: .7rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
 .m-btn { display: none; background: none; border: none; cursor: pointer; padding: 6px; color: var(--ink); border-radius: var(--r-sm); transition: var(--t); }
 .m-btn:hover { background: var(--bg-3); }
 

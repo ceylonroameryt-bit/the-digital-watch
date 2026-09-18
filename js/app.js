@@ -6,7 +6,16 @@
 
 'use strict';
 
-const ARTICLE_KEY = 'threatbrief_ai_scams_v3';
+function getArticleKey() {
+  if (document.body && document.body.dataset && document.body.dataset.articleId) {
+    return 'threatbrief_' + document.body.dataset.articleId;
+  }
+  const path = window.location.pathname;
+  if (path.includes('02') || window.location.search.includes('ep02')) {
+    return 'threatbrief_ep02';
+  }
+  return 'threatbrief_ai_scams_v3';
+}
 
 /* ── TOAST ──────────────────────────────────────────────────── */
 function showToast(msg, emoji = '✓') {
@@ -218,7 +227,8 @@ function initFeedback() {
 
   // 1. Reactions handling
   const reactionButtons = fbContainer.querySelectorAll('.fb-react-btn');
-  const storedReactions = JSON.parse(localStorage.getItem('threatbrief_fb_reactions_v3') || '{}');
+  const REACTIONS_KEY = getArticleKey() + '_reactions';
+  const storedReactions = JSON.parse(localStorage.getItem(REACTIONS_KEY) || (getArticleKey() === 'threatbrief_ai_scams_v3' ? localStorage.getItem('threatbrief_fb_reactions_v3') : null) || '{}');
 
   reactionButtons.forEach(btn => {
     const key = btn.getAttribute('data-reaction');
@@ -235,7 +245,7 @@ function initFeedback() {
       storedReactions[key] = isActive;
       count = isActive ? count + 1 : Math.max(0, count - 1);
       countEl.textContent = count;
-      localStorage.setItem('threatbrief_fb_reactions', JSON.stringify(storedReactions));
+      localStorage.setItem(REACTIONS_KEY, JSON.stringify(storedReactions));
       
       const label = btn.getAttribute('data-label') || 'reaction';
       showToast(isActive ? `Marked as: ${label}!` : `Removed: ${label}`, isActive ? '👍' : 'ℹ️');
@@ -256,7 +266,7 @@ function initFeedback() {
   // 3. User comments storage & render
   const readerStream = fbContainer.querySelector('#fbReaderComments') || fbContainer.querySelector('#fbCommentsList');
   const emptyState = fbContainer.querySelector('#fbEmptyState');
-  const COMMENTS_KEY = 'ci_reader_comments_v1';
+  const COMMENTS_KEY = getArticleKey() === 'threatbrief_ai_scams_v3' ? 'ci_reader_comments_v1' : ('ci_reader_comments_' + getArticleKey());
 
   function isSpamOrTest(c) {
     if (!c) return true;
@@ -419,7 +429,32 @@ function escapeHtml(str) {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .replace(/`/g, '&#96;');
+}
+
+/* ── SECURITY ENFORCEMENT & OUTBOUND LINKS ────────────────────── */
+function initSecurityDefenses() {
+  // Ensure all outbound links explicitly enforce rel="noopener noreferrer"
+  document.querySelectorAll('a[target="_blank"]').forEach(a => {
+    const rel = (a.getAttribute('rel') || '').toLowerCase();
+    if (!rel.includes('noopener') || !rel.includes('noreferrer')) {
+      a.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+
+  // Accessible dropdown toggling for keyboard/mobile
+  const dropdown = document.querySelector('.nav-dropdown');
+  const trigger = document.querySelector('.nav-dropdown .cta-split');
+  if (dropdown && trigger) {
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'Enter') {
+        const expanded = trigger.getAttribute('aria-expanded') === 'true';
+        trigger.setAttribute('aria-expanded', String(!expanded));
+      }
+    });
+  }
 }
 
 /* ── INIT ────────────────────────────────────────────────────── */
@@ -432,4 +467,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initScroll();
   initSeriesFilter();
   initFeedback();
+  initSecurityDefenses();
 });
