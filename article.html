@@ -28,7 +28,7 @@
     "publisher": {
       "@type": "Organization",
       "name": "Cyber Insight",
-      "url": "https://sujampathirathnayaka.com/"
+      "url": "https://ceylonroameryt-bit.github.io/the-digital-watch/"
     },
     "datePublished": "2026-09-18",
     "copyrightYear": 2026,
@@ -43,14 +43,16 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=6">
+  <link rel="stylesheet" href="styles/main.css?v=7">
   <link rel="icon" type="image/svg+xml"
+  <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/article.html">
+  <meta property="og:url" content="https://ceylonroameryt-bit.github.io/the-digital-watch/article.html">
 </head>
 
 <body data-page="article" data-article-id="ep01">
 
   <div id="reading-progress"></div>
-  <div id="toast-container"></div>
+  <div id="toast-container" role="status" aria-live="polite"></div>
 
   <!-- NAV -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
@@ -72,7 +74,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#series">Series</a></li>
-        <li><a href="article.html" class="active">Research</a></li>
+        <li><a href="index.html#series">Articles</a></li>
         <li><a href="#feedback">Feedback</a></li>
         <li><a href="index.html#about">About</a></li>
         <li><a href="article-02.html" class="cta" title="Continue reading Series: Episode 02">Next: Ep 02 →</a></li>
@@ -204,11 +206,11 @@
         <div class="art-act-right">
           <button class="art-act-btn btn-like" title="Like this research"
             aria-label="Like article">
-            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count" hidden>0</span>
           </button>
           <button class="art-act-btn btn-clap" title="Applaud this research"
             aria-label="Clap for article">
-            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+            <span>👏</span> Clap <span class="art-act-cnt clap-count" hidden>0</span>
           </button>
           <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
             <span>💬</span> Feedback
@@ -780,128 +782,35 @@
       </div>
 
       <!-- FEEDBACK & DISCUSSION SECTION -->
-      <section class="feedback-section" id="feedback" aria-label="Reader Feedback and Discussion">
-
-        <!-- Header -->
+      <section class="feedback-section" id="feedback" aria-label="Reader feedback">
         <div class="fb-header">
-          <div class="fb-badge">
-            <span>💬</span> Reader Feedback &amp; Analysis Review
-          </div>
-          <h2 class="fb-title">Was this brief insightful?</h2>
-          <p class="fb-sub">
-            Your feedback directly shapes the next 9 installments of <strong>Cybersecurity for Everyone</strong>. React
-            below, share observations from your SOC or workplace, or ask a question.
-          </p>
+          <h2 class="fb-title">Send feedback to Poorna</h2>
+          <p class="fb-sub">Have a question or a suggestion? Prepare an email below. Feedback is private and is sent only when you press Send in your email app.</p>
+          <p class="fb-sub">Likes and claps are your personal reactions on this device.</p>
         </div>
-
-        <!-- 1-Click Reactions Bar -->
-        <div class="fb-reactions-box">
-          <div class="fb-react-prompt">Quick Reactions</div>
-          <div class="fb-reactions-bar">
-            <button class="fb-react-btn" data-reaction="helpful" data-label="Helpful Analysis"
-              aria-label="Helpful Analysis">
-              <span>👍</span> Helpful Analysis <span class="fb-cnt">0</span>
-            </button>
-            <button class="fb-react-btn" data-reaction="insight" data-label="Eye-Opening" aria-label="Eye-Opening">
-              <span>💡</span> Eye-Opening <span class="fb-cnt">0</span>
-            </button>
-            <button class="fb-react-btn" data-reaction="actionable" data-label="Actionable for Defense"
-              aria-label="Actionable for Defense">
-              <span>🛡️</span> Actionable for SOC <span class="fb-cnt">0</span>
-            </button>
-            <button class="fb-react-btn" data-reaction="bookmark" data-label="Saved &amp; Bookmarked"
-              aria-label="Saved &amp; Bookmarked">
-              <span>🔖</span> Bookmarked <span class="fb-cnt">0</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Interactive Feedback Form -->
         <div class="fb-form-box">
-          <div class="fb-form-title">
-            <span>✍️</span> Leave Feedback or Ask the Analyst
-          </div>
-
-          <!-- Category Chips -->
-          <div class="fb-chips" role="radiogroup" aria-label="Feedback category">
-            <button type="button" class="fb-chip-opt selected" data-category="General Feedback">💬 General
-              Feedback</button>
-            <button type="button" class="fb-chip-opt" data-category="Question for Analyst">❓ Question for
-              Analyst</button>
-            <button type="button" class="fb-chip-opt" data-category="SOC Observation">🛡️ SOC Observation</button>
-            <button type="button" class="fb-chip-opt" data-category="Episode Topic Request">💡 Topic Request for Ep
-              02–10</button>
-          </div>
-
-          <form id="fbForm">
-            <div class="fb-form-grid">
-              <div>
-                <label for="fbName"
-                  style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Name or
-                  Handle <span style="font-weight:400;color:var(--ink-5);">(Optional)</span></label>
-                <input type="text" id="fbName" class="fb-input" placeholder="e.g. Alex M. or Anonymous">
-              </div>
-              <div>
-                <label for="fbRole"
-                  style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Role /
-                  Organisation <span style="font-weight:400;color:var(--ink-5);">(Optional)</span></label>
-                <input type="text" id="fbRole" class="fb-input" placeholder="e.g. SOC Analyst / Security Lead">
-              </div>
-            </div>
-
-            <div>
-              <label for="fbMessage"
-                style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Feedback or
-                Comment <span style="color:#EF4444;">*</span></label>
-              <textarea id="fbMessage" class="fb-textarea" required
-                placeholder="What did you think of the voice cloning breakdown? Have you experienced AI impersonation attempts in your team? Any questions for Poorna?"></textarea>
-            </div>
-
-            <div class="fb-form-foot">
-              <span class="fb-anon-note">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                </svg>
-                No account required · Comments moderated for technical discussion
-              </span>
-              <button type="submit" class="fb-submit-btn">
-                Post Feedback
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </button>
-            </div>
+          <p>You can also <a href="mailto:sujampathirathnayaka@gmail.com">email Poorna directly</a>.</p>
+          <form id="fbForm" hidden>
+            <label for="fbName">Name (optional)</label>
+            <input class="fb-input" id="fbName" maxlength="100" autocomplete="name">
+            <label for="fbCategory">Feedback category</label>
+            <select class="fb-input" id="fbCategory">
+              <option>General feedback</option><option>Question</option><option>Correction</option><option>Topic suggestion</option>
+            </select>
+            <label for="fbMessage">Your feedback</label>
+            <textarea class="fb-textarea" id="fbMessage" required maxlength="2000" placeholder="Share your question or suggestion..."></textarea>
+            <button type="submit" class="fb-submit-btn">Prepare email</button>
           </form>
-        </div>
-
-        <!-- Practitioner Discussion & Comments Stream -->
-        <div class="fb-discussion-box">
-          <div class="fb-disc-title">
-            <span>Practitioner Discussion &amp; Feedback</span>
-            <span style="font-size:.72rem;color:var(--ink-5);text-transform:none;font-weight:600;">Community
-              responses</span>
-          </div>
-
-          <div class="fb-comments-list" id="fbCommentsList">
-
-
-            <!-- Dedicated stream for reader comments -->
-            <div class="fb-reader-stream" id="fbReaderComments" style="display:flex;flex-direction:column;gap:14px;"></div>
-
-            <!-- Clean empty state for reader feedback -->
-            <div class="fb-empty-state" id="fbEmptyState"
-              style="text-align:center;padding:28px 20px;border:1px dashed var(--border-2);border-radius:var(--r);background:var(--bg);color:var(--ink-4);margin-top:12px;">
-              <div style="font-size:1.4rem;margin-bottom:6px;">💬</div>
-              <div style="font-weight:700;font-size:.88rem;color:var(--ink-2);margin-bottom:4px;">No reader feedback yet
-              </div>
-              <p style="font-size:.78rem;color:var(--ink-4);max-width:360px;margin:0 auto;">Be the first to share your
-                thoughts, ask a question, or tell me if something wasn't clear. All comments welcome.</p>
+          <p id="fbStatus" role="status" aria-live="polite"></p>
+          <div id="fbEmailPreview" hidden>
+            <label for="fbEmailBody">Email draft</label>
+            <textarea class="fb-textarea" id="fbEmailBody" readonly rows="8"></textarea>
+            <div class="fb-form-foot">
+              <a id="fbEmailLink" class="au-btn pf">Open email app</a>
+              <button type="button" id="fbCopy" class="fb-submit-btn">Copy feedback</button>
             </div>
-
           </div>
         </div>
-
       </section>
 
       <!-- Author card -->
@@ -1120,11 +1029,11 @@
   <aside class="floating-dock" aria-label="Reading Controls">
     <button class="dock-btn btn-like" aria-label="Like article">
       <span class="dock-emoji like-heart">🤍</span>
-      <span class="dock-count like-count">0</span>
+      <span class="dock-count like-count" hidden>0</span>
     </button>
     <button class="dock-btn btn-clap" aria-label="Applaud research">
       <span class="dock-emoji">👏</span>
-      <span class="dock-count clap-count">0</span>
+      <span class="dock-count clap-count" hidden>0</span>
     </button>
     <div class="dock-sep"></div>
     <a href="#feedback" class="dock-btn" aria-label="Jump to discussion">
@@ -1213,9 +1122,9 @@
   </footer>
 
   <div id="google_translate_element"></div>
-  <script src="js/cms.js?v=5"></script>
-  <script src="js/app.js?v=5"></script>
-  <script src="js/translator.js?v=5"></script>
+  <script src="js/cms.js?v=7"></script>
+  <script src="js/app.js?v=7"></script>
+  <script src="js/translator.js?v=7"></script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 

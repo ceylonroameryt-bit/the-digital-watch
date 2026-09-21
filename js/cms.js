@@ -1,9 +1,10 @@
 /* ============================================================
    cms.js — Cyber Insight CMS Bridge
-   Reads posts & settings from localStorage and renders them
-   dynamically on the public-facing pages (index.html, article.html)
+   Uses deployed metadata on public pages and browser drafts
+   only in the local editor.
    ============================================================ */
 
+(function () {
 'use strict';
 
 const DW_KEYS = {
@@ -55,43 +56,34 @@ const DEFAULT_POSTS = [
 ];
 
 /* ── STORAGE HELPERS ────────────────────────────────────────── */
-function getPosts() {
-  try {
-    const raw = localStorage.getItem(DW_KEYS.posts);
-    if (!raw) return DEFAULT_POSTS;
-    const list = JSON.parse(raw);
-    const ep2 = list.find(p => p.id === 'ep02-someone-has-your-email' || p.episodeNum === 2);
-    if (ep2 && ep2.status !== 'published') {
-      ep2.status = 'published';
-      ep2.date = 'September 18, 2026';
-      ep2.readTime = '7 min read';
-      savePosts(list);
-    }
-    const ep3 = list.find(p => p.id === 'ep03-clicked-phishing-link' || p.episodeNum === 3);
-    if (ep3 && ep3.status !== 'published') {
-      ep3.status = 'published';
-      ep3.date = 'September 21, 2026';
-      ep3.readTime = '6 min read';
-      savePosts(list);
-    }
-    return list;
-  } catch(e) { return DEFAULT_POSTS; }
+// Public pages always use the version deployed from Git. Browser drafts are
+// available only in the local editor, never as the public publication source.
+function isLocalEditor() {
+  return window.location.pathname.endsWith('/admin.html');
 }
-
+function getPosts() {
+  if (isLocalEditor()) {
+    try {
+      const saved = JSON.parse(localStorage.getItem(DW_KEYS.posts) || 'null');
+      if (Array.isArray(saved)) return saved;
+    } catch (_) {}
+  }
+  return DEFAULT_POSTS.map(post => ({ ...post, tags: [...post.tags] }));
+}
 function getSettings() {
-  try {
-    let raw = localStorage.getItem(CI_KEYS.settings) || localStorage.getItem('dw_blog_settings');
-    if (!raw) return DEFAULT_SETTINGS;
-    const parsed = JSON.parse(raw);
-    if (parsed.blogName === 'The Digital Watch') parsed.blogName = DEFAULT_SETTINGS.blogName;
-    if (parsed.authorRole && parsed.authorRole.includes('The Digital Watch')) {
-      parsed.authorRole = parsed.authorRole.replace(/The Digital Watch/g, 'Cyber Insight');
-    }
-    if (parsed.authorBio && parsed.authorBio.includes('The Digital Watch')) {
-      parsed.authorBio = parsed.authorBio.replace(/The Digital Watch/g, 'Cyber Insight');
-    }
-    return Object.assign({}, DEFAULT_SETTINGS, parsed);
-  } catch(e) { return DEFAULT_SETTINGS; }
+  if (isLocalEditor()) {
+    try {
+      const saved = JSON.parse(localStorage.getItem(DW_KEYS.settings) || 'null');
+      if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
+        return { ...DEFAULT_SETTINGS, ...saved };
+      }
+    } catch (_) {}
+  }
+  return { ...DEFAULT_SETTINGS };
+}
+function articleHref(post) {
+  const routes = { 1: 'article.html', 2: 'article-02.html', 3: 'article-03.html' };
+  return post.status === 'published' && routes[post.episodeNum] || 'index.html#series';
 }
 
 function savePosts(posts) {
@@ -123,7 +115,7 @@ function renderIndex() {
   if (featured) {
     const featCard = document.getElementById('featCard');
     if (featCard) {
-      featCard.href = `article.html?id=${featured.slug}`;
+      featCard.href = articleHref(featured);
       featCard.setAttribute('aria-label', `Read: ${featured.title}`);
     }
     _set('featTitle', featured.title);
@@ -140,19 +132,20 @@ function renderIndex() {
 
   // Progress tracker
   const progressFill = document.querySelector('.series-progress-fill');
-  const progressText = document.querySelector('.series-tracker-top .stat');
+  const progressText = document.getElementById('seriesCompletion');
   if (progressFill && progressText) {
-    const pct = Math.round((published.length / posts.length) * 100);
+    const pct = posts.length ? Math.round((published.length / posts.length) * 100) : 0;
     progressFill.style.width = pct + '%';
+    document.querySelector('.series-progress-bar')?.setAttribute('aria-valuenow', String(pct));
     progressText.textContent = `${pct}% Complete`;
   }
-  const epReleased = document.querySelector('.series-tracker-top span:first-child .stat');
+  const epReleased = document.getElementById('seriesReleased');
   if (epReleased) epReleased.textContent = `Episode ${_pad(published.length)} of ${posts.length} Released`;
 }
 
 function _renderEpCard(post) {
   const isPub = post.status === 'published';
-  const href = post.episodeNum === 1 ? 'article.html' : post.episodeNum === 2 ? 'article-02.html' : post.episodeNum === 3 ? 'article-03.html' : (isPub ? `article.html?id=${post.slug}` : '#');
+  const href = articleHref(post);
   return `
   <${isPub ? 'a href="'+href+'"' : 'div'} class="ep-card ${isPub ? 'is-published' : ''}">
     <div class="ep-svg-thumb" style="background:linear-gradient(135deg,${_epGradient(post.episodeNum)});">
@@ -164,13 +157,13 @@ function _renderEpCard(post) {
     <div class="ep-body">
       <div class="ep-header-meta">
         <span class="ep-num">Episode ${_pad(post.episodeNum)}</span>
-        <span class="ep-topic">${post.category}</span>
+        <span class="ep-topic">${_esc(post.category)}</span>
       </div>
       <h3 class="ep-title">${_esc(post.title)}</h3>
       <p class="ep-summary">${_esc(post.summary)}</p>
       <div class="ep-foot">
         <span class="ep-status-tag ${isPub ? 'published' : 'upcoming'}">${isPub ? '✅ Published' : 'Coming Soon'}</span>
-        <span>${post.readTime}</span>
+        <span>${_esc(post.readTime)}</span>
       </div>
     </div>
   </${isPub ? 'a' : 'div'}>`;
@@ -229,19 +222,21 @@ function _epSvgContent(n, isPub) {
 /* ── PAGE RENDERER — ARTICLE ────────────────────────────────── */
 function renderArticle() {
   const params = new URLSearchParams(window.location.search);
-  const id = params.get('id') || (window.location.pathname.includes('03') ? 'ep03-clicked-phishing-link' : window.location.pathname.includes('02') ? 'ep02-someone-has-your-email' : 'ep01-can-you-still-trust');
-  if (id === 'ep02-someone-has-your-email' && !window.location.pathname.includes('02')) {
-    window.location.replace('article-02.html');
-    return;
-  }
-  if (id === 'ep03-clicked-phishing-link' && !window.location.pathname.includes('03')) {
-    window.location.replace('article-03.html');
-    return;
-  }
   const posts = getPosts();
   const settings = getSettings();
-  const post = posts.find(p => p.slug === id || p.id === id) || posts[0];
-  if (!post) return;
+  const currentFile = window.location.pathname.split('/').pop();
+  const requested = params.get('id');
+  const post = requested
+    ? posts.find(p => p.slug === requested || p.id === requested)
+    : posts.find(p => articleHref(p) === currentFile);
+  if (!post || articleHref(post) === 'index.html#series') {
+    window.location.replace('index.html#series');
+    return;
+  }
+  if (articleHref(post) !== currentFile) {
+    window.location.replace(articleHref(post) + window.location.hash);
+    return;
+  }
 
   // Update static fields from settings
   _setAll('[data-cms="author-name"]',     settings.authorName);
@@ -267,7 +262,7 @@ function renderArticle() {
     seriesNavGrid.innerHTML = allPosts.map(p => {
       const isActive = p.slug === post.slug;
       const isPub = p.status === 'published';
-      const epHref = p.episodeNum === 1 ? 'article.html' : p.episodeNum === 2 ? 'article-02.html' : p.episodeNum === 3 ? 'article-03.html' : `article.html?id=${p.slug}`;
+      const epHref = articleHref(p);
       return `<${isPub ? 'a href="'+epHref+'"' : 'span'} class="series-nav-item ${isActive ? 'active' : ''}">
         <span class="series-nav-num">${_pad(p.episodeNum)}</span>
         <span>${_esc(p.title)}</span>
@@ -291,9 +286,7 @@ function _esc(str) {
 
 /* ── INIT ───────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
-  // Seed defaults if first visit
-  if (!localStorage.getItem(DW_KEYS.posts)) savePosts(DEFAULT_POSTS);
-  if (!localStorage.getItem(DW_KEYS.settings)) saveSettings(DEFAULT_SETTINGS);
+  // Loading the public site must also work when storage is unavailable.
 
   const page = document.body.dataset.page;
   if (page === 'index') renderIndex();
@@ -303,3 +296,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Expose for admin use
 window.CI_CMS = { getPosts, getSettings, savePosts, saveSettings, CI_KEYS, DW_KEYS: CI_KEYS, DEFAULT_POSTS, DEFAULT_SETTINGS };
 window.DW_CMS = window.CI_CMS;
+
+})();

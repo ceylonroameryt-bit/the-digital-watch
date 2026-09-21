@@ -16,7 +16,7 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Cyber Insight",
-    "url": "https://sujampathirathnayaka.com/",
+    "url": "https://ceylonroameryt-bit.github.io/the-digital-watch/",
     "author": {
       "@type": "Person",
       "name": "Poorna Sujampathi Rathnayaka",
@@ -33,12 +33,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=6">
+  <link rel="stylesheet" href="styles/main.css?v=7">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
+  <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/">
+  <meta property="og:url" content="https://ceylonroameryt-bit.github.io/the-digital-watch/">
 </head>
 <body data-page="index">
 
-  <div id="toast-container"></div>
+  <div id="toast-container" role="status" aria-live="polite"></div>
 
   <!-- NAV -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
@@ -58,7 +60,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="#series">Series</a></li>
-        <li><a href="article.html">Articles</a></li>
+        <li><a href="#series">Articles</a></li>
         <li><a href="article.html#feedback">Feedback</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="article.html" class="cta" id="navStartReadingBtn">Start Reading →</a></li>
@@ -187,8 +189,8 @@
         <!-- Progress Tracker -->
         <div class="series-tracker">
           <div class="series-tracker-top">
-            <span>Series Progress: <span class="stat">Episode 03 of 10 Released</span></span>
-            <span class="stat">30% Complete</span>
+            <span>Series Progress: <span class="stat" id="seriesReleased">Episode 03 of 10 Released</span></span>
+            <span class="stat" id="seriesCompletion">30% Complete</span>
           </div>
           <div class="series-progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100">
             <div class="series-progress-fill" style="width:30%;"></div>
@@ -203,10 +205,10 @@
           <div class="sec-rule" style="width:60px;"></div>
           <span class="sec-meta">10 Planned Installments</span>
         </div>
-        <div class="series-tabs" role="tablist" aria-label="Filter series episodes">
-          <button class="series-tab-btn active" data-filter="all" role="tab" aria-selected="true">All Episodes (10)</button>
-          <button class="series-tab-btn" data-filter="published" role="tab" aria-selected="false">Published (3)</button>
-          <button class="series-tab-btn" data-filter="upcoming" role="tab" aria-selected="false">Upcoming (7)</button>
+        <div class="series-tabs" role="group" aria-label="Filter series episodes">
+          <button class="series-tab-btn active" data-filter="all" aria-pressed="true">All Episodes (10)</button>
+          <button class="series-tab-btn" data-filter="published" aria-pressed="false">Published (3)</button>
+          <button class="series-tab-btn" data-filter="upcoming" aria-pressed="false">Upcoming (7)</button>
         </div>
       </div>
 
@@ -680,9 +682,9 @@
   </footer>
 
   <div id="google_translate_element"></div>
-  <script src="js/cms.js?v=5"></script>
-  <script src="js/app.js?v=5"></script>
-  <script src="js/translator.js?v=5"></script>
+  <script src="js/cms.js?v=7"></script>
+  <script src="js/app.js?v=7"></script>
+  <script src="js/translator.js?v=7"></script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
