@@ -1,6 +1,7 @@
 # Netlify deployment config
 [build]
-  publish = "."
+  command = "node scripts/build-public.mjs"
+  publish = "dist"
 
 # Block direct access to source control, environments, and backup artifacts
 [[redirects]]

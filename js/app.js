@@ -26,7 +26,11 @@ function showToast(msg, emoji = '✓') {
   if (!c) return;
   const t = document.createElement('div');
   t.className = 'toast';
-  t.innerHTML = `<span>${emoji}</span><span>${msg}</span>`;
+  for (const value of [emoji, msg]) {
+    const span = document.createElement('span');
+    span.textContent = value;
+    t.appendChild(span);
+  }
   c.appendChild(t);
   setTimeout(() => {
     t.style.cssText = 'opacity:0;transform:translateY(6px);transition:all .2s ease';
@@ -48,20 +52,28 @@ function initProgress() {
 
 /* ── MOBILE MENU ─────────────────────────────────────────────── */
 function initMobileMenu() {
-  const btn  = document.getElementById('mobileBtn') || document.getElementById('mBtn');
+  const btn = document.getElementById('mobileBtn') || document.getElementById('mBtn');
   const menu = document.getElementById('navLinks');
   if (!btn || !menu) return;
-
+  btn.setAttribute('aria-controls', menu.id);
+  const close = () => {
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+  };
   btn.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-expanded', String(menu.classList.toggle('open')));
   });
-
-  document.addEventListener('click', e => {
-    if (!btn.contains(e.target) && !menu.contains(e.target)) {
-      menu.classList.remove('open');
-      btn.setAttribute('aria-expanded', 'false');
+  menu.addEventListener('click', event => {
+    if (event.target.closest('a')) close();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && menu.classList.contains('open')) {
+      close();
+      btn.focus();
     }
+  });
+  document.addEventListener('click', event => {
+    if (!btn.contains(event.target) && !menu.contains(event.target)) close();
   });
 }
 
@@ -73,8 +85,12 @@ function initSeriesFilter() {
 
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-pressed', 'false');
+      });
       tab.classList.add('active');
+      tab.setAttribute('aria-pressed', 'true');
       const filter = tab.getAttribute('data-filter');
 
       cards.forEach(card => {
@@ -92,13 +108,19 @@ function initSeriesFilter() {
 }
 
 /* ── COPY LINK ───────────────────────────────────────────────── */
-function copyLink() {
-  navigator.clipboard.writeText(window.location.href)
-    .then(() => showToast('Link copied to clipboard', '🔗'))
-    .catch(() => showToast('Copy the URL from your browser', '📋'));
+async function copyLink() {
+  const canonical = document.querySelector('link[rel="canonical"]');
+  const url = canonical ? canonical.href : window.location.href;
+  try {
+    await navigator.clipboard.writeText(url);
+    showToast('Link copied to clipboard', '🔗');
+  } catch (_) {
+    showToast('Copy the page address from your browser', '📋');
+  }
 }
 
 /* ── STORAGE HELPERS ─────────────────────────────────────────── */
+const sessionData = new Map();
 function getData() {
   try {
     const key = getArticleKey();
@@ -107,17 +129,18 @@ function getData() {
       raw = localStorage.getItem('threatbrief_ai_scams_v3') || localStorage.getItem('threatbrief_ep01');
       if (raw) localStorage.setItem(key, raw);
     }
-    return JSON.parse(raw || '{}');
+    const saved = JSON.parse(raw || '{}');
+    return sessionData.get(key) || (saved && typeof saved === 'object' && !Array.isArray(saved) ? saved : {});
   } catch (e) {
-    return {};
+    return sessionData.get(getArticleKey()) || {};
   }
 }
 
 function saveData(patch) {
+  const key = getArticleKey();
+  const updated = { ...getData(), ...patch };
+  sessionData.set(key, updated);
   try {
-    const key = getArticleKey();
-    const s = getData();
-    const updated = { ...s, ...patch };
     localStorage.setItem(key, JSON.stringify(updated));
     if (key === 'threatbrief_ep01' || key === 'threatbrief_ai_scams_v3') {
       localStorage.setItem('threatbrief_ai_scams_v3', JSON.stringify(updated));
@@ -130,6 +153,8 @@ function saveData(patch) {
 function renderLike(liked, count) {
   document.querySelectorAll('.btn-like').forEach(btn => {
     btn.classList.toggle('liked', liked);
+    btn.setAttribute('aria-pressed', String(liked));
+    btn.title = 'Your like on this device';
     const heart = btn.querySelector('.like-heart');
     if (heart) heart.textContent = liked ? '❤️' : '🤍';
   });
@@ -141,7 +166,7 @@ function renderLike(liked, count) {
 function initLike() {
   const s = getData();
   const liked = !!s.liked;
-  const count = s.likeCnt !== undefined ? s.likeCnt : 0;
+  const count = s.liked ? 1 : 0;
   renderLike(liked, count);
 
   document.querySelectorAll('.btn-like').forEach(btn => {
@@ -160,11 +185,11 @@ function toggleLike(e) {
   }
   const s = getData();
   const liked = !s.liked;
-  let count = s.likeCnt !== undefined ? s.likeCnt : 0;
+  let count = s.liked ? 1 : 0;
   count = liked ? count + 1 : Math.max(0, count - 1);
   saveData({ liked, likeCnt: count });
   renderLike(liked, count);
-  if (liked) showToast('Thanks for the like! ❤️', '❤️');
+  if (liked) showToast('Liked on this device', '❤️');
 }
 window.toggleLike = toggleLike;
 
@@ -178,7 +203,7 @@ function renderClap(claps, myClaps) {
       btn.title = 'Max claps reached (50)!';
     } else {
       btn.disabled = false;
-      btn.title = 'Applaud this research';
+      btn.title = 'Your claps on this device';
     }
   });
   document.querySelectorAll('.clap-count').forEach(cnt => {
@@ -188,8 +213,8 @@ function renderClap(claps, myClaps) {
 
 function initClap() {
   const s = getData();
-  const claps = s.claps !== undefined ? s.claps : 0;
-  const myClaps = s.myClaps !== undefined ? s.myClaps : 0;
+  const claps = Math.min(50, Math.max(0, Number(s.myClaps) || 0));
+  const myClaps = Math.min(50, Math.max(0, Number(s.myClaps) || 0));
   renderClap(claps, myClaps);
 
   document.querySelectorAll('.btn-clap').forEach(btn => {
@@ -207,8 +232,8 @@ function addClap(e) {
     e.stopPropagation();
   }
   const s = getData();
-  let claps   = s.claps   !== undefined ? s.claps   : 0;
-  let myClaps = s.myClaps !== undefined ? s.myClaps : 0;
+  let claps   = Math.min(50, Math.max(0, Number(s.myClaps) || 0));
+  let myClaps = Math.min(50, Math.max(0, Number(s.myClaps) || 0));
   const MAX   = 50;
 
   if (myClaps >= MAX) {
@@ -254,287 +279,76 @@ function initToc() {
 function initScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const target = document.querySelector(a.getAttribute('href'));
+      const hash = a.getAttribute('href');
+      if (!hash || hash === '#') return;
+      let id;
+      try { id = decodeURIComponent(hash.slice(1)); } catch (_) { return; }
+      const target = document.getElementById(id);
       if (!target) return;
       e.preventDefault();
       const navH = parseInt(
         getComputedStyle(document.documentElement).getPropertyValue('--nav-h')
       ) || 66;
-      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH - 16, behavior: 'smooth' });
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH - 16, behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      history.pushState(null, '', hash);
     });
   });
 }
 
 /* ── FEEDBACK & DISCUSSION ───────────────────────────────────── */
-function initFeedback() {
-  const fbContainer = document.getElementById('feedback');
-  if (!fbContainer) return;
-
-  const currentArticleKey = getArticleKey();
-
-  // 1. Reactions handling (stores user active state + reaction counts forever)
-  const reactionButtons = fbContainer.querySelectorAll('.fb-react-btn');
-  const REACTIONS_KEY = currentArticleKey + '_reactions';
-  const REACTION_COUNTS_KEY = currentArticleKey + '_reaction_counts';
-
-  let storedUserReactions = {};
-  try {
-    storedUserReactions = JSON.parse(
-      localStorage.getItem(REACTIONS_KEY) || 
-      (currentArticleKey.includes('ep01') || currentArticleKey.includes('ai_scams') ? localStorage.getItem('threatbrief_fb_reactions_v3') : null) || 
-      '{}'
-    );
-  } catch (e) { storedUserReactions = {}; }
-
-  let storedCounts = {};
-  try {
-    storedCounts = JSON.parse(localStorage.getItem(REACTION_COUNTS_KEY) || '{}');
-  } catch (e) { storedCounts = {}; }
-
-  reactionButtons.forEach(btn => {
-    const key = btn.getAttribute('data-reaction');
-    const countEl = btn.querySelector('.fb-cnt');
-    if (!countEl) return;
-    
-    // Initial baseline count from HTML
-    const htmlCount = parseInt(countEl.textContent, 10) || 0;
-    if (storedCounts[key] === undefined) {
-      storedCounts[key] = storedUserReactions[key] ? Math.max(htmlCount, 1) : htmlCount;
-    }
-
-    // Set count and active state
-    countEl.textContent = storedCounts[key];
-    if (storedUserReactions[key]) {
-      btn.classList.add('active');
-    } else {
-      btn.classList.remove('active');
-    }
-
-    btn.onclick = (e) => {
-      e.preventDefault();
-      const isActive = btn.classList.toggle('active');
-      storedUserReactions[key] = isActive;
-      storedCounts[key] = Math.max(0, (storedCounts[key] || 0) + (isActive ? 1 : -1));
-      countEl.textContent = storedCounts[key];
-
-      try {
-        localStorage.setItem(REACTIONS_KEY, JSON.stringify(storedUserReactions));
-        localStorage.setItem(REACTION_COUNTS_KEY, JSON.stringify(storedCounts));
-        if (currentArticleKey.includes('ep01') || currentArticleKey.includes('ai_scams')) {
-          localStorage.setItem('threatbrief_fb_reactions_v3', JSON.stringify(storedUserReactions));
-        }
-      } catch (e) {}
-
-      const label = btn.getAttribute('data-label') || 'reaction';
-      showToast(isActive ? `Marked as: ${label}!` : `Removed: ${label}`, isActive ? '👍' : 'ℹ️');
-    };
-  });
-
-  // 2. Chip selector
-  const chips = fbContainer.querySelectorAll('.fb-chip-opt');
-  let selectedCategory = chips.length > 0 ? (chips[0].getAttribute('data-category') || chips[0].textContent.trim()) : 'General Feedback';
-  chips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      chips.forEach(c => c.classList.remove('selected'));
-      chip.classList.add('selected');
-      selectedCategory = chip.getAttribute('data-category') || chip.textContent.trim();
-    });
-  });
-
-  // 3. User comments storage & render
-  const readerStream = fbContainer.querySelector('#fbReaderComments') || fbContainer.querySelector('#fbCommentsList');
-  const emptyState = fbContainer.querySelector('#fbEmptyState');
-  const MAIN_COMMENTS_KEY = 'ci_reader_comments_v1';
-
-  function isSpamOrTest(c) {
-    if (!c || !c.message) return true;
-    if (['fb-01', 'fb-02', 'fb-03'].includes(c.id)) return true;
-    const msg = (c.message || '').toLowerCase();
-    if (msg.includes('gffdghxdfhxdfghxfgd')) return true;
-    return false;
-  }
-
-  function getAllComments() {
-    try {
-      let list = [];
-      const stored = localStorage.getItem(MAIN_COMMENTS_KEY);
-      if (stored) {
-        try {
-          const parsed = JSON.parse(stored);
-          if (Array.isArray(parsed)) list = parsed;
-        } catch (e) {}
-      }
-
-      // Check legacy keys for any user comments and migrate them safely
-      const oldKeys = [
-        'threatbrief_user_comments_v3',
-        'threatbrief_user_comments_v2',
-        'threatbrief_user_comments',
-        'dw_user_comments',
-        'ci_reader_comments_threatbrief_ep01',
-        'ci_reader_comments_threatbrief_ep02',
-        'ci_reader_comments_threatbrief_ai_scams_v3'
-      ];
-      let migrated = false;
-      for (const k of oldKeys) {
-        const oldRaw = localStorage.getItem(k);
-        if (oldRaw) {
-          try {
-            const oldList = JSON.parse(oldRaw);
-            if (Array.isArray(oldList)) {
-              oldList.forEach(c => {
-                if (c && c.message && !isSpamOrTest(c)) {
-                  const exists = list.some(item => item.id === c.id || (item.message === c.message && item.name === c.name));
-                  if (!exists) {
-                    list.push(c);
-                    migrated = true;
-                  }
-                }
-              });
-            }
-          } catch (e) {}
-          // Clear legacy key so migrated/deleted comments are never resurrected
-          localStorage.removeItem(k);
-        }
-      }
-
-      const cleaned = list.filter(c => !isSpamOrTest(c));
-      if (cleaned.length !== list.length || migrated) {
-        localStorage.setItem(MAIN_COMMENTS_KEY, JSON.stringify(cleaned));
-      }
-      return cleaned;
-    } catch (e) {
-      return [];
-    }
-  }
-
-  function saveAllComments(list) {
-    try {
-      localStorage.setItem(MAIN_COMMENTS_KEY, JSON.stringify(list));
-      // Also mirror to article-specific key for backward compatibility
-      localStorage.setItem('ci_reader_comments_' + currentArticleKey, JSON.stringify(getComments()));
-    } catch (e) {}
-  }
-
-  function getComments() {
-    const all = getAllComments();
-    const isEp01 = currentArticleKey === 'threatbrief_ep01' || currentArticleKey === 'threatbrief_ai_scams_v3';
-    return all.filter(c => {
-      if (!c) return false;
-      if (isEp01) {
-        return !c.articleId || c.articleId === 'threatbrief_ep01' || c.articleId === 'threatbrief_ai_scams_v3' || c.articleId === 'ep01';
-      }
-      return c.articleId === currentArticleKey || (document.body.dataset.articleId && c.articleId === ('threatbrief_' + document.body.dataset.articleId));
-    });
-  }
-
-  function renderComment(c, prepend = false, isNew = false) {
-    if (!readerStream) return;
-    if (emptyState) emptyState.style.display = 'none';
-
-    const card = document.createElement('div');
-    card.className = `fb-comment ${isNew ? 'is-new' : ''}`;
-    card.setAttribute('data-id', c.id || '');
-    const initials = (c.name || 'AD').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'RD';
-    
-    card.innerHTML = `
-      <div class="fb-c-top">
-        <div class="fb-c-user">
-          <div class="fb-c-av">${escapeHtml(initials)}</div>
-          <div>
-            <div class="fb-c-name">${escapeHtml(c.name || 'Reader')}</div>
-            <div class="fb-c-role">${escapeHtml(c.role || 'Security Practitioner')}</div>
-          </div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <span class="fb-c-badge">${escapeHtml(c.category || 'General Feedback')}</span>
-          <span class="fb-c-time">${escapeHtml(c.time || 'Recent')}</span>
-        </div>
-      </div>
-      <p class="fb-c-body">${escapeHtml(c.message)}</p>
-    `;
-
-    if (prepend) {
-      readerStream.prepend(card);
-    } else {
-      readerStream.appendChild(card);
-    }
-    return card;
-  }
-
-  // Load and display comments
-  const savedComments = getComments();
-  if (savedComments.length === 0) {
-    if (emptyState) emptyState.style.display = 'block';
-  } else {
-    if (emptyState) emptyState.style.display = 'none';
-    savedComments.forEach(c => renderComment(c, false, false));
-  }
-
-  // Expose global helper for admin panel and custom scripts
-  window.CI_FEEDBACK = {
-    getComments,
-    getAllComments,
-    saveComments: saveAllComments,
-    deleteComment: (id) => {
-      const all = getAllComments().filter(item => item.id !== id);
-      saveAllComments(all);
-      return all;
-    }
+function buildFeedbackEmail({ title, url, name, category, message }) {
+  const subject = `Cyber Insight feedback: ${title}`;
+  const body = `Article: ${title}\n${url}\n\nFrom: ${name || 'Reader'}\nCategory: ${category}\n\n${message}`;
+  return {
+    body,
+    href: `mailto:sujampathirathnayaka@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   };
+}
 
-  // 4. Form submit handling
-  const form = fbContainer.querySelector('#fbForm');
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const nameInput = form.querySelector('#fbName');
-      const roleInput = form.querySelector('#fbRole');
-      const msgInput  = form.querySelector('#fbMessage');
-
-      const message = msgInput ? msgInput.value.trim() : '';
-      if (!message) {
-        showToast('Please enter your feedback before submitting', '⚠️');
-        if (msgInput) msgInput.focus();
-        return;
-      }
-
-      const name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : 'Anonymous Defender';
-      const role = (roleInput && roleInput.value.trim()) ? roleInput.value.trim() : 'Practitioner';
-      
-      const now = new Date();
-      const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-
-      const newComment = {
-        id: 'fb-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
-        articleId: currentArticleKey,
-        articleSlug: window.location.pathname.includes('03') ? 'ep03-clicked-phishing-link' : window.location.pathname.includes('02') ? 'ep02-someone-has-your-email' : 'ep01-can-you-still-trust',
-        articleTitle: document.querySelector('.art-h1')?.textContent?.trim() || document.querySelector('.art-title')?.textContent?.trim() || (currentArticleKey.includes('03') ? 'Episode 03: I Clicked a Phishing Link. What Should I Do?' : currentArticleKey.includes('02') ? 'Episode 02: Someone Has Your Email Address' : 'Episode 01: Can You Still Trust What You See'),
-        name,
-        role,
-        category: selectedCategory,
-        message,
-        time: dateStr,
-        createdAt: Date.now()
-      };
-
-      const all = getAllComments();
-      all.unshift(newComment);
-      saveAllComments(all);
-
-      const renderedCard = renderComment(newComment, true, true);
-      if (renderedCard) {
-        renderedCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      }
-
-      // Reset form
-      if (msgInput) msgInput.value = '';
-      if (nameInput) nameInput.value = '';
-      if (roleInput) roleInput.value = '';
-
-      showToast('Thank you! Your feedback has been posted.', '✅');
+function initFeedback() {
+  const form = document.getElementById('fbForm');
+  if (!form) return;
+  form.hidden = false;
+  const preview = document.getElementById('fbEmailPreview');
+  const output = document.getElementById('fbEmailBody');
+  const status = document.getElementById('fbStatus');
+  const link = document.getElementById('fbEmailLink');
+  const copy = document.getElementById('fbCopy');
+  form.addEventListener('input', () => {
+    preview.hidden = true;
+    status.textContent = '';
+    link.removeAttribute('href');
+  });
+  form.addEventListener('submit', event => {
+    event.preventDefault();
+    const message = document.getElementById('fbMessage').value.trim();
+    if (!message) {
+      status.textContent = 'Enter your feedback first.';
+      document.getElementById('fbMessage').focus();
+      return;
+    }
+    const draft = buildFeedbackEmail({
+      title: document.querySelector('h1').textContent.trim(),
+      url: document.querySelector('link[rel="canonical"]').href,
+      name: document.getElementById('fbName').value.trim(),
+      category: document.getElementById('fbCategory').value || 'General feedback',
+      message
     });
-  }
+    output.value = draft.body;
+    link.setAttribute('href', draft.href);
+    preview.hidden = false;
+    status.textContent = 'Your draft is ready. Open your email app, review it, and press Send there. Nothing has been sent yet.';
+  });
+  copy.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(output.value);
+      status.textContent = 'Copied. Paste into an email to sujampathirathnayaka@gmail.com and send it.';
+    } catch (_) {
+      output.focus();
+      output.select();
+      status.textContent = 'Select and copy the draft below, then email it to sujampathirathnayaka@gmail.com.';
+    }
+  });
 }
 
 function escapeHtml(str) {

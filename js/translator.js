@@ -7,14 +7,16 @@
 'use strict';
 
 // ── GLOBAL GOOGLE TRANSLATE CALLBACK ─────────────────────────
+let translateInitialized = false;
 window.googleTranslateElementInit = function () {
   try {
-    if (window.google && window.google.translate && window.google.translate.TranslateElement) {
+    if (!translateInitialized && window.google && window.google.translate && window.google.translate.TranslateElement) {
       new window.google.translate.TranslateElement({
         pageLanguage: 'en',
         autoDisplay: false,
-        layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE
+        layout: window.google.translate.TranslateElement.InlineLayout.VERTICAL
       }, 'google_translate_element');
+      translateInitialized = true;
     }
   } catch (e) {
     console.warn('Google Translate initialization note:', e);
@@ -147,7 +149,7 @@ window.googleTranslateElementInit = function () {
     if (match && match[1]) {
       return match[1];
     }
-    return localStorage.getItem('ci_lang_code') || 'en';
+    try { return localStorage.getItem('ci_lang_code') || 'en'; } catch (_) { return 'en'; }
   }
 
   // Set Google Translate cookie across all scopes
@@ -159,7 +161,7 @@ window.googleTranslateElementInit = function () {
       document.cookie = `googtrans=${val}; path=/; domain=.${host};`;
       document.cookie = `googtrans=${val}; path=/; domain=${host};`;
     }
-    localStorage.setItem('ci_lang_code', langCode);
+    try { localStorage.setItem('ci_lang_code', langCode); } catch (_) {}
   }
 
   // Clear translation cookies to revert to English
@@ -171,11 +173,12 @@ window.googleTranslateElementInit = function () {
       document.cookie = `googtrans=; ${exp} domain=.${host};`;
       document.cookie = `googtrans=; ${exp} domain=${host};`;
     }
-    localStorage.removeItem('ci_lang_code');
+    try { localStorage.removeItem('ci_lang_code'); } catch (_) {}
   }
 
   // Trigger Google Translate engine
   function applyLanguage(langCode) {
+    if (!LANGUAGES.some(language => language.code === langCode)) return;
     const current = getCurrentLang();
     if (langCode === 'en' && (current === 'en' || !current)) {
       closeAllDropdowns();
@@ -195,9 +198,7 @@ window.googleTranslateElementInit = function () {
     if (combo) {
       combo.value = langCode;
       combo.dispatchEvent(new Event('change', { bubbles: true }));
-      if (typeof combo.onchange === 'function') {
-        combo.onchange();
-      }
+
       updateUI();
       closeAllDropdowns();
       if (typeof window.showToast === 'function') {
@@ -205,8 +206,11 @@ window.googleTranslateElementInit = function () {
         window.showToast(`Translating page to ${found ? found.name : langCode}...`, '🌐');
       }
     } else {
-      // Reload page so Google Translate reads googtrans cookie on boot
-      window.location.reload();
+      // A blocked provider must not reload the page or discard a feedback draft.
+      updateUI();
+      if (typeof window.showToast === 'function') {
+        window.showToast('Translation is unavailable here. Use the Google Translate link below.', '🌐');
+      }
     }
   }
 
@@ -563,7 +567,7 @@ window.googleTranslateElementInit = function () {
           if (combo.value !== cur) {
             combo.value = cur;
             combo.dispatchEvent(new Event('change', { bubbles: true }));
-            if (typeof combo.onchange === 'function') combo.onchange();
+
           }
           clearInterval(syncInterval);
         }

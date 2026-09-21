@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "linkedom": "0.18.12"
+  },
+  "name": "cyber-insight",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "build": "node scripts/build-public.mjs"
+  }
+}

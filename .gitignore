@@ -5,3 +5,6 @@ Thumbs.db
 .idea/
 
 *.bak
+
+node_modules/
+dist/

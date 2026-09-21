@@ -2361,3 +2361,14 @@ body {
   }
 }
 
+
+/* Preserve native hidden semantics even on styled counters and form panels. */
+[hidden] { display: none !important; }
+#fbForm label, #fbEmailPreview label { display: block; margin: 16px 0 6px; font-weight: 600; }
+#fbStatus { margin: 16px 0; line-height: 1.6; }
+#fbEmailBody { min-height: 180px; }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+}

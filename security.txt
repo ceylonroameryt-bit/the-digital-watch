@@ -1,7 +1,5 @@
-# Cyber Insight Security & Vulnerability Disclosure Policy (RFC 9116)
 Contact: mailto:sujampathirathnayaka@gmail.com
-Expires: 2027-12-31T23:59:59.000Z
+Expires: 2027-09-01T00:00:00Z
 Preferred-Languages: en
-Canonical: https://sujampathirathnayaka.com/.well-known/security.txt
-Policy: https://sujampathirathnayaka.com/#about
-Acknowledgments: https://sujampathirathnayaka.com/
+Canonical: https://ceylonroameryt-bit.github.io/the-digital-watch/.well-known/security.txt
+Canonical: https://ceylonroameryt-bit.github.io/the-digital-watch/security.txt
