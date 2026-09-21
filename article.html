@@ -45,10 +45,9 @@
     rel="stylesheet">
   <link rel="stylesheet" href="styles/main.css?v=6">
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
 </head>
 
-<body>
+<body data-page="article" data-article-id="ep01">
 
   <div id="reading-progress"></div>
   <div id="toast-container"></div>
@@ -203,11 +202,11 @@
           <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 7 min read</span>
         </div>
         <div class="art-act-right">
-          <button class="art-act-btn btn-like" onclick="toggleLike()" title="Like this research"
+          <button class="art-act-btn btn-like" title="Like this research"
             aria-label="Like article">
             <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
           </button>
-          <button class="art-act-btn btn-clap" onclick="addClap()" title="Applaud this research"
+          <button class="art-act-btn btn-clap" title="Applaud this research"
             aria-label="Clap for article">
             <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
           </button>
@@ -960,11 +959,11 @@
               <span class="series-nav-tag" style="color:#16A34A;background:#DCFCE7;">Episode 02 · Published</span>
             </div>
           </a>
-          <a href="index.html#series" class="series-nav-item">
+          <a href="article-03.html" class="series-nav-item">
             <span class="series-nav-num">03</span>
             <div class="series-nav-info">
               <span class="series-nav-item-title">I Clicked a Phishing Link. What Should I Do?</span>
-              <span class="series-nav-tag">Episode 03 · Coming Soon</span>
+              <span class="series-nav-tag" style="color:#16A34A;background:#DCFCE7;">Episode 03 · Published</span>
             </div>
           </a>
           <a href="index.html#series" class="series-nav-item">
@@ -1061,8 +1060,8 @@
             </div>
           </a>
 
-          <!-- Episode 03 -->
-          <div class="art-card">
+          <!-- Episode 03: Published ✅ -->
+          <a href="article-03.html" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
             <div class="card-svg" style="background:linear-gradient(135deg,#FEF2F2 0%,#FFF7ED 100%);">
               <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true">
@@ -1076,15 +1075,15 @@
                   stroke-linecap="round" />
                 <path d="M70 70 L76 77 L68 79" stroke="#EF4444" stroke-width="1.8" fill="none" stroke-linecap="round" />
               </svg>
-              <span class="card-svg-label">Episode 03</span>
+              <span class="card-svg-label" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 03 · Live</span>
             </div>
             <div class="card-body">
               <h3 class="card-h3">I Clicked a Phishing Link. What Should I Do?</h3>
               <p class="card-ex">A 5-minute emergency playbook for suspicious clicks: assessing payload execution,
                 killing sessions, and revoking OAuth app grants.</p>
-              <div class="card-foot"><span>Incident Response · Triage</span><span class="soon">Coming Soon</span></div>
+              <div class="card-foot"><span>Incident Response · Triage</span><span style="color:#16A34A;font-weight:700;">Read Ep 03 →</span></div>
             </div>
-          </div>
+          </a>
 
           <!-- Episode 04 -->
           <div class="art-card">
@@ -1119,11 +1118,11 @@
 
   <!-- FLOATING BOTTOM DOCK -->
   <aside class="floating-dock" aria-label="Reading Controls">
-    <button class="dock-btn btn-like" onclick="toggleLike()" aria-label="Like article">
+    <button class="dock-btn btn-like" aria-label="Like article">
       <span class="dock-emoji like-heart">🤍</span>
       <span class="dock-count like-count">0</span>
     </button>
-    <button class="dock-btn btn-clap" onclick="addClap()" aria-label="Applaud research">
+    <button class="dock-btn btn-clap" aria-label="Applaud research">
       <span class="dock-emoji">👏</span>
       <span class="dock-count clap-count">0</span>
     </button>
@@ -1176,6 +1175,7 @@
             <ul class="foot-nav-list">
               <li><a href="article.html">Ep 01: Synthetic Audio & AI Trust</a></li>
               <li><a href="article-02.html">Ep 02: Email OSINT & Perimeter Defense</a></li>
+              <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
               <li><a href="index.html#series">View Full Curriculum (10 Episodes)</a></li>
               <li><a href="#feedback">Submit Article Feedback</a></li>
             </ul>

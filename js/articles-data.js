@@ -180,6 +180,38 @@ The real question isn't *"Someone has my email—am I hacked?"* It's **"What can
 `
   },
   {
+    id: "i-clicked-a-phishing-link-what-should-i-do",
+    title: "I Clicked a Phishing Link. What Should I Do?",
+    subtitle: "What really matters is what happened after the click: credentials, downloads, MFA tokens, or session cookies. Here is the step-by-step triage playbook.",
+    category: "Incident Response",
+    categoryClass: "cat-incident",
+    tags: ["Phishing", "Incident Response", "AiTM Phishing", "Session Hijacking", "MFA", "Triage"],
+    coverImage: "assets/images/phishing_link_triage.jpg",
+    author: {
+      name: "Poorna Sujampathi Rathnayaka",
+      handle: "@sujampathi",
+      role: "Cybersecurity Analyst & Digital Literacy Researcher",
+      avatar: "PS"
+    },
+    publishedAt: "September 21, 2026",
+    readTime: "6 min read",
+    cvssScore: "8.1 HIGH",
+    cvssClass: "cvss-high",
+    mitreId: "T1566.002 &bull; T1539",
+    mitreName: "Phishing: Spearphishing Link & Steal Application Access Token",
+    featured: false,
+    summary: "Clicking a phishing link and having your account compromised are not the same thing. Simply opening a page is treated differently from entering credentials, downloading files, or granting permissions.",
+    content: `
+You click a link in an email. The page opens, and for a moment everything looks normal. Then you notice something.
+
+Maybe the website address looks strange. Maybe the login page isn't quite right. Or maybe you've already entered your password before realising: **“Wait… was that a phishing link?”**
+
+At that point, most people have the same reaction: *Have I just been hacked?*
+
+Not necessarily. What really matters is what you did after the click.
+`
+  },
+  {
     id: "edr-bypass-direct-syscalls",
     title: "Anatomy of an EDR Bypass: Direct Syscalls and Hell's Gate Technique in 2026",
     subtitle: "Bypassing userland API hooks in modern Endpoint Detection and Response systems using dynamic SSN resolution.",

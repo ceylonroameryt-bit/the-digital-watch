@@ -44,7 +44,7 @@ const DEFAULT_POSTS = [
     seriesName: 'Cybersecurity for Everyone',
   },
   { id:'ep02-someone-has-your-email', episodeNum:2, title:'Someone Has Your Email Address. Now What?', slug:'ep02-someone-has-your-email', category:'Identity Recon', tags:['Account Takeover','Phishing','MFA'], readTime:'7 min read', date:'September 18, 2026', status:'published', summary:'Your email address is the primary anchor of your digital footprint. What automated crawlers, credential stuffing bots, and spear-phishers do once it leaks, and how to lockdown your perimeter.', content:'', seriesName:'Cybersecurity for Everyone' },
-  { id:'ep03-clicked-phishing-link', episodeNum:3, title:'I Clicked a Phishing Link. What Should I Do?', slug:'ep03-clicked-phishing-link', category:'Phishing', tags:['Phishing','Quick Action'], readTime:'5 min read', date:'', status:'draft', summary:'A step-by-step guide for the moments right after you realise you may have clicked something you shouldn\'t have.', content:'', seriesName:'Cybersecurity for Everyone' },
+  { id:'ep03-clicked-phishing-link', episodeNum:3, title:'I Clicked a Phishing Link. What Should I Do?', slug:'ep03-clicked-phishing-link', category:'Phishing', tags:['Phishing','Quick Action','Incident Response'], readTime:'6 min read', date:'September 21, 2026', status:'published', summary:'A calm, actionable five-minute triage playbook for suspicious clicks: assessing whether code executed, severing session tokens, revoking OAuth grants, and flushing credentials safely.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep04-session-was-stolen', episodeNum:4, title:'Your Password Wasn\'t Hacked. Your Session Was Stolen.', slug:'ep04-session-was-stolen', category:'Account Security', tags:['Session Hijacking','Cookies'], readTime:'7 min read', date:'', status:'draft', summary:'Changing your password doesn\'t always help. Here\'s how attackers steal your login session without ever knowing your password.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep05-padlock-doesnt-mean-safe', episodeNum:5, title:'Why the Padlock Doesn\'t Mean a Website Is Safe', slug:'ep05-padlock-doesnt-mean-safe', category:'Web Safety', tags:['HTTPS','Scam Websites'], readTime:'5 min read', date:'', status:'draft', summary:'The padlock icon in your browser means the connection is encrypted — not that the website is trustworthy. Here\'s what to actually look for.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep06-are-passkeys-killing-passwords', episodeNum:6, title:'Are Passkeys Finally Going to Kill Passwords?', slug:'ep06-are-passkeys-killing-passwords', category:'Authentication', tags:['Passkeys','Passwords'], readTime:'6 min read', date:'', status:'draft', summary:'Passkeys are being called the end of passwords. But what are they, how do they work, and should you actually switch?', content:'', seriesName:'Cybersecurity for Everyone' },
@@ -65,6 +65,13 @@ function getPosts() {
       ep2.status = 'published';
       ep2.date = 'September 18, 2026';
       ep2.readTime = '7 min read';
+      savePosts(list);
+    }
+    const ep3 = list.find(p => p.id === 'ep03-clicked-phishing-link' || p.episodeNum === 3);
+    if (ep3 && ep3.status !== 'published') {
+      ep3.status = 'published';
+      ep3.date = 'September 21, 2026';
+      ep3.readTime = '6 min read';
       savePosts(list);
     }
     return list;
@@ -145,7 +152,7 @@ function renderIndex() {
 
 function _renderEpCard(post) {
   const isPub = post.status === 'published';
-  const href = post.episodeNum === 1 ? 'article.html' : post.episodeNum === 2 ? 'article-02.html' : (isPub ? `article.html?id=${post.slug}` : '#');
+  const href = post.episodeNum === 1 ? 'article.html' : post.episodeNum === 2 ? 'article-02.html' : post.episodeNum === 3 ? 'article-03.html' : (isPub ? `article.html?id=${post.slug}` : '#');
   return `
   <${isPub ? 'a href="'+href+'"' : 'div'} class="ep-card ${isPub ? 'is-published' : ''}">
     <div class="ep-svg-thumb" style="background:linear-gradient(135deg,${_epGradient(post.episodeNum)});">
@@ -203,6 +210,15 @@ function _epSvgContent(n, isPub) {
       <line x1="196" y1="36" x2="196" y2="88" stroke="#EF4444" stroke-width="1" stroke-dasharray="3 2" opacity=".5"/>
       <text x="140" y="132" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="11">Identity Exposure &amp; OSINT</text>`;
   }
+  if (n === 3) {
+    // Hook & triage timer illustration for ep03
+    return `<path d="M136 38 L136 94 L148 82 L157 104 L164 101 L155 79 L171 79 Z" fill="white" stroke="#EF4444" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M84 56 Q100 44 100 60 Q100 74 84 74" stroke="#EF4444" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+      <rect x="52" y="76" width="76" height="38" rx="8" fill="white" stroke="#EF4444" stroke-width="1.6"/>
+      <circle cx="204" cy="74" r="22" fill="white" stroke="#F97316" stroke-width="1.8"/>
+      <polyline points="204,60 204,74 214,74" stroke="#F97316" stroke-width="2" stroke-linecap="round"/>
+      <text x="140" y="132" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="11">Post-Phishing Triage &amp; Recovery</text>`;
+  }
   // Generic episode SVG with episode number
   return `<circle cx="140" cy="68" r="38" fill="white" stroke="#CBD5E1" stroke-width="1.5" opacity=".8"/>
     <text x="140" y="62" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="11" font-weight="600">Episode</text>
@@ -213,9 +229,13 @@ function _epSvgContent(n, isPub) {
 /* ── PAGE RENDERER — ARTICLE ────────────────────────────────── */
 function renderArticle() {
   const params = new URLSearchParams(window.location.search);
-  const id = params.get('id') || (window.location.pathname.includes('02') ? 'ep02-someone-has-your-email' : 'ep01-can-you-still-trust');
+  const id = params.get('id') || (window.location.pathname.includes('03') ? 'ep03-clicked-phishing-link' : window.location.pathname.includes('02') ? 'ep02-someone-has-your-email' : 'ep01-can-you-still-trust');
   if (id === 'ep02-someone-has-your-email' && !window.location.pathname.includes('02')) {
     window.location.replace('article-02.html');
+    return;
+  }
+  if (id === 'ep03-clicked-phishing-link' && !window.location.pathname.includes('03')) {
+    window.location.replace('article-03.html');
     return;
   }
   const posts = getPosts();
@@ -247,7 +267,7 @@ function renderArticle() {
     seriesNavGrid.innerHTML = allPosts.map(p => {
       const isActive = p.slug === post.slug;
       const isPub = p.status === 'published';
-      const epHref = p.episodeNum === 1 ? 'article.html' : p.episodeNum === 2 ? 'article-02.html' : `article.html?id=${p.slug}`;
+      const epHref = p.episodeNum === 1 ? 'article.html' : p.episodeNum === 2 ? 'article-02.html' : p.episodeNum === 3 ? 'article-03.html' : `article.html?id=${p.slug}`;
       return `<${isPub ? 'a href="'+epHref+'"' : 'span'} class="series-nav-item ${isActive ? 'active' : ''}">
         <span class="series-nav-num">${_pad(p.episodeNum)}</span>
         <span>${_esc(p.title)}</span>

@@ -11,10 +11,13 @@ function getArticleKey() {
     return 'threatbrief_' + document.body.dataset.articleId;
   }
   const path = window.location.pathname;
+  if (path.includes('03') || window.location.search.includes('ep03')) {
+    return 'threatbrief_ep03';
+  }
   if (path.includes('02') || window.location.search.includes('ep02')) {
     return 'threatbrief_ep02';
   }
-  return 'threatbrief_ai_scams_v3';
+  return 'threatbrief_ep01';
 }
 
 /* ── TOAST ──────────────────────────────────────────────────── */
@@ -95,95 +98,137 @@ function copyLink() {
     .catch(() => showToast('Copy the URL from your browser', '📋'));
 }
 
+/* ── STORAGE HELPERS ─────────────────────────────────────────── */
+function getData() {
+  try {
+    const key = getArticleKey();
+    let raw = localStorage.getItem(key);
+    if (!raw && (key === 'threatbrief_ep01' || key === 'threatbrief_ai_scams_v3')) {
+      raw = localStorage.getItem('threatbrief_ai_scams_v3') || localStorage.getItem('threatbrief_ep01');
+      if (raw) localStorage.setItem(key, raw);
+    }
+    return JSON.parse(raw || '{}');
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveData(patch) {
+  try {
+    const key = getArticleKey();
+    const s = getData();
+    const updated = { ...s, ...patch };
+    localStorage.setItem(key, JSON.stringify(updated));
+    if (key === 'threatbrief_ep01' || key === 'threatbrief_ai_scams_v3') {
+      localStorage.setItem('threatbrief_ai_scams_v3', JSON.stringify(updated));
+      localStorage.setItem('threatbrief_ep01', JSON.stringify(updated));
+    }
+  } catch (e) {}
+}
+
 /* ── LIKE ────────────────────────────────────────────────────── */
-function initLike() {
-  const s = getData();
-  let liked = s.liked || false;
-  let count = s.likeCnt !== undefined ? s.likeCnt : 0;
-
-  const render = () => {
-    document.querySelectorAll('.btn-like').forEach(btn => {
-      btn.classList.toggle('liked', liked);
-      const heart = btn.querySelector('.like-heart');
-      if (heart) heart.textContent = liked ? '❤️' : '🤍';
-    });
-    document.querySelectorAll('.like-count').forEach(cnt => {
-      cnt.textContent = count;
-    });
-  };
-
-  render();
-
+function renderLike(liked, count) {
   document.querySelectorAll('.btn-like').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      liked = !liked;
-      count = liked ? count + 1 : count - 1;
-      saveData({ liked, likeCnt: count });
-      render();
-      if (liked) showToast('Thanks for the like! ❤️', '❤️');
-    });
+    btn.classList.toggle('liked', liked);
+    const heart = btn.querySelector('.like-heart');
+    if (heart) heart.textContent = liked ? '❤️' : '🤍';
+  });
+  document.querySelectorAll('.like-count').forEach(cnt => {
+    cnt.textContent = count;
   });
 }
 
-function toggleLike() {
-  const first = document.querySelector('.btn-like');
-  if (first) first.click();
+function initLike() {
+  const s = getData();
+  const liked = !!s.liked;
+  const count = s.likeCnt !== undefined ? s.likeCnt : 0;
+  renderLike(liked, count);
+
+  document.querySelectorAll('.btn-like').forEach(btn => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleLike();
+    };
+  });
 }
 
+function toggleLike(e) {
+  if (e && e.preventDefault) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+  const s = getData();
+  const liked = !s.liked;
+  let count = s.likeCnt !== undefined ? s.likeCnt : 0;
+  count = liked ? count + 1 : Math.max(0, count - 1);
+  saveData({ liked, likeCnt: count });
+  renderLike(liked, count);
+  if (liked) showToast('Thanks for the like! ❤️', '❤️');
+}
+window.toggleLike = toggleLike;
+
 /* ── CLAP ────────────────────────────────────────────────────── */
+function renderClap(claps, myClaps) {
+  const MAX = 50;
+  document.querySelectorAll('.btn-clap').forEach(btn => {
+    btn.classList.toggle('clapped', myClaps > 0);
+    if (myClaps >= MAX) {
+      btn.disabled = true;
+      btn.title = 'Max claps reached (50)!';
+    } else {
+      btn.disabled = false;
+      btn.title = 'Applaud this research';
+    }
+  });
+  document.querySelectorAll('.clap-count').forEach(cnt => {
+    cnt.textContent = claps >= 1000 ? `${(claps / 1000).toFixed(1)}k` : claps;
+  });
+}
+
 function initClap() {
+  const s = getData();
+  const claps = s.claps !== undefined ? s.claps : 0;
+  const myClaps = s.myClaps !== undefined ? s.myClaps : 0;
+  renderClap(claps, myClaps);
+
+  document.querySelectorAll('.btn-clap').forEach(btn => {
+    btn.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      addClap();
+    };
+  });
+}
+
+function addClap(e) {
+  if (e && e.preventDefault) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
   const s = getData();
   let claps   = s.claps   !== undefined ? s.claps   : 0;
   let myClaps = s.myClaps !== undefined ? s.myClaps : 0;
   const MAX   = 50;
 
-  const render = () => {
-    document.querySelectorAll('.btn-clap').forEach(btn => {
-      btn.classList.toggle('clapped', myClaps > 0);
-      if (myClaps >= MAX) { btn.disabled = true; btn.title = 'Max claps reached!'; }
-    });
-    document.querySelectorAll('.clap-count').forEach(cnt => {
-      cnt.textContent = claps >= 1000 ? `${(claps / 1000).toFixed(1)}k` : claps;
-    });
-  };
-
-  render();
-
+  if (myClaps >= MAX) {
+    showToast('Max claps reached (50)! 👏', '👏');
+    return;
+  }
+  claps++;
+  myClaps++;
+  saveData({ claps, myClaps });
+  renderClap(claps, myClaps);
   document.querySelectorAll('.btn-clap').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      if (myClaps >= MAX) return;
-      claps++; myClaps++;
-      saveData({ claps, myClaps });
-      render();
-      btn.style.transform = 'scale(1.2) rotate(-6deg)';
-      setTimeout(() => { btn.style.transform = ''; }, 200);
-    });
+    btn.style.transform = 'scale(1.2) rotate(-6deg)';
+    setTimeout(() => { btn.style.transform = ''; }, 200);
   });
 }
-
-function addClap() {
-  const first = document.querySelector('.btn-clap');
-  if (first) first.click();
-}
+window.addClap = addClap;
 
 /* ── LINKEDIN SHARE ──────────────────────────────────────────── */
 function trackShare() {
   showToast('Opening LinkedIn…', '🔗');
-}
-
-/* ── STORAGE HELPERS ─────────────────────────────────────────── */
-function getData() {
-  try { return JSON.parse(localStorage.getItem(ARTICLE_KEY) || '{}'); }
-  catch { return {}; }
-}
-
-function saveData(patch) {
-  try {
-    const s = getData();
-    localStorage.setItem(ARTICLE_KEY, JSON.stringify({ ...s, ...patch }));
-  } catch {}
 }
 
 /* ── TOC HIGHLIGHT ───────────────────────────────────────────── */
@@ -225,36 +270,69 @@ function initFeedback() {
   const fbContainer = document.getElementById('feedback');
   if (!fbContainer) return;
 
-  // 1. Reactions handling
+  const currentArticleKey = getArticleKey();
+
+  // 1. Reactions handling (stores user active state + reaction counts forever)
   const reactionButtons = fbContainer.querySelectorAll('.fb-react-btn');
-  const REACTIONS_KEY = getArticleKey() + '_reactions';
-  const storedReactions = JSON.parse(localStorage.getItem(REACTIONS_KEY) || (getArticleKey() === 'threatbrief_ai_scams_v3' ? localStorage.getItem('threatbrief_fb_reactions_v3') : null) || '{}');
+  const REACTIONS_KEY = currentArticleKey + '_reactions';
+  const REACTION_COUNTS_KEY = currentArticleKey + '_reaction_counts';
+
+  let storedUserReactions = {};
+  try {
+    storedUserReactions = JSON.parse(
+      localStorage.getItem(REACTIONS_KEY) || 
+      (currentArticleKey.includes('ep01') || currentArticleKey.includes('ai_scams') ? localStorage.getItem('threatbrief_fb_reactions_v3') : null) || 
+      '{}'
+    );
+  } catch (e) { storedUserReactions = {}; }
+
+  let storedCounts = {};
+  try {
+    storedCounts = JSON.parse(localStorage.getItem(REACTION_COUNTS_KEY) || '{}');
+  } catch (e) { storedCounts = {}; }
 
   reactionButtons.forEach(btn => {
     const key = btn.getAttribute('data-reaction');
     const countEl = btn.querySelector('.fb-cnt');
     if (!countEl) return;
-    let count = parseInt(countEl.textContent, 10) || 0;
     
-    if (storedReactions[key]) {
-      btn.classList.add('active');
+    // Initial baseline count from HTML
+    const htmlCount = parseInt(countEl.textContent, 10) || 0;
+    if (storedCounts[key] === undefined) {
+      storedCounts[key] = storedUserReactions[key] ? Math.max(htmlCount, 1) : htmlCount;
     }
 
-    btn.addEventListener('click', () => {
+    // Set count and active state
+    countEl.textContent = storedCounts[key];
+    if (storedUserReactions[key]) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+
+    btn.onclick = (e) => {
+      e.preventDefault();
       const isActive = btn.classList.toggle('active');
-      storedReactions[key] = isActive;
-      count = isActive ? count + 1 : Math.max(0, count - 1);
-      countEl.textContent = count;
-      localStorage.setItem(REACTIONS_KEY, JSON.stringify(storedReactions));
-      
+      storedUserReactions[key] = isActive;
+      storedCounts[key] = Math.max(0, (storedCounts[key] || 0) + (isActive ? 1 : -1));
+      countEl.textContent = storedCounts[key];
+
+      try {
+        localStorage.setItem(REACTIONS_KEY, JSON.stringify(storedUserReactions));
+        localStorage.setItem(REACTION_COUNTS_KEY, JSON.stringify(storedCounts));
+        if (currentArticleKey.includes('ep01') || currentArticleKey.includes('ai_scams')) {
+          localStorage.setItem('threatbrief_fb_reactions_v3', JSON.stringify(storedUserReactions));
+        }
+      } catch (e) {}
+
       const label = btn.getAttribute('data-label') || 'reaction';
       showToast(isActive ? `Marked as: ${label}!` : `Removed: ${label}`, isActive ? '👍' : 'ℹ️');
-    });
+    };
   });
 
   // 2. Chip selector
   const chips = fbContainer.querySelectorAll('.fb-chip-opt');
-  let selectedCategory = 'General Feedback';
+  let selectedCategory = chips.length > 0 ? (chips[0].getAttribute('data-category') || chips[0].textContent.trim()) : 'General Feedback';
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       chips.forEach(c => c.classList.remove('selected'));
@@ -266,60 +344,88 @@ function initFeedback() {
   // 3. User comments storage & render
   const readerStream = fbContainer.querySelector('#fbReaderComments') || fbContainer.querySelector('#fbCommentsList');
   const emptyState = fbContainer.querySelector('#fbEmptyState');
-  const COMMENTS_KEY = getArticleKey() === 'threatbrief_ai_scams_v3' ? 'ci_reader_comments_v1' : ('ci_reader_comments_' + getArticleKey());
+  const MAIN_COMMENTS_KEY = 'ci_reader_comments_v1';
 
   function isSpamOrTest(c) {
-    if (!c) return true;
+    if (!c || !c.message) return true;
     if (['fb-01', 'fb-02', 'fb-03'].includes(c.id)) return true;
     const msg = (c.message || '').toLowerCase();
     if (msg.includes('gffdghxdfhxdfghxfgd')) return true;
     return false;
   }
 
-  function getComments() {
+  function getAllComments() {
     try {
-      const stored = localStorage.getItem(COMMENTS_KEY);
+      let list = [];
+      const stored = localStorage.getItem(MAIN_COMMENTS_KEY);
       if (stored) {
-        let parsed = JSON.parse(stored);
-        if (Array.isArray(parsed)) {
-          const cleaned = parsed.filter(c => !isSpamOrTest(c));
-          if (cleaned.length !== parsed.length) {
-            localStorage.setItem(COMMENTS_KEY, JSON.stringify(cleaned));
-          }
-          return cleaned;
-        }
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) list = parsed;
+        } catch (e) {}
       }
-      
-      // Check legacy keys for any real user comments
-      const oldKeys = ['threatbrief_user_comments_v3', 'threatbrief_user_comments_v2', 'threatbrief_user_comments', 'dw_user_comments'];
+
+      // Check legacy keys for any user comments and migrate them safely
+      const oldKeys = [
+        'threatbrief_user_comments_v3',
+        'threatbrief_user_comments_v2',
+        'threatbrief_user_comments',
+        'dw_user_comments',
+        'ci_reader_comments_threatbrief_ep01',
+        'ci_reader_comments_threatbrief_ep02',
+        'ci_reader_comments_threatbrief_ai_scams_v3'
+      ];
+      let migrated = false;
       for (const k of oldKeys) {
         const oldRaw = localStorage.getItem(k);
         if (oldRaw) {
           try {
-            let oldList = JSON.parse(oldRaw);
+            const oldList = JSON.parse(oldRaw);
             if (Array.isArray(oldList)) {
-              oldList = oldList.filter(c => !isSpamOrTest(c));
-              if (oldList.length > 0) {
-                localStorage.setItem(COMMENTS_KEY, JSON.stringify(oldList));
-                localStorage.removeItem(k);
-                return oldList;
-              }
+              oldList.forEach(c => {
+                if (c && c.message && !isSpamOrTest(c)) {
+                  const exists = list.some(item => item.id === c.id || (item.message === c.message && item.name === c.name));
+                  if (!exists) {
+                    list.push(c);
+                    migrated = true;
+                  }
+                }
+              });
             }
-          } catch(e) {}
+          } catch (e) {}
+          // Clear legacy key so migrated/deleted comments are never resurrected
           localStorage.removeItem(k);
         }
       }
 
-      return [];
-    } catch(e) {
+      const cleaned = list.filter(c => !isSpamOrTest(c));
+      if (cleaned.length !== list.length || migrated) {
+        localStorage.setItem(MAIN_COMMENTS_KEY, JSON.stringify(cleaned));
+      }
+      return cleaned;
+    } catch (e) {
       return [];
     }
   }
 
-  function saveComments(list) {
+  function saveAllComments(list) {
     try {
-      localStorage.setItem(COMMENTS_KEY, JSON.stringify(list));
-    } catch(e) {}
+      localStorage.setItem(MAIN_COMMENTS_KEY, JSON.stringify(list));
+      // Also mirror to article-specific key for backward compatibility
+      localStorage.setItem('ci_reader_comments_' + currentArticleKey, JSON.stringify(getComments()));
+    } catch (e) {}
+  }
+
+  function getComments() {
+    const all = getAllComments();
+    const isEp01 = currentArticleKey === 'threatbrief_ep01' || currentArticleKey === 'threatbrief_ai_scams_v3';
+    return all.filter(c => {
+      if (!c) return false;
+      if (isEp01) {
+        return !c.articleId || c.articleId === 'threatbrief_ep01' || c.articleId === 'threatbrief_ai_scams_v3' || c.articleId === 'ep01';
+      }
+      return c.articleId === currentArticleKey || (document.body.dataset.articleId && c.articleId === ('threatbrief_' + document.body.dataset.articleId));
+    });
   }
 
   function renderComment(c, prepend = false, isNew = false) {
@@ -334,7 +440,7 @@ function initFeedback() {
     card.innerHTML = `
       <div class="fb-c-top">
         <div class="fb-c-user">
-          <div class="fb-c-av">${initials}</div>
+          <div class="fb-c-av">${escapeHtml(initials)}</div>
           <div>
             <div class="fb-c-name">${escapeHtml(c.name || 'Reader')}</div>
             <div class="fb-c-role">${escapeHtml(c.role || 'Security Practitioner')}</div>
@@ -365,13 +471,14 @@ function initFeedback() {
     savedComments.forEach(c => renderComment(c, false, false));
   }
 
-  // Expose global helper for admin panel
+  // Expose global helper for admin panel and custom scripts
   window.CI_FEEDBACK = {
     getComments,
-    saveComments,
+    getAllComments,
+    saveComments: saveAllComments,
     deleteComment: (id) => {
-      const all = getComments().filter(item => item.id !== id);
-      saveComments(all);
+      const all = getAllComments().filter(item => item.id !== id);
+      saveAllComments(all);
       return all;
     }
   };
@@ -395,18 +502,25 @@ function initFeedback() {
       const name = (nameInput && nameInput.value.trim()) ? nameInput.value.trim() : 'Anonymous Defender';
       const role = (roleInput && roleInput.value.trim()) ? roleInput.value.trim() : 'Practitioner';
       
+      const now = new Date();
+      const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+
       const newComment = {
-        id: 'fb-' + Date.now(),
+        id: 'fb-' + Date.now() + '-' + Math.random().toString(36).substr(2, 5),
+        articleId: currentArticleKey,
+        articleSlug: window.location.pathname.includes('03') ? 'ep03-clicked-phishing-link' : window.location.pathname.includes('02') ? 'ep02-someone-has-your-email' : 'ep01-can-you-still-trust',
+        articleTitle: document.querySelector('.art-h1')?.textContent?.trim() || document.querySelector('.art-title')?.textContent?.trim() || (currentArticleKey.includes('03') ? 'Episode 03: I Clicked a Phishing Link. What Should I Do?' : currentArticleKey.includes('02') ? 'Episode 02: Someone Has Your Email Address' : 'Episode 01: Can You Still Trust What You See'),
         name,
         role,
         category: selectedCategory,
         message,
-        time: 'Just now'
+        time: dateStr,
+        createdAt: Date.now()
       };
 
-      const current = getComments();
-      current.unshift(newComment);
-      saveComments(current);
+      const all = getAllComments();
+      all.unshift(newComment);
+      saveAllComments(all);
 
       const renderedCard = renderComment(newComment, true, true);
       if (renderedCard) {

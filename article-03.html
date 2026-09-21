@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I Clicked a Phishing Link. What Should I Do? — Cyber Insight</title>
+  <meta name="description"
+    content="Clicked a suspicious link? Don't panic. What really matters is what happened after the click: credentials, downloads, MFA tokens, or session cookies. Here is the step-by-step triage playbook.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="I Clicked a Phishing Link. What Should I Do?">
+  <meta property="og:description"
+    content="Simply opening a page is very different from submitting credentials or downloading files. Here is what to do immediately after clicking a phishing link.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "I Clicked a Phishing Link. What Should I Do?",
+    "description": "Clicked a suspicious link? Don't panic. What really matters is what happened after the click: credentials, downloads, MFA tokens, or session cookies. Here is the step-by-step triage playbook.",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cyber Insight",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "datePublished": "2026-09-21",
+    "copyrightYear": 2026,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=6">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
+</head>
+
+<body data-page="article" data-article-id="ep03">
+
+  <div id="reading-progress"></div>
+  <div id="toast-container"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">CI</div>
+        <div>
+          <div class="brand-name">Cyber Insight</div>
+          <div class="brand-sub">Cybersecurity Research</div>
+        </div>
+      </a>
+      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#series">Series</a></li>
+        <li><a href="article-03.html" class="active">Research</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="article-02.html" class="cta">← Ep 02</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <!-- Series Callout Banner -->
+          <div class="art-series-banner">
+            <div class="art-series-info">
+              <span class="art-series-tag">Series</span>
+              <span>Part of <strong>Cybersecurity for Everyone</strong> · Episode 03 of 10</span>
+            </div>
+            <a href="index.html#series" class="art-series-link">View 10-Part Syllabus →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="index.html#series">Series: Cybersecurity for Everyone</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Episode 03</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat">Episode 03</span>
+            <span class="art-dot">·</span>
+            <span>Incident Response &amp; Triage</span>
+            <span class="art-dot">·</span>
+            <span>September 21, 2026</span>
+            <span class="art-dot">·</span>
+            <span>6 min read</span>
+          </div>
+
+          <h1 class="art-h1">I Clicked a Phishing Link. What Should I Do?</h1>
+
+          <div class="art-byline">
+            <div class="art-av">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Writer · Cyber Insight · Digital Literacy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero SVG: Phishing Hook Intercept & Rapid Response Timer -->
+        <div class="art-hero-svg">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Phishing link intercept diagram showing containment shield and rapid response triage">
+            <circle cx="160" cy="120" r="100" fill="#FEF2F2" opacity=".6" />
+            <circle cx="160" cy="120" r="72" fill="#FFF7ED" opacity=".5" />
+            <circle cx="160" cy="120" r="44" fill="#FEE2E2" opacity=".4" />
+
+            <!-- Link URL Pill with Hook -->
+            <rect x="55" y="74" width="150" height="42" rx="10" fill="white" stroke="#EF4444" stroke-width="2.2" />
+            <circle cx="78" cy="95" r="7" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5" />
+            <path d="M78 91 L78 95 L81 95" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" />
+            <rect x="94" y="88" width="60" height="6" rx="3" fill="#EF4444" opacity=".8" />
+            <rect x="94" y="98" width="85" height="5" rx="2.5" fill="#FED7AA" />
+
+            <!-- Fishing Hook Element dipping into link -->
+            <path d="M168 34 L168 84 Q168 100 152 100 Q138 100 138 88" stroke="#DC2626" stroke-width="2.5" fill="none" stroke-linecap="round" />
+            <polygon points="138,82 134,92 142,90" fill="#DC2626" />
+
+            <!-- Severed / Blocked Pulse -->
+            <line x1="150" y1="58" x2="186" y2="58" stroke="#EF4444" stroke-width="2" stroke-dasharray="3 2" />
+            <text x="194" y="62" fill="#DC2626" font-family="DM Sans,system-ui" font-size="9" font-weight="800">SEVER</text>
+
+            <!-- 5-Minute Triage Stopwatch Badge -->
+            <g transform="translate(196, 120)">
+              <circle cx="36" cy="36" r="32" fill="white" stroke="#F97316" stroke-width="2.5" />
+              <circle cx="36" cy="36" r="26" fill="#FFF7ED" />
+              <!-- Clock hands -->
+              <line x1="36" y1="36" x2="36" y2="18" stroke="#EA580C" stroke-width="2.5" stroke-linecap="round" />
+              <line x1="36" y1="36" x2="48" y2="36" stroke="#EA580C" stroke-width="2" stroke-linecap="round" />
+              <!-- Button on top -->
+              <rect x="32" y="0" width="8" height="5" rx="1.5" fill="#EA580C" />
+              <text x="36" y="52" text-anchor="middle" fill="#C2410C" font-family="DM Sans,system-ui" font-size="7.5" font-weight="800">TRIAGE</text>
+            </g>
+
+            <!-- Defensive Containment Shield -->
+            <g transform="translate(48, 140)">
+              <path d="M26 4 L46 12 L46 32 Q46 50 26 58 Q6 50 6 32 L6 12 Z" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" />
+              <polyline points="18,30 24,36 34,24" stroke="#15803D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            </g>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <div class="art-layout">
+
+    <div class="art-center">
+
+      <!-- Horizontal Action & Metadata Strip -->
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">Episode 03</span>
+          <span class="chip">Phishing Response</span>
+          <span class="chip">Incident Containment</span>
+          <span class="chip">Account Triage</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 6 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" title="Like this research"
+            aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" title="Applaud this research"
+            aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">3.4B</div>
+          <div class="stat-l">Phishing Emails Sent Daily</div>
+          <div class="stat-s">Global email threat volume recorded across industry sensors</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">AiTM</div>
+          <div class="stat-l">Session Cookie Theft</div>
+          <div class="stat-s">Documented in Microsoft adversary-in-the-middle campaigns</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">5 Mins</div>
+          <div class="stat-l">Containment Window</div>
+          <div class="stat-s">Action right after a click determines account safety</div>
+        </div>
+      </div>
+
+      <div class="art-text">
+
+        <p>You click a link in an email.</p>
+
+        <p>The page opens, and for a moment everything looks normal.</p>
+
+        <p>Then you notice something.</p>
+
+        <p>Maybe the website address looks strange. Maybe the login page isn't quite right. Or maybe you've already entered your password before realising:</p>
+
+        <div class="pq" style="border-left-color:#EF4444;color:#B91C1C;background:#FEF2F2;font-style:normal;font-weight:700;">
+          “Wait… was that a phishing link?”
+        </div>
+
+        <p>At that point, most people have the same immediate reaction: <strong>Have I just been hacked?</strong></p>
+
+        <p>Not necessarily.</p>
+
+        <p>Clicking a phishing link and having your account compromised are not the same thing. <strong>What really matters is what you did after the click.</strong> The recovery playbook I used for this article makes the same distinction: simply opening a page is treated differently from entering credentials, downloading something or granting permissions.</p>
+
+        <p>So before you panic, think back for a second:</p>
+
+        <ul class="styled-list" style="margin:16px 0 24px 20px;">
+          <li><strong>Did you only open the page?</strong></li>
+          <li><strong>Did you type your password?</strong></li>
+          <li><strong>Did you download a file?</strong></li>
+          <li><strong>Did you enter card details?</strong></li>
+          <li><strong>Did you press Allow, Install, or approve an MFA request?</strong></li>
+        </ul>
+
+        <p>Your answer tells you what to do next.</p>
+
+        <!-- S1 -->
+        <h2 id="s1">“I Only Clicked It”</h2>
+
+        <p>This is probably the first thing people search after realising they've clicked something suspicious: <em>“I clicked a phishing link but didn't enter anything. Am I okay?”</em></p>
+
+        <p>If the page simply opened and you closed it without entering information, downloading anything or giving the website permissions, that's generally a <strong>much lower-risk situation</strong>.</p>
+
+        <p>Your recovery playbook classifies this separately from cases where credentials were submitted or files were downloaded.</p>
+
+        <p>The UK's National Cyber Security Centre (NCSC) also says that if you've already clicked a suspicious link but haven't provided sensitive information, there may not be anything further you need to do, although you should remain alert for suspicious activity (<a href="https://www.ncsc.gov.uk/section/respond-recover/phishing" target="_blank" rel="noopener noreferrer">NCSC phishing guidance</a>).</p>
+
+        <div class="callout-box" style="border-left-color:#10B981;background:#F0FDF4;">
+          <div style="font-weight:700;color:#065F46;margin-bottom:6px;">Immediate Action for Page-Only Clicks:</div>
+          <p style="margin:0;color:#047857;font-size:.92rem;">Close the page immediately. Don't go back because you're curious. Don't click around trying to work out what the website was doing. And if your browser downloaded something unexpectedly, treat that as a download incident instead.</p>
+        </div>
+
+        <!-- S2 -->
+        <h2 id="s2">“I Entered My Password Before I Realised”</h2>
+
+        <p>This is where you need to act.</p>
+
+        <p>Imagine the email says:</p>
+
+        <!-- Mock Phishing Email Box -->
+        <div style="background:#F8FAFC;border:1px solid var(--border-2);border-radius:var(--r);padding:20px;margin:24px 0;box-shadow:0 4px 12px rgba(0,0,0,0.03);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border-2);">
+            <div style="width:10px;height:10px;border-radius:50%;background:#EF4444;"></div>
+            <span style="font-weight:700;font-size:.9rem;color:var(--ink);">Account Alert</span>
+            <span style="font-size:.75rem;color:var(--ink-4);margin-left:auto;">Today, 09:12 AM</span>
+          </div>
+          <div style="font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:8px;">Unusual activity detected on your Microsoft account</div>
+          <p style="font-size:.86rem;color:var(--ink-3);margin:0 0 16px 0;line-height:1.5;">Review your account now to prevent suspension.</p>
+          <span style="display:inline-block;background:#1D4ED8;color:white;padding:8px 16px;border-radius:6px;font-size:.82rem;font-weight:700;pointer-events:none;">Review Account Now →</span>
+        </div>
+
+        <p>You click. The Microsoft login page appears. You enter your email and password. Then you look up and notice the URL isn't Microsoft at all.</p>
+
+        <p>At this point, don't waste time trying to decide whether the site was definitely malicious.</p>
+
+        <div class="pq" style="border-left-color:#DC2626;color:#991B1B;background:#FEF2F2;font-style:normal;font-weight:700;">
+          Treat that password as exposed immediately.
+        </div>
+
+        <p>Open the real service yourself—using the official app, a bookmark, or an address you type in directly—and change the password.</p>
+
+        <p>Then ask yourself another uncomfortable but critical question: <strong>Where else did I use that password?</strong></p>
+
+        <p>If the same password is protecting another account, change it there too. The NCSC specifically recommends changing passwords on other accounts where you've reused the same password after giving credentials to a phishing site (<a href="https://www.ncsc.gov.uk/section/respond-recover/phishing" target="_blank" rel="noopener noreferrer">NCSC phishing recovery guidance</a>).</p>
+
+        <p>This is one reason password reuse causes so many downstream problems. A phishing page might be pretending to be Microsoft. But the password you gave it might also work on Amazon, Instagram, PayPal or your banking portal. The attacker doesn't necessarily need to hack all of those services—you've accidentally given them credentials they can test across the web.</p>
+
+        <!-- S3 -->
+        <h2 id="s3">Start With Your Email</h2>
+
+        <p>If several accounts are involved and you don't know where to start, <strong>start with your main email account</strong>.</p>
+
+        <p>Why? Because your email is probably connected to almost everything else in your digital life.</p>
+
+        <!-- SVG: Central Email Recovery Node Diagram -->
+        <div class="sec-svg" aria-label="Primary email recovery anchor graph">
+          <svg viewBox="0 0 520 180" width="520" height="180" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Email inbox sitting at center of all password recovery flows">
+            <!-- Center Node: Primary Email -->
+            <rect x="185" y="60" width="150" height="60" rx="10" fill="#1D4ED8" />
+            <text x="260" y="86" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="11" font-weight="700">Primary Email Inbox</text>
+            <text x="260" y="104" text-anchor="middle" fill="#BFDBFE" font-family="DM Sans,system-ui" font-size="9">Master Recovery Hub</text>
+
+            <!-- Radial Spokes to other services -->
+            <!-- Banking (Top-Left) -->
+            <path d="M185 75 L115 45" stroke="#EF4444" stroke-width="1.8" stroke-dasharray="4 3" />
+            <rect x="15" y="24" width="100" height="42" rx="6" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.2" />
+            <text x="65" y="44" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="9.5" font-weight="700">Online Banking</text>
+            <text x="65" y="57" text-anchor="middle" fill="#7F1D1D" font-family="DM Sans,system-ui" font-size="8">Password Resets</text>
+
+            <!-- Cloud Storage (Top-Right) -->
+            <path d="M335 75 L405 45" stroke="#0284C7" stroke-width="1.8" stroke-dasharray="4 3" />
+            <rect x="405" y="24" width="100" height="42" rx="6" fill="#F0F9FF" stroke="#0284C7" stroke-width="1.2" />
+            <text x="455" y="44" text-anchor="middle" fill="#0369A1" font-family="DM Sans,system-ui" font-size="9.5" font-weight="700">Cloud Storage</text>
+            <text x="455" y="57" text-anchor="middle" fill="#075985" font-family="DM Sans,system-ui" font-size="8">Photos &amp; Documents</text>
+
+            <!-- Social Media (Bottom-Left) -->
+            <path d="M185 105 L115 135" stroke="#F59E0B" stroke-width="1.8" stroke-dasharray="4 3" />
+            <rect x="15" y="114" width="100" height="42" rx="6" fill="#FFFBEB" stroke="#F59E0B" stroke-width="1.2" />
+            <text x="65" y="134" text-anchor="middle" fill="#B45309" font-family="DM Sans,system-ui" font-size="9.5" font-weight="700">Social Accounts</text>
+            <text x="65" y="147" text-anchor="middle" fill="#78350F" font-family="DM Sans,system-ui" font-size="8">Instagram, X, LinkedIn</text>
+
+            <!-- E-Commerce (Bottom-Right) -->
+            <path d="M335 105 L405 135" stroke="#10B981" stroke-width="1.8" stroke-dasharray="4 3" />
+            <rect x="405" y="114" width="100" height="42" rx="6" fill="#ECFDF5" stroke="#10B981" stroke-width="1.2" />
+            <text x="455" y="134" text-anchor="middle" fill="#047857" font-family="DM Sans,system-ui" font-size="9.5" font-weight="700">E-Commerce &amp; Pay</text>
+            <text x="455" y="147" text-anchor="middle" fill="#064E3B" font-family="DM Sans,system-ui" font-size="8">Amazon, PayPal</text>
+          </svg>
+        </div>
+
+        <p>Think about what's sitting in your inbox right now: bank notifications, Amazon orders, job applications, travel bookings, social media alerts, cloud-storage messages, and above all, <strong>password reset links</strong>.</p>
+
+        <p>If someone controls your email account, they may be able to use <em>“Forgot password”</em> on dozens of other services and receive the verification links themselves.</p>
+
+        <p>That's why the recovery playbook puts the primary email account first when prioritising password resets, followed by financial accounts, cloud platforms and other online services. <strong>Secure the email account first, then work outward.</strong></p>
+
+        <!-- S4 -->
+        <h2 id="s4">But Don't Just Change the Password</h2>
+
+        <p>This is something people frequently miss.</p>
+
+        <p>You realise what happened. You change your password. And you think: <em>Done.</em></p>
+
+        <p>Sometimes, yes. But not always.</p>
+
+        <p>When you log into a website, the service normally creates a <strong>session</strong> that keeps you signed in so you don't have to enter your password every time you open another page. More advanced phishing attacks can try to steal that authenticated session as well.</p>
+
+        <!-- SVG: Adversary-in-the-Middle (AiTM) Reverse Proxy Diagram -->
+        <div class="sec-svg" aria-label="Adversary in the middle reverse proxy diagram">
+          <svg viewBox="0 0 520 190" width="520" height="190" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="AiTM proxy relaying credentials and capturing session cookie">
+            <!-- Victim Box -->
+            <rect x="20" y="45" width="105" height="100" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
+            <text x="72" y="70" text-anchor="middle" fill="#1E293B" font-family="DM Sans,system-ui" font-size="10" font-weight="700">Victim (You)</text>
+            <rect x="32" y="85" width="81" height="18" rx="4" fill="#EFF6FF" stroke="#BFDBFE" />
+            <text x="72" y="97" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="7.5">Enter Password &amp; MFA</text>
+            <text x="72" y="125" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="7.5">Browser session</text>
+
+            <!-- Arrow to AiTM Proxy -->
+            <path d="M125 95 L190 95" stroke="#EF4444" stroke-width="2" />
+            <polygon points="194,95 186,90 186,100" fill="#EF4444" />
+            <text x="160" y="86" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="7.5" font-weight="700">Credentials</text>
+
+            <!-- Attacker AiTM Proxy Node -->
+            <rect x="195" y="35" width="130" height="120" rx="10" fill="#FEF2F2" stroke="#EF4444" stroke-width="2" />
+            <text x="260" y="60" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="10" font-weight="800">AiTM Reverse Proxy</text>
+            <text x="260" y="75" text-anchor="middle" fill="#7F1D1D" font-family="DM Sans,system-ui" font-size="8">Attacker Infrastructure</text>
+            <rect x="208" y="90" width="104" height="24" rx="5" fill="#DC2626" />
+            <text x="260" y="105" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8" font-weight="700">🍪 Steals Session Cookie</text>
+            <text x="260" y="138" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="7.5">Bypasses basic MFA</text>
+
+            <!-- Arrow from Proxy to Legitimate Server -->
+            <path d="M325 95 L390 95" stroke="#10B981" stroke-width="2" />
+            <polygon points="394,95 386,90 386,100" fill="#10B981" />
+            <text x="360" y="86" text-anchor="middle" fill="#047857" font-family="DM Sans,system-ui" font-size="7.5" font-weight="700">Relays Auth</text>
+
+            <!-- Legitimate Cloud Service Box -->
+            <rect x="395" y="45" width="105" height="100" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5" />
+            <text x="447" y="70" text-anchor="middle" fill="#065F46" font-family="DM Sans,system-ui" font-size="10" font-weight="700">Real Service</text>
+            <rect x="407" y="85" width="81" height="18" rx="4" fill="#DCFCE7" />
+            <text x="447" y="97" text-anchor="middle" fill="#15803D" font-family="DM Sans,system-ui" font-size="7.5">Issues Auth Token</text>
+            <text x="447" y="125" text-anchor="middle" fill="#166534" font-family="DM Sans,system-ui" font-size="7.5">Legitimate Server</text>
+          </svg>
+        </div>
+
+        <p>Microsoft has documented Adversary-in-the-Middle (AiTM) phishing campaigns where attackers positioned phishing infrastructure between the victim and the legitimate authentication service. This allowed them to capture credentials and, in some cases, <strong>authenticated session cookies</strong> (<a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/" target="_blank" rel="noopener noreferrer">Microsoft's AiTM phishing investigation</a>).</p>
+
+        <p>You don't need to understand all the intricate technical details. The practical lesson is simple:</p>
+
+        <div class="pq" style="border-left-color:var(--blue);color:var(--blue);background:var(--blue-bg);font-style:normal;font-weight:700;">
+          After a serious phishing incident, check your active sessions too.
+        </div>
+
+        <p>Go into the security settings for the affected account. Look for:</p>
+        <ul class="styled-list" style="margin:16px 0 20px 20px;">
+          <li><strong>Recent sign-ins</strong></li>
+          <li><strong>Your devices</strong></li>
+          <li><strong>Active sessions</strong></li>
+          <li><strong>“Sign out of all sessions” / “Sign out everywhere”</strong></li>
+        </ul>
+
+        <p>If you see a device or login you don't recognise, remove it. Your recovery playbook warns that changing a password may not automatically terminate every active session, which is why <strong>session revocation</strong> is an indispensable part of the recovery process.</p>
+
+        <!-- S5 -->
+        <h2 id="s5">Take a Quick Look at Your Inbox Settings Too</h2>
+
+        <p>If your email account may have been accessed, there's another hidden place worth checking: <strong>your inbox rules</strong>.</p>
+
+        <p>It sounds mundane, but think about what an attacker could quietly do with them:</p>
+
+        <!-- Mock Inbox Rule Callout -->
+        <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:var(--r);padding:18px 22px;margin:20px 0;">
+          <div style="font-weight:700;color:#B45309;margin-bottom:8px;font-size:.92rem;">How Attackers Manipulate Mail Flow:</div>
+          <p style="margin:0 0 8px 0;color:#92400E;font-size:.88rem;">• <strong>Rule:</strong> Emails containing <em>"bank"</em>, <em>"wire"</em>, or <em>"statement"</em> → Move immediately to Archive or Trash.</p>
+          <p style="margin:0 0 8px 0;color:#92400E;font-size:.88rem;">• <strong>Rule:</strong> Messages containing <em>"security alert"</em> or <em>"new sign-in"</em> → Mark as read and hide.</p>
+          <p style="margin:0;color:#92400E;font-size:.88rem;">• <strong>Auto-forwarding:</strong> Quietly forward a copy of every incoming message to an external address.</p>
+        </div>
+
+        <p>You continue using your inbox normally while important warnings disappear before you ever notice them.</p>
+
+        <p>The recovery playbook specifically identifies malicious forwarding and inbox rules as something to audit after an email account compromise. Take two minutes to check:</p>
+
+        <ul class="styled-list" style="margin:16px 0 20px 20px;">
+          <li><strong>Forwarding addresses</strong></li>
+          <li><strong>Inbox rules &amp; filters</strong></li>
+          <li><strong>Recovery email addresses &amp; phone numbers</strong></li>
+          <li><strong>Connected third-party applications &amp; OAuth permissions</strong></li>
+        </ul>
+
+        <p>If something is there that you didn't create, remove it immediately and continue investigating the account.</p>
+
+        <!-- S6 -->
+        <h2 id="s6">“Something Downloaded When I Clicked”</h2>
+
+        <p>Now we're dealing with a different problem.</p>
+
+        <p>Maybe the email didn't ask you to log in. Instead, it said:</p>
+
+        <blockquote style="background:#FEF2F2;border-left:4px solid #EF4444;padding:12px 16px;border-radius:4px;color:#991B1B;margin:16px 0;font-size:.9rem;">
+          <em>"Your invoice is attached."</em> or <em>"Download the document to view your payslip."</em>
+        </blockquote>
+
+        <p>You clicked and an unfamiliar file appeared in your Downloads folder.</p>
+
+        <div class="pq" style="border-left-color:#DC2626;color:#991B1B;background:#FEF2F2;font-style:normal;font-weight:700;">
+          Do not open it just to see what it is.
+        </div>
+
+        <p>If you downloaded or opened a suspicious file, your recovery playbook recommends <strong>disconnecting the device from Wi-Fi or Ethernet</strong> as part of the initial containment process, and checking what was downloaded without opening unfamiliar files.</p>
+
+        <p>Then run a comprehensive scan using trusted security software. The NCSC also recommends running a full antivirus scan if you've opened a suspicious link and followed instructions to install software (<a href="https://www.ncsc.gov.uk/section/respond-recover/phishing" target="_blank" rel="noopener noreferrer">NCSC guidance after a phishing incident</a>).</p>
+
+        <p>And there is one situation where I would not try to fix everything yourself:</p>
+
+        <div class="callout-box" style="border-left-color:#1D4ED8;background:#EFF6FF;">
+          <div style="font-weight:700;color:#1E40AF;margin-bottom:6px;">If this happened on your work laptop:</div>
+          <p style="margin:0;color:#1D4ED8;font-size:.92rem;"><strong>Tell your IT or security team immediately.</strong> Don't hide it because you're embarrassed about clicking the link. Your recovery playbook specifically recommends notifying the SOC or IT help desk when a phishing incident happens on an enterprise device. From their perspective, knowing within 10 minutes makes containment trivial; finding out days later during an enterprise ransomware investigation is a disaster.</p>
+        </div>
+
+        <!-- S7 -->
+        <h2 id="s7">“What If I Clicked It on My Phone?”</h2>
+
+        <p>The same basic question applies: <strong>What happened after you clicked?</strong></p>
+
+        <p>If a website opened in Safari or Chrome and you immediately closed it, that's very different from installing an app profile, downloading an APK, or granting permissions.</p>
+
+        <p>If you did install something:</p>
+
+        <ul class="styled-list" style="margin:16px 0 20px 20px;">
+          <li>Check your device for apps you don't recognise and delete them.</li>
+          <li>Audit sensitive permissions—particularly things such as <strong>Accessibility services</strong> or <strong>Device administrator access</strong> on Android, and <strong>Configuration Profiles</strong> on iOS.</li>
+          <li>Make sure both your operating system and mobile browser are fully updated to the latest security patch.</li>
+        </ul>
+
+        <p>And do not respond to the situation by downloading a random <em>“virus cleaner”</em> advertised online. Use the built-in security features provided by your device manufacturer (such as Google Play Protect or Apple iOS system protections) or a security product from an established, reputable vendor.</p>
+
+        <!-- S8 -->
+        <h2 id="s8">“I Entered My Card Details”</h2>
+
+        <p>This one is simpler. Don't wait.</p>
+
+        <p>If you've entered banking or payment card information into a phishing website, <strong>contact your bank immediately using a trusted method</strong>—the official banking app, the phone number printed directly on the back of your card, or the bank's official website.</p>
+
+        <div class="pq" style="border-left-color:#EF4444;color:#B91C1C;background:#FEF2F2;font-style:normal;font-weight:700;">
+          Never call a telephone number displayed on the suspicious page itself.
+        </div>
+
+        <p>Tell the bank representative exactly what happened so they can freeze or cancel the compromised card and monitor for unauthorized charges. Then review your recent transactions carefully. The NCSC recommends contacting your bank immediately if you've given away banking details (<a href="https://www.ncsc.gov.uk/section/respond-recover/phishing" target="_blank" rel="noopener noreferrer">NCSC phishing guidance</a>). Even if no money has disappeared yet, the card data may already be queued for automated testing.</p>
+
+        <!-- S9 -->
+        <h2 id="s9">“But I Have MFA. Doesn't That Protect Me?”</h2>
+
+        <p>Multi-Factor Authentication (MFA) definitely helps.</p>
+
+        <p>If an attacker only steals your password from an old database or a basic login clone, MFA stops the vast majority of automated account-takeover attempts. But <strong>don't treat MFA as permission to stop checking links</strong>.</p>
+
+        <p>Remember the Adversary-in-the-Middle (AiTM) attack we discussed earlier? Some modern phishing infrastructure is designed to sit between you and the legitimate service while you are actively logging in. Microsoft has documented widespread campaigns where this technique was used to capture session tokens right after victims completed their normal MFA prompt (<a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/" target="_blank" rel="noopener noreferrer">Microsoft — From cookie theft to BEC</a>).</p>
+
+        <p>This is why <strong>passkeys and hardware security keys (FIDO2)</strong> are becoming the gold standard: they bind authentication cryptographically to the exact website domain in your address bar, making traditional phishing and AiTM interception physically impossible. Your recovery playbook similarly recommends strengthening authentication with passkeys and hardware keys after any credential exposure incident.</p>
+
+        <!-- S10: INTERACTIVE TRIAGE TOOL -->
+        <h2 id="s10">Interactive Incident Triage Checklist</h2>
+
+        <p>You don't need to perform every single recovery step found on Google. Your response should match what actually happened. Use the selector below to diagnose your situation and follow the immediate containment checklist:</p>
+
+        <!-- Interactive Widget Component -->
+        <div id="triageTool" style="background:#F8FAFC;border:1.5px solid var(--border-2);border-radius:var(--r);padding:24px;margin:28px 0;box-shadow:var(--sh-sm);">
+          <div style="font-family:var(--f-d);font-size:1.05rem;font-weight:800;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:8px;">
+            <span>🛡️</span> Post-Click Incident Triage Selector
+          </div>
+          <p style="font-size:.85rem;color:var(--ink-4);margin-bottom:16px;">Select what happened after you clicked to reveal your tailored response playbook:</p>
+
+          <!-- Tab Selector Buttons -->
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;" id="triageTabs" role="tablist">
+            <button class="triage-btn active" data-scenario="only-clicked" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--blue);background:var(--blue);color:white;cursor:pointer;">1. Only Opened Page</button>
+            <button class="triage-btn" data-scenario="password" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">2. Typed Password</button>
+            <button class="triage-btn" data-scenario="email" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">3. Entered Email Password</button>
+            <button class="triage-btn" data-scenario="download" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">4. File Downloaded</button>
+            <button class="triage-btn" data-scenario="card" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">5. Entered Card Details</button>
+            <button class="triage-btn" data-scenario="phone" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">6. Mobile Click</button>
+          </div>
+
+          <!-- Dynamic Output Card -->
+          <div id="triageOutput" style="background:white;border:1px solid var(--border);border-radius:var(--r-sm);padding:20px;">
+            <!-- Rendered by JS below -->
+          </div>
+        </div>
+
+        <!-- S11 -->
+        <h2 id="s11">One Click Doesn't Tell You the Whole Story</h2>
+
+        <p>People click phishing links. It happens at work. It happens at home.</p>
+
+        <p>It happens because you're expecting a parcel, waiting for an invoice, checking something quickly on your phone or trying to log into an account right before a meeting.</p>
+
+        <p>The useful question afterwards isn't:</p>
+
+        <div class="pq" style="font-style:italic;color:var(--ink-4);border-left-color:var(--border-2);">
+          “How could I be foolish enough to click that?”
+        </div>
+
+        <p>It's:</p>
+
+        <div class="pq" style="font-weight:700;font-style:normal;border-left-color:var(--blue);color:var(--blue);">
+          “What did I give them after I clicked?”
+        </div>
+
+        <p>Maybe the answer is nothing. Maybe it's a password. Maybe it's a card number. Maybe it's a downloaded file. Maybe it's an authenticated session.</p>
+
+        <p>Once you know that, the situation becomes much easier to deal with:</p>
+
+        <div class="takeaway-box" style="margin:24px 0;">
+          <div class="takeaway-title">The 4-Step Golden Rule of Phishing Recovery</div>
+          <ul class="styled-list" style="margin:10px 0 0 16px;">
+            <li><strong>Close the page.</strong> Stop interacting immediately.</li>
+            <li><strong>Secure what was exposed.</strong> Reset compromised credentials and revoke sessions through the official app or bookmark.</li>
+            <li><strong>Check what changed.</strong> Audit inbox rules, recovery emails, and connected apps.</li>
+            <li><strong>Never use the suspicious message to fix the account.</strong> Always navigate to the genuine website yourself.</li>
+          </ul>
+        </div>
+
+        <p>Because after a phishing click, <strong>what you do next usually matters far more than the click itself.</strong></p>
+
+        <!-- S12: SOURCES -->
+        <h2 id="sources">Sources &amp; Further Reading</h2>
+
+        <p>This research is based in part on industry-standard incident containment workflows, including the Post-Phishing Incident Recovery Playbook, risk-assessment triage models, and published guidance from national security agencies:</p>
+
+        <ul class="styled-list" style="margin:16px 0 32px 20px;font-size:.92rem;">
+          <li><a href="https://www.ncsc.gov.uk/section/respond-recover/phishing" target="_blank" rel="noopener noreferrer">UK National Cyber Security Centre (NCSC) — Phishing: what to do</a></li>
+          <li><a href="https://www.ncsc.gov.uk/section/about-this-website/report-scam-website" target="_blank" rel="noopener noreferrer">UK NCSC — Report a suspicious website &amp; reporting guidance</a></li>
+          <li><a href="https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams" target="_blank" rel="noopener noreferrer">US Federal Trade Commission (FTC) — How to recognise and avoid phishing scams</a></li>
+          <li><a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/" target="_blank" rel="noopener noreferrer">Microsoft Security — From cookie theft to BEC: AiTM phishing campaigns</a></li>
+          <li><a href="https://www.cisa.gov/resources-tools/resources/phishing-prevention" target="_blank" rel="noopener noreferrer">CISA — Multi-Factor Authentication &amp; Phishing Resistance Specifications</a></li>
+        </ul>
+
+      </div><!-- /art-text -->
+
+      <!-- FEEDBACK & DISCUSSION SECTION -->
+      <section class="feedback-section" id="feedback" aria-label="Reader Feedback and Discussion">
+
+        <div class="fb-header">
+          <span class="fb-badge">Community Discussion</span>
+          <h3 class="fb-title">Reader Feedback &amp; Rapid Triage Analysis</h3>
+          <p class="fb-sub">
+            Your feedback shapes the remaining installments of <strong>Cybersecurity for Everyone</strong>. React below, share your incident response experiences, or ask a question.
+          </p>
+        </div>
+
+        <!-- 1-Click Reactions Bar -->
+        <div class="fb-reactions-box">
+          <div class="fb-react-prompt">Quick Reactions</div>
+          <div class="fb-reactions-bar">
+            <button class="fb-react-btn" data-reaction="helpful" data-label="Helpful Analysis"
+              aria-label="Helpful Analysis">
+              <span>👍</span> Helpful Analysis <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="insight" data-label="Eye-Opening" aria-label="Eye-Opening">
+              <span>💡</span> Eye-Opening <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="actionable" data-label="Actionable for Rapid Triage"
+              aria-label="Actionable for Rapid Triage">
+              <span>🛡️</span> Actionable for Triage <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="bookmark" data-label="Saved &amp; Bookmarked"
+              aria-label="Saved &amp; Bookmarked">
+              <span>🔖</span> Bookmarked <span class="fb-cnt">0</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Feedback Form -->
+        <div class="fb-form-box">
+          <div class="fb-form-title">
+            <span>✍️</span> Leave Feedback or Ask Poorna
+          </div>
+
+          <!-- Category Chips -->
+          <div class="fb-chips" role="radiogroup" aria-label="Feedback category">
+            <button type="button" class="fb-chip-opt selected" data-category="General Feedback">💬 General Feedback</button>
+            <button type="button" class="fb-chip-opt" data-category="Question for Analyst">❓ Question for Poorna</button>
+            <button type="button" class="fb-chip-opt" data-category="Phishing / AiTM Observation">🛡️ Phishing Observation</button>
+            <button type="button" class="fb-chip-opt" data-category="Topic Request">💡 Topic Request for Ep 04–10</button>
+          </div>
+
+          <form id="fbForm">
+            <div class="fb-form-grid">
+              <div>
+                <label for="fbName"
+                  style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Name or Handle <span style="font-weight:400;color:var(--ink-5);">(Optional)</span></label>
+                <input type="text" id="fbName" class="fb-input" placeholder="e.g. Alex M. or Anonymous">
+              </div>
+              <div>
+                <label for="fbRole"
+                  style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Role / Organisation <span style="font-weight:400;color:var(--ink-5);">(Optional)</span></label>
+                <input type="text" id="fbRole" class="fb-input" placeholder="e.g. IT Administrator / Security Lead">
+              </div>
+            </div>
+
+            <div>
+              <label for="fbMessage"
+                style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Feedback or Comment <span style="color:#EF4444;">*</span></label>
+              <textarea id="fbMessage" class="fb-textarea" required
+                placeholder="What did you think of the post-click triage flowchart? Have you encountered an AiTM or session-cookie theft attempt in your workflow? Share your thoughts..."></textarea>
+            </div>
+
+            <div class="fb-form-foot">
+              <span class="fb-anon-note">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                No account required · Comments moderated for constructive discussion
+              </span>
+              <button type="submit" class="fb-submit-btn">
+                Post Feedback
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Practitioner Discussion Stream -->
+        <div class="fb-discussion-box">
+          <div class="fb-disc-title">
+            <span>Practitioner Discussion &amp; Feedback</span>
+            <span style="font-size:.72rem;color:var(--ink-5);text-transform:none;font-weight:600;">Episode 03 responses</span>
+          </div>
+
+          <div class="fb-comments-list" id="fbCommentsList">
+            <div class="fb-reader-stream" id="fbReaderComments" style="display:flex;flex-direction:column;gap:14px;"></div>
+
+            <div class="fb-empty-state" id="fbEmptyState"
+              style="text-align:center;padding:28px 20px;border:1px dashed var(--border-2);border-radius:var(--r);background:var(--bg);color:var(--ink-4);margin-top:12px;">
+              <div style="font-size:1.4rem;margin-bottom:6px;">💬</div>
+              <div style="font-weight:700;font-size:.88rem;color:var(--ink-2);margin-bottom:4px;">No reader feedback yet on Episode 03</div>
+              <p style="font-size:.78rem;color:var(--ink-4);max-width:360px;margin:0 auto;">Be the first to share your thoughts, ask a question, or discuss your incident recovery steps. All comments welcome.</p>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- AUTHOR BIO CARD -->
+      <div class="auth-card" id="about">
+        <div class="auth-top">
+          <div class="auth-av">PS</div>
+          <div>
+            <div class="auth-name">Poorna Sujampathi Rathnayaka</div>
+            <div class="auth-role">Writer · Cyber Insight · Digital Literacy</div>
+          </div>
+        </div>
+        <div class="auth-body">
+          <p class="auth-desc">I started Cyber Insight because everywhere online people only talk about
+            cybersecurity in technical terms — and most people are left without a proper understanding of how the
+            digital world works. I work in cybersecurity, but I write here for everyone. No jargon. Just clear, honest
+            explanations.</p>
+          <div class="auth-links">
+            <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer"
+              class="auth-link portfolio">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round">
+                <circle cx="12" cy="10" r="10" />
+                <line x1="2" y1="12" x2="22" y2="12" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              sujampathirathnayaka.com
+            </a>
+            <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank"
+              rel="noopener noreferrer" class="auth-link linkedin">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.67 1.67 0 0 0-1.68 1.68c0 .93.75 1.69 1.68 1.69.93 0 1.69-.76 1.69-1.69 0-.93-.76-1.68-1.69-1.68Z" />
+              </svg>
+              LinkedIn Profile
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10-Episode Series Curriculum Box -->
+      <div class="art-series-box" id="series-curriculum">
+        <div class="art-series-box-header">
+          <div>
+            <span class="art-series-tag">Syllabus</span>
+            <div class="art-series-box-title">Cybersecurity for Everyone — 10 Episodes</div>
+          </div>
+          <a href="index.html#series" class="art-series-link">All Episodes →</a>
+        </div>
+        <div class="series-nav-grid" id="seriesNavGrid">
+          <a href="article.html" class="series-nav-item">
+            <span class="series-nav-num">01</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Can You Still Trust What You See and Hear Online?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 01 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-02.html" class="series-nav-item">
+            <span class="series-nav-num">02</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Someone Has Your Email Address. Now What?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 02 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-03.html" class="series-nav-item active" style="border-left:3px solid var(--blue);background:#EFF6FF;">
+            <span class="series-nav-num" style="color:var(--blue);font-weight:800;">03</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title" style="color:var(--blue);font-weight:700;">I Clicked a Phishing Link. What Should I Do?</span>
+              <span class="series-nav-tag" style="background:#DBEAFE;color:#1D4ED8;border-color:#93C5FD;">Episode 03 · Reading Now 👁️</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">04</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Password Wasn't Hacked. Your Session Was Stolen.</span>
+              <span class="series-nav-tag">Episode 04 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">05</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Why the Padlock Doesn't Mean a Website Is Safe</span>
+              <span class="series-nav-tag">Episode 05 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">06</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Are Passkeys Finally Going to Kill Passwords?</span>
+              <span class="series-nav-tag">Episode 06 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">07</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">The Fake Recruiter in Your LinkedIn Inbox</span>
+              <span class="series-nav-tag">Episode 07 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">08</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">How Much Can a Scammer Learn About You in 10 Minutes?</span>
+              <span class="series-nav-tag">Episode 08 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">09</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Bank Is Calling. Or Is It?</span>
+              <span class="series-nav-tag">Episode 09 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">10</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">What Happens to Your Information After a Data Breach?</span>
+              <span class="series-nav-tag">Episode 10 · Coming Soon</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Related / Up Next in Series -->
+      <div class="related">
+        <div class="sec-h"
+          style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <span class="sec-lbl" style="color:var(--blue);">Cybersecurity for Everyone</span>
+            <div style="font-family:var(--f-d);font-size:1.15rem;font-weight:800;color:var(--ink);margin-top:4px;">Series Navigation</div>
+          </div>
+          <a href="index.html#series"
+            style="font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:5px;">
+            View All 10 Episodes in Series →
+          </a>
+        </div>
+        <div class="rel-grid">
+
+          <!-- Previous: Episode 02 -->
+          <a href="article-02.html" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
+            <div class="card-svg" style="background:linear-gradient(135deg,#EFF6FF 0%,#DBEAFE 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <rect x="65" y="40" width="90" height="60" rx="8" fill="white" stroke="#1D4ED8" stroke-width="2"/>
+                <path d="M65 48 L110 77 L155 48" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                <circle cx="170" cy="54" r="18" stroke="#EF4444" stroke-width="1.2" opacity=".3"/>
+                <circle cx="170" cy="54" r="5" fill="#EF4444"/>
+              </svg>
+              <span class="card-svg-label" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">← Previous · Ep 02</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Someone Has Your Email Address. Now What?</h3>
+              <p class="card-ex">What automated crawlers, credential stuffing bots, and spear-phishers do once your email leaks, and how to lockdown your perimeter.</p>
+              <div class="card-foot"><span>Identity Recon · OSINT</span><span style="color:#16A34A;font-weight:700;">Read Ep 02 →</span></div>
+            </div>
+          </a>
+
+          <!-- Next: Episode 04 -->
+          <div class="art-card">
+            <div class="card-svg" style="background:linear-gradient(135deg,#F5F3FF 0%,#EDE9FE 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <circle cx="95" cy="70" r="28" fill="#FDE68A" stroke="#D97706" stroke-width="2"/>
+                <circle cx="86" cy="62" r="4" fill="#92400E"/>
+                <circle cx="104" cy="60" r="3.5" fill="#92400E"/>
+                <circle cx="94" cy="76" r="3" fill="#92400E"/>
+                <path d="M125 70 Q145 70 160 55" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="3 2"/>
+                <rect x="160" y="44" width="24" height="22" rx="4" fill="#8B5CF6"/>
+              </svg>
+              <span class="card-svg-label">Up Next · Ep 04</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Your Password Wasn't Hacked. Your Session Was Stolen.</h3>
+              <p class="card-ex">How session hijacking extracts authenticated tokens without knowing passwords, and how to invalidate stolen state.</p>
+              <div class="card-foot"><span>Session Security</span><span class="soon">Coming Soon</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /art-center -->
+
+  </div><!-- /art-layout -->
+
+  <!-- FLOATING BOTTOM DOCK -->
+  <aside class="floating-dock" aria-label="Reading Controls">
+    <button class="dock-btn btn-like" aria-label="Like article">
+      <span class="dock-emoji like-heart">🤍</span>
+      <span class="dock-count like-count">0</span>
+    </button>
+    <button class="dock-btn btn-clap" aria-label="Applaud research">
+      <span class="dock-emoji">👏</span>
+      <span class="dock-count clap-count">0</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#feedback" class="dock-btn" aria-label="Jump to discussion">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+      <span class="dock-label">Feedback</span>
+    </a>
+    <button class="dock-btn btn-share" onclick="copyLink()" aria-label="Copy link">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+      <span class="dock-label">Share</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#series-curriculum" class="dock-series-pill" title="Series: Cybersecurity for Everyone">
+      <span class="dock-pulse"></span>
+      Ep 03 of 10
+    </a>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, and digital literacy for everyone.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Series Navigation</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
+              <li><a href="article-02.html">Ep 02: Email OSINT &amp; Perimeter Defense</a></li>
+              <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
+              <li><a href="index.html#series">View Full Curriculum (10 Episodes)</a></li>
+              <li><a href="#feedback">Submit Article Feedback</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Author &amp; Verification</div>
+            <ul class="foot-nav-list">
+              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Poorna's Portfolio ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn Research ↗</a></li>
+              <li><a href="#sources">Citations &amp; Methodology</a></li>
+              <li><a href="mailto:sujampathirathnayaka@gmail.com">Contact Editorial Desk</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal & Research Disclaimer -->
+      <div class="foot-disclaimer">
+        <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is authored by Poorna Sujampathi Rathnayaka for non-commercial educational, threat awareness, and digital literacy purposes. All third-party trademarks, company names, CVE IDs, and security advisories referenced are the property of their respective copyright holders. Fair use citations for educational security awareness are permitted with direct attribution and canonical link.
+      </div>
+
+      <div class="foot-bottom">
+        <div>
+          &copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.
+        </div>
+        <div class="foot-bottom-links">
+          <a href=".well-known/security.txt" target="_blank" rel="noopener noreferrer">Vulnerability Disclosure</a>
+          <span>·</span>
+          <a href="index.html#about">Ethics &amp; Methodology</a>
+          <span>·</span>
+          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element"></div>
+
+  <!-- Client-side Interactive Triage Logic -->
+  <script>
+    (function () {
+      const triageData = {
+        'only-clicked': {
+          title: 'Scenario: Only Opened the Web Page',
+          riskLevel: 'LOW / CONTAINED',
+          riskColor: '#10B981',
+          riskBg: '#DCFCE7',
+          summary: 'If you only loaded the web page and quickly closed it without submitting credentials, downloading attachments, or accepting browser permissions, the exposure is generally minimal.',
+          checks: [
+            'Close the browser tab immediately. Do not click around out of curiosity.',
+            'Clear recent browser cache and cookies for that specific suspicious domain.',
+            'Verify that your browser did not silently drop an unexpected file into your Downloads folder.',
+            'No immediate password resets required, but remain alert for any follow-up emails pretending to be support.'
+          ]
+        },
+        'password': {
+          title: 'Scenario: Entered Account Password',
+          riskLevel: 'HIGH / CREDENTIAL EXPOSED',
+          riskColor: '#EA580C',
+          riskBg: '#FFEDD5',
+          summary: 'The attacker likely captured your username and password into their harvest database. You must invalidate that secret immediately across all affected services.',
+          checks: [
+            'Navigate directly to the REAL service (via official app or known bookmark) and reset your password immediately.',
+            'Review where else you reused this exact password and change it there too (especially email & banking).',
+            'Look for “Active Sessions” / “Connected Devices” in account security settings and click “Sign out of all sessions”.',
+            'Ensure strong multi-factor authentication (MFA) is enabled (preferably an authenticator app or passkey).'
+          ]
+        },
+        'email': {
+          title: 'Scenario: Entered Primary Email Password',
+          riskLevel: 'CRITICAL / MASTER RECOVERY ROOT',
+          riskColor: '#DC2626',
+          riskBg: '#FEE2E2',
+          summary: 'Your email inbox is the master key for password reset loops across all your services. Securing this account is priority #1 before addressing any other accounts.',
+          checks: [
+            'Change your email password immediately using the provider’s genuine login portal.',
+            'Revoke all existing sessions (“Sign out everywhere”) to evict any adversary holding an active token.',
+            'Check Mail Forwarding settings: confirm no unauthorized forwarding address is quietly leaking incoming mail.',
+            'Inspect Inbox Rules / Filters: delete any suspicious rules that auto-archive or delete security alerts.',
+            'Verify recovery phone number and backup email to ensure attacker didn\'t add their own backdoor.'
+          ]
+        },
+        'download': {
+          title: 'Scenario: Downloaded an Attachment or Executable',
+          riskLevel: 'DEVICE ISOLATION REQUIRED',
+          riskColor: '#9333EA',
+          riskBg: '#F3E8FF',
+          summary: 'Malicious attachments (zip, iso, exe, pdf with macros) can execute spyware or info-stealing malware designed to extract browser passwords and session cookies.',
+          checks: [
+            'DO NOT double-click or open the downloaded file.',
+            'Disconnect device from Wi-Fi and unplug Ethernet to sever remote command-and-control communication.',
+            'If this is a work-issued laptop, notify your corporate IT helpdesk or SOC immediately. Do not hide it.',
+            'Run an in-depth security scan using Windows Defender or trusted commercial endpoint protection.',
+            'Delete the file from your Downloads folder and permanently empty your Recycle Bin / Trash.'
+          ]
+        },
+        'card': {
+          title: 'Scenario: Entered Payment Card or Banking Details',
+          riskLevel: 'IMMEDIATE FINANCIAL RISK',
+          riskColor: '#DC2626',
+          riskBg: '#FEE2E2',
+          summary: 'Payment card numbers entered into phishing portals are quickly traded or tested through automated merchant micro-charges. Speed is essential.',
+          checks: [
+            'Open your official mobile banking app immediately and freeze / lock the card.',
+            'Call your bank\'s dedicated fraud phone line (use the number printed on the back of your physical card).',
+            'Never call any telephone numbers printed on the suspicious phishing email or webpage.',
+            'Monitor recent transactions for unexpected micro-charges ($0.99 - $1.99) often used to validate card validity.',
+            'Request a replacement card with a newly issued CVV and card number.'
+          ]
+        },
+        'phone': {
+          title: 'Scenario: Clicked on a Mobile Device (Android / iOS)',
+          riskLevel: 'MODERATE TO HIGH',
+          riskColor: '#D97706',
+          riskBg: '#FEF3C7',
+          summary: 'Mobile browsers isolate tabs well, but phishing links can prompt installation of malicious configuration profiles (iOS) or unauthorized APK sideloads (Android).',
+          checks: [
+            'Check installed apps list for any unfamiliar icons or newly added utilities, and uninstall them.',
+            'iOS: Go to Settings > General > VPN & Device Management and verify no unfamiliar Configuration Profile is installed.',
+            'Android: Check Settings > Accessibility and verify no unknown application has requested accessibility permissions.',
+            'Clear Safari / Chrome mobile website data and update your mobile OS to the latest security patch.',
+            'Avoid downloading random third-party "cleaner" tools advertised online; use built-in OS protection.'
+          ]
+        }
+      };
+
+      function renderScenario(key) {
+        const d = triageData[key];
+        if (!d) return;
+        const out = document.getElementById('triageOutput');
+        if (!out) return;
+
+        let checksHtml = d.checks.map((chk, i) => `
+          <label style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;cursor:pointer;font-size:.88rem;color:var(--ink-2);line-height:1.45;">
+            <input type="checkbox" style="margin-top:3px;accent-color:var(--blue);width:16px;height:16px;cursor:pointer;">
+            <span>${chk}</span>
+          </label>
+        `).join('');
+
+        out.innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);">
+            <div style="font-weight:700;color:var(--ink);font-size:.95rem;">${d.title}</div>
+            <span style="font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:20px;background:${d.riskBg};color:${d.riskColor};letter-spacing:.03em;">
+              ${d.riskLevel}
+            </span>
+          </div>
+          <p style="font-size:.86rem;color:var(--ink-3);margin-bottom:16px;line-height:1.5;">${d.summary}</p>
+          <div style="font-weight:700;font-size:.84rem;color:var(--ink-4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;">Immediate Checklist (Click to tick off):</div>
+          <div style="background:var(--bg-2);padding:14px 16px;border-radius:6px;border:1px solid var(--border);">
+            ${checksHtml}
+          </div>
+        `;
+      }
+
+      // Tab click events
+      const tabs = document.querySelectorAll('.triage-btn');
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabs.forEach(b => {
+            b.style.background = 'white';
+            b.style.color = 'var(--ink-3)';
+            b.style.borderColor = 'var(--border-2)';
+            b.classList.remove('active');
+          });
+          btn.style.background = 'var(--blue)';
+          btn.style.color = 'white';
+          btn.style.borderColor = 'var(--blue)';
+          btn.classList.add('active');
+          renderScenario(btn.getAttribute('data-scenario'));
+        });
+      });
+
+      // Initial render
+      renderScenario('only-clicked');
+    })();
+  </script>
+
+  <script src="js/cms.js?v=6"></script>
+  <script src="js/app.js?v=6"></script>
+  <script src="js/translator.js?v=6"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>

@@ -469,6 +469,7 @@ function renderAdminFeedback() {
   container.innerHTML = comments.map((c, idx) => {
     const id = c.id || String(idx);
     const initials = (c.name || 'AD').split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'RD';
+    const epBadge = (c.articleId && c.articleId.includes('03')) || (c.articleSlug && c.articleSlug.includes('03')) ? 'Episode 03' : ((c.articleId && c.articleId.includes('02')) || (c.articleSlug && c.articleSlug.includes('02')) ? 'Episode 02' : 'Episode 01');
     return `
     <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 3px rgba(0,0,0,0.02);">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
@@ -482,6 +483,9 @@ function renderAdminFeedback() {
           </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
+          <span style="background:#EFF6FF;color:#1D4ED8;font-size:.72rem;font-weight:700;padding:4px 8px;border-radius:6px;border:1px solid #BFDBFE;">
+            ${_esc(epBadge)}
+          </span>
           <span style="background:var(--blue-bg);color:var(--blue);font-size:.72rem;font-weight:700;padding:4px 9px;border-radius:6px;border:1px solid var(--blue-bdr);">
             ${_esc(c.category || 'General Feedback')}
           </span>
