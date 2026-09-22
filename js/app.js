@@ -314,30 +314,95 @@ function initFeedback() {
   const status = document.getElementById('fbStatus');
   const link = document.getElementById('fbEmailLink');
   const copy = document.getElementById('fbCopy');
-  form.addEventListener('input', () => {
+  const nameInput = document.getElementById('fbName');
+  const messageInput = document.getElementById('fbMessage');
+  const categoryInput = document.getElementById('fbCategory');
+  const note = document.getElementById('fbDraftNote');
+  const clear = document.getElementById('fbClear');
+  const draftKey = getArticleKey() + '_feedback_draft';
+  const categories = [...categoryInput.options].map(option => option.value);
+
+  function invalidatePreview() {
     preview.hidden = true;
+    output.value = '';
     status.textContent = '';
     link.removeAttribute('href');
+  }
+  function saveDraft() {
+    invalidatePreview();
+    try {
+      if (!nameInput.value && !messageInput.value) {
+        sessionStorage.removeItem(draftKey);
+      } else {
+        sessionStorage.setItem(draftKey, JSON.stringify({
+          name: nameInput.value, category: categoryInput.value, message: messageInput.value
+        }));
+      }
+      note.textContent = 'Draft saved in this tab. It has not been sent.';
+    } catch (_) {
+      note.textContent = 'Draft saving is unavailable. Keep this page open or copy your text before leaving.';
+    }
+  }
+  // Session-only drafts survive refresh without storing readers' feedback permanently.
+  try {
+    const saved = JSON.parse(sessionStorage.getItem(draftKey) || 'null');
+    if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
+      nameInput.value = typeof saved.name === 'string' ? saved.name.slice(0, 100) : '';
+      messageInput.value = typeof saved.message === 'string' ? saved.message.slice(0, 2000) : '';
+      if (categories.includes(saved.category)) {
+        [...categoryInput.options].forEach(option => { option.selected = option.value === saved.category; });
+      }
+      note.textContent = 'Your unfinished draft was restored in this tab. It has not been sent.';
+    }
+  } catch (_) {
+    // An unavailable or malformed stored draft must never disable the form.
+  }
+  form.addEventListener('input', saveDraft);
+  form.addEventListener('change', saveDraft);
+  clear.addEventListener('click', () => {
+    nameInput.value = '';
+    messageInput.value = '';
+    [...categoryInput.options].forEach((option, index) => { option.selected = index === 0; });
+    invalidatePreview();
+    try { sessionStorage.removeItem(draftKey); } catch (_) {}
+    note.textContent = 'Draft cleared.';
+    messageInput.focus();
   });
   form.addEventListener('submit', event => {
     event.preventDefault();
-    const message = document.getElementById('fbMessage').value.trim();
+    const message = messageInput.value.trim();
     if (!message) {
+      invalidatePreview();
       status.textContent = 'Enter your feedback first.';
-      document.getElementById('fbMessage').focus();
+      messageInput.focus();
       return;
     }
+    if (message.length > 2000 || nameInput.value.length > 100) {
+      invalidatePreview();
+      status.textContent = 'Keep feedback within 2,000 characters and your name within 100 characters.';
+      messageInput.focus();
+      return;
+    }
+    saveDraft();
     const draft = buildFeedbackEmail({
-      title: document.querySelector('h1').textContent.trim(),
-      url: document.querySelector('link[rel="canonical"]').href,
-      name: document.getElementById('fbName').value.trim(),
-      category: document.getElementById('fbCategory').value || 'General feedback',
+      title: document.querySelector('h1')?.textContent.trim() || document.title,
+      url: document.querySelector('link[rel="canonical"]')?.href || window.location.href.split('#')[0],
+      name: nameInput.value.trim(),
+      category: categoryInput.value || 'General feedback',
       message
     });
     output.value = draft.body;
-    link.setAttribute('href', draft.href);
+    // Email handlers vary in their URL length limits. Keep the full text in the
+    // preview and use the copy route for longer drafts instead of risking truncation.
+    const useCopy = draft.href.length > 1800;
+    link.hidden = useCopy;
+    if (!useCopy) link.setAttribute('href', draft.href);
     preview.hidden = false;
-    status.textContent = 'Your draft is ready. Open your email app, review it, and press Send there. Nothing has been sent yet.';
+    status.textContent = useCopy
+      ? 'Your draft is ready. For this longer message, use Copy feedback and paste it into an email to sujampathirathnayaka@gmail.com. Nothing has been sent yet.'
+      : 'Your draft is ready. Open your email app, review it, and press Send there. Nothing has been sent yet.';
+    preview.scrollIntoView?.({ behavior: 'auto', block: 'nearest' });
+    (useCopy ? copy : link).focus();
   });
   copy.addEventListener('click', async () => {
     try {
@@ -346,7 +411,7 @@ function initFeedback() {
     } catch (_) {
       output.focus();
       output.select();
-      status.textContent = 'Select and copy the draft below, then email it to sujampathirathnayaka@gmail.com.';
+      status.textContent = 'Automatic copying is unavailable. Select and copy the draft, then email it to sujampathirathnayaka@gmail.com.';
     }
   });
 }
