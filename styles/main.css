@@ -2372,3 +2372,13 @@ body {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Feedback inputs stay legible without focus zoom on small screens. */
+#feedback .fb-input, #feedback .fb-textarea { font-size: 1rem; min-height: 44px; }
+#feedback .fb-submit-btn, #feedback .au-btn, #feedback .fb-clear-btn { min-height: 44px; }
+.fb-draft-note { font-size: .82rem; line-height: 1.55; color: var(--ink-3); margin: 10px 0; }
+.fb-clear-btn { padding: 10px 16px; border: 1px solid var(--border-2); border-radius: 8px; background: var(--bg); color: var(--ink-2); font: inherit; cursor: pointer; }
+@media (max-width: 480px) {
+  #feedback .fb-form-box, #feedback .fb-header { padding: 20px 16px; }
+  #feedback .fb-form-foot > * { flex: 1 1 auto; text-align: center; justify-content: center; }
+}

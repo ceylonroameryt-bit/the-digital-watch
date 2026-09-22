@@ -9,10 +9,11 @@ const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
 const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html'];
 
-function boot(file, { stored = {}, storageBlocked = false, search = '', hash = '', scripts } = {}) {
+function boot(file, { stored = {}, sessionStored = {}, storageBlocked = false, search = '', hash = '', scripts } = {}) {
   const { document, window: dom } = parseHTML(read(file));
   document.cookie = '';
   const values = new Map(Object.entries(stored));
+  const sessionValues = new Map(Object.entries(sessionStored));
   const location = { pathname: '/the-digital-watch/' + file, search, hash,
     hostname: 'example.test', href: 'https://example.test/the-digital-watch/' + file + search + hash,
     replace(url) { this.redirect = url; }, reload() { this.reloaded = true; } };
@@ -26,7 +27,11 @@ function boot(file, { stored = {}, storageBlocked = false, search = '', hash = '
       setItem(key, value) { if (storageBlocked) throw Error('Storage denied'); values.set(key, value); },
       removeItem(key) { if (storageBlocked) throw Error('Storage denied'); values.delete(key); }
     },
-    sessionStorage: { getItem() { return null; } },
+    sessionStorage: {
+      getItem(key) { if (storageBlocked) throw Error('Storage denied'); return sessionValues.get(key) ?? null; },
+      setItem(key, value) { if (storageBlocked) throw Error('Storage denied'); sessionValues.set(key, value); },
+      removeItem(key) { if (storageBlocked) throw Error('Storage denied'); sessionValues.delete(key); }
+    },
     history: { pushState(_state, _title, url) { location.hash = url; } },
     getComputedStyle: () => ({ getPropertyValue: () => '66' }),
     matchMedia: () => ({ matches: false }),
@@ -44,7 +49,7 @@ function boot(file, { stored = {}, storageBlocked = false, search = '', hash = '
     vm.runInContext(source, context, { filename: src || file + ':inline' });
   }
   document.dispatchEvent(new dom.Event('DOMContentLoaded'));
-  return { document, context, location, values, clipboard,
+  return { document, context, location, values, sessionValues, clipboard,
     fire(node, type) { node.dispatchEvent(new dom.Event(type, { bubbles: true, cancelable: true })); } };
 }
 
@@ -196,4 +201,65 @@ test('local editor helpers do not recurse into the CMS delegates', () => {
   const app = boot('admin.html');
   assert.equal(app.context.getPosts().length, 10);
   assert.equal(app.context.getSettings().blogName, 'Cyber Insight');
+});
+
+test('unfinished feedback survives refresh and stays scoped to its article', () => {
+  const app = boot('article-02.html');
+  app.document.querySelector('#fbName').value = 'Reader';
+  app.document.querySelector('#fbMessage').value = 'Keep my unfinished question';
+  app.fire(app.document.querySelector('#fbMessage'), 'input');
+  const sessionStored = Object.fromEntries(app.sessionValues);
+  const refreshed = boot('article-02.html', { sessionStored });
+  assert.equal(refreshed.document.querySelector('#fbMessage').value, 'Keep my unfinished question');
+  assert.equal(refreshed.document.querySelector('#fbName').value, 'Reader');
+  const otherArticle = boot('article-03.html', { sessionStored });
+  assert.equal(otherArticle.document.querySelector('#fbMessage').value, '');
+  assert.equal(app.values.has('threatbrief_ep02_feedback_draft'), false);
+});
+
+test('category changes invalidate prepared feedback and clear draft removes saved text', () => {
+  const app = boot('article-02.html');
+  app.document.querySelector('#fbMessage').value = 'A question';
+  app.fire(app.document.querySelector('#fbForm'), 'submit');
+  assert.equal(app.document.querySelector('#fbEmailPreview').hidden, false);
+  app.fire(app.document.querySelector('#fbCategory'), 'change');
+  assert.equal(app.document.querySelector('#fbEmailPreview').hidden, true);
+  assert.equal(app.document.querySelector('#fbEmailLink').getAttribute('href'), null);
+  app.fire(app.document.querySelector('#fbClear'), 'click');
+  assert.equal(app.document.querySelector('#fbMessage').value, '');
+  assert.equal(app.sessionValues.size, 0);
+});
+
+test('long feedback stays complete in the copy route instead of an oversized email link', () => {
+  const app = boot('article-02.html');
+  const message = 'Helpful article. '.repeat(110);
+  app.document.querySelector('#fbMessage').value = message;
+  app.fire(app.document.querySelector('#fbForm'), 'submit');
+  assert.equal(app.document.querySelector('#fbEmailLink').hidden, true);
+  assert.ok(app.document.querySelector('#fbEmailBody').value.endsWith(message.trim()));
+  assert.match(app.document.querySelector('#fbStatus').textContent, /use Copy feedback/);
+});
+
+test('feedback works with denied storage and clipboard', async () => {
+  const app = boot('article-02.html', { storageBlocked: true });
+  app.context.navigator = {};
+  app.document.querySelector('#fbMessage').value = 'Keep this question visible';
+  app.fire(app.document.querySelector('#fbForm'), 'submit');
+  assert.equal(app.document.querySelector('#fbEmailPreview').hidden, false);
+  let selected = false;
+  app.document.querySelector('#fbEmailBody').select = () => { selected = true; };
+  app.fire(app.document.querySelector('#fbCopy'), 'click');
+  await Promise.resolve();
+  assert.equal(selected, true);
+  assert.match(app.document.querySelector('#fbStatus').textContent, /Automatic copying is unavailable/);
+  assert.match(app.document.querySelector('#fbDraftNote').textContent, /saving is unavailable/);
+});
+
+test('malformed saved feedback cannot disable the form', () => {
+  for (const value of ['{broken', 'null', '[]', '{"message":{},"name":12}']) {
+    const app = boot('article-02.html', { sessionStored: { threatbrief_ep02_feedback_draft: value } });
+    app.document.querySelector('#fbMessage').value = 'New feedback';
+    app.fire(app.document.querySelector('#fbForm'), 'submit');
+    assert.equal(app.document.querySelector('#fbEmailPreview').hidden, false);
+  }
 });

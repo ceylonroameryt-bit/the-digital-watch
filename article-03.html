@@ -43,7 +43,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=7">
+  <link rel="stylesheet" href="styles/main.css?v=8">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
   <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/article-03.html">
@@ -613,16 +613,21 @@
         </div>
         <div class="fb-form-box">
           <p>You can also <a href="mailto:sujampathirathnayaka@gmail.com">email Poorna directly</a>.</p>
+          <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
           <form id="fbForm" hidden>
             <label for="fbName">Name (optional)</label>
-            <input class="fb-input" id="fbName" maxlength="100" autocomplete="name">
+            <input class="fb-input" id="fbName" maxlength="100" autocomplete="name" aria-describedby="fbDraftNote">
             <label for="fbCategory">Feedback category</label>
             <select class="fb-input" id="fbCategory">
               <option>General feedback</option><option>Question</option><option>Correction</option><option>Topic suggestion</option>
             </select>
             <label for="fbMessage">Your feedback</label>
-            <textarea class="fb-textarea" id="fbMessage" required maxlength="2000" placeholder="Share your question or suggestion..."></textarea>
-            <button type="submit" class="fb-submit-btn">Prepare email</button>
+            <textarea class="fb-textarea" id="fbMessage" aria-describedby="fbDraftNote fbLimit" required maxlength="2000" placeholder="Share your question or suggestion..."></textarea>
+            <p id="fbLimit" class="fb-draft-note">Maximum 2,000 characters.</p>
+            <div class="fb-form-foot">
+              <button type="submit" class="fb-submit-btn">Prepare email</button>
+              <button type="button" class="fb-clear-btn" id="fbClear">Clear draft</button>
+            </div>
           </form>
           <p id="fbStatus" role="status" aria-live="polite"></p>
           <div id="fbEmailPreview" hidden>
@@ -1065,7 +1070,7 @@
   </script>
 
   <script src="js/cms.js?v=7"></script>
-  <script src="js/app.js?v=7"></script>
+  <script src="js/app.js?v=8"></script>
   <script src="js/translator.js?v=7"></script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
