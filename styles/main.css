@@ -1192,7 +1192,7 @@ body {
   border: 1px solid var(--border);
   border-radius: 8px;
   background: var(--bg);
-  font-family: var(--f-s);
+  font-family: var(--f-b);
   font-size: .84rem;
   color: var(--ink);
   transition: var(--t);

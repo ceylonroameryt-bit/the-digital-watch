@@ -2,6 +2,7 @@ User-agent: *
 Disallow: /admin.html
 Disallow: /*.bak$
 Allow: /
+Allow: /index.html
 Allow: /article.html
 Allow: /article-02.html
 Allow: /article-03.html
