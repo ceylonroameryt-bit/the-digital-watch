@@ -6,20 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Your Password Wasn't Hacked. Your Session Was Stolen. — Cyber Insight</title>
   <meta name="description"
-    content="Your password and MFA can both work correctly and an attacker may still hijack an authenticated account by stealing a valid session. Learn how session cookies, AiTM phishing, infostealers, passkeys and device-bound sessions fit together.">
+    content="You did everything right: strong password, MFA, passkeys. So why was your account compromised? How attackers bypass logins by stealing authenticated sessions, and what to do next.">
   <meta name="author" content="Poorna Sujampathi Rathnayaka">
   <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
   <link rel="author" href="https://sujampathirathnayaka.com/">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Your Password Wasn't Hacked. Your Session Was Stolen.">
   <meta property="og:description"
-    content="A stolen session can let an attacker reuse an already-authenticated state without performing another normal login. Here is how session hijacking works and what users and defenders can do about it.">
+    content="What if your password was never cracked and your MFA was never guessed? Exploring session hijacking, adversary-in-the-middle phishing, infostealers, and device-bound session credentials.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Your Password Wasn't Hacked. Your Session Was Stolen.",
-    "description": "Your password and MFA can both work correctly and an attacker may still hijack an authenticated account by stealing a valid session. This article explains session cookies, AiTM phishing, infostealers, passkeys and device-bound session credentials.",
+    "description": "You did everything right: strong password, MFA, passkeys. So why was your account compromised? How attackers bypass logins by stealing authenticated sessions, and what to do next.",
     "author": {
       "@type": "Person",
       "name": "Poorna Sujampathi Rathnayaka",
@@ -28,9 +28,9 @@
     "publisher": {
       "@type": "Organization",
       "name": "Cyber Insight",
-      "url": "https://ceylonroameryt-bit.github.io/the-digital-watch/"
+      "url": "https://sujampathirathnayaka.com/"
     },
-    "datePublished": "2026-09-25",
+    "datePublished": "2026-09-26",
     "copyrightYear": 2026,
     "copyrightHolder": {
       "@type": "Person",
@@ -43,17 +43,15 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=8">
+  <link rel="stylesheet" href="styles/main.css?v=7">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
-  <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/article-04.html">
-  <meta property="og:url" content="https://ceylonroameryt-bit.github.io/the-digital-watch/article-04.html">
 </head>
 
 <body data-page="article" data-article-id="ep04">
 
   <div id="reading-progress"></div>
-  <div id="toast-container" role="status" aria-live="polite"></div>
+  <div id="toast-container"></div>
 
   <!-- NAV -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
@@ -75,7 +73,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#series">Series</a></li>
-        <li><a href="index.html#series">Articles</a></li>
+        <li><a href="article-04.html" class="active">Research</a></li>
         <li><a href="#feedback">Feedback</a></li>
         <li><a href="index.html#about">About</a></li>
         <li><a href="article-03.html" class="cta">← Ep 03</a></li>
@@ -109,11 +107,11 @@
           <div class="art-meta">
             <span class="art-cat">Episode 04</span>
             <span class="art-dot">·</span>
-            <span>Session Security &amp; Account Takeover</span>
+            <span>Session Security &amp; Token Theft</span>
             <span class="art-dot">·</span>
-            <span>September 25, 2026</span>
+            <span>September 26, 2026</span>
             <span class="art-dot">·</span>
-            <span>13 min read</span>
+            <span>7 min read</span>
           </div>
 
           <h1 class="art-h1">Your Password Wasn't Hacked. Your Session Was Stolen.</h1>
@@ -127,46 +125,57 @@
           </div>
         </div>
 
-        <!-- Hero SVG: Authenticated session theft -->
-        <div class="art-hero-svg">
+        <!-- Hero SVG: Session Token Extraction vs Bypassed Gate -->
+        <div class="art-hero-svg" style="background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);">
           <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
-            aria-label="Diagram showing a valid authenticated browser session being copied and reused">
-            <circle cx="160" cy="120" r="100" fill="#F5F3FF" opacity=".7"/>
-            <circle cx="160" cy="120" r="72" fill="#EDE9FE" opacity=".7"/>
+            aria-label="Illustration depicting session token theft bypassing login gates">
+            <!-- Background pulse circles -->
+            <circle cx="160" cy="120" r="100" fill="#EDE9FE" opacity=".5" />
+            <circle cx="160" cy="120" r="70" fill="#DDD6FE" opacity=".4" />
 
-            <!-- Browser / authenticated user -->
-            <rect x="34" y="58" width="118" height="94" rx="12" fill="white" stroke="#7C3AED" stroke-width="2"/>
-            <rect x="34" y="58" width="118" height="22" rx="12" fill="#EDE9FE"/>
-            <circle cx="48" cy="69" r="3" fill="#A78BFA"/>
-            <circle cx="58" cy="69" r="3" fill="#A78BFA"/>
-            <circle cx="68" cy="69" r="3" fill="#A78BFA"/>
-            <rect x="50" y="94" width="86" height="12" rx="6" fill="#DCFCE7"/>
-            <text x="93" y="103" text-anchor="middle" fill="#15803D" font-family="DM Sans,system-ui" font-size="8" font-weight="800">AUTHENTICATED</text>
-            <rect x="50" y="116" width="72" height="7" rx="3.5" fill="#C4B5FD"/>
-            <rect x="50" y="130" width="54" height="6" rx="3" fill="#DDD6FE"/>
+            <!-- Passed Credential & MFA Gate (Green Verified) -->
+            <rect x="36" y="55" width="84" height="90" rx="10" fill="white" stroke="#10B981" stroke-width="2" />
+            <circle cx="78" cy="85" r="14" fill="#DCFCE7" />
+            <path d="M72 85 L76 89 L84 81" stroke="#16A34A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+            <rect x="48" y="108" width="60" height="6" rx="3" fill="#10B981" opacity=".7" />
+            <text x="78" y="126" text-anchor="middle" fill="#065F46" font-family="DM Sans,system-ui" font-size="8" font-weight="700">MFA PASSED</text>
 
-            <!-- Session cookie -->
-            <circle cx="166" cy="105" r="30" fill="#FDE68A" stroke="#D97706" stroke-width="2"/>
-            <circle cx="156" cy="96" r="4.5" fill="#92400E"/>
-            <circle cx="176" cy="94" r="4" fill="#92400E"/>
-            <circle cx="165" cy="111" r="4" fill="#92400E"/>
-            <circle cx="178" cy="113" r="3" fill="#92400E"/>
-            <text x="166" y="146" text-anchor="middle" fill="#6D28D9" font-family="DM Sans,system-ui" font-size="8" font-weight="800">SESSION TOKEN</text>
+            <!-- Flow Arrow to Session Vault -->
+            <path d="M120 100 L154 100" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="3 2" />
+            <polygon points="158,100 152,96 152,104" fill="#8B5CF6" />
 
-            <!-- Copy / replay -->
-            <path d="M194 105 C220 105 226 82 246 82" stroke="#EF4444" stroke-width="2.5" stroke-dasharray="5 4"/>
-            <polygon points="249,82 241,77 241,87" fill="#EF4444"/>
-            <rect x="238" y="55" width="48" height="54" rx="9" fill="#FEF2F2" stroke="#EF4444" stroke-width="2"/>
-            <path d="M250 86 L262 74 L274 86" stroke="#DC2626" stroke-width="2" fill="none" stroke-linecap="round"/>
-            <circle cx="262" cy="71" r="6" fill="#FCA5A5"/>
-            <text x="262" y="100" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="7.5" font-weight="800">REPLAY</text>
+            <!-- Active Session Keycard / Cookie -->
+            <g transform="translate(162, 60)">
+              <rect x="0" y="0" width="118" height="74" rx="8" fill="#7C3AED" />
+              <!-- Card chip -->
+              <rect x="12" y="14" width="22" height="18" rx="3" fill="#FDE68A" stroke="#D97706" stroke-width="1" />
+              <line x1="12" y1="23" x2="34" y2="23" stroke="#D97706" stroke-width=".8" />
+              <line x1="23" y1="14" x2="23" y2="32" stroke="#D97706" stroke-width=".8" />
+              <!-- Session text -->
+              <text x="42" y="24" fill="white" font-family="DM Sans,system-ui" font-size="9" font-weight="800">SESSION TOKEN</text>
+              <text x="42" y="36" fill="#DDD6FE" font-family="DM Sans,system-ui" font-size="7.5">sid=98fbc4e207a1...</text>
+              <rect x="12" y="48" width="94" height="4" rx="2" fill="white" opacity=".3" />
+              <rect x="12" y="56" width="64" height="4" rx="2" fill="#FDE68A" />
+            </g>
 
-            <!-- MFA shield -->
-            <path d="M118 166 L140 174 L140 193 Q140 211 118 220 Q96 211 96 193 L96 174 Z" fill="#DBEAFE" stroke="#2563EB" stroke-width="2"/>
-            <text x="118" y="191" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="8" font-weight="800">MFA</text>
-            <path d="M110 200 L116 206 L128 194" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Adversary Siphon Beam targeting Keycard directly -->
+            <path d="M221 134 Q221 170 178 185" stroke="#EF4444" stroke-width="2.5" stroke-dasharray="4 3" />
+            <polygon points="174,186 182,181 184,190" fill="#EF4444" />
 
-            <text x="205" y="198" text-anchor="middle" fill="#5B21B6" font-family="DM Sans,system-ui" font-size="8.5" font-weight="700">PASSWORD ≠ SESSION</text>
+            <!-- Attacker Replay Device -->
+            <g transform="translate(60, 165)">
+              <rect x="0" y="0" width="110" height="48" rx="8" fill="#FEF2F2" stroke="#EF4444" stroke-width="1.8" />
+              <circle cx="18" cy="24" r="8" fill="#FEE2E2" />
+              <text x="18" y="27" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="9" font-weight="800">!</text>
+              <text x="64" y="20" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">Adversary Replay</text>
+              <text x="64" y="34" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="7.5">No password needed</text>
+            </g>
+
+            <!-- Bypass badge -->
+            <g transform="translate(186, 172)">
+              <rect x="0" y="0" width="98" height="22" rx="6" fill="#EDE9FE" stroke="#7C3AED" stroke-width="1.2" />
+              <text x="49" y="14" text-anchor="middle" fill="#6D28D9" font-family="DM Sans,system-ui" font-size="8" font-weight="800">Bypasses Login Gate</text>
+            </g>
           </svg>
         </div>
 
@@ -182,20 +191,19 @@
       <!-- Horizontal Action & Metadata Strip -->
       <div class="art-action-strip">
         <div class="art-act-left">
-          <span class="chip" style="background:#EFF6FF;color:#1D4ED8;border-color:#BFDBFE;font-weight:700;">Episode 04</span>
+          <span class="chip" style="background:#F5F3FF;color:#6D28D9;border-color:#DDD6FE;font-weight:700;">Episode 04</span>
           <span class="chip">Session Hijacking</span>
-          <span class="chip">Cookie Security</span>
+          <span class="chip">Cookie Theft</span>
+          <span class="chip">AiTM Phishing</span>
           <span class="chip">DBSC</span>
-          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 13 min read</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 7 min read</span>
         </div>
         <div class="art-act-right">
-          <button class="art-act-btn btn-like" title="Like this research"
-            aria-label="Like article">
-            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count" hidden>0</span>
+          <button class="art-act-btn btn-like" title="Like this research" aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
           </button>
-          <button class="art-act-btn btn-clap" title="Applaud this research"
-            aria-label="Clap for article">
-            <span>👏</span> Clap <span class="art-act-cnt clap-count" hidden>0</span>
+          <button class="art-act-btn btn-clap" title="Applaud this research" aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
           </button>
           <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
             <span>💬</span> Feedback
@@ -216,427 +224,606 @@
         <div class="stat-c">
           <div class="stat-n">10,000+</div>
           <div class="stat-l">Organisations Targeted</div>
-          <div class="stat-s">Microsoft's documented AiTM campaign beginning in 2021</div>
+          <div class="stat-s">Documented in Microsoft AiTM cookie theft &amp; BEC campaigns</div>
         </div>
         <div class="stat-c">
-          <div class="stat-n">MFA</div>
-          <div class="stat-l">Protects Authentication</div>
-          <div class="stat-s">A stolen valid session can be a separate post-authentication problem</div>
+          <div class="stat-n">Post-MFA</div>
+          <div class="stat-l">The Stolen Asset</div>
+          <div class="stat-s">Attackers siphon the live session after identity checks succeed</div>
         </div>
         <div class="stat-c">
           <div class="stat-n">DBSC</div>
-          <div class="stat-l">Device-Bound Sessions</div>
-          <div class="stat-s">Designed to make copied session credentials less reusable on another device</div>
+          <div class="stat-l">Hardware-Bound Defense</div>
+          <div class="stat-s">W3C &amp; Google standard binding session tokens to device TPMs</div>
         </div>
       </div>
 
       <div class="art-text">
 
-        <p>Imagine this.</p>
-        <p>You log into your email in the morning.</p>
-        <p>Your password works.</p>
-        <p>Your phone asks you to approve the login.</p>
-        <p>You approve it.</p>
-        <p>Everything looks normal.</p>
-        <p>A few hours later, you discover someone else has been inside the account.</p>
-        <p>So naturally, the first thing you think is:</p>
-        <div class="pq">“Someone stole my password.”</div>
-        <p>You change it immediately.</p>
-        <p>But then something doesn't make sense.</p>
-        <p>There wasn't another MFA request.</p>
-        <p>You didn't approve another login.</p>
-        <p>And in some incidents, simply changing the password may not immediately deal with every already-established session.</p>
-        <p>So how did someone get in?</p>
-        <p>The answer can be surprisingly simple:</p>
-        <p>They may not have needed to log in again.</p>
-        <p>They may have stolen a session that had already been authenticated.</p>
-        <p>And once you understand what a session actually is, a lot of modern account-takeover attacks start making much more sense.</p>
-        <h2 id="s21">First, What Is a Session?</h2>
-        <p>Think about what happens when you sign into Gmail, Microsoft 365, Facebook or another online service.</p>
-        <p>You enter your password.</p>
-        <p>Maybe you also use an authenticator app, security key, fingerprint or another MFA method.</p>
-        <p>The service checks everything and decides:</p>
-        <p>Yes, this is you.</p>
-        <p>But imagine if it asked you to repeat that entire process every time you opened another email or clicked another page.</p>
-        <p>Using the internet would become unbearable.</p>
-        <p>So after you successfully authenticate, the application creates a session.</p>
-        <p>OWASP describes a session identifier as the mechanism applications use to maintain an authenticated user's state while they continue interacting with the application. Cookies are one of the most common ways these session identifiers are exchanged between the browser and the website.</p>
-        <div class="takeaway-box">
-          <div class="takeaway-title">Authentication vs. session</div>
-          <ul class="styled-list" style="margin:10px 0 0 16px;">
-            <li><strong>Password</strong> → proves something you know</li>
-            <li><strong>MFA</strong> → provides additional proof</li>
-            <li><strong>Session</strong> → tells the service you've already been authenticated</li>
-          </ul>
+        <p>You’ve done everything you were told to do.</p>
+
+        <p>Your password is strong. You don’t reuse it. You turned on Multi-Factor Authentication (MFA). Maybe you even set up a modern passkey.</p>
+
+        <p>So when you see a login notification you don’t recognise, the first question is obvious:</p>
+
+        <div class="pq" style="border-left-color:#EF4444;color:#B91C1C;background:#FEF2F2;font-style:normal;font-weight:700;">
+          “How did someone get my password?”
         </div>
-        <p>Think of it like entering a festival.</p>
-        <p>At the entrance, someone checks your ticket and ID.</p>
-        <p>Once everything is verified, they put a wristband on you.</p>
-        <p>For the rest of the day, security doesn't check your ticket every time you move around.</p>
-        <p>They see the wristband.</p>
-        <p>You've already passed the entrance check.</p>
-        <p>A web session works on a similar principle.</p>
-        <p>And that's exactly why it can become valuable to an attacker.</p>
-        <h2 id="s43">What If Someone Copies the Wristband?</h2>
-        <p>Imagine someone could make a perfect copy of your festival wristband.</p>
-        <p>They wouldn't need your ticket.</p>
-        <p>They wouldn't need your ID.</p>
-        <p>They wouldn't need to go through the same checks you went through.</p>
-        <p>They already have something the system recognises as belonging to someone who passed those checks.</p>
-        <p>That's essentially the problem behind session hijacking.</p>
-        <p>OWASP warns that disclosure or capture of a valid session identifier can allow an attacker to impersonate the legitimate user within the application.</p>
-        <p>Its cookie-theft guidance makes the consequence particularly clear: even as authentication becomes stronger through technologies such as 2FA and passkeys, a stolen valid session cookie can still potentially be used to hijack the session during its lifetime.</p>
-        <p>That's the important distinction.</p>
-        <p>The attacker isn't necessarily breaking your password.</p>
-        <p>They may be stealing something that exists after the password has already done its job.</p>
-        <h2 id="s55">So How Does a Session Get Stolen?</h2>
-        <p>There isn't one single method.</p>
-        <p>Session theft can happen through malware, phishing, browser or application vulnerabilities, exposed session identifiers, compromised client-side code and other routes.</p>
-        <p>But three examples are particularly useful for understanding the problem.</p>
-        <h3>1. Infostealer malware</h3>
-        <p>You accidentally install malicious software.</p>
-        <p>Maybe it came through a fake download, cracked software, a malicious attachment or another infection route.</p>
-        <p>The malware runs on your device and looks for valuable browser information.</p>
-        <p>Session data can be one of those targets.</p>
-        <p>Google describes session theft as commonly occurring when malware running on a user's device extracts existing session cookies from the browser or waits for new sessions to be created and then exfiltrates those credentials to attacker-controlled infrastructure.</p>
-        <p>In that situation, the attacker doesn't necessarily need to convince you to type your password into a phishing page.</p>
-        <p>They're targeting what your browser already has.</p>
-        <h3>2. Adversary-in-the-Middle phishing</h3>
-        <p>This one is particularly interesting because everything can appear to work normally.</p>
-        <p>You receive an email:</p>
-        <p>A document has been shared with you.</p>
-        <p>Sign in with Microsoft 365 to view it.</p>
-        <p>You click.</p>
-        <p>A Microsoft login page appears.</p>
-        <p>You enter your email.</p>
-        <p>You enter your password.</p>
-        <p>Then Microsoft asks for MFA.</p>
-        <p>You approve it.</p>
-        <p>Nothing about that sequence immediately feels unusual.</p>
-        <p>Except you weren't communicating directly with Microsoft.</p>
-        <p>An attacker had placed phishing infrastructure between you and the legitimate service.</p>
-        <p>This technique is called Adversary-in-the-Middle, or AiTM, phishing.</p>
-        <p>Microsoft describes AiTM phishing as using a proxy server between the target and the website being impersonated. The proxy intercepts the authentication process and can extract information from the requests—including passwords and, critically, session cookies.</p>
-        <div class="callout-box" style="border-left-color:#7C3AED;background:#F5F3FF;">
-          <div style="font-weight:800;color:#6D28D9;margin-bottom:8px;">AiTM flow</div>
-          <p style="margin:0;color:#5B21B6;font-size:.92rem;line-height:1.7;"><strong>YOU</strong> → Password + MFA → <strong>PHISHING PROXY</strong> → forwards authentication → <strong>REAL SERVICE</strong> → session created → <strong>PHISHING PROXY</strong> captures session → back to you.</p>
+
+        <p><strong>But what if they didn’t?</strong></p>
+
+        <p>What if your password was never cracked, your MFA code was never guessed, and the attacker never actually logged in the way you normally would?</p>
+
+        <p>There’s another possibility that doesn’t get talked about nearly enough:</p>
+
+        <div class="pq" style="border-left-color:#7C3AED;color:#6D28D9;background:#F5F3FF;font-style:normal;font-weight:700;">
+          They stole your session.
         </div>
-        <p>You may genuinely have authenticated with the real service.</p>
-        <p>Your MFA may genuinely have been checked.</p>
-        <p>The problem is the attacker was sitting in the middle.</p>
-        <h3>3. Client-side compromise</h3>
-        <p>Session information can also be exposed because of vulnerabilities or malicious code running in the browser context.</p>
-        <p>This is where cookie configuration becomes important.</p>
-        <p>Websites have several controls available to reduce what can happen to cookies.</p>
-        <p>For example, OWASP recommends security attributes including:</p>
-        <p>HttpOnly — prevents ordinary browser scripts from directly reading the cookie through document.cookie.</p>
-        <p>Secure — tells the browser to send the cookie only over encrypted HTTPS connections.</p>
-        <p>SameSite — controls whether cookies are included with certain cross-site requests.</p>
-        <p>These are important protections, but each addresses particular attack scenarios rather than magically making a session impossible to compromise.</p>
-        <p>That's a recurring theme in browser security:</p>
-        <p>There usually isn't one setting that fixes everything.</p>
-        <h2 id="s99">“But I Have MFA”</h2>
-        <p>This is where session theft becomes confusing.</p>
-        <p>You've probably been told:</p>
-        <p>Turn on MFA.</p>
-        <p>That's still good advice.</p>
-        <p>Suppose someone learns your Microsoft password.</p>
-        <p>They try to log in.</p>
-        <p>Microsoft asks them to approve the login through your second authentication factor.</p>
-        <p>They can't.</p>
-        <p>Access denied.</p>
-        <p>MFA has done exactly what it was designed to do.</p>
-        <p>But now consider the AiTM example.</p>
-        <p>You entered the password.</p>
-        <p>You completed MFA.</p>
-        <p>The legitimate service authenticated you.</p>
-        <p>Then the attacker obtained the resulting session.</p>
-        <p>Microsoft explains that once an attacker obtains a valid session cookie through this type of AiTM phishing, it can potentially be injected into another browser to skip the normal authentication process—even where MFA was enabled for the original login.</p>
-        <p>That's not the same as saying:</p>
-        <div class="pq">“MFA doesn't work.”</div>
-        <p>It does.</p>
-        <div class="pq" style="border-left-color:#7C3AED;color:#5B21B6;background:#F5F3FF;font-style:normal;font-weight:700;">
-          MFA protects authentication. A session exists after authentication. Those are related security problems, but they're not identical.
+
+        <p>And to understand why that matters, we need to look at what happens <em>after</em> you successfully log in.</p>
+
+        <!-- S1 -->
+        <h2 id="s1">What Happens After You Log In?</h2>
+
+        <p>Let's say you're signing into your email.</p>
+
+        <p>You enter your password. Your phone asks you to approve the login. You approve it. Done.</p>
+
+        <p>But your email provider can't ask you to repeat that entire verification ceremony every time you click another message, refresh the inbox, or open an attachment. So once you've proved who you are, the service creates a <strong>session</strong>.</p>
+
+        <p>That session is basically how the website remembers:</p>
+
+        <blockquote style="background:#F8FAFC;border-left:4px solid var(--blue);padding:12px 18px;border-radius:4px;color:var(--ink-2);margin:18px 0;font-size:.95rem;font-weight:500;">
+          “This person has already authenticated. Let them continue.”
+        </blockquote>
+
+        <p>Usually, your browser carries information associated with that session, often through a <strong>session cookie</strong>.</p>
+
+        <p>The Open Web Application Security Project (<a href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP</a>) formally describes session management as the mechanism that allows a web application to associate multiple sequential requests with the same authenticated user.</p>
+
+        <p>So the actual login lifecycle is really closer to this:</p>
+
+        <!-- Flow bar -->
+        <div style="background:#F1F5F9;border:1px solid var(--border-2);border-radius:var(--r-sm);padding:16px 20px;margin:22px 0;font-family:var(--f-d);font-size:.9rem;font-weight:700;color:var(--ink);text-align:center;line-height:1.8;">
+          Password <span style="color:var(--blue);">→</span> MFA <span style="color:var(--blue);">→</span> Authentication Successful <span style="color:var(--blue);">→</span> Session Created <span style="color:var(--blue);">→</span> You Stay Logged In
         </div>
-        <h2 id="s123">This Has Happened at Scale</h2>
-        <p>This isn't just a theoretical attack from a cybersecurity textbook.</p>
-        <p>Microsoft investigated an AiTM phishing campaign that attempted to target more than 10,000 organisations beginning in September 2021.</p>
-        <p>Attackers spoofed Office 365 authentication pages and used AiTM infrastructure to intercept credentials and session cookies.</p>
-        <p>Microsoft subsequently observed attackers accessing affected mailboxes and conducting follow-on Business Email Compromise activity, including payment fraud.</p>
-        <div class="callout-box" style="border-left-color:#EF4444;background:#FEF2F2;">
-          <div style="font-weight:800;color:#B91C1C;margin-bottom:8px;">Observed attack chain</div>
-          <p style="margin:0 0 8px;color:#991B1B;font-size:.9rem;"><strong>Not simply:</strong> Password stolen → Account accessed</p>
-          <p style="margin:0;color:#991B1B;font-size:.9rem;line-height:1.6;"><strong>Closer to:</strong> PHISHING EMAIL → FAKE / PROXIED LOGIN → PASSWORD ENTERED → MFA COMPLETED → SESSION CAPTURED → SESSION REUSED → MAILBOX ACCESSED → FOLLOW-ON FRAUD</p>
+
+        <p>That final part is critical.</p>
+
+        <p>Because if an attacker can obtain a usable authenticated session, <strong>they may not need to start again at the password screen</strong>.</p>
+
+        <div class="callout-box" style="border-left-color:#7C3AED;background:#FAF5FF;">
+          <div style="font-weight:700;color:#5B21B6;margin-bottom:6px;">The Hotel Key Card Analogy:</div>
+          <p style="margin:0;color:#6D28D9;font-size:.92rem;line-height:1.6;">Think of checking into a hotel. Reception inspects your booking and government ID, then hands you an electronic key card. You don't show your passport every time you return to your room or step into the elevator. You swipe the card because the identity check has already taken place.<br><br>Your browser's session works on the exact same principle. And attackers know that.</p>
         </div>
-        <p>And this explains something victims can otherwise find difficult to understand:</p>
-        <div class="pq">“How did they get past my MFA?”</div>
-        <p>Sometimes they didn't independently pass it.</p>
-        <p>The legitimate user already completed the authentication process.</p>
-        <p>The attacker targeted what came afterwards.</p>
-        <h2 id="s137">Your Session Cookie Is Basically a Temporary Credential</h2>
-        <p>This is probably the easiest way to think about it.</p>
-        <p>People understand that a password is sensitive.</p>
-        <p>We don't normally post passwords online.</p>
-        <p>We don't email them to strangers.</p>
-        <p>We know they need protection.</p>
-        <p>But session identifiers deserve similar care.</p>
-        <p>OWASP's guidance essentially treats a stolen valid session cookie as highly consequential because it can allow session hijacking for as long as that session remains usable.</p>
-        <div class="callout-box" style="border-left-color:#D97706;background:#FFFBEB;">
-          <div style="font-weight:700;color:#92400E;margin-bottom:6px;">A session cookie can look meaningless:</div>
-          <code style="display:block;padding:10px 12px;background:white;border:1px solid #FDE68A;border-radius:6px;color:#78350F;">SESSION=eyJhbGciOi...</code>
-          <p style="margin:10px 0 0;color:#92400E;font-size:.9rem;">The value doesn't need to make sense to you. If the service recognises it as a valid authenticated session, that is what matters.</p>
+
+        <!-- SVG Diagram: Hotel Keycard vs Browser Session Token -->
+        <div class="sec-svg" aria-label="Hotel keycard compared to browser session cookie">
+          <svg viewBox="0 0 540 180" width="540" height="180" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Conceptual comparison: hotel check-in produces keycard; login authentication produces session cookie">
+            <!-- Left Panel: Hotel Analogy -->
+            <rect x="15" y="20" width="245" height="140" rx="10" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
+            <text x="137" y="44" text-anchor="middle" fill="#334155" font-family="DM Sans,system-ui" font-size="11" font-weight="800">PHYSICAL WORLD (HOTEL)</text>
+            <rect x="32" y="58" width="85" height="34" rx="6" fill="#EFF6FF" stroke="#93C5FD" />
+            <text x="74" y="74" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="8.5" font-weight="700">Passport / ID</text>
+            <text x="74" y="85" text-anchor="middle" fill="#3B82F6" font-family="DM Sans,system-ui" font-size="7">Checked once</text>
+            <text x="135" y="78" fill="#64748B" font-family="DM Sans,system-ui" font-size="12">→</text>
+            <rect x="150" y="58" width="95" height="34" rx="6" fill="#FEF3C7" stroke="#F59E0B" />
+            <text x="197" y="74" text-anchor="middle" fill="#92400E" font-family="DM Sans,system-ui" font-size="8.5" font-weight="700">Room Key Card</text>
+            <text x="197" y="85" text-anchor="middle" fill="#B45309" font-family="DM Sans,system-ui" font-size="7">Grants access</text>
+            <text x="137" y="125" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="8">Anyone holding the card opens the room door.</text>
+
+            <!-- Right Panel: Digital Browser Session -->
+            <rect x="280" y="20" width="245" height="140" rx="10" fill="#FAF5FF" stroke="#DDD6FE" stroke-width="1.5" />
+            <text x="402" y="44" text-anchor="middle" fill="#6D28D9" font-family="DM Sans,system-ui" font-size="11" font-weight="800">DIGITAL WEB (BROWSER)</text>
+            <rect x="295" y="58" width="95" height="34" rx="6" fill="#DCFCE7" stroke="#86EFAC" />
+            <text x="342" y="74" text-anchor="middle" fill="#15803D" font-family="DM Sans,system-ui" font-size="8.5" font-weight="700">Password + MFA</text>
+            <text x="342" y="85" text-anchor="middle" fill="#16A34A" font-family="DM Sans,system-ui" font-size="7">Verified once</text>
+            <text x="408" y="78" fill="#8B5CF6" font-family="DM Sans,system-ui" font-size="12">→</text>
+            <rect x="424" y="58" width="88" height="34" rx="6" fill="#EDE9FE" stroke="#8B5CF6" />
+            <text x="468" y="74" text-anchor="middle" fill="#6D28D9" font-family="DM Sans,system-ui" font-size="8.5" font-weight="700">Session Cookie</text>
+            <text x="468" y="85" text-anchor="middle" fill="#7C3AED" font-family="DM Sans,system-ui" font-size="7">Keeps you signed in</text>
+            <text x="402" y="125" text-anchor="middle" fill="#6B21A8" font-family="DM Sans,system-ui" font-size="8">Anyone holding the token accesses your account.</text>
+          </svg>
         </div>
-        <h2 id="s151">Why Cookie Settings Matter</h2>
-        <p>Now we can go slightly deeper.</p>
-        <p>A cookie isn't simply a value.</p>
-        <p>Websites can attach rules controlling when and how browsers use it.</p>
-        <h3>HttpOnly</h3>
-        <p>A cookie marked HttpOnly isn't accessible to ordinary JavaScript through the browser's document.cookie interface.</p>
-        <p>That makes certain forms of cookie theft through Cross-Site Scripting harder.</p>
-        <p>But HttpOnly isn't a universal session-theft defence.</p>
-        <p>OWASP notes that while it protects the confidentiality of the cookie against direct script access, the browser may still include the cookie when sending legitimate requests.</p>
-        <h3>Secure</h3>
-        <p>The Secure attribute tells the browser to send the cookie only over HTTPS.</p>
-        <p>That helps prevent the session identifier from being exposed over an unencrypted HTTP connection.</p>
-        <h3>SameSite</h3>
-        <p>SameSite controls whether the browser includes a cookie with cross-site requests.</p>
-        <p>This is particularly useful as part of the defence against Cross-Site Request Forgery.</p>
-        <p>OWASP recommends treating it as defence in depth, rather than as a replacement for proper CSRF protections.</p>
-        <div class="takeaway-box">
-          <div class="takeaway-title">Different cookie controls, different problems</div>
-          <ul class="styled-list" style="margin:10px 0 0 16px;">
-            <li><strong>HttpOnly</strong> → limits script access</li>
-            <li><strong>Secure</strong> → requires HTTPS transmission</li>
-            <li><strong>SameSite</strong> → restricts cross-site cookie behaviour</li>
-          </ul>
-          <p style="margin:10px 0 0;">Same objective: making the session harder to abuse.</p>
-        </div>
-        <h2 id="s172">Then There's Cookie Scope</h2>
-        <p>This is where things become more subtle.</p>
-        <p>Cookies can also have Domain and Path attributes.</p>
-        <p>Those determine where they're valid.</p>
-        <div class="callout-box">
-          <div style="font-weight:700;margin-bottom:6px;">Example cookie scope</div>
-          <code style="display:block;white-space:normal;line-height:1.6;">example.com &nbsp; login.example.com &nbsp; shop.example.com &nbsp; dev.example.com</code>
-        </div>
-        <p>If cookie scope is configured too broadly, a vulnerability in one part of the environment can potentially affect another.</p>
-        <p>OWASP specifically warns that overly permissive Domain settings can expose applications to cross-subdomain cookie attacks and recommends keeping cookie scope as narrow as practical.</p>
-        <p>Modern standards also provide cookie-name prefixes.</p>
-        <ul class="styled-list" style="margin:16px 0 24px 20px;">
-          <li><strong>__Secure-</strong> requires the cookie to use the Secure attribute.</li>
-          <li><strong>__Host-</strong> cookies must be Secure, cannot specify a Domain, and must use <code>Path=/</code>.</li>
+
+        <!-- S2 -->
+        <h2 id="s2">“But I Have MFA. How Can They Get In?”</h2>
+
+        <p>This is where things get interesting.</p>
+
+        <p>Multi-Factor Authentication is still one of the best defenses you can add to an account. If somebody steals your password from an old breach and attempts to log in from across the world, that second factor can stop them in their tracks.</p>
+
+        <p><strong>But MFA mainly protects the authentication process.</strong></p>
+
+        <p>A session exists <em>after</em> you've completed that process.</p>
+
+        <p>One technique that takes full advantage of this gap is called <strong>Adversary-in-the-Middle phishing</strong>, or <strong>AiTM</strong>.</p>
+
+        <p>Imagine you receive an email saying an urgent financial document has been shared with you.</p>
+
+        <ul class="styled-list" style="margin:16px 0 20px 20px;">
+          <li>You click the link.</li>
+          <li>A legitimate-looking Microsoft 365 or Google login page appears.</li>
+          <li>You enter your email address and password.</li>
+          <li>Your phone pops up with a genuine push notification or asks for an authenticator code.</li>
+          <li>You approve the notification.</li>
         </ul>
-        <p>OWASP recommends __Host- for session identifiers because these restrictions help prevent certain forms of subdomain forgery and scope confusion.</p>
-        <p>This is where ideas such as session fixation and cookie injection become relevant.</p>
-        <p>But from a normal user's perspective, there's a simpler takeaway:</p>
-        <p>Session security isn't only about hiding the cookie.</p>
-        <p>How the application creates, scopes, rotates, expires and validates that session matters too.</p>
-        <h2 id="s189">Why Changing Your Password May Not Be the Whole Recovery</h2>
-        <p>Now imagine you've fallen for an AiTM phishing page.</p>
-        <p>You realise what happened.</p>
-        <p>You immediately change your password.</p>
-        <p>Good.</p>
-        <p>You absolutely should.</p>
-        <p>But don't automatically assume the incident ends there.</p>
-        <p>If an attacker already obtained a valid session, the important question becomes whether that session has also been terminated.</p>
-        <p>OWASP recommends terminating sessions when authentication credentials change specifically to help stop ongoing abuse of already-stolen sessions.</p>
-        <div class="takeaway-box">
-          <div class="takeaway-title">After serious credential phishing, think beyond the password</div>
-          <p style="font-weight:800;margin:10px 0;">CHANGE PASSWORD + REVOKE ACTIVE SESSIONS + CHECK DEVICES + CHECK ACCOUNT CHANGES</p>
+
+        <p>At that point, most of us would assume everything must be legitimate. After all, Microsoft asked for MFA, your app pinged you, and you verified it.</p>
+
+        <p><strong>But an attacker can place phishing infrastructure between you and the real service.</strong></p>
+
+        <p>Your credentials are forwarded directly to the legitimate service. The real service asks for MFA. You complete it. Authentication succeeds. The attacker doesn't care about intercepting your temporary 6-digit code—they are interested in what happens immediately next: <strong>the authenticated session</strong>.</p>
+
+        <!-- SVG Diagram: AiTM Relay Chain -->
+        <div class="sec-svg" aria-label="Adversary in the Middle relay chain diagram">
+          <svg viewBox="0 0 540 210" width="540" height="210" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Flowchart: Victim forwards login to AiTM proxy, proxy relays to real service, session captured and replayed">
+            <!-- Stage 1: You -->
+            <rect x="15" y="55" width="85" height="90" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
+            <text x="57" y="80" text-anchor="middle" fill="#0F172A" font-family="DM Sans,system-ui" font-size="10" font-weight="700">1. You</text>
+            <text x="57" y="100" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="7.5">Enter password</text>
+            <text x="57" y="115" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="7.5">&amp; Approve MFA</text>
+
+            <!-- Arrow to Proxy -->
+            <path d="M100 100 L145 100" stroke="#EF4444" stroke-width="2" />
+            <polygon points="149,100 142,96 142,104" fill="#EF4444" />
+
+            <!-- Stage 2: AiTM Reverse Proxy -->
+            <rect x="150" y="40" width="115" height="120" rx="10" fill="#FEF2F2" stroke="#EF4444" stroke-width="2" />
+            <text x="207" y="66" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="9.5" font-weight="800">2. AiTM Proxy</text>
+            <text x="207" y="82" text-anchor="middle" fill="#7F1D1D" font-family="DM Sans,system-ui" font-size="7.5">Attacker infrastructure</text>
+            <rect x="160" y="94" width="95" height="22" rx="4" fill="#DC2626" />
+            <text x="207" y="108" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8" font-weight="700">Captures Cookie</text>
+            <text x="207" y="138" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="7.5">Relays live traffic</text>
+
+            <!-- Arrow to Real Service -->
+            <path d="M265 100 L310 100" stroke="#10B981" stroke-width="2" />
+            <polygon points="314,100 307,96 307,104" fill="#10B981" />
+
+            <!-- Stage 3: Real Login Service -->
+            <rect x="315" y="55" width="95" height="90" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5" />
+            <text x="362" y="80" text-anchor="middle" fill="#065F46" font-family="DM Sans,system-ui" font-size="10" font-weight="700">3. Real Service</text>
+            <text x="362" y="98" text-anchor="middle" fill="#15803D" font-family="DM Sans,system-ui" font-size="7.5">MFA verifies</text>
+            <text x="362" y="114" text-anchor="middle" fill="#166534" font-family="DM Sans,system-ui" font-size="7.5">Issues valid token</text>
+
+            <!-- Arrow from Proxy down to Attacker Machine -->
+            <path d="M207 160 L207 185 L445 185 L445 145" stroke="#7C3AED" stroke-width="2" stroke-dasharray="3 2" />
+            <polygon points="445,140 441,147 449,147" fill="#7C3AED" />
+
+            <!-- Stage 4: Attacker Reuse -->
+            <rect x="425" y="55" width="100" height="80" rx="8" fill="#F5F3FF" stroke="#DDD6FE" stroke-width="1.5" />
+            <text x="475" y="78" text-anchor="middle" fill="#5B21B6" font-family="DM Sans,system-ui" font-size="9" font-weight="800">4. Attacker</text>
+            <text x="475" y="95" text-anchor="middle" fill="#6D28D9" font-family="DM Sans,system-ui" font-size="7.5">Replays cookie</text>
+            <text x="475" y="112" text-anchor="middle" fill="#7C3AED" font-family="DM Sans,system-ui" font-size="7.5">Bypasses password</text>
+          </svg>
+        </div>
+
+        <p>A simplified version looks like this:</p>
+
+        <div style="background:#F8FAFC;border:1px solid var(--border-2);border-radius:var(--r-sm);padding:14px 18px;margin:20px 0;font-size:.88rem;color:var(--ink-2);line-height:1.7;">
+          <strong>You</strong> ↓ Phishing / AiTM proxy ↓ <strong>Real login service</strong> ↓ MFA completed ↓ <strong>Session created</strong> ↓ Session captured ↓ <strong>Attacker attempts to reuse it</strong>
+        </div>
+
+        <p>Microsoft documented this exact operational pattern in a campaign that attempted to target <strong>more than 10,000 organisations</strong>. The attackers intercepted credentials and session cookies, allowing them to bypass MFA and subsequently use compromised mailboxes for Business Email Compromise (BEC) financial fraud (<a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/" target="_blank" rel="noopener noreferrer">Microsoft's investigation into AiTM phishing and cookie theft</a>).</p>
+
+        <p>The important point isn't that MFA somehow became useless.</p>
+
+        <p>It's almost the opposite:</p>
+
+        <div class="pq" style="border-left-color:#1D4ED8;color:#1D4ED8;background:#EFF6FF;font-style:normal;font-weight:700;">
+          The victim successfully completed MFA. The attacker targeted the session created afterwards.
+        </div>
+
+        <!-- S3 -->
+        <h2 id="s3">Phishing Isn't the Only Way: Infostealers</h2>
+
+        <p>Now imagine you never clicked a phishing link.</p>
+
+        <p>Your password was never entered anywhere suspicious. You still aren't necessarily completely safe from session theft.</p>
+
+        <p>Another common route is <strong>infostealer malware</strong>.</p>
+
+        <p>An infostealer (such as Lumma, RedLine, or Vidar) is lightweight malware designed to harvest valuable information directly from an infected computer. Browsers are extraordinarily attractive targets because they hold open doors to virtually our entire digital existence:</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));gap:12px;margin:20px 0;">
+          <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-weight:700;font-size:.88rem;color:var(--ink);margin-bottom:4px;">📧 Email Inboxes</div>
+            <div style="font-size:.78rem;color:var(--ink-4);">Work &amp; personal messages</div>
+          </div>
+          <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-weight:700;font-size:.88rem;color:var(--ink);margin-bottom:4px;">🏢 Work Systems</div>
+            <div style="font-size:.78rem;color:var(--ink-4);">Slack, Teams, internal tools</div>
+          </div>
+          <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-weight:700;font-size:.88rem;color:var(--ink);margin-bottom:4px;">☁️ Cloud Storage</div>
+            <div style="font-size:.78rem;color:var(--ink-4);">Google Drive, OneDrive, files</div>
+          </div>
+          <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-weight:700;font-size:.88rem;color:var(--ink);margin-bottom:4px;">💳 Financial Portals</div>
+            <div style="font-size:.78rem;color:var(--ink-4);">E-commerce, saved cards, billing</div>
+          </div>
+        </div>
+
+        <p>And many of those accounts are <strong>already logged in</strong>.</p>
+
+        <p>Instead of asking: <em>“How can I convince this person to give me their password?”</em>, an attacker can simply extract information that is already stored or maintained on the compromised machine.</p>
+
+        <p>Google has specifically cited malware stealing authentication cookies from local browser storage as one of the primary motivations behind its work on stronger, device-bound sessions (<a href="https://blog.google/security/protecting-cookies-with-device-bound-session-credentials/" target="_blank" rel="noopener noreferrer">Google Security on cookie theft and Device Bound Session Credentials</a>).</p>
+
+        <p>This is a fundamental shift in how we think about account security:</p>
+
+        <div class="pq" style="border-left-color:var(--ink);color:var(--ink);background:var(--bg-2);font-style:normal;font-weight:700;">
+          Your password isn't the only valuable thing sitting on your computer. Your already-authenticated browser can be valuable too.
+        </div>
+
+        <!-- S4 -->
+        <h2 id="s4">And Then There Are Browser Extensions</h2>
+
+        <p>This is probably something most of us don't think about enough.</p>
+
+        <p>How many browser extensions do you have installed right now?</p>
+
+        <p>Maybe an ad blocker. A screenshot tool. A grammar checker. A VPN. A shopping coupon finder. An AI assistant. And perhaps a productivity timer you installed six months ago and completely forgot about.</p>
+
+        <p>Extensions aren't automatically dangerous. Most are installed because they are genuinely useful.</p>
+
+        <p><strong>But they are still software running inside one of the most sensitive applications on your computer.</strong></p>
+
+        <p>Some extensions need permissions such as <code>activeTab</code>, <code>scripting</code>, or <code>storage</code> simply to provide their normal features. That creates an interesting security dilemma: a permission isn't automatically suspicious just because it's powerful.</p>
+
+        <p>The better question is:</p>
+
+        <div class="pq" style="border-left-color:var(--blue);color:var(--blue);background:var(--blue-bg);font-style:normal;font-weight:700;">
+          “Does this extension actually need that level of access for what it is supposed to do?”
+        </div>
+
+        <p>A screenshot extension interacting with the web page you're viewing makes sense. A basic calculator wanting broad access to read and change data on all websites is much harder to justify.</p>
+
+        <p>And there's another problem: <strong>a malicious extension doesn't necessarily look broken.</strong></p>
+
+        <p>A timer can still count down from 25 minutes. A to-do list can still save your tasks. The visible feature can work perfectly while something very different happens behind the scenes.</p>
+
+        <p>That's why <em>“it works”</em> and <em>“I downloaded it from an official extension store”</em> shouldn't be our only tests of trust.</p>
+
+        <!-- S5 -->
+        <h2 id="s5">Why Are Cookies So Important?</h2>
+
+        <p>At this point, it's worth understanding what a browser cookie actually does.</p>
+
+        <p>Cookies aren't malware. They're a normal, essential part of the modern web.</p>
+
+        <p>When you log into an application, the server generates a unique session token and tells your browser to store it as a cookie. Every time you navigate to another page on that domain, your browser sends that cookie back in the HTTP headers, allowing the application to recognise your session.</p>
+
+        <p>Developers can—and should—add defensive flags to sensitive cookies:</p>
+
+        <ul class="styled-list" style="margin:16px 0 20px 20px;">
+          <li><strong><code>HttpOnly</code>:</strong> Prevents client-side JavaScript (like scripts injected via XSS) from reading the cookie directly.</li>
+          <li><strong><code>Secure</code>:</strong> Restricts transmission of the cookie strictly to encrypted HTTPS connections.</li>
+          <li><strong><code>SameSite</code>:</strong> Controls whether the cookie is sent along with cross-site requests, mitigating Cross-Site Request Forgery (CSRF).</li>
+        </ul>
+
+        <p>Those controls matter immensely. But none of them means: <em>“This session can never be stolen.”</em></p>
+
+        <p>Different controls protect against different threat vectors. For example, <code>HttpOnly</code> stops a malicious script in the browser tab from reading <code>document.cookie</code>, but it does nothing to stop malware running on the operating system from reading the SQLite database file where Chrome or Edge stores cookies.</p>
+
+        <p>That's why OWASP recommends multiple complementary layers of session protection, including secure cookie flags, appropriate expiration intervals, automatic session rotation, and re-authentication for sensitive actions (<a href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP Session Management Cheat Sheet</a>).</p>
+
+        <p>There are even more subtle architectural problems involving how cookies are scoped to domains and paths.</p>
+
+        <!-- S6 -->
+        <h2 id="s6">What About Cookie Tossing?</h2>
+
+        <p>This was one of the more interesting technical concepts in the research behind this episode.</p>
+
+        <p>Cookies don't just have names and values; they also have scoping rules that determine where they are valid.</p>
+
+        <p>Imagine a company operates multiple subdomains:</p>
+
+        <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:var(--r-sm);padding:14px 18px;margin:16px 0;font-family:monospace;font-size:.85rem;color:var(--ink-2);line-height:1.6;">
+          example.com<br>
+          login.example.com<br>
+          shop.example.com<br>
+          support.example.com
+        </div>
+
+        <p>Depending on how cookies and domain scopes are configured, applications need to be very careful about which cookie they are trusting and where it originated. Related techniques such as <strong>cookie tossing</strong> or <strong>cookie shadowing</strong> can exploit weaknesses when a less secure subdomain sets a cookie that overwrites or interferes with a cookie on the primary authenticated domain.</p>
+
+        <p>There is also <strong>session fixation</strong>. Instead of stealing your session <em>after</em> you log in, an attacker tries to establish or influence a session identifier <em>before</em> authentication. If the application continues using that exact same session identifier after you successfully log in, the attacker may already know the token associated with your now-authenticated session.</p>
+
+        <p>That is why secure applications must always <strong>rotate session identifiers</strong> whenever a user's privilege level changes (such as completing login).</p>
+
+        <p>This isn't something an ordinary user is expected to fix—it is a developer and platform architecture problem. But it shows just how much security happens quietly after you press <em>Sign in</em>.</p>
+
+        <!-- S7 -->
+        <h2 id="s7">So, Is Changing Your Password Enough?</h2>
+
+        <p>Let's say you realise you've fallen for a phishing page.</p>
+
+        <p>You immediately change your password. Good. That's exactly something you should do.</p>
+
+        <p><strong>But don't stop there.</strong></p>
+
+        <p>If the incident involved an authenticated session, you also want to deal with that session. Depending on the service, changing a password does not always terminate active session tokens held on other machines.</p>
+
+        <p>Go directly to the account settings and check:</p>
+
+        <ul class="styled-list" style="margin:16px 0 20px 20px;">
+          <li><strong>Active sessions &amp; connected devices:</strong> Look for <em>“Sign out of all sessions”</em> or <em>“Sign out everywhere”</em>.</li>
+          <li><strong>Recent logins:</strong> Review login history and revoke access to any unknown browser or device.</li>
+          <li><strong>Registered MFA methods:</strong> Verify that an attacker didn't register an extra authenticator or security key.</li>
+          <li><strong>Inbox rules &amp; forwarding addresses:</strong> For email accounts, check that incoming mail isn't being forwarded to an external inbox.</li>
+        </ul>
+
+        <p>Why check inbox rules? Because an attacker doesn't always want to announce that they've compromised your account. <strong>Quiet access can be far more valuable.</strong></p>
+
+        <p>They may watch financial correspondence, monitor contract negotiations, wait for payment instructions, or create hidden rules that divert alerts. Microsoft has documented compromised accounts being used for follow-on phishing and Business Email Compromise, emphasizing that session revocation is an indispensable part of incident response (<a href="https://www.microsoft.com/en-us/security/blog/2023/06/08/detecting-and-mitigating-a-multi-stage-aitm-phishing-and-bec-campaign/" target="_blank" rel="noopener noreferrer">Microsoft's multi-stage AiTM phishing investigation</a>).</p>
+
+        <div class="callout-box" style="border-left-color:#EF4444;background:#FEF2F2;">
+          <div style="font-weight:700;color:#991B1B;margin-bottom:6px;">The Post-Phishing Response Formula:</div>
+          <p style="margin:0;color:#B91C1C;font-size:.92rem;line-height:1.6;">After any serious phishing encounter, think beyond: <em>“I changed my password.”</em><br>Think: <strong>Password changed + sessions revoked + devices audited + MFA verified + connected apps pruned + email rules checked.</strong><br><br>And if it's a work account, notify your IT or security team immediately.</p>
+        </div>
+
+        <!-- S8 -->
+        <h2 id="s8">Can We Stop Stolen Sessions From Working? (DBSC)</h2>
+
+        <p>This is where the industry is starting to make real progress.</p>
+
+        <p>The fundamental flaw of traditional session cookies is that they are <strong>bearer tokens</strong>: whoever holds the token can present it to the server and be accepted as the legitimate user. If an attacker copies the cookie string to another computer, the server often can't tell the difference.</p>
+
+        <p>So researchers and browser vendors have been developing ways to tie sessions cryptographically to the physical device where they were created.</p>
+
+        <p>The leading approach is called <strong>Device Bound Session Credentials</strong>, or <strong>DBSC</strong>.</p>
+
+        <p>The name sounds intimidating, but the concept is straightforward:</p>
+
+        <p>Instead of the server only asking: <em>“Do you possess the correct session cookie?”</em>, it also requires <strong>cryptographic proof generated by a private key locked inside the device's secure hardware (such as a TPM)</strong>.</p>
+
+        <!-- Comparison Box -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0;">
+          <div style="background:#FEF2F2;border:1.5px solid #FECACA;border-radius:var(--r-sm);padding:18px;">
+            <div style="font-weight:800;color:#991B1B;font-size:.92rem;margin-bottom:10px;">❌ Today's Bearer Tokens</div>
+            <div style="font-size:.84rem;color:#7F1D1D;line-height:1.6;">
+              1. Steal session cookie<br>
+              2. Copy to attacker machine<br>
+              3. Inject into browser<br>
+              4. <strong>Attacker gains account access</strong>
+            </div>
+          </div>
+          <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:var(--r-sm);padding:18px;">
+            <div style="font-weight:800;color:#166534;font-size:.92rem;margin-bottom:10px;">✅ Device-Bound (DBSC)</div>
+            <div style="font-size:.84rem;color:#14532D;line-height:1.6;">
+              1. Steal session cookie<br>
+              2. Copy to attacker machine<br>
+              3. Server asks: <em>“Where is device proof?”</em><br>
+              4. <strong>Replay fails; access denied</strong>
+            </div>
+          </div>
+        </div>
+
+        <p>Even if malware manages to dump the cookie from your disk, that cookie is useless on the attacker's machine without the hardware-protected key. The World Wide Web Consortium (<a href="https://www.w3.org/TR/dbsc/" target="_blank" rel="noopener noreferrer">W3C</a>) has been developing DBSC as an open web standard specifically designed to neutralize cookie theft hijacking.</p>
+
+        <p>It won't solve every single account takeover vector. Nothing does.</p>
+
+        <p>But it represents an indispensable evolution in defense:</p>
+
+        <div class="pq" style="border-left-color:var(--blue);color:var(--blue);background:var(--blue-bg);font-style:normal;font-weight:700;">
+          For years, we concentrated on making authentication harder to steal. Now we're also making the result of authentication harder to steal and reuse.
+        </div>
+
+        <!-- S9 -->
+        <h2 id="s9">What Should You Actually Do?</h2>
+
+        <p>You don't need to start inspecting raw HTTP headers or decrypting SQLite databases. The practical defensive habits are much simpler:</p>
+
+        <ul class="styled-list" style="margin:16px 0 24px 20px;">
+          <li><strong>Keep using MFA:</strong> Prioritize phishing-resistant options where available, such as <strong>passkeys or FIDO2 hardware keys</strong>. Because passkeys bind to the genuine domain in your address bar, they defeat AiTM reverse proxies automatically.</li>
+          <li><strong>Keep your browser and operating system updated:</strong> Patches fix local privilege vulnerabilities that infostealers exploit to read protected data.</li>
+          <li><strong>Be extremely careful with downloaded software:</strong> Cracked software, cheat utilities, and random executables are the #1 delivery mechanism for infostealer malware.</li>
+          <li><strong>Take five minutes occasionally to audit browser extensions:</strong>
+            <ul style="margin:8px 0 0 16px;list-style:circle;">
+              <li>Do you actually use all of them?</li>
+              <li>Does a simple utility request permissions that seem excessive for what it does?</li>
+              <li>Do you recognise and trust the publisher?</li>
+            </ul>
+            If you haven't used an extension for months, removing it is far safer than leaving unnecessary code running inside your browser.
+          </li>
+          <li><strong>When an account is compromised, look beyond the password:</strong> Check active sessions, devices, and recent security logs.</li>
+        </ul>
+
+        <!-- S10: INTERACTIVE COMPONENT -->
+        <h2 id="s10">Interactive Session &amp; Extension Security Inspector</h2>
+
+        <p>Diagnose how sessions get compromised and walk through the exact steps to audit and evict unauthorized access across your accounts:</p>
+
+        <!-- Interactive Widget Component -->
+        <div id="sessionInspectorTool" style="background:#F8FAFC;border:1.5px solid var(--border-2);border-radius:var(--r);padding:24px;margin:28px 0;box-shadow:var(--sh-sm);">
+          <div style="font-family:var(--f-d);font-size:1.05rem;font-weight:800;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:8px;">
+            <span>🛡️</span> Session Threat &amp; Eviction Playbook
+          </div>
+          <p style="font-size:.85rem;color:var(--ink-4);margin-bottom:16px;">Select a session threat vector to understand the mechanism and execute the eviction checklist:</p>
+
+          <!-- Tab Selector Buttons -->
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;" id="threatTabs" role="tablist">
+            <button class="threat-btn active" data-scenario="aitm" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--blue);background:var(--blue);color:white;cursor:pointer;">1. AiTM Phishing Proxy</button>
+            <button class="threat-btn" data-scenario="infostealer" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">2. Infostealer Malware</button>
+            <button class="threat-btn" data-scenario="extension" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">3. Rogue Browser Extension</button>
+            <button class="threat-btn" data-scenario="session-kill" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">4. Evict Sessions (How-To)</button>
+          </div>
+
+          <!-- Dynamic Output Card -->
+          <div id="threatOutput" style="background:white;border:1px solid var(--border);border-radius:var(--r-sm);padding:20px;">
+            <!-- Rendered dynamically by script below -->
+          </div>
+        </div>
+
+        <!-- S11 -->
+        <h2 id="s11">The Bigger Picture</h2>
+
+        <p>We used to think about account security almost entirely like this:</p>
+
+        <div style="background:#F1F5F9;border:1px solid var(--border);border-radius:6px;padding:12px 18px;margin:16px 0;font-family:monospace;font-size:.92rem;color:var(--ink);text-align:center;">
+          Username + Password = Access.
+        </div>
+
+        <p>Then we added MFA. Now passkeys are improving authentication even further.</p>
+
+        <p>But the complete security lifecycle is closer to:</p>
+
+        <div style="background:#EFF6FF;border:1px solid #BFDBFE;border-radius:6px;padding:14px 18px;margin:18px 0;font-family:var(--f-d);font-size:.9rem;font-weight:700;color:#1D4ED8;text-align:center;line-height:1.8;">
+          Password → MFA or Passkey → Authentication → Session → Browser → Account
+        </div>
+
+        <p>Attackers don't have to break down every single door. <strong>They only need to find one layer that works.</strong></p>
+
+        <ul class="styled-list" style="margin:16px 0 20px 20px;">
+          <li>If passwords become harder to steal, phishing evolves.</li>
+          <li>If MFA blocks ordinary stolen-password logins, attackers target authenticated sessions.</li>
+          <li>If session replay becomes harder through device binding, attackers will look for weaknesses elsewhere.</li>
+        </ul>
+
+        <p>That is the constant cycle of cybersecurity.</p>
+
+        <p>So if someone gains unauthorized access to an account protected by MFA, don't immediately assume they somehow cracked the encryption or guessed your code. Maybe they didn't. Maybe your password wasn't hacked either.</p>
+
+        <p>Maybe you authenticated successfully. Your MFA worked. The website trusted you. And then the attacker targeted the proof that all of those checks had already happened:</p>
+
+        <div class="pq" style="border-left-color:#7C3AED;color:#6D28D9;background:#F5F3FF;font-style:normal;font-weight:700;">
+          Your session.
+        </div>
+
+        <p>That's why protecting an account doesn't end when you press <em>Sign in</em>. In modern web security, that's only half the story.</p>
+
+        <!-- Takeaway Box -->
+        <div class="takeaway-box" style="margin:28px 0;">
+          <div class="takeaway-title">The 4 Golden Rules of Session Security</div>
           <ul class="styled-list" style="margin:10px 0 0 16px;">
-            <li>Look at recent sign-ins.</li>
-            <li>Look at devices.</li>
-            <li>Use <strong>Sign out everywhere</strong> or the equivalent if available.</li>
-            <li>Review connected applications.</li>
-            <li>For email, check forwarding settings and inbox rules.</li>
-            <li>For work accounts, report the incident to IT or your security team.</li>
+            <li><strong>MFA protects the front door; session management protects the hallway.</strong> Understand that authenticated cookies exist after login.</li>
+            <li><strong>After phishing, revoke sessions immediately.</strong> Changing passwords alone won't always disconnect an attacker holding an active cookie.</li>
+            <li><strong>Audit your browser extensions.</strong> Treat extensions as running code that can inspect active tabs and local storage.</li>
+            <li><strong>Embrace phishing-resistant auth (Passkeys / FIDO2).</strong> Hardware-bound authentication cryptographically neutralizes reverse-proxy interception.</li>
           </ul>
         </div>
-        <h2 id="s208">There's Another Problem: How Long Does a Session Live?</h2>
-        <p>Sessions shouldn't last forever.</p>
-        <p>The longer a stolen session remains valid, the longer an attacker potentially has to use it.</p>
-        <p>OWASP therefore recommends both idle and absolute session timeouts, with timeout lengths chosen according to the sensitivity of the application.</p>
-        <p>Its guidance notes that insufficient session expiration increases exposure to session hijacking because an attacker can continue reusing a valid identifier while it remains active.</p>
-        <p>This creates a constant security-versus-usability problem.</p>
-        <p>Users hate being logged out every five minutes.</p>
-        <p>Attackers love sessions that remain valid for months.</p>
-        <p>Security teams have to find the balance.</p>
-        <h2 id="s217">Can We Detect a Stolen Session?</h2>
-        <p>Sometimes.</p>
-        <p>Imagine you establish a session in London.</p>
-        <div class="callout-box">
-          <div style="font-weight:700;margin-bottom:6px;">A normal session might look like:</div>
-          <p style="margin:0;font-size:.9rem;"><strong>Windows · Chrome · UK IP address · English language · Known device</strong></p>
-        </div>
-        <p>Suddenly the same session appears with very different characteristics.</p>
-        <p>That doesn't automatically prove an attack.</p>
-        <p>People use VPNs.</p>
-        <p>They travel.</p>
-        <p>Networks change.</p>
-        <p>Browsers update.</p>
-        <p>But large changes can be useful risk signals.</p>
-        <p>OWASP recommends considering characteristics such as IP address, user agent and other client properties when looking for evidence that a session may have been hijacked. If significant anomalies appear, the service can require reauthentication or terminate the suspicious session.</p>
-        <p>That's why modern identity security increasingly looks beyond:</p>
-        <p>Is this password correct?</p>
-        <p>It also asks:</p>
-        <p>Does this session still behave like the person who created it?</p>
-        <h2 id="s234">What About Passkeys?</h2>
-        <p>Passkeys are an important improvement.</p>
-        <p>They provide stronger phishing resistance than conventional passwords because users aren't typing a reusable secret into a website.</p>
-        <p>Google describes passkeys as phishing-resistant credentials tied to a user's device and protected using mechanisms such as a PIN or biometrics.</p>
-        <p>But there's an important distinction.</p>
-        <p>Passkeys strengthen the authentication process.</p>
-        <p>Session theft concerns what happens after successful authentication.</p>
-        <p>OWASP explicitly notes that even with stronger authentication such as 2FA and passkeys, a stolen valid session cookie can still potentially allow session hijacking while the session remains valid.</p>
-        <p>Which leads to a newer idea.</p>
-        <h2 id="s243">What If the Session Couldn't Simply Be Copied?</h2>
-        <p>This is where Device Bound Session Credentials, or DBSC, become interesting.</p>
-        <div class="callout-box" style="border-left-color:#2563EB;background:#EFF6FF;">
-          <div style="font-weight:800;color:#1D4ED8;margin-bottom:8px;">The idea behind device-bound sessions</div>
-          <p style="margin:0 0 8px;color:#1E40AF;"><strong>Traditional:</strong> Do you have the session?</p>
-          <p style="margin:0;color:#1E40AF;"><strong>Device-bound:</strong> Do you have the session + can you prove you are on the device that established it?</p>
-        </div>
-        <p>The private key isn't supposed to simply travel with the copied session credential.</p>
-        <p>So stealing session material and replaying it somewhere else becomes substantially harder.</p>
-        <p>Google has been deploying DBSC for Google Workspace, describing it as a way to strengthen protection after sign-in by binding a session more closely to the device where authentication occurred.</p>
-        <p>And the technology has continued moving beyond the research stage. In April 2026, Google said DBSC was entering public availability for Windows users in Chrome 146, with macOS expansion planned.</p>
-        <p>This is significant because it changes the basic assumption behind session security.</p>
-        <p>Instead of trusting a copied token simply because the token is valid, the service can demand additional cryptographic proof tied to the original device.</p>
-        <h2 id="s260">Does DBSC Solve Session Theft?</h2>
-        <p>Not completely.</p>
-        <p>And it's important not to oversell it.</p>
-        <p>The W3C specification itself describes DBSC as an evolving web standard, and deployment depends on browser, operating-system and service support.</p>
-        <p>Attackers also don't stop adapting because one technique becomes harder.</p>
-        <div class="takeaway-box">
-          <div class="takeaway-title">Session security remains layered</div>
-          <ul class="styled-list" style="margin:10px 0 0 16px;">
-            <li>That's why session security remains layered</li>
-            <li>Strong authentication</li>
-            <li>Phishing-resistant MFA</li>
-            <li>Passkeys</li>
-            <li>Secure cookie configuration</li>
-            <li>Shorter session lifetimes where appropriate</li>
-            <li>Risk-based reauthentication</li>
-            <li>Device intelligence</li>
-            <li>Malware protection</li>
-            <li>Session revocation</li>
-            <li>And increasingly, device-bound credentials</li>
-          </ul>
-        </div>
-        <p>No single one replaces all the others.</p>
-        <h2 id="s277">So What Should You Actually Do?</h2>
-        <p>For most people, you don't need to become an expert in cookies.</p>
-        <div class="takeaway-box">
-          <div class="takeaway-title">Practical steps for users</div>
-          <ul class="styled-list" style="margin:10px 0 0 16px;">
-            <li>Use MFA</li>
-            <li>Prefer phishing-resistant authentication such as passkeys or hardware security keys where available</li>
-            <li>Keep your browser and operating system updated</li>
-            <li>Be selective about browser extensions</li>
-            <li>Avoid installing unknown software, especially cracked or unofficial downloads</li>
-            <li>If you think you've entered credentials into a phishing page, change the password through the legitimate service</li>
-            <li>But don't stop there</li>
-            <li>Check active sessions</li>
-            <li>Check devices</li>
-            <li>Check connected applications</li>
-            <li>Sign out of sessions you don't recognise</li>
-            <li>And if you suspect malware, treat the device itself as part of the incident</li>
-          </ul>
-        </div>
-        <p>Because sometimes changing your password solves only half the problem.</p>
-        <h2 id="s293">The Login Screen Isn't the End of Security</h2>
-        <div class="callout-box" style="border-left-color:#1D4ED8;background:#EFF6FF;">
-          <div style="font-weight:800;color:#1E40AF;margin-bottom:8px;">A more realistic account-security chain</div>
-          <p style="margin:0 0 8px;color:#1D4ED8;"><strong>USERNAME + PASSWORD + MFA = SAFE</strong> is useful, but incomplete.</p>
-          <p style="margin:0;color:#1D4ED8;line-height:1.7;"><strong>PASSWORD → MFA / PASSKEY → AUTHENTICATION → SESSION CREATED → SESSION MAINTAINED → ACCOUNT ACCESS</strong></p>
-        </div>
-        <p>Every stage matters.</p>
-        <p>A strong password protects one stage.</p>
-        <p>MFA protects another.</p>
-        <p>A passkey can make phishing the authentication process significantly harder.</p>
-        <p>Secure session management protects what happens after you've successfully logged in.</p>
-        <p>And that's the part we don't talk about nearly enough.</p>
-        <p>Because sometimes an attacker doesn't need to know your password.</p>
-        <p>They don't need to guess your MFA code.</p>
-        <p>They don't even need to perform another login.</p>
-        <p>They just need something that tells the website you've already done all of that.</p>
-        <p>So the next time you hear about an account being compromised even though MFA was enabled, don't immediately assume the MFA was cracked.</p>
-        <div class="pq" style="border-left-color:#7C3AED;color:#5B21B6;background:#F5F3FF;font-style:normal;font-weight:800;">
-          Was the password actually stolen — or was the session stolen instead?
-        </div>
-        <p>That difference matters.</p>
+
+        <!-- S12: SOURCES -->
         <h2 id="sources">Sources &amp; Further Reading</h2>
-        <p>The article is grounded in the following primary security guidance and vendor research:</p>
-        <div style="display:grid;gap:12px;margin:18px 0 32px;">
-          <div class="callout-box" style="margin:0;">
-            <div style="font-weight:800;margin-bottom:5px;">Microsoft Security — From Cookie Theft to BEC: Attackers Use AiTM Phishing Sites as Entry Point to Further Financial Fraud</div>
-            <p style="margin:0 0 7px;font-size:.9rem;">Microsoft's investigation of an AiTM campaign that attempted to target more than 10,000 organisations and explains how passwords and authenticated session cookies can be intercepted.</p>
-            <a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--blue);">Read source →</a>
-          </div>
-          <div class="callout-box" style="margin:0;">
-            <div style="font-weight:800;margin-bottom:5px;">OWASP — Session Management Cheat Sheet</div>
-            <p style="margin:0 0 7px;font-size:.9rem;">Technical reference covering session identifiers, session hijacking, cookie attributes, cookie scope, expiration, reauthentication and session-management controls.</p>
-            <a href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--blue);">Read source →</a>
-          </div>
-          <div class="callout-box" style="margin:0;">
-            <div style="font-weight:800;margin-bottom:5px;">OWASP — Cookie Theft Mitigation Cheat Sheet</div>
-            <p style="margin:0 0 7px;font-size:.9rem;">Explains why stronger login mechanisms alone don't eliminate cookie theft and discusses techniques for detecting potentially hijacked sessions.</p>
-            <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cookie_Theft_Mitigation_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--blue);">Read source →</a>
-          </div>
-          <div class="callout-box" style="margin:0;">
-            <div style="font-weight:800;margin-bottom:5px;">W3C — Device Bound Session Credentials</div>
-            <p style="margin:0 0 7px;font-size:.9rem;">The web-standard specification describing DBSC and its use of securely stored cryptographic keys to reduce cookie-theft-based session hijacking.</p>
-            <a href="https://www.w3.org/TR/dbsc/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--blue);">Read source →</a>
-          </div>
-          <div class="callout-box" style="margin:0;">
-            <div style="font-weight:800;margin-bottom:5px;">Google Workspace — Defending Against Account Takeovers with Passkeys and DBSC</div>
-            <p style="margin:0 0 7px;font-size:.9rem;">Explains Google's use of passkeys and Device Bound Session Credentials to strengthen authentication and post-authentication security.</p>
-            <a href="https://workspace.google.com/blog/identity-and-security/defending-against-account-takeovers-top-threats-passkeys-and-dbsc" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--blue);">Read source →</a>
-          </div>
-          <div class="callout-box" style="margin:0;">
-            <div style="font-weight:800;margin-bottom:5px;">Google Security — Protecting Cookies with Device Bound Session Credentials</div>
-            <p style="margin:0 0 7px;font-size:.9rem;">Google's April 2026 update on DBSC deployment and session-cookie theft, including the role of infostealer malware in stealing browser sessions.</p>
-            <a href="https://blog.google/security/protecting-cookies-with-device-bound-session-credentials/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:var(--blue);">Read source →</a>
-          </div>
-        </div>
+
+        <p>The threat analysis, technical mechanics, and defense architectures cited in this episode are grounded in documentation from Microsoft Threat Intelligence, Google Security, the W3C standards group, and OWASP:</p>
+
+        <ul class="styled-list" style="margin:16px 0 32px 20px;font-size:.92rem;">
+          <li><a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/" target="_blank" rel="noopener noreferrer">Microsoft Security — From Cookie Theft to BEC: Attackers Use AiTM Phishing Sites as Entry Point to Further Financial Fraud</a></li>
+          <li><a href="https://www.microsoft.com/en-us/security/blog/2023/06/08/detecting-and-mitigating-a-multi-stage-aitm-phishing-and-bec-campaign/" target="_blank" rel="noopener noreferrer">Microsoft Security — Detecting and Mitigating a Multi-Stage AiTM Phishing and BEC Campaign</a></li>
+          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP Foundation — Session Management Cheat Sheet</a></li>
+          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cookie_Theft_Mitigation_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP Foundation — Cookie Theft Mitigation Cheat Sheet</a></li>
+          <li><a href="https://www.w3.org/TR/dbsc/" target="_blank" rel="noopener noreferrer">World Wide Web Consortium (W3C) — Device Bound Session Credentials (DBSC) Specification</a></li>
+          <li><a href="https://blog.google/security/protecting-cookies-with-device-bound-session-credentials/" target="_blank" rel="noopener noreferrer">Google Security Blog — Protecting Cookies with Device Bound Session Credentials</a></li>
+        </ul>
 
       </div><!-- /art-text -->
 
       <!-- FEEDBACK & DISCUSSION SECTION -->
-      <section class="feedback-section" id="feedback" aria-label="Reader feedback">
+      <section class="feedback-section" id="feedback" aria-label="Reader Feedback and Discussion">
+
         <div class="fb-header">
-          <h2 class="fb-title">Send feedback to Poorna</h2>
-          <p class="fb-sub">Have a question or a suggestion? Prepare an email below. Feedback is private and is sent only when you press Send in your email app.</p>
-          <p class="fb-sub">Likes and claps are your personal reactions on this device.</p>
+          <span class="fb-badge">Community Discussion</span>
+          <h3 class="fb-title">Reader Feedback &amp; Session Defense Discussion</h3>
+          <p class="fb-sub">
+            Your insights and questions shape the remaining episodes of <strong>Cybersecurity for Everyone</strong>. Share your experiences with session auditing, AiTM phishing, or browser extensions below.
+          </p>
         </div>
+
+        <!-- 1-Click Reactions Bar -->
+        <div class="fb-reactions-box">
+          <div class="fb-react-prompt">Quick Reactions</div>
+          <div class="fb-reactions-bar">
+            <button class="fb-react-btn" data-reaction="helpful" data-label="Helpful Analysis" aria-label="Helpful Analysis">
+              <span>👍</span> Helpful Analysis <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="insight" data-label="Eye-Opening" aria-label="Eye-Opening">
+              <span>💡</span> Eye-Opening <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="actionable" data-label="Actionable for Security" aria-label="Actionable for Security">
+              <span>🛡️</span> Actionable Checklist <span class="fb-cnt">0</span>
+            </button>
+            <button class="fb-react-btn" data-reaction="bookmark" data-label="Saved &amp; Bookmarked" aria-label="Saved &amp; Bookmarked">
+              <span>🔖</span> Bookmarked <span class="fb-cnt">0</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Interactive Feedback Form -->
         <div class="fb-form-box">
-          <p>You can also <a href="mailto:sujampathirathnayaka@gmail.com">email Poorna directly</a>.</p>
-          <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
-          <form id="fbForm" hidden>
-            <label for="fbName">Name (optional)</label>
-            <input class="fb-input" id="fbName" maxlength="100" autocomplete="name" aria-describedby="fbDraftNote">
-            <label for="fbCategory">Feedback category</label>
-            <select class="fb-input" id="fbCategory">
-              <option>General feedback</option><option>Question</option><option>Correction</option><option>Topic suggestion</option>
-            </select>
-            <label for="fbMessage">Your feedback</label>
-            <textarea class="fb-textarea" id="fbMessage" aria-describedby="fbDraftNote fbLimit" required maxlength="2000" placeholder="Share your question or suggestion..."></textarea>
-            <p id="fbLimit" class="fb-draft-note">Maximum 2,000 characters.</p>
+          <div class="fb-form-title">
+            <span>✍️</span> Leave Feedback or Ask Poorna
+          </div>
+
+          <!-- Category Chips -->
+          <div class="fb-chips" role="radiogroup" aria-label="Feedback category">
+            <button type="button" class="fb-chip-opt selected" data-category="General Feedback">💬 General Feedback</button>
+            <button type="button" class="fb-chip-opt" data-category="Question for Analyst">❓ Question for Poorna</button>
+            <button type="button" class="fb-chip-opt" data-category="Session / AiTM Experience">🛡️ Session Hijacking Experience</button>
+            <button type="button" class="fb-chip-opt" data-category="Topic Request">💡 Topic Request for Ep 05–10</button>
+          </div>
+
+          <form id="fbForm">
+            <div class="fb-form-grid">
+              <div>
+                <label for="fbName"
+                  style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Name or Handle <span style="font-weight:400;color:var(--ink-5);">(Optional)</span></label>
+                <input type="text" id="fbName" class="fb-input" placeholder="e.g. Maya R. or Anonymous">
+              </div>
+              <div>
+                <label for="fbRole"
+                  style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Role / Organisation <span style="font-weight:400;color:var(--ink-5);">(Optional)</span></label>
+                <input type="text" id="fbRole" class="fb-input" placeholder="e.g. IT Administrator / Security Lead">
+              </div>
+            </div>
+
+            <div>
+              <label for="fbMessage"
+                style="display:block;font-size:.76rem;font-weight:700;color:var(--ink-3);margin-bottom:5px;">Feedback or Comment <span style="color:#EF4444;">*</span></label>
+              <textarea id="fbMessage" class="fb-textarea" required
+                placeholder="What did you think of the hotel keycard analogy? Have you ever had to revoke sessions after a suspicious login or audited permissions on rogue extensions? Share your thoughts..."></textarea>
+            </div>
+
             <div class="fb-form-foot">
-              <button type="submit" class="fb-submit-btn">Prepare email</button>
-              <button type="button" class="fb-clear-btn" id="fbClear">Clear draft</button>
+              <span class="fb-anon-note">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+                No account required · Comments moderated for constructive discussion
+              </span>
+              <button type="submit" class="fb-submit-btn">
+                Post Feedback
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </button>
             </div>
           </form>
-          <p id="fbStatus" role="status" aria-live="polite"></p>
-          <div id="fbEmailPreview" hidden>
-            <label for="fbEmailBody">Email draft</label>
-            <textarea class="fb-textarea" id="fbEmailBody" readonly rows="8"></textarea>
-            <div class="fb-form-foot">
-              <a id="fbEmailLink" class="au-btn pf">Open email app</a>
-              <button type="button" id="fbCopy" class="fb-submit-btn">Copy feedback</button>
+        </div>
+
+        <!-- Practitioner Discussion Stream -->
+        <div class="fb-discussion-box">
+          <div class="fb-disc-title">
+            <span>Practitioner Discussion &amp; Feedback</span>
+            <span style="font-size:.72rem;color:var(--ink-5);text-transform:none;font-weight:600;">Episode 04 responses</span>
+          </div>
+
+          <div class="fb-comments-list" id="fbCommentsList">
+            <div class="fb-reader-stream" id="fbReaderComments" style="display:flex;flex-direction:column;gap:14px;"></div>
+
+            <div class="fb-empty-state" id="fbEmptyState"
+              style="text-align:center;padding:28px 20px;border:1px dashed var(--border-2);border-radius:var(--r);background:var(--bg);color:var(--ink-4);margin-top:12px;">
+              <div style="font-size:1.4rem;margin-bottom:6px;">💬</div>
+              <div style="font-weight:700;font-size:.88rem;color:var(--ink-2);margin-bottom:4px;">No reader feedback yet on Episode 04</div>
+              <p style="font-size:.78rem;color:var(--ink-4);max-width:360px;margin:0 auto;">Be the first to share your thoughts, ask a question, or discuss your session eviction process. All comments welcome.</p>
             </div>
           </div>
         </div>
+
       </section>
 
       <!-- AUTHOR BIO CARD -->
@@ -761,46 +948,57 @@
 
       <!-- Related / Up Next in Series -->
       <div class="related">
-        <div class="sec-h" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div class="sec-h"
+          style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
           <div>
             <span class="sec-lbl" style="color:var(--blue);">Cybersecurity for Everyone</span>
             <div style="font-family:var(--f-d);font-size:1.15rem;font-weight:800;color:var(--ink);margin-top:4px;">Series Navigation</div>
           </div>
-          <a href="index.html#series" style="font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:5px;">View All 10 Episodes in Series →</a>
+          <a href="index.html#series"
+            style="font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:5px;">
+            View All 10 Episodes in Series →
+          </a>
         </div>
         <div class="rel-grid">
 
+          <!-- Previous: Episode 03 -->
           <a href="article-03.html" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
             <div class="card-svg" style="background:linear-gradient(135deg,#FEF2F2 0%,#FFF7ED 100%);">
-              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M108 34 L108 88 L120 76 L129 98 L136 95 L127 73 L143 73 Z" fill="white" stroke="#EF4444" stroke-width="2"/>
-                <circle cx="175" cy="72" r="24" fill="white" stroke="#F97316" stroke-width="2"/>
-                <polyline points="175,58 175,72 186,72" stroke="#F97316" stroke-width="2"/>
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <!-- Hook cursor -->
+                <path d="M116 34 L116 84 L126 74 L133 92 L139 89 L132 71 L145 71 Z" fill="white" stroke="#EF4444" stroke-width="1.8" stroke-linejoin="round"/>
+                <!-- Suspicious link bar -->
+                <rect x="52" y="65" width="65" height="30" rx="6" fill="white" stroke="#EF4444" stroke-width="1.4"/>
+                <circle cx="160" cy="65" r="18" fill="white" stroke="#F97316" stroke-width="1.5"/>
+                <polyline points="160,54 160,65 168,65" stroke="#F97316" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
               <span class="card-svg-label" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">← Previous · Ep 03</span>
             </div>
             <div class="card-body">
               <h3 class="card-h3">I Clicked a Phishing Link. What Should I Do?</h3>
-              <p class="card-ex">A practical post-click triage guide covering credentials, malicious downloads, sessions, email rules and immediate containment.</p>
-              <div class="card-foot"><span>Incident Response · Triage</span><span style="color:#16A34A;font-weight:700;">Read Ep 03 →</span></div>
+              <p class="card-ex">A calm, step-by-step 5-minute triage playbook for suspicious clicks: assessing whether code executed, severing tokens, and flushing credentials safely.</p>
+              <div class="card-foot"><span>Phishing Triage</span><span style="color:#16A34A;font-weight:700;">Read Ep 03 →</span></div>
             </div>
           </a>
 
+          <!-- Next: Episode 05 -->
           <div class="art-card">
             <div class="card-svg" style="background:linear-gradient(135deg,#ECFDF5 0%,#FEF3C7 100%);">
-              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="72" y="50" width="52" height="44" rx="8" fill="white" stroke="#10B981" stroke-width="2"/>
-                <path d="M82 50 L82 36 Q82 24 98 24 Q114 24 114 36 L114 50" stroke="#10B981" stroke-width="2" fill="none"/>
-                <circle cx="98" cy="70" r="6" fill="#10B981"/>
-                <rect x="148" y="54" width="66" height="22" rx="5" fill="white" stroke="#EF4444" stroke-width="1.4"/>
-                <text x="181" y="68" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="7.5" font-weight="700">HTTPS ≠ TRUST</text>
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <rect x="70" y="55" width="46" height="38" rx="7" fill="white" stroke="#10B981" stroke-width="2"/>
+                <path d="M78 55 L78 42 Q78 30 93 30 Q108 30 108 42 L108 55" stroke="#10B981" stroke-width="2" fill="none"/>
+                <circle cx="93" cy="72" r="5" fill="#10B981"/>
+                <circle cx="156" cy="65" r="20" fill="rgba(245,158,11,.08)" stroke="#F59E0B" stroke-width="1.8"/>
+                <line x1="170" y1="79" x2="182" y2="91" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round"/>
               </svg>
               <span class="card-svg-label">Up Next · Ep 05</span>
             </div>
             <div class="card-body">
               <h3 class="card-h3">Why the Padlock Doesn't Mean a Website Is Safe</h3>
-              <p class="card-ex">Why HTTPS protects transport encryption but does not prove the website itself is legitimate.</p>
-              <div class="card-foot"><span>Web Security · SSL/TLS Myth</span><span class="soon">Coming Soon</span></div>
+              <p class="card-ex">Over 80% of active phishing sites now display the HTTPS padlock. Why TLS only encrypts the wire rather than the destination's trustworthiness.</p>
+              <div class="card-foot"><span>Web Encryption</span><span class="soon">Coming Soon</span></div>
             </div>
           </div>
 
@@ -815,11 +1013,11 @@
   <aside class="floating-dock" aria-label="Reading Controls">
     <button class="dock-btn btn-like" aria-label="Like article">
       <span class="dock-emoji like-heart">🤍</span>
-      <span class="dock-count like-count" hidden>0</span>
+      <span class="dock-count like-count">0</span>
     </button>
     <button class="dock-btn btn-clap" aria-label="Applaud research">
       <span class="dock-emoji">👏</span>
-      <span class="dock-count clap-count" hidden>0</span>
+      <span class="dock-count clap-count">0</span>
     </button>
     <div class="dock-sep"></div>
     <a href="#feedback" class="dock-btn" aria-label="Jump to discussion">
@@ -871,9 +1069,8 @@
               <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
               <li><a href="article-02.html">Ep 02: Email OSINT &amp; Perimeter Defense</a></li>
               <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
-              <li><a href="article-04.html">Ep 04: Session Hijacking &amp; Cookie Theft</a></li>
+              <li><a href="article-04.html">Ep 04: Session Theft &amp; Cookie Hijacking</a></li>
               <li><a href="index.html#series">View Full Curriculum (10 Episodes)</a></li>
-              <li><a href="#feedback">Submit Article Feedback</a></li>
             </ul>
           </div>
           <div>
@@ -910,8 +1107,120 @@
 
   <div id="google_translate_element"></div>
 
+  <!-- Client-side Interactive Session Threat & Eviction Inspector -->
+  <script>
+    (function () {
+      const threatData = {
+        'aitm': {
+          title: 'Threat Vector: Adversary-in-the-Middle (AiTM) Phishing',
+          riskLevel: 'HIGH / POST-MFA INTERCEPTION',
+          riskColor: '#DC2626',
+          riskBg: '#FEE2E2',
+          summary: 'The attacker deployed a reverse proxy that captured your authenticated session cookie right after you satisfied your MFA prompt. They can now attempt to replay this session token without touching your password.',
+          checks: [
+            'Log into your account directly via known bookmark or official app and immediately change your password.',
+            'Navigate to Account Security > “Sign out of all other sessions” / “Revoke all active sessions”.',
+            'Audit recent sign-in IP addresses and locations to check if the session was accessed from a different region.',
+            'Switch to phishing-resistant credentials (passkeys or FIDO2 hardware keys) which refuse to authenticate through reverse-proxy hostnames.'
+          ]
+        },
+        'infostealer': {
+          title: 'Threat Vector: Infostealer Trojan (Lumma, RedLine, Vidar)',
+          riskLevel: 'CRITICAL / DEVICE COMPROMISED',
+          riskColor: '#9333EA',
+          riskBg: '#F3E8FF',
+          summary: 'Malware running on your operating system directly accessed browser local profile directories, extracting active session cookies, saved credentials, and crypto wallet extensions.',
+          checks: [
+            'Disconnect the affected computer from Wi-Fi and Ethernet immediately to stop active data exfiltration.',
+            'Perform a full offline malware scan using Microsoft Defender Offline or commercial endpoint antivirus.',
+            'DO NOT reset passwords from the infected machine; use a clean device (e.g., your smartphone) to reset passwords.',
+            'Click “Sign out of all sessions” across your primary email, cloud storage, and banking services.',
+            'If this is a corporate workstation, notify your organization’s SOC / IT Helpdesk without delay.'
+          ]
+        },
+        'extension': {
+          title: 'Threat Vector: Rogue or Compromised Browser Extension',
+          riskLevel: 'MODERATE / PRIVILEGED IN-BROWSER CODE',
+          riskColor: '#EA580C',
+          riskBg: '#FFEDD5',
+          summary: 'An extension with activeTab, scripting, or storage permissions can silently capture HTTP headers, read document contents, or exfiltrate tokens while maintaining seemingly normal functionality.',
+          checks: [
+            'Open chrome://extensions or edge://extensions and review every installed add-on.',
+            'Uninstall any extension you have not used within the last 30 days.',
+            'Inspect permissions: be wary of simple utilities (calculators, timers) asking to “Read and change data on all websites”.',
+            'Check developer details: verify if extensions were recently sold to third-party ad networks or untrusted developers.',
+            'Clear browser cookies and restart the browser to terminate any extension-injected state.'
+          ]
+        },
+        'session-kill': {
+          title: 'Playbook: How to Evict Stolen Sessions Everywhere',
+          riskLevel: 'ACTIONABLE / REMEDIATION',
+          riskColor: '#10B981',
+          riskBg: '#DCFCE7',
+          summary: 'Step-by-step instructions to invalidate stolen session tokens across major service providers:',
+          checks: [
+            'Google / Gmail: Go to myaccount.google.com > Security > “Your devices” > Click “Sign out” on any unfamiliar session.',
+            'Microsoft 365: Go to myaccount.microsoft.com > Security info > Click “Sign out everywhere” (takes effect within 1 hour).',
+            'Apple Account: Go to appleid.apple.com > Devices > Select and “Remove from account” any unknown device.',
+            'Email Forwarding Audit: Check Gmail / Outlook Settings > Filters and Forwarding. Delete unauthorized rules forwarding copies of your mail.',
+            'OAuth Third-Party Apps: Revoke access to apps with “Full Account Access” or “Mail.Read” permissions.'
+          ]
+        }
+      };
+
+      function renderScenario(key) {
+        const d = threatData[key];
+        if (!d) return;
+        const out = document.getElementById('threatOutput');
+        if (!out) return;
+
+        let checksHtml = d.checks.map((chk, i) => `
+          <label style="display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;cursor:pointer;font-size:.88rem;color:var(--ink-2);line-height:1.45;">
+            <input type="checkbox" style="margin-top:3px;accent-color:var(--blue);width:16px;height:16px;cursor:pointer;">
+            <span>${chk}</span>
+          </label>
+        `).join('');
+
+        out.innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);">
+            <div style="font-weight:700;color:var(--ink);font-size:.95rem;">${d.title}</div>
+            <span style="font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:20px;background:${d.riskBg};color:${d.riskColor};letter-spacing:.03em;">
+              ${d.riskLevel}
+            </span>
+          </div>
+          <p style="font-size:.86rem;color:var(--ink-3);margin-bottom:16px;line-height:1.5;">${d.summary}</p>
+          <div style="font-weight:700;font-size:.84rem;color:var(--ink-4);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;">Action Checklist (Click to tick off):</div>
+          <div style="background:var(--bg-2);padding:14px 16px;border-radius:6px;border:1px solid var(--border);">
+            ${checksHtml}
+          </div>
+        `;
+      }
+
+      // Tab click events
+      const tabs = document.querySelectorAll('.threat-btn');
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabs.forEach(b => {
+            b.style.background = 'white';
+            b.style.color = 'var(--ink-3)';
+            b.style.borderColor = 'var(--border-2)';
+            b.classList.remove('active');
+          });
+          btn.style.background = 'var(--blue)';
+          btn.style.color = 'white';
+          btn.style.borderColor = 'var(--blue)';
+          btn.classList.add('active');
+          renderScenario(btn.getAttribute('data-scenario'));
+        });
+      });
+
+      // Initial render
+      renderScenario('aitm');
+    })();
+  </script>
+
   <script src="js/cms.js?v=7"></script>
-  <script src="js/app.js?v=8"></script>
+  <script src="js/app.js?v=7"></script>
   <script src="js/translator.js?v=7"></script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>

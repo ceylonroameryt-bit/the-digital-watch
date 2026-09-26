@@ -4,6 +4,8 @@ Disallow: /*.bak$
 Allow: /
 Allow: /article.html
 Allow: /article-02.html
+Allow: /article-03.html
+Allow: /article-04.html
 Allow: /assets/
 Allow: /styles/
 Allow: /js/

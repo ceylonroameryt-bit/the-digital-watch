@@ -46,7 +46,7 @@ const DEFAULT_POSTS = [
   },
   { id:'ep02-someone-has-your-email', episodeNum:2, title:'Someone Has Your Email Address. Now What?', slug:'ep02-someone-has-your-email', category:'Identity Recon', tags:['Account Takeover','Phishing','MFA'], readTime:'7 min read', date:'September 18, 2026', status:'published', summary:'Your email address is the primary anchor of your digital footprint. What automated crawlers, credential stuffing bots, and spear-phishers do once it leaks, and how to lockdown your perimeter.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep03-clicked-phishing-link', episodeNum:3, title:'I Clicked a Phishing Link. What Should I Do?', slug:'ep03-clicked-phishing-link', category:'Phishing', tags:['Phishing','Quick Action','Incident Response'], readTime:'6 min read', date:'September 21, 2026', status:'published', summary:'A calm, actionable five-minute triage playbook for suspicious clicks: assessing whether code executed, severing session tokens, revoking OAuth grants, and flushing credentials safely.', content:'', seriesName:'Cybersecurity for Everyone' },
-  { id:'ep04-session-was-stolen', episodeNum:4, title:'Your Password Wasn\'t Hacked. Your Session Was Stolen.', slug:'ep04-session-was-stolen', category:'Session Security', tags:['Session Hijacking','Cookies','AiTM','DBSC'], readTime:'13 min read', date:'September 25, 2026', status:'published', summary:'A valid session can become a temporary credential of its own. How infostealers, AiTM phishing and stolen cookies can reuse authenticated access — and why password changes, session revocation, passkeys and device-bound credentials all matter.', content:'', seriesName:'Cybersecurity for Everyone' },
+  { id:'ep04-session-was-stolen', episodeNum:4, title:'Your Password Wasn\'t Hacked. Your Session Was Stolen.', slug:'ep04-session-was-stolen', category:'Account Security', tags:['Session Hijacking','Cookies','Infostealers','DBSC'], readTime:'7 min read', date:'September 26, 2026', status:'published', summary:'What if your password was never cracked and MFA was never guessed? How attackers bypass logins by stealing authenticated sessions, and how to protect yourself.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep05-padlock-doesnt-mean-safe', episodeNum:5, title:'Why the Padlock Doesn\'t Mean a Website Is Safe', slug:'ep05-padlock-doesnt-mean-safe', category:'Web Safety', tags:['HTTPS','Scam Websites'], readTime:'5 min read', date:'', status:'draft', summary:'The padlock icon in your browser means the connection is encrypted — not that the website is trustworthy. Here\'s what to actually look for.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep06-are-passkeys-killing-passwords', episodeNum:6, title:'Are Passkeys Finally Going to Kill Passwords?', slug:'ep06-are-passkeys-killing-passwords', category:'Authentication', tags:['Passkeys','Passwords'], readTime:'6 min read', date:'', status:'draft', summary:'Passkeys are being called the end of passwords. But what are they, how do they work, and should you actually switch?', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep07-fake-recruiter-linkedin', episodeNum:7, title:'The Fake Recruiter in Your LinkedIn Inbox', slug:'ep07-fake-recruiter-linkedin', category:'Social Engineering', tags:['LinkedIn','Fake Recruiters'], readTime:'6 min read', date:'', status:'draft', summary:'Not everyone who messages you on LinkedIn is who they say they are. Here\'s how to spot fake recruiters and what they\'re actually after.', content:'', seriesName:'Cybersecurity for Everyone' },
@@ -174,10 +174,10 @@ function _epGradient(n) {
     '#EFF6FF 0%, #DBEAFE 100%',
     '#EFF6FF 0%, #DBEAFE 100%',
     '#FFFBEB 0%, #FEF3C7 100%',
-    '#FFF1F2 0%, #FFE4E6 100%',
     '#F5F3FF 0%, #EDE9FE 100%',
-    '#ECFEFF 0%, #CFFAFE 100%',
-    '#FFF7ED 0%, #FFEDD5 100%',
+    '#ECFDF5 0%, #FEF3C7 100%',
+    '#F0FDFA 0%, #CCFBF1 100%',
+    '#F0F9FF 0%, #E0F2FE 100%',
     '#F8FAFC 0%, #F1F5F9 100%',
     '#EFF6FF 0%, #F0FDF4 100%',
     '#F8FAFC 0%, #E2E8F0 100%',
@@ -212,6 +212,22 @@ function _epSvgContent(n, isPub) {
       <polyline points="204,60 204,74 214,74" stroke="#F97316" stroke-width="2" stroke-linecap="round"/>
       <text x="140" y="132" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="11">Post-Phishing Triage &amp; Recovery</text>`;
   }
+  if (n === 4) {
+    // Cookie jar / Session token theft illustration for ep04
+    return `<circle cx="106" cy="80" r="34" fill="#FDE68A" stroke="#D97706" stroke-width="2"/>
+      <circle cx="95" cy="70" r="5" fill="#92400E"/>
+      <circle cx="118" cy="68" r="4.5" fill="#92400E"/>
+      <circle cx="104" cy="88" r="4" fill="#92400E"/>
+      <circle cx="120" cy="86" r="3.5" fill="#92400E"/>
+      <circle cx="90" cy="85" r="3" fill="#92400E"/>
+      <text x="106" y="124" text-anchor="middle" fill="#7C3AED" font-family="DM Sans,system-ui" font-size="8.5" font-weight="700">session_token</text>
+      <path d="M142 80 Q168 80 186 64" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="4 3"/>
+      <rect x="188" y="52" width="46" height="40" rx="8" fill="white" stroke="#7C3AED" stroke-width="1.8"/>
+      <path d="M198 52 L198 42 Q198 32 211 32 Q224 32 224 42" stroke="#7C3AED" stroke-width="2" fill="none"/>
+      <circle cx="211" cy="68" r="5" fill="#C4B5FD"/>
+      <rect x="176" y="104" width="68" height="18" rx="5" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="1"/>
+      <text x="210" y="116" text-anchor="middle" fill="#6D28D9" font-family="DM Sans,system-ui" font-size="8" font-weight="700">2FA Bypassed</text>`;
+  }
   // Generic episode SVG with episode number
   return `<circle cx="140" cy="68" r="38" fill="white" stroke="#CBD5E1" stroke-width="1.5" opacity=".8"/>
     <text x="140" y="62" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="11" font-weight="600">Episode</text>
@@ -222,6 +238,7 @@ function _epSvgContent(n, isPub) {
 /* ── PAGE RENDERER — ARTICLE ────────────────────────────────── */
 function renderArticle() {
   const params = new URLSearchParams(window.location.search);
+
   const posts = getPosts();
   const settings = getSettings();
   const currentFile = window.location.pathname.split('/').pop();
