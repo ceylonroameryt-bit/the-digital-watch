@@ -7,7 +7,7 @@ const { execFileSync } = require('node:child_process');
 const { parseHTML } = require('linkedom');
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
-const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html'];
+const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html'];
 
 function boot(file, { stored = {}, sessionStored = {}, storageBlocked = false, search = '', hash = '', scripts } = {}) {
   const { document, window: dom } = parseHTML(read(file));
@@ -70,19 +70,19 @@ test('old browser drafts cannot replace deployed article content', () => {
   } });
   assert.match(app.document.title, /I Clicked a Phishing Link/);
   assert.match(app.document.title, /Cyber Insight/);
-  assert.equal(app.context.CI_CMS.getPosts().filter(p => p.status === 'published').length, 4);
+  assert.equal(app.context.CI_CMS.getPosts().filter(p => p.status === 'published').length, 5);
 });
 
 test('progress percentage and released-episode label update independently', () => {
   const { document } = boot('index.html');
-  assert.equal(document.querySelector('#seriesReleased').textContent, 'Episode 04 of 10 Released');
-  assert.equal(document.querySelector('#seriesCompletion').textContent, '40% Complete');
-  assert.equal(document.querySelector('[role="progressbar"]').getAttribute('aria-valuenow'), '40');
+  assert.equal(document.querySelector('#seriesReleased').textContent, 'Episode 05 of 10 Released');
+  assert.equal(document.querySelector('#seriesCompletion').textContent, '50% Complete');
+  assert.equal(document.querySelector('[role="progressbar"]').getAttribute('aria-valuenow'), '50');
 });
 
 test('filters show the right cards and expose their selected state', () => {
   const app = boot('index.html');
-  for (const [filter, count] of [['published', 4], ['upcoming', 6], ['all', 10]]) {
+  for (const [filter, count] of [['published', 5], ['upcoming', 5], ['all', 10]]) {
     const btn = app.document.querySelector(`[data-filter="${filter}"]`);
     app.fire(btn, 'click');
     assert.equal([...app.document.querySelectorAll('.ep-card')].filter(el => el.style.display !== 'none').length, count);
@@ -97,7 +97,8 @@ test('article IDs resolve symmetrically and preserve feedback anchors', () => {
     ['article-03.html', 'ep01-can-you-still-trust', 'article.html#feedback'],
     ['article-03.html', 'ep02-someone-has-your-email', 'article-02.html#feedback'],
     ['article.html', 'missing-post', 'index.html#series'],
-    ['article.html', 'ep04-session-was-stolen', 'article-04.html#feedback']
+    ['article.html', 'ep04-session-was-stolen', 'article-04.html#feedback'],
+    ['article.html', 'ep05-padlock-doesnt-mean-safe', 'article-05.html#feedback']
   ];
   for (const [file, id, target] of expected) {
     assert.equal(boot(file, { search: '?id=' + id, hash: '#feedback' }).location.redirect, target);
@@ -192,6 +193,7 @@ test('deployment contains public pages and security policy, excludes the local e
   assert.ok(fs.existsSync(path.join(root, 'dist/.well-known/security.txt')));
   assert.ok(fs.existsSync(path.join(root, 'dist/.nojekyll')));
   assert.ok(fs.existsSync(path.join(root, 'dist/article-04.html')));
+  assert.ok(fs.existsSync(path.join(root, 'dist/article-05.html')));
   for (const file of ['admin.html', 'js/admin.js', 'node_modules', 'tests', '.git']) {
     assert.equal(fs.existsSync(path.join(root, 'dist', file)), false, file);
   }

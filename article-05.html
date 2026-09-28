@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Why the Padlock Doesn't Mean a Website Is Safe — Cyber Insight</title>
+  <meta name="description"
+    content="The padlock icon in your browser means the connection is encrypted, not that the website is trustworthy. Why over 80% of phishing sites use HTTPS, and how to verify where you actually are.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Why the Padlock Doesn't Mean a Website Is Safe">
+  <meta property="og:description"
+    content="HTTPS protects your connection, not your destination. Why scammers use TLS certificates, the armoured van analogy, and what happens when an encrypted link goes to the wrong address.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Why the Padlock Doesn't Mean a Website Is Safe",
+    "description": "The padlock icon in your browser means the connection is encrypted, not that the website is trustworthy. Why over 80% of phishing sites use HTTPS, and how to verify where you actually are.",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cyber Insight",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "datePublished": "2026-09-28",
+    "copyrightYear": 2026,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=8">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
+  <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/article-05.html">
+  <meta property="og:url" content="https://ceylonroameryt-bit.github.io/the-digital-watch/article-05.html">
+</head>
+
+<body data-page="article" data-article-id="ep05">
+
+  <div id="reading-progress"></div>
+  <div id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">CI</div>
+        <div>
+          <div class="brand-name">Cyber Insight</div>
+          <div class="brand-sub">Cybersecurity Research</div>
+        </div>
+      </a>
+      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#series">Series</a></li>
+        <li><a href="article-05.html" class="active">Research</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="article-04.html" class="cta">← Ep 04</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <!-- Series Callout Banner -->
+          <div class="art-series-banner">
+            <div class="art-series-info">
+              <span class="art-series-tag">Series</span>
+              <span>Part of <strong>Cybersecurity for Everyone</strong> · Episode 05 of 10</span>
+            </div>
+            <a href="index.html#series" class="art-series-link">View 10-Part Syllabus →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="index.html#series">Series: Cybersecurity for Everyone</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Episode 05</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat">Episode 05</span>
+            <span class="art-dot">·</span>
+            <span>Web Cryptography &amp; TLS Myths</span>
+            <span class="art-dot">·</span>
+            <span>September 28, 2026</span>
+            <span class="art-dot">·</span>
+            <span>6 min read</span>
+          </div>
+
+          <h1 class="art-h1">Why the Padlock Doesn't Mean a Website Is Safe</h1>
+
+          <div class="art-byline">
+            <div class="art-av">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Writer · Cyber Insight · Digital Literacy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero SVG: The Padlock vs The Wrong Destination -->
+        <div class="art-hero-svg" style="background: linear-gradient(135deg, #ECFDF5 0%, #FEF3C7 100%);">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Illustration depicting valid HTTPS padlock pointing to a fraudulent destination">
+            <!-- Background pulse circles -->
+            <circle cx="160" cy="120" r="105" fill="#D1FAE5" opacity=".4" />
+            <circle cx="160" cy="120" r="75" fill="#FEF3C7" opacity=".4" />
+
+            <!-- Browser Address Bar Mockup (Top) -->
+            <g transform="translate(30, 36)">
+              <rect x="0" y="0" width="260" height="42" rx="9" fill="white" stroke="#10B981" stroke-width="2" />
+              <!-- Green Padlock icon -->
+              <rect x="14" y="20" width="16" height="13" rx="3" fill="#10B981" />
+              <path d="M17 20 V15 Q17 11 22 11 Q27 11 27 15 V20" stroke="#10B981" stroke-width="2" fill="none" />
+              <circle cx="22" cy="26" r="1.5" fill="white" />
+              <!-- URL text: https://paypal.secure-payment.example -->
+              <text x="38" y="26" fill="#047857" font-family="DM Sans,system-ui" font-size="9" font-weight="700">https://</text>
+              <text x="76" y="26" fill="#64748B" font-family="DM Sans,system-ui" font-size="9" font-weight="600">parcel-redelivery.org</text>
+              <!-- Valid TLS Pill -->
+              <rect x="195" y="10" width="55" height="20" rx="5" fill="#DCFCE7" />
+              <text x="222" y="23" text-anchor="middle" fill="#15803D" font-family="DM Sans,system-ui" font-size="7.5" font-weight="800">TLS VALID</text>
+            </g>
+
+            <!-- Armoured Van on Wire (Middle) -->
+            <g transform="translate(42, 105)">
+              <rect x="0" y="10" width="70" height="34" rx="6" fill="#1E293B" stroke="#0F172A" stroke-width="1.5" />
+              <path d="M70 20 L84 20 L92 32 L92 44 L70 44 Z" fill="#334155" />
+              <!-- Wheels -->
+              <circle cx="22" cy="44" r="8" fill="#475569" stroke="#0F172A" stroke-width="2" />
+              <circle cx="74" cy="44" r="8" fill="#475569" stroke="#0F172A" stroke-width="2" />
+              <!-- Van Lock -->
+              <circle cx="44" cy="26" r="5" fill="#F59E0B" />
+              <rect x="42" y="28" width="4" height="4" fill="#B45309" />
+              <text x="44" y="8" text-anchor="middle" fill="#0F172A" font-family="DM Sans,system-ui" font-size="7.5" font-weight="700">ARMORED VAN</text>
+            </g>
+
+            <!-- Secure Pipe Connecting Van to Fraud Destination -->
+            <path d="M142 135 L190 135" stroke="#10B981" stroke-width="3" stroke-dasharray="4 2" />
+            <polygon points="194,135 186,131 186,139" fill="#10B981" />
+
+            <!-- Wrong Destination: Scammer Server (Right) -->
+            <g transform="translate(196, 100)">
+              <rect x="0" y="0" width="94" height="66" rx="8" fill="#FEF2F2" stroke="#EF4444" stroke-width="2" />
+              <circle cx="47" cy="22" r="11" fill="#FEE2E2" />
+              <text x="47" y="26" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="12" font-weight="900">!</text>
+              <text x="47" y="44" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">Scammer Server</text>
+              <text x="47" y="56" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="7">Wrong Destination</text>
+            </g>
+
+            <!-- Bottom Verdict Banner -->
+            <g transform="translate(34, 192)">
+              <rect x="0" y="0" width="252" height="28" rx="6" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1" />
+              <text x="126" y="18" text-anchor="middle" fill="#334155" font-family="DM Sans,system-ui" font-size="8.5" font-weight="700">
+                Connection: <tspan fill="#16A34A">Securely Encrypted</tspan> · Destination: <tspan fill="#DC2626">Fake Website</tspan>
+              </text>
+            </g>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <div class="art-layout">
+
+    <div class="art-center">
+
+      <!-- Horizontal Action & Metadata Strip -->
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#ECFDF5;color:#047857;border-color:#A7F3D0;font-weight:700;">Episode 05</span>
+          <span class="chip">HTTPS &amp; TLS</span>
+          <span class="chip">Phishing Tactics</span>
+          <span class="chip">DV Certificates</span>
+          <span class="chip">Domain Anatomy</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 6 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" title="Like this research" aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" title="Applaud this research" aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">11%</div>
+          <div class="stat-l">Correct Comprehension</div>
+          <div class="stat-s">Google study found only 11% correctly understood the lock icon</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">>95%</div>
+          <div class="stat-l">HTTPS Adoption</div>
+          <div class="stat-s">Chrome page loads on Windows using HTTPS; phishers use it too</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">DV Only</div>
+          <div class="stat-l">Domain Control Only</div>
+          <div class="stat-s">Certificates prove server control, not business honesty or safety</div>
+        </div>
+      </div>
+
+      <div class="art-text">
+
+        <p>You get a text saying your parcel couldn't be delivered.</p>
+
+        <p>There's a link to rearrange the delivery and a small £1.49 fee to pay. You're actually waiting for a parcel, so the timing makes sense.</p>
+
+        <p>You tap the link.</p>
+
+        <p>The website opens normally. The delivery company's logo is there. The colours look familiar. Nothing seems broken or suspicious.</p>
+
+        <p>You hesitate for a second and check the address bar.</p>
+
+        <div style="background:#F1F5F9;border:1px solid var(--border-2);border-radius:var(--r-sm);padding:14px 20px;margin:18px 0;font-family:monospace;font-size:.92rem;color:var(--ink);display:flex;align-items:center;gap:12px;">
+          <span style="color:#10B981;font-weight:800;">🔒 HTTPS</span>
+          <span style="color:var(--ink-4);">·</span>
+          <span style="color:#047857;font-weight:600;">No browser warning</span>
+          <span style="color:var(--ink-4);">·</span>
+          <span style="color:var(--ink-3);">Looks secure</span>
+        </div>
+
+        <p>So you continue.</p>
+
+        <p>And that's exactly where one of the biggest misunderstandings about web security begins.</p>
+
+        <p>For years, we've been told:</p>
+
+        <div class="pq" style="border-left-color:var(--blue);color:var(--blue);background:var(--blue-bg);font-style:normal;font-weight:700;">
+          “Look for the padlock before entering your details.”
+        </div>
+
+        <p>That advice wasn't completely wrong. HTTPS is extremely important.</p>
+
+        <p>The problem is that many of us started believing the padlock meant something it never actually promised. We turned:</p>
+
+        <div style="background:#FEF2F2;border-left:4px solid #EF4444;padding:12px 18px;border-radius:4px;color:#991B1B;margin:16px 0;font-size:.95rem;font-weight:600;">
+          “This connection is protected.” → into: “This website is safe.”
+        </div>
+
+        <p>Those are two very different things.</p>
+
+        <!-- S1 -->
+        <h2 id="s1">So, What Does HTTPS Actually Mean?</h2>
+
+        <p>Let's keep this simple.</p>
+
+        <p>When you visit a website using HTTPS, your browser uses <strong>TLS — Transport Layer Security</strong> — to protect the communication between your browser and the website's server.</p>
+
+        <p>TLS mainly gives us three things: <strong>encryption</strong>, <strong>integrity</strong>, and <strong>authentication</strong>.</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:22px 0;">
+          <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:16px;">
+            <div style="font-weight:800;color:var(--blue);font-size:.9rem;margin-bottom:6px;">🔐 Encryption</div>
+            <div style="font-size:.84rem;color:var(--ink-3);line-height:1.5;">Your information is protected from being read while travelling across the network.</div>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:16px;">
+            <div style="font-weight:800;color:#10B981;font-size:.9rem;margin-bottom:6px;">🛡️ Integrity</div>
+            <div style="font-size:.84rem;color:var(--ink-3);line-height:1.5;">Nobody can secretly tamper with or modify traffic on the wire without detection.</div>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:16px;">
+            <div style="font-weight:800;color:#7C3AED;font-size:.9rem;margin-bottom:6px;">📜 Authentication</div>
+            <div style="font-size:.84rem;color:var(--ink-3);line-height:1.5;">Your browser verifies the server holds the certificate associated with that specific domain name.</div>
+          </div>
+        </div>
+
+        <p>In normal language: your information is protected from simply being read while travelling across the network, someone shouldn't be able to secretly modify that traffic without detection, and your browser can authenticate the server associated with the domain and certificate you're connecting to.</p>
+
+        <p>That's important.</p>
+
+        <p>If you're signing into your bank, sending a private message, or entering payment information, you absolutely want that protection.</p>
+
+        <p><strong>But HTTPS is protecting the connection.</strong></p>
+
+        <p>It isn't sitting there asking:</p>
+
+        <ul class="styled-list" style="margin:14px 0 18px 20px;">
+          <li><em>Is this company honest?</em></li>
+          <li><em>Is this website a scam?</em></li>
+          <li><em>Should this person be trusted with your password?</em></li>
+        </ul>
+
+        <p>That's not HTTPS's job. And that's the part people often miss.</p>
+
+        <!-- S2 -->
+        <h2 id="s2">Think About It Like an Armoured Van</h2>
+
+        <p>Imagine you're sending a confidential document.</p>
+
+        <p>You put it inside an armoured delivery van. The doors are locked. Nobody on the road can open it. Nobody can secretly replace your document while it's travelling.</p>
+
+        <p>Perfect.</p>
+
+        <p><strong>Except you've given the driver the wrong address.</strong></p>
+
+        <p>The van securely delivers your confidential document... straight to a scammer.</p>
+
+        <div class="pq" style="border-left-color:#F59E0B;color:#B45309;background:#FFFBEB;font-style:normal;font-weight:700;">
+          Nothing went wrong with the van. The transport was secure. The destination was wrong.
+        </div>
+
+        <p>HTTPS can work in much the same way.</p>
+
+        <p>You can have a properly encrypted connection to a phishing website. If you enter your password there, someone casually watching the network may not be able to read it.</p>
+
+        <p><strong>But the phishing website can.</strong></p>
+
+        <p>Of course it can. You sent the password to it.</p>
+
+        <p>That's the key idea: <strong>HTTPS can protect your connection to a website without making that website trustworthy.</strong></p>
+
+        <!-- SVG Diagram: The Armoured Van Analogy -->
+        <div class="sec-svg" aria-label="Conceptual comparison: Armoured van transport versus destination delivery">
+          <svg viewBox="0 0 540 185" width="540" height="185" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Diagram showing armoured van delivering securely to the wrong address">
+            <!-- Left Box: The Secure Transport -->
+            <rect x="20" y="20" width="240" height="145" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5" />
+            <text x="140" y="44" text-anchor="middle" fill="#166534" font-family="DM Sans,system-ui" font-size="11" font-weight="800">THE TRANSPORT (HTTPS / TLS)</text>
+            <rect x="36" y="58" width="208" height="42" rx="6" fill="white" stroke="#10B981" stroke-width="1" />
+            <text x="140" y="76" text-anchor="middle" fill="#065F46" font-family="DM Sans,system-ui" font-size="9" font-weight="700">🔒 Armoured Van (Encrypted Wire)</text>
+            <text x="140" y="90" text-anchor="middle" fill="#15803D" font-family="DM Sans,system-ui" font-size="7.5">Locked doors · Eavesdroppers locked out</text>
+            <text x="140" y="125" text-anchor="middle" fill="#166534" font-family="DM Sans,system-ui" font-size="8.5" font-weight="600">Transport: Working 100% Correctly ✓</text>
+            <text x="140" y="142" text-anchor="middle" fill="#475569" font-family="DM Sans,system-ui" font-size="7.5">Data is shielded from open Wi-Fi sniffers.</text>
+
+            <!-- Arrow between -->
+            <path d="M265 92 L275 92" stroke="#64748B" stroke-width="2" />
+
+            <!-- Right Box: The Deceptive Destination -->
+            <rect x="280" y="20" width="240" height="145" rx="10" fill="#FEF2F2" stroke="#FECACA" stroke-width="1.5" />
+            <text x="400" y="44" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="11" font-weight="800">THE DESTINATION (WEBSITE)</text>
+            <rect x="296" y="58" width="208" height="42" rx="6" fill="white" stroke="#EF4444" stroke-width="1" />
+            <text x="400" y="76" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="9" font-weight="700">⚠️ Scammer's Address</text>
+            <text x="400" y="90" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="7.5">Wrong recipient receives your document</text>
+            <text x="400" y="125" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="8.5" font-weight="600">Destination: Untrustworthy Fraudster ✗</text>
+            <text x="400" y="142" text-anchor="middle" fill="#475569" font-family="DM Sans,system-ui" font-size="7.5">The scammer can read whatever was delivered.</text>
+          </svg>
+        </div>
+
+        <!-- S3 -->
+        <h2 id="s3">Yes, a Phishing Website Can Have HTTPS</h2>
+
+        <p>This still surprises people.</p>
+
+        <p>A phishing website can have HTTPS. It can have a valid TLS certificate. It can have a beautiful design. It can copy Microsoft's logo. It can look like your bank. It can look like a delivery company.</p>
+
+        <p>It can even look more professional than some legitimate websites. And it can still be completely fake.</p>
+
+        <p>Imagine you receive:</p>
+
+        <div class="callout-box" style="border-left-color:#2563EB;background:#EFF6FF;">
+          <div style="font-weight:700;color:#1E40AF;margin-bottom:4px;">Microsoft Security Alert</div>
+          <p style="margin:0;color:#1D4ED8;font-size:.9rem;line-height:1.5;">“We've detected unusual activity on your account. Please verify your identity immediately.”</p>
+        </div>
+
+        <p>You click. The page looks familiar. Microsoft logo. Same colours. Email box. Password box. HTTPS. Everything feels normal.</p>
+
+        <p>But instead of being on:</p>
+
+        <div style="background:#F0FDF4;border:1px solid #BBF7D0;border-radius:6px;padding:8px 14px;margin:10px 0;font-family:monospace;font-size:.9rem;color:#166534;font-weight:700;">
+          microsoft.com
+        </div>
+
+        <p>you're actually on something like:</p>
+
+        <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:6px;padding:8px 14px;margin:10px 0;font-family:monospace;font-size:.9rem;color:#991B1B;font-weight:700;">
+          microsoft-account-check.example
+        </div>
+
+        <p>If you enter your password, HTTPS isn't going to save you.</p>
+
+        <p>In fact, HTTPS may be working perfectly. Your browser can establish an encrypted connection and securely send the information you entered to that server.</p>
+
+        <p><strong>The problem is simple: the server belongs to the wrong person.</strong></p>
+
+        <!-- S4 -->
+        <h2 id="s4">“But Doesn't HTTPS Need a Certificate?”</h2>
+
+        <p>Yes. And this is where another misunderstanding starts.</p>
+
+        <p>People sometimes imagine that getting a certificate means somebody has inspected the website and decided:</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:16px 0;">
+          <div style="background:#F1F5F9;padding:10px;border-radius:6px;text-align:center;font-size:.82rem;font-weight:600;color:var(--ink-3);">Real company ✓</div>
+          <div style="background:#F1F5F9;padding:10px;border-radius:6px;text-align:center;font-size:.82rem;font-weight:600;color:var(--ink-3);">Trustworthy owner ✓</div>
+          <div style="background:#F1F5F9;padding:10px;border-radius:6px;text-align:center;font-size:.82rem;font-weight:600;color:var(--ink-3);">Safe content ✓</div>
+          <div style="background:#F1F5F9;padding:10px;border-radius:6px;text-align:center;font-size:.82rem;font-weight:600;color:var(--ink-3);">No malware ✓</div>
+        </div>
+
+        <p><strong>That's not what a normal Domain Validation certificate, commonly called a DV certificate, is designed to tell you.</strong></p>
+
+        <p>For domain validation, the important question is whether the applicant can demonstrate control of the domain. That's very different from proving that the person behind the domain is trustworthy.</p>
+
+        <p>Let's Encrypt explains this clearly in their research (<a href="https://letsencrypt.org/2015/10/29/phishing-and-malware.html" target="_blank" rel="noopener noreferrer">The CA's Role in Fighting Phishing and Malware</a>): a DV certificate establishes a relationship between a public key and a domain. It doesn't tell you about the website's reputation, the real-world identity of whoever operates it, or whether the site's content is safe.</p>
+
+        <p>So if a scammer controls a deceptive domain, they may still be able to obtain a legitimate certificate for that domain.</p>
+
+        <p>The certificate isn't saying: <em>“This is Microsoft.”</em></p>
+
+        <p>It's helping establish: <strong>“You're communicating securely with the domain covered by this certificate.”</strong></p>
+
+        <p>That's an important difference.</p>
+
+        <!-- S5 -->
+        <h2 id="s5">The Logo Is Easy to Copy</h2>
+
+        <p>Here's something worth remembering: <strong>A logo proves almost nothing.</strong></p>
+
+        <p>Neither does a familiar colour scheme.</p>
+
+        <p>A phishing page can copy images, fonts, wording and page layouts from the real website. Attackers don't need Microsoft's or a bank's permission to put their logo on a fake webpage.</p>
+
+        <p>What matters much more is <strong>where the page actually is</strong>.</p>
+
+        <p>Let's take this fictional address:</p>
+
+        <div style="background:#F8FAFC;border:1.5px solid var(--border-2);border-radius:8px;padding:14px 18px;margin:18px 0;font-family:monospace;font-size:1.05rem;color:var(--ink);text-align:center;">
+          <span style="color:#2563EB;font-weight:800;background:#DBEAFE;padding:2px 6px;border-radius:4px;">paypal</span><span style="color:var(--ink-4);">.</span><span style="color:#DC2626;font-weight:800;background:#FEE2E2;padding:2px 6px;border-radius:4px;">secure-payment.example</span>
+        </div>
+
+        <p>You might quickly notice the word <code>paypal</code> and assume everything is fine.</p>
+
+        <p>But in this example, <code>paypal</code> is only a <strong>subdomain</strong>.</p>
+
+        <p>The important domain is: <code>secure-payment.example</code>.</p>
+
+        <p>Whoever controls that domain could potentially create addresses such as:</p>
+
+        <ul class="styled-list" style="margin:14px 0 18px 20px;font-family:monospace;font-size:.88rem;">
+          <li>paypal.secure-payment.example</li>
+          <li>amazon.secure-payment.example</li>
+          <li>microsoft.secure-payment.example</li>
+        </ul>
+
+        <p>Seeing a familiar company name somewhere inside a long address doesn't mean that company owns the website. And attackers know most people aren't carefully analysing domain structure every time they click a link.</p>
+
+        <!-- SVG Diagram: URL Anatomy Breakdown -->
+        <div class="sec-svg" aria-label="Anatomy breakdown of deceptive URL structure">
+          <svg viewBox="0 0 540 160" width="540" height="160" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="URL structure diagram showing protocol, deceptive subdomain, and actual scammer root domain">
+            <!-- Full Bar Container -->
+            <rect x="20" y="20" width="500" height="52" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.5" />
+            
+            <!-- Segment 1: Protocol -->
+            <rect x="28" y="28" width="90" height="36" rx="5" fill="#DCFCE7" stroke="#10B981" />
+            <text x="73" y="50" text-anchor="middle" fill="#047857" font-family="monospace" font-size="10" font-weight="700">https://</text>
+            
+            <!-- Segment 2: Subdomain (Bait) -->
+            <rect x="124" y="28" width="90" height="36" rx="5" fill="#DBEAFE" stroke="#3B82F6" />
+            <text x="169" y="50" text-anchor="middle" fill="#1D4ED8" font-family="monospace" font-size="10" font-weight="800">paypal.</text>
+            
+            <!-- Segment 3: Root Domain (The Real Destination) -->
+            <rect x="220" y="28" width="290" height="36" rx="5" fill="#FEE2E2" stroke="#EF4444" stroke-width="2" />
+            <text x="365" y="50" text-anchor="middle" fill="#991B1B" font-family="monospace" font-size="11" font-weight="800">secure-payment.example</text>
+
+            <!-- Bottom Labels -->
+            <!-- Protocol Label -->
+            <path d="M73 66 L73 95" stroke="#10B981" stroke-width="1.2" stroke-dasharray="2 2" />
+            <text x="73" y="110" text-anchor="middle" fill="#065F46" font-family="DM Sans,system-ui" font-size="8" font-weight="700">PROTOCOL</text>
+            <text x="73" y="122" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="7">Wire Encrypted</text>
+
+            <!-- Subdomain Label -->
+            <path d="M169 66 L169 95" stroke="#3B82F6" stroke-width="1.2" stroke-dasharray="2 2" />
+            <text x="169" y="110" text-anchor="middle" fill="#1E40AF" font-family="DM Sans,system-ui" font-size="8" font-weight="700">SUBDOMAIN (TRICK)</text>
+            <text x="169" y="122" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="7">Bait to fool skimming eyes</text>
+
+            <!-- Root Domain Label -->
+            <path d="M365 66 L365 95" stroke="#EF4444" stroke-width="1.5" />
+            <text x="365" y="110" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="9" font-weight="900">ACTUAL DESTINATION DOMAIN</text>
+            <text x="365" y="123" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="8" font-weight="700">Owned by attacker · Controls full server</text>
+          </svg>
+        </div>
+
+        <div class="pq" style="border-left-color:#7C3AED;color:#6D28D9;background:#F5F3FF;font-style:normal;font-weight:700;">
+          Phishing isn't really testing your intelligence. It's testing your attention.
+        </div>
+
+        <p>That's why these attacks often work. Think about when you usually receive these messages:</p>
+
+        <ul class="styled-list" style="margin:14px 0 18px 20px;">
+          <li>You're working.</li>
+          <li>You're on the bus.</li>
+          <li>You're walking home.</li>
+          <li>You're watching something.</li>
+          <li>You're about to go to bed.</li>
+        </ul>
+
+        <p>Then your phone buzzes:</p>
+
+        <p><em>“Your parcel couldn't be delivered.”</em><br>
+        Or: <em>“Payment failed.”</em><br>
+        Or: <em>“Someone has accessed your account.”</em><br>
+        Or: <em>“Verify your account within 30 minutes.”</em></p>
+
+        <p>Suddenly there's a problem. You want to fix it. You tap the link. The page looks right. HTTPS is there. You enter your details.</p>
+
+        <p>The attacker didn't need to fool you for an hour. <strong>They may only have needed your trust for twenty seconds.</strong></p>
+
+        <p>That's why the urgency is often just as important as the fake website itself. The message keeps your attention on: <em>“How do I fix this?”</em> instead of: <em>“Where exactly am I?”</em></p>
+
+        <!-- S6 -->
+        <h2 id="s6">Google Realised the Padlock Was Confusing People Too</h2>
+
+        <p>This misunderstanding became big enough that Google changed Chrome's interface.</p>
+
+        <p>In 2023, the Chromium security team explained (<a href="https://blog.chromium.org/2023/05/an-update-on-lock-icon.html" target="_blank" rel="noopener noreferrer">An Update on the Lock Icon</a>) that the lock icon was never intended to indicate that a website itself was trustworthy.</p>
+
+        <p>More interestingly, Google's research found that in a 2021 study, <strong>only 11% of participants correctly understood the precise meaning of the lock icon</strong>.</p>
+
+        <p>Chromium also pointed out that <strong>nearly all phishing sites use HTTPS</strong>.</p>
+
+        <p>Think about what that means. We spent years teaching people: <em>Padlock = safe</em>, while phishing sites were perfectly capable of displaying the padlock too.</p>
+
+        <p>So Chrome moved away from the traditional lock icon and replaced it with a more neutral <strong>controls-style tune icon</strong>.</p>
+
+        <p>And HTTPS wasn't removed because it had failed. Quite the opposite.</p>
+
+        <p>By 2023, Chromium reported that <strong>more than 95% of Chrome page loads on Windows were already using HTTPS</strong>. HTTPS had become normal. That's exactly what we wanted.</p>
+
+        <p>But when almost every website uses HTTPS — including malicious ones — HTTPS alone isn't a useful way to decide whether a website deserves your trust.</p>
+
+        <!-- S7 -->
+        <h2 id="s7">The Same Thing Applies to Downloads</h2>
+
+        <p>Let's say you're searching for some software.</p>
+
+        <p>Maybe a PDF converter. A game. A video-editing tool. You find a website offering exactly what you need. It uses HTTPS.</p>
+
+        <p>Does that mean the download is safe?</p>
+
+        <p><strong>No.</strong></p>
+
+        <p>HTTPS protects the communication between you and the server. It doesn't inspect the intention of the person running that server.</p>
+
+        <p>If the server deliberately sends you a malicious file, that file can still arrive through an encrypted connection. The encryption isn't broken. It's doing exactly what it's supposed to do: protecting the data while it's travelling.</p>
+
+        <p>It just happens that the data being delivered is something you shouldn't have trusted in the first place.</p>
+
+        <p>Again, think about the armoured van: <strong>locking the doors protects what's being transported; it doesn't decide whether what's inside is safe.</strong></p>
+
+        <!-- S8 -->
+        <h2 id="s8">“Wouldn't My Browser Just Warn Me?”</h2>
+
+        <p>Sometimes it will.</p>
+
+        <p>Modern browsers have other security mechanisms designed to identify known phishing sites, malware, and dangerous downloads.</p>
+
+        <p>Companies can add even more layers: email filtering, DNS security, endpoint protection, web filtering, identity monitoring, and threat intelligence. All of that helps.</p>
+
+        <p><strong>But none of it means every malicious website will be recognised instantly.</strong></p>
+
+        <ul class="styled-list" style="margin:14px 0 18px 20px;">
+          <li>A phishing site can be brand new.</li>
+          <li>The domain might not have much reputation data yet.</li>
+          <li>It may not have been reported by any user or automated scanner.</li>
+          <li>Security providers may still be learning about it.</li>
+        </ul>
+
+        <p>So these things can all be true at the exact same time:</p>
+
+        <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:16px 20px;margin:18px 0;font-size:.9rem;line-height:1.7;color:#92400E;">
+          • The website is brand new.<br>
+          • The website uses HTTPS.<br>
+          • The website looks completely professional.<br>
+          • <strong>The website is completely malicious.</strong>
+        </div>
+
+        <p>That's why <em>“My browser didn't warn me”</em> shouldn't automatically become <em>“It must be safe.”</em></p>
+
+        <!-- S9 -->
+        <h2 id="s9">Now Look at the Same Situation From a SOC</h2>
+
+        <p>For the person who clicked the link, the story might simply be:</p>
+
+        <div style="background:#F1F5F9;border:1px solid var(--border);border-radius:6px;padding:12px 18px;margin:14px 0;font-style:italic;color:var(--ink-2);">
+          “I received a Microsoft email, clicked the link and logged in.”
+        </div>
+
+        <p>For a SOC (Security Operations Center) analyst, that's where the investigation starts.</p>
+
+        <p>The analyst may look at the email that delivered the link. Then the domain. Then DNS or web activity. Then the endpoint. Then identity events.</p>
+
+        <ul class="styled-list" style="margin:14px 0 18px 20px;">
+          <li>Maybe the organisation has never seen that domain before.</li>
+          <li>Maybe unusual authentication appears afterwards.</li>
+          <li>Maybe the user's account suddenly starts behaving differently.</li>
+          <li>Maybe there are other alerts around the same time.</li>
+        </ul>
+
+        <p>One event alone might not prove much. <strong>But several events together can tell a completely different story.</strong></p>
+
+        <p>That's why a SOC analyst isn't going to see HTTPS and think: <em>“Okay, it's safe.”</em></p>
+
+        <div class="pq" style="border-left-color:var(--blue);color:var(--blue);background:var(--blue-bg);font-style:normal;font-weight:700;">
+          The better question is: “HTTPS to where?”
+        </div>
+
+        <p>Then: What happened before the connection? What happened afterwards? Does this domain make sense? Does this activity make sense for this user? Are other users visiting the same domain? Did the endpoint do anything unusual afterwards?</p>
+
+        <p>That's where security monitoring becomes useful. It's rarely one magical indicator telling you <code>ATTACK</code>. More often, it's several ordinary-looking pieces that become suspicious when you put them together.</p>
+
+        <!-- S10: INTERACTIVE DESTINATION INSPECTOR -->
+        <h2 id="s10">Interactive Destination &amp; URL Inspector</h2>
+
+        <p>Test how address bars and SSL/TLS certificates behave across common phishing lures compared to legitimate destinations. Select a scenario or type an address to inspect:</p>
+
+        <!-- Interactive Widget Component -->
+        <div id="urlInspectorTool" style="background:#F8FAFC;border:1.5px solid var(--border-2);border-radius:var(--r);padding:24px;margin:28px 0;box-shadow:var(--sh-sm);">
+          <div style="font-family:var(--f-d);font-size:1.05rem;font-weight:800;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:8px;">
+            <span>🔍</span> Address Bar &amp; TLS Reality Inspector
+          </div>
+          <p style="font-size:.85rem;color:var(--ink-4);margin-bottom:16px;">Click a scenario to see how deceptive websites exploit the HTTPS padlock:</p>
+
+          <!-- Scenario Tabs -->
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;" id="urlTabs" role="tablist">
+            <button class="url-btn active" data-url="royalmail" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--blue);background:var(--blue);color:white;cursor:pointer;">1. £1.49 Parcel Redelivery</button>
+            <button class="url-btn" data-url="paypal-sub" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">2. Subdomain Masquerade</button>
+            <button class="url-btn" data-url="ms-alert" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">3. Account Verify Alert</button>
+            <button class="url-btn" data-url="legit-bank" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">4. Legitimate Destination</button>
+          </div>
+
+          <!-- Dynamic Output Card -->
+          <div id="urlOutput" style="background:white;border:1px solid var(--border);border-radius:var(--r-sm);padding:20px;">
+            <!-- Rendered dynamically by script below -->
+          </div>
+        </div>
+
+        <!-- S11 -->
+        <h2 id="s11">So Does HTTPS Still Matter?</h2>
+
+        <p><strong>Absolutely.</strong></p>
+
+        <p>The point of this article isn't: <em>“HTTPS is useless.”</em> That would be completely wrong.</p>
+
+        <p>HTTPS is essential to the modern web. TLS protects data while it's travelling across networks. It provides confidentiality and integrity and supports authentication of the server you're connecting to.</p>
+
+        <p>Without those protections, attackers positioned on a network could have much greater opportunities to read or manipulate web traffic.</p>
+
+        <p>So HTTPS matters. Certificates matter. Encryption matters.</p>
+
+        <p><strong>The mistake is expecting them to answer a different question.</strong></p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0;">
+          <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:8px;padding:16px;">
+            <div style="font-weight:800;color:#166534;font-size:.9rem;margin-bottom:6px;">✓ What HTTPS Answers</div>
+            <div style="font-size:.85rem;color:#14532D;line-height:1.5;">“Is my connection to this domain protected from wiretapping and modification?”</div>
+          </div>
+          <div style="background:#FEF2F2;border:1.5px solid #FECACA;border-radius:8px;padding:16px;">
+            <div style="font-weight:800;color:#991B1B;font-size:.9rem;margin-bottom:6px;">✗ What HTTPS Does NOT Answer</div>
+            <div style="font-size:.85rem;color:#7F1D1D;line-height:1.5;">“Should I trust the person or criminal syndicate behind this domain?”</div>
+          </div>
+        </div>
+
+        <h2>So What Should You Actually Do?</h2>
+
+        <p>You don't need to become a cybersecurity analyst every time you open a website. You don't need to inspect certificates or understand how a TLS handshake works.</p>
+
+        <p><strong>Just change one habit:</strong></p>
+
+        <div class="callout-box" style="border-left-color:#10B981;background:#F0FDF4;">
+          <div style="font-weight:700;color:#065F46;margin-bottom:6px;">The Single Most Effective Habit:</div>
+          <p style="margin:0;color:#047857;font-size:.92rem;line-height:1.6;">Before entering a password, payment information or sensitive personal details, <strong>look at where you actually are. Check the domain.</strong><br><br>And be especially careful when you arrived through an unexpected email, text message or social-media message.</p>
+        </div>
+
+        <p>If your bank says there's a problem, you don't have to use the link they sent. Open your banking app yourself.</p>
+
+        <p>If Amazon says something is wrong with an order, open Amazon directly.</p>
+
+        <p>If Microsoft says there's suspicious activity, navigate to your Microsoft account yourself.</p>
+
+        <p>If a delivery company says your parcel couldn't be delivered, go to the company's official website or app and check your tracking there.</p>
+
+        <p>You're doing something very simple: <strong>removing the attacker's link from the equation.</strong></p>
+
+        <h2>Maybe We Need to Change the Old Advice</h2>
+
+        <p>For years, we said: <em>“Look for the padlock.”</em></p>
+
+        <p>Maybe the better advice today is: <strong>“Check the destination.”</strong></p>
+
+        <p>Because this combination is completely possible:</p>
+
+        <div style="background:#F8FAFC;border:1px solid var(--border-2);border-radius:8px;padding:16px 20px;margin:18px 0;font-family:monospace;font-size:.9rem;line-height:1.8;">
+          HTTPS? <span style="color:#16A34A;font-weight:700;">Yes.</span><br>
+          Valid certificate? <span style="color:#16A34A;font-weight:700;">Yes.</span><br>
+          Professional-looking website? <span style="color:#16A34A;font-weight:700;">Yes.</span><br>
+          Familiar company logo? <span style="color:#16A34A;font-weight:700;">Yes.</span><br>
+          Legitimate website? <span style="color:#DC2626;font-weight:800;">No.</span>
+        </div>
+
+        <p>The padlock wasn't lying. HTTPS wasn't broken. The certificate wasn't necessarily fake. <strong>We were simply asking it the wrong question.</strong></p>
+
+        <p>We looked at the padlock and asked: <em>“Is this website safe?”</em></p>
+
+        <p>But the technology was answering something much narrower: <em>“Your connection to this domain is protected.”</em></p>
+
+        <p>A protected connection can take you to your bank. It can take you to Microsoft. It can take you to your workplace. And it can take you straight to a phishing page.</p>
+
+        <p>So next time a website asks for your password, card details or personal information, don't stop checking because you see HTTPS. Ask yourself one more question:</p>
+
+        <div class="pq" style="border-left-color:var(--blue);color:var(--blue);background:var(--blue-bg);font-style:normal;font-weight:700;">
+          Who am I securely connected to?
+        </div>
+
+        <p>Because encryption can protect your information while it's travelling. It can't stop you from sending that information to the wrong person.</p>
+
+        <!-- Episode 05 Takeaway Box -->
+        <div class="takeaway-box" style="margin:28px 0;">
+          <div class="takeaway-title">Episode 05 — The Takeaway</div>
+          <ul class="styled-list" style="margin:10px 0 0 16px;">
+            <li><strong>The padlock was never supposed to be a “this website is safe” badge.</strong> It only signifies encrypted transit.</li>
+            <li><strong>HTTPS protects the connection between your browser and the server.</strong> That's essential, and we absolutely want it. But trust is a completely different question.</li>
+            <li><strong>Don't stop at “Is this connection secure?”</strong> Also ask: <em>“Am I on the website I actually intended to visit?”</em></li>
+            <li><strong>Remove the attacker's link from the equation.</strong> Navigate to known accounts directly or open official apps rather than tapping urgent message links.</li>
+          </ul>
+        </div>
+
+        <!-- S12: SOURCES -->
+        <h2 id="sources">Sources &amp; Further Reading</h2>
+
+        <p>The technical standards, browser telemetry, and CA governance details cited in this episode are grounded in documentation from the Chromium project, Let's Encrypt, MDN Web Docs, and the Internet Engineering Task Force (IETF):</p>
+
+        <ul class="styled-list" style="margin:16px 0 32px 20px;font-size:.92rem;">
+          <li><a href="https://blog.chromium.org/2023/05/an-update-on-lock-icon.html" target="_blank" rel="noopener noreferrer">Chromium Blog — An Update on the Lock Icon</a>: Google's Chrome security team explains why Chrome moved away from the traditional padlock. This is also the source for the 2021 11% user-understanding figure, the finding that nearly all phishing sites use HTTPS, and the 95%+ Chrome-on-Windows HTTPS figure reported in 2023.</li>
+          <li><a href="https://letsencrypt.org/2015/10/29/phishing-and-malware.html" target="_blank" rel="noopener noreferrer">Let's Encrypt — The CA's Role in Fighting Phishing and Malware</a>: Explains why a Domain Validation certificate should not be treated as a seal of approval. Let's Encrypt states that DV certificates don't provide information about a site's reputation, real-world identity or safety.</li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Transport_Layer_Security" target="_blank" rel="noopener noreferrer">MDN Web Docs — Transport Layer Security (TLS)</a>: Technical reference for TLS encryption, integrity, authentication, server certificates, and protection of web traffic.</li>
+          <li><a href="https://www.rfc-editor.org/info/rfc8446" target="_blank" rel="noopener noreferrer">RFC 8446 — The Transport Layer Security (TLS) Protocol Version 1.3</a>: The actual TLS 1.3 standard defining security properties, cipher suites, authentication, confidentiality, and integrity.</li>
+        </ul>
+
+      </div><!-- /art-text -->
+
+      <!-- FEEDBACK & DISCUSSION SECTION -->
+      <section class="feedback-section" id="feedback" aria-label="Reader feedback">
+        <div class="fb-header">
+          <h2 class="fb-title">Send feedback to Poorna</h2>
+          <p class="fb-sub">Have a question or a suggestion? Prepare an email below. Feedback is private and is sent only when you press Send in your email app.</p>
+          <p class="fb-sub">Likes and claps are your personal reactions on this device.</p>
+        </div>
+        <div class="fb-form-box">
+          <p>You can also <a href="mailto:sujampathirathnayaka@gmail.com">email Poorna directly</a>.</p>
+          <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
+          <form id="fbForm" hidden>
+            <label for="fbName">Name (optional)</label>
+            <input class="fb-input" id="fbName" maxlength="100" autocomplete="name" aria-describedby="fbDraftNote">
+            <label for="fbCategory">Feedback category</label>
+            <select class="fb-input" id="fbCategory">
+              <option>General feedback</option><option>Question</option><option>Correction</option><option>Topic suggestion</option>
+            </select>
+            <label for="fbMessage">Your feedback</label>
+            <textarea class="fb-textarea" id="fbMessage" aria-describedby="fbDraftNote fbLimit" required maxlength="2000" placeholder="Share your question or suggestion..."></textarea>
+            <p id="fbLimit" class="fb-draft-note">Maximum 2,000 characters.</p>
+            <div class="fb-form-foot">
+              <button type="submit" class="fb-submit-btn">Prepare email</button>
+              <button type="button" class="fb-clear-btn" id="fbClear">Clear draft</button>
+            </div>
+          </form>
+          <div id="fbEmailPreview" class="fb-preview" hidden>
+            <p id="fbStatus" class="fb-status" role="status">Prepared. Review and send:</p>
+            <a id="fbEmailLink" class="fb-email-link" href="#" target="_blank" rel="noopener noreferrer">Open email app</a>
+            <div class="fb-preview-field">
+              <label for="fbEmailTo">To</label>
+              <input id="fbEmailTo" class="fb-input" readonly value="sujampathirathnayaka@gmail.com">
+            </div>
+            <div class="fb-preview-field">
+              <label for="fbEmailSubject">Subject</label>
+              <input id="fbEmailSubject" class="fb-input" readonly>
+            </div>
+            <div class="fb-preview-field">
+              <label for="fbEmailBody">Body</label>
+              <textarea id="fbEmailBody" class="fb-textarea" readonly rows="8"></textarea>
+            </div>
+            <button type="button" class="fb-copy-btn" id="fbCopy">Copy feedback</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10-Episode Series Curriculum Box -->
+      <div class="art-series-box" id="series-curriculum">
+        <div class="art-series-box-header">
+          <div>
+            <span class="art-series-tag">Syllabus</span>
+            <div class="art-series-box-title">Cybersecurity for Everyone — 10 Episodes</div>
+          </div>
+          <a href="index.html#series" class="art-series-link">All Episodes →</a>
+        </div>
+        <div class="series-nav-grid" id="seriesNavGrid">
+          <a href="article.html" class="series-nav-item">
+            <span class="series-nav-num">01</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Can You Still Trust What You See and Hear Online?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 01 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-02.html" class="series-nav-item">
+            <span class="series-nav-num">02</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Someone Has Your Email Address. Now What?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 02 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-03.html" class="series-nav-item">
+            <span class="series-nav-num">03</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">I Clicked a Phishing Link. What Should I Do?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 03 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-04.html" class="series-nav-item">
+            <span class="series-nav-num">04</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Password Wasn't Hacked. Your Session Was Stolen.</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 04 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-05.html" class="series-nav-item active" style="border-left:3px solid var(--blue);background:#EFF6FF;">
+            <span class="series-nav-num" style="color:var(--blue);font-weight:800;">05</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title" style="color:var(--blue);font-weight:700;">Why the Padlock Doesn't Mean a Website Is Safe</span>
+              <span class="series-nav-tag" style="background:#DBEAFE;color:#1D4ED8;border-color:#93C5FD;">Episode 05 · Reading Now 👁️</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">06</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Are Passkeys Finally Going to Kill Passwords?</span>
+              <span class="series-nav-tag">Episode 06 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">07</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">The Fake Recruiter in Your LinkedIn Inbox</span>
+              <span class="series-nav-tag">Episode 07 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">08</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">How Much Can a Scammer Learn About You in 10 Minutes?</span>
+              <span class="series-nav-tag">Episode 08 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">09</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Bank Is Calling. Or Is It?</span>
+              <span class="series-nav-tag">Episode 09 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">10</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">What Happens to Your Information After a Data Breach?</span>
+              <span class="series-nav-tag">Episode 10 · Coming Soon</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Related / Up Next in Series -->
+      <div class="related">
+        <div class="sec-h"
+          style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <span class="sec-lbl" style="color:var(--blue);">Cybersecurity for Everyone</span>
+            <div style="font-family:var(--f-d);font-size:1.15rem;font-weight:800;color:var(--ink);margin-top:4px;">Series Navigation</div>
+          </div>
+          <a href="index.html#series"
+            style="font-size:.82rem;font-weight:700;color:var(--blue);text-decoration:none;display:flex;align-items:center;gap:5px;">
+            View All 10 Episodes in Series →
+          </a>
+        </div>
+        <div class="rel-grid">
+
+          <!-- Previous: Episode 04 -->
+          <a href="article-04.html" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
+            <div class="card-svg" style="background:linear-gradient(135deg,#F5F3FF 0%,#EDE9FE 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <circle cx="106" cy="70" r="28" fill="#FDE68A" stroke="#D97706" stroke-width="1.8" />
+                <circle cx="98" cy="62" r="4" fill="#92400E" />
+                <circle cx="114" cy="60" r="3.5" fill="#92400E" />
+                <circle cx="104" cy="76" r="3" fill="#92400E" />
+                <text x="106" y="108" text-anchor="middle" fill="#7C3AED" font-family="DM Sans,system-ui" font-size="7.5"
+                  font-weight="700">session_token</text>
+                <path d="M136 70 Q156 70 170 56" stroke="#8B5CF6" stroke-width="1.8" stroke-dasharray="3 2" />
+                <rect x="172" y="44" width="38" height="34" rx="6" fill="white" stroke="#7C3AED" stroke-width="1.5" />
+              </svg>
+              <span class="card-svg-label" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">← Previous · Ep 04</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Your Password Wasn't Hacked. Your Session Was Stolen.</h3>
+              <p class="card-ex">You did everything right: strong password, MFA, passkeys. So why was your account compromised? How attackers bypass logins by stealing sessions.</p>
+              <div class="card-foot"><span>Session Security</span><span style="color:#16A34A;font-weight:700;">Read Ep 04 →</span></div>
+            </div>
+          </a>
+
+          <!-- Next: Episode 06 -->
+          <div class="art-card">
+            <div class="card-svg" style="background:linear-gradient(135deg,#F0FDFA 0%,#CCFBF1 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <rect x="68" y="52" width="60" height="38" rx="7" fill="white" stroke="#0D9488" stroke-width="1.8" />
+                <circle cx="98" cy="71" r="9" stroke="#0D9488" stroke-width="1.4" fill="#F0FDFA" />
+                <rect x="146" y="58" width="65" height="25" rx="5" fill="white" stroke="#94A3B8" stroke-width="1.4" />
+                <line x1="142" y1="71" x2="215" y2="71" stroke="#EF4444" stroke-width="2" stroke-linecap="round" />
+              </svg>
+              <span class="card-svg-label">Up Next · Ep 06</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Are Passkeys Finally Going to Kill Passwords?</h3>
+              <p class="card-ex">Passkeys are being hailed as the end of passwords. But what are they, how do they work, and should you actually switch?</p>
+              <div class="card-foot"><span>Authentication</span><span class="soon">Coming Soon</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /art-center -->
+
+  </div><!-- /art-layout -->
+
+  <!-- FLOATING BOTTOM DOCK -->
+  <aside class="floating-dock" aria-label="Reading Controls">
+    <button class="dock-btn btn-like" aria-label="Like article">
+      <span class="dock-emoji like-heart">🤍</span>
+      <span class="dock-count like-count">0</span>
+    </button>
+    <button class="dock-btn btn-clap" aria-label="Applaud research">
+      <span class="dock-emoji">👏</span>
+      <span class="dock-count clap-count">0</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#feedback" class="dock-btn" aria-label="Jump to discussion">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+      <span class="dock-label">Feedback</span>
+    </a>
+    <button class="dock-btn btn-share" onclick="copyLink()" aria-label="Copy link">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+      <span class="dock-label">Share</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#series-curriculum" class="dock-series-pill" title="Series: Cybersecurity for Everyone">
+      <span class="dock-pulse"></span>
+      Ep 05 of 10
+    </a>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, SSL/TLS misconceptions, and digital literacy for everyone.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Series Navigation</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
+              <li><a href="article-02.html">Ep 02: Email OSINT &amp; Perimeter Defense</a></li>
+              <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
+              <li><a href="article-04.html">Ep 04: Session Theft &amp; Cookie Hijacking</a></li>
+              <li><a href="article-05.html">Ep 05: The Padlock Myth &amp; TLS Security</a></li>
+              <li><a href="index.html#series">View Full Curriculum (10 Episodes)</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Author &amp; Verification</div>
+            <ul class="foot-nav-list">
+              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Poorna's Portfolio ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn Research ↗</a></li>
+              <li><a href="#sources">Citations &amp; Methodology</a></li>
+              <li><a href="mailto:sujampathirathnayaka@gmail.com">Contact Editorial Desk</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal & Research Disclaimer -->
+      <div class="foot-disclaimer">
+        <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is authored by Poorna Sujampathi Rathnayaka for non-commercial educational, threat awareness, and digital literacy purposes. All third-party trademarks, company names, CVE IDs, and security advisories referenced are the property of their respective copyright holders. Fair use citations for educational security awareness are permitted with direct attribution and canonical link.
+      </div>
+
+      <div class="foot-bottom">
+        <div>
+          &copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.
+        </div>
+        <div class="foot-bottom-links">
+          <a href=".well-known/security.txt" target="_blank" rel="noopener noreferrer">Vulnerability Disclosure</a>
+          <span>·</span>
+          <a href="index.html#about">Ethics &amp; Methodology</a>
+          <span>·</span>
+          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element"></div>
+
+  <!-- Client-side Interactive Destination & URL Inspector -->
+  <script>
+    (function () {
+      const urlScenarios = {
+        'royalmail': {
+          title: 'The £1.49 Parcel Redelivery Scam',
+          urlDisplay: 'https://royalmail-redelivery-fee.example/pay',
+          protocol: 'https:// (TLS 1.3 Active)',
+          subdomain: 'None (Root domain used)',
+          actualDomain: 'royalmail-redelivery-fee.example',
+          legitimateOwner: 'Unknown / Criminal Actor (Registered yesterday)',
+          padlockStatus: '🔒 Padlock Present (Valid DV Certificate)',
+          verdict: 'MALICIOUS PHISHING SITE',
+          verdictBg: '#FEE2E2',
+          verdictColor: '#DC2626',
+          explanation: 'The website holds a genuine Let’s Encrypt DV certificate. Transport encryption works completely, but the £1.49 payment form is directly operated by credit card harvesters.',
+          advice: 'Never follow SMS parcel links. Open the official courier app or go directly to royalmail.com and manually type your tracking number.'
+        },
+        'paypal-sub': {
+          title: 'The Subdomain Deception Trick',
+          urlDisplay: 'https://paypal.secure-payment-verification.example',
+          protocol: 'https:// (TLS 1.3 Active)',
+          subdomain: 'paypal (Bait keyword)',
+          actualDomain: 'secure-payment-verification.example',
+          legitimateOwner: 'Scammer controlling secure-payment-verification.example',
+          padlockStatus: '🔒 Padlock Present (Valid DV Certificate)',
+          verdict: 'BRAND SPOOFING TRAP',
+          verdictBg: '#FEF3C7',
+          verdictColor: '#B45309',
+          explanation: 'Attackers create subdomains like "paypal" or "amazon" on arbitrary domains they control. Because people read from left to right, their eyes stop at "paypal" and assume it is safe.',
+          advice: 'Look at the root domain immediately preceding the top-level domain (.com, .example). The word before the first dot is NOT the owner.'
+        },
+        'ms-alert': {
+          title: 'Urgent Account Verification Alert',
+          urlDisplay: 'https://microsoft-account-check.online/login',
+          protocol: 'https:// (TLS 1.3 Active)',
+          subdomain: 'None',
+          actualDomain: 'microsoft-account-check.online',
+          legitimateOwner: 'Threat Actor (Zero corporate identity record)',
+          padlockStatus: '🔒 Padlock Present (Valid TLS)',
+          verdict: 'CREDENTIAL HARVESTER',
+          verdictBg: '#FEE2E2',
+          verdictColor: '#DC2626',
+          explanation: 'Uses urgency ("account suspended in 30 minutes") to distract you from checking the domain. The login box looks identical to Microsoft, but your password is sent straight to an attacker server.',
+          advice: 'Always sign in by navigating to login.microsoftonline.com or account.microsoft.com directly from your browser bookmarks.'
+        },
+        'legit-bank': {
+          title: 'Legitimate Direct Navigation',
+          urlDisplay: 'https://login.microsoftonline.com',
+          protocol: 'https:// (TLS 1.3 Active)',
+          subdomain: 'login',
+          actualDomain: 'microsoftonline.com',
+          legitimateOwner: 'Microsoft Corporation (Authenticated Destination)',
+          padlockStatus: '🔒 Secure Connection to Intended Destination',
+          verdict: 'AUTHENTIC & TRUSTED DESTINATION',
+          verdictBg: '#DCFCE7',
+          verdictColor: '#15803D',
+          explanation: 'Both criteria are satisfied: (1) the wire is encrypted via TLS 1.3, AND (2) the destination domain genuinely belongs to the authentic organization you intended to reach.',
+          advice: 'This is the gold standard: secure transport delivering data to the authentic destination.'
+        }
+      };
+
+      function renderScenario(key) {
+        const d = urlScenarios[key];
+        if (!d) return;
+        const out = document.getElementById('urlOutput');
+        if (!out) return;
+
+        out.innerHTML = `
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+            <div style="font-weight:700;color:var(--ink);font-size:.98rem;">${d.title}</div>
+            <span style="font-size:.74rem;font-weight:800;padding:4px 10px;border-radius:20px;background:${d.verdictBg};color:${d.verdictColor};letter-spacing:.03em;">
+              ${d.verdict}
+            </span>
+          </div>
+
+          <!-- Mock Address Bar -->
+          <div style="background:#F1F5F9;border:1.5px solid var(--border-2);border-radius:6px;padding:10px 14px;margin-bottom:16px;display:flex;align-items:center;gap:10px;font-family:monospace;font-size:.88rem;">
+            <span style="color:#10B981;font-weight:700;">🔒</span>
+            <span style="color:var(--ink);font-weight:600;word-break:break-all;">${d.urlDisplay}</span>
+          </div>
+
+          <!-- Analysis Table -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:16px;">
+            <div style="background:var(--bg-2);padding:12px;border-radius:6px;border:1px solid var(--border);">
+              <div style="font-size:.74rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;">Protocol &amp; Wire</div>
+              <div style="font-size:.85rem;color:var(--ink);font-weight:600;margin-top:2px;">${d.protocol}</div>
+            </div>
+            <div style="background:var(--bg-2);padding:12px;border-radius:6px;border:1px solid var(--border);">
+              <div style="font-size:.74rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;">Certificate Status</div>
+              <div style="font-size:.85rem;color:#15803D;font-weight:600;margin-top:2px;">${d.padlockStatus}</div>
+            </div>
+            <div style="background:var(--bg-2);padding:12px;border-radius:6px;border:1px solid var(--border);">
+              <div style="font-size:.74rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;">Subdomain Trick</div>
+              <div style="font-size:.85rem;color:var(--ink-3);font-weight:600;margin-top:2px;">${d.subdomain}</div>
+            </div>
+            <div style="background:var(--bg-2);padding:12px;border-radius:6px;border:1px solid var(--border);">
+              <div style="font-size:.74rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;">Actual Root Domain</div>
+              <div style="font-size:.85rem;color:${d.verdictColor};font-weight:700;margin-top:2px;">${d.actualDomain}</div>
+            </div>
+          </div>
+
+          <!-- Technical Explanation -->
+          <div style="background:#FAF5FF;border-left:4px solid #7C3AED;padding:12px 16px;border-radius:4px;margin-bottom:14px;">
+            <div style="font-size:.8rem;font-weight:800;color:#6D28D9;text-transform:uppercase;">The HTTPS Reality:</div>
+            <p style="font-size:.86rem;color:#4C1D95;margin:4px 0 0;line-height:1.5;">${d.explanation}</p>
+          </div>
+
+          <!-- Defensive Action -->
+          <div style="background:#F0FDF4;border-left:4px solid #10B981;padding:12px 16px;border-radius:4px;">
+            <div style="font-size:.8rem;font-weight:800;color:#065F46;text-transform:uppercase;">Action to Take:</div>
+            <p style="font-size:.86rem;color:#047857;margin:4px 0 0;line-height:1.5;">${d.advice}</p>
+          </div>
+        `;
+      }
+
+      // Tab click events
+      const tabs = document.querySelectorAll('.url-btn');
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabs.forEach(b => {
+            b.style.background = 'white';
+            b.style.color = 'var(--ink-3)';
+            b.style.borderColor = 'var(--border-2)';
+            b.classList.remove('active');
+          });
+          btn.style.background = 'var(--blue)';
+          btn.style.color = 'white';
+          btn.style.borderColor = 'var(--blue)';
+          btn.classList.add('active');
+          renderScenario(btn.getAttribute('data-url'));
+        });
+      });
+
+      // Initial render
+      renderScenario('royalmail');
+    })();
+  </script>
+
+  <script src="js/cms.js?v=8"></script>
+  <script src="js/app.js?v=8"></script>
+  <script src="js/translator.js?v=8"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>

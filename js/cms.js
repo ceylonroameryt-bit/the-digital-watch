@@ -47,7 +47,7 @@ const DEFAULT_POSTS = [
   { id:'ep02-someone-has-your-email', episodeNum:2, title:'Someone Has Your Email Address. Now What?', slug:'ep02-someone-has-your-email', category:'Identity Recon', tags:['Account Takeover','Phishing','MFA'], readTime:'7 min read', date:'September 18, 2026', status:'published', summary:'Your email address is the primary anchor of your digital footprint. What automated crawlers, credential stuffing bots, and spear-phishers do once it leaks, and how to lockdown your perimeter.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep03-clicked-phishing-link', episodeNum:3, title:'I Clicked a Phishing Link. What Should I Do?', slug:'ep03-clicked-phishing-link', category:'Phishing', tags:['Phishing','Quick Action','Incident Response'], readTime:'6 min read', date:'September 21, 2026', status:'published', summary:'A calm, actionable five-minute triage playbook for suspicious clicks: assessing whether code executed, severing session tokens, revoking OAuth grants, and flushing credentials safely.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep04-session-was-stolen', episodeNum:4, title:'Your Password Wasn\'t Hacked. Your Session Was Stolen.', slug:'ep04-session-was-stolen', category:'Account Security', tags:['Session Hijacking','Cookies','Infostealers','DBSC'], readTime:'7 min read', date:'September 26, 2026', status:'published', summary:'What if your password was never cracked and MFA was never guessed? How attackers bypass logins by stealing authenticated sessions, and how to protect yourself.', content:'', seriesName:'Cybersecurity for Everyone' },
-  { id:'ep05-padlock-doesnt-mean-safe', episodeNum:5, title:'Why the Padlock Doesn\'t Mean a Website Is Safe', slug:'ep05-padlock-doesnt-mean-safe', category:'Web Safety', tags:['HTTPS','Scam Websites'], readTime:'5 min read', date:'', status:'draft', summary:'The padlock icon in your browser means the connection is encrypted — not that the website is trustworthy. Here\'s what to actually look for.', content:'', seriesName:'Cybersecurity for Everyone' },
+  { id:'ep05-padlock-doesnt-mean-safe', episodeNum:5, title:'Why the Padlock Doesn\'t Mean a Website Is Safe', slug:'ep05-padlock-doesnt-mean-safe', category:'Web Security', tags:['HTTPS','TLS Encryption','DV Certificates','Phishing'], readTime:'6 min read', date:'September 28, 2026', status:'published', summary:'The padlock icon in your browser means the connection is encrypted — not that the website is trustworthy. Why over 80% of phishing sites use HTTPS, the armoured van analogy, and how to verify your real destination.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep06-are-passkeys-killing-passwords', episodeNum:6, title:'Are Passkeys Finally Going to Kill Passwords?', slug:'ep06-are-passkeys-killing-passwords', category:'Authentication', tags:['Passkeys','Passwords'], readTime:'6 min read', date:'', status:'draft', summary:'Passkeys are being called the end of passwords. But what are they, how do they work, and should you actually switch?', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep07-fake-recruiter-linkedin', episodeNum:7, title:'The Fake Recruiter in Your LinkedIn Inbox', slug:'ep07-fake-recruiter-linkedin', category:'Social Engineering', tags:['LinkedIn','Fake Recruiters'], readTime:'6 min read', date:'', status:'draft', summary:'Not everyone who messages you on LinkedIn is who they say they are. Here\'s how to spot fake recruiters and what they\'re actually after.', content:'', seriesName:'Cybersecurity for Everyone' },
   { id:'ep08-what-scammer-learns-in-10-minutes', episodeNum:8, title:'How Much Can a Scammer Learn About You in 10 Minutes?', slug:'ep08-what-scammer-learns-in-10-minutes', category:'Digital Privacy', tags:['OSINT','Digital Footprint'], readTime:'7 min read', date:'', status:'draft', summary:'With just your name and email address, an attacker can piece together a surprisingly detailed profile. Here\'s exactly how — and how to limit what\'s out there.', content:'', seriesName:'Cybersecurity for Everyone' },
@@ -82,7 +82,7 @@ function getSettings() {
   return { ...DEFAULT_SETTINGS };
 }
 function articleHref(post) {
-  const routes = { 1: 'article.html', 2: 'article-02.html', 3: 'article-03.html', 4: 'article-04.html' };
+  const routes = { 1: 'article.html', 2: 'article-02.html', 3: 'article-03.html', 4: 'article-04.html', 5: 'article-05.html' };
   return post.status === 'published' && routes[post.episodeNum] || 'index.html#series';
 }
 
@@ -227,6 +227,20 @@ function _epSvgContent(n, isPub) {
       <circle cx="211" cy="68" r="5" fill="#C4B5FD"/>
       <rect x="176" y="104" width="68" height="18" rx="5" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="1"/>
       <text x="210" y="116" text-anchor="middle" fill="#6D28D9" font-family="DM Sans,system-ui" font-size="8" font-weight="700">2FA Bypassed</text>`;
+  }
+  if (n === 5) {
+    // Padlock & spoofed URL illustration for ep05
+    return `<rect x="68" y="60" width="52" height="44" rx="8" fill="white" stroke="#10B981" stroke-width="2.2"/>
+      <path d="M78 60 L78 44 Q78 30 94 30 Q110 30 110 44 L110 60" stroke="#10B981" stroke-width="2.2" fill="none"/>
+      <circle cx="94" cy="78" r="6" fill="#10B981"/>
+      <rect x="92" y="81" width="4" height="9" rx="2" fill="#10B981"/>
+      <rect x="64" y="112" width="60" height="18" rx="5" fill="#D1FAE5" stroke="#10B981" stroke-width="1"/>
+      <text x="94" y="124" text-anchor="middle" fill="#047857" font-family="DM Sans,system-ui" font-size="8" font-weight="700">HTTPS Valid</text>
+      <circle cx="180" cy="70" r="26" fill="rgba(245,158,11,.08)" stroke="#F59E0B" stroke-width="2"/>
+      <line x1="198" y1="88" x2="214" y2="104" stroke="#F59E0B" stroke-width="3" stroke-linecap="round"/>
+      <rect x="146" y="58" width="68" height="22" rx="4" fill="white" stroke="#EF4444" stroke-width="1.2"/>
+      <text x="180" y="72" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="8" font-weight="700">paypa1-login.com</text>
+      <text x="180" y="124" text-anchor="middle" fill="#B45309" font-family="DM Sans,system-ui" font-size="8" font-weight="600">Encrypted ≠ Safe</text>`;
   }
   // Generic episode SVG with episode number
   return `<circle cx="140" cy="68" r="38" fill="white" stroke="#CBD5E1" stroke-width="1.5" opacity=".8"/>
