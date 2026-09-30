@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Are Passkeys Finally Going to Kill Passwords? — Cyber Insight</title>
+  <meta name="description"
+    content="Passkeys replace shared secrets with asymmetric public-key cryptography. How they make credential phishing virtually impossible, why they don't stop session theft, and whether passwords will ever truly disappear.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Are Passkeys Finally Going to Kill Passwords?">
+  <meta property="og:description"
+    content="Underneath that simple Face ID or fingerprint prompt is an asymmetric cryptographic architecture that makes credential phishing mathematically impossible. But will passwords ever truly disappear?">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Are Passkeys Finally Going to Kill Passwords?",
+    "description": "Passkeys replace shared secrets with asymmetric public-key cryptography. How they make credential phishing virtually impossible, why they don't stop session theft, and whether passwords will ever truly disappear.",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cyber Insight",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "datePublished": "2026-10-01",
+    "copyrightYear": 2026,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=8">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
+  <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/article-06.html">
+  <meta property="og:url" content="https://ceylonroameryt-bit.github.io/the-digital-watch/article-06.html">
+</head>
+
+<body data-page="article" data-article-id="ep06">
+
+  <div id="reading-progress"></div>
+  <div id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark">CI</div>
+        <div>
+          <div class="brand-name">Cyber Insight</div>
+          <div class="brand-sub">Cybersecurity Research</div>
+        </div>
+      </a>
+      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#series">Series</a></li>
+        <li><a href="article-06.html" class="active">Research</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="article-05.html" class="cta">← Ep 05</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <!-- Series Callout Banner -->
+          <div class="art-series-banner">
+            <div class="art-series-info">
+              <span class="art-series-tag">Series</span>
+              <span>Part of <strong>Cybersecurity for Everyone</strong> · Episode 06 of 10</span>
+            </div>
+            <a href="index.html#series" class="art-series-link">View 10-Part Syllabus →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="index.html#series">Series: Cybersecurity for Everyone</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Episode 06</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat">Episode 06</span>
+            <span class="art-dot">·</span>
+            <span>Authentication &amp; Public-Key Cryptography</span>
+            <span class="art-dot">·</span>
+            <span>October 1, 2026</span>
+            <span class="art-dot">·</span>
+            <span>7 min read</span>
+          </div>
+
+          <h1 class="art-h1">Are Passkeys Finally Going to Kill Passwords?</h1>
+
+          <div class="art-byline">
+            <div class="art-av">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Writer · Cyber Insight · Digital Literacy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero SVG: The Passkey Cryptographic Architecture -->
+        <div class="art-hero-svg" style="background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%);">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Illustration depicting passkey authentication: local biometric unlock communicating public key challenge to service">
+            <!-- Background pulse circles -->
+            <circle cx="160" cy="120" r="105" fill="#99F6E4" opacity=".35" />
+            <circle cx="160" cy="120" r="75" fill="#E6FFFA" opacity=".5" />
+
+            <!-- Device / Authenticator Phone Container (Left) -->
+            <g transform="translate(32, 42)">
+              <rect x="0" y="0" width="86" height="155" rx="14" fill="#0F172A" stroke="#0D9488" stroke-width="2" />
+              <!-- Screen -->
+              <rect x="6" y="14" width="74" height="126" rx="8" fill="#1E293B" />
+              <!-- Notch / Speaker -->
+              <rect x="30" y="6" width="26" height="4" rx="2" fill="#334155" />
+              <!-- Biometric Sensor Glow -->
+              <circle cx="43" cy="62" r="22" fill="#134E4A" stroke="#14B8A6" stroke-width="1.5" />
+              <!-- Fingerprint ridges -->
+              <path d="M37 62 Q43 54 49 62" stroke="#2DD4BF" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              <path d="M34 66 Q43 50 52 66" stroke="#2DD4BF" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              <path d="M39 70 Q43 62 47 70" stroke="#2DD4BF" stroke-width="1.8" fill="none" stroke-linecap="round" />
+              <!-- Secure Enclave Label -->
+              <rect x="12" y="100" width="62" height="22" rx="4" fill="#115E59" />
+              <text x="43" y="114" text-anchor="middle" fill="#CCFBF1" font-family="DM Sans,system-ui" font-size="7.5" font-weight="700">PRIVATE KEY</text>
+            </g>
+
+            <!-- Cryptographic Challenge-Response Link (Center) -->
+            <g transform="translate(126, 80)">
+              <!-- Challenge Arrow (Leftwards from server to phone) -->
+              <path d="M68 15 L8 15" stroke="#0D9488" stroke-width="2" stroke-dasharray="4 2" />
+              <polygon points="6,15 14,11 14,19" fill="#0D9488" />
+              <text x="38" y="8" text-anchor="middle" fill="#0F766E" font-family="DM Sans,system-ui" font-size="7" font-weight="800">1. CHALLENGE</text>
+
+              <!-- Signature Arrow (Rightwards from phone to server) -->
+              <path d="M8 45 L68 45" stroke="#10B981" stroke-width="2.5" />
+              <polygon points="72,45 64,41 64,49" fill="#10B981" />
+              <text x="38" y="60" text-anchor="middle" fill="#047857" font-family="DM Sans,system-ui" font-size="7" font-weight="800">2. SIGNED PROOF</text>
+            </g>
+
+            <!-- Relying Party Server (Right) -->
+            <g transform="translate(204, 52)">
+              <rect x="0" y="0" width="84" height="135" rx="10" fill="white" stroke="#0F766E" stroke-width="2" />
+              <!-- Server Header -->
+              <rect x="0" y="0" width="84" height="26" rx="10" fill="#CCFBF1" />
+              <text x="42" y="17" text-anchor="middle" fill="#0F766E" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">WEB SERVICE</text>
+              <!-- Public Key Store -->
+              <rect x="10" y="38" width="64" height="30" rx="5" fill="#F0FDFA" stroke="#5EEAD4" stroke-width="1" />
+              <text x="42" y="52" text-anchor="middle" fill="#115E59" font-family="DM Sans,system-ui" font-size="7" font-weight="700">PUBLIC KEY</text>
+              <text x="42" y="62" text-anchor="middle" fill="#0D9488" font-family="monospace" font-size="6.5">pk_secp256r1</text>
+              <!-- Verified Badge -->
+              <rect x="10" y="82" width="64" height="38" rx="5" fill="#DCFCE7" stroke="#10B981" stroke-width="1.2" />
+              <text x="42" y="98" text-anchor="middle" fill="#166534" font-family="DM Sans,system-ui" font-size="8" font-weight="800">AUTHENTICATED</text>
+              <text x="42" y="111" text-anchor="middle" fill="#15803D" font-family="DM Sans,system-ui" font-size="6.5">No Password Stored</text>
+            </g>
+
+            <!-- Bottom Verdict Banner -->
+            <g transform="translate(30, 206)">
+              <rect x="0" y="0" width="260" height="26" rx="6" fill="#F0FDFA" stroke="#99F6E4" stroke-width="1" />
+              <text x="130" y="17" text-anchor="middle" fill="#0F766E" font-family="DM Sans,system-ui" font-size="8" font-weight="700">
+                FIDO2 / WebAuthn: <tspan fill="#047857">Phishing-Resistant</tspan> · <tspan fill="#0D9488">Zero Shared Secrets</tspan>
+              </text>
+            </g>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <div class="art-layout">
+
+    <div class="art-center">
+
+      <!-- Horizontal Action & Metadata Strip -->
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#F0FDFA;color:#0F766E;border-color:#99F6E4;font-weight:700;">Episode 06</span>
+          <span class="chip">Passkeys</span>
+          <span class="chip">FIDO2 &amp; WebAuthn</span>
+          <span class="chip">Public-Key Crypto</span>
+          <span class="chip">Phishing Resistance</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 7 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" title="Like this research" aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" title="Applaud this research" aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">0</div>
+          <div class="stat-l">Shared Secrets</div>
+          <div class="stat-s">Private key stays locked in local hardware; nothing for phishers to steal</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">&gt;80%</div>
+          <div class="stat-l">Breach Infiltration</div>
+          <div class="stat-s">Data breaches involving stolen or reused credentials according to Verizon DBIR</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">Origin-Bound</div>
+          <div class="stat-l">Protocol-Level Defense</div>
+          <div class="stat-s">Browser verifies destination domain before providing cryptographic proof</div>
+        </div>
+      </div>
+
+      <div class="art-text">
+
+        <p>Passwords have been around for so long that most of us don't really question them anymore.</p>
+
+        <p>Create an account. Make a password. Forget the password. Reset it. Get told the new password needs an uppercase letter, a number and a special character.</p>
+
+        <p>Then try to remember which version you used.</p>
+
+        <p>You sit down at your desk or pick up your phone, brace yourself for the usual obstacle course, and then notice another option appearing on Google, Microsoft, Apple, GitHub and other services:</p>
+
+        <div style="background:#F0FDFA;border:1.5px solid #99F6E4;border-radius:var(--r-sm);padding:14px 20px;margin:18px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <div style="font-weight:800;color:#0F766E;font-size:1rem;">Create a passkey</div>
+            <div style="font-size:.84rem;color:#134E4A;margin-top:2px;">Sign in securely using Face ID, fingerprint, or screen lock on this device.</div>
+          </div>
+          <span style="background:#0D9488;color:white;padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:700;">Continue →</span>
+        </div>
+
+        <p>Instead of typing a password, you might unlock your phone with Face ID, use your fingerprint, Windows Hello or your device PIN.</p>
+
+        <p>A checkmark flashes. You're in.</p>
+
+        <p>It feels almost too simple.</p>
+
+        <p>If you've spent the last twenty years being told that cybersecurity requires friction, complexity, and memorisation, your immediate reaction is probably skepticism: <em>“Wait, is that really it? How can that be safe?”</em></p>
+
+        <p>But underneath that simple login is a completely different approach to authentication — and one that could eventually make passwords far less important.</p>
+
+        <p>So what exactly is a passkey, why is it considered more resistant to phishing, and does it really mean passwords are on their way out?</p>
+
+        <!-- S1 -->
+        <h2 id="s1">What Exactly Is a Passkey?</h2>
+
+        <p>A passkey isn't just a password stored on your phone.</p>
+
+        <p>Traditional passwords rely on a <strong>shared secret</strong>. You know the secret. The website knows the secret (or stores a mathematical hash of it). Every time you log in, you transmit that secret across the internet to prove who you are.</p>
+
+        <p>Whoever knows the secret can impersonate you. If an attacker intercepts it, tricks you into typing it on a fake page, or steals it from a breached database, your account is compromised.</p>
+
+        <p>Passkeys throw out the shared secret model entirely. They use <strong>asymmetric public-key cryptography</strong>, built on the open <strong>FIDO2</strong> and <strong>W3C WebAuthn</strong> standards.</p>
+
+        <p>When you create one, two related cryptographic keys are involved:</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:22px 0;">
+          <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:16px;">
+            <div style="font-weight:800;color:#0D9488;font-size:.92rem;margin-bottom:6px;">🌐 The Public Key</div>
+            <div style="font-size:.84rem;color:var(--ink-3);line-height:1.5;">Stored openly on the servers of the service you're signing into. It is not a secret. Anyone can see it, and compromising it does not give an attacker your login credentials.</div>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:16px;">
+            <div style="font-weight:800;color:#2563EB;font-size:.92rem;margin-bottom:6px;">🔒 The Private Key</div>
+            <div style="font-size:.84rem;color:var(--ink-3);line-height:1.5;">Remains permanently under the control of your device's dedicated security chip (like Apple Secure Enclave, Google Titan M2, or a Windows TPM) or passkey provider. It never leaves the device.</div>
+          </div>
+        </div>
+
+        <p>When you sign in, the service sends a <strong>challenge</strong> — a random mathematical puzzle.</p>
+
+        <p>Your device uses the private key to sign the challenge and prove that it has the correct credential. The server uses your public key to verify that signature.</p>
+
+        <p><strong>The private key itself doesn't need to be sent to the website.</strong></p>
+
+        <p>From the user's side, however, most of this is invisible. You might simply see:</p>
+
+        <div class="pq" style="border-left-color:#0D9488;color:#0F766E;background:#F0FDFA;font-style:normal;font-weight:700;">
+          “Use Face ID to sign in”
+        </div>
+
+        <p>You approve it, and you're in.</p>
+
+        <p>That's one reason passkeys are interesting. The technology underneath is stronger, while the experience can actually be simpler.</p>
+
+        <!-- S2 -->
+        <h2 id="s2">Face ID Isn't Your Passkey</h2>
+
+        <p>This is worth clearing up because it's easy to misunderstand.</p>
+
+        <p>If you use Face ID, a fingerprint or Windows Hello when signing in with a passkey, your biometric information isn't becoming your website password.</p>
+
+        <p>The biometric check normally happens locally on your device.</p>
+
+        <p>It's authorising the device to use the passkey.</p>
+
+        <p>A simple way to think about it is:</p>
+
+        <div style="background:#F1F5F9;border-left:4px solid #0D9488;padding:14px 18px;border-radius:4px;color:var(--ink);margin:16px 0;font-size:.95rem;line-height:1.6;">
+          <strong>Passkey</strong> = your cryptographic credential (locked in the hardware enclave)<br>
+          <strong>Face ID / fingerprint / PIN</strong> = how you unlock that credential locally
+        </div>
+
+        <p>The website doesn't need to receive your fingerprint or a picture of your face. It only receives a cryptographic signature proving that the challenge was solved.</p>
+
+        <!-- SVG Diagram: Cryptographic Challenge vs Shared Secret -->
+        <div class="sec-svg" aria-label="Conceptual comparison: Password shared secret versus passkey challenge response">
+          <svg viewBox="0 0 540 185" width="540" height="185" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Diagram showing passwords sending secrets across the wire versus passkeys signing challenges locally">
+            <!-- Left Box: Password Shared Secret -->
+            <rect x="20" y="20" width="240" height="145" rx="10" fill="#FEF2F2" stroke="#FECACA" stroke-width="1.5" />
+            <text x="140" y="44" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="11" font-weight="800">TRADITIONAL PASSWORDS</text>
+            <rect x="36" y="58" width="208" height="42" rx="6" fill="white" stroke="#EF4444" stroke-width="1" />
+            <text x="140" y="76" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="9" font-weight="700">⚠️ Transmits Shared Secret</text>
+            <text x="140" y="90" text-anchor="middle" fill="#DC2626" font-family="monospace" font-size="8">"MySecretP@ssword2026"</text>
+            <text x="140" y="125" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="8.5" font-weight="600">Vulnerable: Interception &amp; Phishing ✗</text>
+            <text x="140" y="142" text-anchor="middle" fill="#475569" font-family="DM Sans,system-ui" font-size="7.5">Whoever tricks you into typing it owns your account.</text>
+
+            <!-- Arrow between -->
+            <path d="M265 92 L275 92" stroke="#64748B" stroke-width="2" />
+
+            <!-- Right Box: Passkey Asymmetric Cryptography -->
+            <rect x="280" y="20" width="240" height="145" rx="10" fill="#F0FDFA" stroke="#99F6E4" stroke-width="1.5" />
+            <text x="400" y="44" text-anchor="middle" fill="#0F766E" font-family="DM Sans,system-ui" font-size="11" font-weight="800">PASSKEY ARCHITECTURE</text>
+            <rect x="296" y="58" width="208" height="42" rx="6" fill="white" stroke="#0D9488" stroke-width="1" />
+            <text x="400" y="76" text-anchor="middle" fill="#047857" font-family="DM Sans,system-ui" font-size="9" font-weight="700">🔒 Challenge Signed Locally</text>
+            <text x="400" y="90" text-anchor="middle" fill="#0D9488" font-family="monospace" font-size="7.5">Private Key NEVER Leaves Chip</text>
+            <text x="400" y="125" text-anchor="middle" fill="#065F46" font-family="DM Sans,system-ui" font-size="8.5" font-weight="600">Phishing-Resistant by Protocol ✓</text>
+            <text x="400" y="142" text-anchor="middle" fill="#475569" font-family="DM Sans,system-ui" font-size="7.5">Zero credentials transmitted across the network.</text>
+          </svg>
+        </div>
+
+        <!-- S3 -->
+        <h2 id="s3">Where Passkeys Become Really Interesting: Phishing</h2>
+
+        <p>Consider a normal phishing email.</p>
+
+        <p>You receive something that appears to come from Microsoft:</p>
+
+        <div class="callout-box" style="border-left-color:#2563EB;background:#EFF6FF;">
+          <div style="font-weight:700;color:#1E40AF;margin-bottom:4px;">Urgent Security Notification</div>
+          <p style="margin:0;color:#1D4ED8;font-size:.9rem;line-height:1.5;">“Your Microsoft 365 session has expired. Sign in again to continue.”</p>
+        </div>
+
+        <p>You click the link.</p>
+
+        <p>The website looks convincing.</p>
+
+        <p>Microsoft logo. Familiar colours. Normal-looking login page. HTTPS.</p>
+
+        <p>But the domain isn't actually Microsoft's.</p>
+
+        <p>With password authentication, the attacker's goal is straightforward: <strong>Get you to enter your username and password.</strong></p>
+
+        <p>Once you've entered them, you've potentially handed over a reusable credential.</p>
+
+        <p>Passkeys change that.</p>
+
+        <p>A passkey is associated with the legitimate website or service for which it was created. It isn't a secret that you can simply type into another website.</p>
+
+        <p>A fake Microsoft page can copy Microsoft's appearance.</p>
+
+        <p>It can copy the logo.</p>
+
+        <p>It can copy the login screen.</p>
+
+        <p>It can even have HTTPS — as we discussed in Episode 05.</p>
+
+        <p><strong>But copying the appearance of Microsoft doesn't give that website the cryptographic identity of Microsoft.</strong></p>
+
+        <p>When a web page asks to authenticate with a passkey, the request is handled by your <strong>browser and operating system</strong>, not by the web page itself.</p>
+
+        <p>The browser checks the exact domain in the address bar (the Relying Party identifier):</p>
+
+        <ul class="styled-list" style="margin:14px 0 18px 20px;">
+          <li>If you are on <code>login.microsoftonline.com</code>, your browser offers your Microsoft passkey.</li>
+          <li>If you are on <code>microsoft-account-check.example</code>, the browser sees the domain mismatch. <strong>It will not offer the passkey.</strong></li>
+        </ul>
+
+        <p>And because you don't know the private key yourself — it is a 256-bit mathematical string inside a chip — <strong>you cannot be tricked into typing it into the phishing box even if you want to.</strong></p>
+
+        <p>That's one of the reasons passkeys are considered <strong>phishing-resistant</strong>.</p>
+
+        <!-- S4 -->
+        <h2 id="s4">This Removes One of Our Biggest Human Problems</h2>
+
+        <p>For years, we've tried to solve phishing partly through awareness:</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0;">
+          <div style="background:#F1F5F9;padding:10px;border-radius:6px;text-align:center;font-size:.82rem;font-weight:600;color:var(--ink-3);">Check the URL</div>
+          <div style="background:#F1F5F9;padding:10px;border-radius:6px;text-align:center;font-size:.82rem;font-weight:600;color:var(--ink-3);">Don't click links</div>
+          <div style="background:#F1F5F9;padding:10px;border-radius:6px;text-align:center;font-size:.82rem;font-weight:600;color:var(--ink-3);">Spot spelling errors</div>
+          <div style="background:#F1F5F9;padding:10px;border-radius:6px;text-align:center;font-size:.82rem;font-weight:600;color:var(--ink-3);">Verify authenticity</div>
+        </div>
+
+        <p>Those are still useful habits.</p>
+
+        <p>But humans make mistakes.</p>
+
+        <p>People check emails while travelling, working, talking to someone else or looking at a phone screen for a few seconds.</p>
+
+        <p>Security works better when it doesn't depend entirely on someone noticing one incorrect character in a domain name.</p>
+
+        <p>Passkeys move part of that responsibility into the authentication technology itself.</p>
+
+        <p>That's an important improvement.</p>
+
+        <!-- S5 -->
+        <h2 id="s5">They Also Deal With Password Reuse</h2>
+
+        <p>There's another very common problem.</p>
+
+        <p>You create a good password. Then you use it somewhere else. And eventually it ends up protecting several accounts.</p>
+
+        <p>If one service is breached and credentials are exposed, attackers can try those credentials against other services. This is <strong>credential stuffing</strong>.</p>
+
+        <p>It works because passwords are reusable secrets.</p>
+
+        <p>Passkeys largely remove that particular behaviour because the credential is specific to the service.</p>
+
+        <p>You aren't creating one memorable secret and then deciding whether to reuse it.</p>
+
+        <p>Each service gets its own cryptographic credential.</p>
+
+        <p>That means there isn't one password that can be stolen from one service and then automatically tried against ten others.</p>
+
+        <!-- S6 -->
+        <h2 id="s6">What Happens If a Website Is Breached?</h2>
+
+        <p>Passkeys also change what's stored on the service side.</p>
+
+        <p>With conventional passwords, responsible services should store password hashes rather than plaintext passwords. But stolen password databases can still be valuable to attackers, particularly when weak or reused passwords are involved.</p>
+
+        <p>With passkey authentication, the service stores the <strong>public key</strong>.</p>
+
+        <p>The private key needed to authenticate remains under the control of the user's authenticator or passkey provider.</p>
+
+        <p>And the public key isn't supposed to be secret.</p>
+
+        <p>So compromising the server-side public key doesn't give an attacker the equivalent of your private authentication credential.</p>
+
+        <p>That's a very different security model from passwords.</p>
+
+        <!-- S7 -->
+        <h2 id="s7">But Passkeys Don't Solve Everything</h2>
+
+        <p>This is where some of the discussion around passkeys becomes misleading.</p>
+
+        <p>Passkeys can significantly improve authentication security. That doesn't mean they eliminate account takeover.</p>
+
+        <p>Suppose your account supports a passkey but also has:</p>
+
+        <ul class="styled-list" style="margin:14px 0 18px 20px;">
+          <li><strong>“Use password instead”</strong></li>
+          <li><strong>“Send verification code via SMS”</strong></li>
+          <li>An insecure automated account recovery process</li>
+        </ul>
+
+        <p>An attacker doesn't necessarily need to attack your passkey.</p>
+
+        <p>They may look for another route into the account.</p>
+
+        <p>This is particularly important for organisations. There's little benefit in deploying extremely strong phishing-resistant authentication if an attacker can bypass it through a poorly protected recovery process.</p>
+
+        <div class="pq" style="border-left-color:#F59E0B;color:#B45309;background:#FFFBEB;font-style:normal;font-weight:700;">
+          The entire authentication lifecycle matters, not just the login button.
+        </div>
+
+        <!-- S8 -->
+        <h2 id="s8">What If You Lose Your Phone?</h2>
+
+        <p>This is probably one of the first practical questions people have about passkeys.</p>
+
+        <p>Passkeys don't necessarily exist on only one physical device.</p>
+
+        <p>Depending on the implementation, they can be synchronised through a passkey provider (such as Apple iCloud Keychain, Google Password Manager, or 1Password) and made available across a user's devices.</p>
+
+        <p>There are also device-bound approaches where the credential remains strictly associated with a particular physical authenticator (like a hardware security key).</p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0;">
+          <div style="background:#F0FDFA;border:1.5px solid #99F6E4;border-radius:8px;padding:16px;">
+            <div style="font-weight:800;color:#0F766E;font-size:.9rem;margin-bottom:6px;">☁️ Synced Passkeys (Multi-Device)</div>
+            <div style="font-size:.85rem;color:#134E4A;line-height:1.5;">End-to-end encrypted and synced across your ecosystem. If you lose your phone, you restore them via your Apple ID or Google Account.</div>
+          </div>
+          <div style="background:#F8FAFC;border:1.5px solid var(--border-2);border-radius:8px;padding:16px;">
+            <div style="font-weight:800;color:var(--ink);font-size:.9rem;margin-bottom:6px;">🔑 Device-Bound (Hardware Keys)</div>
+            <div style="font-size:.85rem;color:var(--ink-3);line-height:1.5;">Permanently locked to a physical security key (like a YubiKey). Highest assurance against cloud compromises, but requires a physical backup key.</div>
+          </div>
+        </div>
+
+        <p>For normal users, synchronisation makes passkeys much more practical.</p>
+
+        <p>But recovery still matters.</p>
+
+        <p>If you lose access to your devices and your passkey provider, you need a secure method of getting back into your accounts. And whenever a recovery process exists, attackers may try to target it.</p>
+
+        <!-- S9 -->
+        <h2 id="s9">What About Session Stealing?</h2>
+
+        <p>This is where Episode 04 connects directly with passkeys.</p>
+
+        <p>A passkey protects the <strong>authentication process</strong>.</p>
+
+        <p>But once you've successfully authenticated, a website will usually establish a session so you don't need to authenticate again every time you open another page.</p>
+
+        <p>If an attacker compromises your device and manages to steal usable session material, that's a different problem.</p>
+
+        <p>They haven't necessarily stolen your passkey.</p>
+
+        <p>They may be targeting the authenticated session created <strong>after</strong> the passkey did its job.</p>
+
+        <p>So passkeys don't eliminate:</p>
+
+        <ul class="styled-list" style="margin:14px 0 18px 20px;">
+          <li>Malware</li>
+          <li>Infostealers</li>
+          <li>Malicious browser extensions</li>
+          <li>Session hijacking</li>
+          <li>Compromised endpoints</li>
+        </ul>
+
+        <p>This distinction matters.</p>
+
+        <p><strong>Passkeys make credential theft much harder. They don't make every account-takeover technique disappear.</strong></p>
+
+        <p>A stronger front door doesn't automatically secure everything happening inside the house.</p>
+
+        <!-- S10 -->
+        <h2 id="s10">Now Look at It From a SOC</h2>
+
+        <p>Imagine a user receives a phishing email containing a fake Microsoft login page.</p>
+
+        <p>From the SOC (Security Operations Center) side, we might have several pieces of telemetry:</p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:20px 0;">
+          <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:14px;">
+            <div style="font-weight:700;color:var(--blue);font-size:.85rem;">📧 Email Gateway</div>
+            <div style="font-size:.82rem;color:var(--ink-3);margin-top:4px;">Suspicious link delivered to employee inbox.</div>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:14px;">
+            <div style="font-weight:700;color:#0D9488;font-size:.85rem;">🌐 Web &amp; DNS Filter</div>
+            <div style="font-size:.82rem;color:var(--ink-3);margin-top:4px;">Connection to a newly registered lookalike domain.</div>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:14px;">
+            <div style="font-weight:700;color:#7C3AED;font-size:.85rem;">💻 Endpoint EDR</div>
+            <div style="font-size:.82rem;color:var(--ink-3);margin-top:4px;">Browser navigation and script execution on the URL.</div>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:14px;">
+            <div style="font-weight:700;color:#EA580C;font-size:.85rem;">🆔 Identity Provider</div>
+            <div style="font-size:.82rem;color:var(--ink-3);margin-top:4px;">Authentication requests following the visit.</div>
+          </div>
+        </div>
+
+        <p>With traditional password authentication, one major concern is whether the user submitted credentials and whether those credentials were subsequently used.</p>
+
+        <p>With a properly implemented passkey, that part of the attack becomes much harder because the phishing site can't simply collect a reusable password.</p>
+
+        <p>But the investigation doesn't end there.</p>
+
+        <p>The analyst would still want to know:</p>
+
+        <ul class="styled-list" style="margin:14px 0 18px 20px;">
+          <li>Whether anything was downloaded or executed on the endpoint</li>
+          <li>Whether another authentication method (like password fallback) was attempted</li>
+          <li>Whether account recovery settings were altered</li>
+          <li>Whether unusual session or token activity followed</li>
+        </ul>
+
+        <p>Passkeys change the attack surface. They don't remove the need for monitoring it.</p>
+
+        <!-- S11: INTERACTIVE PASSKEY REALITY SIMULATOR -->
+        <h2 id="s11">Interactive Authentication &amp; Attack Inspector</h2>
+
+        <p>Compare what happens during common cyberattacks when an account is protected by a traditional password versus a cryptographic passkey:</p>
+
+        <!-- Interactive Widget Component -->
+        <div id="passkeySimulatorTool" style="background:#F8FAFC;border:1.5px solid var(--border-2);border-radius:var(--r);padding:24px;margin:28px 0;box-shadow:var(--sh-sm);">
+          <div style="font-family:var(--f-d);font-size:1.05rem;font-weight:800;color:var(--ink);margin-bottom:6px;display:flex;align-items:center;gap:8px;">
+            <span>🛡️</span> Passkey vs. Password Threat Inspector
+          </div>
+          <p style="font-size:.85rem;color:var(--ink-4);margin-bottom:16px;">Select an attack scenario to see how traditional passwords compare with passkey cryptography:</p>
+
+          <!-- Scenario Tabs -->
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;" id="simTabs" role="tablist">
+            <button class="sim-btn active" data-scenario="phishing" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid #0D9488;background:#0D9488;color:white;cursor:pointer;">1. Lookalike Phishing Link</button>
+            <button class="sim-btn" data-scenario="reuse" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">2. Credential Stuffing</button>
+            <button class="sim-btn" data-scenario="breach" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">3. Server Database Breach</button>
+            <button class="sim-btn" data-scenario="infostealer" style="padding:7px 13px;border-radius:6px;font-size:.82rem;font-weight:600;border:1px solid var(--border-2);background:white;color:var(--ink-3);cursor:pointer;">4. Endpoint Infostealer</button>
+          </div>
+
+          <!-- Dynamic Output Card -->
+          <div id="simOutput" style="background:white;border:1px solid var(--border);border-radius:var(--r-sm);padding:20px;">
+            <!-- Rendered dynamically by script below -->
+          </div>
+        </div>
+
+        <!-- S12 -->
+        <h2 id="s12">So Why Is the Industry Moving Towards Them?</h2>
+
+        <p>Because passwords have a fundamental usability problem.</p>
+
+        <p>We're asking people to create secrets that are:</p>
+
+        <ul class="styled-list" style="margin:14px 0 18px 20px;">
+          <li>Long enough to be secure</li>
+          <li>Unique for every single account</li>
+          <li>Difficult to guess</li>
+          <li>And somehow easy to remember</li>
+        </ul>
+
+        <p>Password managers have helped enormously with this problem, and MFA adds another important layer.</p>
+
+        <p>But passkeys take a different approach.</p>
+
+        <p>Instead of trying to make people better at managing passwords, they reduce the need for people to manage passwords at all.</p>
+
+        <p>And importantly, convenience doesn't necessarily come at the expense of security.</p>
+
+        <p>Signing in with Face ID can be easier than typing a password while also being considerably more resistant to traditional credential phishing.</p>
+
+        <p>That's an unusual combination in cybersecurity.</p>
+
+        <!-- S13 -->
+        <h2 id="s13">Are Passwords Actually Going to Disappear?</h2>
+
+        <p>Probably not anytime soon.</p>
+
+        <p>There are simply too many existing systems built around them.</p>
+
+        <p>Legacy applications, older websites, business systems, recovery processes and devices aren't going to change overnight.</p>
+
+        <p>For some time, we'll probably continue seeing a mixture of:</p>
+
+        <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:8px;padding:16px 20px;margin:18px 0;font-size:.9rem;line-height:1.9;">
+          • <strong>Password only</strong> (older, declining systems)<br>
+          • <strong>Password + MFA</strong> (the current common baseline)<br>
+          • <strong>Password or Passkey</strong> (the current bridge phase)<br>
+          • <strong>Passkey default</strong> (rapidly growing for modern services)
+        </div>
+
+        <p>The more interesting question isn't whether every password disappears.</p>
+
+        <p>It's whether passwords stop being the <strong>default way most people authenticate</strong>.</p>
+
+        <p>That transition has already started.</p>
+
+        <!-- S14 -->
+        <h2 id="s14">So, Are Passkeys Finally Going to Kill Passwords?</h2>
+
+        <p>Maybe — but probably very slowly.</p>
+
+        <p>Passwords have survived decades of attempts to improve authentication.</p>
+
+        <p>Passkeys are different from many previous authentication improvements because they don't simply add another security layer on top of a password.</p>
+
+        <p>They can remove the password from the authentication process altogether.</p>
+
+        <p>That's the important part.</p>
+
+        <p>The future of authentication may not depend on people creating increasingly complicated passwords and becoming increasingly good at spotting fake login pages.</p>
+
+        <p>Instead, your device can cryptographically prove that it holds the correct credential for the correct service.</p>
+
+        <p>Passkeys won't stop every cyberattack.</p>
+
+        <p>They won't eliminate malware.</p>
+
+        <p>They won't eliminate session theft.</p>
+
+        <p>And they won't fix weak account recovery.</p>
+
+        <p>But they address two of the biggest weaknesses we've lived with for years:</p>
+
+        <div class="pq" style="border-left-color:#0D9488;color:#0F766E;background:#F0FDFA;font-style:normal;font-weight:700;">
+          Passwords can be stolen, and people can be tricked into giving them away.
+        </div>
+
+        <p>If passkeys continue becoming easier to use and more widely supported, passwords may not suddenly disappear.</p>
+
+        <p>We may simply start needing them less and less.</p>
+
+        <p>And eventually, that might be enough to make them irrelevant.</p>
+
+        <!-- Episode 06 Takeaway Box -->
+        <div class="takeaway-box" style="margin:28px 0;">
+          <div class="takeaway-title">Episode 06 — The Takeaway</div>
+          <ul class="styled-list" style="margin:10px 0 0 16px;">
+            <li><strong>Passkeys replace shared secrets with public-key cryptography.</strong> The website holds only your public key; your private key stays locked in local hardware.</li>
+            <li><strong>Biometrics are local gatekeepers, not passwords.</strong> Face ID and fingerprints unlock the hardware enclave on your device; biometric data is never transmitted to websites.</li>
+            <li><strong>Phishing resistance is enforced by your browser.</strong> A passkey is bound to the genuine domain. A deceptive lookalike domain cannot trigger your authentic passkey.</li>
+            <li><strong>Passkeys secure the front door, not the entire house.</strong> They do not prevent post-login session theft via infostealers, nor do they fix weak SMS/email password recovery fallbacks.</li>
+          </ul>
+        </div>
+
+        <!-- S15: SOURCES -->
+        <h2 id="sources">Sources &amp; Further Reading</h2>
+
+        <p>The technical standards, cryptographic specifications, and identity guidelines referenced in this episode are grounded in documentation from the W3C, FIDO Alliance, NIST, and CISA:</p>
+
+        <ul class="styled-list" style="margin:16px 0 32px 20px;font-size:.92rem;">
+          <li><a href="https://www.w3.org/TR/webauthn-3/" target="_blank" rel="noopener noreferrer">W3C Web Authentication (WebAuthn) Level 3</a>: The official standard defining the API for public-key authentication credentials in browsers, origin binding (Relying Party ID), and authenticator interactions.</li>
+          <li><a href="https://fidoalliance.org/passkeys/" target="_blank" rel="noopener noreferrer">FIDO Alliance — Passkeys Overview</a>: Architectural specifications and security considerations for multi-device credentials, synced authenticators, and hardware security keys.</li>
+          <li><a href="https://www.cisa.gov/resources-tools/resources/implementing-phishing-resistant-mfa" target="_blank" rel="noopener noreferrer">CISA — Implementing Phishing-Resistant MFA</a>: Explains why traditional password + SMS/OTP MFA is vulnerable to Adversary-in-the-Middle (AiTM) proxies, and why FIDO2/WebAuthn is considered the gold standard for authentication defense.</li>
+          <li><a href="https://pages.nist.gov/800-63-3/sp800-63b.html" target="_blank" rel="noopener noreferrer">NIST Special Publication 800-63B — Digital Identity Guidelines</a>: Detailed requirements for Authenticator Assurance Level 3 (AAL3), verifier impersonation resistance, and cryptographic key management.</li>
+        </ul>
+
+      </div><!-- /art-text -->
+
+      <!-- FEEDBACK & DISCUSSION SECTION -->
+      <section class="feedback-section" id="feedback" aria-label="Reader feedback">
+        <div class="fb-header">
+          <h2 class="fb-title">Send feedback to Poorna</h2>
+          <p class="fb-sub">Have a question or a suggestion? Prepare an email below. Feedback is private and is sent only when you press Send in your email app.</p>
+          <p class="fb-sub">Likes and claps are your personal reactions on this device.</p>
+        </div>
+        <div class="fb-form-box">
+          <p>You can also <a href="mailto:sujampathirathnayaka@gmail.com">email Poorna directly</a>.</p>
+          <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
+          <form id="fbForm" hidden>
+            <label for="fbName">Name (optional)</label>
+            <input class="fb-input" id="fbName" maxlength="100" autocomplete="name" aria-describedby="fbDraftNote">
+            <label for="fbCategory">Feedback category</label>
+            <select class="fb-input" id="fbCategory">
+              <option>General feedback</option><option>Question</option><option>Correction</option><option>Topic suggestion</option>
+            </select>
+            <label for="fbMessage">Your feedback</label>
+            <textarea class="fb-textarea" id="fbMessage" aria-describedby="fbDraftNote fbLimit" required maxlength="2000" placeholder="Share your question or suggestion..."></textarea>
+            <p id="fbLimit" class="fb-draft-note">Maximum 2,000 characters.</p>
+            <div class="fb-form-foot">
+              <button type="submit" class="fb-submit-btn">Prepare email</button>
+              <button type="button" class="fb-clear-btn" id="fbClear">Clear draft</button>
+            </div>
+          </form>
+          <div id="fbEmailPreview" class="fb-preview" hidden>
+            <p id="fbStatus" class="fb-status" role="status">Prepared. Review and send:</p>
+            <a id="fbEmailLink" class="fb-email-link" href="#" target="_blank" rel="noopener noreferrer">Open email app</a>
+            <div class="fb-preview-field">
+              <label for="fbEmailTo">To</label>
+              <input id="fbEmailTo" class="fb-input" readonly value="sujampathirathnayaka@gmail.com">
+            </div>
+            <div class="fb-preview-field">
+              <label for="fbEmailSubject">Subject</label>
+              <input id="fbEmailSubject" class="fb-input" readonly>
+            </div>
+            <div class="fb-preview-field">
+              <label for="fbEmailBody">Body</label>
+              <textarea id="fbEmailBody" class="fb-textarea" readonly rows="8"></textarea>
+            </div>
+            <button type="button" class="fb-copy-btn" id="fbCopy">Copy feedback</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10-Episode Series Curriculum Box -->
+      <div class="art-series-box" id="series-curriculum">
+        <div class="art-series-box-header">
+          <div>
+            <span class="art-series-tag">Syllabus</span>
+            <div class="art-series-box-title">Cybersecurity for Everyone — 10 Episodes</div>
+          </div>
+          <a href="index.html#series" class="art-series-link">All Episodes →</a>
+        </div>
+        <div class="series-nav-grid" id="seriesNavGrid">
+          <a href="article.html" class="series-nav-item">
+            <span class="series-nav-num">01</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Can You Still Trust What You See and Hear Online?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 01 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-02.html" class="series-nav-item">
+            <span class="series-nav-num">02</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Someone Has Your Email Address. Now What?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 02 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-03.html" class="series-nav-item">
+            <span class="series-nav-num">03</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">I Clicked a Phishing Link. What Should I Do?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 03 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-04.html" class="series-nav-item">
+            <span class="series-nav-num">04</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Password Wasn't Hacked. Your Session Was Stolen.</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 04 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-05.html" class="series-nav-item">
+            <span class="series-nav-num">05</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Why the Padlock Doesn't Mean a Website Is Safe</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 05 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-06.html" class="series-nav-item active" style="border-left:3px solid #0D9488;background:#F0FDFA;">
+            <span class="series-nav-num" style="color:#0D9488;font-weight:800;">06</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title" style="color:#0D9488;font-weight:700;">Are Passkeys Finally Going to Kill Passwords?</span>
+              <span class="series-nav-tag" style="background:#CCFBF1;color:#0F766E;border-color:#99F6E4;">Episode 06 · Reading Now 👁️</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">07</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">The Fake Recruiter in Your LinkedIn Inbox</span>
+              <span class="series-nav-tag">Episode 07 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">08</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">How Much Can a Scammer Learn About You in 10 Minutes?</span>
+              <span class="series-nav-tag">Episode 08 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">09</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Bank Is Calling. Or Is It?</span>
+              <span class="series-nav-tag">Episode 09 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">10</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">What Happens to Your Information After a Data Breach?</span>
+              <span class="series-nav-tag">Episode 10 · Coming Soon</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Related / Up Next in Series -->
+      <div class="related">
+        <div class="sec-h"
+          style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <span class="sec-lbl" style="color:#0D9488;">Cybersecurity for Everyone</span>
+            <div style="font-family:var(--f-d);font-size:1.15rem;font-weight:800;color:var(--ink);margin-top:4px;">Series Navigation</div>
+          </div>
+          <a href="index.html#series"
+            style="font-size:.82rem;font-weight:700;color:#0D9488;text-decoration:none;display:flex;align-items:center;gap:5px;">
+            View All 10 Episodes in Series →
+          </a>
+        </div>
+        <div class="rel-grid">
+
+          <!-- Previous: Episode 05 -->
+          <a href="article-05.html" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
+            <div class="card-svg" style="background:linear-gradient(135deg,#ECFDF5 0%,#FEF3C7 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <rect x="68" y="55" width="46" height="40" rx="7" fill="white" stroke="#10B981" stroke-width="2" />
+                <path d="M77 55 L77 40 Q77 28 91 28 Q105 28 105 40 L105 55" stroke="#10B981" stroke-width="2" fill="none" />
+                <circle cx="91" cy="72" r="5" fill="#10B981" />
+                <circle cx="165" cy="65" r="22" fill="rgba(245,158,11,.08)" stroke="#F59E0B" stroke-width="1.8" />
+                <line x1="181" y1="81" x2="195" y2="95" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" />
+              </svg>
+              <span class="card-svg-label" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">← Previous · Ep 05</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Why the Padlock Doesn't Mean a Website Is Safe</h3>
+              <p class="card-ex">The padlock means the wire is encrypted, not that the website is trustworthy. Why over 80% of phishing sites use HTTPS, and how to verify your real destination.</p>
+              <div class="card-foot"><span>Web Security</span><span style="color:#16A34A;font-weight:700;">Read Ep 05 →</span></div>
+            </div>
+          </a>
+
+          <!-- Next: Episode 07 -->
+          <div class="art-card">
+            <div class="card-svg" style="background:linear-gradient(135deg,#F0F9FF 0%,#E0F2FE 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <path d="M52 38 L142 38 Q152 38 152 48 L152 82 Q152 92 142 92 L82 92 L62 106 L68 92 L52 92 Q42 92 42 82 L42 48 Q42 38 52 38 Z" fill="white" stroke="#0284C7" stroke-width="1.8" />
+                <circle cx="68" cy="60" r="12" fill="#BAE6FD" />
+                <text x="68" y="64" text-anchor="middle" fill="#0369A1" font-family="DM Sans,system-ui" font-size="9" font-weight="800">HR</text>
+                <rect x="160" y="44" width="46" height="60" rx="5" fill="white" stroke="#EF4444" stroke-width="1.6" />
+                <path d="M176 44 L206 64 L176 64 Z" fill="#FEE2E2" />
+              </svg>
+              <span class="card-svg-label">Up Next · Ep 07</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">The Fake Recruiter in Your LinkedIn Inbox</h3>
+              <p class="card-ex">Not everyone messaging you about an exciting remote opportunity is legitimate. How threat actors weaponize job inquiries to deploy infostealers.</p>
+              <div class="card-foot"><span>Social Engineering</span><span class="soon">Coming Soon</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /art-center -->
+
+  </div><!-- /art-layout -->
+
+  <!-- FLOATING BOTTOM DOCK -->
+  <aside class="floating-dock" aria-label="Reading Controls">
+    <button class="dock-btn btn-like" aria-label="Like article">
+      <span class="dock-emoji like-heart">🤍</span>
+      <span class="dock-count like-count">0</span>
+    </button>
+    <button class="dock-btn btn-clap" aria-label="Applaud research">
+      <span class="dock-emoji">👏</span>
+      <span class="dock-count clap-count">0</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#feedback" class="dock-btn" aria-label="Jump to discussion">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+      <span class="dock-label">Feedback</span>
+    </a>
+    <button class="dock-btn btn-share" onclick="copyLink()" aria-label="Copy link">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+      <span class="dock-label">Share</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#series-curriculum" class="dock-series-pill" title="Series: Cybersecurity for Everyone">
+      <span class="dock-pulse"></span>
+      Ep 06 of 10
+    </a>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, SSL/TLS misconceptions, passkey cryptography, and digital literacy for everyone.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Series Navigation</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
+              <li><a href="article-02.html">Ep 02: Email OSINT &amp; Perimeter Defense</a></li>
+              <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
+              <li><a href="article-04.html">Ep 04: Session Theft &amp; Cookie Hijacking</a></li>
+              <li><a href="article-05.html">Ep 05: The Padlock Myth &amp; TLS Security</a></li>
+              <li><a href="article-06.html">Ep 06: Passkeys vs. Passwords &amp; FIDO2</a></li>
+              <li><a href="index.html#series">View Full Curriculum (10 Episodes)</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Author &amp; Verification</div>
+            <ul class="foot-nav-list">
+              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Poorna's Portfolio ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn Research ↗</a></li>
+              <li><a href="#sources">Citations &amp; Methodology</a></li>
+              <li><a href="mailto:sujampathirathnayaka@gmail.com">Contact Editorial Desk</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal & Research Disclaimer -->
+      <div class="foot-disclaimer">
+        <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is authored by Poorna Sujampathi Rathnayaka for non-commercial educational, threat awareness, and digital literacy purposes. All third-party trademarks, company names, CVE IDs, and security advisories referenced are the property of their respective copyright holders. Fair use citations for educational security awareness are permitted with direct attribution and canonical link.
+      </div>
+
+      <div class="foot-bottom">
+        <div>
+          &copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.
+        </div>
+        <div class="foot-bottom-links">
+          <a href=".well-known/security.txt" target="_blank" rel="noopener noreferrer">Vulnerability Disclosure</a>
+          <span>·</span>
+          <a href="index.html#about">Ethics &amp; Methodology</a>
+          <span>·</span>
+          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element"></div>
+
+  <!-- Client-side Interactive Passkey Threat Inspector -->
+  <script>
+    (function () {
+      const scenarios = {
+        'phishing': {
+          title: 'Lookalike Domain Phishing Campaign',
+          description: 'A user receives an urgent email pretending to be Microsoft and clicks a link leading to "microsoft-account-check.example".',
+          passwordOutcome: 'CREDENTIAL HARVESTED ❌',
+          passwordOutcomeBg: '#FEE2E2',
+          passwordOutcomeColor: '#DC2626',
+          passwordDetail: 'The user types their username and password into the fake form. The attacker immediately captures the reusable plaintext secret.',
+          passkeyOutcome: 'TRANSMISSION BLOCKED BY PROTOCOL ✅',
+          passkeyOutcomeBg: '#DCFCE7',
+          passkeyOutcomeColor: '#15803D',
+          passkeyDetail: 'The browser inspects the URL bar. Because the domain does not match "login.microsoftonline.com", the browser refuses to offer the Microsoft passkey. Zero credentials exposed.',
+          socInsight: 'The credential theft step fails completely. However, SOC analysts still investigate email gateway logs and endpoint EDR activity to ensure no secondary payload executed.'
+        },
+        'reuse': {
+          title: 'Credential Stuffing Attack',
+          description: 'An attacker steals a database of 50 million email/password pairs leaked from an obscure compromised e-commerce store and tests them against other services.',
+          passwordOutcome: 'ACCOUNTS COMPROMISED ❌',
+          passwordOutcomeBg: '#FEE2E2',
+          passwordOutcomeColor: '#DC2626',
+          passwordDetail: 'Because users frequently reuse the same passwords (or predictable variations), automated botnets successfully compromise secondary accounts across banking, email, and work.',
+          passkeyOutcome: 'ATTACK COMPLETELY IMPOSSIBLE ✅',
+          passkeyOutcomeBg: '#DCFCE7',
+          passkeyOutcomeColor: '#15803D',
+          passkeyDetail: 'Every passkey is an independent asymmetric cryptographic pair. A passkey registered on one website cannot be replayed or tested on any other service.',
+          socInsight: 'Credential stuffing attempts flatline against passkey-protected endpoints. Telemetry shifts from brute-force spikes to monitoring anomalous device enrollment.'
+        },
+        'breach': {
+          title: 'Server-Side Database Breach',
+          description: 'Threat actors breach a cloud service provider and exfiltrate the full authentication database containing millions of user records.',
+          passwordOutcome: 'HASHES CRACKED OFFLINE ⚠️',
+          passwordOutcomeBg: '#FEF3C7',
+          passwordOutcomeColor: '#B45309',
+          passwordDetail: 'Even if the passwords were salted and hashed, attackers use multi-GPU rigs to crack millions of weak, medium, and common passwords offline at billions of guesses per second.',
+          passkeyOutcome: 'PUBLIC KEYS USELESS TO ATTACKERS ✅',
+          passkeyOutcomeBg: '#DCFCE7',
+          passkeyOutcomeColor: '#15803D',
+          passkeyDetail: 'The database contains only Public Keys. Public keys are designed to be public. An attacker with 10 million public keys cannot authenticate as a single user without the private keys.',
+          socInsight: 'Impact assessment shows zero credential exposure. Incident response focuses on fixing server vulnerabilities rather than forcing panic password resets for all users.'
+        },
+        'infostealer': {
+          title: 'Endpoint Infostealer Malware',
+          description: 'A user accidentally runs malware (such as Lumma or RedLine) disguised as cracked software or a malicious PDF.',
+          passwordOutcome: 'PASSWORDS &amp; COOKIES EXFILTRATED ❌',
+          passwordOutcomeBg: '#FEE2E2',
+          passwordOutcomeColor: '#DC2626',
+          passwordDetail: 'Malware reads saved browser passwords and extracts active session tokens directly from local storage and memory.',
+          passkeyOutcome: 'SESSION STOLEN (PASSKEY SAFE) ⚠️',
+          passkeyOutcomeBg: '#FEF3C7',
+          passkeyOutcomeColor: '#B45309',
+          passkeyDetail: 'The private key stays safe inside the Secure Enclave hardware, BUT the malware steals the active session cookie generated AFTER login (as explained in Episode 04).',
+          socInsight: 'Passkeys secure the authentication ceremony, not a compromised host. SOC analysts must deploy EDR, token binding (like DBSC), and conditional access to contain endpoint infection.'
+        }
+      };
+
+      function renderScenario(key) {
+        const d = scenarios[key];
+        if (!d) return;
+        const out = document.getElementById('simOutput');
+        if (!out) return;
+
+        out.innerHTML = `
+          <div style="margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+            <div style="font-weight:800;color:var(--ink);font-size:1.02rem;">${d.title}</div>
+            <div style="font-size:.86rem;color:var(--ink-3);margin-top:4px;line-height:1.5;">${d.description}</div>
+          </div>
+
+          <!-- Comparison Grid -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:16px;">
+            <!-- Password Column -->
+            <div style="background:#FFF5F5;border:1.5px solid #FECACA;border-radius:8px;padding:14px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:8px;">
+                <span style="font-size:.78rem;font-weight:800;color:#991B1B;text-transform:uppercase;">Traditional Password</span>
+                <span style="font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:12px;background:${d.passwordOutcomeBg};color:${d.passwordOutcomeColor};">${d.passwordOutcome}</span>
+              </div>
+              <p style="font-size:.84rem;color:#7F1D1D;line-height:1.5;margin:0;">${d.passwordDetail}</p>
+            </div>
+
+            <!-- Passkey Column -->
+            <div style="background:#F0FDFA;border:1.5px solid #99F6E4;border-radius:8px;padding:14px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:8px;">
+                <span style="font-size:.78rem;font-weight:800;color:#0F766E;text-transform:uppercase;">Passkey (WebAuthn)</span>
+                <span style="font-size:.7rem;font-weight:800;padding:2px 8px;border-radius:12px;background:${d.passkeyOutcomeBg};color:${d.passkeyOutcomeColor};">${d.passkeyOutcome}</span>
+              </div>
+              <p style="font-size:.84rem;color:#134E4A;line-height:1.5;margin:0;">${d.passkeyDetail}</p>
+            </div>
+          </div>
+
+          <!-- SOC Investigation Note -->
+          <div style="background:#F8FAFC;border-left:4px solid #0D9488;padding:12px 16px;border-radius:4px;">
+            <div style="font-size:.78rem;font-weight:800;color:#0F766E;text-transform:uppercase;letter-spacing:.04em;">SOC Analyst Detection &amp; Triage:</div>
+            <p style="font-size:.85rem;color:var(--ink-2);margin:4px 0 0;line-height:1.5;">${d.socInsight}</p>
+          </div>
+        `;
+      }
+
+      // Tab click events
+      const tabs = document.querySelectorAll('.sim-btn');
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabs.forEach(b => {
+            b.style.background = 'white';
+            b.style.color = 'var(--ink-3)';
+            b.style.borderColor = 'var(--border-2)';
+            b.classList.remove('active');
+          });
+          btn.style.background = '#0D9488';
+          btn.style.color = 'white';
+          btn.style.borderColor = '#0D9488';
+          btn.classList.add('active');
+          renderScenario(btn.getAttribute('data-scenario'));
+        });
+      });
+
+      // Initial render
+      renderScenario('phishing');
+    })();
+  </script>
+
+  <script src="js/cms.js?v=8"></script>
+  <script src="js/app.js?v=8"></script>
+  <script src="js/translator.js?v=8"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>
