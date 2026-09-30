@@ -759,23 +759,104 @@
           </ul>
         </div>
 
-        <!-- S12: SOURCES -->
-        <h2 id="sources">Sources &amp; Further Reading</h2>
+        <!-- SOURCES -->
+        <div class="sources-section" id="sources">
+          <h2 class="src-h">Sources &amp; Further Reading</h2>
+          <p class="src-sub">The technical standards, browser telemetry, and CA governance details cited in this episode are grounded in documentation from the Chromium project, Let's Encrypt, MDN Web Docs, and the Internet Engineering Task Force (IETF):</p>
+          <div class="src-list">
 
-        <p>The technical standards, browser telemetry, and CA governance details cited in this episode are grounded in documentation from the Chromium project, Let's Encrypt, MDN Web Docs, and the Internet Engineering Task Force (IETF):</p>
+            <div class="src-card">
+              <div class="src-ico" style="background:#ECFDF5;">🔒</div>
+              <div>
+                <div class="src-name">Chromium Blog — An Update on the Lock Icon</div>
+                <div class="src-desc">Google's Chrome security team explains why Chrome replaced the padlock with a tune icon, citing that only 11% of users understood it and nearly all phishing sites deploy HTTPS.</div>
+                <a href="https://blog.chromium.org/2023/05/an-update-on-lock-icon.html" class="src-link" target="_blank" rel="noopener noreferrer">Read Chromium Security Update ↗</a>
+              </div>
+            </div>
 
-        <ul class="styled-list" style="margin:16px 0 32px 20px;font-size:.92rem;">
-          <li><a href="https://blog.chromium.org/2023/05/an-update-on-lock-icon.html" target="_blank" rel="noopener noreferrer">Chromium Blog — An Update on the Lock Icon</a>: Google's Chrome security team explains why Chrome moved away from the traditional padlock. This is also the source for the 2021 11% user-understanding figure, the finding that nearly all phishing sites use HTTPS, and the 95%+ Chrome-on-Windows HTTPS figure reported in 2023.</li>
-          <li><a href="https://letsencrypt.org/2015/10/29/phishing-and-malware.html" target="_blank" rel="noopener noreferrer">Let's Encrypt — The CA's Role in Fighting Phishing and Malware</a>: Explains why a Domain Validation certificate should not be treated as a seal of approval. Let's Encrypt states that DV certificates don't provide information about a site's reputation, real-world identity or safety.</li>
-          <li><a href="https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Transport_Layer_Security" target="_blank" rel="noopener noreferrer">MDN Web Docs — Transport Layer Security (TLS)</a>: Technical reference for TLS encryption, integrity, authentication, server certificates, and protection of web traffic.</li>
-          <li><a href="https://www.rfc-editor.org/info/rfc8446" target="_blank" rel="noopener noreferrer">RFC 8446 — The Transport Layer Security (TLS) Protocol Version 1.3</a>: The actual TLS 1.3 standard defining security properties, cipher suites, authentication, confidentiality, and integrity.</li>
-          <li><a href="https://cabforum.org/baseline-requirements-documents/" target="_blank" rel="noopener noreferrer">CA/Browser Forum — Baseline Requirements for Publicly-Trusted Certificates</a>: Global consortium standard defining validation criteria for Domain Validation (DV), Organization Validation (OV), and certificate authority trust stores.</li>
-          <li><a href="https://apwg.org/trendsreports/" target="_blank" rel="noopener noreferrer">Anti-Phishing Working Group (APWG) — Phishing Activity Trends Report</a>: Longitudinal threat research documenting that more than 85% of malicious phishing websites deploy valid TLS certificates to mimic legitimacy.</li>
-          <li><a href="https://www.cisa.gov/news-events/alerts/2015/05/01/https-phishing-websites" target="_blank" rel="noopener noreferrer">CISA / US-CERT Alert — HTTPS Phishing Websites</a>: Federal advisory warning internet users and corporate defenders that HTTPS indicates transit privacy rather than merchant safety or content honesty.</li>
-          <li><a href="https://www.eff.org/encrypt-the-web" target="_blank" rel="noopener noreferrer">Electronic Frontier Foundation (EFF) — The Path to 100% HTTPS</a>: Historical review of ubiquitous transport encryption and why the normalization of HTTPS shifted defensive focus to domain reputation.</li>
-          <li><a href="https://www.netcraft.com/internet-data-mining/" target="_blank" rel="noopener noreferrer">Netcraft — Web Server &amp; Phishing Certificate Survey</a>: Empirical measurement analyzing criminal certificate procurement trends across cloud and dynamic DNS providers.</li>
-          <li><a href="https://csrc.nist.gov/publications/detail/sp/800-52/rev-2/final" target="_blank" rel="noopener noreferrer">NIST Special Publication 800-52 Rev. 2 — Guidelines for the Selection and Use of TLS</a>: Federal guidance covering server authentication, certificate validation boundaries, and secure transport architecture.</li>
-        </ul>
+            <div class="src-card">
+              <div class="src-ico" style="background:#FEF3C7;">📜</div>
+              <div>
+                <div class="src-name">Let's Encrypt — The CA's Role in Fighting Phishing and Malware</div>
+                <div class="src-desc">Policy paper clarifying that Domain Validation (DV) certificates establish encrypted wire transport to a domain, without verifying merchant safety or site reputation.</div>
+                <a href="https://letsencrypt.org/2015/10/29/phishing-and-malware.html" class="src-link" target="_blank" rel="noopener noreferrer">Read Let's Encrypt Position Paper ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0FDF4;">🛡️</div>
+              <div>
+                <div class="src-name">MDN Web Docs — Transport Layer Security (TLS)</div>
+                <div class="src-desc">Authoritative reference detailing the core cryptographic properties of TLS: data confidentiality, message integrity, and server authentication.</div>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Defenses/Transport_Layer_Security" class="src-link" target="_blank" rel="noopener noreferrer">MDN TLS Documentation ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#EEF2FF;">📐</div>
+              <div>
+                <div class="src-name">IETF RFC 8446 — The Transport Layer Security (TLS) Protocol Version 1.3</div>
+                <div class="src-desc">The official Internet standard specifying zero-RTT handshakes, forward secrecy, and deprecated insecure cipher suites across modern web infrastructure.</div>
+                <a href="https://www.rfc-editor.org/info/rfc8446" class="src-link" target="_blank" rel="noopener noreferrer">Read RFC 8446 Standard ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#EFF6FF;">🏛️</div>
+              <div>
+                <div class="src-name">CA/Browser Forum — Baseline Requirements for Publicly-Trusted Certificates</div>
+                <div class="src-desc">Global industry regulations defining technical verification criteria for Domain Validation (DV), Organization Validation (OV), and certificate trust anchors.</div>
+                <a href="https://cabforum.org/baseline-requirements-documents/" class="src-link" target="_blank" rel="noopener noreferrer">CA/Browser Forum Baseline Rules ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FEF2F2;">📊</div>
+              <div>
+                <div class="src-name">Anti-Phishing Working Group (APWG) — Phishing Activity Trends Report</div>
+                <div class="src-desc">Longitudinal intelligence showing that over 85% of active phishing websites operate using valid TLS certificates to exploit consumer trust in the padlock.</div>
+                <a href="https://apwg.org/trendsreports/" class="src-link" target="_blank" rel="noopener noreferrer">APWG Threat Trends ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FFFBEB;">⚠️</div>
+              <div>
+                <div class="src-name">CISA / US-CERT Alert — HTTPS Phishing Websites</div>
+                <div class="src-desc">Federal security alert warning organizations and consumers that HTTPS only indicates encrypted transport, not website legitimacy or safety.</div>
+                <a href="https://www.cisa.gov/news-events/alerts/2015/05/01/https-phishing-websites" class="src-link" target="_blank" rel="noopener noreferrer">CISA HTTPS Phishing Alert ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0F9FF;">🌐</div>
+              <div>
+                <div class="src-name">Electronic Frontier Foundation (EFF) — The Path to 100% HTTPS</div>
+                <div class="src-desc">Historical analysis of the Encrypt the Web campaign and why universal transit encryption decoupled cryptographic security from organizational trustworthiness.</div>
+                <a href="https://www.eff.org/encrypt-the-web" class="src-link" target="_blank" rel="noopener noreferrer">EFF Encrypt the Web ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FAF5FF;">🔎</div>
+              <div>
+                <div class="src-name">Netcraft — Web Server &amp; Phishing Certificate Survey</div>
+                <div class="src-desc">Empirical Internet-scale telemetry tracking criminal certificate acquisition trends and automated certificate issuance abuse.</div>
+                <a href="https://www.netcraft.com/internet-data-mining/" class="src-link" target="_blank" rel="noopener noreferrer">Netcraft Internet Research ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F8FAFC;">📑</div>
+              <div>
+                <div class="src-name">NIST Special Publication 800-52 Rev. 2 — Guidelines for TLS Selection &amp; Use</div>
+                <div class="src-desc">Federal standard establishing cryptographic boundaries, server identity verification rules, and transit security requirements.</div>
+                <a href="https://csrc.nist.gov/publications/detail/sp/800-52/rev-2/final" class="src-link" target="_blank" rel="noopener noreferrer">NIST TLS Implementation Guide ↗</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div><!-- /art-text -->
 

@@ -730,23 +730,104 @@
           </ul>
         </div>
 
-        <!-- S15: SOURCES -->
-        <h2 id="sources">Sources &amp; Further Reading</h2>
+        <!-- SOURCES -->
+        <div class="sources-section" id="sources">
+          <h2 class="src-h">Sources &amp; Further Reading</h2>
+          <p class="src-sub">The technical standards, cryptographic specifications, and identity guidelines referenced in this episode are grounded in documentation from the W3C, FIDO Alliance, NIST, and CISA:</p>
+          <div class="src-list">
 
-        <p>The technical standards, cryptographic specifications, and identity guidelines referenced in this episode are grounded in documentation from the W3C, FIDO Alliance, NIST, and CISA:</p>
+            <div class="src-card">
+              <div class="src-ico" style="background:#ECFDF5;">🌐</div>
+              <div>
+                <div class="src-name">W3C Web Authentication (WebAuthn) Level 3</div>
+                <div class="src-desc">The official standard defining the API for public-key authentication credentials in browsers, origin binding (Relying Party ID), and authenticator interactions.</div>
+                <a href="https://www.w3.org/TR/webauthn-3/" class="src-link" target="_blank" rel="noopener noreferrer">Read W3C WebAuthn Specification ↗</a>
+              </div>
+            </div>
 
-        <ul class="styled-list" style="margin:16px 0 32px 20px;font-size:.92rem;">
-          <li><a href="https://www.w3.org/TR/webauthn-3/" target="_blank" rel="noopener noreferrer">W3C Web Authentication (WebAuthn) Level 3</a>: The official standard defining the API for public-key authentication credentials in browsers, origin binding (Relying Party ID), and authenticator interactions.</li>
-          <li><a href="https://fidoalliance.org/passkeys/" target="_blank" rel="noopener noreferrer">FIDO Alliance — Passkeys Overview</a>: Architectural specifications and security considerations for multi-device credentials, synced authenticators, and hardware security keys.</li>
-          <li><a href="https://www.cisa.gov/resources-tools/resources/implementing-phishing-resistant-mfa" target="_blank" rel="noopener noreferrer">CISA — Implementing Phishing-Resistant MFA</a>: Explains why traditional password + SMS/OTP MFA is vulnerable to Adversary-in-the-Middle (AiTM) proxies, and why FIDO2/WebAuthn is considered the gold standard for authentication defense.</li>
-          <li><a href="https://pages.nist.gov/800-63-3/sp800-63b.html" target="_blank" rel="noopener noreferrer">NIST Special Publication 800-63B — Digital Identity Guidelines</a>: Detailed requirements for Authenticator Assurance Level 3 (AAL3), verifier impersonation resistance, and cryptographic key management.</li>
-          <li><a href="https://blog.google/technology/safety-security/the-beginning-of-the-end-of-the-password/" target="_blank" rel="noopener noreferrer">Google Security Blog — The Beginning of the End of the Password</a>: Telemetry and case study documenting consumer passkey adoption, 50% faster authentication speeds, and complete elimination of credential phishing vectors.</li>
-          <li><a href="https://support.apple.com/guide/security/passkeys-overview-sec1b7f6c6e7/web" target="_blank" rel="noopener noreferrer">Apple Platform Security — Passkeys Architecture &amp; Secure Enclave</a>: Technical specification detailing hardware key storage, biometric authorization via Touch ID/Face ID, and end-to-end encrypted iCloud Keychain escrow.</li>
-          <li><a href="https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-passwordless" target="_blank" rel="noopener noreferrer">Microsoft Learn — Passwordless Authentication with FIDO2 &amp; Passkeys</a>: Architecture reference covering Windows Hello, hardware security keys, and cross-platform mobile passkey enrollment for cloud directories.</li>
-          <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener noreferrer">Verizon — 2024 Data Breach Investigations Report (DBIR)</a>: Primary industry benchmark analyzing credential compromise rates, identifying stolen and reused credentials as the leading web application attack vector.</li>
-          <li><a href="https://www.yubico.com/resources/glossary/passkeys/" target="_blank" rel="noopener noreferrer">Yubico — Threat Modeling for Passkeys: Synced vs. Device-Bound</a>: Technical whitepaper assessing assurance differences between multi-device cloud-synchronized passkeys and physical FIDO2 hardware tokens.</li>
-          <li><a href="https://www.rfc-editor.org/info/rfc9334" target="_blank" rel="noopener noreferrer">IETF RFC 9334 — Remote ATtestation ProcedureS (RATS) Architecture</a>: Foundational protocol standard describing cryptographic attestation workflows for hardware authenticators and trusted execution environments.</li>
-        </ul>
+            <div class="src-card">
+              <div class="src-ico" style="background:#CCFBF1;">🔑</div>
+              <div>
+                <div class="src-name">FIDO Alliance — Passkeys Overview</div>
+                <div class="src-desc">Architectural specifications and security considerations for multi-device credentials, synced authenticators, and hardware security keys.</div>
+                <a href="https://fidoalliance.org/passkeys/" class="src-link" target="_blank" rel="noopener noreferrer">Explore FIDO Alliance Passkeys ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0FDFA;">🛡️</div>
+              <div>
+                <div class="src-name">CISA — Implementing Phishing-Resistant MFA</div>
+                <div class="src-desc">Explains why traditional password + SMS/OTP MFA is vulnerable to Adversary-in-the-Middle (AiTM) proxies, and why FIDO2/WebAuthn is considered the gold standard for authentication defense.</div>
+                <a href="https://www.cisa.gov/resources-tools/resources/implementing-phishing-resistant-mfa" class="src-link" target="_blank" rel="noopener noreferrer">Read CISA Phishing-Resistant MFA Guide ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#EEF2FF;">📜</div>
+              <div>
+                <div class="src-name">NIST Special Publication 800-63B — Digital Identity Guidelines</div>
+                <div class="src-desc">Detailed requirements for Authenticator Assurance Level 3 (AAL3), verifier impersonation resistance, and cryptographic key management.</div>
+                <a href="https://pages.nist.gov/800-63-3/sp800-63b.html" class="src-link" target="_blank" rel="noopener noreferrer">NIST SP 800-63B Guidelines ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#EFF6FF;">💻</div>
+              <div>
+                <div class="src-name">Google Security Blog — The Beginning of the End of the Password</div>
+                <div class="src-desc">Telemetry and case study documenting consumer passkey adoption, 50% faster authentication speeds, and complete elimination of credential phishing vectors.</div>
+                <a href="https://blog.google/technology/safety-security/the-beginning-of-the-end-of-the-password/" class="src-link" target="_blank" rel="noopener noreferrer">Read Google Security Blog ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F8FAFC;">🍏</div>
+              <div>
+                <div class="src-name">Apple Platform Security — Passkeys Architecture &amp; Secure Enclave</div>
+                <div class="src-desc">Technical specification detailing hardware key storage, biometric authorization via Touch ID/Face ID, and end-to-end encrypted iCloud Keychain escrow.</div>
+                <a href="https://support.apple.com/guide/security/passkeys-overview-sec1b7f6c6e7/web" class="src-link" target="_blank" rel="noopener noreferrer">Apple Passkeys Security Guide ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0F9FF;">🏢</div>
+              <div>
+                <div class="src-name">Microsoft Learn — Passwordless Authentication with FIDO2 &amp; Passkeys</div>
+                <div class="src-desc">Architecture reference covering Windows Hello, hardware security keys, and cross-platform mobile passkey enrollment for cloud directories.</div>
+                <a href="https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-passwordless" class="src-link" target="_blank" rel="noopener noreferrer">Microsoft Entra Passwordless Docs ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FEF2F2;">📊</div>
+              <div>
+                <div class="src-name">Verizon — 2024 Data Breach Investigations Report (DBIR)</div>
+                <div class="src-desc">Primary industry benchmark analyzing credential compromise rates, identifying stolen and reused credentials as the leading web application attack vector.</div>
+                <a href="https://www.verizon.com/business/resources/reports/dbir/" class="src-link" target="_blank" rel="noopener noreferrer">Verizon DBIR Report ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FFFBEB;">🔐</div>
+              <div>
+                <div class="src-name">Yubico — Threat Modeling for Passkeys: Synced vs. Device-Bound</div>
+                <div class="src-desc">Technical whitepaper assessing assurance differences between multi-device cloud-synchronized passkeys and physical FIDO2 hardware tokens.</div>
+                <a href="https://www.yubico.com/resources/glossary/passkeys/" class="src-link" target="_blank" rel="noopener noreferrer">Yubico Passkeys Whitepaper ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FAF5FF;">📐</div>
+              <div>
+                <div class="src-name">IETF RFC 9334 — Remote ATtestation ProcedureS (RATS) Architecture</div>
+                <div class="src-desc">Foundational protocol standard describing cryptographic attestation workflows for hardware authenticators and trusted execution environments.</div>
+                <a href="https://www.rfc-editor.org/info/rfc9334" class="src-link" target="_blank" rel="noopener noreferrer">Read RFC 9334 Standard ↗</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div><!-- /art-text -->
 

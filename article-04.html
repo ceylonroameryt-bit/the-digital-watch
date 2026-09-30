@@ -708,23 +708,104 @@
           </ul>
         </div>
 
-        <!-- S12: SOURCES -->
-        <h2 id="sources">Sources &amp; Further Reading</h2>
+        <!-- SOURCES -->
+        <div class="sources-section" id="sources">
+          <h2 class="src-h">Sources &amp; Further Reading</h2>
+          <p class="src-sub">The threat analysis, technical mechanics, and defense architectures cited in this episode are grounded in documentation from Microsoft Threat Intelligence, Google Security, the W3C standards group, and OWASP:</p>
+          <div class="src-list">
 
-        <p>The threat analysis, technical mechanics, and defense architectures cited in this episode are grounded in documentation from Microsoft Threat Intelligence, Google Security, the W3C standards group, and OWASP:</p>
+            <div class="src-card">
+              <div class="src-ico" style="background:#EFF6FF;">🔬</div>
+              <div>
+                <div class="src-name">Microsoft Security — From Cookie Theft to BEC (AiTM Phishing)</div>
+                <div class="src-desc">In-depth investigation detailing adversary-in-the-middle reverse proxies extracting authenticated session cookies to bypass MFA and deploy wire fraud.</div>
+                <a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/" class="src-link" target="_blank" rel="noopener noreferrer">Read Microsoft AiTM Research ↗</a>
+              </div>
+            </div>
 
-        <ul class="styled-list" style="margin:16px 0 32px 20px;font-size:.92rem;">
-          <li><a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/" target="_blank" rel="noopener noreferrer">Microsoft Security — From Cookie Theft to BEC: Attackers Use AiTM Phishing Sites as Entry Point to Further Financial Fraud</a>: Investigation detailing session cookie harvesting proxies and subsequent financial diversion.</li>
-          <li><a href="https://www.microsoft.com/en-us/security/blog/2023/06/08/detecting-and-mitigating-a-multi-stage-aitm-phishing-and-bec-campaign/" target="_blank" rel="noopener noreferrer">Microsoft Security — Detecting and Mitigating a Multi-Stage AiTM Phishing and BEC Campaign</a>: Telemetry tracing stolen cookie replay across distinct IP ranges without triggering MFA challenges.</li>
-          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP Foundation — Session Management Cheat Sheet</a>: Authoritative web security guidelines for session token entropy, idle timeouts, and cryptographic invalidation.</li>
-          <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Cookie_Theft_Mitigation_Cheat_Sheet.html" target="_blank" rel="noopener noreferrer">OWASP Foundation — Cookie Theft Mitigation Cheat Sheet</a>: Defensive countermeasures against local browser theft, XSS exfiltration, and unauthorized cookie replay.</li>
-          <li><a href="https://www.w3.org/TR/dbsc/" target="_blank" rel="noopener noreferrer">World Wide Web Consortium (W3C) — Device Bound Session Credentials (DBSC) Specification</a>: Proposed web standard anchoring sessions to local hardware TPM/enclave keypairs so stolen cookies cannot be replayed elsewhere.</li>
-          <li><a href="https://blog.google/security/protecting-cookies-with-device-bound-session-credentials/" target="_blank" rel="noopener noreferrer">Google Security Blog — Protecting Cookies with Device Bound Session Credentials</a>: Architectural overview of Chromium's implementation to disrupt the commercial infostealer malware ecosystem.</li>
-          <li><a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-158a" target="_blank" rel="noopener noreferrer">CISA Advisory (AA23-158A) — Malicious Actors Exploit Session Cookies to Bypass Multi-Factor Authentication</a>: Alert detailing how cybercriminals harvest valid sessions to access cloud email, databases, and code repositories.</li>
-          <li><a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis" target="_blank" rel="noopener noreferrer">IETF RFC 6265bis — Cookies: HTTP State Management Mechanism</a>: Current Internet draft defining security attributes including `SameSite`, `HttpOnly`, `Secure`, and partitioned cookies (`CHIPS`).</li>
-          <li><a href="https://cloud.google.com/blog/topics/threat-intelligence" target="_blank" rel="noopener noreferrer">Mandiant Threat Intelligence — The Evolution of Infostealers</a>: Technical research tracking infostealer families (Lumma, RedLine, Vidar) extracting SQLite profile databases from infected endpoints.</li>
-          <li><a href="https://www.okta.com/blog/2023/10/cross-tenant-impersonation-and-session-theft/" target="_blank" rel="noopener noreferrer">Okta Security — AiTM and Session Token Defense in Cloud Identity</a>: Identity architecture analysis evaluating Continuous Access Evaluation Protocol (CAEP) and token binding.</li>
-        </ul>
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0F9FF;">📊</div>
+              <div>
+                <div class="src-name">Microsoft Security — Detecting &amp; Mitigating Multi-Stage AiTM Campaigns</div>
+                <div class="src-desc">Operational case study tracing stolen cookie replay across cloud environments without generating interactive MFA alerts.</div>
+                <a href="https://www.microsoft.com/en-us/security/blog/2023/06/08/detecting-and-mitigating-a-multi-stage-aitm-phishing-and-bec-campaign/" class="src-link" target="_blank" rel="noopener noreferrer">Read Multi-Stage BEC Case Study ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0FDF4;">🛡️</div>
+              <div>
+                <div class="src-name">OWASP Foundation — Session Management Cheat Sheet</div>
+                <div class="src-desc">Authoritative web application security guidelines governing session token entropy, idle timeout thresholds, and cryptographic invalidation.</div>
+                <a href="https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html" class="src-link" target="_blank" rel="noopener noreferrer">OWASP Session Management Guide ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FEF3C7;">🍪</div>
+              <div>
+                <div class="src-name">OWASP Foundation — Cookie Theft Mitigation Cheat Sheet</div>
+                <div class="src-desc">Architectural countermeasures against local browser extraction, Cross-Site Scripting (XSS) harvesting, and unauthorized token replay.</div>
+                <a href="https://cheatsheetseries.owasp.org/cheatsheets/Cookie_Theft_Mitigation_Cheat_Sheet.html" class="src-link" target="_blank" rel="noopener noreferrer">OWASP Cookie Theft Mitigation ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#ECFDF5;">🔑</div>
+              <div>
+                <div class="src-name">W3C — Device Bound Session Credentials (DBSC) Specification</div>
+                <div class="src-desc">Web standard anchoring sessions to local hardware TPM/enclave keypairs so stolen cookies cannot be replayed on unauthorized machines.</div>
+                <a href="https://www.w3.org/TR/dbsc/" class="src-link" target="_blank" rel="noopener noreferrer">W3C DBSC Specification ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0FDFA;">💻</div>
+              <div>
+                <div class="src-name">Google Security Blog — Protecting Cookies with Device Bound Credentials</div>
+                <div class="src-desc">Chromium engineering blueprint detailing hardware-backed session binding designed to disrupt the commercial infostealer malware ecosystem.</div>
+                <a href="https://blog.google/security/protecting-cookies-with-device-bound-session-credentials/" class="src-link" target="_blank" rel="noopener noreferrer">Google DBSC Architecture ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FEF2F2;">⚠️</div>
+              <div>
+                <div class="src-name">CISA Advisory (AA23-158A) — Session Cookie Exploitation to Bypass MFA</div>
+                <div class="src-desc">Federal alert documenting threat actor exploitation of active session tokens to gain unauthorized access to cloud mailboxes and code repositories.</div>
+                <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa23-158a" class="src-link" target="_blank" rel="noopener noreferrer">CISA Session Hijacking Alert ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#EEF2FF;">📜</div>
+              <div>
+                <div class="src-name">IETF RFC 6265bis — Cookies: HTTP State Management Mechanism</div>
+                <div class="src-desc">Core Internet protocol standard defining security flags including SameSite=Strict/Lax, HttpOnly, Secure transport, and cookie prefixes.</div>
+                <a href="https://datatracker.ietf.org/doc/html/draft-ietf-httpbis-rfc6265bis" class="src-link" target="_blank" rel="noopener noreferrer">IETF RFC 6265bis Standard ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FAF5FF;">🔎</div>
+              <div>
+                <div class="src-name">Mandiant Threat Intelligence — The Evolution of Infostealers</div>
+                <div class="src-desc">Forensic analysis examining Lumma, RedLine, and Vidar stealer malware targeting local browser SQLite databases and session stores.</div>
+                <a href="https://cloud.google.com/blog/topics/threat-intelligence" class="src-link" target="_blank" rel="noopener noreferrer">Mandiant Infostealer Research ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F8FAFC;">🆔</div>
+              <div>
+                <div class="src-name">Okta Security — AiTM and Session Token Defense in Cloud Identity</div>
+                <div class="src-desc">Identity architecture analysis evaluating Continuous Access Evaluation Protocol (CAEP) and device-bound token enforcement.</div>
+                <a href="https://www.okta.com/blog/2023/10/cross-tenant-impersonation-and-session-theft/" class="src-link" target="_blank" rel="noopener noreferrer">Okta Session Security Whitepaper ↗</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div><!-- /art-text -->
 

@@ -589,23 +589,104 @@
 
         <p>Because after a phishing click, <strong>what you do next usually matters far more than the click itself.</strong></p>
 
-        <!-- S12: SOURCES -->
-        <h2 id="sources">Sources &amp; Further Reading</h2>
+        <!-- SOURCES -->
+        <div class="sources-section" id="sources">
+          <h2 class="src-h">Sources &amp; Further Reading</h2>
+          <p class="src-sub">This research synthesises industry-standard incident containment workflows, triage playbooks, and published guidance from national cybersecurity agencies:</p>
+          <div class="src-list">
 
-        <p>This research is based in part on industry-standard incident containment workflows, including the Post-Phishing Incident Recovery Playbook, risk-assessment triage models, and published guidance from national security agencies:</p>
+            <div class="src-card">
+              <div class="src-ico" style="background:#FEF2F2;">🚨</div>
+              <div>
+                <div class="src-name">UK National Cyber Security Centre (NCSC) — Phishing: What to Do</div>
+                <div class="src-desc">Actionable emergency guidance on immediate post-phishing containment, credential reset priorities, and corporate reporting channels.</div>
+                <a href="https://www.ncsc.gov.uk/section/respond-recover/phishing" class="src-link" target="_blank" rel="noopener noreferrer">Read NCSC Phishing Response ↗</a>
+              </div>
+            </div>
 
-        <ul class="styled-list" style="margin:16px 0 32px 20px;font-size:.92rem;">
-          <li><a href="https://www.ncsc.gov.uk/section/respond-recover/phishing" target="_blank" rel="noopener noreferrer">UK National Cyber Security Centre (NCSC) — Phishing: what to do</a>: Actionable guidance on immediate post-phishing containment, credential reset priorities, and reporting channels.</li>
-          <li><a href="https://www.ncsc.gov.uk/section/about-this-website/report-scam-website" target="_blank" rel="noopener noreferrer">UK NCSC — Report a suspicious website &amp; reporting guidance</a>: Framework for takedown submissions to global threat filtering feeds and DNS sinkholes.</li>
-          <li><a href="https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams" target="_blank" rel="noopener noreferrer">US Federal Trade Commission (FTC) — How to recognise and avoid phishing scams</a>: Consumer protection playbook for credit freezes, identity protection, and fraud remediation.</li>
-          <li><a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/" target="_blank" rel="noopener noreferrer">Microsoft Security — From cookie theft to BEC: AiTM phishing campaigns</a>: Technical analysis of how phishing clicks lead to immediate session extraction and mailbox rule creation.</li>
-          <li><a href="https://www.cisa.gov/resources-tools/resources/phishing-prevention" target="_blank" rel="noopener noreferrer">CISA — Multi-Factor Authentication &amp; Phishing Resistance Specifications</a>: Defense architecture mandating FIDO2/WebAuthn to render phished credentials useless.</li>
-          <li><a href="https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final" target="_blank" rel="noopener noreferrer">NIST Special Publication 800-61 Rev. 2 — Computer Security Incident Handling Guide</a>: National benchmark defining the four phases of incident handling: preparation, detection/analysis, containment/eradication, and recovery.</li>
-          <li><a href="https://www.sans.org/white-papers/33901/" target="_blank" rel="noopener noreferrer">SANS Institute — Incident Handler's Handbook</a>: Practical operational playbooks detailing credential revocation, token termination, and containment within the critical initial triage window.</li>
-          <li><a href="https://attack.mitre.org/techniques/T1566/" target="_blank" rel="noopener noreferrer">MITRE ATT&amp;CK Matrix for Enterprise — T1566 (Phishing) &amp; T1539 (Steal Web Session Cookie)</a>: Threat taxonomy documenting adversary techniques following initial link execution and credential submission.</li>
-          <li><a href="https://cert.europa.eu/publications/security-guidelines/" target="_blank" rel="noopener noreferrer">CERT-EU — Triage &amp; Incident Response Guidelines for Identity Compromise</a>: European Union Computer Emergency Response Team guidance on global session killswitches and OAuth token invalidation.</li>
-          <li><a href="https://cloud.google.com/security/cybersecurity-action-team" target="_blank" rel="noopener noreferrer">Google Cybersecurity Action Team — Threat Horizons Report</a>: Telemetry examining attack velocity, mean time to remediation (MTTR), and payload delivery behaviors across corporate phishing incidents.</li>
-        </ul>
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0F9FF;">🌐</div>
+              <div>
+                <div class="src-name">UK NCSC — Report a Suspicious Website &amp; Reporting Guidance</div>
+                <div class="src-desc">Operational framework for rapid takedown submissions to global threat filtering feeds, browser blocklists, and DNS sinkholes.</div>
+                <a href="https://www.ncsc.gov.uk/section/about-this-website/report-scam-website" class="src-link" target="_blank" rel="noopener noreferrer">NCSC Reporting Service ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0FDF4;">🛡️</div>
+              <div>
+                <div class="src-name">US Federal Trade Commission (FTC) — How to Recognize &amp; Avoid Phishing</div>
+                <div class="src-desc">Consumer protection playbook detailing credit freezes, fraud alert activations, identity monitoring, and account recovery triage.</div>
+                <a href="https://consumer.ftc.gov/articles/how-recognize-avoid-phishing-scams" class="src-link" target="_blank" rel="noopener noreferrer">FTC Phishing Guidance ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#EFF6FF;">🔬</div>
+              <div>
+                <div class="src-name">Microsoft Security — From Cookie Theft to BEC (AiTM Phishing)</div>
+                <div class="src-desc">Threat investigation analyzing how phishing clicks bypass MFA via automated reverse-proxy credential and session cookie extraction.</div>
+                <a href="https://www.microsoft.com/en-us/security/blog/2022/07/12/from-cookie-theft-to-bec-attackers-use-aitm-phishing-sites-as-entry-point-to-further-financial-fraud/" class="src-link" target="_blank" rel="noopener noreferrer">Microsoft AiTM Research ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#ECFDF5;">🔑</div>
+              <div>
+                <div class="src-name">CISA — Multi-Factor Authentication &amp; Phishing Resistance</div>
+                <div class="src-desc">Federal defense architecture mandating FIDO2/WebAuthn credentials to render harvested passwords and OTP codes unusable by attackers.</div>
+                <a href="https://www.cisa.gov/resources-tools/resources/phishing-prevention" class="src-link" target="_blank" rel="noopener noreferrer">CISA Phishing Prevention ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#EEF2FF;">📜</div>
+              <div>
+                <div class="src-name">NIST Special Publication 800-61 Rev. 2 — Computer Security Incident Handling Guide</div>
+                <div class="src-desc">National benchmark defining the four incident response phases: preparation, detection/analysis, containment/eradication, and recovery.</div>
+                <a href="https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final" class="src-link" target="_blank" rel="noopener noreferrer">NIST Incident Handling Guide ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FFFBEB;">⏱️</div>
+              <div>
+                <div class="src-name">SANS Institute — Incident Handler's Handbook</div>
+                <div class="src-desc">Practical operational playbooks detailing credential revocation, token termination, and containment within the critical initial triage window.</div>
+                <a href="https://www.sans.org/white-papers/33901/" class="src-link" target="_blank" rel="noopener noreferrer">SANS Incident Playbook ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FEF2F2;">📊</div>
+              <div>
+                <div class="src-name">MITRE ATT&amp;CK Matrix — T1566 (Phishing) &amp; T1539 (Steal Session Cookie)</div>
+                <div class="src-desc">Technical threat taxonomy documenting adversary procedures following initial link execution, token theft, and persistence establishment.</div>
+                <a href="https://attack.mitre.org/techniques/T1566/" class="src-link" target="_blank" rel="noopener noreferrer">MITRE ATT&amp;CK Matrix ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#FDF4FF;">🏛️</div>
+              <div>
+                <div class="src-name">CERT-EU — Triage &amp; Incident Response Guidelines for Identity Compromise</div>
+                <div class="src-desc">European Union Computer Emergency Response Team guidance on global session killswitches and OAuth application consent revocation.</div>
+                <a href="https://cert.europa.eu/publications/security-guidelines/" class="src-link" target="_blank" rel="noopener noreferrer">CERT-EU Security Guidelines ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card">
+              <div class="src-ico" style="background:#F0FDFA;">⚡</div>
+              <div>
+                <div class="src-name">Google Cybersecurity Action Team — Threat Horizons Report</div>
+                <div class="src-desc">Enterprise threat telemetry examining adversary attack velocity, mean time to remediation (MTTR), and payload delivery behaviors.</div>
+                <a href="https://cloud.google.com/security/cybersecurity-action-team" class="src-link" target="_blank" rel="noopener noreferrer">Google Threat Horizons ↗</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
 
       </div><!-- /art-text -->
 
