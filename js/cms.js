@@ -242,6 +242,18 @@ function _epSvgContent(n, isPub) {
       <text x="180" y="72" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="8" font-weight="700">paypa1-login.com</text>
       <text x="180" y="124" text-anchor="middle" fill="#B45309" font-family="DM Sans,system-ui" font-size="8" font-weight="600">Encrypted ≠ Safe</text>`;
   }
+  if (n === 6) {
+    // Passkey / WebAuthn illustration for ep06
+    return `<rect x="68" y="52" width="64" height="42" rx="8" fill="white" stroke="#0D9488" stroke-width="2"/>
+      <rect x="52" y="62" width="16" height="22" rx="3" fill="#99F6E4" stroke="#0D9488" stroke-width="1.5"/>
+      <circle cx="100" cy="73" r="10" stroke="#0D9488" stroke-width="1.5" fill="#F0FDFA"/>
+      <path d="M96 73 Q100 67 104 73" stroke="#0D9488" stroke-width="1.2" fill="none"/>
+      <path d="M93 75 Q100 64 107 75" stroke="#0D9488" stroke-width="1.2" fill="none"/>
+      <rect x="156" y="60" width="76" height="28" rx="6" fill="white" stroke="#94A3B8" stroke-width="1.5"/>
+      <text x="194" y="78" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="12" font-weight="700">••••••••</text>
+      <line x1="152" y1="74" x2="236" y2="74" stroke="#EF4444" stroke-width="2.2" stroke-linecap="round"/>
+      <text x="140" y="132" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="11">Passkeys &amp; FIDO2 Authentication</text>`;
+  }
   // Generic episode SVG with episode number
   return `<circle cx="140" cy="68" r="38" fill="white" stroke="#CBD5E1" stroke-width="1.5" opacity=".8"/>
     <text x="140" y="62" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui" font-size="11" font-weight="600">Episode</text>
@@ -294,10 +306,16 @@ function renderArticle() {
       const isActive = p.slug === post.slug;
       const isPub = p.status === 'published';
       const epHref = articleHref(p);
-      return `<${isPub ? 'a href="'+epHref+'"' : 'span'} class="series-nav-item ${isActive ? 'active' : ''}">
-        <span class="series-nav-num">${_pad(p.episodeNum)}</span>
-        <span>${_esc(p.title)}</span>
-      </${isPub ? 'a' : 'span'}>`;
+      const tagText = isActive ? `Episode ${_pad(p.episodeNum)} · Reading Now 👁️` : (isPub ? `Episode ${_pad(p.episodeNum)} · Live Now ✅` : `Episode ${_pad(p.episodeNum)} · Coming Soon`);
+      const tagStyle = isActive ? 'style="background:#DBEAFE;color:#1D4ED8;border-color:#93C5FD;"' : (isPub ? 'style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;"' : '');
+      const activeStyle = isActive ? 'style="border-left:3px solid var(--blue);background:#EFF6FF;"' : '';
+      return `<a href="${epHref}" class="series-nav-item ${isActive ? 'active' : ''}" ${activeStyle}>
+        <span class="series-nav-num" ${isActive ? 'style="color:var(--blue);font-weight:800;"' : ''}>${_pad(p.episodeNum)}</span>
+        <div class="series-nav-info">
+          <span class="series-nav-item-title" ${isActive ? 'style="color:var(--blue);font-weight:700;"' : ''}>${_esc(p.title)}</span>
+          <span class="series-nav-tag" ${tagStyle}>${tagText}</span>
+        </div>
+      </a>`;
     }).join('');
   }
 }
