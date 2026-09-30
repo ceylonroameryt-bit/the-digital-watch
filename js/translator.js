@@ -576,11 +576,20 @@ window.googleTranslateElementInit = function () {
     }
 
     // Lock body top offset so Google Translate's iframe banner never pushes the page down
-    setInterval(() => {
-      if (document.body.style.top && document.body.style.top !== '0px') {
-        document.body.style.top = '0px';
-      }
-    }, 300);
+    if (window.MutationObserver) {
+      const topObserver = new MutationObserver(() => {
+        if (document.body.style.top && document.body.style.top !== '0px') {
+          document.body.style.top = '0px';
+        }
+      });
+      topObserver.observe(document.body, { attributes: true, attributeFilter: ['style'] });
+    } else {
+      setInterval(() => {
+        if (document.body.style.top && document.body.style.top !== '0px') {
+          document.body.style.top = '0px';
+        }
+      }, 300);
+    }
   }
 
   if (document.readyState === 'loading') {

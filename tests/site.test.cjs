@@ -196,6 +196,7 @@ test('deployment contains public pages and security policy, excludes the local e
   assert.ok(fs.existsSync(path.join(root, 'dist/article-04.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/article-05.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/article-06.html')));
+  assert.ok(fs.existsSync(path.join(root, 'dist/sitemap.xml')));
   for (const file of ['admin.html', 'js/admin.js', 'node_modules', 'tests', '.git']) {
     assert.equal(fs.existsSync(path.join(root, 'dist', file)), false, file);
   }

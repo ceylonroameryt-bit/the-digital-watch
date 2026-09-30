@@ -13,6 +13,8 @@ Allow: /assets/
 Allow: /styles/
 Allow: /js/
 
+Sitemap: https://ceylonroameryt-bit.github.io/the-digital-watch/sitemap.xml
+
 # Security Vulnerability Reporting (RFC 9116)
 Contact: mailto:security@sujampathirathnayaka.com
 Security: https://sujampathirathnayaka.com/.well-known/security.txt

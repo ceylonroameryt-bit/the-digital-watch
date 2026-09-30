@@ -11,6 +11,9 @@ function getArticleKey() {
     return 'threatbrief_' + document.body.dataset.articleId;
   }
   const path = window.location.pathname;
+  if (path.includes('06') || window.location.search.includes('ep06')) {
+    return 'threatbrief_ep06';
+  }
   if (path.includes('05') || window.location.search.includes('ep05')) {
     return 'threatbrief_ep05';
   }

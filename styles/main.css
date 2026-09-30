@@ -56,12 +56,23 @@
 
 html { scroll-behavior: smooth; }
 
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 body {
   font-family: var(--f-b);
   background: var(--bg);
   color: var(--ink);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
   padding-top: var(--nav-h);
   overflow-x: hidden;
 }
@@ -1891,7 +1902,10 @@ body {
     font-size: .75rem;
     max-width: calc(100vw - 32px);
     overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+  .floating-dock::-webkit-scrollbar { display: none; }
   .dock-btn { padding: 5px 8px; font-size: .74rem; }
   .dock-btn span:first-child { font-size: .9rem; }
 
