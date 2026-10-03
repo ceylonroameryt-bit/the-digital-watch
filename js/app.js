@@ -276,9 +276,37 @@ function initToc() {
 
   const progressFill = document.getElementById('tocLineProgress');
   const percentText = document.getElementById('tocPercent');
+  const tocHeader = sidebar.querySelector('.toc-header');
   const targets = [];
 
+  // Mobile accordion drawer toggling
+  if (tocHeader) {
+    const toggleMobileOutline = (e) => {
+      if (window.innerWidth <= 1024) {
+        if (e && e.type === 'click') e.preventDefault();
+        const isOpen = sidebar.classList.toggle('is-open');
+        tocHeader.setAttribute('aria-expanded', String(isOpen));
+      }
+    };
+
+    tocHeader.addEventListener('click', toggleMobileOutline);
+    tocHeader.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMobileOutline(e);
+      }
+    });
+  }
+
+  // Auto-close mobile drawer when any TOC section link is tapped
   tocLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 1024) {
+        sidebar.classList.remove('is-open');
+        if (tocHeader) tocHeader.setAttribute('aria-expanded', 'false');
+      }
+    });
+
     const hash = link.getAttribute('href');
     if (!hash || !hash.startsWith('#')) return;
     let id;
@@ -322,12 +350,14 @@ function initToc() {
         item.link.classList.add('active');
         item.link.classList.add('passed');
         item.link.setAttribute('aria-current', 'location');
-        // Keep active link visible in scrollable sidebar
-        const sidebarRect = sidebar.getBoundingClientRect();
-        const linkRect = item.link.getBoundingClientRect();
-        if (linkRect.top < sidebarRect.top + 30 || linkRect.bottom > sidebarRect.bottom - 30) {
-          if (typeof item.link.scrollIntoView === 'function') {
-            item.link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        // Keep active link visible in scrollable sidebar on desktop only
+        if (window.innerWidth > 1024) {
+          const sidebarRect = sidebar.getBoundingClientRect();
+          const linkRect = item.link.getBoundingClientRect();
+          if (linkRect.top < sidebarRect.top + 30 || linkRect.bottom > sidebarRect.bottom - 30) {
+            if (typeof item.link.scrollIntoView === 'function') {
+              item.link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+            }
           }
         }
       } else if (idx < currentIdx) {
