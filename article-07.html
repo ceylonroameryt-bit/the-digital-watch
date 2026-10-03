@@ -574,7 +574,7 @@
 
         <p>The attacker isn't interested in your personal Gmail inbox.</p>
 
-        <p>They are hunting for <strong>corporate identity credentials, enterprise Single Sign-On (SSO) tokens, or OAuth authorization consent</strong> <a href="#src-recruittrap" class="cite-ref" style="color:#0284C7;font-weight:700;text-decoration:none;font-size:0.8em;vertical-align:super;padding:0 2px;">[2]</a>.</p>
+        <p>They are hunting for <strong>corporate identity credentials, enterprise Single Sign-On (SSO) tokens, or OAuth authorization consent</strong> <a href="#src-recruittrap" class="cite-ref" style="color:#0284C7;font-weight:700;text-decoration:none;font-size:0.8em;vertical-align:super;padding:0 2px;">[2]</a> <a href="#src-mandiant-unc2970" class="cite-ref" style="color:#0284C7;font-weight:700;text-decoration:none;font-size:0.8em;vertical-align:super;padding:0 2px;">[9]</a>.</p>
 
         <p>Think about the implications:</p>
 
@@ -796,7 +796,7 @@
 
         <p>Opening <code>Technical_Assessment.zip</code> feels like the obvious, professional next step.</p>
 
-        <p>That is why defending against social engineering cannot rely exclusively on individual human vigilance. Modern enterprise defense requires a multi-layered model encompassing continuous user education, email filtering, phishing-resistant FIDO2 authentication, endpoint detection and response (EDR), SIEM anomaly detection, and rapid incident response protocols <a href="#src-socdefense" class="cite-ref" style="color:#0284C7;font-weight:700;text-decoration:none;font-size:0.8em;vertical-align:super;padding:0 2px;">[8]</a>.</p>
+        <p>That is why defending against social engineering cannot rely exclusively on individual human vigilance. Modern enterprise defense requires a multi-layered model encompassing continuous user education, email filtering, phishing-resistant FIDO2 authentication, endpoint detection and response (EDR), SIEM anomaly detection, and rapid incident response protocols <a href="#src-socdefense" class="cite-ref" style="color:#0284C7;font-weight:700;text-decoration:none;font-size:0.8em;vertical-align:super;padding:0 2px;">[8]</a> <a href="#src-sans-playbook" class="cite-ref" style="color:#0284C7;font-weight:700;text-decoration:none;font-size:0.8em;vertical-align:super;padding:0 2px;">[10]</a>.</p>
 
         <p>The human is one defensive layer. They must never be the only defensive layer.</p>
 
@@ -928,32 +928,32 @@
         <!-- SOURCES -->
         <div class="sources-section" id="sources">
           <h2 class="src-h">Sources &amp; Further Reading</h2>
-          <p class="src-sub">The threat intelligence research, advisories, and defensive frameworks referenced in this episode are grounded in public telemetry from CISA, Mandiant, Microsoft, and NIST:</p>
+          <p class="src-sub">The threat intelligence research, advisories, and defensive frameworks referenced in this episode are grounded in public telemetry and primary investigations from FBI IC3, CISA, Mandiant, Unit 42, Microsoft, and NIST:</p>
           <div class="src-list">
 
             <div class="src-card" id="src-multichannel">
-              <div class="src-ico" style="background:#F0F9FF;">🌐</div>
+              <div class="src-ico" style="background:#F0F9FF;">🏛️</div>
               <div>
-                <div class="src-name">CISA &amp; FBI Joint Cybersecurity Advisory — Social Engineering via Recruitment Platforms</div>
-                <div class="src-desc">Details multi-platform targeting where threat actors establish initial contact on professional social networks before transitioning conversations to personal messaging apps to deliver payloads.</div>
-                <a href="https://www.cisa.gov/news-events/cybersecurity-advisories" class="src-link" target="_blank" rel="noopener noreferrer">Explore CISA Advisories ↗</a>
+                <div class="src-name">FBI IC3 — Cyber Criminals Target Job Seekers with Fake Job Postings (PSA)</div>
+                <div class="src-desc">Official public service announcement warning job hunters and corporate talent of criminal recruitment personas conducting reconnaissance, identity theft, and corporate network penetration.</div>
+                <a href="https://www.ic3.gov/Media/Y2020/PSA200121" class="src-link" target="_blank" rel="noopener noreferrer">FBI IC3 Recruitment Fraud Alert ↗</a>
               </div>
             </div>
 
             <div class="src-card" id="src-recruittrap">
               <div class="src-ico" style="background:#EEF2FF;">🏢</div>
               <div>
-                <div class="src-name">Mandiant &amp; Microsoft Threat Intelligence — RecruitTrap Enterprise Authentication Campaigns</div>
-                <div class="src-desc">Technical briefings documenting lookalike career pages that reject personal email providers to steer victims into corporate Microsoft 365 / Entra ID credential theft and illicit OAuth app consent.</div>
-                <a href="https://cloud.google.com/blog/topics/threat-intelligence" class="src-link" target="_blank" rel="noopener noreferrer">Read Mandiant Intelligence ↗</a>
+                <div class="src-name">The Hacker News &amp; CTM360 — RecruitTrap Campaign Targeting Corporate SSO</div>
+                <div class="src-desc">Technical threat briefing analyzing lookalike recruitment portals that actively reject personal webmail to harvest corporate Microsoft 365 and Google Workspace single sign-on credentials.</div>
+                <a href="https://thehackernews.com/2024/09/recruittrap-phishing-campaign-targets.html" class="src-link" target="_blank" rel="noopener noreferrer">Read RecruitTrap Investigation ↗</a>
               </div>
             </div>
 
             <div class="src-card" id="src-dreamjob-cisa">
               <div class="src-ico" style="background:#FEF2F2;">🎯</div>
               <div>
-                <div class="src-name">CISA Advisory AA20-239A — HIDDEN COBRA / Operation Dream Job</div>
-                <div class="src-desc">Official threat advisory detailing Lazarus Group operations impersonating aerospace and defense recruiters to deploy remote access Trojans via weaponized job specifications.</div>
+                <div class="src-name">CISA Cybersecurity Advisory AA20-239A — HIDDEN COBRA / Operation Dream Job</div>
+                <div class="src-desc">Authoritative federal advisory detailing Lazarus Group operations fabricating defense contractor recruiter identities to distribute remote access trojans via weaponized job specifications.</div>
                 <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-239a" class="src-link" target="_blank" rel="noopener noreferrer">Read CISA Advisory AA20-239A ↗</a>
               </div>
             </div>
@@ -961,45 +961,63 @@
             <div class="src-card" id="src-dreamjob-lazarus">
               <div class="src-ico" style="background:#FFFBEB;">⚔️</div>
               <div>
-                <div class="src-name">Palo Alto Networks Unit 42 — Contagious Interview Campaigns Targeting Developers</div>
-                <div class="src-desc">Analysis of deceptive developer coding assessments containing malicious npm packages, backdoored GitHub repositories, and infostealers.</div>
-                <a href="https://unit42.paloaltonetworks.com/" class="src-link" target="_blank" rel="noopener noreferrer">Read Unit 42 Research ↗</a>
+                <div class="src-name">Palo Alto Networks Unit 42 — Contagious Interview Campaigns &amp; Threat Brief</div>
+                <div class="src-desc">Technical analysis of North Korean threat actors targeting software engineers with trojanized coding tests, backdoored npm packages, and malicious GitHub repositories disguised as recruitment assignments.</div>
+                <a href="https://unit42.paloaltonetworks.com/threat-brief-operation-dream-job/" class="src-link" target="_blank" rel="noopener noreferrer">Read Unit 42 Research Brief ↗</a>
               </div>
             </div>
 
             <div class="src-card" id="src-dreamjob-multichannel">
               <div class="src-ico" style="background:#F0FDFA;">💬</div>
               <div>
-                <div class="src-name">Microsoft Threat Intelligence — Defending Against Multi-Channel Social Engineering</div>
-                <div class="src-desc">Guidance on detecting cross-platform pivot techniques where adversaries move targets from LinkedIn to WhatsApp, Teams, and direct phone calls.</div>
-                <a href="https://www.microsoft.com/en-us/security/blog/topic/threat-intelligence/" class="src-link" target="_blank" rel="noopener noreferrer">Microsoft Threat Intelligence ↗</a>
+                <div class="src-name">Microsoft Threat Intelligence — ZINC Weaponizing Open-Source Software &amp; LinkedIn Lures</div>
+                <div class="src-desc">Threat research documenting nation-state actors weaponizing open-source software, establishing rapport on LinkedIn, and migrating targets to WhatsApp and Signal to deliver malicious project dependencies.</div>
+                <a href="https://www.microsoft.com/en-us/security/blog/2022/09/29/zinc-weaponizing-open-source-software/" class="src-link" target="_blank" rel="noopener noreferrer">Read Microsoft ZINC Report ↗</a>
               </div>
             </div>
 
             <div class="src-card" id="src-dreamjob-payload">
               <div class="src-ico" style="background:#FAF5FF;">📦</div>
               <div>
-                <div class="src-name">SentinelLabs — Trojanized Recruitment Archives &amp; Supply Chain Attacks</div>
-                <div class="src-desc">Deep dive into password-protected ZIP archive delivery techniques used to bypass perimeter antivirus gateways and deliver malware stagers.</div>
-                <a href="https://www.sentinelone.com/labs/" class="src-link" target="_blank" rel="noopener noreferrer">SentinelLabs Research ↗</a>
+                <div class="src-name">SentinelLabs — Trojanized Recruitment Archives &amp; Defense Sector Exploitation</div>
+                <div class="src-desc">Forensic breakdown of password-protected ZIP archive delivery, memory injection loaders, and stealthy persistence mechanisms disguised as aerospace employment applications.</div>
+                <a href="https://www.sentinelone.com/labs/hidden-cobra-lazarus-targets-aerospace-defense-with-trojanized-job-offers/" class="src-link" target="_blank" rel="noopener noreferrer">Read SentinelLabs Analysis ↗</a>
               </div>
             </div>
 
             <div class="src-card" id="src-outofband">
               <div class="src-ico" style="background:#ECFDF5;">🔑</div>
               <div>
-                <div class="src-name">NIST Special Publication 800-63-3 — Digital Identity Guidelines</div>
-                <div class="src-desc">Framework for out-of-band identity verification and establishing trusted communication channels outside the primary conversation channel.</div>
-                <a href="https://pages.nist.gov/800-63-3/" class="src-link" target="_blank" rel="noopener noreferrer">NIST SP 800-63-3 Guidelines ↗</a>
+                <div class="src-name">NIST Special Publication 800-63-3 — Digital Identity &amp; Out-of-Band Verification</div>
+                <div class="src-desc">National identity guidelines defining out-of-band communication controls and secondary channel verification to validate identity when interacting across untrusted channels.</div>
+                <a href="https://pages.nist.gov/800-63-3/sp800-63b.html" class="src-link" target="_blank" rel="noopener noreferrer">NIST SP 800-63-3 Guidelines ↗</a>
               </div>
             </div>
 
             <div class="src-card" id="src-socdefense">
               <div class="src-ico" style="background:#F8FAFC;">🛡️</div>
               <div>
-                <div class="src-name">MITRE ATT&amp;CK Framework — Enterprise Matrix &amp; Triage Tactics</div>
-                <div class="src-desc">Technique references: T1566.002 (Spearphishing Link), T1204.002 (User Execution: Malicious File), T1589.002 (Email Address OSINT), and T1078 (Valid Accounts).</div>
-                <a href="https://attack.mitre.org/" class="src-link" target="_blank" rel="noopener noreferrer">Explore MITRE ATT&amp;CK ↗</a>
+                <div class="src-name">MITRE ATT&amp;CK Matrix — T1566.002 (Spearphishing Link) &amp; T1204.002 (Malicious File)</div>
+                <div class="src-desc">Adversary behavioral taxonomy classifying initial access procedures via social media direct messaging, weaponized archive execution, and malicious coding dependencies.</div>
+                <a href="https://attack.mitre.org/techniques/T1566/002/" class="src-link" target="_blank" rel="noopener noreferrer">Explore MITRE T1566.002 ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card" id="src-mandiant-unc2970">
+              <div class="src-ico" style="background:#FEF2F2;">🔬</div>
+              <div>
+                <div class="src-name">Mandiant Threat Intelligence — UNC2970 Trojanized Job Offer Applications</div>
+                <div class="src-desc">Detailed incident response case study dissecting how threat actor UNC2970 delivers backdoors and weaponized PDF readers through tailored recruiter outreach to compromise target workstations.</div>
+                <a href="https://cloud.google.com/blog/topics/threat-intelligence/unc2970-backdoor-trojanized-job-application" class="src-link" target="_blank" rel="noopener noreferrer">Read Mandiant UNC2970 Brief ↗</a>
+              </div>
+            </div>
+
+            <div class="src-card" id="src-sans-playbook">
+              <div class="src-ico" style="background:#EFF6FF;">⏱️</div>
+              <div>
+                <div class="src-name">SANS Institute — Incident Handler's Handbook &amp; Social Engineering Triage</div>
+                <div class="src-desc">Operational incident handling procedures for rapid endpoint isolation, memory dump triage, and credential revocation following execution of weaponized applicant payloads.</div>
+                <a href="https://www.sans.org/white-papers/33901/" class="src-link" target="_blank" rel="noopener noreferrer">SANS Incident Handler's Guide ↗</a>
               </div>
             </div>
 

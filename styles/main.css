@@ -985,7 +985,7 @@ body {
 .ck-dot { width: 21px; height: 21px; border-radius: 50%; background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .69rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
 
 /* Sources */
-.sources-section { border-top: 2px solid var(--border); padding-top: 44px; margin-top: 44px; }
+.sources-section { border-top: 2px solid var(--border); padding-top: 44px; margin-top: 44px; scroll-margin-top: 80px; }
 .src-h { font-family: var(--f-d); font-size: 1.12rem; font-weight: 800; color: var(--ink); margin-bottom: 4px; letter-spacing: -.02em; }
 .src-sub { font-size: .83rem; color: var(--ink-4); margin-bottom: 22px; }
 .src-list { display: flex; flex-direction: column; gap: 9px; }
@@ -993,6 +993,7 @@ body {
   display: flex; align-items: flex-start; gap: 14px;
   padding: 13px 16px; border-radius: 10px;
   border: 1px solid var(--border); background: var(--bg); transition: var(--t);
+  scroll-margin-top: 90px;
 }
 .src-card:hover { border-color: var(--blue-bdr); background: var(--blue-bg); }
 .src-ico { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1.1rem; }
