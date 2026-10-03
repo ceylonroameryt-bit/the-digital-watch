@@ -186,6 +186,59 @@
   <!-- ARTICLE BODY -->
   <div class="art-layout">
 
+    <!-- STICKY TABLE OF CONTENTS SIDEBAR WITH VERTICAL SIDE LINE -->
+    <aside class="art-toc-sidebar" aria-label="Article Outline">
+      <div class="toc-sticky-wrap">
+        <div class="toc-header">
+          <div class="toc-title-row">
+            <svg class="toc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+            <span class="toc-eyebrow">On This Page</span>
+          </div>
+          <div class="toc-progress-pill">
+            <span id="tocPercent">0%</span> read
+          </div>
+        </div>
+
+        <nav class="toc-nav">
+          <div class="toc-line-track">
+            <div class="toc-line-progress" id="tocLineProgress"></div>
+          </div>
+          <ul class="toc-list">
+            <li class="toc-item"><a href="#s1" class="toc-link"><span class="toc-dot"></span><span class="toc-text">It Might Start With a Simple Search</span></a></li>
+            <li class="toc-item"><a href="#s2" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Then an Email Arrives</span></a></li>
+            <li class="toc-item"><a href="#s3" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Spelling Mistakes Advice Isn't Enough</span></a></li>
+            <li class="toc-item"><a href="#s4" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Sometimes There Isn't Even an Email</span></a></li>
+            <li class="toc-item"><a href="#s5" class="toc-link"><span class="toc-dot"></span><span class="toc-text">What If They Have an Old Password?</span></a></li>
+            <li class="toc-item"><a href="#s6" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Your Inbox Is More Valuable Than You Think</span></a></li>
+            <li class="toc-item"><a href="#s7" class="toc-link"><span class="toc-dot"></span><span class="toc-text">“But I Have MFA”</span></a></li>
+            <li class="toc-item"><a href="#s8" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Nobody Needs to Steal Your Password</span></a></li>
+            <li class="toc-item"><a href="#s9" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Should You Have Multiple Addresses?</span></a></li>
+            <li class="toc-item"><a href="#s10" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Don't Ignore the Small Things</span></a></li>
+            <li class="toc-item"><a href="#s11" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Someone Has Your Email. What Now?</span></a></li>
+            <li class="toc-item"><a href="#s12" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Your Email Isn't Really the Problem</span></a></li>
+            <li class="toc-item"><a href="#sources" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Sources &amp; Further Reading</span></a></li>
+            <li class="toc-item"><a href="#feedback" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Discussion &amp; Feedback</span></a></li>
+          </ul>
+        </nav>
+
+        <div class="toc-footer">
+          <a href="#feedback" class="toc-footer-link">
+            <span>💬</span> Reader Discussion
+          </a>
+          <button type="button" class="toc-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Return to top">
+            ↑ Top
+          </button>
+        </div>
+      </div>
+    </aside>
+
     <div class="art-center">
 
       <!-- Horizontal Action & Metadata Strip -->

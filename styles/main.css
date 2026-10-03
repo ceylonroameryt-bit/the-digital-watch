@@ -668,14 +668,256 @@ body {
   display: flex; align-items: center; justify-content: center;
 }
 
-/* Layout: clean centered single reading column (no cramped left rail) */
+/* Layout: Desktop 2-column layout with sticky left TOC side line */
 .art-layout {
-  display: block;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
   width: 100%;
-  max-width: 860px;
+  max-width: 1220px;
   margin: 0 auto;
   padding: 0 24px;
   box-sizing: border-box;
+}
+
+.art-center {
+  width: 100%;
+  max-width: 860px;
+  min-width: 0;
+  flex: 1 1 860px;
+}
+
+/* ── DESKTOP STICKY TOC SIDEBAR WITH VERTICAL SIDE LINE ── */
+.art-toc-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  position: sticky;
+  top: 86px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 12px 10px 24px 2px;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-2) transparent;
+}
+.art-toc-sidebar::-webkit-scrollbar {
+  width: 3px;
+}
+.art-toc-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.art-toc-sidebar::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+.toc-sticky-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2px;
+}
+
+.toc-title-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.toc-icon {
+  color: var(--blue);
+  flex-shrink: 0;
+}
+
+.toc-eyebrow {
+  font-family: var(--f-d);
+  font-size: .72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--ink-3);
+}
+
+.toc-progress-pill {
+  font-family: var(--f-d);
+  font-size: .68rem;
+  font-weight: 700;
+  color: var(--blue);
+  background: var(--blue-bg);
+  border: 1px solid var(--blue-bdr);
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toc-nav {
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Continuous vertical side line track */
+.toc-line-track {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+/* Active progress fill on the vertical side line */
+.toc-line-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: linear-gradient(180deg, var(--blue), #38BDF8);
+  border-radius: 2px;
+  transition: height .15s ease-out;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.toc-item {
+  position: relative;
+}
+
+.toc-link {
+  display: flex;
+  align-items: flex-start;
+  padding: 5px 6px 5px 0;
+  font-size: .79rem;
+  line-height: 1.4;
+  color: var(--ink-4);
+  text-decoration: none;
+  border-radius: 6px;
+  transition: color .15s ease, transform .15s ease;
+  position: relative;
+}
+
+.toc-link:hover {
+  color: var(--blue);
+  transform: translateX(2px);
+}
+
+/* Dot on the side line */
+.toc-dot {
+  position: absolute;
+  left: -20px;
+  top: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--border-2);
+  transition: all .2s cubic-bezier(.4,0,.2,1);
+  transform: translate(3px, 0);
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+.toc-link:hover .toc-dot {
+  border-color: var(--blue);
+  background: var(--blue-bg);
+  transform: translate(3px, 0) scale(1.2);
+}
+
+.toc-link.active {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.toc-link.active .toc-dot {
+  border-color: var(--blue);
+  background: var(--blue);
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, .22);
+  transform: translate(3px, 0) scale(1.3);
+}
+
+.toc-link.passed .toc-dot {
+  border-color: var(--blue);
+  background: var(--blue);
+}
+
+.toc-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.toc-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  margin-top: 4px;
+}
+
+.toc-footer-link {
+  font-size: .74rem;
+  font-weight: 600;
+  color: var(--ink-3);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: var(--t);
+}
+.toc-footer-link:hover {
+  color: var(--blue);
+}
+
+.toc-top-btn {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--ink-3);
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 3px 9px;
+  cursor: pointer;
+  transition: var(--t);
+}
+.toc-top-btn:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  background: var(--blue-bg);
+}
+
+/* Hide TOC on screens narrower than 1160px */
+@media (max-width: 1160px) {
+  .art-layout {
+    display: block;
+    max-width: 860px;
+    padding: 0 20px;
+  }
+  .art-toc-sidebar {
+    display: none !important;
+  }
 }
 
 /* Horizontal Action & Meta Strip (above content) */

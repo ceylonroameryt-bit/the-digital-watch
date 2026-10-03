@@ -268,23 +268,94 @@ function trackShare() {
   showToast('Opening LinkedIn…', '🔗');
 }
 
-/* ── TOC HIGHLIGHT ───────────────────────────────────────────── */
+/* ── TOC & SIDE LINE SCROLL TRACKER ─────────────────────────── */
 function initToc() {
-  const headings = document.querySelectorAll('.art-body h2[id]');
+  const sidebar = document.querySelector('.art-toc-sidebar');
   const tocLinks = document.querySelectorAll('.toc-list a');
-  if (!headings.length || !tocLinks.length) return;
+  if (!sidebar || !tocLinks.length) return;
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        tocLinks.forEach(a => {
-          a.classList.toggle('active', a.getAttribute('href') === `#${e.target.id}`);
-        });
+  const progressFill = document.getElementById('tocLineProgress');
+  const percentText = document.getElementById('tocPercent');
+  const targets = [];
+
+  tocLinks.forEach(link => {
+    const hash = link.getAttribute('href');
+    if (!hash || !hash.startsWith('#')) return;
+    let id;
+    try { id = decodeURIComponent(hash.slice(1)); } catch (_) { return; }
+    const target = document.getElementById(id);
+    if (target) {
+      targets.push({ link, target, id });
+    }
+  });
+
+  if (!targets.length) return;
+
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 66;
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docH > 0 ? Math.min(Math.max((scrollY / docH) * 100, 0), 100) : 0;
+
+    if (percentText) {
+      percentText.textContent = `${Math.round(progress)}%`;
+    }
+    if (progressFill) {
+      progressFill.style.height = `${progress}%`;
+    }
+
+    // Determine current active section
+    let currentIdx = 0;
+    for (let i = 0; i < targets.length; i++) {
+      const top = targets[i].target.getBoundingClientRect().top;
+      if (top <= navH + 80) {
+        currentIdx = i;
+      } else {
+        break;
+      }
+    }
+
+    targets.forEach((item, idx) => {
+      if (idx === currentIdx) {
+        item.link.classList.add('active');
+        item.link.classList.add('passed');
+        item.link.setAttribute('aria-current', 'location');
+        // Keep active link visible in scrollable sidebar
+        const sidebarRect = sidebar.getBoundingClientRect();
+        const linkRect = item.link.getBoundingClientRect();
+        if (linkRect.top < sidebarRect.top + 30 || linkRect.bottom > sidebarRect.bottom - 30) {
+          if (typeof item.link.scrollIntoView === 'function') {
+            item.link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        }
+      } else if (idx < currentIdx) {
+        item.link.classList.remove('active');
+        item.link.classList.add('passed');
+        item.link.removeAttribute('aria-current');
+      } else {
+        item.link.classList.remove('active');
+        item.link.classList.remove('passed');
+        item.link.removeAttribute('aria-current');
       }
     });
-  }, { rootMargin: '-20% 0px -70% 0px' });
+  };
 
-  headings.forEach(h => obs.observe(h));
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      if (typeof requestAnimationFrame === 'function') {
+        requestAnimationFrame(update);
+      } else {
+        update();
+      }
+    }
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  update();
 }
 
 /* ── SMOOTH SCROLL ───────────────────────────────────────────── */
