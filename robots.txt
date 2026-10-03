@@ -9,6 +9,7 @@ Allow: /article-03.html
 Allow: /article-04.html
 Allow: /article-05.html
 Allow: /article-06.html
+Allow: /article-07.html
 Allow: /assets/
 Allow: /styles/
 Allow: /js/
