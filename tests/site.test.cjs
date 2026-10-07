@@ -273,36 +273,17 @@ test('malformed saved feedback cannot disable the form', () => {
   }
 });
 
-test('table of contents sidebar and responsive mobile outline drawer work symmetrically across all articles', () => {
+test('table of contents sidebar panel is cleanly removed across all articles', () => {
   const articles = pages.filter(p => p.startsWith('article') || p.startsWith('behind-the-breach'));
   for (const file of articles) {
     const app = boot(file);
     const sidebar = app.document.querySelector('.art-toc-sidebar');
     const header = app.document.querySelector('.toc-header');
-    const badge = app.document.querySelector('.toc-mobile-badge');
-    const track = app.document.querySelector('.toc-line-track');
-    const links = app.document.querySelectorAll('.toc-link');
+    const center = app.document.querySelector('.art-center');
 
-    assert.ok(sidebar, `sidebar exists in ${file}`);
-    assert.ok(header, `toc-header exists in ${file}`);
-    assert.ok(badge, `toc-mobile-badge exists in ${file}`);
-    assert.ok(track, `toc-line-track exists in ${file}`);
-    assert.ok(links.length > 5, `sufficient sections in ${file}`);
-
-    // Test mobile outline drawer toggle (window.innerWidth <= 1024)
-    app.context.innerWidth = 390;
-    assert.equal(sidebar.classList.contains('is-open'), false);
-    assert.equal(header.getAttribute('aria-expanded'), 'false');
-
-    // Click header to open drawer
-    app.fire(header, 'click');
-    assert.equal(sidebar.classList.contains('is-open'), true);
-    assert.equal(header.getAttribute('aria-expanded'), 'true');
-
-    // Clicking a section link auto-closes the drawer on mobile
-    app.fire(links[0], 'click');
-    assert.equal(sidebar.classList.contains('is-open'), false);
-    assert.equal(header.getAttribute('aria-expanded'), 'false');
+    assert.equal(sidebar, null, `art-toc-sidebar should not exist in ${file}`);
+    assert.equal(header, null, `toc-header should not exist in ${file}`);
+    assert.ok(center, `art-center main content container exists in ${file}`);
   }
 });
 
