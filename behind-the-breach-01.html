@@ -185,48 +185,70 @@
   </div>
 
   <!-- ARTICLE MAIN LAYOUT -->
-  <div class="art-grid wrap">
+  <div class="art-layout">
 
-    <!-- STICKY TABLE OF CONTENTS SIDEBAR -->
-    <aside class="art-toc-sidebar" aria-label="Table of contents">
-      <div class="toc-header" role="button" tabindex="0" aria-expanded="false" aria-controls="tocListContainer">
-        <div class="toc-title-group">
-          <span class="toc-icon">📑</span>
-          <span class="toc-title">Investigation Outline</span>
+    <!-- STICKY TABLE OF CONTENTS SIDEBAR WITH VERTICAL TRACKER -->
+    <aside class="art-toc-sidebar" aria-label="Investigation Outline">
+      <div class="toc-sticky-wrap">
+        <div class="toc-header" role="button" tabindex="0" aria-expanded="false" aria-label="Toggle Outline">
+          <div class="toc-title-row">
+            <svg class="toc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+            <span class="toc-eyebrow">On This Page</span>
+          </div>
+          <div class="toc-header-right">
+            <div class="toc-progress-pill">
+              <span id="tocPercent">0%</span> read
+            </div>
+            <span class="toc-mobile-badge" aria-hidden="true">
+              <span class="toc-badge-label">Outline</span>
+              <svg class="toc-badge-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </span>
+          </div>
         </div>
-        <div class="toc-status-group">
-          <span class="toc-mobile-badge" aria-hidden="true">Menu</span>
-          <span class="toc-percent-tag" id="tocPercent">0%</span>
-        </div>
-      </div>
 
-      <div class="toc-track-wrap" id="tocListContainer">
-        <div class="toc-line-track">
-          <div class="toc-line-progress" id="tocLineProgress"></div>
-        </div>
-        <nav class="toc-list" aria-label="Article sections">
-          <a href="#what-actually-happened" class="toc-link">1. What Actually Happened</a>
-          <a href="#attack-map" class="toc-link" style="color:#1D4ED8;font-weight:700;">★ Interactive Attack Map</a>
-          <a href="#credentials-were-there" class="toc-link">2. The Credentials Were Really There</a>
-          <a href="#industry-problem" class="toc-link">3. Is This a Real-World Problem?</a>
-          <a href="#why-javascript-matters" class="toc-link">4. Why Secrets in JavaScript Matter</a>
-          <a href="#iterable-warnings" class="toc-link">5. Iterable Warns Developers</a>
-          <a href="#least-privilege" class="toc-link">6. What Was the Key Doing?</a>
-          <a href="#api-precedents" class="toc-link">7. Precedents: T-Mobile, Trello &amp; Optus</a>
-          <a href="#second-attack" class="toc-link">8. The Second Attack After the Breach</a>
-          <a href="#fulcrumsec-attribution" class="toc-link">9. Did FulcrumSec Use the Keys?</a>
-          <a href="#soc-detection" class="toc-link">10. Could a SOC Have Detected This?</a>
-          <a href="#lessons-organisations" class="toc-link">11. What Organisations Should Learn</a>
-          <a href="#lessons-customers" class="toc-link">12. What Customers Should Learn</a>
-          <a href="#bigger-lesson" class="toc-link">13. The Bigger Lesson</a>
-          <a href="#what-we-know" class="toc-link">14. What We Know (Evidence Matrix)</a>
-          <a href="#sources" class="toc-link">15. Sources &amp; Evidence</a>
+        <nav class="toc-nav">
+          <div class="toc-line-track">
+            <div class="toc-line-progress" id="tocLineProgress"></div>
+          </div>
+          <ul class="toc-list">
+            <li class="toc-item"><a href="#what-actually-happened" class="toc-link"><span class="toc-dot"></span><span class="toc-text">1. What Actually Happened</span></a></li>
+            <li class="toc-item"><a href="#attack-map" class="toc-link" style="color:#1D4ED8;font-weight:700;"><span class="toc-dot" style="background:#1D4ED8;"></span><span class="toc-text">★ Attack Map</span></a></li>
+            <li class="toc-item"><a href="#credentials-were-there" class="toc-link"><span class="toc-dot"></span><span class="toc-text">2. The Credentials Were Really There</span></a></li>
+            <li class="toc-item"><a href="#industry-problem" class="toc-link"><span class="toc-dot"></span><span class="toc-text">3. Is This a Real-World Problem?</span></a></li>
+            <li class="toc-item"><a href="#why-javascript-matters" class="toc-link"><span class="toc-dot"></span><span class="toc-text">4. Why Secrets in JavaScript Matter</span></a></li>
+            <li class="toc-item"><a href="#iterable-warnings" class="toc-link"><span class="toc-dot"></span><span class="toc-text">5. Iterable Warns Developers</span></a></li>
+            <li class="toc-item"><a href="#least-privilege" class="toc-link"><span class="toc-dot"></span><span class="toc-text">6. What Was the Key Doing?</span></a></li>
+            <li class="toc-item"><a href="#api-precedents" class="toc-link"><span class="toc-dot"></span><span class="toc-text">7. Precedents: T-Mobile, Trello &amp; Optus</span></a></li>
+            <li class="toc-item"><a href="#second-attack" class="toc-link"><span class="toc-dot"></span><span class="toc-text">8. The Second Attack After the Breach</span></a></li>
+            <li class="toc-item"><a href="#fulcrumsec-attribution" class="toc-link"><span class="toc-dot"></span><span class="toc-text">9. Did FulcrumSec Use the Keys?</span></a></li>
+            <li class="toc-item"><a href="#soc-detection" class="toc-link"><span class="toc-dot"></span><span class="toc-text">10. Could a SOC Have Detected This?</span></a></li>
+            <li class="toc-item"><a href="#lessons-organisations" class="toc-link"><span class="toc-dot"></span><span class="toc-text">11. What Organisations Should Learn</span></a></li>
+            <li class="toc-item"><a href="#lessons-customers" class="toc-link"><span class="toc-dot"></span><span class="toc-text">12. What Customers Should Learn</span></a></li>
+            <li class="toc-item"><a href="#bigger-lesson" class="toc-link"><span class="toc-dot"></span><span class="toc-text">13. The Bigger Lesson</span></a></li>
+            <li class="toc-item"><a href="#what-we-know" class="toc-link"><span class="toc-dot"></span><span class="toc-text">14. What We Know (Evidence Matrix)</span></a></li>
+            <li class="toc-item"><a href="#sources" class="toc-link"><span class="toc-dot"></span><span class="toc-text">15. Sources &amp; Evidence</span></a></li>
+            <li class="toc-item"><a href="#feedback" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Discussion &amp; Feedback</span></a></li>
+          </ul>
         </nav>
+
+        <div class="toc-footer">
+          <a href="#feedback" class="toc-footer-link">
+            <span>💬</span> Reader Discussion
+          </a>
+        </div>
       </div>
     </aside>
 
-    <!-- ARTICLE BODY -->
-    <main class="art-content" id="articleBody">
+    <!-- ARTICLE MAIN CONTENT -->
+    <main class="art-center" id="articleBody">
+      <article class="art-body">
 
       <!-- SECTION 1 -->
       <section id="what-actually-happened">
@@ -1664,6 +1686,7 @@
         </div>
       </section>
 
+      </article>
     </main>
   </div>
 
