@@ -692,8 +692,8 @@ const AM_NODE_DATA = {
     researcher: 'Scott Helme',
     evidence: 'Direct comparison of customer notification records against Iterable customer profile attributes.',
     note: 'This establishes that the compromised dataset originated from an Iterable marketing instance, reinforcing the credential leakage vector.',
-    sourceTitle: 'Sysdig Threat Research — The FulcrumSec Playbook',
-    sourceUrl: 'https://www.sysdig.com/blog/the-fulcrumsec-playbook-how-to-detect-and-stop-the-group-behind-the-novo-nordisk-breach',
+    sourceTitle: 'Scott Helme — No Hacking Required: The MAG Data Breach',
+    sourceUrl: 'https://scotthelme.co.uk/no-hacking-required-manchester-airports-group-data-breach/',
     articleAnchor: 'what-we-know'
   },
   'customer-data-stolen': {
@@ -737,8 +737,8 @@ const AM_NODE_DATA = {
     researcher: 'Threat Intelligence Reporting (BleepingComputer, MoxFive, SecurityWeek)',
     evidence: 'Dark web publication records, threat intelligence telemetry, and MAG advisories.',
     note: 'The primary continuing risk to passengers is secondary spear-phishing, spoofed parking notices, and vehicle-targeted social engineering.',
-    sourceTitle: 'Bleeping Computer — Cybersecurity News & Incident Reports',
-    sourceUrl: 'https://www.bleepingcomputer.com/news/security/',
+    sourceTitle: 'Bleeping Computer — FulcrumSec Claims Manchester Airports Hack, Theft of 86 GB',
+    sourceUrl: 'https://www.bleepingcomputer.com/news/security/fulcrumsec-claims-manchester-airports-hack-theft-of-86-gb-of-data/',
     articleAnchor: 'second-attack'
   }
 };

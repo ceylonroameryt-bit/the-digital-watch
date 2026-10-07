@@ -287,3 +287,18 @@ test('table of contents sidebar panel is cleanly removed across all articles', (
   }
 });
 
+test('attack map node source links point to exact primary research and articles', () => {
+  const app = boot('behind-the-breach-01.html');
+  const node = app.document.querySelector('.am-node[data-node-id="customer-data-collection"]');
+  assert.ok(node, 'customer-data-collection node exists');
+  app.fire(node, 'click');
+  const sourceLink = app.document.querySelector('#amDrawerSourceLink');
+  assert.ok(sourceLink, 'drawer source link exists');
+  assert.equal(sourceLink.getAttribute('href'), 'https://scotthelme.co.uk/no-hacking-required-manchester-airports-group-data-breach/');
+  assert.match(sourceLink.textContent, /Scott Helme/);
+
+  const hipaaSource = app.document.querySelector('#src-20 a');
+  assert.ok(hipaaSource, 'src-20 link exists');
+  assert.equal(hipaaSource.getAttribute('href'), 'https://www.hipaajournal.com/novo-nordisk-cyberattack/');
+});
+
