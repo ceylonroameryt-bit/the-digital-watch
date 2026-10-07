@@ -24,7 +24,8 @@ const MIME_TYPES = {
 
 const server = http.createServer((req, res) => {
   const urlPath = req.url.split('?')[0].split('#')[0];
-  let filePath = path.join(root, urlPath === '/' ? 'index.html' : urlPath);
+  const normalizedPath = urlPath.replace(/^\/the-digital-watch(?:\/|$)/, '/');
+  let filePath = path.join(root, normalizedPath === '/' ? 'index.html' : normalizedPath);
 
   // Prevent directory traversal
   if (!filePath.startsWith(root)) {

@@ -12,7 +12,7 @@ Use Node.js 22 or later:
 npm ci
 npm test
 npm run build
-python -m http.server 8000 --directory dist
+npm run serve
 ```
 
 The tests exercise the actual page scripts against a DOM implementation: blocked/corrupt storage, stale content, article routing, filters, menu state, email draft encoding, clipboard fallback, personal reactions, triage checklist retention, and local links. They do not measure browser rendering, mobile layout, or the third-party translation service.
