@@ -44,7 +44,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=12">
+  <link rel="stylesheet" href="styles/main.css?v=13">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23DC2626'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>BB</text></svg>">
   <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/behind-the-breach-01.html">
@@ -187,20 +187,22 @@
   <!-- ARTICLE MAIN LAYOUT -->
   <div class="art-layout">
 
-    <!-- STICKY TABLE OF CONTENTS SIDEBAR WITH VERTICAL TRACKER -->
-    <aside class="art-toc-sidebar" aria-label="Investigation Outline">
+    <!-- STICKY TABLE OF CONTENTS SIDEBAR WITH NUMBERED BADGES -->
+    <aside class="art-toc-sidebar toc-numbered" aria-label="Investigation Outline">
       <div class="toc-sticky-wrap">
         <div class="toc-header" role="button" tabindex="0" aria-expanded="false" aria-label="Toggle Outline">
           <div class="toc-title-row">
-            <svg class="toc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="8" y1="6" x2="21" y2="6"></line>
-              <line x1="8" y1="12" x2="21" y2="12"></line>
-              <line x1="8" y1="18" x2="21" y2="18"></line>
-              <line x1="3" y1="6" x2="3.01" y2="6"></line>
-              <line x1="3" y1="12" x2="3.01" y2="12"></line>
-              <line x1="3" y1="18" x2="3.01" y2="18"></line>
-            </svg>
-            <span class="toc-eyebrow">On This Page</span>
+            <span class="toc-icon-badge">
+              <svg class="toc-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+            </span>
+            <span class="toc-eyebrow">ON THIS PAGE</span>
           </div>
           <div class="toc-header-right">
             <div class="toc-progress-pill">
@@ -218,27 +220,28 @@
             <div class="toc-line-progress" id="tocLineProgress"></div>
           </div>
           <ul class="toc-list">
-            <li class="toc-item"><a href="#what-actually-happened" class="toc-link"><span class="toc-dot"></span><span class="toc-text">1. What Actually Happened</span></a></li>
-            <li class="toc-item"><a href="#attack-map" class="toc-link" style="color:#1D4ED8;font-weight:700;"><span class="toc-dot" style="background:#1D4ED8;"></span><span class="toc-text">★ Attack Map</span></a></li>
-            <li class="toc-item"><a href="#credentials-were-there" class="toc-link"><span class="toc-dot"></span><span class="toc-text">2. The Credentials Were Really There</span></a></li>
-            <li class="toc-item"><a href="#industry-problem" class="toc-link"><span class="toc-dot"></span><span class="toc-text">3. Is This a Real-World Problem?</span></a></li>
-            <li class="toc-item"><a href="#why-javascript-matters" class="toc-link"><span class="toc-dot"></span><span class="toc-text">4. Why Secrets in JavaScript Matter</span></a></li>
-            <li class="toc-item"><a href="#iterable-warnings" class="toc-link"><span class="toc-dot"></span><span class="toc-text">5. Iterable Warns Developers</span></a></li>
-            <li class="toc-item"><a href="#least-privilege" class="toc-link"><span class="toc-dot"></span><span class="toc-text">6. What Was the Key Doing?</span></a></li>
-            <li class="toc-item"><a href="#api-precedents" class="toc-link"><span class="toc-dot"></span><span class="toc-text">7. Precedents: T-Mobile, Trello &amp; Optus</span></a></li>
-            <li class="toc-item"><a href="#second-attack" class="toc-link"><span class="toc-dot"></span><span class="toc-text">8. The Second Attack After the Breach</span></a></li>
-            <li class="toc-item"><a href="#fulcrumsec-attribution" class="toc-link"><span class="toc-dot"></span><span class="toc-text">9. Did FulcrumSec Use the Keys?</span></a></li>
-            <li class="toc-item"><a href="#soc-detection" class="toc-link"><span class="toc-dot"></span><span class="toc-text">10. Could a SOC Have Detected This?</span></a></li>
-            <li class="toc-item"><a href="#lessons-organisations" class="toc-link"><span class="toc-dot"></span><span class="toc-text">11. What Organisations Should Learn</span></a></li>
-            <li class="toc-item"><a href="#lessons-customers" class="toc-link"><span class="toc-dot"></span><span class="toc-text">12. What Customers Should Learn</span></a></li>
-            <li class="toc-item"><a href="#bigger-lesson" class="toc-link"><span class="toc-dot"></span><span class="toc-text">13. The Bigger Lesson</span></a></li>
-            <li class="toc-item"><a href="#what-we-know" class="toc-link"><span class="toc-dot"></span><span class="toc-text">14. What We Know (Evidence Matrix)</span></a></li>
-            <li class="toc-item"><a href="#sources" class="toc-link"><span class="toc-dot"></span><span class="toc-text">15. Sources &amp; Evidence</span></a></li>
-            <li class="toc-item"><a href="#feedback" class="toc-link"><span class="toc-dot"></span><span class="toc-text">Discussion &amp; Feedback</span></a></li>
+            <li class="toc-item"><a href="#what-actually-happened" class="toc-link"><span class="toc-num">1</span><span class="toc-text">What Actually Happened</span></a></li>
+            <li class="toc-item"><a href="#credentials-were-there" class="toc-link"><span class="toc-num">2</span><span class="toc-text">The Credentials Were Really There</span></a></li>
+            <li class="toc-item"><a href="#industry-problem" class="toc-link"><span class="toc-num">3</span><span class="toc-text">Is This a Real-World Problem?</span></a></li>
+            <li class="toc-item"><a href="#why-javascript-matters" class="toc-link"><span class="toc-num">4</span><span class="toc-text">Why Secrets in JavaScript Matter</span></a></li>
+            <li class="toc-item"><a href="#iterable-warnings" class="toc-link"><span class="toc-num">5</span><span class="toc-text">Iterable Warns Developers</span></a></li>
+            <li class="toc-item"><a href="#least-privilege" class="toc-link"><span class="toc-num">6</span><span class="toc-text">What Was the Key Doing?</span></a></li>
+            <li class="toc-item"><a href="#api-precedents" class="toc-link"><span class="toc-num">7</span><span class="toc-text">Precedents: T-Mobile, Trello &amp; Optus</span></a></li>
+            <li class="toc-item"><a href="#second-attack" class="toc-link"><span class="toc-num">8</span><span class="toc-text">The Second Attack After the Breach</span></a></li>
+            <li class="toc-item"><a href="#fulcrumsec-attribution" class="toc-link"><span class="toc-num">9</span><span class="toc-text">Did FulcrumSec Use the Keys?</span></a></li>
+            <li class="toc-item"><a href="#soc-detection" class="toc-link"><span class="toc-num">10</span><span class="toc-text">Could a SOC Have Detected This?</span></a></li>
+            <li class="toc-item"><a href="#lessons-organisations" class="toc-link"><span class="toc-num">11</span><span class="toc-text">What Organisations Should Learn</span></a></li>
+            <li class="toc-item"><a href="#lessons-customers" class="toc-link"><span class="toc-num">12</span><span class="toc-text">What Customers Should Learn</span></a></li>
+            <li class="toc-item"><a href="#bigger-lesson" class="toc-link"><span class="toc-num">13</span><span class="toc-text">The Bigger Lesson</span></a></li>
+            <li class="toc-item"><a href="#what-we-know" class="toc-link"><span class="toc-num">14</span><span class="toc-text">What We Know (Evidence Matrix)</span></a></li>
+            <li class="toc-item"><a href="#sources" class="toc-link"><span class="toc-num">15</span><span class="toc-text">Sources &amp; Evidence</span></a></li>
           </ul>
         </nav>
 
         <div class="toc-footer">
+          <a href="#attack-map" class="toc-footer-link" style="color:#1D4ED8;font-weight:700;">
+            <span>🗺️</span> Attack Map
+          </a>
           <a href="#feedback" class="toc-footer-link">
             <span>💬</span> Reader Discussion
           </a>
