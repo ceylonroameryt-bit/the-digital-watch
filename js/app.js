@@ -388,21 +388,55 @@ function initToc() {
   update();
 }
 
-/* ── SMOOTH SCROLL ───────────────────────────────────────────── */
+/* ── SMOOTH SCROLL & HASH NAVIGATION ─────────────────────────── */
 function initScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
+  const scrollToTargetId = (id) => {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const navH = parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue('--nav-h')
+    ) || 66;
+    window.scrollTo({
+      top: target.getBoundingClientRect().top + window.scrollY - navH - 16,
+      behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    });
+  };
+
+  // If page loaded with a hash in URL (e.g. index.html#behind-the-breach)
+  if (window.location.hash && window.location.hash.length > 1) {
+    try {
+      const initialId = decodeURIComponent(window.location.hash.slice(1));
+      setTimeout(() => scrollToTargetId(initialId), 100);
+    } catch (_) {}
+  }
+
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash && window.location.hash.length > 1) {
+      try {
+        const id = decodeURIComponent(window.location.hash.slice(1));
+        scrollToTargetId(id);
+      } catch (_) {}
+    }
+  });
+
+  document.querySelectorAll('a[href*="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const hash = a.getAttribute('href');
+      const rawHref = a.getAttribute('href');
+      if (!rawHref) return;
+      const hashIdx = rawHref.indexOf('#');
+      if (hashIdx === -1) return;
+      const filePart = rawHref.slice(0, hashIdx);
+      const isSelf = !filePart || filePart === window.location.pathname.split('/').pop() || (filePart === 'index.html' && (window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/')));
+      if (!isSelf) return;
+
+      const hash = rawHref.slice(hashIdx);
       if (!hash || hash === '#') return;
       let id;
       try { id = decodeURIComponent(hash.slice(1)); } catch (_) { return; }
       const target = document.getElementById(id);
       if (!target) return;
       e.preventDefault();
-      const navH = parseInt(
-        getComputedStyle(document.documentElement).getPropertyValue('--nav-h')
-      ) || 66;
-      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH - 16, behavior: window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      scrollToTargetId(id);
       history.pushState(null, '', hash);
     });
   });
