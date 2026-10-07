@@ -263,11 +263,15 @@ function _epSvgContent(n, isPub) {
 
 /* ── PAGE RENDERER — ARTICLE ────────────────────────────────── */
 function renderArticle() {
+  const currentFile = window.location.pathname.split('/').pop();
+  if (currentFile && currentFile.includes('behind-the-breach')) {
+    return;
+  }
+
   const params = new URLSearchParams(window.location.search);
 
   const posts = getPosts();
   const settings = getSettings();
-  const currentFile = window.location.pathname.split('/').pop();
   const requested = params.get('id');
   const post = requested
     ? posts.find(p => p.slug === requested || p.id === requested)
