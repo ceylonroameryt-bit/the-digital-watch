@@ -574,6 +574,334 @@ function escapeHtml(str) {
     .replace(/`/g, '&#96;');
 }
 
+/* ── ATTACK MAP (MAG EPISODE 01 EXCLUSIVE) ─────────────────────── */
+const AM_NODE_DATA = {
+  'mag-incident': {
+    id: 'mag-incident',
+    title: 'Manchester Airports Group Suffered a Cyber Incident',
+    step: 'STEP 01 / INCIDENT DISCLOSURE',
+    statusText: 'CONFIRMED ✓',
+    statusClass: 'am-badge-confirmed',
+    technical: 'On 27 August 2026, Manchester Airports Group (MAG) publicly confirmed an unauthorized cybersecurity incident involving customer-facing systems for Manchester, London Stansted, and East Midlands airports. Operational air traffic control, airfield safety, and baggage networks were not impacted.',
+    simple: 'The airport operating company officially acknowledged that an unauthorized cybersecurity incident took place affecting systems that store customer information.',
+    researcher: 'Manchester Airports Group Corporate Disclosure & Media Team',
+    evidence: 'Official corporate incident notification published 27 August 2026; direct regulatory reporting to UK Information Commissioner\'s Office (ICO) & NCSC.',
+    note: 'Operational flight control, radar, and aviation safety systems remained fully operational and isolated from the compromised marketing platforms.',
+    sourceTitle: 'MAG Data Security Incident Statement',
+    sourceUrl: 'https://www.manchesterairport.co.uk/',
+    articleAnchor: 'what-actually-happened'
+  },
+  'airport-websites': {
+    id: 'airport-websites',
+    title: 'Manchester, Stansted & East Midlands Websites Contained Iterable Integrations',
+    step: 'STEP 02 / WEB PROPERTIES',
+    statusText: 'VERIFIED ✓',
+    statusClass: 'am-badge-verified',
+    technical: 'The commercial public websites serving MAG\'s three regional airports embedded client-side SDK integration tags connecting visitors to Iterable, a third-party cloud customer-communication and campaign management platform.',
+    simple: 'All three airport public websites used an external cloud marketing tool (Iterable) to manage customer communication like parking confirmations and flight newsletters.',
+    researcher: 'Scott Helme (Independent Technical Investigation)',
+    evidence: 'Inspection of production client-side JavaScript assets and DOM script tags across magairports.com subdomains.',
+    note: 'Commercial retail/parking portals were completely segregated from operational airfield networks, but shared common marketing orchestration tooling.',
+    sourceTitle: 'Scott Helme — No Hacking Required: The MAG Data Breach',
+    sourceUrl: 'https://scotthelme.co.uk/',
+    articleAnchor: 'credentials-were-there'
+  },
+  'javascript-bundles': {
+    id: 'javascript-bundles',
+    title: 'JavaScript Bundles Shipped to All Visitors',
+    step: 'STEP 03 / CLIENT-SIDE CODE',
+    statusText: 'VERIFIED ✓',
+    statusClass: 'am-badge-verified',
+    technical: 'Production JavaScript application bundles (including Next.js and frontend framework compilation outputs) were served via public Content Delivery Networks (CDNs) directly to every browser visiting the booking portals.',
+    simple: 'Modern websites send code directly to your web browser so the page runs quickly. Anyone visiting the website automatically downloads this code.',
+    researcher: 'Scott Helme',
+    evidence: 'Publicly downloadable static JS files (e.g., framework bundles) inspectable using standard browser developer tools and curl.',
+    note: 'Code delivered to web browsers is completely public by definition. Compiling secrets or API keys into client bundles renders them accessible to anyone.',
+    sourceTitle: 'CybelAngel Brief — Breach Started in JS File, Not GitHub',
+    sourceUrl: 'https://cybelangel.com/',
+    articleAnchor: 'why-javascript-matters'
+  },
+  'iterable-credentials': {
+    id: 'iterable-credentials',
+    title: 'Three Airport-Specific Iterable API Credentials Exposed Client-Side',
+    step: 'STEP 04 / EXPOSED CREDENTIALS',
+    statusText: 'VERIFIED ✓',
+    statusClass: 'am-badge-verified',
+    technical: 'Security researcher Scott Helme independently identified three airport-specific 32-character Iterable API keys hardcoded in client-side JavaScript. Instead of restricted client-only write tokens, the scripts contained privileged API credentials.',
+    simple: 'A powerful digital key that should have remained locked inside internal servers was accidentally pasted into website code that anyone could inspect.',
+    researcher: 'Scott Helme (Credit: Original Technical Discovery)',
+    evidence: 'De-obfuscated client-side JavaScript files matching FulcrumSec\'s description of three airport-specific API tokens.',
+    note: 'Scott Helme proved zero exploitation of MAG internal networks, SQL injection, or server penetration was required to acquire the keys.',
+    sourceTitle: 'Scott Helme — No Hacking Required: The MAG Data Breach',
+    sourceUrl: 'https://scotthelme.co.uk/',
+    articleAnchor: 'credentials-were-there'
+  },
+  'four-year-exposure': {
+    id: 'four-year-exposure',
+    title: 'Credentials Publicly Observable Since 2022 Until August 2026',
+    step: 'STEP 05 / EXPOSURE WINDOW',
+    statusText: 'VERIFIED ✓',
+    statusClass: 'am-badge-verified',
+    technical: 'Wayback Machine captures prove East Midlands credential appeared on 23 June 2022, Stansted on 28 June 2022, and Manchester on 11 July 2022. Stansted\'s key was observed removed/empty on 25 August 2026.',
+    simple: 'Public web archives prove the keys sat out in the open on the websites for roughly four years before anyone removed them.',
+    researcher: 'Scott Helme',
+    evidence: 'Historical snapshot diffs of MAG static assets on the Internet Archive Wayback Machine.',
+    note: 'CRITICAL DISTINCTION: This represents a credential EXPOSURE WINDOW. It is NOT proof that attackers discovered, held access, or exploited the keys for four years.',
+    sourceTitle: 'Scott Helme — Technical Investigation & Archive Analysis',
+    sourceUrl: 'https://scotthelme.co.uk/',
+    articleAnchor: 'credentials-were-there'
+  },
+  'fulcrumsec-discovery': {
+    id: 'fulcrumsec-discovery',
+    title: 'FulcrumSec Discovers and Claims Use of Exposed Credentials',
+    step: 'STEP 06 / THREAT ACTOR CLAIM',
+    statusText: 'CLAIMED ⚠',
+    statusClass: 'am-badge-claimed',
+    technical: 'Cloud cyber-extortion group FulcrumSec posted on their dark web leak site claiming they harvested MAG credentials directly from public JavaScript files and utilized them to extract the database.',
+    simple: 'The extortion group claimed they spotted the exposed digital keys on the website and used them to grab data.',
+    researcher: 'Threat actor claim; profiled by MoxFive, Sysdig, and Searchlight Cyber.',
+    evidence: 'FulcrumSec dark web leak publication (30 August 2026) and extortion announcements.',
+    note: 'MAG has NOT officially confirmed that FulcrumSec was the threat actor, nor have they verified this claim as the definitive initial attack vector.',
+    sourceTitle: 'MoxFive Threat Intel — FulcrumSec: Cloud Extortion Group Profile',
+    sourceUrl: 'https://www.moxfive.com/',
+    articleAnchor: 'fulcrumsec-attribution'
+  },
+  'iterable-api-access': {
+    id: 'iterable-api-access',
+    title: 'Possible Authenticated Iterable API Access',
+    step: 'STEP 07 / API EXPLOITATION',
+    statusText: 'CLAIMED / TECHNICALLY SUPPORTED ⚠',
+    statusClass: 'am-badge-claimed',
+    technical: 'If the client-exposed keys had server-side permissions, an actor could invoke Iterable REST endpoints (/api/export/data.csv or /api/users) directly against Iterable\'s cloud infrastructure without touching MAG servers.',
+    simple: 'Attackers could communicate directly with the third-party marketing cloud using the stolen keys, completely bypassing airport firewalls.',
+    researcher: 'Scott Helme (Technical Feasibility Analysis)',
+    evidence: 'Iterable API permission model, endpoint specification, and threat actor sample format.',
+    note: 'This mechanism provides a coherent and verified technical hypothesis, but public forensic verification from MAG or Iterable server logs has not been released.',
+    sourceTitle: 'Iterable — Official API Key Documentation',
+    sourceUrl: 'https://support.iterable.com/',
+    articleAnchor: 'fulcrumsec-attribution'
+  },
+  'customer-data-collection': {
+    id: 'customer-data-collection',
+    title: 'Customer Data Collection / Export Matches Iterable Characteristics',
+    step: 'STEP 08 / DATA CHARACTERISTICS',
+    statusText: 'VERIFIED ✓',
+    statusClass: 'am-badge-verified',
+    technical: 'Scott Helme examined notifications and records associated with his own affected account and identified specific user attributes, custom schema properties, and metadata headers characteristic of Iterable user stores.',
+    simple: 'The stolen records contained specific data labels and formatting tags unique to the Iterable marketing platform.',
+    researcher: 'Scott Helme',
+    evidence: 'Direct comparison of customer notification records against Iterable customer profile attributes.',
+    note: 'This establishes that the compromised dataset originated from an Iterable marketing instance, reinforcing the credential leakage vector.',
+    sourceTitle: 'Scott Helme — No Hacking Required: Part 2',
+    sourceUrl: 'https://scotthelme.co.uk/',
+    articleAnchor: 'what-we-know'
+  },
+  'customer-data-stolen': {
+    id: 'customer-data-stolen',
+    title: 'Customer Information Obtained (Wi-Fi, Parking, Fast Track, Lounges)',
+    step: 'STEP 09 / EXFILTRATION',
+    statusText: 'CONFIRMED ✓',
+    statusClass: 'am-badge-confirmed',
+    technical: 'MAG confirmed that customer information collected through airport ancillary services (Wi-Fi registration, car parking, Fast Track, and executive lounge bookings) was obtained by unauthorized parties.',
+    simple: 'Personal information entered by passengers when booking airport parking, using Wi-Fi, or reserving lounge passes was copied by attackers.',
+    researcher: 'Manchester Airports Group',
+    evidence: 'MAG Official Customer Advisory & ICO regulatory notification.',
+    note: 'CONFIRMED: Payment card details and banking data were NOT stored in the affected system and were NOT compromised.',
+    sourceTitle: 'MAG Official Corporate Advisory — FAQs',
+    sourceUrl: 'https://www.manchesterairport.co.uk/',
+    articleAnchor: 'what-actually-happened'
+  },
+  'affected-customers': {
+    id: 'affected-customers',
+    title: 'Approximately 8.7–8.8 Million Customers Affected',
+    step: 'STEP 10 / INCIDENT SCOPE',
+    statusText: 'CONFIRMED ✓',
+    statusClass: 'am-badge-confirmed',
+    technical: 'Breach verification service Have I Been Pwned loaded 8,728,311 unique exposed customer email records, matching reporting across national and cybersecurity media outlets.',
+    simple: 'Roughly 8.7 million customers who used MAG airport services were included in the database.',
+    researcher: 'Have I Been Pwned & National Tech Reporting',
+    evidence: 'Have I Been Pwned breach catalog entry (8,728,311 records); media confirmations.',
+    note: 'IMPORTANT CONTEXT: 8.7 million records does NOT mean every customer had every field (e.g., license plate or phone) populated or exposed.',
+    sourceTitle: 'Have I Been Pwned — Manchester Airports Group Breach Entry',
+    sourceUrl: 'https://haveibeenpwned.com/',
+    articleAnchor: 'what-actually-happened'
+  },
+  'extortion-publication': {
+    id: 'extortion-publication',
+    title: 'Extortion Demand Refused; Data Published on Dark Web',
+    step: 'STEP 11 / EXTORTION OUTCOME',
+    statusText: 'CONFIRMED ✓',
+    statusClass: 'am-badge-confirmed',
+    technical: 'Following MAG\'s refusal to negotiate or pay extortion demands in compliance with UK law enforcement guidance, the threat actor leaked an 86 GB archive containing customer tables onto dark web forums.',
+    simple: 'The hackers demanded a ransom payment, but the airport group refused to pay. The criminals then published the files on the dark web.',
+    researcher: 'Threat Intelligence Reporting (BleepingComputer, MoxFive, SecurityWeek)',
+    evidence: 'Dark web publication records, threat intelligence telemetry, and MAG advisories.',
+    note: 'The primary continuing risk to passengers is secondary spear-phishing, spoofed parking notices, and vehicle-targeted social engineering.',
+    sourceTitle: 'Bleeping Computer — FulcrumSec Claims Manchester Airports Hack',
+    sourceUrl: 'https://bleepingcomputer.com/',
+    articleAnchor: 'second-attack'
+  }
+};
+
+function initAttackMap() {
+  const mapSection = document.getElementById('attack-map');
+  if (!mapSection) return;
+
+  // 1. Tab Switching
+  const tabs = mapSection.querySelectorAll('.am-tab-btn');
+  const panes = mapSection.querySelectorAll('.am-view-pane');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.dataset.tab;
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
+      });
+      panes.forEach(p => p.classList.remove('is-active'));
+
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      const activePane = document.getElementById(`pane-${target}`);
+      if (activePane) activePane.classList.add('is-active');
+    });
+  });
+
+  // 2. Drawer / Bottom Sheet elements
+  const drawer = document.getElementById('amDrawer');
+  const overlay = document.getElementById('amDrawerOverlay');
+  const closeBtn = document.getElementById('amDrawerClose');
+  const drawerTitle = document.getElementById('amDrawerTitle');
+  const drawerStep = document.getElementById('amDrawerStep');
+  const drawerBadge = document.getElementById('amDrawerBadge');
+  const drawerTech = document.getElementById('amDrawerTech');
+  const drawerSimple = document.getElementById('amDrawerSimple');
+  const drawerResearcher = document.getElementById('amDrawerResearcher');
+  const drawerEvidence = document.getElementById('amDrawerEvidence');
+  const drawerNote = document.getElementById('amDrawerNote');
+  const drawerSourceLink = document.getElementById('amDrawerSourceLink');
+  const drawerReadArticle = document.getElementById('amDrawerReadArticle');
+
+  function openNode(nodeId) {
+    const data = AM_NODE_DATA[nodeId];
+    if (!data || !drawer) return;
+
+    // Highlight node on map
+    mapSection.querySelectorAll('.am-node').forEach(n => {
+      n.classList.toggle('is-selected', n.dataset.nodeId === nodeId);
+    });
+
+    // Populate drawer
+    if (drawerTitle) drawerTitle.textContent = data.title;
+    if (drawerStep) drawerStep.textContent = data.step;
+    if (drawerBadge) {
+      drawerBadge.textContent = data.statusText;
+      drawerBadge.className = `am-badge ${data.statusClass}`;
+    }
+    if (drawerTech) drawerTech.textContent = data.technical;
+    if (drawerSimple) drawerSimple.textContent = data.simple;
+    if (drawerResearcher) drawerResearcher.textContent = data.researcher;
+    if (drawerEvidence) drawerEvidence.textContent = data.evidence;
+    if (drawerNote) drawerNote.textContent = data.note;
+
+    if (drawerSourceLink) {
+      drawerSourceLink.href = data.sourceUrl;
+      drawerSourceLink.textContent = `View Source: ${data.sourceTitle} ↗`;
+    }
+
+    if (drawerReadArticle) {
+      drawerReadArticle.href = `#${data.articleAnchor}`;
+      drawerReadArticle.onclick = (e) => {
+        e.preventDefault();
+        closeDrawer();
+        const targetEl = document.getElementById(data.articleAnchor);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          targetEl.style.transition = 'background-color 0.4s ease';
+          const originalBg = targetEl.style.backgroundColor;
+          targetEl.style.backgroundColor = '#EFF6FF';
+          setTimeout(() => {
+            targetEl.style.backgroundColor = originalBg;
+          }, 1800);
+        }
+      };
+    }
+
+    // Open drawer
+    drawer.classList.add('is-open');
+    drawer.setAttribute('aria-hidden', 'false');
+    if (overlay) overlay.classList.add('is-open');
+  }
+
+  function closeDrawer() {
+    if (!drawer) return;
+    drawer.classList.remove('is-open');
+    drawer.setAttribute('aria-hidden', 'true');
+    if (overlay) overlay.classList.remove('is-open');
+    mapSection.querySelectorAll('.am-node').forEach(n => n.classList.remove('is-selected'));
+  }
+
+  // Node Click Handlers
+  mapSection.querySelectorAll('.am-node').forEach(node => {
+    node.addEventListener('click', () => {
+      openNode(node.dataset.nodeId);
+    });
+    node.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openNode(node.dataset.nodeId);
+      }
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer && drawer.classList.contains('is-open')) {
+      closeDrawer();
+    }
+  });
+
+  // 3. Accordion Handler for "What We Still Don't Know"
+  mapSection.querySelectorAll('.am-acc-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.closest('.am-acc-item');
+      if (!item) return;
+      const isOpen = item.classList.contains('is-open');
+      item.classList.toggle('is-open', !isOpen);
+      header.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  // 4. Entry Point & In-Article cross links
+  const entryBtn = document.getElementById('exploreAttackMapBtn');
+  if (entryBtn) {
+    entryBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  // Cross-links in article pointing to specific nodes
+  document.querySelectorAll('[data-open-node]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const nodeId = link.getAttribute('data-open-node');
+      mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Ensure Map tab is active
+      const mapTab = mapSection.querySelector('.am-tab-btn[data-tab="map"]');
+      if (mapTab && !mapTab.classList.contains('active')) {
+        mapTab.click();
+      }
+
+      setTimeout(() => {
+        openNode(nodeId);
+      }, 400);
+    });
+  });
+}
+
 /* ── SECURITY ENFORCEMENT & OUTBOUND LINKS ────────────────────── */
 function initSecurityDefenses() {
   // Ensure all outbound links explicitly enforce rel="noopener noreferrer"
@@ -607,5 +935,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScroll();
   initSeriesFilter();
   initFeedback();
+  initAttackMap();
   initSecurityDefenses();
 });
+

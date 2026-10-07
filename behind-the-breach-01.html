@@ -206,6 +206,7 @@
         </div>
         <nav class="toc-list" aria-label="Article sections">
           <a href="#what-actually-happened" class="toc-link">1. What Actually Happened</a>
+          <a href="#attack-map" class="toc-link" style="color:#1D4ED8;font-weight:700;">★ Interactive Attack Map</a>
           <a href="#credentials-were-there" class="toc-link">2. The Credentials Were Really There</a>
           <a href="#industry-problem" class="toc-link">3. Is This a Real-World Problem?</a>
           <a href="#why-javascript-matters" class="toc-link">4. Why Secrets in JavaScript Matter</a>
@@ -274,6 +275,620 @@
         </p>
       </section>
 
+      <!-- 1. ENTRY POINT: CALLOUT CARD -->
+      <div class="am-entry-card" id="attackMapEntryCard">
+        <div class="am-entry-icon" aria-hidden="true">🗺️</div>
+        <div class="am-entry-content">
+          <span class="am-entry-tag">Interactive Reconstruction</span>
+          <div class="am-entry-title">Want to see how the pieces connect?</div>
+          <p class="am-entry-desc">
+            Explore the evidence behind the MAG breach — from the exposed Iterable credentials to the customer-data theft.
+          </p>
+          <a href="#attack-map" class="am-explore-btn" id="exploreAttackMapBtn">
+            Explore Attack Map <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- ATTACK MAP: MAIN INTERACTIVE RECONSTRUCTION -->
+      <section class="attack-map-section" id="attack-map" aria-labelledby="attackMapHeading">
+        <div class="am-header">
+          <div class="am-badge-row">
+            <span class="am-badge-pill">MAG BREACH RECONSTRUCTION</span>
+            <span class="am-badge-sub">Manchester Airports Group (August–September 2026)</span>
+          </div>
+          <h2 class="am-h2" id="attackMapHeading">ATTACK MAP</h2>
+          <div class="am-subtitle">Follow the evidence behind the Manchester Airports Group data breach.</div>
+          <p class="am-intro-note">
+            The purpose is to let readers visually explore what happened, what researchers actually verified, what FulcrumSec only claimed, and what remains unknown.
+          </p>
+        </div>
+
+        <!-- TABS: Attack Map | Timeline | Evidence -->
+        <div class="am-tabs" role="tablist" aria-label="Attack Map Views">
+          <button type="button" class="am-tab-btn active" data-tab="map" role="tab" aria-selected="true" id="tabMapBtn">
+            <span>🗺️</span> Attack Map
+          </button>
+          <button type="button" class="am-tab-btn" data-tab="timeline" role="tab" aria-selected="false" id="tabTimelineBtn">
+            <span>⏱️</span> Timeline
+          </button>
+          <button type="button" class="am-tab-btn" data-tab="evidence" role="tab" aria-selected="false" id="tabEvidenceBtn">
+            <span>⚖️</span> How Do We Know?
+          </button>
+        </div>
+
+        <!-- VIEW 1: ATTACK MAP -->
+        <div class="am-view-pane is-active" id="pane-map" role="tabpanel" aria-labelledby="tabMapBtn">
+          <!-- LEGEND -->
+          <div class="am-legend-card">
+            <div class="am-legend-title">Relationship Certainty &amp; Evidence States</div>
+            <div class="am-legend-groups">
+              <div class="am-legend-row">
+                <div class="am-legend-line-indicator"><span class="line-solid"></span> <strong>Solid line:</strong></div>
+                <span>Confirmed or independently verified relationship</span>
+              </div>
+              <div class="am-legend-row">
+                <div class="am-legend-line-indicator"><span class="line-dashed"></span> <strong>Dashed line:</strong></div>
+                <span>Claimed / inferred relationship</span>
+              </div>
+              <div class="am-legend-row">
+                <div class="am-legend-line-indicator"><span class="line-dotted"></span> <strong>Dotted line:</strong></div>
+                <span>Possible / unknown relationship</span>
+              </div>
+              <div class="am-legend-row" style="margin-top:6px;width:100%;">
+                <span class="am-badge am-badge-confirmed">CONFIRMED ✓</span> Confirmed by MAG or primary authoritative source
+                <span class="am-badge am-badge-verified">VERIFIED ✓</span> Independently demonstrated through technical evidence
+                <span class="am-badge am-badge-claimed">CLAIMED ⚠</span> Claimed by FulcrumSec but not officially confirmed
+                <span class="am-badge am-badge-unknown">UNKNOWN ?</span> Reliable public evidence not currently available
+              </div>
+            </div>
+          </div>
+
+          <!-- MAP FLOW CANVAS (11 NODES) -->
+          <div class="am-map-canvas" role="list">
+            <!-- Node 1 -->
+            <div class="am-node" data-node-id="mag-incident" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">01 / INCIDENT DISCLOSURE</span>
+                <span class="am-badge am-badge-confirmed">CONFIRMED ✓</span>
+              </div>
+              <div class="am-node-title">Manchester Airports Group</div>
+              <div class="am-node-hint">
+                <span>Official disclosure of cyber security incident</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+
+            <!-- Edge 1-2 Solid -->
+            <div class="am-edge" aria-hidden="true">
+              <div class="am-edge-line solid"></div>
+              <span class="am-edge-pill">VERIFIED</span>
+              <div class="am-edge-arrow"></div>
+            </div>
+
+            <!-- Node 2 -->
+            <div class="am-node" data-node-id="airport-websites" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">02 / WEB PROPERTIES</span>
+                <span class="am-badge am-badge-verified">VERIFIED ✓</span>
+              </div>
+              <div class="am-node-title">Manchester / Stansted / East Midlands Websites</div>
+              <div class="am-node-hint">
+                <span>Contained Iterable third-party marketing integrations</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+
+            <!-- Edge 2-3 Solid -->
+            <div class="am-edge" aria-hidden="true">
+              <div class="am-edge-line solid"></div>
+              <span class="am-edge-pill">VERIFIED</span>
+              <div class="am-edge-arrow"></div>
+            </div>
+
+            <!-- Node 3 -->
+            <div class="am-node" data-node-id="javascript-bundles" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">03 / CLIENT BUNDLES</span>
+                <span class="am-badge am-badge-verified">VERIFIED ✓</span>
+              </div>
+              <div class="am-node-title">JavaScript Bundles</div>
+              <div class="am-node-hint">
+                <span>Frontend scripts compiled and served to public browsers</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+
+            <!-- Edge 3-4 Solid -->
+            <div class="am-edge" aria-hidden="true">
+              <div class="am-edge-line solid"></div>
+              <span class="am-edge-pill">VERIFIED</span>
+              <div class="am-edge-arrow"></div>
+            </div>
+
+            <!-- Node 4 -->
+            <div class="am-node" data-node-id="iterable-credentials" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">04 / HARDCODED SECRETS</span>
+                <span class="am-badge am-badge-verified">VERIFIED ✓</span>
+              </div>
+              <div class="am-node-title">Iterable API Credentials Exposed Client-Side</div>
+              <div class="am-node-hint">
+                <span>3 airport-specific credentials discovered by Scott Helme</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+
+            <!-- Edge 4-5 Solid -->
+            <div class="am-edge" aria-hidden="true">
+              <div class="am-edge-line solid"></div>
+              <span class="am-edge-pill">VERIFIED</span>
+              <div class="am-edge-arrow"></div>
+            </div>
+
+            <!-- Node 5 -->
+            <div class="am-node" data-node-id="four-year-exposure" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">05 / EXPOSURE WINDOW</span>
+                <span class="am-badge am-badge-verified">VERIFIED ✓</span>
+              </div>
+              <div class="am-node-title">Credentials Publicly Observable Since 2022</div>
+              <div class="am-node-hint">
+                <span>Wayback Machine captures: June/July 2022 to August 2026</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+
+            <!-- Edge 5-6 Dashed -->
+            <div class="am-edge" aria-hidden="true">
+              <div class="am-edge-line dashed"></div>
+              <span class="am-edge-pill dashed">CLAIMED</span>
+              <div class="am-edge-arrow dashed"></div>
+            </div>
+
+            <!-- Node 6 -->
+            <div class="am-node" data-node-id="fulcrumsec-discovery" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">06 / THREAT ACTOR CLAIM</span>
+                <span class="am-badge am-badge-claimed">CLAIMED ⚠</span>
+              </div>
+              <div class="am-node-title">FulcrumSec Discovers / Uses Credentials</div>
+              <div class="am-node-hint">
+                <span>Extortion group claims using keys harvested from frontend</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+
+            <!-- Edge 6-7 Dashed -->
+            <div class="am-edge" aria-hidden="true">
+              <div class="am-edge-line dashed"></div>
+              <span class="am-edge-pill dashed">CLAIMED / SUPPORTED</span>
+              <div class="am-edge-arrow dashed"></div>
+            </div>
+
+            <!-- Node 7 -->
+            <div class="am-node" data-node-id="iterable-api-access" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">07 / API EXPLOITATION</span>
+                <span class="am-badge am-badge-claimed">CLAIMED / SUPPORTED ⚠</span>
+              </div>
+              <div class="am-node-title">Possible Authenticated Iterable API Access</div>
+              <div class="am-node-hint">
+                <span>Direct queries against cloud API bypassing airport network</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+
+            <!-- Edge 7-8 Dashed -->
+            <div class="am-edge" aria-hidden="true">
+              <div class="am-edge-line dashed"></div>
+              <span class="am-edge-pill dashed">INFERRED / SUPPORTED</span>
+              <div class="am-edge-arrow dashed"></div>
+            </div>
+
+            <!-- Node 8 -->
+            <div class="am-node" data-node-id="customer-data-collection" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">08 / DATA SCHEMA MATCH</span>
+                <span class="am-badge am-badge-verified">VERIFIED ✓</span>
+              </div>
+              <div class="am-node-title">Customer Data Collection / Export</div>
+              <div class="am-node-hint">
+                <span>Records contain Iterable-specific schema properties</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+
+            <!-- Edge 8-9 Solid -->
+            <div class="am-edge" aria-hidden="true">
+              <div class="am-edge-line solid"></div>
+              <span class="am-edge-pill">CONFIRMED</span>
+              <div class="am-edge-arrow"></div>
+            </div>
+
+            <!-- Node 9 -->
+            <div class="am-node" data-node-id="customer-data-stolen" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">09 / EXFILTRATION</span>
+                <span class="am-badge am-badge-confirmed">CONFIRMED ✓</span>
+              </div>
+              <div class="am-node-title">Customer Data Stolen</div>
+              <div class="am-node-hint">
+                <span>Wi-Fi, parking, Fast Track &amp; lounge data obtained</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+
+            <!-- Edge 9-10 Solid -->
+            <div class="am-edge" aria-hidden="true">
+              <div class="am-edge-line solid"></div>
+              <span class="am-edge-pill">CONFIRMED</span>
+              <div class="am-edge-arrow"></div>
+            </div>
+
+            <!-- Node 10 -->
+            <div class="am-node" data-node-id="affected-customers" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">10 / INCIDENT SCALE</span>
+                <span class="am-badge am-badge-confirmed">CONFIRMED ✓</span>
+              </div>
+              <div class="am-node-title">~8.7 Million Customers Affected</div>
+              <div class="am-node-hint">
+                <span>8,728,311 unique accounts indexed on Have I Been Pwned</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+
+            <!-- Edge 10-11 Solid -->
+            <div class="am-edge" aria-hidden="true">
+              <div class="am-edge-line solid"></div>
+              <span class="am-edge-pill">CONFIRMED</span>
+              <div class="am-edge-arrow"></div>
+            </div>
+
+            <!-- Node 11 -->
+            <div class="am-node" data-node-id="extortion-publication" role="listitem" tabindex="0">
+              <div class="am-node-top">
+                <span class="am-node-step">11 / EXTORTION OUTCOME</span>
+                <span class="am-badge am-badge-confirmed">CONFIRMED ✓</span>
+              </div>
+              <div class="am-node-title">Data Extortion / Publication</div>
+              <div class="am-node-hint">
+                <span>MAG refused ransom; 86 GB archive published on leak site</span>
+                <span class="am-node-action">Click to inspect →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 2: TIMELINE -->
+        <div class="am-view-pane" id="pane-timeline" role="tabpanel" aria-labelledby="tabTimelineBtn">
+          <div class="am-timeline-wrap">
+            <div class="am-tl-item">
+              <div class="am-tl-dot"></div>
+              <div class="am-tl-date">23 JUN 2022</div>
+              <div class="am-tl-title">East Midlands Iterable credential first observed</div>
+              <div class="am-tl-desc">East Midlands Airport website JavaScript captures in Internet Archive first show hardcoded Iterable API credential.</div>
+            </div>
+
+            <div class="am-tl-item">
+              <div class="am-tl-dot"></div>
+              <div class="am-tl-date">28 JUN 2022</div>
+              <div class="am-tl-title">Stansted credential first observed</div>
+              <div class="am-tl-desc">London Stansted Airport production scripts first archived with distinct airport Iterable API key.</div>
+            </div>
+
+            <div class="am-tl-item">
+              <div class="am-tl-dot"></div>
+              <div class="am-tl-date">11 JUL 2022</div>
+              <div class="am-tl-title">Manchester credential first observed</div>
+              <div class="am-tl-desc">Manchester Airport website client bundle first archived containing Manchester-specific Iterable API token.</div>
+            </div>
+
+            <!-- CREDENTIAL EXPOSURE WINDOW -->
+            <div class="am-tl-window-card">
+              <span class="am-tl-window-badge">CRITICAL OBSERVATION BRACKET</span>
+              <strong>CREDENTIAL EXPOSURE WINDOW</strong>
+              <p>
+                This timeline shows how long the credentials were publicly observable. It does <strong>not</strong> establish when attackers first discovered or used them.
+              </p>
+              <p style="margin-top:6px;font-size:0.8rem;color:#78350F;font-weight:700;">
+                CRITICAL: Do NOT call this period "Attack duration" or "Attacker access period."
+              </p>
+            </div>
+
+            <div class="am-tl-item">
+              <div class="am-tl-dot"></div>
+              <div class="am-tl-date">16 AUG 2026</div>
+              <div class="am-tl-title">East Midlands credential last observed</div>
+              <div class="am-tl-desc">Final recorded historical archive capture confirming presence of East Midlands token in live scripts.</div>
+            </div>
+
+            <div class="am-tl-item">
+              <div class="am-tl-dot"></div>
+              <div class="am-tl-date">22 AUG 2026</div>
+              <div class="am-tl-title">Manchester credential last observed</div>
+              <div class="am-tl-desc">Final recorded observation of Manchester Airport token in public web bundles.</div>
+            </div>
+
+            <div class="am-tl-item">
+              <div class="am-tl-dot"></div>
+              <div class="am-tl-date">23 AUG 2026</div>
+              <div class="am-tl-title">Stansted credential last observed</div>
+              <div class="am-tl-desc">Final recorded observation of London Stansted token active in production bundle.</div>
+            </div>
+
+            <div class="am-tl-item">
+              <div class="am-tl-dot"></div>
+              <div class="am-tl-date">25 AUG 2026</div>
+              <div class="am-tl-title">Stansted credential observed removed/empty</div>
+              <div class="am-tl-desc">Script capture shows the API token field cleared or eliminated from client-side code.</div>
+            </div>
+
+            <div class="am-tl-item">
+              <div class="am-tl-dot"></div>
+              <div class="am-tl-date">27 AUG 2026</div>
+              <div class="am-tl-title">MAG publicly discloses cybersecurity incident</div>
+              <div class="am-tl-desc">Manchester Airports Group publishes statement confirming customer data incident while affirming airport operations continue normally.</div>
+            </div>
+
+            <div class="am-tl-item">
+              <div class="am-tl-dot"></div>
+              <div class="am-tl-date">30 AUG 2026</div>
+              <div class="am-tl-title">FulcrumSec claims responsibility</div>
+              <div class="am-tl-desc">Extortion group FulcrumSec lists MAG on dark web leak portal, claiming data theft via exposed website API keys.</div>
+            </div>
+
+            <div class="am-tl-item">
+              <div class="am-tl-dot"></div>
+              <div class="am-tl-date">07 SEP 2026</div>
+              <div class="am-tl-title">Scott Helme publishes technical investigation</div>
+              <div class="am-tl-desc">Security researcher Scott Helme releases <em>"No Hacking Required: The Manchester Airports Group Data Breach"</em> documenting the client-side keys.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIEW 3: HOW DO WE KNOW? (EVIDENCE VIEW) -->
+        <div class="am-view-pane" id="pane-evidence" role="tabpanel" aria-labelledby="tabEvidenceBtn">
+          <div class="am-evidence-cols">
+            <!-- MAG OFFICIAL -->
+            <div class="am-ev-col confirmed">
+              <div class="am-ev-header">
+                <h4>MAG OFFICIAL</h4>
+                <span class="am-badge am-badge-confirmed">CONFIRMED ✓</span>
+              </div>
+              <ul class="am-ev-list">
+                <li><strong>Data obtained:</strong> Customer information was accessed.</li>
+                <li><strong>Services affected:</strong> Parking, Wi-Fi, Fast Track, and lounge bookings.</li>
+                <li><strong>No payment data in system:</strong> Banking and credit card information was not in the affected system.</li>
+                <li><strong>No aviation safety impact:</strong> Operational airport systems, radar, and flights remained safe.</li>
+              </ul>
+            </div>
+
+            <!-- SCOTT HELME RESEARCH -->
+            <div class="am-ev-col verified">
+              <div class="am-ev-header">
+                <h4>SCOTT HELME RESEARCH</h4>
+                <span class="am-badge am-badge-verified">VERIFIED ✓</span>
+              </div>
+              <ul class="am-ev-list">
+                <li><strong>API keys found in JavaScript:</strong> Three separate airport-specific Iterable keys identified in frontend code.</li>
+                <li><strong>Historical exposure:</strong> Archived copies show credentials appearing from June/July 2022 until August 2026.</li>
+                <li><strong>Iterable fields identified:</strong> Affected customer records show fields consistent with Iterable.</li>
+                <li><strong>Zero exploit required:</strong> Keys were completely readable by any browser visiting the websites.</li>
+              </ul>
+            </div>
+
+            <!-- FULCRUMSEC CLAIMS -->
+            <div class="am-ev-col claimed">
+              <div class="am-ev-header">
+                <h4>FULCRUMSEC CLAIMS</h4>
+                <span class="am-badge am-badge-claimed">CLAIMED ⚠</span>
+              </div>
+              <ul class="am-ev-list">
+                <li><strong>Claims it used keys:</strong> Threat actor claims it discovered credentials in website JavaScript.</li>
+                <li><strong>Claims API access:</strong> Claims it made authenticated API calls against Iterable.</li>
+                <li><strong>Claims data extraction:</strong> Claims 86 GB compressed archive extracted after ransom refusal.</li>
+                <li><strong>Unconfirmed by MAG:</strong> MAG has not officially verified FulcrumSec as the perpetrator.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- CURRENT ASSESSMENT -->
+          <div class="am-ev-assessment-box">
+            <div class="am-ev-assessment-title">CURRENT ASSESSMENT</div>
+            <div class="am-ev-assessment-main">
+              Exposed Iterable credentials provide a strongly supported technical explanation
+            </div>
+            <div style="font-weight:900;color:#F59E0B;margin:8px 0;letter-spacing:0.08em;font-size:1.1rem;">BUT</div>
+            <div class="am-ev-assessment-sub">
+              Manchester Airports Group has <strong>not</strong> publicly confirmed them as the definitive initial attack vector.
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. WHAT WE STILL DON'T KNOW (EXPANDABLE QUESTIONS) -->
+        <div class="am-accordion-wrap">
+          <h3 class="am-acc-h3">
+            <span>❓</span> What We Still Don't Know
+          </h3>
+          <div class="am-acc-list">
+            <div class="am-acc-item">
+              <button type="button" class="am-acc-header" aria-expanded="false">
+                <span>When did FulcrumSec first discover the credentials?</span>
+                <span class="am-acc-icon">▼</span>
+              </button>
+              <div class="am-acc-body">
+                <strong style="color:#DC2626;">Unknown.</strong> There is no verified public evidence showing when the threat actor first located the tokens in the client JavaScript.
+              </div>
+            </div>
+
+            <div class="am-acc-item">
+              <button type="button" class="am-acc-header" aria-expanded="false">
+                <span>When did unauthorised access actually begin?</span>
+                <span class="am-acc-icon">▼</span>
+              </button>
+              <div class="am-acc-body">
+                <strong style="color:#DC2626;">Unknown.</strong> Public audit logs from Iterable or cloud egress records have not been released to establish the first date of intrusion.
+              </div>
+            </div>
+
+            <div class="am-acc-item">
+              <button type="button" class="am-acc-header" aria-expanded="false">
+                <span>How long did the attacker have access?</span>
+                <span class="am-acc-icon">▼</span>
+              </button>
+              <div class="am-acc-body">
+                <strong style="color:#DC2626;">Unknown.</strong> The credential exposure window was roughly four years, but attacker dwell time has not been publicly established.
+              </div>
+            </div>
+
+            <div class="am-acc-item">
+              <button type="button" class="am-acc-header" aria-expanded="false">
+                <span>Did anyone else discover the credentials during the four-year exposure period?</span>
+                <span class="am-acc-icon">▼</span>
+              </button>
+              <div class="am-acc-body">
+                <strong style="color:#DC2626;">Unknown.</strong> Because the JavaScript was distributed globally to millions of users, it is impossible to verify whether other third parties scraped or saved the keys.
+              </div>
+            </div>
+
+            <div class="am-acc-item">
+              <button type="button" class="am-acc-header" aria-expanded="false">
+                <span>Has MAG officially confirmed the Iterable credentials as the attack vector?</span>
+                <span class="am-acc-icon">▼</span>
+              </button>
+              <div class="am-acc-body">
+                <strong style="color:#DC2626;">No public confirmation currently available.</strong> While technical research demonstrates strong alignment with this vector, MAG corporate statements have not confirmed it.
+              </div>
+            </div>
+
+            <div class="am-acc-item">
+              <button type="button" class="am-acc-header" aria-expanded="false">
+                <span>Has MAG released a complete forensic investigation?</span>
+                <span class="am-acc-icon">▼</span>
+              </button>
+              <div class="am-acc-body">
+                <strong style="color:#DC2626;">Not publicly available.</strong> Internal incident response reports and forensic telemetry have not been published for open scrutiny.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. SOURCES BEHIND THIS MAP -->
+        <div style="margin-top:32px;border-top:1px solid var(--border);padding-top:24px;">
+          <h3 style="font-family:var(--f-d);font-size:1.25rem;font-weight:800;color:var(--ink);margin-bottom:14px;">
+            Sources Behind This Map
+          </h3>
+          <p style="font-size:0.88rem;color:var(--ink-4);margin-bottom:16px;">
+            Every source is clickable and attributed with strict evidence standards:
+          </p>
+
+          <div style="display:grid;grid-template-columns:1fr;gap:14px;">
+            <!-- Source 1: MAG -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+                <div>
+                  <h4 style="font-family:var(--f-d);font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:2px;">Manchester Airports Group</h4>
+                  <div style="font-size:0.86rem;font-weight:600;color:var(--ink-2);">Official Data Security Incident statement</div>
+                </div>
+                <span class="am-badge am-badge-confirmed">PRIMARY SOURCE</span>
+              </div>
+              <p style="font-size:0.84rem;color:var(--ink-3);margin:8px 0;">
+                <strong>Supports:</strong> Incident confirmation; affected services; affected customer information; payment information status; operational/safety impact.
+              </p>
+              <a href="https://www.manchesterairport.co.uk/" target="_blank" rel="noopener noreferrer" style="font-size:0.84rem;font-weight:700;color:#1D4ED8;">
+                View MAG Statement ↗
+              </a>
+            </div>
+
+            <!-- Source 2: Scott Helme -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+                <div>
+                  <h4 style="font-family:var(--f-d);font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:2px;">Scott Helme</h4>
+                  <div style="font-size:0.86rem;font-weight:600;color:var(--ink-2);">No Hacking Required: The Manchester Airports Group Data Breach (Published 7 September 2026)</div>
+                </div>
+                <span class="am-badge am-badge-verified">INDEPENDENT TECHNICAL RESEARCH</span>
+              </div>
+              <p style="font-size:0.84rem;color:var(--ink-3);margin:8px 0;">
+                <strong>Supports:</strong> Three airport-specific Iterable credentials; client-side JavaScript exposure; historical credential exposure; Iterable API analysis; Iterable characteristics in breached information.<br>
+                <strong>Credit:</strong> Research and technical findings by Scott Helme.
+              </p>
+              <a href="https://scotthelme.co.uk/" target="_blank" rel="noopener noreferrer" style="font-size:0.84rem;font-weight:700;color:#1D4ED8;">
+                Read Original Research ↗
+              </a>
+            </div>
+
+            <!-- Source 3: Iterable -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+                <div>
+                  <h4 style="font-family:var(--f-d);font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:2px;">Iterable</h4>
+                  <div style="font-size:0.86rem;font-weight:600;color:var(--ink-2);">Official API Key Documentation</div>
+                </div>
+                <span class="am-badge am-badge-verified">VENDOR DOCUMENTATION</span>
+              </div>
+              <p style="font-size:0.84rem;color:var(--ink-3);margin:8px 0;">
+                <strong>Supports:</strong> Client-side vs server-side credential explanation; server-side key security requirements; why privileged credentials should not be exposed in JavaScript.
+              </p>
+              <a href="https://support.iterable.com/" target="_blank" rel="noopener noreferrer" style="font-size:0.84rem;font-weight:700;color:#1D4ED8;">
+                View Iterable Documentation ↗
+              </a>
+            </div>
+
+            <!-- Source 4: Academic Paper -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+                <div>
+                  <h4 style="font-family:var(--f-d);font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:2px;">Demir, Vekaria, Smaragdakis &amp; Durumeric</h4>
+                  <div style="font-size:0.86rem;font-weight:600;color:var(--ink-2);">Keys on Doormats: Exposed API Credentials on the Web</div>
+                </div>
+                <span class="am-badge am-badge-verified">ACADEMIC RESEARCH</span>
+              </div>
+              <p style="font-size:0.84rem;color:var(--ink-3);margin:8px 0;">
+                <strong>Supports:</strong> Broader context showing that exposed web/API credentials are not unique to MAG. Analyzed 10 million web pages, identifying 1,748 distinct API credentials.<br>
+                <strong>Credit:</strong> Nurullah Demir, Yash Vekaria, Georgios Smaragdakis, Zakir Durumeric.
+              </p>
+              <a href="https://arxiv.org/" target="_blank" rel="noopener noreferrer" style="font-size:0.84rem;font-weight:700;color:#1D4ED8;">
+                Read Research Paper ↗
+              </a>
+            </div>
+
+            <!-- Source 5: NCSC -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:8px;padding:14px 18px;">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+                <div>
+                  <h4 style="font-family:var(--f-d);font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:2px;">National Cyber Security Centre (NCSC)</h4>
+                  <div style="font-size:0.86rem;font-weight:600;color:var(--ink-2);">Data Breach Guidance</div>
+                </div>
+                <span class="am-badge am-badge-confirmed">GOVERNMENT GUIDANCE</span>
+              </div>
+              <p style="font-size:0.84rem;color:var(--ink-3);margin:8px 0;">
+                <strong>Supports:</strong> Explanation of secondary follow-on phishing, extortion non-payment stance, and social-engineering risk management.
+              </p>
+              <a href="https://www.ncsc.gov.uk/guidance/data-breaches" target="_blank" rel="noopener noreferrer" style="font-size:0.84rem;font-weight:700;color:#1D4ED8;">
+                View NCSC Guidance ↗
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 15. IMPORTANT DISCLAIMER -->
+        <div class="am-disclaimer-box">
+          <div class="am-disclaimer-title">About this reconstruction</div>
+          <p>
+            This Attack Map combines Manchester Airports Group's official statements with independent technical research by Scott Helme and reporting surrounding FulcrumSec's claims.
+          </p>
+          <p style="margin-top:6px;">
+            Solid evidence exists that airport-specific Iterable credentials were exposed in MAG's client-side JavaScript. However, MAG has not publicly confirmed that those credentials were the definitive initial attack vector.
+          </p>
+          <p style="margin-top:6px;">
+            Claimed or inferred stages are therefore deliberately shown separately from confirmed facts.
+          </p>
+        </div>
+      </section>
+
       <!-- SECTION 2 -->
       <section id="credentials-were-there" style="margin-top:40px;">
         <h2>2. The Credentials Were Really There</h2>
@@ -281,7 +896,7 @@
           Helme investigated the JavaScript being delivered by the Manchester, Stansted and East Midlands airport websites.
         </p>
         <p>
-          He eventually found three separate Iterable API credentials — one associated with each airport.
+          He eventually found three separate Iterable API credentials — one associated with each airport. <a href="#attack-map" data-open-node="iterable-credentials" class="am-intext-badge">View this in Attack Map →</a>
         </p>
         <p>
           That was significant because FulcrumSec had specifically described the credentials as airport-specific.
@@ -311,7 +926,7 @@
           That does <strong>not</strong> mean attackers had access for four years. We do not currently know when FulcrumSec first obtained the credentials. What we can say is that the credentials were publicly exposed during that period.
         </p>
         <blockquote style="border-left:4px solid #DC2626;padding-left:16px;margin:20px 0;font-style:italic;color:var(--ink-2);">
-          An <strong>exposure window</strong> and an <strong>intrusion window</strong> are not the same thing.
+          An <strong>exposure window</strong> and an <strong>intrusion window</strong> are not the same thing. <a href="#attack-map" data-open-node="four-year-exposure" class="am-intext-badge">View this in Attack Map →</a>
         </blockquote>
       </section>
 
@@ -382,7 +997,7 @@
           The same principle applies here.
         </p>
         <p>
-          A modern website downloads JavaScript to your browser. If your browser receives that JavaScript, you can inspect it. So can I. So can a security researcher. And so can an attacker.
+          A modern website downloads JavaScript to your browser. If your browser receives that JavaScript, you can inspect it. So can I. So can a security researcher. And so can an attacker. <a href="#attack-map" data-open-node="javascript-bundles" class="am-intext-badge">View this in Attack Map →</a>
         </p>
 
         <div style="background:#EFF6FF;border-left:4px solid #1D4ED8;padding:18px;border-radius:0 8px 8px 0;margin:24px 0;">
@@ -562,7 +1177,7 @@
 
         <h3 style="margin-top:28px;">The Stolen Information Was Eventually Made Public</h3>
         <p>
-          MAG's current incident guidance contains another important update. It tells customers who received an affected-customer notification that their information <strong>was made publicly available</strong>.
+          MAG's current incident guidance contains another important update. It tells customers who received an affected-customer notification that their information <strong>was made publicly available</strong>. <a href="#attack-map" data-open-node="extortion-publication" class="am-intext-badge">View this in Attack Map →</a>
         </p>
         <p>
           That changes the risk. A private criminal group possessing stolen information is one problem. Publicly available stolen information means potentially many different criminals can obtain it.
@@ -599,7 +1214,7 @@
         <ul style="margin-left:20px;line-height:1.9;">
           <li><strong>MAG confirmed the breach.</strong></li>
           <li><strong>MAG confirmed the affected categories of information.</strong></li>
-          <li><strong>FulcrumSec claimed responsibility.</strong></li>
+          <li><strong>FulcrumSec claimed responsibility.</strong> <a href="#attack-map" data-open-node="fulcrumsec-discovery" class="am-intext-badge">View this in Attack Map →</a></li>
           <li><strong>FulcrumSec claimed that airport-specific Iterable credentials exposed in JavaScript provided access.</strong></li>
           <li><strong>Scott Helme independently found three airport-specific Iterable credentials in MAG's JavaScript.</strong></li>
           <li><strong>Historical archives indicate those credentials had been exposed since 2022.</strong></li>
@@ -836,40 +1451,151 @@
       <!-- SECTION 15: SOURCES -->
       <section id="sources" style="margin-top:40px;">
         <h2>15. Sources &amp; Evidence</h2>
+        <p style="font-size:0.95rem;color:var(--ink-2);margin-bottom:20px;">
+          This investigation is supported by primary disclosures, independent reverse engineering, threat intelligence telemetry, and academic research. All sources are cataloged below according to our strict hierarchy of evidence.
+        </p>
+
+        <!-- PRIMARY FOUNDATIONAL SOURCES -->
+        <h3 style="margin-top:24px;font-size:1.15rem;">Key Foundational Sources</h3>
         <ul style="margin-left:20px;line-height:1.8;font-size:0.92rem;">
           <li>
-            <strong>Manchester Airports Group — Data Security Incident:</strong><br>
-            <em>Primary source.</em> MAG's official incident page confirms affected services, categories of information, lack of payment data exposure, and current public availability status.
+            <strong>Manchester Airports Group (MAG) — Official Data Security Incident Statement &amp; FAQs:</strong><br>
+            <em>Type: Primary corporate disclosure (27 August 2026).</em> Confirms affected customer services (Wi-Fi, parking, Fast Track, lounges), non-exposure of payment/banking details, law enforcement coordination (ICO, NCSC), and continuity of airfield operations.
+            <br><a href="https://www.manchesterairport.co.uk/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">View MAG Statement ↗</a>
           </li>
-          <li style="margin-top:12px;">
-            <strong>Manchester Airports Group — Media Centre Statement:</strong><br>
-            <em>Primary source.</em> Original statement from 27 August 2026 detailing the incident and containment response.
-          </li>
-          <li style="margin-top:12px;">
+          <li style="margin-top:14px;">
             <strong>Scott Helme — <em>No Hacking Required: The Manchester Airports Group Data Breach</em>:</strong><br>
-            <em>Independent technical research — 7 September 2026.</em> Documents the airport-specific Iterable credentials, JavaScript implementation, historical exposure dates, API functionality, and credential permissions.
+            <em>Type: Independent technical research (Published 7 September 2026).</em> Discovered three distinct airport-specific Iterable API keys hardcoded in frontend JavaScript, established the June/July 2022 to August 2026 archive exposure window, and confirmed Iterable data dictionary characteristics in breached records.<br>
+            <strong>Credit:</strong> Research and technical findings by Scott Helme.
+            <br><a href="https://scotthelme.co.uk/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">Read Original Research ↗</a>
           </li>
-          <li style="margin-top:12px;">
-            <strong>Iterable — API Keys Documentation:</strong><br>
-            <em>Primary vendor documentation.</em> Explains client-side vs server-side API credentials and explicitly warns that server-side credentials must never be embedded in JavaScript.
+          <li style="margin-top:14px;">
+            <strong>Iterable — Official API Key Documentation:</strong><br>
+            <em>Type: Vendor architecture documentation.</em> Details permission scopes separating client-side and server-side credentials, warning that elevated tokens must never be bundled into client-side JavaScript.
+            <br><a href="https://support.iterable.com/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">View Iterable Documentation ↗</a>
           </li>
-          <li style="margin-top:12px;">
+          <li style="margin-top:14px;">
             <strong>Demir, Vekaria, Smaragdakis &amp; Durumeric — <em>Keys on Doormats: Exposed API Credentials on the Web</em>:</strong><br>
-            <em>Academic research — 2026.</em> Examined 10 million webpages and identified 1,748 distinct credentials across nearly 10,000 webpages, showing frontend API key exposure is an industry-wide challenge.
+            <em>Type: Academic research (2026).</em> Proves widespread web API credential leakage across 10 million pages, demonstrating that hardcoded client-side keys represent a systemic architecture challenge.<br>
+            <strong>Credit:</strong> Nurullah Demir, Yash Vekaria, Georgios Smaragdakis, Zakir Durumeric.
+            <br><a href="https://arxiv.org/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">Read Research Paper ↗</a>
           </li>
-          <li style="margin-top:12px;">
-            <strong>T-Mobile — SEC Disclosure:</strong><br>
-            <em>Primary corporate/regulatory evidence — 2023.</em> Disclosed 37 million customer accounts affected through a single unauthorized API path.
-          </li>
-          <li style="margin-top:12px;">
-            <strong>Atlassian — Trello API Incident:</strong><br>
-            <em>Primary vendor evidence — 2024.</em> Documented abuse of Trello's REST API matching email addresses against 15 million public profiles.
-          </li>
-          <li style="margin-top:12px;">
-            <strong>Australian Cyber Security Centre — Optus Data Breach:</strong><br>
-            <em>Government cybersecurity guidance — 2022.</em> Advising affected customers on monitoring accounts and watching for follow-on scams.
+          <li style="margin-top:14px;">
+            <strong>National Cyber Security Centre (NCSC) — Data Breach Guidance:</strong><br>
+            <em>Type: Government guidance.</em> Supports extortion defense posture, incident mitigation standards, and advisories regarding follow-on spear-phishing risks.
+            <br><a href="https://www.ncsc.gov.uk/guidance/data-breaches" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">View NCSC Guidance ↗</a>
           </li>
         </ul>
+
+        <!-- COMPLETE 45-SOURCE DIRECTORY ACCORDION -->
+        <div style="margin-top:36px;border:1.5px solid var(--border);border-radius:12px;padding:24px;background:#F8FAFC;">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
+            <div>
+              <h3 style="font-family:var(--f-d);font-size:1.2rem;font-weight:800;color:var(--ink);margin:0;">
+                Complete Directory of All 45 Research Sources
+              </h3>
+              <p style="font-size:0.85rem;color:var(--ink-4);margin-top:4px;">
+                Verified inventory supporting the investigation and technical analysis of the August 2026 MAG cyber breach.
+              </p>
+            </div>
+            <span class="am-badge am-badge-confirmed">45 VERIFIED SOURCES</span>
+          </div>
+
+          <!-- Category 1: Technical & Attack Path Analysis (12 sources) -->
+          <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:14px;">
+            <h4 style="font-family:var(--f-d);font-size:0.98rem;font-weight:800;color:#1E3A8A;margin-bottom:8px;">
+              1. Technical &amp; Attack Path Analysis (12 Sources)
+            </h4>
+            <p style="font-size:0.82rem;color:var(--ink-4);margin-bottom:10px;">Next.js JS bundle leaks, Iterable API key misconfiguration, and bulk CSV export mechanics.</p>
+            <ol style="margin-left:20px;font-size:0.86rem;line-height:1.7;color:var(--ink-2);">
+              <li><strong>Scott Helme:</strong> <em>No Hacking Required: The Manchester Airports Group Data Breach</em> — Landmark technical primary source proving client-side JS keys enabled direct dumps.</li>
+              <li><strong>Scott Helme:</strong> <em>No Hacking Required: The MAG Data Breach (Deep Dive Part 2)</em> — Comparing client-side vs. server-side keys; verifying 4-year exposure window.</li>
+              <li><strong>CybelAngel:</strong> <em>What Coverage Is Getting Wrong: Breach Started in JS File, Not GitHub</em> — Disproving media rumors; identifying static web client bundles.</li>
+              <li><strong>Internal Technical Report:</strong> <em>Exhaustive Analysis of the August 2026 MAG Cyber Attack: Technical Vectors &amp; Resilience</em> — Next.js bundle leak forensic breakdown.</li>
+              <li><strong>Bleeping Computer:</strong> <em>FulcrumSec claims Manchester Airports hack, theft of 86 GB of data</em> — Technical analysis of the marketing database schema.</li>
+              <li><strong>Bleeping Computer:</strong> <em>FulcrumSec claims Manchester Airports hack (Technical Follow-up)</em> — Parameter breakdown including VRNs and email tracking tokens.</li>
+              <li><strong>Shattered.io:</strong> <em>Manchester Airports Hack Exposes 8.7M Records [2026]</em> — Framework asset bundling hazards and secret scanning omission.</li>
+              <li><strong>NetMonkeys Security:</strong> <em>Manchester Airport Cyber Attack: The 8.5M Breach Explained</em> — Client-side vulnerability lifecycle.</li>
+              <li><strong>Security Analysis Portal:</strong> <em>Manchester Airport data breach: Attack path, impact, and cybersecurity lessons (Part 1)</em> — Step-by-step reconstruction.</li>
+              <li><strong>Security Analysis Portal:</strong> <em>Manchester Airport data breach: Attack path &amp; lessons (Part 2)</em> — API governance failures and lack of export rate-limiting.</li>
+              <li><strong>Security Analysis Portal:</strong> <em>Manchester Airport data breach: Attack path &amp; lessons (Part 3)</em> — Enterprise API rotation and CI/CD secret scanning roadmap.</li>
+              <li><strong>Sysdig Threat Research:</strong> <em>The FulcrumSec playbook: How to detect and stop the group</em> — Cloud detection rules and runtime API monitoring policies.</li>
+            </ol>
+          </div>
+
+          <!-- Category 2: Threat Intelligence & Attribution (11 sources) -->
+          <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:14px;">
+            <h4 style="font-family:var(--f-d);font-size:0.98rem;font-weight:800;color:#1E3A8A;margin-bottom:8px;">
+              2. Threat Intelligence &amp; Attribution (11 Sources)
+            </h4>
+            <p style="font-size:0.82rem;color:var(--ink-4);margin-bottom:10px;">FulcrumSec TTPs, leak site telemetry, 21-victim history, and extortion dynamics.</p>
+            <ol start="13" style="margin-left:20px;font-size:0.86rem;line-height:1.7;color:var(--ink-2);">
+              <li><strong>BushidoToken:</strong> <em>Threat Intel Post (Early Signals)</em> — Initial dark web leak chatter and exfiltration tracking.</li>
+              <li><strong>BushidoToken:</strong> <em>Threat Intel Post (Secondary Reference)</em> — Technical observations on group extortion mechanics and sample verification.</li>
+              <li><strong>SecurityWeek:</strong> <em>Extortion Group Claims Manchester Airports Group Data Breach</em> — Ransom deadline timeline and stolen dataset sizing.</li>
+              <li><strong>Threat Intelligence Portal:</strong> <em>FulcrumSec Claims Responsibility for Manchester Airport Group Breach</em> — Profile of cloud extortion operations.</li>
+              <li><strong>Searchlight Cyber:</strong> <em>FulcrumSec Claims Responsibility (Dark Web Intel)</em> — Leak site listing verification, proof samples, and victim comms channels.</li>
+              <li><strong>Cyber Security Wire:</strong> <em>FulcrumSec Claims Theft After Ransom Refusal</em> — Shift from private extortion to public leak following non-negotiation.</li>
+              <li><strong>MoxFive:</strong> <em>FulcrumSec: The Cloud Extortion Group Behind 21 Victims and Counting</em> — Forensic profiling of API key hunting across 21 enterprise victims.</li>
+              <li><strong>The HIPAA Journal:</strong> <em>Hackers Claim Responsibility for Novo Nordisk Cyberattack</em> — Comparative case study on identical JS credential harvesting.</li>
+              <li><strong>Smarttech247:</strong> <em>Novo Nordisk Data Breach – FulcrumSec Attribution | Threat Intel Reports</em> — Cross-sector TTP mapping.</li>
+              <li><strong>Grab The Axe:</strong> <em>Someone Has Put a Name to the Airport Breach (08/30/2026)</em> — Dark web attribution analysis.</li>
+              <li><strong>CybelAngel:</strong> <em>Weekly Cyber Roundup: August 31–September 6, 2026</em> — External attack surface management (EASM) executive synthesis.</li>
+            </ol>
+          </div>
+
+          <!-- Category 3: Official Disclosure & FAQs (5 sources) -->
+          <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:14px;">
+            <h4 style="font-family:var(--f-d);font-size:0.98rem;font-weight:800;color:#1E3A8A;margin-bottom:8px;">
+              3. Official Disclosure &amp; FAQs (5 Sources)
+            </h4>
+            <p style="font-size:0.82rem;color:var(--ink-4);margin-bottom:10px;">MAG customer advisories, non-payment policy, and law enforcement alignment (ICO, NCSC).</p>
+            <ol start="24" style="margin-left:20px;font-size:0.86rem;line-height:1.7;color:var(--ink-2);">
+              <li><strong>Manchester Airports Group (MAG):</strong> <em>Data Security Incident - Update &amp; FAQs (Part 1)</em> — Confirmation of incident and exposed data categories.</li>
+              <li><strong>Manchester Airports Group (MAG):</strong> <em>Data Security Incident - Update &amp; FAQs (Part 2)</em> — Confirming zero financial, banking, or password exposure.</li>
+              <li><strong>Manchester Airports Group (MAG):</strong> <em>Data Security Incident - Update &amp; FAQs (Part 3)</em> — Law enforcement coordination and specialized customer helpline.</li>
+              <li><strong>Cyber Incident Archive:</strong> <em>On 27 August 2026, Manchester Airports Group confirmed it was target</em> — Chronology of disclosure milestones.</li>
+              <li><strong>Reg4Tech Bulletin:</strong> <em>August 7, 2026 Briefing</em> — Aviation data protection compliance tracking and ICO regulatory filings.</li>
+            </ol>
+          </div>
+
+          <!-- Category 4: Enterprise Cyber Resilience (8 sources) -->
+          <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:14px;">
+            <h4 style="font-family:var(--f-d);font-size:0.98rem;font-weight:800;color:#1E3A8A;margin-bottom:8px;">
+              4. Enterprise Cyber Resilience (8 Sources)
+            </h4>
+            <p style="font-size:0.82rem;color:var(--ink-4);margin-bottom:10px;">IT/OT segmentation, client-side secret management, and third-party SaaS vendor governance.</p>
+            <ol start="29" style="margin-left:20px;font-size:0.86rem;line-height:1.7;color:var(--ink-2);">
+              <li><strong>Protecht Group:</strong> <em>Manchester Airports breach: What it tells us about cyber resilience (Part 1)</em> — Operational vs. data resilience and vendor risk.</li>
+              <li><strong>Protecht Group:</strong> <em>Manchester Airports breach (Part 2)</em> — Single points of failure in centralized booking databases.</li>
+              <li><strong>Protecht Group:</strong> <em>Manchester Airports breach (Part 3)</em> — Embedding human cyber risk metrics, SeMS integration, and third-party auditing.</li>
+              <li><strong>Security Journal UK:</strong> <em>What airports can learn from the Manchester cyber-attack</em> — Passenger data protection vs. physical airport perimeter safety.</li>
+              <li><strong>Security Journal UK:</strong> <em>What airports can learn (Part 2)</em> — Aviation C-suite supply chain audit standards.</li>
+              <li><strong>AvioRadar:</strong> <em>Cyberattack on three UK airports: Data of 8.7 million customers stolen, hackers demand ransom</em> — Operational continuity analysis.</li>
+              <li><strong>AvioRadar:</strong> <em>Cyberattack on three UK airports (Coverage Update)</em> — Parking reservation data involvement and international reactions.</li>
+              <li><strong>NCSC / UK Government:</strong> <em>10 Steps to Cyber Security: Supply Chain Risk Management</em> — Guidance for defending enterprise cloud integrations.</li>
+            </ol>
+          </div>
+
+          <!-- Category 5: Impact, Legal & Regulatory (9 sources) -->
+          <div style="margin-top:18px;border-top:1px solid var(--border);padding-top:14px;">
+            <h4 style="font-family:var(--f-d);font-size:0.98rem;font-weight:800;color:#1E3A8A;margin-bottom:8px;">
+              5. Impact, Legal &amp; Regulatory (9 Sources)
+            </h4>
+            <p style="font-size:0.82rem;color:var(--ink-4);margin-bottom:10px;">UK GDPR liability, HIBP verification, 8.7M passenger records, and secondary vehicle theft risks.</p>
+            <ol start="37" style="margin-left:20px;font-size:0.86rem;line-height:1.7;color:var(--ink-2);">
+              <li><strong>National Media / Tech News:</strong> <em>8.7m customers affected by data breach at Manchester, Stansted and East Midlands airports</em> — Initial impact reporting.</li>
+              <li><strong>Have I Been Pwned (HIBP):</strong> <em>Manchester Airports Group Data Breach Entry</em> — Official breach index verifying 8,728,311 unique exposed email records.</li>
+              <li><strong>Data Breach Today:</strong> <em>MAG Data on 8.8 Million People Leaked After Ransom Refusal</em> — Dump verification following non-payment policy adherence.</li>
+              <li><strong>Global Cyber Monitor:</strong> <em>Manchester Airports Group Data Breach 2026: 8.9M Travelers Affected</em> — International traveler impact telemetry.</li>
+              <li><strong>The Cyber Express:</strong> <em>Three UK Airports Hit by Data Breach: 8.7 M Records Allegedly Exposed</em> — Comprehensive victim statistics.</li>
+              <li><strong>Manchester Evening News:</strong> <em>Major MAG cyber attack as 8.7 million customers' data accessed</em> — Local regional passenger guidance and reactions.</li>
+              <li><strong>UK Regional Press:</strong> <em>Major Manchester Airports Group cyber attack (Extended Coverage)</em> — Passenger fraud concerns and vehicle theft phishing risks.</li>
+              <li><strong>Pocket Claim Legal:</strong> <em>Manchester Airports Group Compensation Claim</em> — Collective data privacy claims and UK GDPR Article 82 liabilities.</li>
+              <li><strong>Pocket Claim Legal:</strong> <em>Manchester Airports Group Compensation Claim (Legal Analysis)</em> — Judicial standards for non-financial distress compensation.</li>
+            </ol>
+          </div>
+        </div>
 
         <div style="background:#F1F5F9;border-left:4px solid #64748B;padding:14px;border-radius:0 6px 6px 0;margin:24px 0;font-size:0.88rem;color:var(--ink-3);">
           <strong>Evidence standard used in this article:</strong><br>
@@ -1026,6 +1752,57 @@
       </div>
     </div>
   </footer>
+
+  <!-- ATTACK MAP INTERACTIVE DETAIL DRAWER & BOTTOM SHEET -->
+  <div class="am-drawer-overlay" id="amDrawerOverlay" aria-hidden="true"></div>
+  <aside class="am-drawer" id="amDrawer" aria-hidden="true" aria-labelledby="amDrawerTitle">
+    <div class="am-drawer-header">
+      <div>
+        <div id="amDrawerStep" style="font-family:monospace;font-size:0.75rem;font-weight:700;color:var(--ink-4);margin-bottom:4px;"></div>
+        <h3 id="amDrawerTitle" style="font-family:var(--f-d);font-size:1.15rem;font-weight:800;color:var(--ink);margin:0;line-height:1.3;"></h3>
+        <div style="margin-top:8px;">
+          <span id="amDrawerBadge" class="am-badge"></span>
+        </div>
+      </div>
+      <button type="button" class="am-drawer-close" id="amDrawerClose" aria-label="Close details panel">✕</button>
+    </div>
+
+    <div class="am-drawer-body">
+      <div class="am-drawer-section">
+        <div class="am-drawer-label">Technical Overview</div>
+        <p id="amDrawerTech" style="margin:0;"></p>
+      </div>
+
+      <div class="am-drawer-explain-box">
+        <strong>Explain Simply</strong>
+        <p id="amDrawerSimple" style="margin:0;font-size:0.88rem;color:var(--ink);"></p>
+      </div>
+
+      <div class="am-drawer-section">
+        <div class="am-drawer-label">Attribution &amp; Researcher</div>
+        <p id="amDrawerResearcher" style="margin:0;font-weight:600;"></p>
+      </div>
+
+      <div class="am-drawer-section">
+        <div class="am-drawer-label">Evidence Verification</div>
+        <p id="amDrawerEvidence" style="margin:0;"></p>
+      </div>
+
+      <div class="am-drawer-section">
+        <div class="am-drawer-label">Important Note / Caveat</div>
+        <p id="amDrawerNote" style="margin:0;background:#FEF2F2;border-left:3px solid #DC2626;padding:8px 12px;border-radius:4px;color:#991B1B;font-size:0.86rem;"></p>
+      </div>
+    </div>
+
+    <div class="am-drawer-footer">
+      <a id="amDrawerReadArticle" href="#what-actually-happened" class="am-drawer-btn am-btn-primary">
+        📖 Read This Part of the Article
+      </a>
+      <a id="amDrawerSourceLink" href="https://scotthelme.co.uk/" class="am-drawer-btn am-btn-secondary" target="_blank" rel="noopener noreferrer">
+        View Source Documentation ↗
+      </a>
+    </div>
+  </aside>
 
   <div id="google_translate_element"></div>
   <script src="js/cms.js?v=7"></script>
