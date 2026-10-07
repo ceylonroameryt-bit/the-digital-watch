@@ -587,8 +587,8 @@ const AM_NODE_DATA = {
     researcher: 'Manchester Airports Group Corporate Disclosure & Media Team',
     evidence: 'Official corporate incident notification published 27 August 2026; direct regulatory reporting to UK Information Commissioner\'s Office (ICO) & NCSC.',
     note: 'Operational flight control, radar, and aviation safety systems remained fully operational and isolated from the compromised marketing platforms.',
-    sourceTitle: 'MAG Data Security Incident Statement',
-    sourceUrl: 'https://www.manchesterairport.co.uk/',
+    sourceTitle: 'MAG Official Incident Statement & FAQs',
+    sourceUrl: 'https://www.manchesterairport.co.uk/help/data-security-incident/',
     articleAnchor: 'what-actually-happened'
   },
   'airport-websites': {
@@ -603,7 +603,7 @@ const AM_NODE_DATA = {
     evidence: 'Inspection of production client-side JavaScript assets and DOM script tags across magairports.com subdomains.',
     note: 'Commercial retail/parking portals were completely segregated from operational airfield networks, but shared common marketing orchestration tooling.',
     sourceTitle: 'Scott Helme — No Hacking Required: The MAG Data Breach',
-    sourceUrl: 'https://scotthelme.co.uk/',
+    sourceUrl: 'https://scotthelme.co.uk/no-hacking-required-manchester-airports-group-data-breach/',
     articleAnchor: 'credentials-were-there'
   },
   'javascript-bundles': {
@@ -614,11 +614,11 @@ const AM_NODE_DATA = {
     statusClass: 'am-badge-verified',
     technical: 'Production JavaScript application bundles (including Next.js and frontend framework compilation outputs) were served via public Content Delivery Networks (CDNs) directly to every browser visiting the booking portals.',
     simple: 'Modern websites send code directly to your web browser so the page runs quickly. Anyone visiting the website automatically downloads this code.',
-    researcher: 'Scott Helme',
+    researcher: 'Scott Helme & CybelAngel',
     evidence: 'Publicly downloadable static JS files (e.g., framework bundles) inspectable using standard browser developer tools and curl.',
     note: 'Code delivered to web browsers is completely public by definition. Compiling secrets or API keys into client bundles renders them accessible to anyone.',
     sourceTitle: 'CybelAngel Brief — Breach Started in JS File, Not GitHub',
-    sourceUrl: 'https://cybelangel.com/',
+    sourceUrl: 'https://cybelangel.com/blog/cyber-roundup-week-of-august-31st/',
     articleAnchor: 'why-javascript-matters'
   },
   'iterable-credentials': {
@@ -633,7 +633,7 @@ const AM_NODE_DATA = {
     evidence: 'De-obfuscated client-side JavaScript files matching FulcrumSec\'s description of three airport-specific API tokens.',
     note: 'Scott Helme proved zero exploitation of MAG internal networks, SQL injection, or server penetration was required to acquire the keys.',
     sourceTitle: 'Scott Helme — No Hacking Required: The MAG Data Breach',
-    sourceUrl: 'https://scotthelme.co.uk/',
+    sourceUrl: 'https://scotthelme.co.uk/no-hacking-required-manchester-airports-group-data-breach/',
     articleAnchor: 'credentials-were-there'
   },
   'four-year-exposure': {
@@ -648,7 +648,7 @@ const AM_NODE_DATA = {
     evidence: 'Historical snapshot diffs of MAG static assets on the Internet Archive Wayback Machine.',
     note: 'CRITICAL DISTINCTION: This represents a credential EXPOSURE WINDOW. It is NOT proof that attackers discovered, held access, or exploited the keys for four years.',
     sourceTitle: 'Scott Helme — Technical Investigation & Archive Analysis',
-    sourceUrl: 'https://scotthelme.co.uk/',
+    sourceUrl: 'https://scotthelme.co.uk/no-hacking-required-manchester-airports-group-data-breach/',
     articleAnchor: 'credentials-were-there'
   },
   'fulcrumsec-discovery': {
@@ -662,8 +662,8 @@ const AM_NODE_DATA = {
     researcher: 'Threat actor claim; profiled by MoxFive, Sysdig, and Searchlight Cyber.',
     evidence: 'FulcrumSec dark web leak publication (30 August 2026) and extortion announcements.',
     note: 'MAG has NOT officially confirmed that FulcrumSec was the threat actor, nor have they verified this claim as the definitive initial attack vector.',
-    sourceTitle: 'MoxFive Threat Intel — FulcrumSec: Cloud Extortion Group Profile',
-    sourceUrl: 'https://www.moxfive.com/',
+    sourceTitle: 'MOXFIVE Threat Intel — FulcrumSec: Inside the Cloud Extortion Group',
+    sourceUrl: 'https://www.moxfive.com/blog/who-is-fulcrumsec-inside-the-cloud-extortion-group-behind-21-victims-and-counting',
     articleAnchor: 'fulcrumsec-attribution'
   },
   'iterable-api-access': {
@@ -677,8 +677,8 @@ const AM_NODE_DATA = {
     researcher: 'Scott Helme (Technical Feasibility Analysis)',
     evidence: 'Iterable API permission model, endpoint specification, and threat actor sample format.',
     note: 'This mechanism provides a coherent and verified technical hypothesis, but public forensic verification from MAG or Iterable server logs has not been released.',
-    sourceTitle: 'Iterable — Official API Key Documentation',
-    sourceUrl: 'https://support.iterable.com/',
+    sourceTitle: 'Iterable — Official API Authentication & Endpoints Specification',
+    sourceUrl: 'https://api.iterable.com/api/docs',
     articleAnchor: 'fulcrumsec-attribution'
   },
   'customer-data-collection': {
@@ -692,8 +692,8 @@ const AM_NODE_DATA = {
     researcher: 'Scott Helme',
     evidence: 'Direct comparison of customer notification records against Iterable customer profile attributes.',
     note: 'This establishes that the compromised dataset originated from an Iterable marketing instance, reinforcing the credential leakage vector.',
-    sourceTitle: 'Scott Helme — No Hacking Required: Part 2',
-    sourceUrl: 'https://scotthelme.co.uk/',
+    sourceTitle: 'Sysdig Threat Research — The FulcrumSec Playbook',
+    sourceUrl: 'https://www.sysdig.com/blog/the-fulcrumsec-playbook-how-to-detect-and-stop-the-group-behind-the-novo-nordisk-breach',
     articleAnchor: 'what-we-know'
   },
   'customer-data-stolen': {
@@ -707,8 +707,8 @@ const AM_NODE_DATA = {
     researcher: 'Manchester Airports Group',
     evidence: 'MAG Official Customer Advisory & ICO regulatory notification.',
     note: 'CONFIRMED: Payment card details and banking data were NOT stored in the affected system and were NOT compromised.',
-    sourceTitle: 'MAG Official Corporate Advisory — FAQs',
-    sourceUrl: 'https://www.manchesterairport.co.uk/',
+    sourceTitle: 'MAG Official Incident Statement & FAQs',
+    sourceUrl: 'https://www.manchesterairport.co.uk/help/data-security-incident/',
     articleAnchor: 'what-actually-happened'
   },
   'affected-customers': {
@@ -719,11 +719,11 @@ const AM_NODE_DATA = {
     statusClass: 'am-badge-confirmed',
     technical: 'Breach verification service Have I Been Pwned loaded 8,728,311 unique exposed customer email records, matching reporting across national and cybersecurity media outlets.',
     simple: 'Roughly 8.7 million customers who used MAG airport services were included in the database.',
-    researcher: 'Have I Been Pwned & National Tech Reporting',
+    researcher: 'Troy Hunt / Have I Been Pwned',
     evidence: 'Have I Been Pwned breach catalog entry (8,728,311 records); media confirmations.',
     note: 'IMPORTANT CONTEXT: 8.7 million records does NOT mean every customer had every field (e.g., license plate or phone) populated or exposed.',
-    sourceTitle: 'Have I Been Pwned — Manchester Airports Group Breach Entry',
-    sourceUrl: 'https://haveibeenpwned.com/',
+    sourceTitle: 'Troy Hunt (HIBP) — Weekly Update 521: Breach Perception v. Reality',
+    sourceUrl: 'https://www.troyhunt.com/weekly-update-521/',
     articleAnchor: 'what-actually-happened'
   },
   'extortion-publication': {
@@ -737,8 +737,8 @@ const AM_NODE_DATA = {
     researcher: 'Threat Intelligence Reporting (BleepingComputer, MoxFive, SecurityWeek)',
     evidence: 'Dark web publication records, threat intelligence telemetry, and MAG advisories.',
     note: 'The primary continuing risk to passengers is secondary spear-phishing, spoofed parking notices, and vehicle-targeted social engineering.',
-    sourceTitle: 'Bleeping Computer — FulcrumSec Claims Manchester Airports Hack',
-    sourceUrl: 'https://bleepingcomputer.com/',
+    sourceTitle: 'Bleeping Computer — Cybersecurity News & Incident Reports',
+    sourceUrl: 'https://www.bleepingcomputer.com/news/security/',
     articleAnchor: 'second-attack'
   }
 };
@@ -806,6 +806,8 @@ function initAttackMap() {
     if (drawerSourceLink) {
       drawerSourceLink.href = data.sourceUrl;
       drawerSourceLink.textContent = `View Source: ${data.sourceTitle} ↗`;
+      drawerSourceLink.target = '_blank';
+      drawerSourceLink.rel = 'noopener noreferrer';
     }
 
     if (drawerReadArticle) {
