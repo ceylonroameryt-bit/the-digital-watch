@@ -1296,16 +1296,16 @@ body {
 .stat-s { font-size: .67rem; color: var(--ink-4); }
 
 /* Article body text */
-.art-text {
+.art-text, .art-body {
   font-family: var(--f-b);
   font-size: 1.08rem; line-height: 1.84; color: var(--ink-3);
 }
-.art-text p { margin-bottom: 1.6rem; }
-.art-text strong { color: var(--ink); font-weight: 600; }
-.art-text a { color: var(--blue); text-decoration: underline; text-decoration-thickness: 1px; }
-.art-text a:hover { text-decoration-thickness: 2px; }
+.art-text p, .art-body p { margin-bottom: 1.6rem; }
+.art-text strong, .art-body strong { color: var(--ink); font-weight: 600; }
+.art-text a, .art-body a { color: var(--blue); text-decoration: underline; text-decoration-thickness: 1px; }
+.art-text a:hover, .art-body a:hover { text-decoration-thickness: 2px; }
 
-.art-text h2 {
+.art-text h2, .art-body h2 {
   font-family: var(--f-d);
   font-size: 1.45rem; font-weight: 800;
   color: var(--ink); letter-spacing: -.03em;
@@ -1315,8 +1315,8 @@ body {
   scroll-margin-top: calc(var(--nav-h) + 16px);
 }
 
-.art-text ul { padding-left: 1.4rem; margin-bottom: 1.6rem; }
-.art-text li { margin-bottom: .6rem; }
+.art-text ul, .art-body ul { padding-left: 1.4rem; margin-bottom: 1.6rem; }
+.art-text li, .art-body li { margin-bottom: .6rem; }
 
 /* Section illustration box */
 .sec-svg {
@@ -2891,7 +2891,9 @@ body {
   font-weight: 800;
   color: var(--ink);
   letter-spacing: -0.03em;
-  margin-bottom: 4px;
+  margin: 0 0 4px !important;
+  padding-bottom: 0 !important;
+  border-bottom: none !important;
 }
 .am-subtitle {
   font-size: 1.05rem;
@@ -2903,6 +2905,10 @@ body {
   font-size: 0.9rem;
   color: var(--ink-4);
   line-height: 1.55;
+  margin-bottom: 0 !important;
+}
+.attack-map-section p {
+  margin-bottom: 0;
 }
 
 /* Tabs */

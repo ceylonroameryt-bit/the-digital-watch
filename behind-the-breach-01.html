@@ -44,7 +44,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=8">
+  <link rel="stylesheet" href="styles/main.css?v=12">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23DC2626'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>BB</text></svg>">
   <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/behind-the-breach-01.html">
@@ -248,7 +248,58 @@
 
     <!-- ARTICLE MAIN CONTENT -->
     <main class="art-center" id="articleBody">
-      <article class="art-body">
+
+      <!-- Horizontal Action & Metadata Strip -->
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#FEF2F2;color:#DC2626;border-color:#FCA5A5;font-weight:700;">Behind the Breach</span>
+          <span class="chip">Episode 01</span>
+          <span class="chip">API Security</span>
+          <span class="chip">Client-Side Secrets</span>
+          <span class="chip">8.8M Records</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 9 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" onclick="toggleLike()" title="Like this research" aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" onclick="addClap()" title="Applaud this research" aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">8.8M</div>
+          <div class="stat-l">Affected Records</div>
+          <div class="stat-s">Customer Wi-Fi, parking, and vehicle registrations across 3 major UK airports</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">4+ Years</div>
+          <div class="stat-l">Exposure Window</div>
+          <div class="stat-s">Server-side Iterable API keys shipped in public production JavaScript bundles</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">0 Impact</div>
+          <div class="stat-l">Aviation Systems</div>
+          <div class="stat-s">Operational air traffic and passenger security networks remained fully isolated</div>
+        </div>
+      </div>
+
+      <article class="art-body art-text">
 
       <!-- SECTION 1 -->
       <section id="what-actually-happened">
@@ -1828,9 +1879,9 @@
   </aside>
 
   <div id="google_translate_element"></div>
-  <script src="js/cms.js?v=7"></script>
-  <script src="js/app.js?v=8"></script>
-  <script src="js/translator.js?v=7"></script>
+  <script src="js/cms.js?v=12"></script>
+  <script src="js/app.js?v=12"></script>
+  <script src="js/translator.js?v=12"></script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
