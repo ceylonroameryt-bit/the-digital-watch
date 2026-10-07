@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manchester Airports Group Data Breach: What Actually Happened — Cyber Insight</title>
+  <meta name="description"
+    content="Behind the Breach: Manchester Airports Group confirmed a cyber security incident affecting 8.8M customers. How API credentials exposed in website JavaScript for four years led to data theft without hacking operational systems.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Manchester Airports Group Data Breach: What Actually Happened, and Why It Matters">
+  <meta property="og:description"
+    content="No flights were grounded. No air traffic systems failed. But 8.8M passengers had parking, Wi-Fi, and vehicle registration data exposed because server-side API keys sat in client-side JavaScript for four years.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Manchester Airports Group Data Breach: What Actually Happened, and Why It Matters",
+    "description": "An investigative breakdown of the Manchester Airports Group (MAG) cyber incident, examining how client-side JavaScript exposed server-side Iterable API keys for four years, affecting 8.8 million customer records.",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cyber Insight",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "datePublished": "2026-09-08",
+    "dateModified": "2026-10-07",
+    "copyrightYear": 2026,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=8">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23DC2626'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>BB</text></svg>">
+  <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/behind-the-breach-01.html">
+  <meta property="og:url" content="https://ceylonroameryt-bit.github.io/the-digital-watch/behind-the-breach-01.html">
+</head>
+
+<body data-page="article" data-article-id="breach01">
+
+  <div id="reading-progress"></div>
+  <div id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark" style="background:#DC2626;">CI</div>
+        <div>
+          <div class="brand-name">Cyber Insight</div>
+          <div class="brand-sub">Behind the Breach Series</div>
+        </div>
+      </a>
+      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#series">Curriculum</a></li>
+        <li><a href="index.html#behind-the-breach">Behind the Breach</a></li>
+        <li><a href="behind-the-breach-01.html" class="active">Investigation</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#behind-the-breach" class="cta">Series Index →</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <!-- Series Callout Banner -->
+          <div class="art-series-banner" style="background:#FEF2F2;border-color:#FCA5A5;">
+            <div class="art-series-info">
+              <span class="art-series-tag" style="background:#DC2626;">Behind the Breach</span>
+              <span style="color:#991B1B;">Investigative Autopsy · <strong>Episode 01</strong></span>
+            </div>
+            <a href="index.html#behind-the-breach" class="art-series-link" style="color:#DC2626;">Series Hub →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="index.html#behind-the-breach">Behind the Breach</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Episode 01: Manchester Airports Group</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat" style="color:#DC2626;">Aviation &amp; Transport</span>
+            <span class="art-dot">·</span>
+            <span>Exposed API Credentials</span>
+            <span class="art-dot">·</span>
+            <span>September 2026</span>
+            <span class="art-dot">·</span>
+            <span>9 min read</span>
+          </div>
+
+          <h1 class="art-h1">Manchester Airports Group Data Breach: What Actually Happened, and Why It Matters</h1>
+          <p class="h-desc" style="margin-top:12px;font-size:1.15rem;color:var(--ink-3);">
+            You saw the headline. Here’s what actually happened.
+          </p>
+
+          <div class="art-byline">
+            <div class="art-av" style="background:#DC2626;">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Investigative Technology Writer · Cyber Insight</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero SVG: The Exposed API Key in Airport JavaScript -->
+        <div class="art-hero-svg" style="background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Illustration depicting an airport website shipping JavaScript containing exposed server-side API keys to the browser, exposing customer parking and flight booking records">
+            <!-- Background pulse circles -->
+            <circle cx="160" cy="120" r="105" fill="#FECACA" opacity=".35" />
+            <circle cx="160" cy="120" r="75" fill="#FEE2E2" opacity=".6" />
+
+            <!-- Airplane icon silhouetted -->
+            <path d="M70 35 L76 38 L86 52 L110 52 L94 40 L98 38 L118 48 L126 48 L130 52 L78 68 Z" fill="#DC2626" opacity=".2" />
+
+            <!-- Airport Website (Left) -->
+            <rect x="22" y="44" width="120" height="152" rx="10" fill="white" stroke="#DC2626" stroke-width="2" />
+            <rect x="22" y="44" width="120" height="26" rx="10" fill="#DC2626" />
+            <text x="82" y="61" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">AIRPORT WEBSITE</text>
+            
+            <rect x="32" y="78" width="100" height="6" rx="3" fill="#CBD5E1" />
+            <rect x="32" y="88" width="76" height="6" rx="3" fill="#E2E8F0" />
+            
+            <!-- JavaScript Bundle with Key inside -->
+            <rect x="30" y="104" width="104" height="76" rx="6" fill="#1E293B" stroke="#0F172A" stroke-width="1.2" />
+            <text x="38" y="118" fill="#38BDF8" font-family="monospace" font-size="7.5" font-weight="700">&lt;script src="bundle.js"&gt;</text>
+            <text x="38" y="130" fill="#94A3B8" font-family="monospace" font-size="6.5">// Iterable Config</text>
+            <rect x="34" y="136" width="96" height="18" rx="3" fill="#7F1D1D" stroke="#EF4444" stroke-width="1" />
+            <text x="82" y="148" text-anchor="middle" fill="#FEF08A" font-family="monospace" font-size="7" font-weight="700">apiKey: "api_sec_..."</text>
+            <text x="82" y="170" text-anchor="middle" fill="#EF4444" font-family="DM Sans,system-ui" font-size="7" font-weight="800">EXPOSED 4+ YEARS</text>
+
+            <!-- Arrow showing public browser delivery -->
+            <path d="M146 120 L176 120" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="4 3" />
+            <polygon points="176,120 168,115 168,125" fill="#DC2626" />
+
+            <!-- SaaS Marketing Database (Right) -->
+            <rect x="182" y="44" width="116" height="152" rx="10" fill="white" stroke="#2563EB" stroke-width="2" />
+            <rect x="182" y="44" width="116" height="26" rx="10" fill="#2563EB" />
+            <text x="240" y="61" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">ITERABLE SAAS</text>
+
+            <circle cx="240" cy="104" r="24" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5" />
+            <text x="240" y="101" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="10" font-weight="800">8.8M</text>
+            <text x="240" y="112" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="6.5" font-weight="700">RECORDS</text>
+
+            <rect x="194" y="136" width="92" height="14" rx="4" fill="#FEE2E2" stroke="#EF4444" stroke-width="1" />
+            <text x="240" y="146" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="6.5" font-weight="700">Vehicle Reg &amp; Parking</text>
+            
+            <rect x="194" y="156" width="92" height="14" rx="4" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1" />
+            <text x="240" y="166" text-anchor="middle" fill="#475569" font-family="DM Sans,system-ui" font-size="6.5">Emails, Postcodes</text>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE MAIN LAYOUT -->
+  <div class="art-grid wrap">
+
+    <!-- STICKY TABLE OF CONTENTS SIDEBAR -->
+    <aside class="art-toc-sidebar" aria-label="Table of contents">
+      <div class="toc-header" role="button" tabindex="0" aria-expanded="false" aria-controls="tocListContainer">
+        <div class="toc-title-group">
+          <span class="toc-icon">📑</span>
+          <span class="toc-title">Investigation Outline</span>
+        </div>
+        <div class="toc-status-group">
+          <span class="toc-mobile-badge" aria-hidden="true">Menu</span>
+          <span class="toc-percent-tag" id="tocPercent">0%</span>
+        </div>
+      </div>
+
+      <div class="toc-track-wrap" id="tocListContainer">
+        <div class="toc-line-track">
+          <div class="toc-line-progress" id="tocLineProgress"></div>
+        </div>
+        <nav class="toc-list" aria-label="Article sections">
+          <a href="#what-actually-happened" class="toc-link">1. What Actually Happened</a>
+          <a href="#credentials-were-there" class="toc-link">2. The Credentials Were Really There</a>
+          <a href="#industry-problem" class="toc-link">3. Is This a Real-World Problem?</a>
+          <a href="#why-javascript-matters" class="toc-link">4. Why Secrets in JavaScript Matter</a>
+          <a href="#iterable-warnings" class="toc-link">5. Iterable Warns Developers</a>
+          <a href="#least-privilege" class="toc-link">6. What Was the Key Doing?</a>
+          <a href="#api-precedents" class="toc-link">7. Precedents: T-Mobile, Trello &amp; Optus</a>
+          <a href="#second-attack" class="toc-link">8. The Second Attack After the Breach</a>
+          <a href="#fulcrumsec-attribution" class="toc-link">9. Did FulcrumSec Use the Keys?</a>
+          <a href="#soc-detection" class="toc-link">10. Could a SOC Have Detected This?</a>
+          <a href="#lessons-organisations" class="toc-link">11. What Organisations Should Learn</a>
+          <a href="#lessons-customers" class="toc-link">12. What Customers Should Learn</a>
+          <a href="#bigger-lesson" class="toc-link">13. The Bigger Lesson</a>
+          <a href="#what-we-know" class="toc-link">14. What We Know (Evidence Matrix)</a>
+          <a href="#sources" class="toc-link">15. Sources &amp; Evidence</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- ARTICLE BODY -->
+    <main class="art-content" id="articleBody">
+
+      <!-- SECTION 1 -->
+      <section id="what-actually-happened">
+        <h2>1. What Actually Happened</h2>
+        <p>
+          On 27 August 2026, Manchester Airports Group confirmed that it had suffered a cyber security incident.
+        </p>
+        <p>
+          If you only saw the headline, you could easily imagine something dramatic: airport systems offline, flights cancelled, check-in desks failing or perhaps even aviation systems being compromised.
+        </p>
+        <p>
+          <strong>None of that happened.</strong>
+        </p>
+        <p>
+          Manchester, London Stansted and East Midlands airports continued operating normally. According to Manchester Airports Group (MAG), the incident did not involve operational airport systems, and passenger safety and aviation security were never compromised.
+        </p>
+        <p>
+          The problem was elsewhere.
+        </p>
+        <p>
+          Customer data had been obtained.
+        </p>
+        <p>
+          Information connected with airport Wi-Fi registrations, car parking, Fast Track and lounge bookings was caught up in the incident. The affected information included email addresses, phone numbers, postcodes and vehicle registration numbers.
+        </p>
+        <p>
+          MAG says the affected system did not contain customers' bank or payment details. Later reporting put the number of affected people at approximately <strong>8.7–8.8 million</strong>.
+        </p>
+        <p>
+          Then the story became much more interesting.
+        </p>
+        <p>
+          A cyber-extortion group calling itself <strong>FulcrumSec</strong> claimed responsibility and said it had obtained access using API credentials exposed in JavaScript on MAG's airport websites.
+        </p>
+        <p>
+          Normally, I would be very cautious about a statement like that. Criminal groups have obvious reasons to exaggerate what they have done.
+        </p>
+        <p>
+          But this particular claim was testable.
+        </p>
+        <p>
+          Security researcher <strong>Scott Helme</strong> tested it.
+        </p>
+        <p>
+          And he found the keys.
+        </p>
+      </section>
+
+      <!-- SECTION 2 -->
+      <section id="credentials-were-there" style="margin-top:40px;">
+        <h2>2. The Credentials Were Really There</h2>
+        <p>
+          Helme investigated the JavaScript being delivered by the Manchester, Stansted and East Midlands airport websites.
+        </p>
+        <p>
+          He eventually found three separate Iterable API credentials — one associated with each airport.
+        </p>
+        <p>
+          That was significant because FulcrumSec had specifically described the credentials as airport-specific.
+        </p>
+        <p>
+          Helme then used historical copies of the websites to work out how long they had been exposed. His investigation found:
+        </p>
+
+        <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:10px;padding:20px;margin:20px 0;">
+          <ul style="margin-left:20px;line-height:1.9;font-size:0.95rem;">
+            <li><strong>East Midlands Airport:</strong> credential appearing from <strong>23 June 2022</strong></li>
+            <li><strong>London Stansted Airport:</strong> credential appearing from <strong>28 June 2022</strong></li>
+            <li><strong>Manchester Airport:</strong> credential appearing from <strong>11 July 2022</strong></li>
+          </ul>
+        </div>
+
+        <p>
+          The same respective values continued appearing in archived JavaScript until August 2026.
+        </p>
+        <p>
+          In other words, the exposure appears to have lasted for <strong>a little over four years</strong>.
+        </p>
+        <p>
+          There is an important distinction here.
+        </p>
+        <p>
+          That does <strong>not</strong> mean attackers had access for four years. We do not currently know when FulcrumSec first obtained the credentials. What we can say is that the credentials were publicly exposed during that period.
+        </p>
+        <blockquote style="border-left:4px solid #DC2626;padding-left:16px;margin:20px 0;font-style:italic;color:var(--ink-2);">
+          An <strong>exposure window</strong> and an <strong>intrusion window</strong> are not the same thing.
+        </blockquote>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section id="industry-problem" style="margin-top:40px;">
+        <h2>3. Is Exposing API Credentials in JavaScript Actually a Real-World Problem?</h2>
+        <p>
+          Very much so. And MAG is not an isolated example.
+        </p>
+        <p>
+          In March 2026, researchers Nurullah Demir, Yash Vekaria, Georgios Smaragdakis and Zakir Durumeric published research titled <strong>“Keys on Doormats: Exposed API Credentials on the Web.”</strong>
+        </p>
+        <p>
+          They examined approximately <strong>10 million webpages</strong> looking specifically for exposed API credentials.
+        </p>
+        <p>
+          They identified:
+        </p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0;">
+          <div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:16px;text-align:center;">
+            <div style="font-size:1.8rem;font-weight:800;color:#DC2626;">1,748</div>
+            <div style="font-size:0.85rem;color:#7F1D1D;font-weight:600;">Distinct Credentials</div>
+          </div>
+          <div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:16px;text-align:center;">
+            <div style="font-size:1.8rem;font-weight:800;color:#DC2626;">~10,000</div>
+            <div style="font-size:0.85rem;color:#7F1D1D;font-weight:600;">Vulnerable Webpages</div>
+          </div>
+          <div style="background:#FEF2F2;border:1px solid #FCA5A5;border-radius:8px;padding:16px;text-align:center;">
+            <div style="font-size:1.8rem;font-weight:800;color:#DC2626;">14</div>
+            <div style="font-size:0.85rem;color:#7F1D1D;font-weight:600;">Service Providers</div>
+          </div>
+        </div>
+
+        <p>
+          Some of those credentials were found on highly prominent websites, including sites belonging to major banks and technology organisations.
+        </p>
+        <p>
+          More importantly for the MAG case, the researchers found that many of the exposures originated from <strong>JavaScript environments</strong>. Historical analysis also showed that some credentials remained exposed for periods ranging from months to <strong>several years</strong>.
+        </p>
+        <p>
+          That makes the MAG situation much less unusual than it initially sounds. This isn't merely:
+        </p>
+        <p style="padding-left:14px;border-left:3px solid var(--border);color:var(--ink-4);font-style:italic;">
+          “One developer accidentally put a key in one website.”
+        </p>
+        <p>
+          There is a broader industry problem around secrets moving from supposedly protected development environments into frontend applications where anybody can inspect them.
+        </p>
+      </section>
+
+      <!-- SECTION 4 -->
+      <section id="why-javascript-matters" style="margin-top:40px;">
+        <h2>4. Why Does Putting a Secret in JavaScript Matter?</h2>
+        <p>
+          Imagine an organisation has a room containing millions of customer records.
+        </p>
+        <p>
+          There is a lock on the door. Only authorised employees should have the key.
+        </p>
+        <p>
+          Now imagine somebody places a copy of that key inside a leaflet handed to everyone entering the building.
+        </p>
+        <p>
+          The room is still locked. The problem is that the thing protecting it isn't secret anymore.
+        </p>
+        <p>
+          The same principle applies here.
+        </p>
+        <p>
+          A modern website downloads JavaScript to your browser. If your browser receives that JavaScript, you can inspect it. So can I. So can a security researcher. And so can an attacker.
+        </p>
+
+        <div style="background:#EFF6FF;border-left:4px solid #1D4ED8;padding:18px;border-radius:0 8px 8px 0;margin:24px 0;">
+          <strong style="color:#1E3A8A;font-size:1.05rem;">The Golden Rule of Frontend Architecture:</strong>
+          <p style="color:#1E40AF;margin-top:6px;font-size:0.95rem;">
+            <strong>Anything delivered to the browser should be treated as observable by the user.</strong>
+          </p>
+        </div>
+
+        <p>
+          That doesn't mean API keys can never exist in client-side applications. Some APIs deliberately provide restricted client-side credentials.
+        </p>
+        <p>
+          The important questions are:
+        </p>
+        <ul style="margin-left:20px;line-height:1.8;">
+          <li><strong>What can the key do?</strong></li>
+          <li><strong>Was it designed to be public?</strong></li>
+        </ul>
+      </section>
+
+      <!-- SECTION 5 -->
+      <section id="iterable-warnings" style="margin-top:40px;">
+        <h2>5. Iterable Itself Warns Developers About This</h2>
+        <p>
+          This isn't a security rule invented after the MAG breach.
+        </p>
+        <p>
+          Iterable's own documentation distinguishes between client-side and server-side API credentials.
+        </p>
+        <p>
+          Server-side keys have substantially greater access. Iterable explicitly warns developers not to embed those server-side credentials inside client-side applications because they can potentially be used to access project data. That includes JavaScript and mobile applications.
+        </p>
+        <p>
+          Iterable provides more restricted client-side key types for browser applications. Modern client-side configurations can also use JWT authentication, adding another authentication layer rather than trusting possession of the API key alone.
+        </p>
+        <p>
+          This is important because it changes how we should understand the MAG incident. If Helme's analysis is correct, the issue wasn't simply:
+        </p>
+        <p style="font-weight:700;color:#DC2626;padding-left:14px;border-left:3px solid #DC2626;">
+          “MAG used an API key.”
+        </p>
+        <p>
+          Using API keys is normal. The issue was potentially:
+        </p>
+        <p style="font-weight:700;color:#DC2626;padding-left:14px;border-left:3px solid #DC2626;">
+          A credential intended to have server-side authority was exposed in an environment where anyone could retrieve it.
+        </p>
+        <p>
+          Those are very different things.
+        </p>
+      </section>
+
+      <!-- SECTION 6 -->
+      <section id="least-privilege" style="margin-top:40px;">
+        <h2>6. What Was the Airport Website Actually Doing with the Key?</h2>
+        <p>
+          This is one of the details I found most interesting.
+        </p>
+        <p>
+          You might assume the website needed powerful API access because it was performing some complicated customer-management function.
+        </p>
+        <p>
+          Helme examined the JavaScript responsible for the Iterable integration. The browser-side functionality appears to have been largely connected with marketing attribution and event tracking.
+        </p>
+        <p>
+          For example, the application could record that someone had arrived at a page through a particular marketing campaign. That's completely normal. Businesses need analytics. Marketing teams need to understand whether campaigns work.
+        </p>
+        <p>
+          The security question is whether the credential being used had <strong>far more authority than that relatively simple job required</strong>.
+        </p>
+        <p>
+          That brings us to one of the oldest principles in cybersecurity:
+        </p>
+
+        <div style="background:#FEF3C7;border:1.5px solid #FCD34D;border-radius:10px;padding:20px;margin:24px 0;">
+          <h3 style="color:#B45309;margin-bottom:8px;">Principle of Least Privilege</h3>
+          <p style="color:#92400E;font-size:0.95rem;line-height:1.7;">
+            Give a user, system or credential only the permissions necessary to perform its job. Nothing more.
+            If a browser needs to submit a marketing event, its credential should not also provide access to functionality capable of retrieving or exporting large quantities of customer information.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 7 -->
+      <section id="api-precedents" style="margin-top:40px;">
+        <h2>7. We Have Seen the API Problem Before</h2>
+        <p>
+          MAG isn't the first major organisation where an API became central to a huge data incident:
+        </p>
+
+        <div style="display:grid;grid-template-columns:1fr;gap:18px;margin:24px 0;">
+          
+          <!-- T-Mobile -->
+          <div style="background:#FFFFFF;border:1.5px solid var(--border);border-radius:10px;padding:20px;box-shadow:var(--sh-xs);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span style="background:#E11D48;color:white;font-size:0.75rem;font-weight:800;padding:3px 8px;border-radius:6px;">T-MOBILE (2023)</span>
+              <strong>37 Million Customer Accounts</strong>
+            </div>
+            <p style="font-size:0.92rem;color:var(--ink-2);line-height:1.7;">
+              In January 2023, T-Mobile disclosed that an attacker had been obtaining customer information through a single API without authorisation. The information included names, billing addresses, emails, phone numbers, birth dates, and account details. The attacker didn't need to compromise individual accounts — one API provided a path to information at enormous scale.
+            </p>
+          </div>
+
+          <!-- Trello -->
+          <div style="background:#FFFFFF;border:1.5px solid var(--border);border-radius:10px;padding:20px;box-shadow:var(--sh-xs);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span style="background:#0284C7;color:white;font-size:0.75rem;font-weight:800;padding:3px 8px;border-radius:6px;">TRELLO / ATLASSIAN (2024)</span>
+              <strong>15 Million Profile Correlations</strong>
+            </div>
+            <p style="font-size:0.92rem;color:var(--ink-2);line-height:1.7;">
+              An attacker obtained email addresses elsewhere and used Trello's REST API to match those addresses against public profile information. The API was doing what it was designed to do, but unauthenticated querying at scale created a privacy catastrophe. Atlassian changed the API to stop unauthenticated profile lookups by email.
+            </p>
+            <p style="font-size:0.9rem;color:#0284C7;font-weight:600;margin-top:6px;">
+              Sometimes the API isn't broken. The assumption behind the API is broken.
+            </p>
+          </div>
+
+          <!-- Optus -->
+          <div style="background:#FFFFFF;border:1.5px solid var(--border);border-radius:10px;padding:20px;box-shadow:var(--sh-xs);">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+              <span style="background:#15803D;color:white;font-size:0.75rem;font-weight:800;padding:3px 8px;border-radius:6px;">OPTUS (2022)</span>
+              <strong>Follow-on Fraud &amp; Identity Scams</strong>
+            </div>
+            <p style="font-size:0.92rem;color:var(--ink-2);line-height:1.7;">
+              Millions of Australian customers had identity details exposed via an API. The Australian Cyber Security Centre subsequently issued urgent guidance warning customers about targeted scams referencing the breach. Stealing information is only the first stage; the real danger is how that data is subsequently weaponized against the victims.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 8 -->
+      <section id="second-attack" style="margin-top:40px;">
+        <h2>8. The Second Attack Happens After the Breach</h2>
+        <p>
+          Suppose someone stole the following information:
+        </p>
+
+        <div style="background:#0F172A;color:#E2E8F0;border-radius:10px;padding:18px;margin:20px 0;font-family:monospace;font-size:0.9rem;line-height:1.8;">
+          <span style="color:#94A3B8;">Email:</span> john.smith@example.com<br>
+          <span style="color:#94A3B8;">Phone:</span> 07XXXXXXXXX<br>
+          <span style="color:#94A3B8;">Postcode:</span> M1 XXX<br>
+          <span style="color:#F59E0B;font-weight:700;">Vehicle:</span> AB26 XYZ<br>
+          <span style="color:#38BDF8;font-weight:700;">Context:</span> Manchester Airport parking customer
+        </div>
+
+        <p>
+          None of those fields is a password. None is a credit-card number.
+        </p>
+        <p>
+          But imagine receiving this message two months later:
+        </p>
+
+        <div style="background:#FEF2F2;border-left:4px solid #DC2626;padding:18px;border-radius:0 8px 8px 0;margin:20px 0;">
+          <p style="font-weight:700;color:#991B1B;margin-bottom:6px;">Manchester Airport Parking</p>
+          <p style="font-style:italic;color:#7F1D1D;margin-bottom:8px;">
+            “Following the recent security incident, your vehicle <strong>AB26 XYZ</strong> has been identified among affected parking customers. Please verify your booking details to ensure your account remains protected.”
+          </p>
+        </div>
+
+        <p>
+          Now the criminal has several psychological advantages:
+        </p>
+        <ul style="margin-left:20px;line-height:1.8;">
+          <li>They know your exact registration.</li>
+          <li>They know which airport you use.</li>
+          <li>There really was a cyberattack.</li>
+          <li>And the message is referencing that real incident.</li>
+        </ul>
+        <p>
+          Suddenly the phishing message doesn't feel random. It feels personal.
+        </p>
+        <p>
+          This is precisely why MAG itself now advises affected customers to remain alert for suspicious emails, calls and text messages. MAG also states that it will not unexpectedly contact customers asking for payment-card details, banking information or passwords.
+        </p>
+
+        <h3 style="margin-top:28px;">The Stolen Information Was Eventually Made Public</h3>
+        <p>
+          MAG's current incident guidance contains another important update. It tells customers who received an affected-customer notification that their information <strong>was made publicly available</strong>.
+        </p>
+        <p>
+          That changes the risk. A private criminal group possessing stolen information is one problem. Publicly available stolen information means potentially many different criminals can obtain it.
+        </p>
+
+        <!-- Threat Exfiltration Chain -->
+        <div style="background:#F1F5F9;border-radius:10px;padding:20px;margin:20px 0;font-family:monospace;font-size:0.88rem;line-height:1.8;color:var(--ink-2);">
+          MAG breach<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+          Customer data stolen<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+          Information published<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+          Other criminals obtain it<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+          Victims profiled<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+          Targeted phishing / smishing / vishing<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;↓<br>
+          Credentials or money stolen
+        </div>
+
+        <p>
+          The original cyberattack can therefore create opportunities for completely separate attacks months or even years later.
+        </p>
+      </section>
+
+      <!-- SECTION 9 -->
+      <section id="fulcrumsec-attribution" style="margin-top:40px;">
+        <h2>9. Did FulcrumSec Definitely Use the Exposed Iterable Keys?</h2>
+        <p>
+          This is where we need to remain careful. There are several things we can demonstrate:
+        </p>
+        <ul style="margin-left:20px;line-height:1.9;">
+          <li><strong>MAG confirmed the breach.</strong></li>
+          <li><strong>MAG confirmed the affected categories of information.</strong></li>
+          <li><strong>FulcrumSec claimed responsibility.</strong></li>
+          <li><strong>FulcrumSec claimed that airport-specific Iterable credentials exposed in JavaScript provided access.</strong></li>
+          <li><strong>Scott Helme independently found three airport-specific Iterable credentials in MAG's JavaScript.</strong></li>
+          <li><strong>Historical archives indicate those credentials had been exposed since 2022.</strong></li>
+          <li><strong>Helme found Iterable-specific characteristics in breached records.</strong></li>
+        </ul>
+        <p>
+          Those pieces fit together unusually well.
+        </p>
+        <p>
+          But MAG has not publicly released a forensic report saying: <em>“This is definitively how the attacker obtained access.”</em>
+        </p>
+        <p>
+          So I would describe the Iterable explanation as <strong>strongly supported by independent technical evidence</strong>, rather than officially confirmed. That distinction is important. Cybersecurity reporting becomes unreliable very quickly when an attacker claim is repeated by news outlets until it is accepted as uncontested fact.
+        </p>
+      </section>
+
+      <!-- SECTION 10 -->
+      <section id="soc-detection" style="margin-top:40px;">
+        <h2>10. Could a SOC Have Detected This?</h2>
+        <p>
+          Potentially. But this is also where the case becomes uncomfortable for defenders.
+        </p>
+        <p>
+          Imagine the attack happened broadly as FulcrumSec described:
+        </p>
+        <p>
+          An attacker obtains a legitimate API credential. They use it against Iterable. From Iterable's perspective, the requests may initially appear authenticated. MAG's laptops could be completely healthy. EDR might see nothing. There may be no malware, no suspicious executable, and no lateral movement through MAG's internal network.
+        </p>
+        <p>
+          Some of the most valuable telemetry could instead exist inside the <strong>SaaS provider's API logs</strong>.
+        </p>
+
+        <div style="background:#0F172A;color:#E2E8F0;border-radius:10px;padding:20px;margin:20px 0;font-family:monospace;font-size:0.88rem;line-height:1.8;">
+          <div style="color:#38BDF8;font-weight:700;margin-bottom:8px;">[WHAT A DEFENDER WOULD NEED TO MONITOR IN SAAS API LOGS]</div>
+          • Large numbers of customer records requested<br>
+          • Bulk export operations triggered<br>
+          • API calls originating from unusual IP addresses or hosting ASNs<br>
+          • Requests arriving from unexpected countries<br>
+          • Sudden volume increases against customer profiles<br>
+          • Old credentials becoming unusually active<br>
+          • Requests directed to rarely used administrative endpoints<br>
+          • Abnormal outbound data transfers<br>
+          • One credential being used concurrently from several locations
+        </div>
+
+        <p>
+          This is why modern SOC monitoring increasingly needs to extend beyond traditional endpoints and firewalls.
+        </p>
+        
+        <h3 style="margin-top:28px;">Your SaaS Platforms Are Part of Your Attack Surface</h3>
+        <p>
+          A modern company attack surface looks more like this:
+        </p>
+
+        <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:10px;padding:20px;margin:20px 0;font-family:monospace;font-size:0.88rem;line-height:1.8;text-align:center;">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AWS / Azure<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+          Marketing SaaS ---- Company ---- Customer Portal<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;APIs<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Suppliers
+        </div>
+
+        <p>
+          The organisation's information exists across all of those environments. Attackers don't particularly care which one contains the easiest route. If the endpoint is difficult to compromise but a third-party API exposes the same customer data, they'll attack the API.
+        </p>
+        <p>
+          Security architecture therefore has to follow the <strong>data</strong>, not simply the corporate network.
+        </p>
+      </section>
+
+      <!-- SECTION 11 -->
+      <section id="lessons-organisations" style="margin-top:40px;">
+        <h2>11. What Should Organisations Learn from MAG?</h2>
+
+        <div style="display:grid;grid-template-columns:1fr;gap:16px;margin:24px 0;">
+          <div style="background:#FFFFFF;border-left:4px solid #DC2626;padding:16px 20px;border-radius:0 8px 8px 0;box-shadow:var(--sh-xs);">
+            <strong style="color:var(--ink);font-size:1rem;">1. Treat frontend applications as public environments</strong>
+            <p style="font-size:0.92rem;color:var(--ink-3);margin-top:4px;">Anything sent to the browser can potentially be inspected. Never assume minification, bundling or obscure filenames make a secret safe. They make it inconvenient to find. That isn't the same as secure.</p>
+          </div>
+          <div style="background:#FFFFFF;border-left:4px solid #DC2626;padding:16px 20px;border-radius:0 8px 8px 0;box-shadow:var(--sh-xs);">
+            <strong style="color:var(--ink);font-size:1rem;">2. Use client-side credentials for client-side applications</strong>
+            <p style="font-size:0.92rem;color:var(--ink-3);margin-top:4px;">If a vendor provides separate browser and server credentials, there is usually a security reason. Server-side secrets should remain server-side.</p>
+          </div>
+          <div style="background:#FFFFFF;border-left:4px solid #DC2626;padding:16px 20px;border-radius:0 8px 8px 0;box-shadow:var(--sh-xs);">
+            <strong style="color:var(--ink);font-size:1rem;">3. Apply least privilege</strong>
+            <p style="font-size:0.92rem;color:var(--ink-3);margin-top:4px;">Ask a simple question about every credential: <em>“If somebody steals this tomorrow, what is the worst thing they can do with it?”</em> If the answer is <em>“Export our customer database,”</em> that credential deserves considerably stronger protection.</p>
+          </div>
+          <div style="background:#FFFFFF;border-left:4px solid #DC2626;padding:16px 20px;border-radius:0 8px 8px 0;box-shadow:var(--sh-xs);">
+            <strong style="color:var(--ink);font-size:1rem;">4. Scan the application you actually deploy</strong>
+            <p style="font-size:0.92rem;color:var(--ink-3);margin-top:4px;">Searching GitHub repositories for secrets is useful, but final production bundles matter too. Build processes can inject environment variables into compiled JavaScript. Scan production assets.</p>
+          </div>
+          <div style="background:#FFFFFF;border-left:4px solid #DC2626;padding:16px 20px;border-radius:0 8px 8px 0;box-shadow:var(--sh-xs);">
+            <strong style="color:var(--ink);font-size:1rem;">5. Rotate credentials</strong>
+            <p style="font-size:0.92rem;color:var(--ink-3);margin-top:4px;">The MAG credentials identified by Helme appear to have remained unchanged for approximately four years. Credential rotation limits the useful lifetime of a leaked secret.</p>
+          </div>
+          <div style="background:#FFFFFF;border-left:4px solid #DC2626;padding:16px 20px;border-radius:0 8px 8px 0;box-shadow:var(--sh-xs);">
+            <strong style="color:var(--ink);font-size:1rem;">6. Monitor API behaviour</strong>
+            <p style="font-size:0.92rem;color:var(--ink-3);margin-top:4px;">Authentication answers: <em>“Does this request have a valid credential?”</em> Security monitoring should also ask: <em>“Does what this credential is doing make sense?”</em> A legitimate credential exporting millions of records can still represent malicious activity.</p>
+          </div>
+          <div style="background:#FFFFFF;border-left:4px solid #DC2626;padding:16px 20px;border-radius:0 8px 8px 0;box-shadow:var(--sh-xs);">
+            <strong style="color:var(--ink);font-size:1rem;">7. Don't simply remove exposed secrets</strong>
+            <p style="font-size:0.92rem;color:var(--ink-3);margin-top:4px;">If a credential appears publicly, removing it from the website is not enough. Assume somebody may already have copied it. Revoke it. Rotate it. Then investigate its historical use.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 12 -->
+      <section id="lessons-customers" style="margin-top:40px;">
+        <h2>12. What Should Affected Customers Learn?</h2>
+        <p>
+          The practical advice is much simpler. Be cautious about unexpected messages connected with:
+        </p>
+        <ul style="margin-left:20px;line-height:1.8;">
+          <li>Manchester Airport, London Stansted, or East Midlands Airport</li>
+          <li>Airport parking, valet bookings, and lounge reservations</li>
+          <li>Fast Track passes</li>
+          <li>Refunds or flight disruption compensation</li>
+          <li>Booking verification checks</li>
+        </ul>
+
+        <div style="background:#EFF6FF;border-left:4px solid #2563EB;padding:16px;border-radius:0 8px 8px 0;margin:20px 0;">
+          <strong style="color:#1D4ED8;">The Fundamental Defense Rule:</strong>
+          <p style="color:#1E40AF;margin-top:4px;font-size:0.95rem;">
+            <strong>Correct personal information does not prove that a message is genuine.</strong><br>
+            If someone knows your registration number, that does not prove they're from the airport. If they know your postcode, that does not prove they're from MAG. Sometimes the reason a criminal knows those things is precisely because the information was stolen.
+          </p>
+        </div>
+      </section>
+
+      <!-- SECTION 13 -->
+      <section id="bigger-lesson" style="margin-top:40px;">
+        <h2>13. The Bigger Lesson</h2>
+        <p>
+          The Manchester Airports Group breach is interesting because it sits at the intersection of several problems that modern organisations face:
+        </p>
+        <p>
+          <strong>API security. SaaS security. Secret management. Third-party data. Frontend security. Credential lifecycle management.</strong>
+        </p>
+        <p>
+          And this isn't theoretical. Academic researchers have now demonstrated exposed API credentials across thousands of real webpages. T-Mobile has experienced unauthorised API access affecting tens of millions of customer accounts. Trello changed API behaviour after attackers abused email-based profile lookups at enormous scale.
+        </p>
+        <p>
+          MAG therefore shouldn't be viewed simply as <em>“Another company got hacked.”</em> It is a useful example of how the attack surface has changed.
+        </p>
+        <p>
+          Twenty years ago, security teams concentrated heavily on protecting the corporate network. Today, an organisation can have excellent endpoint security and still expose customer information through:
+        </p>
+        <ul style="margin-left:20px;line-height:1.8;">
+          <li>a SaaS integration,</li>
+          <li>an API,</li>
+          <li>a cloud configuration,</li>
+          <li>a forgotten credential,</li>
+          <li>or a JavaScript bundle downloaded by millions of ordinary visitors.</li>
+        </ul>
+        <p>
+          And perhaps the most uncomfortable part is that none of those things necessarily causes an application to stop working. Everything can continue functioning perfectly. Customers can make bookings. Marketing analytics can collect events. Developers can deploy new versions. Monitoring dashboards can stay green.
+        </p>
+        <blockquote style="border-left:4px solid #DC2626;padding-left:16px;margin:20px 0;font-style:italic;color:var(--ink-2);font-size:1.05rem;">
+          Until somebody asks a different question: <strong>What exactly did we just send to the browser?</strong>
+        </blockquote>
+      </section>
+
+      <!-- SECTION 14: EVIDENCE MATRIX -->
+      <section id="what-we-know" style="margin-top:40px;">
+        <h2>14. What We Know (The Evidence Matrix)</h2>
+
+        <!-- Evidence Box Grid -->
+        <div style="display:grid;grid-template-columns:1fr;gap:18px;margin:24px 0;">
+
+          <!-- CONFIRMED -->
+          <div style="background:#F0FDF4;border:1.5px solid #86EFAC;border-radius:12px;padding:20px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <span style="background:#15803D;color:white;font-size:0.75rem;font-weight:800;padding:3px 8px;border-radius:6px;">CONFIRMED ✓</span>
+              <strong style="color:#14532D;">Primary Source Disclosures</strong>
+            </div>
+            <ul style="margin-left:20px;color:#166534;font-size:0.92rem;line-height:1.7;">
+              <li>MAG suffered a cybersecurity incident involving an unauthorised third party.</li>
+              <li>Information associated with airport Wi-Fi, parking, lounges and Fast Track was obtained.</li>
+              <li>Affected information included email addresses, phone numbers, postcodes and vehicle registrations.</li>
+              <li>Operational airport systems were not involved; passenger safety and aviation security were not compromised.</li>
+              <li>The affected system did not contain customer bank or payment details.</li>
+              <li>Affected customers have been informed, and MAG confirmed the information was made publicly available.</li>
+            </ul>
+          </div>
+
+          <!-- INDEPENDENTLY VERIFIED -->
+          <div style="background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:12px;padding:20px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <span style="background:#1D4ED8;color:white;font-size:0.75rem;font-weight:800;padding:3px 8px;border-radius:6px;">INDEPENDENTLY VERIFIED ✓</span>
+              <strong style="color:#1E3A8A;">Forensic &amp; Academic Research</strong>
+            </div>
+            <ul style="margin-left:20px;color:#1E40AF;font-size:0.92rem;line-height:1.7;">
+              <li>Scott Helme identified three airport-specific Iterable credentials in publicly served JavaScript.</li>
+              <li>Archived copies indicate exposure beginning in June/July 2022 and continuing until August 2026.</li>
+              <li>Technical analysis found characteristics consistent with the stolen information having passed through Iterable.</li>
+              <li>Independent academic research published in 2026 demonstrates that publicly exposed web API credentials are a wider real-world problem, particularly in JavaScript environments.</li>
+            </ul>
+          </div>
+
+          <!-- CLAIMED -->
+          <div style="background:#FFFBEB;border:1.5px solid #FCD34D;border-radius:12px;padding:20px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <span style="background:#D97706;color:white;font-size:0.75rem;font-weight:800;padding:3px 8px;border-radius:6px;">CLAIMED ⚠</span>
+              <strong style="color:#78350F;">Attacker Statements</strong>
+            </div>
+            <ul style="margin-left:20px;color:#92400E;font-size:0.92rem;line-height:1.7;">
+              <li>FulcrumSec claims responsibility for the MAG incident.</li>
+              <li>The group claims it used the exposed Iterable credentials.</li>
+              <li>It has made additional claims concerning the volume of information stolen.</li>
+              <li>These claims should remain attributed to FulcrumSec unless independently confirmed.</li>
+            </ul>
+          </div>
+
+          <!-- STILL UNKNOWN -->
+          <div style="background:#F8FAFC;border:1.5px solid #CBD5E1;border-radius:12px;padding:20px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+              <span style="background:#475569;color:white;font-size:0.75rem;font-weight:800;padding:3px 8px;border-radius:6px;">STILL UNKNOWN ?</span>
+              <strong style="color:#1E293B;">Unanswered Questions</strong>
+            </div>
+            <ul style="margin-left:20px;color:#334155;font-size:0.92rem;line-height:1.7;">
+              <li>The definitive initial-access vector has not been publicly confirmed by MAG.</li>
+              <li>The exact date on which attackers first accessed the information remains unclear.</li>
+              <li>The duration of attacker access has not been publicly established.</li>
+              <li>It is unknown whether anyone else discovered or abused the exposed credentials during their years of public exposure.</li>
+              <li>A complete public forensic report has not yet been released.</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SECTION 15: SOURCES -->
+      <section id="sources" style="margin-top:40px;">
+        <h2>15. Sources &amp; Evidence</h2>
+        <ul style="margin-left:20px;line-height:1.8;font-size:0.92rem;">
+          <li>
+            <strong>Manchester Airports Group — Data Security Incident:</strong><br>
+            <em>Primary source.</em> MAG's official incident page confirms affected services, categories of information, lack of payment data exposure, and current public availability status.
+          </li>
+          <li style="margin-top:12px;">
+            <strong>Manchester Airports Group — Media Centre Statement:</strong><br>
+            <em>Primary source.</em> Original statement from 27 August 2026 detailing the incident and containment response.
+          </li>
+          <li style="margin-top:12px;">
+            <strong>Scott Helme — <em>No Hacking Required: The Manchester Airports Group Data Breach</em>:</strong><br>
+            <em>Independent technical research — 7 September 2026.</em> Documents the airport-specific Iterable credentials, JavaScript implementation, historical exposure dates, API functionality, and credential permissions.
+          </li>
+          <li style="margin-top:12px;">
+            <strong>Iterable — API Keys Documentation:</strong><br>
+            <em>Primary vendor documentation.</em> Explains client-side vs server-side API credentials and explicitly warns that server-side credentials must never be embedded in JavaScript.
+          </li>
+          <li style="margin-top:12px;">
+            <strong>Demir, Vekaria, Smaragdakis &amp; Durumeric — <em>Keys on Doormats: Exposed API Credentials on the Web</em>:</strong><br>
+            <em>Academic research — 2026.</em> Examined 10 million webpages and identified 1,748 distinct credentials across nearly 10,000 webpages, showing frontend API key exposure is an industry-wide challenge.
+          </li>
+          <li style="margin-top:12px;">
+            <strong>T-Mobile — SEC Disclosure:</strong><br>
+            <em>Primary corporate/regulatory evidence — 2023.</em> Disclosed 37 million customer accounts affected through a single unauthorized API path.
+          </li>
+          <li style="margin-top:12px;">
+            <strong>Atlassian — Trello API Incident:</strong><br>
+            <em>Primary vendor evidence — 2024.</em> Documented abuse of Trello's REST API matching email addresses against 15 million public profiles.
+          </li>
+          <li style="margin-top:12px;">
+            <strong>Australian Cyber Security Centre — Optus Data Breach:</strong><br>
+            <em>Government cybersecurity guidance — 2022.</em> Advising affected customers on monitoring accounts and watching for follow-on scams.
+          </li>
+        </ul>
+
+        <div style="background:#F1F5F9;border-left:4px solid #64748B;padding:14px;border-radius:0 6px 6px 0;margin:24px 0;font-size:0.88rem;color:var(--ink-3);">
+          <strong>Evidence standard used in this article:</strong><br>
+          Where possible, this article prioritises: <em>Primary organisation statements → vendor documentation → government sources → independent technical research → academic research → reputable journalism → threat-actor claims.</em>
+        </div>
+      </section>
+
+      <!-- READER INTERACTION & FEEDBACK SECTION -->
+      <section class="art-interactive-section" id="feedback" style="margin-top:50px;">
+        <div class="feedback-card">
+          <div class="feedback-header">
+            <h3>💬 Reader Feedback &amp; Discussion</h3>
+            <p>Have an insight, question, or SOC perspective on API keys in frontend code? Submit a response below.</p>
+          </div>
+
+          <!-- Engagement Buttons -->
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
+            <button class="btn-like" onclick="toggleLike()" aria-pressed="false">
+              <span>❤️</span> <span>Helpful Analysis</span> (<span class="like-count">0</span>)
+            </button>
+            <button class="btn-clap" onclick="addClap()">
+              <span>👏</span> <span>Clap</span> (<span class="clap-count">0</span>)
+            </button>
+            <button class="cta-outline" id="shareBtn" onclick="copyLink()">
+              <span>🔗</span> <span>Share Article</span>
+            </button>
+          </div>
+
+          <form id="fbForm" class="feedback-form">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+              <div>
+                <label for="fbName" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Your Name / Handle</label>
+                <input type="text" id="fbName" required placeholder="Security Professional / Reader" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;">
+              </div>
+              <div>
+                <label for="fbCategory" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Topic</label>
+                <select id="fbCategory" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;">
+                  <option value="API Security">API Security</option>
+                  <option value="SaaS Architecture">SaaS Architecture</option>
+                  <option value="SOC Detection">SOC Detection</option>
+                  <option value="Question">Question</option>
+                </select>
+              </div>
+            </div>
+
+            <div style="margin-bottom:14px;">
+              <label for="fbMessage" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Your Thoughts / Feedback</label>
+              <textarea id="fbMessage" rows="4" required placeholder="What are your thoughts on frontend API key exposures and SaaS monitoring?" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;"></textarea>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+              <button type="submit" class="cta" style="background:#DC2626;">Submit Feedback →</button>
+              <button type="button" id="fbClear" class="cta-outline" style="font-size:0.85rem;">Clear Form</button>
+            </div>
+
+            <div id="fbEmailPreview" hidden style="margin-top:16px;padding:12px;background:#F8FAFC;border:1px solid var(--border);border-radius:8px;">
+              <p id="fbStatus" style="font-size:0.85rem;color:var(--ink-3);margin-bottom:8px;"></p>
+              <div style="display:flex;gap:10px;align-items:center;">
+                <a id="fbEmailLink" href="#" class="cta" style="font-size:0.8rem;padding:6px 12px;">Open Email Draft</a>
+                <button type="button" id="fbCopy" class="cta-outline" style="font-size:0.8rem;padding:6px 12px;">Copy Feedback</button>
+              </div>
+              <textarea id="fbEmailBody" readonly style="width:100%;height:80px;margin-top:8px;font-size:0.75rem;padding:6px;display:none;"></textarea>
+              <span id="fbDraftNote" style="display:none;"></span>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ABOUT STRIP -->
+  <section class="about-strip" id="about">
+    <div class="wrap">
+      <div class="about-in">
+        <div class="about-av" style="background:#DC2626;">PS</div>
+        <div class="about-info">
+          <h2 class="about-title">Poorna Sujampathi Rathnayaka</h2>
+          <p class="about-desc">
+            Investigative cybersecurity researcher and creator of <strong>Cyber Insight</strong>. 
+            I dissect real-world threat campaigns, supply-chain failures, and identity attacks to explain what actually happened behind the headlines.
+          </p>
+        </div>
+        <div class="about-btns">
+          <a href="https://sujampathirathnayaka.com/" class="about-btn w" target="_blank" rel="noopener noreferrer">🌐 Portfolio</a>
+          <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" class="about-btn li" target="_blank" rel="noopener noreferrer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark" style="background:#DC2626;">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            Behind the Breach is an investigative autopsy series covering major cybersecurity incidents in plain, evidence-backed language.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Behind the Breach</div>
+            <ul class="foot-nav-list">
+              <li><a href="behind-the-breach-01.html">Episode 01: Manchester Airports Group</a></li>
+              <li><a href="index.html#behind-the-breach">Series Hub &amp; Archive</a></li>
+              <li><a href="#feedback">Submit Incident Tips</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Curriculum Series</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
+              <li><a href="article-07.html">Ep 07: Fake Recruiters in LinkedIn</a></li>
+              <li><a href="index.html#series">10-Part Core Curriculum</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot-disclaimer">
+        <strong>Research Disclaimer:</strong> Content published in Behind the Breach is compiled for non-commercial educational, threat awareness, and digital literacy purposes. All trademarks and registered names belong to their respective holders.
+      </div>
+
+      <div class="foot-bottom">
+        <div>&copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.</div>
+        <div class="foot-bottom-links">
+          <a href=".well-known/security.txt" target="_blank" rel="noopener noreferrer">Security Policy</a>
+          <span>·</span>
+          <a href="index.html#about">Ethics &amp; Methodology</a>
+          <span>·</span>
+          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element"></div>
+  <script src="js/cms.js?v=7"></script>
+  <script src="js/app.js?v=8"></script>
+  <script src="js/translator.js?v=7"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>

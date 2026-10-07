@@ -68,8 +68,8 @@
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="#series">Series</a></li>
-        <li><a href="#series">Articles</a></li>
+        <li><a href="#series">Curriculum</a></li>
+        <li><a href="#behind-the-breach">Behind the Breach</a></li>
         <li><a href="article.html#feedback">Feedback</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="article.html" class="cta" id="navStartReadingBtn">Start Reading →</a></li>
@@ -714,6 +714,84 @@
     </div>
   </section>
 
+  <!-- BEHIND THE BREACH INVESTIGATIVE SERIES SECTION -->
+  <section class="series-section" id="behind-the-breach" style="background:#FEF2F2;border-top:1px solid #FECACA;border-bottom:1px solid #FECACA;padding:64px 0;">
+    <div class="wrap">
+
+      <!-- Series Hero Banner Card -->
+      <div class="series-hero-card" style="background:linear-gradient(135deg,#991B1B 0%,#7F1D1D 100%);color:white;border-color:#DC2626;">
+        <div class="series-badge" style="background:rgba(255,255,255,.15);color:#FEE2E2;border-color:rgba(255,255,255,.25);">
+          <span class="pulse-dot" style="background:#EF4444;"></span>
+          Investigative Threat Autopsy Series · New Launch
+        </div>
+        <h2 class="series-title" style="color:white;">Behind the Breach</h2>
+        <p class="series-desc" style="color:#FEE2E2;font-size:1.05rem;">
+          <strong>You saw the headline. Here’s what actually happened.</strong><br>
+          We investigate very recent, high-interest cybersecurity incidents. Each article breaks down what actually occurred in clear language, dissects the technical attack path, separates verified facts from claims, and explains what security teams and everyday people must learn from it.
+        </p>
+
+        <!-- Series Status -->
+        <div class="series-tracker" style="background:rgba(0,0,0,.25);border-color:rgba(255,255,255,.15);">
+          <div class="series-tracker-top">
+            <span style="color:#FEE2E2;">Investigation Status: <strong style="color:white;">Case 01 Live Now ✅</strong></span>
+            <span class="stat" style="color:#FEF08A;">Fresh Field Intel · October 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Card: Manchester Airports Group Breach -->
+      <div style="margin-top:32px;">
+        <a href="behind-the-breach-01.html" class="feat-card" style="border:1.5px solid #FCA5A5;box-shadow:var(--sh-md);"
+          aria-label="Read: Manchester Airports Group Data Breach: What Actually Happened, and Why It Matters">
+          <div class="feat-body">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+              <span class="feat-chip" style="background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;">Episode 01 · Aviation &amp; Transport</span>
+              <span class="feat-chip" style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;">Exposed API Keys in JavaScript · 4-Year Exposure</span>
+            </div>
+            <h2 class="feat-h2" style="color:var(--ink);">Manchester Airports Group Data Breach: What Actually Happened, and Why It Matters</h2>
+            <p class="feat-deck">
+              No flights were cancelled. No radar systems failed. But 8.8 million customers had parking, lounge, and vehicle registration data exposed because server-side API keys sat in client-side JavaScript for four years. Here is the technical autopsy.
+            </p>
+            <div class="feat-meta">
+              <div class="feat-av" style="background:#DC2626;">PS</div>
+              <div>
+                <div class="feat-aname">Poorna Sujampathi Rathnayaka</div>
+                <div class="feat-adate">Episode 01 · 9 min read · Published ✅</div>
+              </div>
+              <span class="feat-cta" style="background:#DC2626;color:white;">Read Investigation <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg></span>
+            </div>
+          </div>
+
+          <!-- Feature SVG: Airport API Key Delivery -->
+          <div class="feat-svg" style="background:linear-gradient(135deg,#FEF2F2 0%,#FEE2E2 100%);">
+            <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <circle cx="160" cy="120" r="85" fill="#FECACA" opacity=".4" />
+              <rect x="90" y="45" width="140" height="150" rx="12" fill="white" stroke="#DC2626" stroke-width="2.2" />
+              <rect x="90" y="45" width="140" height="32" rx="12" fill="#DC2626" />
+              <text x="160" y="66" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="10"
+                font-weight="800">AIRPORT JAVASCRIPT</text>
+              <circle cx="160" cy="115" r="26" fill="#FEF2F2" stroke="#DC2626" stroke-width="1.8" />
+              <text x="160" y="112" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="12"
+                font-weight="800">8.8M</text>
+              <text x="160" y="124" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="8"
+                font-weight="700">AFFECTED</text>
+              <!-- API Key in JS badge -->
+              <rect x="98" y="155" width="124" height="22" rx="6" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.2" />
+              <text x="160" y="169" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="7.5"
+                font-weight="700">Iterable Key in JS (4 Yrs)</text>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section class="about-strip" id="about">
     <div class="wrap">
@@ -775,6 +853,7 @@
               <li><a href="article-05.html">Ep 05: The Padlock Myth &amp; TLS Security</a></li>
               <li><a href="article-06.html">Ep 06: Passkeys vs. Passwords &amp; FIDO2</a></li>
               <li><a href="article-07.html">Ep 07: Fake Recruiters &amp; Trojan Assessments</a></li>
+              <li><a href="behind-the-breach-01.html">Behind the Breach Ep 01: Manchester Airports Group</a></li>
               <li><a href="#series">View 10-Part Curriculum</a></li>
               <li><a href="article-07.html#feedback">Submit Reader Feedback</a></li>
             </ul>
