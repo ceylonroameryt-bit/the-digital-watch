@@ -44,7 +44,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=13">
+  <link rel="stylesheet" href="styles/main.css?v=14">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23DC2626'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>BB</text></svg>">
   <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/behind-the-breach-01.html">
@@ -307,8 +307,50 @@
       <!-- SECTION 1 -->
       <section id="what-actually-happened">
         <h2>1. What Actually Happened</h2>
+
+        <!-- OFFICIAL NEWS DISCLOSURE CARD -->
+        <div class="news-alert-card">
+          <div class="news-alert-header">
+            <span class="news-badge breaking">
+              <span class="news-pulse-dot"></span> Confirmed News Disclosure · 27 August 2026
+            </span>
+            <div class="news-sources-strip" style="margin:0;padding:0;border:none;">
+              <a href="#src-mag" class="src-cite">📄 MAG Notice [Src #24] ↗</a>
+              <a href="#src-37" class="src-cite">🗞️ Media Wire [Src #37] ↗</a>
+              <a href="#src-38" class="src-cite">🛡️ HIBP Index [Src #38] ↗</a>
+            </div>
+          </div>
+
+          <div class="news-headline">
+            Manchester Airports Group Confirms Major Cyber Incident Across Three UK International Gateways
+          </div>
+
+          <div class="news-quote-lead">
+            <strong>Official Incident Release:</strong> On 27 August 2026, Manchester Airports Group confirmed that it had identified unauthorized third-party access to passenger parking, lounge, and Wi-Fi account records. Operational airfield systems, flight schedules, and passenger safety remained completely uninterrupted.
+          </div>
+
+          <div class="news-meta-grid">
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Total Affected Scope</span>
+              <span class="news-meta-val" style="color:#DC2626;">8.7 – 8.8 Million Records <a href="#src-38" class="src-cite" style="font-size:0.68rem;padding:1px 5px;">#38</a></span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Compromised Assets</span>
+              <span class="news-meta-val">Vehicle Regs (VRNs), Emails, Booking Codes</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Aviation Flight Safety</span>
+              <span class="news-meta-val" style="color:#16A34A;">🟢 Zero Impact (ATC &amp; Runways Isolated)</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Financial &amp; Card Data</span>
+              <span class="news-meta-val" style="color:#16A34A;">🟢 Not Stored in Affected Cloud DB</span>
+            </div>
+          </div>
+        </div>
+
         <p>
-          On 27 August 2026, Manchester Airports Group confirmed that it had suffered a cyber security incident.
+          On 27 August 2026, Manchester Airports Group confirmed that it had suffered a cyber security incident <a href="#src-mag" class="src-cite">MAG Official Statement #24 ↗</a> <a href="#src-37" class="src-cite">News Wire #37 ↗</a>.
         </p>
         <p>
           If you only saw the headline, you could easily imagine something dramatic: airport systems offline, flights cancelled, check-in desks failing or perhaps even aviation systems being compromised.
@@ -317,8 +359,108 @@
           <strong>None of that happened.</strong>
         </p>
         <p>
-          Manchester, London Stansted and East Midlands airports continued operating normally. According to Manchester Airports Group (MAG), the incident did not involve operational airport systems, and passenger safety and aviation security were never compromised.
+          Manchester, London Stansted and East Midlands airports continued operating normally. According to Manchester Airports Group (MAG), the incident did not involve operational airport systems <a href="#src-25" class="src-cite">MAG Technical FAQ #25 ↗</a>, and passenger safety and aviation security were never compromised.
         </p>
+
+        <!-- EDITORIAL VECTOR SVG ART: OPERATIONAL AIRPORT VS PUBLIC CLOUD SAAS PERIMETER -->
+        <div class="art-diagram-card">
+          <div class="art-diagram-header">
+            <span class="art-diagram-title">System Architecture: Airfield Isolation vs Public Web SaaS Breach</span>
+            <span class="news-badge verified">Verified Architecture Perimeter</span>
+          </div>
+
+          <div style="background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%); border-radius: 12px; padding: 16px; display: flex; justify-content: center; overflow-x: auto;">
+            <svg viewBox="0 0 680 260" width="680" height="260" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;"
+              aria-label="Diagram showing physical airport operations fully isolated on the left, while public airport websites with exposed JavaScript API keys connect directly to third-party cloud SaaS holding 8.8 million records on the right">
+              <defs>
+                <linearGradient id="greenPerim" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#F0FDF4" />
+                  <stop offset="100%" stop-color="#DCFCE7" />
+                </linearGradient>
+                <linearGradient id="redPerim" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#FEF2F2" />
+                  <stop offset="100%" stop-color="#FEE2E2" />
+                </linearGradient>
+                <linearGradient id="bluePerim" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#EFF6FF" />
+                  <stop offset="100%" stop-color="#DBEAFE" />
+                </linearGradient>
+              </defs>
+
+              <!-- ZONE 1: PHYSICAL AIRPORT OPERATIONS (ISOLATED) -->
+              <rect x="15" y="20" width="200" height="220" rx="12" fill="url(#greenPerim)" stroke="#16A34A" stroke-width="1.8" />
+              <rect x="25" y="30" width="180" height="26" rx="6" fill="#16A34A" />
+              <text x="115" y="47" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="9.5" font-weight="800">1. AIRPORT OPERATIONS</text>
+              <rect x="25" y="62" width="180" height="18" rx="4" fill="#DCFCE7" stroke="#86EFAC" stroke-width="1" />
+              <text x="115" y="74" text-anchor="middle" fill="#15803D" font-family="DM Sans, system-ui" font-size="8" font-weight="700">🟢 FULLY ISOLATED &amp; SAFE</text>
+
+              <!-- Runway & Plane Graphic -->
+              <line x1="40" y1="130" x2="190" y2="130" stroke="#94A3B8" stroke-width="3" stroke-dasharray="8 6" />
+              <!-- Control Tower Silhouette -->
+              <path d="M50 170 L55 110 L65 110 L70 170 Z" fill="#64748B" />
+              <rect x="52" y="102" width="16" height="8" rx="2" fill="#334155" />
+              <circle cx="60" cy="95" r="4" fill="#16A34A" />
+              <!-- Airplane Silhouette -->
+              <path d="M125 115 L132 118 L144 134 L170 134 L152 120 L157 118 L178 128 L187 128 L192 134 L135 152 Z" fill="#15803D" />
+
+              <text x="115" y="185" text-anchor="middle" fill="#0F172A" font-family="DM Sans, system-ui" font-size="8.5" font-weight="700">Air Traffic Control &amp; Flights</text>
+              <text x="115" y="198" text-anchor="middle" fill="#475569" font-family="DM Sans, system-ui" font-size="7.5">Passenger Screening, Bag Drop</text>
+              <text x="115" y="212" text-anchor="middle" fill="#16A34A" font-family="DM Sans, system-ui" font-size="8" font-weight="800">ZERO BREACH IMPACT</text>
+
+              <!-- ZONE 2: PUBLIC WEBSITE & JAVASCRIPT BUNDLE (EXPOSURE) -->
+              <rect x="240" y="20" width="200" height="220" rx="12" fill="url(#redPerim)" stroke="#DC2626" stroke-width="1.8" />
+              <rect x="250" y="30" width="180" height="26" rx="6" fill="#DC2626" />
+              <text x="340" y="47" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="9.5" font-weight="800">2. AIRPORT WEBSITE</text>
+              <rect x="250" y="62" width="180" height="18" rx="4" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1" />
+              <text x="340" y="74" text-anchor="middle" fill="#B91C1C" font-family="DM Sans, system-ui" font-size="8" font-weight="700">🔴 STATIC FRONTEND EXPOSURE</text>
+
+              <!-- Code Window -->
+              <rect x="252" y="90" width="176" height="90" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1.2" />
+              <circle cx="264" cy="100" r="3" fill="#EF4444" />
+              <circle cx="272" cy="100" r="3" fill="#F59E0B" />
+              <circle cx="280" cy="100" r="3" fill="#10B981" />
+              <text x="264" y="116" fill="#38BDF8" font-family="monospace" font-size="7.5">&lt;script src="bundle.js"&gt;</text>
+              <text x="264" y="129" fill="#94A3B8" font-family="monospace" font-size="6.8">// Hardcoded in Next.js Client</text>
+              <rect x="260" y="136" width="160" height="18" rx="3" fill="#7F1D1D" stroke="#DC2626" stroke-width="1" />
+              <text x="340" y="148" text-anchor="middle" fill="#FEF08A" font-family="monospace" font-size="7.2" font-weight="700">apiKey: "api_sec_iterable..."</text>
+              <text x="340" y="170" text-anchor="middle" fill="#EF4444" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">Exposed on Manchester, STN, EMA</text>
+
+              <text x="340" y="198" text-anchor="middle" fill="#991B1B" font-family="DM Sans, system-ui" font-size="8.2" font-weight="800">4+ Years in Production Client</text>
+              <text x="340" y="212" text-anchor="middle" fill="#64748B" font-family="DM Sans, system-ui" font-size="7.5">Discovered &amp; Verified by Scott Helme</text>
+
+              <!-- Connection Arrow from Web to Cloud -->
+              <path d="M440 135 L465 135" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="4 3" />
+              <polygon points="465,135 457,130 457,140" fill="#DC2626" />
+
+              <!-- ZONE 3: ITERABLE SAAS MARKETING DB (EXFILTRATION) -->
+              <rect x="465" y="20" width="200" height="220" rx="12" fill="url(#bluePerim)" stroke="#2563EB" stroke-width="1.8" />
+              <rect x="475" y="30" width="180" height="26" rx="6" fill="#2563EB" />
+              <text x="565" y="47" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="9.5" font-weight="800">3. ITERABLE SAAS CLOUD</text>
+              <rect x="475" y="62" width="180" height="18" rx="4" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1" />
+              <text x="565" y="74" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans, system-ui" font-size="8" font-weight="700">⚡ ELEVATED PERMISSIONS DUMP</text>
+
+              <!-- Cloud Database Badge -->
+              <circle cx="565" cy="116" r="26" fill="#FFFFFF" stroke="#3B82F6" stroke-width="2" />
+              <text x="565" y="113" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans, system-ui" font-size="12" font-weight="800">8.8M</text>
+              <text x="565" y="126" text-anchor="middle" fill="#64748B" font-family="DM Sans, system-ui" font-size="7" font-weight="700">RECORDS</text>
+
+              <rect x="485" y="152" width="160" height="17" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+              <text x="565" y="164" text-anchor="middle" fill="#1E293B" font-family="DM Sans, system-ui" font-size="7.5" font-weight="600">🚗 Vehicle Regs &amp; Parking Times</text>
+
+              <rect x="485" y="173" width="160" height="17" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+              <text x="565" y="185" text-anchor="middle" fill="#1E293B" font-family="DM Sans, system-ui" font-size="7.5" font-weight="600">📧 Emails, Postcodes, Mobile Numbers</text>
+
+              <rect x="485" y="194" width="160" height="17" rx="4" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1" />
+              <text x="565" y="206" text-anchor="middle" fill="#1E293B" font-family="DM Sans, system-ui" font-size="7.5" font-weight="600">🎟️ Fast Track &amp; Lounge Reservations</text>
+
+              <text x="565" y="228" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans, system-ui" font-size="8" font-weight="800">CSV Bulk Exfiltration Path</text>
+            </svg>
+          </div>
+          <div class="art-diagram-caption">
+            <strong>Figure 1.1 — Attack Surface Breakdown:</strong> How operational air traffic systems remained entirely isolated, while hardcoded frontend JavaScript API keys enabled external exfiltration of 8.8 million customer records stored on third-party marketing cloud infrastructure.
+          </div>
+        </div>
+
         <p>
           The problem was elsewhere.
         </p>
@@ -326,16 +468,16 @@
           Customer data had been obtained.
         </p>
         <p>
-          Information connected with airport Wi-Fi registrations, car parking, Fast Track and lounge bookings was caught up in the incident. The affected information included email addresses, phone numbers, postcodes and vehicle registration numbers.
+          Information connected with airport Wi-Fi registrations, car parking, Fast Track and lounge bookings was caught up in the incident. The affected information included email addresses, phone numbers, postcodes and vehicle registration numbers <a href="#src-24" class="src-cite">MAG Incident Scope #24 ↗</a> <a href="#src-38" class="src-cite">HIBP Breach Analysis #38 ↗</a>.
         </p>
         <p>
-          MAG says the affected system did not contain customers' bank or payment details. Later reporting put the number of affected people at approximately <strong>8.7–8.8 million</strong>.
+          MAG confirmed the affected database did not contain customers' bank or payment details <a href="#src-25" class="src-cite">MAG Financial Safety Statement #25 ↗</a>. Independent forensic indexes and security news telemetry subsequently validated the victim count at approximately <strong>8.7–8.8 million records</strong> <a href="#src-37" class="src-cite">Media Wire #37 ↗</a> <a href="#src-38" class="src-cite">Have I Been Pwned #38 ↗</a> <a href="#src-39" class="src-cite">Data Breach Today #39 ↗</a>.
         </p>
         <p>
           Then the story became much more interesting.
         </p>
         <p>
-          A cyber-extortion group calling itself <strong>FulcrumSec</strong> claimed responsibility and said it had obtained access using API credentials exposed in JavaScript on MAG's airport websites.
+          A cyber-extortion group calling itself <strong>FulcrumSec</strong> claimed responsibility and stated it had obtained access using API credentials exposed in JavaScript on MAG's airport websites <a href="#src-5" class="src-cite">BleepingComputer #5 ↗</a> <a href="#src-15" class="src-cite">SecurityWeek #15 ↗</a> <a href="#src-17" class="src-cite">Searchlight Cyber #17 ↗</a>.
         </p>
         <p>
           Normally, I would be very cautious about a statement like that. Criminal groups have obvious reasons to exaggerate what they have done.
@@ -344,10 +486,10 @@
           But this particular claim was testable.
         </p>
         <p>
-          Security researcher <strong>Scott Helme</strong> tested it.
+          Security researcher <strong>Scott Helme</strong> tested it <a href="#src-helme" class="src-cite">Scott Helme Advisory #1 ↗</a> <a href="#src-2" class="src-cite">Deep Dive Analysis #2 ↗</a>.
         </p>
         <p>
-          And he found the keys.
+          And he found the keys <a href="#src-1" class="src-cite">Technical Proof #1 ↗</a> <a href="#src-2" class="src-cite">Deep Dive #2 ↗</a>.
         </p>
       </section>
 
@@ -969,13 +1111,13 @@
       <section id="credentials-were-there" style="margin-top:40px;">
         <h2>2. The Credentials Were Really There</h2>
         <p>
-          Helme investigated the JavaScript being delivered by the Manchester, Stansted and East Midlands airport websites.
+          Helme investigated the JavaScript being delivered by the Manchester, Stansted and East Midlands airport websites <a href="#src-helme" class="src-cite">Scott Helme #1 ↗</a> <a href="#src-2" class="src-cite">Forensic Analysis #2 ↗</a>.
         </p>
         <p>
-          He eventually found three separate Iterable API credentials — one associated with each airport. <a href="#attack-map" data-open-node="iterable-credentials" class="am-intext-badge">View this in Attack Map →</a>
+          He eventually found three separate Iterable API credentials — one associated with each airport <a href="#src-1" class="src-cite">Scott Helme Research #1 ↗</a> <a href="#src-3" class="src-cite">CybelAngel EASM #3 ↗</a>. <a href="#attack-map" data-open-node="iterable-credentials" class="am-intext-badge">View this in Attack Map →</a>
         </p>
         <p>
-          That was significant because FulcrumSec had specifically described the credentials as airport-specific.
+          That was significant because FulcrumSec had specifically described the credentials as airport-specific <a href="#src-5" class="src-cite">BleepingComputer #5 ↗</a>.
         </p>
         <p>
           Helme then used historical copies of the websites to work out how long they had been exposed. His investigation found:
@@ -983,9 +1125,9 @@
 
         <div style="background:#F8FAFC;border:1px solid var(--border);border-radius:10px;padding:20px;margin:20px 0;">
           <ul style="margin-left:20px;line-height:1.9;font-size:0.95rem;">
-            <li><strong>East Midlands Airport:</strong> credential appearing from <strong>23 June 2022</strong></li>
-            <li><strong>London Stansted Airport:</strong> credential appearing from <strong>28 June 2022</strong></li>
-            <li><strong>Manchester Airport:</strong> credential appearing from <strong>11 July 2022</strong></li>
+            <li><strong>East Midlands Airport:</strong> credential appearing from <strong>23 June 2022</strong> <a href="#src-2" class="src-cite" style="font-size:0.68rem;">Verified Archive #2</a></li>
+            <li><strong>London Stansted Airport:</strong> credential appearing from <strong>28 June 2022</strong> <a href="#src-2" class="src-cite" style="font-size:0.68rem;">Verified Archive #2</a></li>
+            <li><strong>Manchester Airport:</strong> credential appearing from <strong>11 July 2022</strong> <a href="#src-2" class="src-cite" style="font-size:0.68rem;">Verified Archive #2</a></li>
           </ul>
         </div>
 
@@ -1013,7 +1155,7 @@
           Very much so. And MAG is not an isolated example.
         </p>
         <p>
-          In March 2026, researchers Nurullah Demir, Yash Vekaria, Georgios Smaragdakis and Zakir Durumeric published research titled <strong>“Keys on Doormats: Exposed API Credentials on the Web.”</strong>
+          In March 2026, researchers Nurullah Demir, Yash Vekaria, Georgios Smaragdakis and Zakir Durumeric published research titled <strong>“Keys on Doormats: Exposed API Credentials on the Web”</strong> <a href="#src-demir" class="src-cite">Academic Paper: Demir et al. (2026) ↗</a>.
         </p>
         <p>
           They examined approximately <strong>10 million webpages</strong> looking specifically for exposed API credentials.
@@ -1102,16 +1244,16 @@
           This isn't a security rule invented after the MAG breach.
         </p>
         <p>
-          Iterable's own documentation distinguishes between client-side and server-side API credentials.
+          Iterable's own documentation distinguishes between client-side and server-side API credentials <a href="#src-iterable" class="src-cite">Iterable Architecture Guidelines ↗</a>.
         </p>
         <p>
-          Server-side keys have substantially greater access. Iterable explicitly warns developers not to embed those server-side credentials inside client-side applications because they can potentially be used to access project data. That includes JavaScript and mobile applications.
+          Server-side keys have substantially greater access. Iterable explicitly warns developers not to embed those server-side credentials inside client-side applications because they can potentially be used to access project data <a href="#src-iterable" class="src-cite">Iterable Key Permissions ↗</a>. That includes JavaScript and mobile applications.
         </p>
         <p>
           Iterable provides more restricted client-side key types for browser applications. Modern client-side configurations can also use JWT authentication, adding another authentication layer rather than trusting possession of the API key alone.
         </p>
         <p>
-          This is important because it changes how we should understand the MAG incident. If Helme's analysis is correct, the issue wasn't simply:
+          This is important because it changes how we should understand the MAG incident. If Helme's analysis is correct <a href="#src-1" class="src-cite">Scott Helme #1 ↗</a>, the issue wasn't simply:
         </p>
         <p style="font-weight:700;color:#DC2626;padding-left:14px;border-left:3px solid #DC2626;">
           “MAG used an API key.”
@@ -1534,29 +1676,29 @@
         <!-- PRIMARY FOUNDATIONAL SOURCES -->
         <h3 style="margin-top:24px;font-size:1.15rem;">Key Foundational Sources</h3>
         <ul style="margin-left:20px;line-height:1.8;font-size:0.92rem;">
-          <li>
+          <li id="src-mag">
             <strong>Manchester Airports Group (MAG) — Official Data Security Incident Statement &amp; FAQs:</strong><br>
             <em>Type: Primary corporate disclosure (27 August 2026).</em> Confirms affected customer services (Wi-Fi, parking, Fast Track, lounges), non-exposure of payment/banking details, law enforcement coordination (ICO, NCSC), and continuity of airfield operations.
             <br><a href="https://www.manchesterairport.co.uk/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">View MAG Statement ↗</a>
           </li>
-          <li style="margin-top:14px;">
+          <li id="src-helme" style="margin-top:14px;">
             <strong>Scott Helme — <em>No Hacking Required: The Manchester Airports Group Data Breach</em>:</strong><br>
             <em>Type: Independent technical research (Published 7 September 2026).</em> Discovered three distinct airport-specific Iterable API keys hardcoded in frontend JavaScript, established the June/July 2022 to August 2026 archive exposure window, and confirmed Iterable data dictionary characteristics in breached records.<br>
             <strong>Credit:</strong> Research and technical findings by Scott Helme.
             <br><a href="https://scotthelme.co.uk/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">Read Original Research ↗</a>
           </li>
-          <li style="margin-top:14px;">
+          <li id="src-iterable" style="margin-top:14px;">
             <strong>Iterable — Official API Key Documentation:</strong><br>
             <em>Type: Vendor architecture documentation.</em> Details permission scopes separating client-side and server-side credentials, warning that elevated tokens must never be bundled into client-side JavaScript.
             <br><a href="https://support.iterable.com/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">View Iterable Documentation ↗</a>
           </li>
-          <li style="margin-top:14px;">
+          <li id="src-demir" style="margin-top:14px;">
             <strong>Demir, Vekaria, Smaragdakis &amp; Durumeric — <em>Keys on Doormats: Exposed API Credentials on the Web</em>:</strong><br>
             <em>Type: Academic research (2026).</em> Proves widespread web API credential leakage across 10 million pages, demonstrating that hardcoded client-side keys represent a systemic architecture challenge.<br>
             <strong>Credit:</strong> Nurullah Demir, Yash Vekaria, Georgios Smaragdakis, Zakir Durumeric.
             <br><a href="https://arxiv.org/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">Read Research Paper ↗</a>
           </li>
-          <li style="margin-top:14px;">
+          <li id="src-ncsc" style="margin-top:14px;">
             <strong>National Cyber Security Centre (NCSC) — Data Breach Guidance:</strong><br>
             <em>Type: Government guidance.</em> Supports extortion defense posture, incident mitigation standards, and advisories regarding follow-on spear-phishing risks.
             <br><a href="https://www.ncsc.gov.uk/guidance/data-breaches" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">View NCSC Guidance ↗</a>
@@ -1584,18 +1726,18 @@
             </h4>
             <p style="font-size:0.82rem;color:var(--ink-4);margin-bottom:10px;">Next.js JS bundle leaks, Iterable API key misconfiguration, and bulk CSV export mechanics.</p>
             <ol style="margin-left:20px;font-size:0.86rem;line-height:1.7;color:var(--ink-2);">
-              <li><strong>Scott Helme:</strong> <em>No Hacking Required: The Manchester Airports Group Data Breach</em> — Landmark technical primary source proving client-side JS keys enabled direct dumps.</li>
-              <li><strong>Scott Helme:</strong> <em>No Hacking Required: The MAG Data Breach (Deep Dive Part 2)</em> — Comparing client-side vs. server-side keys; verifying 4-year exposure window.</li>
-              <li><strong>CybelAngel:</strong> <em>What Coverage Is Getting Wrong: Breach Started in JS File, Not GitHub</em> — Disproving media rumors; identifying static web client bundles.</li>
-              <li><strong>Internal Technical Report:</strong> <em>Exhaustive Analysis of the August 2026 MAG Cyber Attack: Technical Vectors &amp; Resilience</em> — Next.js bundle leak forensic breakdown.</li>
-              <li><strong>Bleeping Computer:</strong> <em>FulcrumSec claims Manchester Airports hack, theft of 86 GB of data</em> — Technical analysis of the marketing database schema.</li>
-              <li><strong>Bleeping Computer:</strong> <em>FulcrumSec claims Manchester Airports hack (Technical Follow-up)</em> — Parameter breakdown including VRNs and email tracking tokens.</li>
-              <li><strong>Shattered.io:</strong> <em>Manchester Airports Hack Exposes 8.7M Records [2026]</em> — Framework asset bundling hazards and secret scanning omission.</li>
-              <li><strong>NetMonkeys Security:</strong> <em>Manchester Airport Cyber Attack: The 8.5M Breach Explained</em> — Client-side vulnerability lifecycle.</li>
-              <li><strong>Security Analysis Portal:</strong> <em>Manchester Airport data breach: Attack path, impact, and cybersecurity lessons (Part 1)</em> — Step-by-step reconstruction.</li>
-              <li><strong>Security Analysis Portal:</strong> <em>Manchester Airport data breach: Attack path &amp; lessons (Part 2)</em> — API governance failures and lack of export rate-limiting.</li>
-              <li><strong>Security Analysis Portal:</strong> <em>Manchester Airport data breach: Attack path &amp; lessons (Part 3)</em> — Enterprise API rotation and CI/CD secret scanning roadmap.</li>
-              <li><strong>Sysdig Threat Research:</strong> <em>The FulcrumSec playbook: How to detect and stop the group</em> — Cloud detection rules and runtime API monitoring policies.</li>
+              <li id="src-1"><strong>Scott Helme:</strong> <em>No Hacking Required: The Manchester Airports Group Data Breach</em> — Landmark technical primary source proving client-side JS keys enabled direct dumps.</li>
+              <li id="src-2"><strong>Scott Helme:</strong> <em>No Hacking Required: The MAG Data Breach (Deep Dive Part 2)</em> — Comparing client-side vs. server-side keys; verifying 4-year exposure window.</li>
+              <li id="src-3"><strong>CybelAngel:</strong> <em>What Coverage Is Getting Wrong: Breach Started in JS File, Not GitHub</em> — Disproving media rumors; identifying static web client bundles.</li>
+              <li id="src-4"><strong>Internal Technical Report:</strong> <em>Exhaustive Analysis of the August 2026 MAG Cyber Attack: Technical Vectors &amp; Resilience</em> — Next.js bundle leak forensic breakdown.</li>
+              <li id="src-5"><strong>Bleeping Computer:</strong> <em>FulcrumSec claims Manchester Airports hack, theft of 86 GB of data</em> — Technical analysis of the marketing database schema.</li>
+              <li id="src-6"><strong>Bleeping Computer:</strong> <em>FulcrumSec claims Manchester Airports hack (Technical Follow-up)</em> — Parameter breakdown including VRNs and email tracking tokens.</li>
+              <li id="src-7"><strong>Shattered.io:</strong> <em>Manchester Airports Hack Exposes 8.7M Records [2026]</em> — Framework asset bundling hazards and secret scanning omission.</li>
+              <li id="src-8"><strong>NetMonkeys Security:</strong> <em>Manchester Airport Cyber Attack: The 8.5M Breach Explained</em> — Client-side vulnerability lifecycle.</li>
+              <li id="src-9"><strong>Security Analysis Portal:</strong> <em>Manchester Airport data breach: Attack path, impact, and cybersecurity lessons (Part 1)</em> — Step-by-step reconstruction.</li>
+              <li id="src-10"><strong>Security Analysis Portal:</strong> <em>Manchester Airport data breach: Attack path &amp; lessons (Part 2)</em> — API governance failures and lack of export rate-limiting.</li>
+              <li id="src-11"><strong>Security Analysis Portal:</strong> <em>Manchester Airport data breach: Attack path &amp; lessons (Part 3)</em> — Enterprise API rotation and CI/CD secret scanning roadmap.</li>
+              <li id="src-12"><strong>Sysdig Threat Research:</strong> <em>The FulcrumSec playbook: How to detect and stop the group</em> — Cloud detection rules and runtime API monitoring policies.</li>
             </ol>
           </div>
 
@@ -1606,17 +1748,17 @@
             </h4>
             <p style="font-size:0.82rem;color:var(--ink-4);margin-bottom:10px;">FulcrumSec TTPs, leak site telemetry, 21-victim history, and extortion dynamics.</p>
             <ol start="13" style="margin-left:20px;font-size:0.86rem;line-height:1.7;color:var(--ink-2);">
-              <li><strong>BushidoToken:</strong> <em>Threat Intel Post (Early Signals)</em> — Initial dark web leak chatter and exfiltration tracking.</li>
-              <li><strong>BushidoToken:</strong> <em>Threat Intel Post (Secondary Reference)</em> — Technical observations on group extortion mechanics and sample verification.</li>
-              <li><strong>SecurityWeek:</strong> <em>Extortion Group Claims Manchester Airports Group Data Breach</em> — Ransom deadline timeline and stolen dataset sizing.</li>
-              <li><strong>Threat Intelligence Portal:</strong> <em>FulcrumSec Claims Responsibility for Manchester Airport Group Breach</em> — Profile of cloud extortion operations.</li>
-              <li><strong>Searchlight Cyber:</strong> <em>FulcrumSec Claims Responsibility (Dark Web Intel)</em> — Leak site listing verification, proof samples, and victim comms channels.</li>
-              <li><strong>Cyber Security Wire:</strong> <em>FulcrumSec Claims Theft After Ransom Refusal</em> — Shift from private extortion to public leak following non-negotiation.</li>
-              <li><strong>MoxFive:</strong> <em>FulcrumSec: The Cloud Extortion Group Behind 21 Victims and Counting</em> — Forensic profiling of API key hunting across 21 enterprise victims.</li>
-              <li><strong>The HIPAA Journal:</strong> <em>Hackers Claim Responsibility for Novo Nordisk Cyberattack</em> — Comparative case study on identical JS credential harvesting.</li>
-              <li><strong>Smarttech247:</strong> <em>Novo Nordisk Data Breach – FulcrumSec Attribution | Threat Intel Reports</em> — Cross-sector TTP mapping.</li>
-              <li><strong>Grab The Axe:</strong> <em>Someone Has Put a Name to the Airport Breach (08/30/2026)</em> — Dark web attribution analysis.</li>
-              <li><strong>CybelAngel:</strong> <em>Weekly Cyber Roundup: August 31–September 6, 2026</em> — External attack surface management (EASM) executive synthesis.</li>
+              <li id="src-13"><strong>BushidoToken:</strong> <em>Threat Intel Post (Early Signals)</em> — Initial dark web leak chatter and exfiltration tracking.</li>
+              <li id="src-14"><strong>BushidoToken:</strong> <em>Threat Intel Post (Secondary Reference)</em> — Technical observations on group extortion mechanics and sample verification.</li>
+              <li id="src-15"><strong>SecurityWeek:</strong> <em>Extortion Group Claims Manchester Airports Group Data Breach</em> — Ransom deadline timeline and stolen dataset sizing.</li>
+              <li id="src-16"><strong>Threat Intelligence Portal:</strong> <em>FulcrumSec Claims Responsibility for Manchester Airport Group Breach</em> — Profile of cloud extortion operations.</li>
+              <li id="src-17"><strong>Searchlight Cyber:</strong> <em>FulcrumSec Claims Responsibility (Dark Web Intel)</em> — Leak site listing verification, proof samples, and victim comms channels.</li>
+              <li id="src-18"><strong>Cyber Security Wire:</strong> <em>FulcrumSec Claims Theft After Ransom Refusal</em> — Shift from private extortion to public leak following non-negotiation.</li>
+              <li id="src-19"><strong>MoxFive:</strong> <em>FulcrumSec: The Cloud Extortion Group Behind 21 Victims and Counting</em> — Forensic profiling of API key hunting across 21 enterprise victims.</li>
+              <li id="src-20"><strong>The HIPAA Journal:</strong> <em>Hackers Claim Responsibility for Novo Nordisk Cyberattack</em> — Comparative case study on identical JS credential harvesting.</li>
+              <li id="src-21"><strong>Smarttech247:</strong> <em>Novo Nordisk Data Breach – FulcrumSec Attribution | Threat Intel Reports</em> — Cross-sector TTP mapping.</li>
+              <li id="src-22"><strong>Grab The Axe:</strong> <em>Someone Has Put a Name to the Airport Breach (08/30/2026)</em> — Dark web attribution analysis.</li>
+              <li id="src-23"><strong>CybelAngel:</strong> <em>Weekly Cyber Roundup: August 31–September 6, 2026</em> — External attack surface management (EASM) executive synthesis.</li>
             </ol>
           </div>
 
@@ -1627,11 +1769,11 @@
             </h4>
             <p style="font-size:0.82rem;color:var(--ink-4);margin-bottom:10px;">MAG customer advisories, non-payment policy, and law enforcement alignment (ICO, NCSC).</p>
             <ol start="24" style="margin-left:20px;font-size:0.86rem;line-height:1.7;color:var(--ink-2);">
-              <li><strong>Manchester Airports Group (MAG):</strong> <em>Data Security Incident - Update &amp; FAQs (Part 1)</em> — Confirmation of incident and exposed data categories.</li>
-              <li><strong>Manchester Airports Group (MAG):</strong> <em>Data Security Incident - Update &amp; FAQs (Part 2)</em> — Confirming zero financial, banking, or password exposure.</li>
-              <li><strong>Manchester Airports Group (MAG):</strong> <em>Data Security Incident - Update &amp; FAQs (Part 3)</em> — Law enforcement coordination and specialized customer helpline.</li>
-              <li><strong>Cyber Incident Archive:</strong> <em>On 27 August 2026, Manchester Airports Group confirmed it was target</em> — Chronology of disclosure milestones.</li>
-              <li><strong>Reg4Tech Bulletin:</strong> <em>August 7, 2026 Briefing</em> — Aviation data protection compliance tracking and ICO regulatory filings.</li>
+              <li id="src-24"><strong>Manchester Airports Group (MAG):</strong> <em>Data Security Incident - Update &amp; FAQs (Part 1)</em> — Confirmation of incident and exposed data categories.</li>
+              <li id="src-25"><strong>Manchester Airports Group (MAG):</strong> <em>Data Security Incident - Update &amp; FAQs (Part 2)</em> — Confirming zero financial, banking, or password exposure.</li>
+              <li id="src-26"><strong>Manchester Airports Group (MAG):</strong> <em>Data Security Incident - Update &amp; FAQs (Part 3)</em> — Law enforcement coordination and specialized customer helpline.</li>
+              <li id="src-27"><strong>Cyber Incident Archive:</strong> <em>On 27 August 2026, Manchester Airports Group confirmed it was target</em> — Chronology of disclosure milestones.</li>
+              <li id="src-28"><strong>Reg4Tech Bulletin:</strong> <em>August 7, 2026 Briefing</em> — Aviation data protection compliance tracking and ICO regulatory filings.</li>
             </ol>
           </div>
 
@@ -1642,14 +1784,14 @@
             </h4>
             <p style="font-size:0.82rem;color:var(--ink-4);margin-bottom:10px;">IT/OT segmentation, client-side secret management, and third-party SaaS vendor governance.</p>
             <ol start="29" style="margin-left:20px;font-size:0.86rem;line-height:1.7;color:var(--ink-2);">
-              <li><strong>Protecht Group:</strong> <em>Manchester Airports breach: What it tells us about cyber resilience (Part 1)</em> — Operational vs. data resilience and vendor risk.</li>
-              <li><strong>Protecht Group:</strong> <em>Manchester Airports breach (Part 2)</em> — Single points of failure in centralized booking databases.</li>
-              <li><strong>Protecht Group:</strong> <em>Manchester Airports breach (Part 3)</em> — Embedding human cyber risk metrics, SeMS integration, and third-party auditing.</li>
-              <li><strong>Security Journal UK:</strong> <em>What airports can learn from the Manchester cyber-attack</em> — Passenger data protection vs. physical airport perimeter safety.</li>
-              <li><strong>Security Journal UK:</strong> <em>What airports can learn (Part 2)</em> — Aviation C-suite supply chain audit standards.</li>
-              <li><strong>AvioRadar:</strong> <em>Cyberattack on three UK airports: Data of 8.7 million customers stolen, hackers demand ransom</em> — Operational continuity analysis.</li>
-              <li><strong>AvioRadar:</strong> <em>Cyberattack on three UK airports (Coverage Update)</em> — Parking reservation data involvement and international reactions.</li>
-              <li><strong>NCSC / UK Government:</strong> <em>10 Steps to Cyber Security: Supply Chain Risk Management</em> — Guidance for defending enterprise cloud integrations.</li>
+              <li id="src-29"><strong>Protecht Group:</strong> <em>Manchester Airports breach: What it tells us about cyber resilience (Part 1)</em> — Operational vs. data resilience and vendor risk.</li>
+              <li id="src-30"><strong>Protecht Group:</strong> <em>Manchester Airports breach (Part 2)</em> — Single points of failure in centralized booking databases.</li>
+              <li id="src-31"><strong>Protecht Group:</strong> <em>Manchester Airports breach (Part 3)</em> — Embedding human cyber risk metrics, SeMS integration, and third-party auditing.</li>
+              <li id="src-32"><strong>Security Journal UK:</strong> <em>What airports can learn from the Manchester cyber-attack</em> — Passenger data protection vs. physical airport perimeter safety.</li>
+              <li id="src-33"><strong>Security Journal UK:</strong> <em>What airports can learn (Part 2)</em> — Aviation C-suite supply chain audit standards.</li>
+              <li id="src-34"><strong>AvioRadar:</strong> <em>Cyberattack on three UK airports: Data of 8.7 million customers stolen, hackers demand ransom</em> — Operational continuity analysis.</li>
+              <li id="src-35"><strong>AvioRadar:</strong> <em>Cyberattack on three UK airports (Coverage Update)</em> — Parking reservation data involvement and international reactions.</li>
+              <li id="src-36"><strong>NCSC / UK Government:</strong> <em>10 Steps to Cyber Security: Supply Chain Risk Management</em> — Guidance for defending enterprise cloud integrations.</li>
             </ol>
           </div>
 
@@ -1660,15 +1802,15 @@
             </h4>
             <p style="font-size:0.82rem;color:var(--ink-4);margin-bottom:10px;">UK GDPR liability, HIBP verification, 8.7M passenger records, and secondary vehicle theft risks.</p>
             <ol start="37" style="margin-left:20px;font-size:0.86rem;line-height:1.7;color:var(--ink-2);">
-              <li><strong>National Media / Tech News:</strong> <em>8.7m customers affected by data breach at Manchester, Stansted and East Midlands airports</em> — Initial impact reporting.</li>
-              <li><strong>Have I Been Pwned (HIBP):</strong> <em>Manchester Airports Group Data Breach Entry</em> — Official breach index verifying 8,728,311 unique exposed email records.</li>
-              <li><strong>Data Breach Today:</strong> <em>MAG Data on 8.8 Million People Leaked After Ransom Refusal</em> — Dump verification following non-payment policy adherence.</li>
-              <li><strong>Global Cyber Monitor:</strong> <em>Manchester Airports Group Data Breach 2026: 8.9M Travelers Affected</em> — International traveler impact telemetry.</li>
-              <li><strong>The Cyber Express:</strong> <em>Three UK Airports Hit by Data Breach: 8.7 M Records Allegedly Exposed</em> — Comprehensive victim statistics.</li>
-              <li><strong>Manchester Evening News:</strong> <em>Major MAG cyber attack as 8.7 million customers' data accessed</em> — Local regional passenger guidance and reactions.</li>
-              <li><strong>UK Regional Press:</strong> <em>Major Manchester Airports Group cyber attack (Extended Coverage)</em> — Passenger fraud concerns and vehicle theft phishing risks.</li>
-              <li><strong>Pocket Claim Legal:</strong> <em>Manchester Airports Group Compensation Claim</em> — Collective data privacy claims and UK GDPR Article 82 liabilities.</li>
-              <li><strong>Pocket Claim Legal:</strong> <em>Manchester Airports Group Compensation Claim (Legal Analysis)</em> — Judicial standards for non-financial distress compensation.</li>
+              <li id="src-37"><strong>National Media / Tech News:</strong> <em>8.7m customers affected by data breach at Manchester, Stansted and East Midlands airports</em> — Initial impact reporting.</li>
+              <li id="src-38"><strong>Have I Been Pwned (HIBP):</strong> <em>Manchester Airports Group Data Breach Entry</em> — Official breach index verifying 8,728,311 unique exposed email records.</li>
+              <li id="src-39"><strong>Data Breach Today:</strong> <em>MAG Data on 8.8 Million People Leaked After Ransom Refusal</em> — Dump verification following non-payment policy adherence.</li>
+              <li id="src-40"><strong>Global Cyber Monitor:</strong> <em>Manchester Airports Group Data Breach 2026: 8.9M Travelers Affected</em> — International traveler impact telemetry.</li>
+              <li id="src-41"><strong>The Cyber Express:</strong> <em>Three UK Airports Hit by Data Breach: 8.7 M Records Allegedly Exposed</em> — Comprehensive victim statistics.</li>
+              <li id="src-42"><strong>Manchester Evening News:</strong> <em>Major MAG cyber attack as 8.7 million customers' data accessed</em> — Local regional passenger guidance and reactions.</li>
+              <li id="src-43"><strong>UK Regional Press:</strong> <em>Major Manchester Airports Group cyber attack (Extended Coverage)</em> — Passenger fraud concerns and vehicle theft phishing risks.</li>
+              <li id="src-44"><strong>Pocket Claim Legal:</strong> <em>Manchester Airports Group Compensation Claim</em> — Collective data privacy claims and UK GDPR Article 82 liabilities.</li>
+              <li id="src-45"><strong>Pocket Claim Legal:</strong> <em>Manchester Airports Group Compensation Claim (Legal Analysis)</em> — Judicial standards for non-financial distress compensation.</li>
             </ol>
           </div>
         </div>
