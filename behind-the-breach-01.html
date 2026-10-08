@@ -66,13 +66,19 @@
           <div class="brand-sub">Behind the Breach Series</div>
         </div>
       </a>
-      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-      </button>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="theme-toggle-btn" id="themeToggleNav" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+        <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
         <li><a href="index.html#series">Curriculum</a></li>
@@ -1762,63 +1768,79 @@
       </section>
 
       <!-- READER INTERACTION & FEEDBACK SECTION -->
-      <section class="art-interactive-section" id="feedback" style="margin-top:50px;">
-        <div class="feedback-card">
-          <div class="feedback-header">
-            <h3>💬 Reader Feedback &amp; Discussion</h3>
-            <p>Have an insight, question, or SOC perspective on API keys in frontend code? Submit a response below.</p>
+      <section class="feedback-section" id="feedback" aria-label="Reader feedback">
+        <div class="fb-header">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+            <div class="fb-badge"><span>💬</span> Reader Discussion</div>
+            <button type="button" class="fb-theme-toggle" id="fbThemeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+              <span class="fb-theme-icon">🌙</span> <span class="fb-theme-text">Dark mode</span>
+            </button>
+          </div>
+          <h2 class="fb-title">Reader Feedback &amp; Discussion</h2>
+          <p class="fb-sub">Have an insight, question, or SOC perspective on API keys in frontend code? Submit a response below. Feedback prepares a private email draft directly to the author.</p>
+          <p class="fb-sub" style="font-size:0.8rem;margin-top:6px;">Likes and claps are your personal reactions on this device.</p>
+        </div>
+
+        <div class="fb-form-box">
+          <!-- Article Reactions -->
+          <div class="fb-reactions-box" style="padding:0 0 20px;border-bottom:1px solid var(--border);margin-bottom:20px;background:transparent;">
+            <div class="fb-react-prompt">Article Reactions</div>
+            <div class="fb-reactions-bar">
+              <button class="art-act-btn btn-like" onclick="toggleLike()" aria-pressed="false" title="Helpful analysis on this device">
+                <span class="like-heart">❤️</span> <span>Helpful Analysis</span> (<span class="like-count">0</span>)
+              </button>
+              <button class="art-act-btn btn-clap" onclick="addClap()" title="Applaud this research">
+                <span>👏</span> <span>Clap</span> (<span class="clap-count">0</span>)
+              </button>
+              <button class="art-act-btn" id="shareBtn" onclick="copyLink()" title="Share article link">
+                <span>🔗</span> <span>Share Article</span>
+              </button>
+            </div>
           </div>
 
-          <!-- Engagement Buttons -->
-          <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap;">
-            <button class="btn-like" onclick="toggleLike()" aria-pressed="false">
-              <span>❤️</span> <span>Helpful Analysis</span> (<span class="like-count">0</span>)
-            </button>
-            <button class="btn-clap" onclick="addClap()">
-              <span>👏</span> <span>Clap</span> (<span class="clap-count">0</span>)
-            </button>
-            <button class="cta-outline" id="shareBtn" onclick="copyLink()">
-              <span>🔗</span> <span>Share Article</span>
-            </button>
-          </div>
+          <p style="font-size:0.86rem;color:var(--ink-3);margin-bottom:6px;">You can also <a href="mailto:sujampathirathnayaka@gmail.com" style="color:var(--ink);font-weight:600;text-decoration:underline;">email Poorna directly</a>.</p>
+          <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
 
           <form id="fbForm" class="feedback-form">
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+            <div class="fb-form-grid">
               <div>
-                <label for="fbName" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Your Name / Handle</label>
-                <input type="text" id="fbName" required placeholder="Security Professional / Reader" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;">
+                <label for="fbName" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Your Name / Handle (optional)</label>
+                <input type="text" id="fbName" class="fb-input" maxlength="100" autocomplete="name" placeholder="Security Professional / Reader" aria-describedby="fbDraftNote">
               </div>
               <div>
                 <label for="fbCategory" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Topic</label>
-                <select id="fbCategory" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;">
+                <select id="fbCategory" class="fb-input">
                   <option value="API Security">API Security</option>
                   <option value="SaaS Architecture">SaaS Architecture</option>
                   <option value="SOC Detection">SOC Detection</option>
+                  <option value="Dark Web Intel">Dark Web Intel</option>
                   <option value="Question">Question</option>
                 </select>
               </div>
             </div>
 
-            <div style="margin-bottom:14px;">
+            <div style="margin-bottom:16px;">
               <label for="fbMessage" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Your Thoughts / Feedback</label>
-              <textarea id="fbMessage" rows="4" required placeholder="What are your thoughts on frontend API key exposures and SaaS monitoring?" style="width:100%;padding:10px;border:1px solid var(--border);border-radius:8px;"></textarea>
+              <textarea id="fbMessage" class="fb-textarea" rows="4" required maxlength="2000" placeholder="What are your thoughts on frontend API key exposures and SaaS monitoring?" aria-describedby="fbDraftNote fbLimit"></textarea>
+              <p id="fbLimit" class="fb-draft-note" style="margin:4px 0 0;font-size:0.75rem;">Maximum 2,000 characters.</p>
             </div>
 
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
-              <button type="submit" class="cta" style="background:#DC2626;">Submit Feedback →</button>
-              <button type="button" id="fbClear" class="cta-outline" style="font-size:0.85rem;">Clear Form</button>
-            </div>
-
-            <div id="fbEmailPreview" hidden style="margin-top:16px;padding:12px;background:#F8FAFC;border:1px solid var(--border);border-radius:8px;">
-              <p id="fbStatus" style="font-size:0.85rem;color:var(--ink-3);margin-bottom:8px;"></p>
-              <div style="display:flex;gap:10px;align-items:center;">
-                <a id="fbEmailLink" href="#" class="cta" style="font-size:0.8rem;padding:6px 12px;">Open Email Draft</a>
-                <button type="button" id="fbCopy" class="cta-outline" style="font-size:0.8rem;padding:6px 12px;">Copy Feedback</button>
-              </div>
-              <textarea id="fbEmailBody" readonly style="width:100%;height:80px;margin-top:8px;font-size:0.75rem;padding:6px;display:none;"></textarea>
-              <span id="fbDraftNote" style="display:none;"></span>
+            <div class="fb-form-foot">
+              <button type="submit" class="fb-submit-btn">Submit Feedback →</button>
+              <button type="button" id="fbClear" class="fb-clear-btn">Clear Form</button>
             </div>
           </form>
+
+          <p id="fbStatus" role="status" aria-live="polite" style="font-size:0.88rem;color:var(--ink-2);margin:16px 0 10px;"></p>
+
+          <div id="fbEmailPreview" hidden style="margin-top:16px;padding:16px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r-sm);">
+            <label for="fbEmailBody" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Email draft</label>
+            <textarea id="fbEmailBody" class="fb-textarea" readonly rows="8" style="margin-bottom:12px;"></textarea>
+            <div class="fb-form-foot">
+              <a id="fbEmailLink" class="au-btn pf" href="#">Open email app</a>
+              <button type="button" id="fbCopy" class="fb-submit-btn">Copy feedback</button>
+            </div>
+          </div>
         </div>
       </section>
 

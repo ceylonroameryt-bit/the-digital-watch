@@ -927,8 +927,90 @@ function initSecurityDefenses() {
   }
 }
 
+/* ── THEME (DARK / LIGHT) ────────────────────────────────────── */
+function getSystemTheme() {
+  try {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  } catch (_) {
+    return 'light';
+  }
+}
+
+function getStoredTheme() {
+  try {
+    return localStorage.getItem('ci_theme');
+  } catch (_) {
+    return null;
+  }
+}
+
+function setStoredTheme(theme) {
+  try {
+    localStorage.setItem('ci_theme', theme);
+  } catch (_) {}
+}
+
+function applyTheme(theme) {
+  const isDark = theme === 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  try {
+    document.documentElement.style.colorScheme = theme;
+  } catch (_) {}
+
+  document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+    const icon = btn.querySelector('.theme-icon') || btn.querySelector('.theme-icon-dark');
+    const label = btn.querySelector('.theme-label');
+    if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+    if (label) label.textContent = isDark ? 'Light' : 'Dark';
+    btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  });
+
+  document.querySelectorAll('.fb-theme-toggle').forEach(btn => {
+    const icon = btn.querySelector('.fb-theme-icon');
+    const text = btn.querySelector('.fb-theme-text');
+    if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+    if (text) text.textContent = isDark ? 'Light mode' : 'Dark mode';
+    btn.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    btn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+  });
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || getSystemTheme();
+  const next = current === 'dark' ? 'light' : 'dark';
+  setStoredTheme(next);
+  applyTheme(next);
+  showToast(next === 'dark' ? 'Dark mode enabled' : 'Light mode enabled', next === 'dark' ? '🌙' : '☀️');
+}
+window.toggleTheme = toggleTheme;
+
+function initTheme() {
+  const stored = getStoredTheme();
+  const initial = stored || getSystemTheme();
+  applyTheme(initial);
+
+  document.querySelectorAll('.theme-toggle-btn, .fb-theme-toggle').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      toggleTheme();
+    });
+  });
+
+  try {
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!getStoredTheme()) {
+          applyTheme(e.matches ? 'dark' : 'light');
+        }
+      });
+    }
+  } catch (_) {}
+}
+
 /* ── INIT ────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   initProgress();
   initMobileMenu();
   initLike();

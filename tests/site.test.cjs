@@ -302,3 +302,12 @@ test('attack map node source links point to exact primary research and articles'
   assert.equal(hipaaSource.getAttribute('href'), 'https://www.hipaajournal.com/novo-nordisk-cyberattack/');
 });
 
+test('theme toggle switches and updates data-theme attribute', () => {
+  const app = boot('behind-the-breach-01.html');
+  assert.equal(app.document.documentElement.getAttribute('data-theme'), 'light');
+  app.context.toggleTheme();
+  assert.equal(app.document.documentElement.getAttribute('data-theme'), 'dark');
+  app.context.toggleTheme();
+  assert.equal(app.document.documentElement.getAttribute('data-theme'), 'light');
+});
+
