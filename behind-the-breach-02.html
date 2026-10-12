@@ -263,6 +263,7 @@
               <span class="news-pulse-dot"></span> Incident at a Glance · October 2026
             </span>
             <div class="news-sources-strip" style="margin:0;padding:0;border:none;">
+              <a href="#live-news-updates" class="src-cite" style="background:#FEF2F2;color:#DC2626;border-color:#FCA5A5;font-weight:700;"><span class="news-pulse-dot" style="display:inline-block;width:6px;height:6px;margin-right:2px;vertical-align:middle;"></span> Live News Feed (5 Updates) ↓</a>
               <a href="#src-asos" class="src-cite">📄 ASOS Notice [Src #1] ↗</a>
               <a href="#src-reuters" class="src-cite">📰 Reuters [Src #2] ↗</a>
               <a href="#src-infosec" class="src-cite">🛡️ Infosec Mag [Src #3] ↗</a>
@@ -605,6 +606,170 @@
           <p>
             For security teams, that distinction is important. Understanding the period between initial access and detection helps investigators assess potential exposure, review historical activity and determine whether other accounts or systems may have been affected.
           </p>
+        </section>
+
+        <!-- LIVE NEWS & INCIDENT UPDATE FEED -->
+        <section id="live-news-updates" class="live-news-feed" aria-label="Live incident updates">
+          <div class="live-feed-header">
+            <div class="live-feed-badge">
+              <span class="news-pulse-dot"></span> LIVE NEWS &amp; INTELLIGENCE DESK
+            </div>
+            <div class="live-feed-timestamp">
+              <span>Field Intelligence Telemetry · Continuous Verification · October 2026</span>
+            </div>
+          </div>
+
+          <h2 style="font-family:var(--f-d);font-size:1.4rem;font-weight:800;color:var(--ink);margin:0 0 8px;line-height:1.3;">
+            Live Incident News &amp; Developing Intelligence Feed
+          </h2>
+          <p style="font-size:0.94rem;color:var(--ink-2);margin:0 0 18px;line-height:1.6;">
+            Chronological real-time intelligence tracking official corporate disclosures, cybersecurity forensic investigations, threat actor extortion claims, and UK regulatory enforcement as this breach investigation develops.
+          </p>
+
+          <!-- Interactive Filter Tabs -->
+          <div class="live-feed-filter-bar" role="tablist" aria-label="Filter live updates">
+            <span style="font-family:var(--f-d);font-size:0.75rem;font-weight:800;text-transform:uppercase;color:var(--ink-4);letter-spacing:0.05em;margin-right:4px;">Filter Feed:</span>
+            <button type="button" class="live-feed-filter-btn" data-filter="all" aria-pressed="true">All Dispatches (5)</button>
+            <button type="button" class="live-feed-filter-btn" data-filter="official" aria-pressed="false">Official ASOS Notices (1)</button>
+            <button type="button" class="live-feed-filter-btn" data-filter="intel" aria-pressed="false">Threat Intel &amp; Extortion (2)</button>
+            <button type="button" class="live-feed-filter-btn" data-filter="regulatory" aria-pressed="false">Regulatory Oversight (1)</button>
+            <button type="button" class="live-feed-filter-btn" data-filter="defense" aria-pressed="false">SOC Defense &amp; Triage (1)</button>
+          </div>
+
+          <!-- Chronological Timeline Dispatches -->
+          <div class="live-feed-timeline">
+
+            <!-- Dispatch 05 (Latest) -->
+            <article class="live-feed-item type-regulatory" data-category="regulatory">
+              <div class="live-feed-item-top">
+                <span class="live-feed-item-pill" style="background:#F3E8FF;color:#7E22CE;border:1px solid #D8B4FE;">
+                  🏛️ Regulatory Oversight · UK ICO &amp; NCSC
+                </span>
+                <span class="live-feed-item-time">12 October 2026 · 11:45 BST · Latest</span>
+              </div>
+              <h3 class="live-feed-item-title">
+                UK Data Protection Scrutiny Intensifies Over Third-Party Cloud Integrations in E-Commerce
+              </h3>
+              <p class="live-feed-item-desc">
+                Regulatory specialists and cybersecurity authorities confirm active monitoring of the ASOS breach following formal statutory notifications lodged under UK GDPR Article 33. The inquiry focuses on how employee credentials granted secondary access to customer marketing data pools on third-party SaaS platforms, even while core payment processing remained segregated. The NCSC and ICO reiterate enterprise requirements for strict third-party data segregation and continuous API permission audits.
+              </p>
+              <div class="live-feed-item-foot">
+                <div>
+                  <strong style="color:var(--ink);">Key Defense Takeaway:</strong> Isolating your own servers does not protect customer records if external SaaS tools hold identical data under shared employee logins.
+                </div>
+                <div>
+                  <a href="#src-ico" class="src-cite">UK ICO [Src #16] ↗</a>
+                  <a href="#src-ncsc" class="src-cite">NCSC Advisory [Src #17] ↗</a>
+                  <a href="#src-csa-saas" class="src-cite">CSA SaaS Report [Src #19] ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Dispatch 04 -->
+            <article class="live-feed-item type-intel" data-category="intel">
+              <div class="live-feed-item-top">
+                <span class="live-feed-item-pill" style="background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;">
+                  ⚠️ Threat Intel &amp; Extortion Claim
+                </span>
+                <span class="live-feed-item-time">10 October 2026 · 17:30 BST</span>
+              </div>
+              <h3 class="live-feed-item-title">
+                Extortion Collective "Xuanye" Claims Customer Data Access; No Encryption Malware Deployed
+              </h3>
+              <p class="live-feed-item-desc">
+                Dark web threat monitors observed the cyber extortion group "Xuanye" claiming credit for the intrusion and attempting to use the unauthorized app broadcast to force negotiations. Threat intelligence researchers verified that the adversary did not deploy ransomware payloads, destroy backups, or compromise central cloud infrastructure. The operation operated entirely as a credential-theft and token-abuse extortion campaign targeting loosely guarded SaaS communication channels.
+              </p>
+              <div class="live-feed-item-foot">
+                <div>
+                  <strong style="color:var(--ink);">Key Defense Takeaway:</strong> Modern extortion actors increasingly avoid loud ransomware binaries; abusing legitimate SSO sessions is quieter and harder to detect.
+                </div>
+                <div>
+                  <a href="#src-xuanye" class="src-cite">Xuanye Threat Intel [Src #7] ↗</a>
+                  <a href="#src-ms-ddr" class="src-cite">Microsoft Intel [Src #20] ↗</a>
+                  <a href="#src-t1078" class="src-cite">MITRE T1078 [Src #10] ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Dispatch 03 -->
+            <article class="live-feed-item type-official" data-category="official">
+              <div class="live-feed-item-top">
+                <span class="live-feed-item-pill" style="background:#F0FDF4;color:#15803D;border:1px solid #86EFAC;">
+                  📢 Official ASOS Notice · Customer Communications
+                </span>
+                <span class="live-feed-item-time">08 October 2026 · 14:00 BST</span>
+              </div>
+              <h3 class="live-feed-item-title">
+                ASOS Commences Direct Customer Outreach; Confirms Payment Cards &amp; Passwords Completely Safe
+              </h3>
+              <p class="live-feed-item-desc">
+                ASOS initiated targeted email notifications to affected customer cohorts. The retailer confirmed that while names, delivery details, email addresses, phone numbers, and non-personal browsing queries were accessed on external partner systems, no financial card information, banking details, or customer passwords were ever exposed. The company assured consumers that checkout operations, the main web portal, and smartphone apps remain fully functional and secure.
+              </p>
+              <div class="live-feed-item-foot">
+                <div>
+                  <strong style="color:var(--ink);">Key Defense Takeaway:</strong> Strong internal network segmentation prevented financial data loss, but exposed contact details still create significant follow-up phishing risks.
+                </div>
+                <div>
+                  <a href="#src-asos" class="src-cite">ASOS Disclosure [Src #1] ↗</a>
+                  <a href="#src-reuters" class="src-cite">Reuters Report [Src #2] ↗</a>
+                  <a href="#src-guardian" class="src-cite">The Guardian [Src #5] ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Dispatch 02 -->
+            <article class="live-feed-item type-defense" data-category="defense">
+              <div class="live-feed-item-top">
+                <span class="live-feed-item-pill" style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;">
+                  🛡️ Incident Response &amp; SOC Remediation
+                </span>
+                <span class="live-feed-item-time">07 October 2026 · 09:15 BST</span>
+              </div>
+              <h3 class="live-feed-item-title">
+                Compromised Employee Identity Revoked; Third-Party Session Tokens Terminated
+              </h3>
+              <p class="live-feed-item-desc">
+                ASOS defensive operations confirmed that the hijacked employee credentials and all active federated session tokens were terminated immediately upon discovery. Incident responders isolated the affected third-party platform's API connections, applied strict least-privilege role policies, and engaged external digital forensics experts to conduct a comprehensive sweep of enterprise authentication logs.
+              </p>
+              <div class="live-feed-item-foot">
+                <div>
+                  <strong style="color:var(--ink);">Key Defense Takeaway:</strong> Rapid session invalidation across federated identity providers is vital to stop attackers who have already authenticated with stolen passwords.
+                </div>
+                <div>
+                  <a href="#src-infosec" class="src-cite">Infosec Mag [Src #3] ↗</a>
+                  <a href="#src-secarma" class="src-cite">Secarma Advisory [Src #6] ↗</a>
+                  <a href="#src-t1078-004" class="src-cite">MITRE T1078.004 [Src #11] ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Dispatch 01 -->
+            <article class="live-feed-item type-intel" data-category="intel">
+              <div class="live-feed-item-top">
+                <span class="live-feed-item-pill" style="background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;">
+                  🚨 Initial Breach Emergence · Rogue Broadcast
+                </span>
+                <span class="live-feed-item-time">06 October 2026 · 18:40 BST</span>
+              </div>
+              <h3 class="live-feed-item-title">
+                Rogue Push Notification Dispatched to Shoppers via Third-Party Customer Communications Tool
+              </h3>
+              <p class="live-feed-item-desc">
+                The breach first became public when shoppers with the ASOS mobile app received an unauthorized broadcast notification titled "ASOS HACKED", directing recipients to external extortion channels. Defensive analysis revealed that attackers did not crack the mobile application binary; instead, they used stolen employee credentials to log directly into an integrated third-party customer engagement service that had permissions to trigger app broadcasts.
+              </p>
+              <div class="live-feed-item-foot">
+                <div>
+                  <strong style="color:var(--ink);">Key Defense Takeaway:</strong> Third-party marketing and engagement tools often hold broad operational powers; credentials for these systems require the same defensive scrutiny as database admin accounts.
+                </div>
+                <div>
+                  <a href="#src-bleeping" class="src-cite">BleepingComputer [Src #4] ↗</a>
+                  <a href="#src-push-telemetry" class="src-cite">Push Telemetry [Src #8] ↗</a>
+                  <a href="#src-t1656" class="src-cite">MITRE T1656 [Src #9] ↗</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
         </section>
 
         <!-- SECTION 4 -->

@@ -1008,6 +1008,33 @@ function initTheme() {
   } catch (_) {}
 }
 
+/* ── LIVE NEWS FEED FILTER ───────────────────────────────────── */
+function initLiveNewsFilter() {
+  const filterBtns = document.querySelectorAll('.live-feed-filter-btn');
+  const items = document.querySelectorAll('.live-feed-item');
+  if (!filterBtns.length || !items.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cat = btn.getAttribute('data-filter') || 'all';
+
+      filterBtns.forEach(b => {
+        b.setAttribute('aria-pressed', b === btn ? 'true' : 'false');
+      });
+
+      items.forEach(item => {
+        const itemCat = item.getAttribute('data-category') || '';
+        if (cat === 'all' || itemCat === cat) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+}
+
 /* ── INIT ────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
@@ -1021,5 +1048,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFeedback();
   initAttackMap();
   initSecurityDefenses();
+  initLiveNewsFilter();
 });
+
 

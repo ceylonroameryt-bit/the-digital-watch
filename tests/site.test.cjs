@@ -312,3 +312,27 @@ test('theme toggle switches and updates data-theme attribute', () => {
   assert.equal(app.document.documentElement.getAttribute('data-theme'), 'light');
 });
 
+test('live news update feed renders dispatches and filters by category', () => {
+  const app = boot('behind-the-breach-02.html');
+  const feed = app.document.querySelector('#live-news-updates');
+  assert.ok(feed, 'live-news-updates section exists');
+
+  const items = app.document.querySelectorAll('.live-feed-item');
+  assert.equal(items.length, 5, 'renders 5 live dispatches');
+
+  const officialBtn = app.document.querySelector('.live-feed-filter-btn[data-filter="official"]');
+  assert.ok(officialBtn, 'official filter button exists');
+  app.fire(officialBtn, 'click');
+
+  assert.equal(officialBtn.getAttribute('aria-pressed'), 'true');
+  const visibleOfficial = [...app.document.querySelectorAll('.live-feed-item')].filter(el => el.style.display !== 'none');
+  assert.equal(visibleOfficial.length, 1);
+
+  const allBtn = app.document.querySelector('.live-feed-filter-btn[data-filter="all"]');
+  app.fire(allBtn, 'click');
+  assert.equal(allBtn.getAttribute('aria-pressed'), 'true');
+  const visibleAll = [...app.document.querySelectorAll('.live-feed-item')].filter(el => el.style.display !== 'none');
+  assert.equal(visibleAll.length, 5);
+});
+
+
