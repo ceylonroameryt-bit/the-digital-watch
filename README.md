@@ -2,7 +2,7 @@
 
 Cybersecurity articles by Poorna Sujampathi Rathnayaka.
 
-Live site: https://ceylonroameryt-bit.github.io/the-digital-watch/
+Live site: https://thecyberinsight.co.uk/
 
 ## Development and checks
 

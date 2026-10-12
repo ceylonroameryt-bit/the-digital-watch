@@ -9,7 +9,7 @@ await mkdir(new URL('styles/', output), { recursive: true });
 for (const path of [
   'index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html', 'article-06.html', 'article-07.html',
   'behind-the-breach-01.html', 'behind-the-breach-02.html',
-  'assets', '.well-known', 'security.txt', 'robots.txt', 'sitemap.xml',
+  'CNAME', 'assets', '.well-known', 'security.txt', 'robots.txt', 'sitemap.xml',
   'styles/main.css', 'js/app.js', 'js/cms.js', 'js/translator.js'
 ]) await cp(new URL(path, root), new URL(path, output), { recursive: true });
 await writeFile(new URL('.nojekyll', output), '');

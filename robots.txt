@@ -14,7 +14,7 @@ Allow: /assets/
 Allow: /styles/
 Allow: /js/
 
-Sitemap: https://ceylonroameryt-bit.github.io/the-digital-watch/sitemap.xml
+Sitemap: https://thecyberinsight.co.uk/sitemap.xml
 
 # Security Vulnerability Reporting (RFC 9116)
 Contact: mailto:security@sujampathirathnayaka.com

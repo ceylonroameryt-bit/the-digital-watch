@@ -128,7 +128,7 @@ test('feedback prepares an encoded draft without claiming delivery or losing tex
   assert.equal(uri.protocol, 'mailto:');
   assert.equal(uri.pathname, 'sujampathirathnayaka@gmail.com');
   assert.match(uri.searchParams.get('body'), /Question: A & B\? <script>test<\/script>\nNew line/);
-  assert.match(uri.searchParams.get('body'), /the-digital-watch\/article-02.html/);
+  assert.match(uri.searchParams.get('body'), /thecyberinsight\.co\.uk\/article-02\.html/);
   assert.match(app.document.querySelector('#fbStatus').textContent, /Nothing has been sent/);
   assert.match(app.document.querySelector('#fbMessage').value, /Question/);
   assert.equal(app.values.has('ci_reader_comments_v1'), false);
@@ -201,6 +201,7 @@ test('deployment contains public pages and security policy, excludes the local e
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-01.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-02.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/sitemap.xml')));
+  assert.ok(fs.existsSync(path.join(root, 'dist/CNAME')));
   for (const file of ['admin.html', 'js/admin.js', 'node_modules', 'tests', '.git']) {
     assert.equal(fs.existsSync(path.join(root, 'dist', file)), false, file);
   }
