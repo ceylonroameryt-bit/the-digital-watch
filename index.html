@@ -733,14 +733,75 @@
         <!-- Series Status -->
         <div class="series-tracker" style="background:rgba(0,0,0,.25);border-color:rgba(255,255,255,.15);">
           <div class="series-tracker-top">
-            <span style="color:#FEE2E2;">Investigation Status: <strong style="color:white;">Case 01 Live Now ✅</strong></span>
+            <span style="color:#FEE2E2;">Investigation Status: <strong style="color:white;">Cases 01 &amp; 02 Live Now ✅</strong></span>
             <span class="stat" style="color:#FEF08A;">Fresh Field Intel · October 2026</span>
           </div>
         </div>
       </div>
 
-      <!-- Feature Card: Manchester Airports Group Breach -->
-      <div style="margin-top:32px;">
+      <!-- Feature Grid: Behind the Breach Episodes -->
+      <div style="margin-top:32px;display:flex;flex-direction:column;gap:24px;">
+
+        <!-- Feature Card: ASOS Data Breach (Episode 02) -->
+        <a href="behind-the-breach-02.html" class="feat-card" style="border:1.5px solid #FCA5A5;box-shadow:var(--sh-md);"
+          aria-label="Read: ASOS Data Breach: How One Stolen Employee Login Opened the Door to Customer Data">
+          <div class="feat-body">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
+              <span class="feat-chip" style="background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;">Episode 02 · Retail &amp; E-commerce</span>
+              <span class="feat-chip" style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;">Social Engineering · Stolen Credentials · 3rd-Party SaaS</span>
+            </div>
+            <h2 class="feat-h2" style="color:var(--ink);">ASOS Data Breach: How One Stolen Employee Login Opened the Door to Customer Data</h2>
+            <p class="feat-deck">
+              An attacker impersonated a trusted contact to persuade an employee to share their login. Those credentials unlocked third-party platforms holding customer names and contact details. Here is what happened, the security implications, and how a SOC investigates.
+            </p>
+            <div class="feat-meta">
+              <div class="feat-av" style="background:#DC2626;">PS</div>
+              <div>
+                <div class="feat-aname">Poorna Sujampathi Rathnayaka</div>
+                <div class="feat-adate">Episode 02 · 9 min read · Published ✅</div>
+              </div>
+              <span class="feat-cta" style="background:#DC2626;color:white;">Read Investigation <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2.5">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg></span>
+            </div>
+          </div>
+
+          <!-- Feature SVG: Impersonation to SaaS Records -->
+          <div class="feat-svg" style="background:linear-gradient(135deg,#FEF2F2 0%,#FEE2E2 100%);">
+            <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <circle cx="160" cy="120" r="85" fill="#FECACA" opacity=".4" />
+              <!-- Impersonator / Stolen Login Box -->
+              <rect x="35" y="55" width="110" height="130" rx="10" fill="white" stroke="#DC2626" stroke-width="2" />
+              <rect x="35" y="55" width="110" height="26" rx="10" fill="#DC2626" />
+              <text x="90" y="72" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">STOLEN LOGIN</text>
+              <circle cx="90" cy="108" r="16" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5" />
+              <text x="90" y="112" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="12" font-weight="800">🔑</text>
+              <rect x="45" y="138" width="90" height="18" rx="4" fill="#1E293B" />
+              <text x="90" y="150" text-anchor="middle" fill="#38BDF8" font-family="monospace" font-size="7" font-weight="700">T1078 Valid Account</text>
+              <text x="90" y="172" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="7" font-weight="800">Impersonation Lure</text>
+
+              <!-- Connection Arrow -->
+              <path d="M148 120 L175 120" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="4 3" />
+              <polygon points="175,120 167,115 167,125" fill="#DC2626" />
+
+              <!-- Third Party Cloud Box -->
+              <rect x="175" y="55" width="110" height="130" rx="10" fill="white" stroke="#2563EB" stroke-width="2" />
+              <rect x="175" y="55" width="110" height="26" rx="10" fill="#2563EB" />
+              <text x="230" y="72" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">3RD-PARTY SAAS</text>
+              <circle cx="230" cy="108" r="18" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5" />
+              <text x="230" y="106" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="9" font-weight="800">DATA</text>
+              <text x="230" y="117" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="6.5" font-weight="700">EXPOSED</text>
+              <rect x="185" y="138" width="90" height="18" rx="4" fill="#FEE2E2" stroke="#EF4444" stroke-width="1" />
+              <text x="230" y="150" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="7" font-weight="700">Names &amp; Contacts</text>
+              <text x="230" y="172" text-anchor="middle" fill="#16A34A" font-family="DM Sans,system-ui" font-size="7" font-weight="800">Cards/Passwords Safe</text>
+            </svg>
+          </div>
+        </a>
+
+        <!-- Feature Card: Manchester Airports Group Breach (Episode 01) -->
         <a href="behind-the-breach-01.html" class="feat-card" style="border:1.5px solid #FCA5A5;box-shadow:var(--sh-md);"
           aria-label="Read: Manchester Airports Group Data Breach: What Actually Happened, and Why It Matters">
           <div class="feat-body">
@@ -787,6 +848,7 @@
             </svg>
           </div>
         </a>
+
       </div>
 
     </div>
@@ -854,6 +916,7 @@
               <li><a href="article-06.html">Ep 06: Passkeys vs. Passwords &amp; FIDO2</a></li>
               <li><a href="article-07.html">Ep 07: Fake Recruiters &amp; Trojan Assessments</a></li>
               <li><a href="behind-the-breach-01.html">Behind the Breach Ep 01: Manchester Airports Group</a></li>
+              <li><a href="behind-the-breach-02.html">Behind the Breach Ep 02: ASOS Customer Data Breach</a></li>
               <li><a href="#series">View 10-Part Curriculum</a></li>
               <li><a href="article-07.html#feedback">Submit Reader Feedback</a></li>
             </ul>

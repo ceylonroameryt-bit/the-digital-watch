@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASOS Data Breach: How One Stolen Employee Login Opened the Door to Customer Data — Cyber Insight</title>
+  <meta name="description"
+    content="Behind the Breach Episode 02: How British online retailer ASOS disclosed a customer data breach after an attacker impersonated a trusted contact to obtain employee credentials, accessing third-party platforms.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="ASOS Data Breach: How One Stolen Employee Login Opened the Door to Customer Data">
+  <meta property="og:description"
+    content="A single compromised employee account can create a much bigger security problem than most people realise. An investigative autopsy into the reported ASOS incident, third-party platforms, and SOC detection.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "ASOS Data Breach: How One Stolen Employee Login Opened the Door to Customer Data",
+    "description": "An investigative breakdown of the reported ASOS customer data breach, examining how social engineering impersonation and compromised employee credentials exposed customer records on third-party platforms.",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cyber Insight",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "datePublished": "2026-10-08",
+    "dateModified": "2026-10-12",
+    "copyrightYear": 2026,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=14">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23DC2626'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>BB</text></svg>">
+  <link rel="canonical" href="https://ceylonroameryt-bit.github.io/the-digital-watch/behind-the-breach-02.html">
+  <meta property="og:url" content="https://ceylonroameryt-bit.github.io/the-digital-watch/behind-the-breach-02.html">
+</head>
+
+<body data-page="behind-the-breach" data-article-id="breach02">
+
+  <div id="reading-progress"></div>
+  <div id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark" style="background:#DC2626;">CI</div>
+        <div>
+          <div class="brand-name">Cyber Insight</div>
+          <div class="brand-sub">Behind the Breach Series</div>
+        </div>
+      </a>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="theme-toggle-btn" id="themeToggleNav" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+        <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#series">Curriculum</a></li>
+        <li><a href="index.html#behind-the-breach">Behind the Breach</a></li>
+        <li><a href="behind-the-breach-02.html" class="active">Episode 02</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#behind-the-breach" class="cta">Series Index →</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <!-- Series Callout Banner -->
+          <div class="art-series-banner" style="background:#FEF2F2;border-color:#FCA5A5;">
+            <div class="art-series-info">
+              <span class="art-series-tag" style="background:#DC2626;">Behind the Breach</span>
+              <span style="color:#991B1B;">Investigative Autopsy · <strong>Episode 02</strong></span>
+            </div>
+            <a href="index.html#behind-the-breach" class="art-series-link" style="color:#DC2626;">Series Hub →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="index.html#behind-the-breach">Behind the Breach</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Episode 02: ASOS Data Breach</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat" style="color:#DC2626;">Retail &amp; E-commerce</span>
+            <span class="art-dot">·</span>
+            <span>Social Engineering</span>
+            <span class="art-dot">·</span>
+            <span>Stolen Credentials</span>
+            <span class="art-dot">·</span>
+            <span>October 2026</span>
+            <span class="art-dot">·</span>
+            <span>9 min read</span>
+          </div>
+
+          <h1 class="art-h1">ASOS Data Breach: How One Stolen Employee Login Opened the Door to Customer Data</h1>
+          <p class="h-desc" style="margin-top:12px;font-size:1.15rem;color:var(--ink-3);">
+            A single compromised employee account can create a much bigger security problem than most people realise. The reported ASOS breach is a useful example of how trust, employee access and third-party applications can come together to expose customer information.
+          </p>
+
+          <div class="art-byline">
+            <div class="art-av" style="background:#DC2626;">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Investigative Technology Writer · Cyber Insight</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero SVG: Impersonation & Stolen Credentials Vector -->
+        <div class="art-hero-svg" style="background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Illustration depicting an attacker impersonating a trusted contact to compromise employee credentials, accessing third-party customer data platforms while core commerce systems remain safe">
+            <!-- Background pulse circles -->
+            <circle cx="160" cy="120" r="105" fill="#FECACA" opacity=".35" />
+            <circle cx="160" cy="120" r="75" fill="#FEE2E2" opacity=".6" />
+
+            <!-- Social Engineering Lure / Impersonation (Left) -->
+            <rect x="20" y="44" width="118" height="152" rx="10" fill="white" stroke="#DC2626" stroke-width="2" />
+            <rect x="20" y="44" width="118" height="26" rx="10" fill="#DC2626" />
+            <text x="79" y="61" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">TRUST EXPLOITED</text>
+
+            <circle cx="79" cy="92" r="16" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5" />
+            <!-- Mask / Impersonation silhouette -->
+            <path d="M71 90 Q79 82 87 90 Q87 98 79 104 Q71 98 71 90 Z" fill="#DC2626" />
+            <circle cx="76" cy="91" r="1.5" fill="white" />
+            <circle cx="82" cy="91" r="1.5" fill="white" />
+
+            <rect x="30" y="118" width="98" height="18" rx="4" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1" />
+            <text x="79" y="130" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="7" font-weight="700">Impersonated Contact</text>
+
+            <rect x="30" y="142" width="98" height="22" rx="4" fill="#1E293B" stroke="#0F172A" stroke-width="1" />
+            <text x="79" y="156" text-anchor="middle" fill="#FBBF24" font-family="monospace" font-size="7" font-weight="700">user: pass [Stolen]</text>
+            <text x="79" y="184" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="7" font-weight="800">T1656 / T1078</text>
+
+            <!-- Arrow showing credential access to third-party SaaS -->
+            <path d="M142 120 L176 120" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="4 3" />
+            <polygon points="176,120 168,115 168,125" fill="#DC2626" />
+
+            <!-- Third-Party Cloud Platform (Right) -->
+            <rect x="180" y="44" width="120" height="152" rx="10" fill="white" stroke="#2563EB" stroke-width="2" />
+            <rect x="180" y="44" width="120" height="26" rx="10" fill="#2563EB" />
+            <text x="240" y="61" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">THIRD-PARTY SAAS</text>
+
+            <circle cx="240" cy="100" r="22" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5" />
+            <text x="240" y="98" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="9" font-weight="800">CUSTOMER</text>
+            <text x="240" y="109" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="7" font-weight="700">RECORDS</text>
+
+            <rect x="190" y="130" width="100" height="16" rx="4" fill="#FEE2E2" stroke="#EF4444" stroke-width="1" />
+            <text x="240" y="141" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="6.5" font-weight="700">Names &amp; Contacts</text>
+
+            <rect x="190" y="152" width="100" height="16" rx="4" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1" />
+            <text x="240" y="163" text-anchor="middle" fill="#15803D" font-family="DM Sans,system-ui" font-size="6.5" font-weight="700">Cards &amp; Passwords SAFE</text>
+
+            <text x="240" y="184" text-anchor="middle" fill="#2563EB" font-family="DM Sans,system-ui" font-size="7" font-weight="800">External Perimeter</text>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE MAIN LAYOUT -->
+  <div class="art-layout">
+
+    <!-- ARTICLE MAIN CONTENT -->
+    <main class="art-center" id="articleBody">
+
+      <!-- Horizontal Action & Metadata Strip -->
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#FEF2F2;color:#DC2626;border-color:#FCA5A5;font-weight:700;">Behind the Breach</span>
+          <span class="chip">Episode 02</span>
+          <span class="chip">Social Engineering</span>
+          <span class="chip">Stolen Credentials</span>
+          <span class="chip">Third-Party SaaS</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 9 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" onclick="toggleLike()" title="Like this research" aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" onclick="addClap()" title="Applaud this research" aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">1 Login</div>
+          <div class="stat-l">Compromised Account</div>
+          <div class="stat-s">Attacker impersonated a trusted contact to persuade an employee to share credentials</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">3rd-Party</div>
+          <div class="stat-l">Affected Environment</div>
+          <div class="stat-s">Credentials leveraged against external SaaS platforms holding customer contact records</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">0 Impact</div>
+          <div class="stat-l">Cards &amp; Passwords</div>
+          <div class="stat-s">Core website, consumer mobile app, payment cards, and password hashes remained unaffected</div>
+        </div>
+      </div>
+
+      <article class="art-body art-text">
+
+        <!-- INTRO NOTE -->
+        <p>
+          Let's look at what happened, what we can learn from the available evidence, and how a security operations centre (SOC) might investigate a similar incident.
+        </p>
+
+        <!-- INCIDENT AT A GLANCE CARD -->
+        <div class="news-alert-card" id="incident-at-a-glance">
+          <div class="news-alert-header">
+            <span class="news-badge breaking">
+              <span class="news-pulse-dot"></span> Incident at a Glance · October 2026
+            </span>
+            <div class="news-sources-strip" style="margin:0;padding:0;border:none;">
+              <a href="#src-reuters" class="src-cite">📄 Reuters Notice ↗</a>
+              <a href="#src-infosec" class="src-cite">🗞️ Infosecurity Mag ↗</a>
+            </div>
+          </div>
+
+          <div class="news-headline">
+            ASOS Discloses Customer Data Breach Involving Compromised Third-Party Platform Access
+          </div>
+
+          <div class="news-quote-lead">
+            <strong>Incident Scope Summary:</strong> British online fashion retailer ASOS confirmed unauthorised access to customer personal information held on certain third-party platforms after employee login credentials were stolen through impersonation. Core e-commerce systems, payment card data, and passwords were not compromised.
+          </div>
+
+          <div class="news-meta-grid">
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Incident</span>
+              <span class="news-meta-val" style="color:#DC2626;">ASOS customer data breach</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Public Disclosure</span>
+              <span class="news-meta-val">6 October 2026</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Customer Notice Reported</span>
+              <span class="news-meta-val">8 October 2026</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Reported Initial Access</span>
+              <span class="news-meta-val">Employee credentials via impersonation</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Affected Environment</span>
+              <span class="news-meta-val">Certain third-party platforms used by ASOS</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Payment Card Information</span>
+              <span class="news-meta-val" style="color:#16A34A;">🟢 Reported unaffected</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Account Passwords</span>
+              <span class="news-meta-val" style="color:#16A34A;">🟢 Reported unaffected</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Main Website &amp; App</span>
+              <span class="news-meta-val" style="color:#16A34A;">🟢 Remained fully safe</span>
+            </div>
+          </div>
+          <p style="font-size:0.82rem;color:var(--ink-4);margin-top:12px;margin-bottom:0;font-style:italic;">
+            The available reporting does not establish the total number of affected customers or provide a complete technical account of the attack.
+          </p>
+        </div>
+
+        <!-- SECTION 1 -->
+        <section id="what-actually-happened">
+          <h2>1. What Actually Happened?</h2>
+
+          <h3 style="font-family:var(--f-d);font-size:1.15rem;margin-top:18px;color:var(--ink);">It Started With Trust</h3>
+          <p>
+            In October 2026, British online fashion retailer ASOS disclosed a cybersecurity incident involving unauthorised access to certain third-party platforms used by the company.
+          </p>
+          <p>
+            According to reporting by Reuters <a href="#src-reuters" class="src-cite">Reuters Notice ↗</a> and Infosecurity Magazine <a href="#src-infosec" class="src-cite">Infosecurity Mag ↗</a>, the attacker impersonated a trusted contact to obtain an employee's login credentials. Those credentials were then used to access information held on third-party platforms.
+          </p>
+          <p>
+            ASOS subsequently notified customers that some of their personal information had been accessed. The reported information included names and contact details.
+          </p>
+          <p>
+            The company stated that payment card information and account passwords had not been compromised. It also said its website and app remained safe.
+          </p>
+
+          <p style="font-weight:600;color:var(--ink);">
+            At first, this might sound like a simple case of someone stealing a password. But there is a bigger issue here.
+          </p>
+
+          <div style="background:var(--bg-2);border-left:4px solid #DC2626;padding:16px 20px;border-radius:0 var(--r) var(--r) 0;margin:22px 0;">
+            <p style="font-size:1.05rem;font-weight:700;color:var(--ink);margin:0 0 8px;">
+              How could impersonating one person give an attacker access to customer information?
+            </p>
+            <p style="margin:0;color:var(--ink-3);font-size:0.95rem;line-height:1.6;">
+              The answer lies in the way businesses connect employees, applications and data. An employee account may have access to several systems, including platforms that store sensitive customer information. If an attacker takes control of that account, they may be able to use those existing permissions against the organisation.
+            </p>
+            <p style="margin:8px 0 0;font-weight:700;color:#DC2626;font-size:0.95rem;">
+              The real problem is not just the stolen login. It is what that login allows someone to do.
+            </p>
+          </div>
+
+          <!-- SYSTEM ARCHITECTURE DIAGRAM -->
+          <div class="art-diagram-card">
+            <div class="art-diagram-header">
+              <span class="art-diagram-title">System Architecture: Identity Impersonation vs SaaS Perimeter</span>
+              <span class="news-badge verified">Reported Architecture Flow</span>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%); border-radius: 12px; padding: 16px; display: flex; justify-content: center; overflow-x: auto;">
+              <svg viewBox="0 0 680 260" width="680" height="260" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;"
+                aria-label="Architecture diagram showing attacker social engineering on the left, compromised employee account in the middle, third-party SaaS customer access on the right, and isolated core retail systems at the bottom">
+                <defs>
+                  <linearGradient id="redZone" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FEF2F2" />
+                    <stop offset="100%" stop-color="#FEE2E2" />
+                  </linearGradient>
+                  <linearGradient id="amberZone" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FFFBEB" />
+                    <stop offset="100%" stop-color="#FEF3C7" />
+                  </linearGradient>
+                  <linearGradient id="blueZone" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#EFF6FF" />
+                    <stop offset="100%" stop-color="#DBEAFE" />
+                  </linearGradient>
+                  <linearGradient id="greenZone" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#F0FDF4" />
+                    <stop offset="100%" stop-color="#DCFCE7" />
+                  </linearGradient>
+                </defs>
+
+                <!-- ZONE 1: SOCIAL ENGINEERING (IMPERSONATION) -->
+                <rect x="15" y="20" width="195" height="140" rx="10" fill="url(#redZone)" stroke="#DC2626" stroke-width="1.8" />
+                <rect x="25" y="28" width="175" height="24" rx="5" fill="#DC2626" />
+                <text x="112" y="44" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="9" font-weight="800">1. SOCIAL ENGINEERING</text>
+                <rect x="25" y="58" width="175" height="18" rx="4" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1" />
+                <text x="112" y="70" text-anchor="middle" fill="#B91C1C" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">T1656: Impersonation</text>
+                <text x="112" y="94" text-anchor="middle" fill="#0F172A" font-family="DM Sans, system-ui" font-size="8" font-weight="700">Attacker Spoofs Colleague</text>
+                <text x="112" y="108" text-anchor="middle" fill="#475569" font-family="DM Sans, system-ui" font-size="7.2">Persuades Employee to Share Login</text>
+                <rect x="30" y="122" width="165" height="24" rx="4" fill="#7F1D1D" stroke="#DC2626" stroke-width="1" />
+                <text x="112" y="138" text-anchor="middle" fill="#FEF08A" font-family="monospace" font-size="7.5" font-weight="700">Credentials Handed Over</text>
+
+                <!-- Arrow 1 to 2 -->
+                <path d="M210 90 L235 90" stroke="#DC2626" stroke-width="2.2" stroke-dasharray="4 3" />
+                <polygon points="235,90 227,85 227,95" fill="#DC2626" />
+
+                <!-- ZONE 2: STOLEN EMPLOYEE IDENTITY -->
+                <rect x="240" y="20" width="195" height="140" rx="10" fill="url(#amberZone)" stroke="#D97706" stroke-width="1.8" />
+                <rect x="250" y="28" width="175" height="24" rx="5" fill="#D97706" />
+                <text x="337" y="44" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="9" font-weight="800">2. VALID ACCOUNT ABUSE</text>
+                <rect x="250" y="58" width="175" height="18" rx="4" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1" />
+                <text x="337" y="70" text-anchor="middle" fill="#92400E" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">T1078: Valid Accounts</text>
+                <text x="337" y="94" text-anchor="middle" fill="#0F172A" font-family="DM Sans, system-ui" font-size="8" font-weight="700">Legitimate Username &amp; Password</text>
+                <text x="337" y="108" text-anchor="middle" fill="#475569" font-family="DM Sans, system-ui" font-size="7.2">Authentication Succeeds</text>
+                <rect x="255" y="122" width="165" height="24" rx="4" fill="#1E293B" stroke="#334155" stroke-width="1" />
+                <text x="337" y="138" text-anchor="middle" fill="#38BDF8" font-family="monospace" font-size="7.2" font-weight="700">OAuth / SSO / SaaS Token</text>
+
+                <!-- Arrow 2 to 3 -->
+                <path d="M435 90 L460 90" stroke="#2563EB" stroke-width="2.2" stroke-dasharray="4 3" />
+                <polygon points="460,90 452,85 452,95" fill="#2563EB" />
+
+                <!-- ZONE 3: THIRD-PARTY CLOUD PLATFORMS -->
+                <rect x="465" y="20" width="200" height="140" rx="10" fill="url(#blueZone)" stroke="#2563EB" stroke-width="1.8" />
+                <rect x="475" y="28" width="180" height="24" rx="5" fill="#2563EB" />
+                <text x="565" y="44" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="9" font-weight="800">3. THIRD-PARTY PLATFORMS</text>
+                <rect x="475" y="58" width="180" height="18" rx="4" fill="#DBEAFE" stroke="#93C5FD" stroke-width="1" />
+                <text x="565" y="70" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">Customer Records Exposed</text>
+                <circle cx="565" cy="100" r="14" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.5" />
+                <text x="565" y="104" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans, system-ui" font-size="10" font-weight="800">CRM</text>
+                <rect x="480" y="122" width="170" height="24" rx="4" fill="#FEE2E2" stroke="#EF4444" stroke-width="1" />
+                <text x="565" y="137" text-anchor="middle" fill="#991B1B" font-family="DM Sans, system-ui" font-size="7" font-weight="700">Customer Names &amp; Contact Details</text>
+
+                <!-- ZONE 4: ISOLATED CORE SYSTEMS (GREEN PERIMETER) -->
+                <rect x="15" y="180" width="650" height="66" rx="10" fill="url(#greenZone)" stroke="#16A34A" stroke-width="1.8" />
+                <rect x="25" y="190" width="220" height="20" rx="4" fill="#16A34A" />
+                <text x="135" y="204" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="8.5" font-weight="800">CORE ASOS SYSTEMS (UNAFFECTED)</text>
+                
+                <g transform="translate(260, 192)">
+                  <rect x="0" y="0" width="120" height="42" rx="5" fill="#FFFFFF" stroke="#16A34A" stroke-width="1" />
+                  <text x="60" y="18" text-anchor="middle" fill="#15803D" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">E-Commerce Web &amp; App</text>
+                  <text x="60" y="32" text-anchor="middle" fill="#16A34A" font-family="DM Sans, system-ui" font-size="7" font-weight="800">🟢 REMAINED SAFE</text>
+                </g>
+
+                <g transform="translate(390, 192)">
+                  <rect x="0" y="0" width="125" height="42" rx="5" fill="#FFFFFF" stroke="#16A34A" stroke-width="1" />
+                  <text x="62" y="18" text-anchor="middle" fill="#15803D" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">Payment Cards / PCI-DSS</text>
+                  <text x="62" y="32" text-anchor="middle" fill="#16A34A" font-family="DM Sans, system-ui" font-size="7" font-weight="800">🟢 NOT COMPROMISED</text>
+                </g>
+
+                <g transform="translate(525, 192)">
+                  <rect x="0" y="0" width="130" height="42" rx="5" fill="#FFFFFF" stroke="#16A34A" stroke-width="1" />
+                  <text x="65" y="18" text-anchor="middle" fill="#15803D" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">Account Password Hashes</text>
+                  <text x="65" y="32" text-anchor="middle" fill="#16A34A" font-family="DM Sans, system-ui" font-size="7" font-weight="800">🟢 UNTOUCHED</text>
+                </g>
+              </svg>
+            </div>
+            <div class="art-diagram-caption">
+              <strong>Figure 2.1 — Attack Surface Breakdown:</strong> How employee credentials obtained via social engineering enabled access to third-party customer platforms, while ASOS core e-commerce, payment gateways, and account password databases remained isolated.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section id="how-attack-unfolded">
+          <h2>2. How the Attack May Have Unfolded</h2>
+          <p>
+            To understand the incident, we need to separate what has been reported from what remains unknown. The following stages reflect the public account and explain the potential security implications without assuming that every technical detail has been confirmed.
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:18px;margin:24px 0;">
+            <!-- Stage 01 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:18px 20px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+                <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);">Stage 01 — The Attacker Exploits Trust</h3>
+                <span class="am-badge am-badge-confirmed">Status: Reported</span>
+              </div>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                The attacker reportedly impersonated a trusted contact to persuade an employee to share their login credentials.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                This is social engineering. Instead of finding a weakness in software, the attacker manipulates a person into doing something that gives them an advantage.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                The approach can be surprisingly effective. A message may appear to come from a colleague, a business partner or someone the employee regularly deals with. If the request seems reasonable and the identity looks familiar, the employee may not realise anything is wrong.
+              </p>
+              <p style="margin:0;font-size:0.84rem;color:var(--ink-4);font-style:italic;">
+                The available sources do not establish exactly how the impersonation was carried out in this incident.
+              </p>
+            </div>
+
+            <!-- Stage 02 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #D97706;border-radius:var(--r);padding:18px 20px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+                <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);">Stage 02 — Employee Credentials Are Obtained</h3>
+                <span class="am-badge am-badge-confirmed">Status: Reported</span>
+              </div>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                The attacker obtained credentials associated with an employee account.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                This is where the problem becomes more difficult for security teams. A stolen password can allow someone to authenticate as a legitimate user, depending on the account's authentication requirements and other security controls.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                The system may recognise the username and password as valid. That does not mean the person using them is the real employee.
+              </p>
+              <p style="margin:0;font-size:0.88rem;color:#D97706;font-weight:600;">
+                For a SOC analyst, this distinction matters. A successful login is not automatically evidence of legitimate activity.
+              </p>
+            </div>
+
+            <!-- Stage 03 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #2563EB;border-radius:var(--r);padding:18px 20px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+                <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);">Stage 03 — A Third-Party Platform Is Accessed</h3>
+                <span class="am-badge am-badge-confirmed">Status: Reported</span>
+              </div>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                The compromised credentials were reportedly used to access information on certain third-party platforms.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Businesses rely on external services for a wide range of tasks, from customer engagement and marketing to analytics and day-to-day operations. Some of these applications may hold customer information or have access to company data.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                An attacker does not necessarily need to compromise the company's main website or internal network if an employee account already provides a route to the information they want.
+              </p>
+              <p style="margin:0;font-size:0.84rem;color:var(--ink-4);font-style:italic;">
+                The public reporting does not identify every affected platform or establish the complete permissions available to the compromised account.
+              </p>
+            </div>
+
+            <!-- Stage 04 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:18px 20px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+                <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);">Stage 04 — Customer Information Is Accessed</h3>
+                <span class="am-badge am-badge-confirmed">Status: Reported</span>
+              </div>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                ASOS notified customers that some personal information had been accessed.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                The company said payment card information and account passwords were unaffected. However, the absence of those particular data types does not mean the incident was unimportant.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Names and contact details can still be useful to criminals. They may be used to make phishing messages more convincing or to target people with follow-up scams.
+              </p>
+              <p style="margin:0;font-size:0.84rem;color:var(--ink-4);font-style:italic;">
+                The exact number of affected customers and the full scope of the data access have not been established by the sources cited here.
+              </p>
+            </div>
+
+            <!-- Stage 05 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #16A34A;border-radius:var(--r);padding:18px 20px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+                <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);">Stage 05 — The Incident Is Investigated</h3>
+                <span class="am-badge am-badge-verified">Status: Publicly reported at a high level</span>
+              </div>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                ASOS said it secured the affected platforms and was working with the relevant authorities. The company also stated that its website and app remained safe.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                What the public reporting does not provide is a complete technical account of how the attacker was detected, when access was revoked, or which specific controls were used to contain the incident. Those details would help explain how the attack was discovered and how effectively further access was prevented.
+              </p>
+              <p style="margin:0;font-size:0.88rem;color:#16A34A;font-weight:600;">
+                Without access to the forensic investigation, however, we should not fill those gaps with assumptions.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section id="incident-timeline">
+          <h2>3. The Incident Timeline</h2>
+
+          <div class="t-wrap">
+            <table class="t">
+              <thead>
+                <tr>
+                  <th style="width:28%;">Date</th>
+                  <th>Event</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Early October 2026</strong></td>
+                  <td>Unauthorised access reportedly occurred during the incident</td>
+                </tr>
+                <tr>
+                  <td><strong>6 October 2026</strong></td>
+                  <td>ASOS disclosed the cybersecurity incident</td>
+                </tr>
+                <tr>
+                  <td><strong>8 October 2026</strong></td>
+                  <td>Details of customer notification were reported publicly</td>
+                </tr>
+                <tr>
+                  <td><strong>After disclosure</strong></td>
+                  <td>Investigation and remediation continued, according to public reporting</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            This timeline provides a high-level view of the reported events, but it does not tell us exactly when the attack began.
+          </p>
+          <p>
+            The attacker may have obtained credentials before the unauthorised access was discovered. The available reporting does not establish the first credential compromise, the first unauthorised login or how long the attacker had access.
+          </p>
+          <div style="background:var(--bg-2);border-left:4px solid #DC2626;padding:12px 18px;margin:18px 0;border-radius:0 var(--r) var(--r) 0;">
+            <p style="margin:0;font-weight:700;color:#DC2626;font-size:0.98rem;">
+              The date a breach is announced is not necessarily the date the attack began.
+            </p>
+          </div>
+          <p>
+            For security teams, that distinction is important. Understanding the period between initial access and detection helps investigators assess potential exposure, review historical activity and determine whether other accounts or systems may have been affected.
+          </p>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section id="why-third-party-platforms-matter">
+          <h2>4. Why Third-Party Platforms Matter</h2>
+          <p>
+            When people think about cybersecurity, they often picture firewalls, antivirus software and the protection of a company's website.
+          </p>
+          <p>
+            Those controls matter, but they are only part of the picture.
+          </p>
+          <p>
+            A modern business may use dozens of external applications. Some hold customer information, while others connect to internal systems or process business data. Access is often provided through employee accounts, integrations and APIs.
+          </p>
+
+          <div class="ck-card">
+            <div class="ck-title">
+              <span>🔗</span> Consider a Simple Example
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">1</div>
+              <div>An employee has access to a customer management platform.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">2</div>
+              <div>The platform stores names and contact details.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">3</div>
+              <div>The employee can view or export certain records.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">4</div>
+              <div>An attacker obtains the employee's credentials.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">5</div>
+              <div>If the attacker can authenticate successfully, they may be able to access information through the application without directly breaking into the company's main website.</div>
+            </div>
+          </div>
+
+          <p>
+            That is why third-party access deserves the same attention as internal systems.
+          </p>
+          <p style="font-weight:700;color:var(--ink);">
+            An organisation's security boundary extends beyond the systems it owns. It also includes the accounts, applications and integrations that can access its data.
+          </p>
+          <p>
+            This does not mean third-party platforms are inherently unsafe. The level of risk depends on how they are configured, who can access them, what information they hold and how their activity is monitored.
+          </p>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section id="mitre-attack">
+          <h2>5. Connecting the Incident to MITRE ATT&amp;CK</h2>
+          <p>
+            MITRE ATT&amp;CK gives security teams a common language for describing adversary behaviour. It can help analysts organise evidence, identify investigative leads and communicate what may have happened during an incident.
+          </p>
+          <p>
+            The following techniques are relevant to investigating an attack involving impersonation and stolen credentials. They should not all be treated as confirmed ASOS attack techniques.
+          </p>
+
+          <div class="t-wrap">
+            <table class="t">
+              <thead>
+                <tr>
+                  <th style="width:38%;">Technique</th>
+                  <th>Why It Matters</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="https://attack.mitre.org/techniques/T1656/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#DC2626;">
+                      T1656 — Impersonation ↗
+                    </a>
+                  </td>
+                  <td>Relevant to the reported use of a trusted contact's identity to obtain credentials.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://attack.mitre.org/techniques/T1078/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#DC2626;">
+                      T1078 — Valid Accounts ↗
+                    </a>
+                  </td>
+                  <td>Relevant to the reported use of employee credentials to access platforms.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://attack.mitre.org/techniques/T1530/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#2563EB;">
+                      T1530 — Data from Cloud Storage ↗
+                    </a>
+                  </td>
+                  <td>A possible investigative lead if evidence shows that the affected information was accessed from cloud storage.</td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="https://attack.mitre.org/techniques/T1567/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#2563EB;">
+                      T1567 — Exfiltration Over Web Service ↗
+                    </a>
+                  </td>
+                  <td>Relevant only if evidence establishes that data was transferred through a web service in a way consistent with this technique.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p>
+            The first two techniques align with the reported account of the incident. The others are possibilities that investigators might consider depending on the affected platforms and the evidence available.
+          </p>
+          <div style="background:var(--bg-2);border-left:4px solid #2563EB;padding:12px 18px;margin:18px 0;border-radius:0 var(--r) var(--r) 0;">
+            <p style="margin:0;font-weight:600;color:var(--ink-2);font-size:0.95rem;">
+              There is an important difference between identifying a technique that fits a reported behaviour and proving that the technique was used. A good investigation should make that distinction clear.
+            </p>
+          </div>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section id="what-we-dont-know">
+          <h2>6. What We Still Don't Know</h2>
+          <p>
+            Public reporting gives us a starting point, but it does not answer every question a security analyst would ask.
+          </p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:14px;margin:24px 0;">
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px;">
+              <h3 style="font-size:0.95rem;font-weight:700;margin:0 0 6px;color:#DC2626;">Which third-party platforms were affected?</h3>
+              <p style="margin:0;font-size:0.88rem;color:var(--ink-3);">The available reports refer to third-party platforms but do not provide a complete list of the services involved.</p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px;">
+              <h3 style="font-size:0.95rem;font-weight:700;margin:0 0 6px;color:#DC2626;">How was the employee impersonated?</h3>
+              <p style="margin:0;font-size:0.88rem;color:var(--ink-3);">The reported account describes impersonation to obtain credentials. The exact communication channel and method remain unclear from the sources cited here.</p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px;">
+              <h3 style="font-size:0.95rem;font-weight:700;margin:0 0 6px;color:#DC2626;">Was multifactor authentication enabled?</h3>
+              <p style="margin:0;font-size:0.88rem;color:var(--ink-3);">The available information does not establish which authentication controls protected the employee account or whether any additional controls were bypassed.</p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px;">
+              <h3 style="font-size:0.95rem;font-weight:700;margin:0 0 6px;color:#DC2626;">How many customers were affected?</h3>
+              <p style="margin:0;font-size:0.88rem;color:var(--ink-3);">Some customer information was accessed, but the sources cited here do not establish a definitive total.</p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px;">
+              <h3 style="font-size:0.95rem;font-weight:700;margin:0 0 6px;color:#DC2626;">Was customer data downloaded or transferred elsewhere?</h3>
+              <p style="margin:0;font-size:0.88rem;color:var(--ink-3);">Unauthorised access does not automatically prove that data was downloaded in bulk or exfiltrated. Investigators would need relevant application logs, access records and evidence of data movement to establish what happened.</p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px;">
+              <h3 style="font-size:0.95rem;font-weight:700;margin:0 0 6px;color:#DC2626;">How long did the attacker have access?</h3>
+              <p style="margin:0;font-size:0.88rem;color:var(--ink-3);">The public timeline does not establish the first unauthorised login or the duration of the attacker's access.</p>
+            </div>
+          </div>
+
+          <p>
+            These gaps matter because they affect how an organisation assesses the incident's severity and determines what further investigation is required.
+          </p>
+          <p style="font-weight:700;color:var(--ink);">
+            It is better to acknowledge an unanswered question than to present an assumption as a confirmed finding.
+          </p>
+        </section>
+
+        <!-- SECTION 7 -->
+        <section id="could-soc-detect">
+          <h2>7. Could a SOC Analyst Have Detected the Attack?</h2>
+          <p>
+            Possibly. It would depend on the security controls, available logs and activity generated by the compromised account.
+          </p>
+          <p>
+            One of the challenges with stolen credentials is that the attacker may not need malware. They may use a legitimate username and password to access a real business application.
+          </p>
+          <p>
+            The endpoint might appear healthy. The login might succeed. The application might process the request exactly as designed.
+          </p>
+          <p style="font-weight:700;color:#DC2626;">
+            Yet the activity could still be unauthorised.
+          </p>
+          <p>
+            This is why a SOC cannot rely only on alerts for malware or failed login attempts. Analysts also need to understand how accounts are normally used and recognise behaviour that falls outside those patterns.
+          </p>
+
+          <h3 style="font-family:var(--f-d);font-size:1.15rem;margin-top:24px;color:var(--ink);">What Should the SOC Monitor?</h3>
+
+          <div style="display:flex;flex-direction:column;gap:14px;margin:20px 0;">
+            <!-- Pillar 1 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:16px 20px;">
+              <h4 style="font-family:var(--f-d);font-size:1rem;margin:0 0 8px;color:#DC2626;">1. Identity and Authentication</h4>
+              <ul style="margin:0;padding-left:20px;font-size:0.9rem;color:var(--ink-2);line-height:1.6;">
+                <li>Successful logins from unfamiliar devices or unusual locations.</li>
+                <li>Multiple failed login attempts followed by a successful authentication.</li>
+                <li>Unexpected changes to authentication methods or account settings.</li>
+                <li>Suspicious activity following a password reset.</li>
+                <li>New sessions that do not fit the user's normal activity.</li>
+              </ul>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #2563EB;border-radius:var(--r);padding:16px 20px;">
+              <h4 style="font-family:var(--f-d);font-size:1rem;margin:0 0 8px;color:#2563EB;">2. Third-Party Application Activity</h4>
+              <ul style="margin:0;padding-left:20px;font-size:0.9rem;color:var(--ink-2);line-height:1.6;">
+                <li>Unusual access to customer records.</li>
+                <li>Sudden increases in data queries or exports.</li>
+                <li>Use of application functions the employee rarely accesses.</li>
+                <li>Unexpected permission changes or integration modifications.</li>
+                <li>Activity from unfamiliar devices or IP addresses.</li>
+              </ul>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #16A34A;border-radius:var(--r);padding:16px 20px;">
+              <h4 style="font-family:var(--f-d);font-size:1rem;margin:0 0 8px;color:#16A34A;">3. Data Access and Movement</h4>
+              <ul style="margin:0;padding-left:20px;font-size:0.9rem;color:var(--ink-2);line-height:1.6;">
+                <li>Unexpected bulk downloads.</li>
+                <li>Repeated requests for large numbers of customer records.</li>
+                <li>Unusual outbound data transfers.</li>
+                <li>Access to sensitive datasets outside normal business processes.</li>
+              </ul>
+            </div>
+          </div>
+
+          <p>
+            None of these signals proves that an account has been compromised on its own. A legitimate reporting task or business campaign may generate similar activity.
+          </p>
+          <p>
+            The analyst needs to investigate the context, correlate the events and determine whether the activity has a reasonable business explanation.
+          </p>
+        </section>
+
+        <!-- SECTION 8 -->
+        <section id="detection-scenario">
+          <h2>8. A Practical SOC Detection Scenario</h2>
+          <p>
+            Imagine an employee who normally accesses a customer platform during UK business hours.
+          </p>
+          <p>
+            One morning, the SIEM identifies a sequence of events:
+          </p>
+
+          <!-- SIEM Alert Sequence Card -->
+          <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;margin:22px 0;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+              <span style="font-family:monospace;font-size:0.8rem;font-weight:700;color:#DC2626;background:#FEE2E2;padding:4px 8px;border-radius:4px;">SIEM CORRELATION INCIDENT #SOC-2026-ASOS</span>
+              <span class="am-badge am-badge-claimed">Hypothetical Scenario</span>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <span style="background:#DC2626;color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;">1</span>
+                <span style="font-size:0.92rem;color:var(--ink);">The employee account signs in from an unfamiliar device.</span>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <span style="background:#DC2626;color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;">2</span>
+                <span style="font-size:0.92rem;color:var(--ink);">The account accesses a third-party application it rarely uses.</span>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <span style="background:#DC2626;color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;">3</span>
+                <span style="font-size:0.92rem;color:var(--ink);">The account requests an unusually large number of customer records.</span>
+              </div>
+              <div style="display:flex;gap:12px;align-items:flex-start;">
+                <span style="background:#DC2626;color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;">4</span>
+                <span style="font-size:0.92rem;color:var(--ink);">The activity takes place outside the employee's normal working pattern.</span>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            Any one of these events might have a legitimate explanation. Taken together, they provide a stronger reason to investigate.
+          </p>
+          <p>
+            A SOC analyst could correlate identity logs, application audit records and data-access events to determine whether the behaviour is unusual for that account.
+          </p>
+          <p>
+            The investigation might include checking the device, reviewing the authentication context, contacting the employee through a trusted channel and confirming whether the activity matches an approved business task.
+          </p>
+          <p>
+            If the evidence suggests account compromise, the response team could revoke active sessions, reset credentials, restrict access and coordinate with the third-party application owner. Relevant logs should also be preserved for further investigation.
+          </p>
+          <p>
+            The response would depend on the evidence, the sensitivity of the data and the organisation's incident-response procedures.
+          </p>
+          <p style="font-size:0.86rem;color:var(--ink-4);font-style:italic;">
+            This is a hypothetical detection scenario. It illustrates how a SOC could investigate a similar attack; it does not describe ASOS's actual internal monitoring or detection rules.
+          </p>
+        </section>
+
+        <!-- SECTION 9 -->
+        <section id="valid-login-meaning">
+          <h2>9. Why a Valid Login Doesn't Always Mean a Legitimate User</h2>
+          <p>
+            There is a common assumption that a successful login means the right person has accessed the system.
+          </p>
+          <p style="font-weight:700;color:#DC2626;">
+            Unfortunately, that is not always true.
+          </p>
+          <p>
+            An attacker with stolen credentials may be able to access a real account. Depending on the controls in place, they may also be able to create sessions or perform actions that initially appear normal.
+          </p>
+          <p>
+            The question for a security team is not simply whether the account is recognised. It is whether the activity makes sense for that account, device, access level and business purpose.
+          </p>
+
+          <div class="ck-card">
+            <div class="ck-title">
+              <span>🛡️</span> Five Layers of Protection Working Together
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">✓</div>
+              <div><strong>Multifactor authentication:</strong> Adds protection beyond a password.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">✓</div>
+              <div><strong>Phishing-resistant authentication:</strong> Can reduce the risk of credential theft through common impersonation techniques.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">✓</div>
+              <div><strong>Least privilege:</strong> Limits what a compromised account can access.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">✓</div>
+              <div><strong>Risk-based access controls:</strong> Can identify or restrict unusual sign-ins.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">✓</div>
+              <div><strong>Application monitoring:</strong> Helps identify suspicious activity after authentication.</div>
+            </div>
+          </div>
+
+          <p>
+            These controls address different parts of the problem. Multifactor authentication can make a stolen password less useful, while least privilege limits potential damage and monitoring helps identify misuse.
+          </p>
+          <p>
+            No single control removes every risk. The aim is to make an attack harder to carry out, limit what an attacker can reach and improve the chances of detecting suspicious activity.
+          </p>
+        </section>
+
+        <!-- SECTION 10 -->
+        <section id="what-organisations-can-learn">
+          <h2>10. What Organisations Can Learn</h2>
+          <p>
+            The incident offers several practical lessons for organisations that rely on employee accounts and external applications.
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:14px;margin:24px 0;">
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:16px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.02rem;margin:0 0 6px;color:var(--ink);">1. Protect Employee Identities</h3>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Use multifactor authentication and, where feasible, phishing-resistant methods. Apply appropriate session controls and review how privileged accounts are protected. Employees should also have a straightforward way to verify unexpected requests before sharing credentials or approving access.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:16px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.02rem;margin:0 0 6px;color:var(--ink);">2. Apply Least Privilege</h3>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Employees should only have access to the data and functions required for their roles. If an account is compromised, limiting its permissions can reduce the amount of information an attacker can reach.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:16px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.02rem;margin:0 0 6px;color:var(--ink);">3. Review Third-Party Access</h3>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Maintain an inventory of external applications, integrations and accounts that can access company data. Review permissions regularly, remove unnecessary access and understand what happens when an employee leaves or changes roles.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:16px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.02rem;margin:0 0 6px;color:var(--ink);">4. Monitor Application Logs</h3>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Security monitoring should not stop at endpoints, firewalls and network traffic. Application audit logs can reveal unusual record access, unexpected exports and suspicious changes that might otherwise go unnoticed. Organisations should ensure that important logs are available, retained appropriately and included in their monitoring processes.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:16px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.02rem;margin:0 0 6px;color:var(--ink);">5. Make Suspicious Activity Easy to Report</h3>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Employees should know how to report impersonation attempts and suspicious requests. Reporting procedures should be clear, and employees should not be discouraged from reporting a mistake promptly. Early reporting can help security teams contain an incident before it develops further.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:16px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.02rem;margin:0 0 6px;color:var(--ink);">6. Prepare for Compromised Accounts</h3>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Incident-response plans should cover session revocation, credential resets, access restrictions, evidence preservation and coordination with third-party providers. Teams should know who is responsible for each action before an incident occurs.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:16px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.02rem;margin:0 0 6px;color:var(--ink);">7. Minimise Unnecessary Data Access</h3>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Limit the personal information each application can access and retain data only for as long as it is needed. Reducing unnecessary access can limit the potential impact of a compromised account.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 11 -->
+        <section id="what-customers-should-know">
+          <h2>11. What Customers Should Know</h2>
+          <p>
+            ASOS stated that payment card information and account passwords were unaffected in this incident. Even so, customers should remain alert to messages that use the breach as a reason to contact them.
+          </p>
+          <p>
+            Criminals sometimes exploit real security incidents to make fraudulent messages more convincing. A message might claim that a refund is waiting, an account needs verification or additional security steps must be completed.
+          </p>
+
+          <div class="ck-card">
+            <div class="ck-title">
+              <span>⚠️</span> Keep a Few Things in Mind
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">!</div>
+              <div>A message mentioning a real data breach is not automatically genuine.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">!</div>
+              <div>Someone knowing your name or email address does not prove they represent a legitimate organisation.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">!</div>
+              <div>Be cautious of unexpected requests for passwords, payment details or verification codes.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">!</div>
+              <div>Visit the official website or app directly rather than following unexpected links.</div>
+            </div>
+            <div class="ck-row">
+              <div class="ck-dot">!</div>
+              <div>Use unique passwords and enable multifactor authentication where available.</div>
+            </div>
+          </div>
+
+          <p>
+            Personal information can be valuable even when payment card details and passwords are not involved. A criminal who knows your name and contact details may be able to make a future phishing message appear more personal and believable.
+          </p>
+        </section>
+
+        <!-- SECTION 12 -->
+        <section id="the-bigger-lesson">
+          <h2>12. The Bigger Lesson</h2>
+          <p>
+            The ASOS incident is a reminder that a serious security problem does not always begin with a sophisticated software exploit.
+          </p>
+          <p style="font-weight:700;color:var(--ink);">
+            Sometimes, it begins when someone is persuaded to trust the wrong person.
+          </p>
+          <p>
+            Once an attacker obtains a legitimate employee's credentials, the permissions attached to that account can become the next point of risk. If those permissions provide access to third-party applications containing customer information, the impact can extend beyond the employee's own account.
+          </p>
+          <p>
+            For organisations, this means protecting identities, reviewing third-party access and monitoring activity inside business applications are all essential parts of cybersecurity.
+          </p>
+          <p>
+            For SOC analysts, it means looking beyond whether a login succeeded. The important task is to understand what happened before and after authentication, correlate the available evidence and respond when legitimate-looking activity becomes suspicious.
+          </p>
+          <p>
+            For customers, it is a reminder that personal information can still be misused even when passwords and payment card details remain unaffected.
+          </p>
+          <p>
+            Ultimately, the most useful questions after a breach are not just who gained access, but what that access allowed them to do, how quickly the activity was identified and what can be improved to prevent a similar incident.
+          </p>
+          <p style="font-weight:700;color:#DC2626;">
+            That is where the real value of analysing a breach lies: not in speculation, but in understanding the evidence and turning it into better security practices.
+          </p>
+        </section>
+
+        <!-- SOURCES AND FURTHER READING -->
+        <section class="sources-section" id="sources">
+          <h2 class="src-h">Sources and Further Reading</h2>
+          <p class="src-sub">
+            All claims, disclosures, and MITRE ATT&amp;CK mappings cited in this article:
+          </p>
+
+          <ul style="padding-left:20px;line-height:1.8;color:var(--ink-2);font-size:0.92rem;">
+            <li id="src-reuters">
+              <a href="https://www.reuters.com/business/retail-consumer/uks-asos-says-breach-exposed-some-customer-personal-data-2026-10-08/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#DC2626;">
+                Reuters — ASOS says cyberattack accessed customers' personal data ↗
+              </a> — reported incident and customer information.
+            </li>
+            <li id="src-infosec">
+              <a href="https://www.infosecurity-magazine.com/news/asos-data-breach-stolen-employee/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#DC2626;">
+                Infosecurity Magazine — ASOS breach linked to stolen employee credentials ↗
+              </a> — reported impersonation and third-party access.
+            </li>
+            <li id="src-t1656">
+              <a href="https://attack.mitre.org/techniques/T1656/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#2563EB;">
+                MITRE ATT&amp;CK — Impersonation (T1656) ↗
+              </a> — adversary technique reference.
+            </li>
+            <li id="src-t1078">
+              <a href="https://attack.mitre.org/techniques/T1078/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#2563EB;">
+                MITRE ATT&amp;CK — Valid Accounts (T1078) ↗
+              </a> — abuse of legitimate accounts.
+            </li>
+            <li id="src-ncsc">
+              <a href="https://www.ncsc.gov.uk/section/advice-guidance/all-topics" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#16A34A;">
+                UK National Cyber Security Centre (NCSC) ↗
+              </a> — cybersecurity guidance for organisations and individuals.
+            </li>
+          </ul>
+
+          <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:14px 18px;margin-top:20px;">
+            <strong style="color:var(--ink);font-size:0.88rem;">Research Note:</strong>
+            <p style="margin:6px 0 0;font-size:0.84rem;color:var(--ink-3);line-height:1.5;">
+              This article separates publicly reported details from hypothetical detection scenarios. It is based on the cited public reporting and does not claim access to ASOS's internal forensic investigation, unpublished logs or confidential findings.
+            </p>
+          </div>
+        </section>
+
+        <!-- EPISODE NAVIGATION CARD -->
+        <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin:36px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+          <div>
+            <span style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-4);">Previous Investigation</span>
+            <div style="font-family:var(--f-d);font-size:1.05rem;font-weight:800;color:var(--ink);margin-top:4px;">
+              <a href="behind-the-breach-01.html" style="color:var(--ink);text-decoration:none;">← Episode 01: Manchester Airports Group Data Breach</a>
+            </div>
+            <p style="margin:4px 0 0;font-size:0.84rem;color:var(--ink-3);">How exposed client-side JavaScript API keys led to data theft without hacking operational networks.</p>
+          </div>
+          <div>
+            <a href="index.html#behind-the-breach" class="cta" style="background:#DC2626;color:white;padding:10px 18px;border-radius:var(--r-sm);font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+              Series Hub &amp; Archive →
+            </a>
+          </div>
+        </div>
+
+        <!-- READER FEEDBACK SECTION -->
+        <section class="feedback-section" id="feedback">
+          <div class="fb-form-box">
+            <div class="fb-header">
+              <span class="fb-badge">Behind the Breach · Ep 02 Feedback</span>
+              <h2 class="fb-title">What are your thoughts on this investigation?</h2>
+              <p class="fb-desc">
+                Have you dealt with identity impersonation or third-party SaaS visibility challenges? Share your perspective, questions, or analytical feedback.
+              </p>
+            </div>
+
+            <p style="font-size:0.86rem;color:var(--ink-3);margin-bottom:6px;">You can also <a href="mailto:sujampathirathnayaka@gmail.com" style="color:var(--ink);font-weight:600;text-decoration:underline;">email Poorna directly</a>.</p>
+            <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
+
+            <form id="fbForm" class="feedback-form">
+              <div class="fb-form-grid">
+                <div>
+                  <label for="fbName" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Your Name / Handle (optional)</label>
+                  <input type="text" id="fbName" class="fb-input" maxlength="100" autocomplete="name" placeholder="Security Professional / Reader" aria-describedby="fbDraftNote">
+                </div>
+                <div>
+                  <label for="fbCategory" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Topic</label>
+                  <select id="fbCategory" class="fb-input">
+                    <option value="Social Engineering">Social Engineering</option>
+                    <option value="Stolen Credentials">Stolen Credentials</option>
+                    <option value="Third-Party SaaS">Third-Party SaaS</option>
+                    <option value="SOC Detection">SOC Detection</option>
+                    <option value="Identity Security">Identity Security</option>
+                    <option value="Question">Question</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-bottom:16px;">
+                <label for="fbMessage" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Your Thoughts / Feedback</label>
+                <textarea id="fbMessage" class="fb-textarea" rows="4" required maxlength="2000" placeholder="What are your thoughts on identity impersonation, SaaS permissions, and SOC monitoring?" aria-describedby="fbDraftNote fbLimit"></textarea>
+                <p id="fbLimit" class="fb-draft-note" style="margin:4px 0 0;font-size:0.75rem;">Maximum 2,000 characters.</p>
+              </div>
+
+              <div class="fb-form-foot">
+                <button type="submit" class="fb-submit-btn">Submit Feedback →</button>
+                <button type="button" id="fbClear" class="fb-clear-btn">Clear Form</button>
+              </div>
+            </form>
+
+            <p id="fbStatus" role="status" aria-live="polite" style="font-size:0.88rem;color:var(--ink-2);margin:16px 0 10px;"></p>
+
+            <div id="fbEmailPreview" hidden style="margin-top:16px;padding:16px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r-sm);">
+              <label for="fbEmailBody" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Email draft</label>
+              <textarea id="fbEmailBody" class="fb-textarea" readonly rows="8" style="margin-bottom:12px;"></textarea>
+              <div class="fb-form-foot">
+                <a id="fbEmailLink" class="au-btn pf" href="#">Open email app</a>
+                <button type="button" id="fbCopy" class="fb-submit-btn">Copy feedback</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </main>
+  </div>
+
+  <!-- ABOUT STRIP -->
+  <section class="about-strip" id="about">
+    <div class="wrap">
+      <div class="about-in">
+        <div class="about-av" style="background:#DC2626;">PS</div>
+        <div class="about-info">
+          <h2 class="about-title">Poorna Sujampathi Rathnayaka</h2>
+          <p class="about-desc">
+            Investigative cybersecurity researcher and creator of <strong>Cyber Insight</strong>. 
+            I dissect real-world threat campaigns, supply-chain failures, and identity attacks to explain what actually happened behind the headlines.
+          </p>
+        </div>
+        <div class="about-btns">
+          <a href="https://sujampathirathnayaka.com/" class="about-btn w" target="_blank" rel="noopener noreferrer">🌐 Portfolio</a>
+          <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" class="about-btn li" target="_blank" rel="noopener noreferrer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark" style="background:#DC2626;">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            Behind the Breach is an investigative autopsy series covering major cybersecurity incidents in plain, evidence-backed language.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Behind the Breach</div>
+            <ul class="foot-nav-list">
+              <li><a href="behind-the-breach-01.html">Episode 01: Manchester Airports Group</a></li>
+              <li><a href="behind-the-breach-02.html">Episode 02: ASOS Customer Data Breach</a></li>
+              <li><a href="index.html#behind-the-breach">Series Hub &amp; Archive</a></li>
+              <li><a href="#feedback">Submit Incident Tips</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Curriculum Series</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
+              <li><a href="article-07.html">Ep 07: Fake Recruiters in LinkedIn</a></li>
+              <li><a href="index.html#series">10-Part Core Curriculum</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot-disclaimer">
+        <strong>Research Disclaimer:</strong> Content published in Behind the Breach is compiled for non-commercial educational, threat awareness, and digital literacy purposes. All trademarks and registered names belong to their respective holders.
+      </div>
+
+      <div class="foot-bottom">
+        <div>&copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.</div>
+        <div class="foot-bottom-links">
+          <a href=".well-known/security.txt" target="_blank" rel="noopener noreferrer">Security Policy</a>
+          <span>·</span>
+          <a href="index.html#about">Ethics &amp; Methodology</a>
+          <span>·</span>
+          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element"></div>
+  <script src="js/cms.js?v=14"></script>
+  <script src="js/app.js?v=14"></script>
+  <script src="js/translator.js?v=14"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>
