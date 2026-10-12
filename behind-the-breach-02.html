@@ -1128,15 +1128,35 @@
           </div>
         </div>
 
-        <!-- READER FEEDBACK SECTION -->
-        <section class="feedback-section" id="feedback">
+        <!-- READER INTERACTION & FEEDBACK SECTION -->
+        <section class="feedback-section" id="feedback" aria-label="Reader feedback">
+          <div class="fb-header">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+              <div class="fb-badge"><span>💬</span> Reader Discussion</div>
+              <button type="button" class="fb-theme-toggle" id="fbThemeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <span class="fb-theme-icon">🌙</span> <span class="fb-theme-text">Dark mode</span>
+              </button>
+            </div>
+            <h2 class="fb-title">Reader Feedback &amp; Discussion</h2>
+            <p class="fb-sub">Have an insight, question, or SOC perspective on identity impersonation, stolen credentials, or third-party SaaS visibility? Submit a response below. Feedback prepares a private email draft directly to the author.</p>
+            <p class="fb-sub" style="font-size:0.8rem;margin-top:6px;">Likes and claps are your personal reactions on this device.</p>
+          </div>
+
           <div class="fb-form-box">
-            <div class="fb-header">
-              <span class="fb-badge">Behind the Breach · Ep 02 Feedback</span>
-              <h2 class="fb-title">What are your thoughts on this investigation?</h2>
-              <p class="fb-desc">
-                Have you dealt with identity impersonation or third-party SaaS visibility challenges? Share your perspective, questions, or analytical feedback.
-              </p>
+            <!-- Article Reactions -->
+            <div class="fb-reactions-box" style="padding:0 0 20px;border-bottom:1px solid var(--border);margin-bottom:20px;background:transparent;">
+              <div class="fb-react-prompt">Article Reactions</div>
+              <div class="fb-reactions-bar">
+                <button class="art-act-btn btn-like" onclick="toggleLike()" aria-pressed="false" title="Helpful analysis on this device">
+                  <span class="like-heart">❤️</span> <span>Helpful Analysis</span> (<span class="like-count">0</span>)
+                </button>
+                <button class="art-act-btn btn-clap" onclick="addClap()" title="Applaud this research">
+                  <span>👏</span> <span>Clap</span> (<span class="clap-count">0</span>)
+                </button>
+                <button class="art-act-btn" id="shareBtn" onclick="copyLink()" title="Share article link">
+                  <span>🔗</span> <span>Share Article</span>
+                </button>
+              </div>
             </div>
 
             <p style="font-size:0.86rem;color:var(--ink-3);margin-bottom:6px;">You can also <a href="mailto:sujampathirathnayaka@gmail.com" style="color:var(--ink);font-weight:600;text-decoration:underline;">email Poorna directly</a>.</p>
