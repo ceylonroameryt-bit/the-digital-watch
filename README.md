@@ -2,7 +2,7 @@
 
 Cybersecurity articles by Poorna Sujampathi Rathnayaka.
 
-Live site: https://thecyberinsight.co.uk/
+Live site: https://thecyberinsight.online/
 
 ## Development and checks
 

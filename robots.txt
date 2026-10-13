@@ -14,7 +14,7 @@ Allow: /assets/
 Allow: /styles/
 Allow: /js/
 
-Sitemap: https://thecyberinsight.co.uk/sitemap.xml
+Sitemap: https://thecyberinsight.online/sitemap.xml
 
 # Security Vulnerability Reporting (RFC 9116)
 Contact: mailto:security@sujampathirathnayaka.com

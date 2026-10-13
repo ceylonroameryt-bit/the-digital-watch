@@ -1,5 +1,5 @@
 Contact: mailto:sujampathirathnayaka@gmail.com
 Expires: 2027-09-01T00:00:00Z
 Preferred-Languages: en
-Canonical: https://thecyberinsight.co.uk/.well-known/security.txt
-Canonical: https://thecyberinsight.co.uk/security.txt
+Canonical: https://thecyberinsight.online/.well-known/security.txt
+Canonical: https://thecyberinsight.online/security.txt

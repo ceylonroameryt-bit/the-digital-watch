@@ -128,7 +128,7 @@ test('feedback prepares an encoded draft without claiming delivery or losing tex
   assert.equal(uri.protocol, 'mailto:');
   assert.equal(uri.pathname, 'sujampathirathnayaka@gmail.com');
   assert.match(uri.searchParams.get('body'), /Question: A & B\? <script>test<\/script>\nNew line/);
-  assert.match(uri.searchParams.get('body'), /thecyberinsight\.co\.uk\/article-02\.html/);
+  assert.match(uri.searchParams.get('body'), /thecyberinsight\.online\/article-02\.html/);
   assert.match(app.document.querySelector('#fbStatus').textContent, /Nothing has been sent/);
   assert.match(app.document.querySelector('#fbMessage').value, /Question/);
   assert.equal(app.values.has('ci_reader_comments_v1'), false);
