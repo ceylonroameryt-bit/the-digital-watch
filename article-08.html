@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Much Can a Scammer Learn About You in 10 Minutes? — Cyber Insight</title>
+  <meta name="description"
+    content="Imagine a stranger knowing where you work, who your friends are, and where you spent your weekend without hacking your accounts. How OSINT and digital footprints enable precision social engineering, plus a 10-minute privacy self-audit.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How Much Can a Scammer Learn About You in 10 Minutes? — Cyber Insight">
+  <meta property="og:description"
+    content="A stranger hasn't hacked your phone or guessed your password. They simply looked at what you shared online. Discover how OSINT turns breadcrumbs into targeted scams, and take the 10-minute digital privacy self-audit.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How Much Can a Scammer Learn About You in 10 Minutes?",
+    "description": "Imagine a stranger knowing where you work, who your friends are, and where you spent your weekend without hacking your accounts. How OSINT and digital footprints enable precision social engineering, plus a 10-minute privacy self-audit.",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cyber Insight",
+      "url": "https://thecyberinsight.online/"
+    },
+    "datePublished": "2026-10-15",
+    "copyrightYear": 2026,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=15">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23D97706'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
+  <link rel="canonical" href="https://thecyberinsight.online/article-08.html">
+  <meta property="og:url" content="https://thecyberinsight.online/article-08.html">
+</head>
+
+<body data-page="article" data-article-id="ep08">
+
+  <div id="reading-progress"></div>
+  <div id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark" style="background:#D97706;">CI</div>
+        <div>
+          <div class="brand-name">Cyber Insight</div>
+          <div class="brand-sub">Cybersecurity Research</div>
+        </div>
+      </a>
+      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#series">Series</a></li>
+        <li><a href="article-08.html" class="active">Research</a></li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="article-07.html" class="cta">← Ep 07</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <!-- Series Callout Banner -->
+          <div class="art-series-banner">
+            <div class="art-series-info">
+              <span class="art-series-tag" style="background:#D97706;">Series</span>
+              <span>Part of <strong>Cybersecurity for Everyone</strong> · Episode 08 of 10</span>
+            </div>
+            <a href="index.html#series" class="art-series-link">View 10-Part Syllabus →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="index.html#series">Series: Cybersecurity for Everyone</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Episode 08</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat" style="color:#D97706;">Episode 08</span>
+            <span class="art-dot">·</span>
+            <span>Online Privacy · Social Engineering · OSINT</span>
+            <span class="art-dot">·</span>
+            <span>October 15, 2026</span>
+            <span class="art-dot">·</span>
+            <span>8 min read</span>
+          </div>
+
+          <h1 class="art-h1">How Much Can a Scammer Learn About You in 10 Minutes?</h1>
+
+          <div class="art-byline">
+            <div class="art-av" style="background:#D97706;">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Writer · Cyber Insight · Digital Literacy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero SVG: The 10-Minute OSINT Reconnaissance vs Privacy Self-Audit Shield -->
+        <div class="art-hero-svg" style="background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Illustration showing a 10-minute timer correlating open-source intelligence breadcrumbs into a targeted spear-phishing attack contrasted with a digital privacy self-audit shield">
+
+            <!-- Background pulse rings -->
+            <circle cx="160" cy="115" r="105" fill="#FDE68A" opacity=".35" />
+            <circle cx="160" cy="115" r="75" fill="#FEF3C7" opacity=".6" />
+
+            <!-- Left: 10-Minute Stopwatch & Recon Timer -->
+            <g transform="translate(24, 30)">
+              <rect x="0" y="0" width="108" height="165" rx="10" fill="white" stroke="#D97706" stroke-width="1.8" />
+              <!-- Header Bar -->
+              <rect x="0" y="0" width="108" height="26" rx="10" fill="#D97706" />
+              <text x="54" y="17" text-anchor="middle" fill="white" font-family="Space Grotesk,system-ui" font-size="8.5" font-weight="700">10-MIN OSINT</text>
+              
+              <!-- Stopwatch Visual -->
+              <circle cx="54" cy="62" r="26" fill="#FFFBEB" stroke="#F59E0B" stroke-width="2" />
+              <circle cx="54" cy="62" r="19" stroke="#FDE68A" stroke-width="1.2" />
+              <line x1="54" y1="38" x2="54" y2="33" stroke="#D97706" stroke-width="2.5" stroke-linecap="round" />
+              <polyline points="54,50 54,62 64,62" stroke="#B45309" stroke-width="2" stroke-linecap="round" />
+              <text x="54" y="74" text-anchor="middle" fill="#92400E" font-family="Space Grotesk,system-ui" font-size="7" font-weight="800">10:00</text>
+
+              <!-- Discovered Breadcrumbs -->
+              <rect x="8" y="96" width="92" height="16" rx="4" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1" />
+              <text x="14" y="108" fill="#92400E" font-family="Inter,system-ui" font-size="6.5" font-weight="700">🔍 Name &amp; Employer</text>
+
+              <rect x="8" y="116" width="92" height="16" rx="4" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1" />
+              <text x="14" y="128" fill="#92400E" font-family="Inter,system-ui" font-size="6.5" font-weight="700">👥 Friend Tags &amp; Routine</text>
+
+              <rect x="8" y="136" width="92" height="16" rx="4" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1" />
+              <text x="14" y="148" fill="#B91C1C" font-family="Inter,system-ui" font-size="6.5" font-weight="700">🎯 Spear-Phish Angle</text>
+            </g>
+
+            <!-- Center: Correlation Bridge -->
+            <g transform="translate(136, 85)">
+              <line x1="0" y1="20" x2="48" y2="20" stroke="#D97706" stroke-width="2" stroke-dasharray="4 2" />
+              <polygon points="48,20 40,16 40,24" fill="#D97706" />
+              <circle cx="24" cy="0" r="10" fill="#FFFBEB" stroke="#D97706" stroke-width="1.2" />
+              <text x="24" y="4" text-anchor="middle" fill="#D97706" font-family="Space Grotesk,system-ui" font-size="9" font-weight="800">🔗</text>
+              <text x="24" y="32" text-anchor="middle" fill="#92400E" font-family="Inter,system-ui" font-size="6" font-weight="700">CORRELATION</text>
+            </g>
+
+            <!-- Right: The Defense & Audit Shield -->
+            <g transform="translate(188, 30)">
+              <rect x="0" y="0" width="108" height="165" rx="10" fill="#0F172A" stroke="#334155" stroke-width="1.8" />
+              <!-- Terminal Header -->
+              <rect x="0" y="0" width="108" height="24" rx="10" fill="#1E293B" />
+              <circle cx="10" cy="12" r="3" fill="#EF4444" />
+              <circle cx="18" cy="12" r="3" fill="#F59E0B" />
+              <circle cx="26" cy="12" r="3" fill="#10B981" />
+              <text x="66" y="15" text-anchor="middle" fill="#94A3B8" font-family="monospace" font-size="7">PRIVACY_AUDIT</text>
+
+              <!-- Defense Pill 1: Search Audit -->
+              <rect x="6" y="32" width="96" height="26" rx="4" fill="#1E293B" stroke="#0284C7" stroke-width="1" />
+              <text x="12" y="44" fill="#38BDF8" font-family="monospace" font-size="6" font-weight="700">AUDIT_SEARCH</text>
+              <text x="12" y="52" fill="#E2E8F0" font-family="monospace" font-size="5.5">Incognito self-recon</text>
+
+              <!-- Defense Pill 2: MFA & Sessions -->
+              <rect x="6" y="64" width="96" height="26" rx="4" fill="#1E293B" stroke="#10B981" stroke-width="1" />
+              <text x="12" y="76" fill="#34D399" font-family="monospace" font-size="6" font-weight="700">MFA &amp; SESSIONS</text>
+              <text x="12" y="84" fill="#E2E8F0" font-family="monospace" font-size="5.5">Active tokens checked</text>
+
+              <!-- Defense Pill 3: 3 Concrete Changes -->
+              <rect x="6" y="96" width="96" height="26" rx="4" fill="#1E293B" stroke="#F59E0B" stroke-width="1" />
+              <text x="12" y="108" fill="#FBBF24" font-family="monospace" font-size="6" font-weight="700">3 HARDENING STEPS</text>
+              <text x="12" y="116" fill="#E2E8F0" font-family="monospace" font-size="5.5">Privacy boundary reset</text>
+
+              <!-- Status Badge -->
+              <rect x="6" y="128" width="96" height="26" rx="4" fill="#14532D" stroke="#22C55E" stroke-width="1" />
+              <text x="54" y="141" text-anchor="middle" fill="#86EFAC" font-family="Space Grotesk,system-ui" font-size="7" font-weight="800">FOOTPRINT REDUCED</text>
+              <text x="54" y="149" text-anchor="middle" fill="#DCFCE7" font-family="monospace" font-size="5.5">Surface area minimized</text>
+            </g>
+
+            <!-- Bottom Verdict Banner -->
+            <g transform="translate(24, 204)">
+              <rect x="0" y="0" width="272" height="26" rx="6" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1" />
+              <text x="136" y="17" text-anchor="middle" fill="#92400E" font-family="Inter,system-ui" font-size="8" font-weight="700">
+                Digital Footprint Reality: <tspan fill="#D97706">Public Correlation</tspan> · <tspan fill="#15803D">10-Minute Audit Defense</tspan>
+              </text>
+            </g>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <div class="art-layout">
+
+    <div class="art-center">
+
+      <!-- Horizontal Action & Metadata Strip -->
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#FFFBEB;color:#D97706;border-color:#FDE68A;font-weight:700;">Episode 08</span>
+          <span class="chip">Online Privacy</span>
+          <span class="chip">Social Engineering</span>
+          <span class="chip">OSINT</span>
+          <span class="chip">Digital Footprint</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 8 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" title="Like this research" aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" title="Applaud this research" aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">10 Minutes</div>
+          <div class="stat-l">Reconnaissance Window</div>
+          <div class="stat-s">How quickly fragmented public profiles, tags, and search results can be assembled into a targeted profile</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">0 Passwords</div>
+          <div class="stat-l">No Hacking Required</div>
+          <div class="stat-s">Open-Source Intelligence (OSINT) relies exclusively on publicly shared breadcrumbs without breaking into accounts</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">3 Changes</div>
+          <div class="stat-l">Practical Hardening</div>
+          <div class="stat-s">Tangible privacy improvements you can complete right now to immediately shrink your attack surface</div>
+        </div>
+      </div>
+
+      <div class="art-text">
+
+        <p class="lead-p">
+          Imagine a stranger who has never met you knows where you work, who your friends are, what job you're looking for, and where you spent your weekend.
+        </p>
+
+        <p>
+          They haven't hacked your phone. They haven't guessed your password. They haven't broken into your accounts.
+        </p>
+
+        <p>
+          They simply looked at what you shared online.
+        </p>
+
+        <p>
+          Your LinkedIn profile. Your Instagram photos. A comment you left on a public post. Maybe a picture a friend tagged you in months ago.
+        </p>
+
+        <div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:var(--r-sm);padding:18px 22px;margin:24px 0;box-shadow:var(--sh-xs);">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <div style="width:32px;height:32px;border-radius:50%;background:#D97706;color:white;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;">💬</div>
+            <div>
+              <div style="font-weight:800;color:#92400E;font-size:.92rem;">The Precision Spear-Phish</div>
+              <div style="font-size:.76rem;color:#B45309;">Anatomy of a tailored social engineering lure</div>
+            </div>
+          </div>
+          <p style="margin:0;color:#78350F;font-size:.95rem;line-height:1.6;">
+            Now imagine that stranger uses those details to send you a message that feels completely genuine. They know your profession, mention someone you recognise, and offer you an opportunity you've been hoping for.
+          </p>
+          <div style="margin-top:10px;font-weight:700;color:#92400E;font-size:.98rem;">
+            Would you question it?
+          </div>
+        </div>
+
+        <p>
+          Before we look at how this happens, take ten minutes to check your own digital footprint. You might discover that you're sharing more information than you realised.
+        </p>
+
+        <!-- SECTION 1 -->
+        <h2 id="sec-audit">1. Your 10-Minute Digital Privacy Self-Audit</h2>
+
+        <p>
+          You don't need specialist tools or technical knowledge. All you need is an internet connection and a few minutes to look at your online presence from a stranger's perspective.
+        </p>
+
+        <div style="display:grid;grid-template-columns:1fr;gap:16px;margin:24px 0;">
+
+          <!-- Mins 1-2 -->
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid #D97706;border-radius:8px;padding:16px 20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+              <span style="font-weight:800;color:#D97706;font-size:.85rem;text-transform:uppercase;letter-spacing:.03em;">Minutes 1–2</span>
+              <span style="font-size:.75rem;background:#FFFBEB;color:#92400E;padding:2px 8px;border-radius:12px;font-weight:700;border:1px solid #FDE68A;">Search for yourself</span>
+            </div>
+            <p style="margin:0 0 8px;color:var(--ink);font-weight:600;line-height:1.5;">
+              Open Google and search for your name. If you have a common name, include your profession or public username.
+            </p>
+            <p style="margin:0 0 8px;color:var(--ink-2);font-size:.9rem;line-height:1.5;">
+              Look at what appears without signing in to your accounts (use an Incognito / InPrivate browser window).
+            </p>
+            <div style="background:#F8FAFC;border:1px dashed #CBD5E1;border-radius:6px;padding:10px 14px;color:#334155;font-size:.86rem;">
+              <strong>Ask yourself:</strong> What could a stranger learn about me from these results?
+            </div>
+          </div>
+
+          <!-- Mins 3-4 -->
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid #0284C7;border-radius:8px;padding:16px 20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+              <span style="font-weight:800;color:#0284C7;font-size:.85rem;text-transform:uppercase;letter-spacing:.03em;">Minutes 3–4</span>
+              <span style="font-size:.75rem;background:#F0F9FF;color:#0369A1;padding:2px 8px;border-radius:12px;font-weight:700;border:1px solid #BAE6FD;">Check your social media</span>
+            </div>
+            <p style="margin:0 0 8px;color:var(--ink);font-weight:600;line-height:1.5;">
+              Review your LinkedIn, Instagram, Facebook and other public profiles.
+            </p>
+            <p style="margin:0 0 8px;color:var(--ink-2);font-size:.9rem;line-height:1.5;">
+              Look at your biography, old posts, tagged photographs and comments. Check whether your personal and professional information is more connected than you'd like.
+            </p>
+            <div style="background:#F8FAFC;border:1px dashed #CBD5E1;border-radius:6px;padding:10px 14px;color:#334155;font-size:.86rem;">
+              <strong>Ask yourself:</strong> Could someone identify where I work, who I know or what I'm interested in?
+            </div>
+          </div>
+
+          <!-- Mins 5-6 -->
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid #7C3AED;border-radius:8px;padding:16px 20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+              <span style="font-weight:800;color:#7C3AED;font-size:.85rem;text-transform:uppercase;letter-spacing:.03em;">Minutes 5–6</span>
+              <span style="font-size:.75rem;background:#F5F3FF;color:#6D28D9;padding:2px 8px;border-radius:12px;font-weight:700;border:1px solid #DDD6FE;">Look for personal clues</span>
+            </div>
+            <p style="margin:0 0 8px;color:var(--ink);font-weight:600;line-height:1.5;">
+              Check whether your public posts reveal your regular locations, travel plans, birthday, phone number or personal email address.
+            </p>
+            <p style="margin:0 0 8px;color:var(--ink-2);font-size:.9rem;line-height:1.5;">
+              You don't need to remove every photograph. Focus on information that you would prefer strangers not to know.
+            </p>
+            <div style="background:#F8FAFC;border:1px dashed #CBD5E1;border-radius:6px;padding:10px 14px;color:#334155;font-size:.86rem;">
+              <strong>Ask yourself:</strong> Could these details help someone impersonate me or create a convincing scam?
+            </div>
+          </div>
+
+          <!-- Mins 7-8 -->
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid #DC2626;border-radius:8px;padding:16px 20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+              <span style="font-weight:800;color:#DC2626;font-size:.85rem;text-transform:uppercase;letter-spacing:.03em;">Minutes 7–8</span>
+              <span style="font-size:.75rem;background:#FEF2F2;color:#B91C1C;padding:2px 8px;border-radius:12px;font-weight:700;border:1px solid #FECACA;">Review your account security</span>
+            </div>
+            <p style="margin:0 0 10px;color:var(--ink);font-weight:600;line-height:1.5;">
+              Check the security settings on your important accounts:
+            </p>
+            <ul style="margin:0 0 10px 18px;color:var(--ink-2);font-size:.9rem;line-height:1.6;">
+              <li>Do I reuse passwords across websites?</li>
+              <li>Is multifactor authentication enabled?</li>
+              <li>Are there unfamiliar devices or active sessions?</li>
+              <li>Do old applications still have access to my accounts?</li>
+            </ul>
+            <p style="margin:0;font-size:.84rem;color:#7F1D1D;line-height:1.5;">
+              If you find an unfamiliar session or connected application, investigate it through the platform's official security settings immediately.
+            </p>
+          </div>
+
+          <!-- Mins 9-10 -->
+          <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid #16A34A;border-radius:8px;padding:16px 20px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+              <span style="font-weight:800;color:#16A34A;font-size:.85rem;text-transform:uppercase;letter-spacing:.03em;">Minutes 9–10</span>
+              <span style="font-size:.75rem;background:#F0FDF4;color:#15803D;padding:2px 8px;border-radius:12px;font-weight:700;border:1px solid #BBF7D0;">Make three changes</span>
+            </div>
+            <p style="margin:0 0 8px;color:var(--ink);font-weight:600;line-height:1.5;">
+              Don't finish the exercise with a list of worries. Make at least three practical improvements.
+            </p>
+            <ul style="margin:0 0 8px 18px;color:var(--ink-2);font-size:.9rem;line-height:1.6;">
+              <li>Limit who can see your older posts.</li>
+              <li>Remove unnecessary personal information from a public profile.</li>
+              <li>Enable multifactor authentication on an important account.</li>
+            </ul>
+            <p style="margin:0;font-size:.85rem;color:#166534;">
+              You could also remove an old connected application or stop sharing live location updates.
+            </p>
+          </div>
+
+        </div>
+
+        <!-- REMEDIATION CALLOUT -->
+        <div style="background:#F8FAFC;border:1.5px solid #E2E8F0;border-radius:var(--r-sm);padding:20px 24px;margin:28px 0;">
+          <h3 style="margin:0 0 8px;font-size:1.05rem;color:var(--ink);font-family:Space Grotesk,system-ui;">
+            Found something you didn't expect? Here's what to do next.
+          </h3>
+          <p style="margin:0 0 12px;color:var(--ink-2);font-size:.92rem;line-height:1.6;">
+            Finding personal information online can feel uncomfortable, but don't panic. Discovering exposed information doesn't automatically mean someone has misused it. What matters is taking the right steps.
+          </p>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;">
+            <div style="background:white;border:1px solid #CBD5E1;border-radius:6px;padding:12px 14px;">
+              <strong style="color:#0F172A;font-size:.86rem;display:block;margin-bottom:4px;">1. Remove what you can</strong>
+              <p style="margin:0;font-size:.82rem;color:#475569;line-height:1.5;">Delete unnecessary personal details from public profiles, adjust privacy settings, and limit access to older posts. If a website publishes details you want removed, use their removal process.</p>
+            </div>
+            <div style="background:white;border:1px solid #CBD5E1;border-radius:6px;padding:12px 14px;">
+              <strong style="color:#0F172A;font-size:.86rem;display:block;margin-bottom:4px;">2. Secure accounts at risk</strong>
+              <p style="margin:0;font-size:.82rem;color:#475569;line-height:1.5;">If you notice an unfamiliar login or suspicious activity, change passwords from a trusted device, turn on MFA, and sign out other sessions.</p>
+            </div>
+            <div style="background:white;border:1px solid #CBD5E1;border-radius:6px;padding:12px 14px;">
+              <strong style="color:#0F172A;font-size:.86rem;display:block;margin-bottom:4px;">3. Prioritise sensitive details</strong>
+              <p style="margin:0;font-size:.82rem;color:#475569;line-height:1.5;">A public photograph is very different from an exposed password, government ID, or financial record. Address account credentials and financial data first.</p>
+            </div>
+            <div style="background:white;border:1px solid #CBD5E1;border-radius:6px;padding:12px 14px;">
+              <strong style="color:#0F172A;font-size:.86rem;display:block;margin-bottom:4px;">4. Report what you can't remove</strong>
+              <p style="margin:0;font-size:.82rem;color:#475569;line-height:1.5;">Contact the relevant platform. If you suspect identity fraud or financial theft, alert your bank and file a report with official national reporting authorities.</p>
+            </div>
+          </div>
+          <p style="margin:14px 0 0;font-size:.88rem;color:#64748B;line-height:1.5;">
+            <strong>Check your changes:</strong> View your profile as a member of the public would. Confirm that the information you intended to hide is no longer visible. You don't need to fix everything in one sitting. Start with the biggest risks and work through the rest over time.
+          </p>
+          <div style="margin-top:10px;font-weight:700;color:#0F172A;font-size:.92rem;">
+            The goal isn't to erase your digital footprint. It's to make sure you're sharing information on your terms.
+          </div>
+        </div>
+
+        <!-- INTERACTIVE SELF-AUDIT & OSINT EXPLORER COMPONENT -->
+        <div style="background:white;border:2px solid #FDE68A;border-radius:12px;padding:24px;margin:32px 0;box-shadow:var(--sh-sm);">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+            <div>
+              <span style="font-size:.76rem;font-weight:800;color:#D97706;text-transform:uppercase;letter-spacing:.05em;">Interactive Lab</span>
+              <h3 style="font-size:1.15rem;font-weight:800;color:var(--ink);margin:2px 0 0;font-family:Space Grotesk,system-ui;">
+                10-Minute Digital Privacy Self-Audit &amp; OSINT Correlation Tool
+              </h3>
+            </div>
+            <div id="auditTabs" style="display:flex;gap:6px;">
+              <button class="sim-btn active" data-tab="audit" style="background:#D97706;color:white;border:1px solid #D97706;padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;">
+                Privacy Self-Audit Checklist
+              </button>
+              <button class="sim-btn" data-tab="osint" style="background:white;color:var(--ink-3);border:1px solid var(--border-2);padding:6px 14px;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;">
+                10-Minute Scammer Correlation
+              </button>
+            </div>
+          </div>
+
+          <div id="interactiveOutput">
+            <!-- Rendered by client script below -->
+          </div>
+        </div>
+
+        <!-- SECTION 2 -->
+        <h2 id="sec-search">2. It Starts with a Simple Search</h2>
+
+        <p>
+          Let's say someone finds your LinkedIn profile.
+        </p>
+
+        <p>
+          They can see your name, where you work, your qualifications and the kind of job you do. Perhaps you've also shared a post about looking for a new opportunity.
+        </p>
+
+        <p>
+          The person searches for your name on other social media platforms. They find your Instagram account, where you've posted pictures from a recent trip. A public Facebook post shows your birthday celebration, and a friend has tagged you in a photograph at a restaurant.
+        </p>
+
+        <p>
+          Nothing seems unusual. These are things people share online every day.
+        </p>
+
+        <p>
+          <strong>But someone with bad intentions might start connecting the dots.</strong>
+        </p>
+
+        <p>
+          They now have an idea of your profession, some of your interests, the people you know and the places you visit.
+        </p>
+
+        <div style="background:#FFFBEB;border-left:4px solid #D97706;padding:14px 18px;margin:20px 0;border-radius:4px;">
+          <div style="font-size:.82rem;font-weight:800;color:#92400E;text-transform:uppercase;margin-bottom:4px;">Cyber Concept: Open-Source Intelligence (OSINT)</div>
+          <p style="margin:0;font-size:.9rem;color:#78350F;line-height:1.6;">
+            This is one way a technique called <strong>Open-Source Intelligence (OSINT)</strong> can be misused. OSINT involves collecting and analysing information from publicly available sources. Cybersecurity professionals and blue teams use it for legitimate investigations, threat hunting, and external surface management. But criminals can use the exact same approach to learn about potential victims.
+          </p>
+          <p style="margin:8px 0 0;font-size:.9rem;color:#92400E;font-weight:700;">
+            The information may be public. The way it is combined is what makes it useful.
+          </p>
+        </div>
+
+        <!-- SECTION 3 -->
+        <h2 id="sec-timeline">3. What Can They Find in Ten Minutes?</h2>
+
+        <p>
+          Let's imagine how this reconnaissance timeline could happen in real time:
+        </p>
+
+        <div style="border-left:2px solid #E2E8F0;margin:24px 0 24px 16px;padding-left:20px;">
+
+          <div style="margin-bottom:22px;position:relative;">
+            <div style="position:absolute;left:-29px;top:2px;width:16px;height:16px;border-radius:50%;background:#D97706;border:3px solid white;box-shadow:0 0 0 1px #D97706;"></div>
+            <h3 style="margin:0 0 4px;font-size:.98rem;color:#D97706;font-family:Space Grotesk,system-ui;">
+              Minutes 1–2: Finding out who you are
+            </h3>
+            <p style="margin:0;color:var(--ink-2);font-size:.9rem;line-height:1.6;">
+              A quick search might reveal your professional profile, education, employer and other accounts. If you use the same username across several platforms, it may also be easier to connect those accounts. A few accurate details may be enough to make a future message seem believable.
+            </p>
+          </div>
+
+          <div style="margin-bottom:22px;position:relative;">
+            <div style="position:absolute;left:-29px;top:2px;width:16px;height:16px;border-radius:50%;background:#0284C7;border:3px solid white;box-shadow:0 0 0 1px #0284C7;"></div>
+            <h3 style="margin:0 0 4px;font-size:.98rem;color:#0284C7;font-family:Space Grotesk,system-ui;">
+              Minutes 3–4: Finding people connected to you
+            </h3>
+            <p style="margin:0 0 6px;color:var(--ink-2);font-size:.9rem;line-height:1.6;">
+              Your public comments, tagged photographs and posts may reveal the names of your friends or colleagues. Now imagine receiving a message from someone you've never spoken to:
+            </p>
+            <div style="background:#F0F9FF;border:1px solid #BAE6FD;border-radius:6px;padding:8px 14px;color:#0369A1;font-size:.88rem;font-style:italic;margin-bottom:6px;">
+              “Hi, Sarah mentioned you might be able to help me.”
+            </div>
+            <p style="margin:0;color:var(--ink-2);font-size:.88rem;line-height:1.5;">
+              You recognise Sarah's name, so you feel more comfortable replying. The problem is that the sender may not know Sarah at all. They might simply have seen her name on your profile. A small detail has made a stranger seem less like a stranger.
+            </p>
+          </div>
+
+          <div style="margin-bottom:22px;position:relative;">
+            <div style="position:absolute;left:-29px;top:2px;width:16px;height:16px;border-radius:50%;background:#7C3AED;border:3px solid white;box-shadow:0 0 0 1px #7C3AED;"></div>
+            <h3 style="margin:0 0 4px;font-size:.98rem;color:#7C3AED;font-family:Space Grotesk,system-ui;">
+              Minutes 5–6: Learning about your daily life
+            </h3>
+            <p style="margin:0;color:var(--ink-2);font-size:.9rem;line-height:1.6;">
+              People often share photographs from their favourite cafés, gyms, workplaces and holidays. Over time, these posts can reveal more about their routines than they realise. Regularly posting from the same location may give someone an idea of where you spend your time. Sharing holiday updates in real time may reveal that you're away from home. One photograph doesn't tell someone everything about your life. But several public posts can provide useful clues.
+            </p>
+          </div>
+
+          <div style="margin-bottom:22px;position:relative;">
+            <div style="position:absolute;left:-29px;top:2px;width:16px;height:16px;border-radius:50%;background:#DC2626;border:3px solid white;box-shadow:0 0 0 1px #DC2626;"></div>
+            <h3 style="margin:0 0 4px;font-size:.98rem;color:#DC2626;font-family:Space Grotesk,system-ui;">
+              Minutes 7–8: Finding something they can use
+            </h3>
+            <p style="margin:0 0 6px;color:var(--ink-2);font-size:.9rem;line-height:1.6;">
+              Now imagine the scammer notices that you're looking for a job. They know your background, the kind of position you want and perhaps the companies you follow.
+            </p>
+            <p style="margin:0 0 6px;color:var(--ink-2);font-size:.9rem;line-height:1.6;">
+              They send you a message claiming to be a recruiter. The role sounds perfect. The message mentions your experience, and the company name looks familiar. You're asked to complete an online assessment through a link.
+            </p>
+            <p style="margin:0;color:#991B1B;font-weight:700;font-size:.9rem;line-height:1.5;">
+              You click it and enter your email address and password on what appears to be a legitimate website. Except it isn't.
+            </p>
+            <p style="margin:6px 0 0;color:var(--ink-2);font-size:.88rem;line-height:1.5;">
+              This is how publicly available information can help a criminal create a convincing phishing attempt. Instead of sending the same generic message to thousands of people, they can make the message feel personal.
+            </p>
+          </div>
+
+          <div style="position:relative;">
+            <div style="position:absolute;left:-29px;top:2px;width:16px;height:16px;border-radius:50%;background:#B45309;border:3px solid white;box-shadow:0 0 0 1px #B45309;"></div>
+            <h3 style="margin:0 0 4px;font-size:.98rem;color:#B45309;font-family:Space Grotesk,system-ui;">
+              Minutes 9–10: Making the scam believable
+            </h3>
+            <p style="margin:0 0 6px;color:var(--ink-2);font-size:.9rem;line-height:1.6;">
+              The scammer now puts the details together. You receive a message like this:
+            </p>
+            <div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:6px;padding:12px 16px;margin:8px 0;font-style:italic;color:#78350F;font-size:.9rem;line-height:1.6;">
+              “Hi, I came across your profile and noticed your cybersecurity experience. We're recruiting for a SOC Analyst position that matches your background. Please complete this short assessment to continue your application.”
+            </div>
+            <p style="margin:0;color:var(--ink-2);font-size:.9rem;line-height:1.6;">
+              It sounds reasonable, particularly if you're actively searching for work. But the sender might be impersonating a recruiter, and the link could lead to a fake login page designed to steal your credentials.
+            </p>
+            <p style="margin:8px 0 0;color:var(--ink-2);font-size:.9rem;line-height:1.6;">
+              The scammer didn't necessarily need access to your private accounts to make this message convincing. Public information may have given them enough material.
+            </p>
+          </div>
+
+        </div>
+
+        <p style="font-size:.88rem;color:#64748B;font-style:italic;">
+          Ten minutes is an illustration, not a guarantee. How much someone can discover depends on what is publicly available and how easily the information can be connected. The important point is that a targeted scam can begin with information you've shared yourself.
+        </p>
+
+        <!-- SECTION 4 -->
+        <h2 id="sec-details">4. Why Small Details Matter</h2>
+
+        <p>
+          Your job title might seem harmless. So might a photograph with your friends or a post about an upcoming holiday.
+        </p>
+
+        <p>
+          Individually, these details may present little risk. But when combined, they can help someone build a clearer picture of your life.
+        </p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:20px 0;">
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:14px;">
+            <div style="font-size:1.2rem;margin-bottom:4px;">🏢</div>
+            <strong style="color:var(--ink);font-size:.88rem;">Your workplace</strong>
+            <p style="margin:4px 0 0;font-size:.82rem;color:var(--ink-3);line-height:1.5;">Might help a criminal impersonate a colleague or vendor with internal terminology.</p>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:14px;">
+            <div style="font-size:1.2rem;margin-bottom:4px;">👥</div>
+            <strong style="color:var(--ink);font-size:.88rem;">A friend's name</strong>
+            <p style="margin:4px 0 0;font-size:.82rem;color:var(--ink-3);line-height:1.5;">Could make a cold, unsolicited message instantly seem familiar and safe.</p>
+          </div>
+          <div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:14px;">
+            <div style="font-size:1.2rem;margin-bottom:4px;">💼</div>
+            <strong style="color:var(--ink);font-size:.88rem;">A job-search post</strong>
+            <p style="margin:4px 0 0;font-size:.82rem;color:var(--ink-3);line-height:1.5;">Provides the perfect pretext for a fraudulent recruiter or fake interviewer to contact you.</p>
+          </div>
+        </div>
+
+        <p>
+          The scammer isn't necessarily interested in every detail. They're looking for something that gives them an advantage. Sometimes, that advantage is simply knowing what to say to get your attention.
+        </p>
+
+        <p style="font-weight:700;color:var(--ink);">
+          This is why privacy matters even when you haven't shared anything that seems particularly sensitive.
+        </p>
+
+        <!-- SECTION 5 -->
+        <h2 id="sec-soc">5. What Does This Look Like from a SOC Analyst's Perspective?</h2>
+
+        <p>
+          From a Security Operations Centre (SOC) perspective, this kind of activity connects to several core cybersecurity concepts:
+        </p>
+
+        <ul style="margin:0 0 18px 18px;color:var(--ink);line-height:1.7;">
+          <li><strong>OSINT</strong> involves gathering information from public sources to understand a person or organisation.</li>
+          <li><strong>Social engineering</strong> involves manipulating someone into taking an action that benefits an attacker.</li>
+          <li><strong>Phishing</strong> uses deceptive messages or websites to steal information or persuade someone to perform an unsafe action.</li>
+        </ul>
+
+        <div style="background:#0F172A;border-radius:8px;padding:20px;color:white;margin:24px 0;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;border-bottom:1px solid #334155;padding-bottom:10px;">
+            <div style="font-size:.84rem;font-weight:700;color:#FBBF24;text-transform:uppercase;letter-spacing:.04em;">
+              MITRE ATT&amp;CK® Adversary Techniques
+            </div>
+            <span style="font-size:.72rem;background:#1E293B;color:#94A3B8;padding:2px 8px;border-radius:4px;font-family:monospace;">RECON &amp; INITIAL ACCESS</span>
+          </div>
+          
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
+            <div style="background:#1E293B;border:1px solid #334155;border-radius:6px;padding:12px;">
+              <a href="https://attack.mitre.org/techniques/T1593/" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;font-weight:700;text-decoration:none;font-size:.88rem;">
+                T1593 — Search Open Websites/Domains ↗
+              </a>
+              <p style="margin:6px 0 0;font-size:.8rem;color:#CBD5E1;line-height:1.4;">Adversaries search websites and social media to gather intelligence on target personnel and organizational infrastructure.</p>
+            </div>
+            <div style="background:#1E293B;border:1px solid #334155;border-radius:6px;padding:12px;">
+              <a href="https://attack.mitre.org/techniques/T1589/" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;font-weight:700;text-decoration:none;font-size:.88rem;">
+                T1589 — Gather Victim Identity Information ↗
+              </a>
+              <p style="margin:6px 0 0;font-size:.8rem;color:#CBD5E1;line-height:1.4;">Adversaries gather victim identity details such as employee names, email addresses, phone numbers, and job roles.</p>
+            </div>
+            <div style="background:#1E293B;border:1px solid #334155;border-radius:6px;padding:12px;">
+              <a href="https://attack.mitre.org/techniques/T1566/" target="_blank" rel="noopener noreferrer" style="color:#38BDF8;font-weight:700;text-decoration:none;font-size:.88rem;">
+                T1566 — Phishing ↗
+              </a>
+              <p style="margin:6px 0 0;font-size:.8rem;color:#CBD5E1;line-height:1.4;">Adversaries send tailored spear-phishing messages with malicious attachments or links targeting the specific individual.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;padding-top:12px;border-top:1px solid #334155;font-size:.82rem;color:#94A3B8;line-height:1.5;">
+            <strong>SOC Operational Context:</strong> An employee might receive a fake recruitment email and enter their corporate credentials on a fraudulent website. A SOC team investigates suspicious sign-ins, unusual authentication activity, and indicators of account compromise. Finding someone's public profile alone doesn't mean an attack is occurring — the team must evaluate concrete evidence and authentication telemetry.
+          </div>
+        </div>
+
+        <p>
+          The wider lesson is that cybersecurity isn't only about protecting devices and networks. It's also about understanding how people and information can become part of an attack.
+        </p>
+
+        <!-- SECTION 6 -->
+        <h2 id="sec-habits">6. A Few Habits That Can Make a Difference</h2>
+
+        <p>
+          The self-audit is a useful starting point, but protecting your digital footprint is an ongoing process:
+        </p>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:24px 0;">
+          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:16px;">
+            <strong style="color:#92400E;display:block;margin-bottom:4px;">🤔 Think before posting</strong>
+            <p style="margin:0;font-size:.86rem;color:#78350F;line-height:1.5;">Consider whether personal information truly needs to be public, or if it can be shared only with close contacts.</p>
+          </div>
+          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:16px;">
+            <strong style="color:#92400E;display:block;margin-bottom:4px;">📍 Limit location sharing</strong>
+            <p style="margin:0;font-size:.86rem;color:#78350F;line-height:1.5;">Avoid routinely revealing your live location or daily movements. Post travel pictures after returning home.</p>
+          </div>
+          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:16px;">
+            <strong style="color:#92400E;display:block;margin-bottom:4px;">🔑 Use unique passwords</strong>
+            <p style="margin:0;font-size:.86rem;color:#78350F;line-height:1.5;">A password manager helps create and maintain distinct passwords so one breach cannot unlock everything.</p>
+          </div>
+          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:16px;">
+            <strong style="color:#92400E;display:block;margin-bottom:4px;">🛡️ Enable multifactor authentication</strong>
+            <p style="margin:0;font-size:.86rem;color:#78350F;line-height:1.5;">Add another layer of protection to important accounts, ensuring a compromised password alone isn't enough.</p>
+          </div>
+          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:16px;">
+            <strong style="color:#92400E;display:block;margin-bottom:4px;">🔍 Verify unexpected messages</strong>
+            <p style="margin:0;font-size:.86rem;color:#78350F;line-height:1.5;">Check recruiters, companies, and purported acquaintances independently via official public directories.</p>
+          </div>
+          <div style="background:#FFFBEB;border:1px solid #FDE68A;border-radius:8px;padding:16px;">
+            <strong style="color:#92400E;display:block;margin-bottom:4px;">🔄 Review accounts regularly</strong>
+            <p style="margin:0;font-size:.86rem;color:#78350F;line-height:1.5;">Remove unnecessary third-party application permissions and investigate active logins on your accounts.</p>
+          </div>
+        </div>
+
+        <p>
+          You don't need to disappear from the internet. The goal is to make deliberate decisions about what you share and reduce opportunities for someone to misuse it.
+        </p>
+
+        <!-- FINAL THOUGHTS -->
+        <h2 id="sec-final">Final Thoughts</h2>
+
+        <p>
+          We often picture cybercriminals using sophisticated tools to break into computers and steal data.
+        </p>
+
+        <p>
+          But some attacks begin much earlier, with nothing more than a search engine and a few public profiles.
+        </p>
+
+        <p>
+          A scammer might learn that you're looking for a job, discover the name of someone you know and use that information to create a message that feels genuine.
+        </p>
+
+        <p>
+          They don't need to know everything about you. They only need enough to make you trust them.
+        </p>
+
+        <p>
+          That's why online privacy isn't just about keeping secrets. It's about thinking carefully about what you share, who can see it and how different pieces of information might be used together.
+        </p>
+
+        <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:8px;padding:18px 22px;margin:24px 0;">
+          <p style="margin:0 0 10px;color:#166534;font-size:.95rem;line-height:1.6;">
+            Take ten minutes today to review your digital footprint. If you discover something you don't want to share, take action: change the relevant settings, remove unnecessary details and secure any account that may be at risk.
+          </p>
+          <p style="margin:0 0 10px;color:#166534;font-size:.95rem;line-height:1.6;">
+            You might discover very little, or you might find something worth changing. Either way, you'll have a better understanding of what your online presence reveals.
+          </p>
+          <div style="font-size:1.05rem;font-weight:800;color:#14532D;font-family:Space Grotesk,system-ui;">
+            Your digital footprint tells a story about you. Make sure you have some control over the story it tells.
+          </div>
+        </div>
+
+        <!-- SOURCES & FURTHER READING -->
+        <div class="art-sources" id="sources">
+          <h3 class="sources-h3">Sources and Further Reading</h3>
+          <ul class="sources-list">
+            <li>
+              <a href="https://www.ncsc.gov.uk/guidance/phishing" target="_blank" rel="noopener noreferrer">
+                UK National Cyber Security Centre (NCSC) — Phishing: Spot and report scam emails, texts, websites and calls ↗
+              </a>
+            </li>
+            <li>
+              <a href="https://www.cisa.gov/secure-our-world/recognize-and-report-phishing" target="_blank" rel="noopener noreferrer">
+                Cybersecurity and Infrastructure Security Agency (CISA) — Recognize and Report Phishing ↗
+              </a>
+            </li>
+            <li>
+              <a href="https://attack.mitre.org/techniques/T1593/" target="_blank" rel="noopener noreferrer">
+                MITRE ATT&amp;CK — Search Open Websites/Domains (T1593) ↗
+              </a>
+            </li>
+            <li>
+              <a href="https://attack.mitre.org/techniques/T1589/" target="_blank" rel="noopener noreferrer">
+                MITRE ATT&amp;CK — Gather Victim Identity Information (T1589) ↗
+              </a>
+            </li>
+            <li>
+              <a href="https://attack.mitre.org/techniques/T1566/" target="_blank" rel="noopener noreferrer">
+                MITRE ATT&amp;CK — Phishing (T1566) ↗
+              </a>
+            </li>
+            <li>
+              <a href="https://consumer.ftc.gov/articles/how-recognize-and-avoid-phishing-scams" target="_blank" rel="noopener noreferrer">
+                Federal Trade Commission (FTC) — How to Recognize and Avoid Phishing Scams ↗
+              </a>
+            </li>
+          </ul>
+          <p style="font-size:.8rem;color:var(--ink-4);margin-top:14px;line-height:1.5;">
+            <strong>Cyber Insight — Cybersecurity for Everyone.</strong> This article uses illustrative scenarios to explain online privacy and social-engineering risks. The amount of information someone can discover varies depending on what is publicly available.
+          </p>
+        </div>
+
+      </div><!-- /art-text -->
+
+      <!-- POST-ARTICLE NAVIGATION -->
+      <div class="art-end-nav">
+        <div>
+          <div style="font-size:.78rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">
+            Previous in Series
+          </div>
+          <div style="font-size:.95rem;font-weight:700;color:var(--ink);">
+            The Fake Recruiter in Your LinkedIn Inbox
+          </div>
+          <p style="font-size:.82rem;color:var(--ink-3);margin:2px 0 0;">
+            How state-sponsored operators and cybercrime syndicates weaponize recruitment lures.
+          </p>
+        </div>
+        <a href="article-07.html" class="next-ep-btn" title="Read Episode 07">
+          ← Read Episode 07
+        </a>
+      </div>
+
+      <!-- FEEDBACK & DISCUSSION SECTION -->
+      <section class="feedback-section" id="feedback" aria-label="Reader feedback">
+        <div class="fb-header">
+          <h2 class="fb-title">Send feedback to Poorna</h2>
+          <p class="fb-sub">Have a question or a suggestion? Prepare an email below. Feedback is private and is sent only when you press Send in your email app.</p>
+          <p class="fb-sub">Likes and claps are your personal reactions on this device.</p>
+        </div>
+        <div class="fb-form-box">
+          <p>You can also <a href="mailto:sujampathirathnayaka@gmail.com">email Poorna directly</a>.</p>
+          <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
+          <form id="fbForm" hidden>
+            <label for="fbName">Name (optional)</label>
+            <input class="fb-input" id="fbName" maxlength="100" autocomplete="name" aria-describedby="fbDraftNote">
+            <label for="fbCategory">Feedback category</label>
+            <select class="fb-input" id="fbCategory">
+              <option>General feedback</option><option>Question</option><option>Correction</option><option>Topic suggestion</option>
+            </select>
+            <label for="fbMessage">Your feedback</label>
+            <textarea class="fb-textarea" id="fbMessage" aria-describedby="fbDraftNote fbLimit" required maxlength="2000" placeholder="Share your question or suggestion..."></textarea>
+            <p id="fbLimit" class="fb-draft-note">Maximum 2,000 characters.</p>
+            <div class="fb-form-foot">
+              <button type="submit" class="fb-submit-btn">Prepare email</button>
+              <button type="button" class="fb-clear-btn" id="fbClear">Clear draft</button>
+            </div>
+          </form>
+          <div id="fbEmailPreview" class="fb-preview" hidden>
+            <p id="fbStatus" class="fb-status" role="status">Prepared. Review and send:</p>
+            <a id="fbEmailLink" class="fb-email-link" href="#" target="_blank" rel="noopener noreferrer">Open email app</a>
+            <div class="fb-preview-field">
+              <label for="fbEmailTo">To</label>
+              <input id="fbEmailTo" class="fb-input" readonly value="sujampathirathnayaka@gmail.com">
+            </div>
+            <div class="fb-preview-field">
+              <label for="fbEmailSubject">Subject</label>
+              <input id="fbEmailSubject" class="fb-input" readonly>
+            </div>
+            <div class="fb-preview-field">
+              <label for="fbEmailBody">Body</label>
+              <textarea id="fbEmailBody" class="fb-textarea" readonly rows="8"></textarea>
+            </div>
+            <button type="button" class="fb-copy-btn" id="fbCopy">Copy feedback</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10-Episode Series Curriculum Box -->
+      <div class="art-series-box" id="series-curriculum">
+        <div class="art-series-box-header">
+          <div>
+            <span class="art-series-tag" style="background:#D97706;">Syllabus</span>
+            <div class="art-series-box-title">Cybersecurity for Everyone — 10 Episodes</div>
+          </div>
+          <a href="index.html#series" class="art-series-link">All Episodes →</a>
+        </div>
+        <div class="series-nav-grid" id="seriesNavGrid">
+          <a href="article.html" class="series-nav-item">
+            <span class="series-nav-num">01</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Can You Still Trust What You See and Hear Online?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 01 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-02.html" class="series-nav-item">
+            <span class="series-nav-num">02</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Someone Has Your Email Address. Now What?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 02 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-03.html" class="series-nav-item">
+            <span class="series-nav-num">03</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">I Clicked a Phishing Link. What Should I Do?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 03 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-04.html" class="series-nav-item">
+            <span class="series-nav-num">04</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Password Wasn't Hacked. Your Session Was Stolen.</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 04 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-05.html" class="series-nav-item">
+            <span class="series-nav-num">05</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Why the Padlock Doesn't Mean a Website Is Safe</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 05 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-06.html" class="series-nav-item">
+            <span class="series-nav-num">06</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Are Passkeys Finally Going to Kill Passwords?</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 06 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-07.html" class="series-nav-item">
+            <span class="series-nav-num">07</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">The Fake Recruiter in Your LinkedIn Inbox</span>
+              <span class="series-nav-tag" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">Episode 07 · Live Now ✅</span>
+            </div>
+          </a>
+          <a href="article-08.html" class="series-nav-item active" style="border-left:3px solid #D97706;background:#FFFBEB;">
+            <span class="series-nav-num" style="color:#D97706;font-weight:800;">08</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title" style="color:#D97706;font-weight:700;">How Much Can a Scammer Learn About You in 10 Minutes?</span>
+              <span class="series-nav-tag" style="background:#FDE68A;color:#92400E;border-color:#FCD34D;">Episode 08 · Reading Now 👁️</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">09</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Your Bank Is Calling. Or Is It?</span>
+              <span class="series-nav-tag">Episode 09 · Coming Soon</span>
+            </div>
+          </a>
+          <a href="index.html#series" class="series-nav-item">
+            <span class="series-nav-num">10</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">What Happens to Your Information After a Data Breach?</span>
+              <span class="series-nav-tag">Episode 10 · Coming Soon</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Related / Navigation in Series -->
+      <div class="related">
+        <div class="sec-h"
+          style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <span class="sec-lbl" style="color:#D97706;">Cybersecurity for Everyone</span>
+            <div style="font-family:var(--f-d);font-size:1.15rem;font-weight:800;color:var(--ink);margin-top:4px;">Series Navigation</div>
+          </div>
+          <a href="index.html#series"
+            style="font-size:.82rem;font-weight:700;color:#D97706;text-decoration:none;display:flex;align-items:center;gap:5px;">
+            View All 10 Episodes in Series →
+          </a>
+        </div>
+        <div class="rel-grid">
+
+          <!-- Previous: Episode 07 -->
+          <a href="article-07.html" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
+            <div class="card-svg" style="background:linear-gradient(135deg,#F0F9FF 0%,#E0F2FE 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <circle cx="80" cy="65" r="14" fill="#BAE6FD" />
+                <rect x="100" y="58" width="54" height="6" rx="3" fill="#0284C7" />
+                <rect x="100" y="69" width="40" height="5" rx="2.5" fill="#BAE6FD" />
+                <rect x="168" y="48" width="44" height="58" rx="6" fill="white" stroke="#EF4444" stroke-width="1.6" />
+                <circle cx="190" cy="80" r="8" fill="#FEE2E2" />
+                <text x="190" y="83" text-anchor="middle" fill="#DC2626" font-family="monospace" font-size="7" font-weight="800">exe</text>
+              </svg>
+              <span class="card-svg-label" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">← Previous · Ep 07</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">The Fake Recruiter in Your LinkedIn Inbox</h3>
+              <p class="card-ex">State-sponsored actors and cybercrime syndicates target professionals with weaponized coding assignments and trojanized tools.</p>
+              <div class="card-foot"><span>Social Engineering</span><span style="color:#0284C7;font-weight:700;">Read Ep 07 →</span></div>
+            </div>
+          </a>
+
+          <!-- Next: Episode 09 (Upcoming) -->
+          <div class="art-card">
+            <div class="card-svg" style="background:linear-gradient(135deg,#FDF2F8 0%,#FCE7F3 100%);">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+                <circle cx="96" cy="70" r="28" fill="white" stroke="#DB2777" stroke-width="2" />
+                <path d="M90 60 C90 56 102 56 102 60 C102 66 94 66 94 72" stroke="#DB2777" stroke-width="2" stroke-linecap="round" fill="none" />
+                <circle cx="94" cy="78" r="1.5" fill="#DB2777" />
+                <line x1="126" y1="58" x2="160" y2="48" stroke="#F472B6" stroke-width="1.5" stroke-dasharray="3 2" />
+                <line x1="126" y1="70" x2="160" y2="70" stroke="#F472B6" stroke-width="1.5" stroke-dasharray="3 2" />
+                <line x1="126" y1="82" x2="160" y2="92" stroke="#F472B6" stroke-width="1.5" stroke-dasharray="3 2" />
+              </svg>
+              <span class="card-svg-label">Up Next · Ep 09</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Your Bank Is Calling. Or Is It?</h3>
+              <p class="card-ex">Scammers can fake caller ID numbers and sound completely professional. How voice phishing (vishing) works and how to protect yourself.</p>
+              <div class="card-foot"><span>Scam Calls</span><span class="soon">Coming Soon</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /art-center -->
+
+  </div><!-- /art-layout -->
+
+  <!-- FLOATING BOTTOM DOCK -->
+  <aside class="floating-dock" aria-label="Reading Controls">
+    <button class="dock-btn btn-like" aria-label="Like article">
+      <span class="dock-emoji like-heart">🤍</span>
+      <span class="dock-count like-count">0</span>
+    </button>
+    <button class="dock-btn btn-clap" aria-label="Applaud research">
+      <span class="dock-emoji">👏</span>
+      <span class="dock-count clap-count">0</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#feedback" class="dock-btn" aria-label="Jump to discussion">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+      <span class="dock-label">Feedback</span>
+    </a>
+    <button class="dock-btn btn-share" onclick="copyLink()" aria-label="Copy link">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+      <span class="dock-label">Share</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#series-curriculum" class="dock-series-pill" title="Series: Cybersecurity for Everyone">
+      <span class="dock-pulse"></span>
+      Ep 08 of 10
+    </a>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark" style="background:#D97706;">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, SSL/TLS misconceptions, passkey cryptography, recruitment fraud, OSINT reconnaissance, and digital privacy for everyone.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Series Navigation</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
+              <li><a href="article-02.html">Ep 02: Email OSINT &amp; Perimeter Defense</a></li>
+              <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
+              <li><a href="article-04.html">Ep 04: Session Theft &amp; Cookie Hijacking</a></li>
+              <li><a href="article-05.html">Ep 05: The Padlock Myth &amp; TLS Security</a></li>
+              <li><a href="article-06.html">Ep 06: Passkeys vs. Passwords &amp; FIDO2</a></li>
+              <li><a href="article-07.html">Ep 07: Fake Recruiters &amp; Trojan Assessments</a></li>
+              <li><a href="article-08.html">Ep 08: OSINT &amp; 10-Minute Scammer Recon</a></li>
+              <li><a href="index.html#series">View Full Curriculum (10 Episodes)</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Author &amp; Verification</div>
+            <ul class="foot-nav-list">
+              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Poorna's Portfolio ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn Research ↗</a></li>
+              <li><a href="#sources">Citations &amp; Methodology</a></li>
+              <li><a href="mailto:sujampathirathnayaka@gmail.com">Contact Editorial Desk</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal & Research Disclaimer -->
+      <div class="foot-disclaimer">
+        <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is authored by Poorna Sujampathi Rathnayaka for non-commercial educational, threat awareness, and digital literacy purposes. All third-party trademarks, company names, CVE IDs, and security advisories referenced are the property of their respective copyright holders. Fair use citations for educational security awareness are permitted with direct attribution and canonical link.
+      </div>
+
+      <div class="foot-bottom">
+        <div>
+          &copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.
+        </div>
+        <div class="foot-bottom-links">
+          <a href=".well-known/security.txt" target="_blank" rel="noopener noreferrer">Vulnerability Disclosure</a>
+          <span>·</span>
+          <a href="index.html#about">Ethics &amp; Methodology</a>
+          <span>·</span>
+          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element"></div>
+
+  <!-- Client-side Interactive 10-Minute Digital Privacy Self-Audit & OSINT Inspector -->
+  <script>
+    (function () {
+      let currentTab = 'audit';
+
+      const auditChecklist = [
+        {
+          id: 'min1_search',
+          time: 'Minutes 1–2',
+          title: 'Private Search Reconnaissance',
+          desc: 'Search your full name and public handle in an Incognito window. Did you find your current employer, address, or phone numbers indexed without authentication?',
+          category: 'Search Exposure',
+          mitigation: 'Submit Google Outdated Content & personal info removal requests for sensitive exposed records.'
+        },
+        {
+          id: 'min3_social',
+          time: 'Minutes 3–4',
+          title: 'Social Footprint & Tagged Media',
+          desc: 'Audit your public LinkedIn, Instagram, and Facebook profiles. Can anyone see your full friend/colleague list or old public photos without following you?',
+          category: 'Social Ties',
+          mitigation: 'Switch profile visibility to "Friends/Connections Only" and restrict who can see tagged photographs.'
+        },
+        {
+          id: 'min5_clues',
+          time: 'Minutes 5–6',
+          title: 'Routine Geolocation & Personal Clues',
+          desc: 'Do recent posts highlight your daily gym, favorite local café, live holiday updates, or exact date of birth?',
+          category: 'Routine Clues',
+          mitigation: 'Delay vacation uploads until after you return home; remove public birthday year and live check-ins.'
+        },
+        {
+          id: 'min7_security',
+          time: 'Minutes 7–8',
+          title: 'Account Security & Session Hygiene',
+          desc: 'Check security dashboard on your primary email/Google/Apple ID. Are there old third-party app tokens or unfamiliar active sessions?',
+          category: 'Account Perimeter',
+          mitigation: 'Revoke old OAuth app permissions immediately and hit "Sign out of all other sessions".'
+        },
+        {
+          id: 'min9_actions',
+          time: 'Minutes 9–10',
+          title: 'Execute 3 Concrete Hardening Steps',
+          desc: 'Enable hardware/app-based MFA, turn on login notifications, or replace a reused password with a unique credential.',
+          category: 'Practical Hardening',
+          mitigation: 'Commit to checking account security settings quarterly.'
+        }
+      ];
+
+      const osintScenarios = {
+        'jobhunt': {
+          title: 'The Job Seeker Persona Lure',
+          duration: '6 mins to weaponize',
+          breadcrumbs: 'Public LinkedIn banner: "#OpenToWork" + Follows specific tech companies + Shares recent certification.',
+          attackerCorrelation: 'Attacker creates a spoofed recruiting profile using the logo of a company you follow. Cites your certification in the message opener to build instant rapport.',
+          spearPhishPayload: '"Hi [Name], we saw your recent certification and want to interview you for a Senior SOC position. Please review the JD on our applicant portal."',
+          mitreTechniques: 'T1593 (Search Open Websites) → T1589.002 (Email/Social Addresses) → T1566.002 (Spearphishing Link)',
+          defenseAction: 'Never click applicant links in unsolicited DMs. Verify open requisition numbers directly on official corporate careers websites.'
+        },
+        'travel': {
+          title: 'The Real-Time Vacation / Routine Pin',
+          duration: '4 mins to weaponize',
+          breadcrumbs: 'Instagram story tagged live at an airport departure lounge + Public check-in at a resort.',
+          attackerCorrelation: 'Reveals you are away from home and likely operating on mobile devices with intermittent internet connectivity.',
+          spearPhishPayload: 'Urgent SMS spoofing your bank: "Unusual card activity detected abroad. Reply YES to confirm or click here to temporarily unfreeze your card."',
+          mitreTechniques: 'T1593 (Search Open Websites) → T1589.003 (Employee Personal Info) → T1566.001 (Spearphishing via SMS / Smishing)',
+          defenseAction: 'Never post travel photos in real time. Share vacation moments after arriving back home, and verify banking alerts through official bank apps.'
+        },
+        'colleague': {
+          title: 'The Tagged Friend / Colleague Reference',
+          duration: '5 mins to weaponize',
+          breadcrumbs: 'Public comment celebrating a colleague’s promotion: "Congrats David on the new role at TechCorp!"',
+          attackerCorrelation: 'Attacker notes David’s name and employer. Reaches out to you pretending to be referred by David.',
+          spearPhishPayload: '"Hi, David mentioned you might have twenty minutes to look over a brief project proposal. I attached the overview here."',
+          mitreTechniques: 'T1589.001 (Social Network Analysis) → T1566.001 (Spearphishing Attachment)',
+          defenseAction: 'Pick up the phone or ping David directly via your existing private chat channel to confirm if he made any such introduction.'
+        }
+      };
+
+      const auditState = {};
+      auditChecklist.forEach(item => { auditState[item.id] = false; });
+
+      function renderAuditView() {
+        const checkedCount = Object.values(auditState).filter(Boolean).length;
+        const total = auditChecklist.length;
+        const percent = Math.round((checkedCount / total) * 100);
+
+        let statusText = 'Audit Incomplete — Check items as you review your footprint';
+        let statusColor = '#D97706';
+        let statusBg = '#FFFBEB';
+        if (checkedCount === total) {
+          statusText = 'Perimeter Hardened! You completed all 5 audit intervals.';
+          statusColor = '#15803D';
+          statusBg = '#DCFCE7';
+        } else if (checkedCount >= 3) {
+          statusText = 'Significant Progress — Critical exposures addressed.';
+          statusColor = '#0284C7';
+          statusBg = '#E0F2FE';
+        }
+
+        return `
+          <div style="background:${statusBg};border:1.5px solid ${statusColor};border-radius:8px;padding:12px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+            <div>
+              <div style="font-weight:800;color:${statusColor};font-size:.92rem;">Audit Completion: ${percent}% (${checkedCount}/${total} checked)</div>
+              <div style="font-size:.8rem;color:var(--ink-2);margin-top:2px;">${statusText}</div>
+            </div>
+            <div style="background:white;padding:4px 10px;border-radius:20px;border:1px solid var(--border-2);font-size:.78rem;font-weight:700;color:var(--ink);">
+              Score: ${checkedCount * 20} / 100
+            </div>
+          </div>
+
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            ${auditChecklist.map(item => `
+              <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;display:flex;align-items:flex-start;gap:12px;">
+                <input type="checkbox" id="chk_${item.id}" ${auditState[item.id] ? 'checked' : ''} style="margin-top:4px;width:18px;height:18px;cursor:pointer;accent-color:#D97706;" data-check-id="${item.id}">
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:4px;">
+                    <label for="chk_${item.id}" style="font-weight:700;color:var(--ink);font-size:.9rem;cursor:pointer;">
+                      <span style="color:#D97706;font-size:.8rem;font-weight:800;margin-right:6px;">${item.time}</span>
+                      ${item.title}
+                    </label>
+                    <span style="font-size:.72rem;background:#F1F5F9;color:#475569;padding:2px 8px;border-radius:10px;font-weight:600;">${item.category}</span>
+                  </div>
+                  <p style="margin:0 0 6px;font-size:.84rem;color:var(--ink-3);line-height:1.5;">${item.desc}</p>
+                  <div style="font-size:.78rem;color:#15803D;background:#F0FDF4;padding:4px 8px;border-radius:4px;display:inline-block;">
+                    <strong>Recommended Action:</strong> ${item.mitigation}
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      function renderOsintView(activeKey) {
+        activeKey = activeKey || 'jobhunt';
+        const d = osintScenarios[activeKey];
+
+        return `
+          <!-- Scenario selector buttons -->
+          <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+            <button class="osint-tab-btn ${activeKey === 'jobhunt' ? 'active' : ''}" data-scenario="jobhunt" style="padding:6px 12px;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;${activeKey === 'jobhunt' ? 'background:#D97706;color:white;border:1px solid #D97706;' : 'background:white;color:var(--ink-3);border:1px solid var(--border-2);'}">
+              1. Job Search Breadcrumb
+            </button>
+            <button class="osint-tab-btn ${activeKey === 'travel' ? 'active' : ''}" data-scenario="travel" style="padding:6px 12px;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;${activeKey === 'travel' ? 'background:#D97706;color:white;border:1px solid #D97706;' : 'background:white;color:var(--ink-3);border:1px solid var(--border-2);'}">
+              2. Real-Time Vacation Tag
+            </button>
+            <button class="osint-tab-btn ${activeKey === 'colleague' ? 'active' : ''}" data-scenario="colleague" style="padding:6px 12px;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;${activeKey === 'colleague' ? 'background:#D97706;color:white;border:1px solid #D97706;' : 'background:white;color:var(--ink-3);border:1px solid var(--border-2);'}">
+              3. Friend &amp; Colleague Tag
+            </button>
+          </div>
+
+          <div style="margin-bottom:14px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+            <div style="font-weight:800;color:var(--ink);font-size:1.02rem;">${d.title}</div>
+            <div style="font-size:.82rem;font-weight:700;color:#D97706;margin-top:2px;">Attacker Reconnaissance Time: ${d.duration}</div>
+          </div>
+
+          <!-- Comparison Grid -->
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:16px;">
+            <!-- Public Breadcrumb & Attack Column -->
+            <div style="background:#FFFBEB;border:1.5px solid #FDE68A;border-radius:8px;padding:14px;">
+              <div style="font-size:.78rem;font-weight:800;color:#92400E;text-transform:uppercase;margin-bottom:6px;">🔍 Innocent Public Breadcrumb</div>
+              <p style="font-size:.84rem;color:#78350F;line-height:1.5;margin:0 0 10px;">${d.breadcrumbs}</p>
+              
+              <div style="font-size:.78rem;font-weight:800;color:#B45309;text-transform:uppercase;margin-bottom:4px;">🧩 Attacker Correlation Engine</div>
+              <p style="font-size:.84rem;color:#78350F;line-height:1.5;margin:0 0 10px;">${d.attackerCorrelation}</p>
+
+              <div style="font-size:.78rem;font-weight:800;color:#DC2626;text-transform:uppercase;margin-bottom:4px;">🎣 Crafted Spear-Phishing Lure</div>
+              <p style="font-size:.84rem;color:#991B1B;line-height:1.5;margin:0;font-style:italic;">${d.spearPhishPayload}</p>
+            </div>
+
+            <!-- Defense Column -->
+            <div style="background:#F0FDF4;border:1.5px solid #BBF7D0;border-radius:8px;padding:14px;">
+              <div style="font-size:.78rem;font-weight:800;color:#166534;text-transform:uppercase;margin-bottom:6px;">🛡️ Recommended Defense Action</div>
+              <p style="font-size:.84rem;color:#14532D;line-height:1.5;margin:0 0 10px;">${d.defenseAction}</p>
+
+              <div style="font-size:.78rem;font-weight:800;color:#0284C7;text-transform:uppercase;margin-bottom:4px;">🎯 MITRE ATT&amp;CK Mapping</div>
+              <p style="font-size:.84rem;color:#0F172A;line-height:1.5;margin:0;font-family:monospace;">${d.mitreTechniques}</p>
+            </div>
+          </div>
+        `;
+      }
+
+      function updateContainer() {
+        const container = document.getElementById('interactiveOutput');
+        if (!container) return;
+
+        if (currentTab === 'audit') {
+          container.innerHTML = renderAuditView();
+          container.querySelectorAll('input[type="checkbox"]').forEach(chk => {
+            chk.addEventListener('change', (e) => {
+              const id = e.target.getAttribute('data-check-id');
+              auditState[id] = e.target.checked;
+              updateContainer();
+            });
+          });
+        } else {
+          container.innerHTML = renderOsintView(window._currentOsintScenario || 'jobhunt');
+          container.querySelectorAll('.osint-tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              window._currentOsintScenario = btn.getAttribute('data-scenario');
+              updateContainer();
+            });
+          });
+        }
+      }
+
+      // Tab click events
+      const tabs = document.querySelectorAll('#auditTabs .sim-btn');
+      tabs.forEach(btn => {
+        btn.addEventListener('click', () => {
+          tabs.forEach(b => {
+            b.style.background = 'white';
+            b.style.color = 'var(--ink-3)';
+            b.style.borderColor = 'var(--border-2)';
+            b.classList.remove('active');
+          });
+          btn.style.background = '#D97706';
+          btn.style.color = 'white';
+          btn.style.borderColor = '#D97706';
+          btn.classList.add('active');
+          currentTab = btn.getAttribute('data-tab');
+          updateContainer();
+        });
+      });
+
+      // Initial render
+      updateContainer();
+    })();
+  </script>
+
+  <script src="js/cms.js?v=15"></script>
+  <script src="js/app.js?v=15"></script>
+  <script src="js/translator.js?v=15"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>

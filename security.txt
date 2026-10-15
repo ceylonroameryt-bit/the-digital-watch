@@ -3,3 +3,5 @@ Expires: 2027-09-01T00:00:00Z
 Preferred-Languages: en
 Canonical: https://thecyberinsight.online/.well-known/security.txt
 Canonical: https://thecyberinsight.online/security.txt
+Policy: https://thecyberinsight.online/#about
+Acknowledgments: https://thecyberinsight.online/#about
