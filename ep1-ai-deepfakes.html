@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>EP 01 · AI Deepfakes — 3D Biometric Verification Booth</title>
+  <meta name="description" content="10-second 3D biometric verification booth detecting and filtering out a synthetic AI voice and face clone.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #090D16;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Outer Stage centering the 9:16 vertical viewport */
+    #viewport-stage {
+      position: relative;
+      width: min(100vw, calc(100vh * 9 / 16));
+      height: min(100vh, calc(100vw * 16 / 9));
+      aspect-ratio: 9 / 16;
+      background: linear-gradient(180deg, #F5F7FB 0%, #E8EEF8 50%, #DFE6F2 100%);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 3D Canvas element */
+    #canvas3d {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
+      outline: none;
+    }
+
+    /* Frosted-glass Card Overlay (top) */
+    .hud-overlay {
+      position: absolute;
+      top: 24px;
+      left: 20px;
+      right: 20px;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hud-overlay.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.12),
+                  0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+      padding-bottom: 10px;
+    }
+
+    .card-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .card-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1D4ED8;
+    }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.02em;
+    }
+
+    .badge-live {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      border: 1px solid rgba(29, 78, 216, 0.2);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #1D4ED8;
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.08);
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #1D4ED8;
+      box-shadow: 0 0 8px #1D4ED8;
+      animation: pulse-live 1.2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+
+    /* Status Bar Row */
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(241, 245, 249, 0.85);
+      border-radius: 10px;
+      padding: 8px 12px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(203, 213, 225, 0.4);
+    }
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #1D4ED8;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .status-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1E293B;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.3s ease;
+    }
+
+    /* Metric Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      border-radius: 12px;
+      padding: 9px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+      line-height: 1.1;
+    }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+    }
+
+    .stat-bar-bg {
+      width: 100%;
+      height: 4px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 2px;
+    }
+
+    .stat-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #1D4ED8, #3B82F6);
+      border-radius: 999px;
+      transition: width 0.15s linear;
+    }
+
+    /* Interactive Bottom Bar (Discreet controls) */
+    .hud-bottom {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 999px;
+      padding: 6px 14px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .hud-bottom:hover {
+      opacity: 1;
+    }
+
+    .timeline-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .play-btn {
+      background: #1D4ED8;
+      border: none;
+      color: #FFFFFF;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 11px;
+      transition: transform 0.15s ease, background 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .play-btn:hover {
+      background: #1E40AF;
+      transform: scale(1.06);
+    }
+
+    .time-readout {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: #334155;
+      min-width: 44px;
+    }
+
+    .loop-track {
+      flex: 1;
+      height: 4px;
+      background: rgba(148, 163, 184, 0.25);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loop-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: #1D4ED8;
+      border-radius: 999px;
+    }
+
+    .hud-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #64748B;
+      white-space: nowrap;
+    }
+
+    /* Top series tag */
+    .top-badge-link {
+      position: absolute;
+      top: 8px;
+      right: 22px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #1D4ED8;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.7);
+      padding: 3px 8px;
+      border-radius: 6px;
+      backdrop-filter: blur(8px);
+      z-index: 11;
+      pointer-events: auto;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    /* Embedded Mode (inside card thumbnail or hero) */
+    html.is-embedded,
+    body.is-embedded {
+      background: #EEF3FC !important;
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    body.is-embedded #viewport-stage {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      aspect-ratio: auto !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: #EEF3FC !important;
+    }
+
+    body.is-embedded .top-badge-link,
+    body.is-embedded .hud-bottom,
+    body.is-embedded .hud-overlay {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="viewport-stage">
+    <!-- Optional Link back to Episode 01 Article -->
+    <a href="article.html" class="top-badge-link" title="Open Article Ep 01">← Back to Article</a>
+
+    <!-- Frosted-glass Card Overlay -->
+    <div class="hud-overlay" id="hudCard">
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-eyebrow">Audio-Visual Biometrics</span>
+            <h1 class="card-title">EP 01 · AI Deepfakes</h1>
+          </div>
+          <div class="badge-live">
+            <div class="live-dot" id="liveDot"></div>
+            <span>ANALYSIS</span>
+          </div>
+        </div>
+
+        <div class="status-row">
+          <div class="status-indicator" id="statusDot"></div>
+          <div class="status-text" id="statusText">Listening for a voice</div>
+        </div>
+
+        <div class="stats-grid">
+          <!-- Stat 1: Cloning Threshold -->
+          <div class="stat-card">
+            <span class="stat-label">Cloning Threshold</span>
+            <span class="stat-value" id="valThreshold">0.0s</span>
+            <div class="stat-bar-bg">
+              <div class="stat-bar-fill" id="barThreshold"></div>
+            </div>
+          </div>
+
+          <!-- Stat 2: Losses by 2030 -->
+          <div class="stat-card">
+            <span class="stat-label">Losses by 2030</span>
+            <span class="stat-value" id="valLosses">$0B</span>
+            <div class="stat-bar-bg">
+              <div class="stat-bar-fill" id="barLosses"></div>
+            </div>
+          </div>
+
+          <!-- Stat 3: Verification -->
+          <div class="stat-card">
+            <span class="stat-label">Verification</span>
+            <span class="stat-value" id="valVerify">Pending</span>
+            <div class="stat-bar-bg">
+              <div class="stat-bar-fill" id="barVerify"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Canvas -->
+    <canvas id="canvas3d"></canvas>
+
+    <!-- Bottom Control Scrub Bar -->
+    <div class="hud-bottom">
+      <button class="play-btn" id="playBtn" aria-label="Toggle Play/Pause">⏸</button>
+      <div class="timeline-wrap">
+        <span class="time-readout" id="timeReadout">0.0s</span>
+        <div class="loop-track">
+          <div class="loop-progress" id="loopProgress"></div>
+        </div>
+        <span class="time-readout">10.0s</span>
+      </div>
+      <span class="hud-tag">9:16 3D</span>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
+    import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+    // Internal High-Resolution Rendering Target for 9:16 Video
+    const RENDER_WIDTH = 1080;
+    const RENDER_HEIGHT = 1920;
+    const LOOP_DURATION = 10.0; // 10-second loop
+
+    // Palette Definition
+    const COLOR_WHITE = 0xFFFFFF;
+    const COLOR_ROYAL_BLUE = 0x1D4ED8;
+    const COLOR_BLUE_BRIGHT = 0x3B82F6;
+    const COLOR_SOFT_GRAY = 0x94A3B8;
+    const COLOR_DARK_GRAY = 0x64748B;
+    const COLOR_LIGHT_GRAY = 0xE2E8F0;
+    const COLOR_DARK_ORANGE = 0xEA580C;
+    const COLOR_DARK_ORANGE_CORE = 0xC2410C;
+
+    // Materials (MeshStandardMaterial throughout)
+    const matWhite = new THREE.MeshStandardMaterial({
+      color: COLOR_WHITE,
+      roughness: 0.32,
+      metalness: 0.05
+    });
+
+    const matRoyalBlue = new THREE.MeshStandardMaterial({
+      color: COLOR_ROYAL_BLUE,
+      roughness: 0.28,
+      metalness: 0.2
+    });
+
+    const matSoftGray = new THREE.MeshStandardMaterial({
+      color: COLOR_SOFT_GRAY,
+      roughness: 0.45,
+      metalness: 0.1
+    });
+
+    const matLightGray = new THREE.MeshStandardMaterial({
+      color: COLOR_LIGHT_GRAY,
+      roughness: 0.4,
+      metalness: 0.05
+    });
+
+    const matCloneGray = new THREE.MeshStandardMaterial({
+      color: COLOR_DARK_GRAY,
+      roughness: 0.55,
+      metalness: 0.15
+    });
+
+    const matEyesMouth = new THREE.MeshStandardMaterial({
+      color: COLOR_ROYAL_BLUE,
+      emissive: COLOR_ROYAL_BLUE,
+      emissiveIntensity: 0.6,
+      roughness: 0.2
+    });
+
+    const matChipCore = new THREE.MeshStandardMaterial({
+      color: COLOR_DARK_ORANGE_CORE,
+      emissive: COLOR_DARK_ORANGE,
+      emissiveIntensity: 0.8,
+      roughness: 0.25,
+      metalness: 0.3
+    });
+
+    const matScanLine = new THREE.MeshStandardMaterial({
+      color: COLOR_BLUE_BRIGHT,
+      emissive: COLOR_ROYAL_BLUE,
+      emissiveIntensity: 2.2,
+      roughness: 0.1
+    });
+
+    const matScanGlow = new THREE.MeshStandardMaterial({
+      color: COLOR_BLUE_BRIGHT,
+      emissive: COLOR_BLUE_BRIGHT,
+      emissiveIntensity: 1.2,
+      transparent: true,
+      opacity: 0.55,
+      roughness: 0.2
+    });
+
+    const matScanSheet = new THREE.MeshStandardMaterial({
+      color: COLOR_BLUE_BRIGHT,
+      transparent: true,
+      opacity: 0.2,
+      roughness: 0.3,
+      metalness: 0.1,
+      side: THREE.DoubleSide
+    });
+
+    const matCheckmark = new THREE.MeshStandardMaterial({
+      color: COLOR_WHITE,
+      emissive: 0xBFDBFE,
+      emissiveIntensity: 1.4,
+      roughness: 0.2,
+      metalness: 0.1
+    });
+
+    const matHoloRing = new THREE.MeshStandardMaterial({
+      color: COLOR_BLUE_BRIGHT,
+      emissive: COLOR_ROYAL_BLUE,
+      emissiveIntensity: 0.9,
+      roughness: 0.2,
+      transparent: true,
+      opacity: 0.85
+    });
+
+    const matHoloBead = new THREE.MeshStandardMaterial({
+      color: COLOR_WHITE,
+      emissive: COLOR_BLUE_BRIGHT,
+      emissiveIntensity: 2.0,
+      roughness: 0.1
+    });
+
+    const matPulseRing = new THREE.MeshStandardMaterial({
+      color: COLOR_BLUE_BRIGHT,
+      emissive: COLOR_ROYAL_BLUE,
+      emissiveIntensity: 1.5,
+      transparent: true,
+      opacity: 0.0,
+      roughness: 0.2
+    });
+
+    // URL parameters for embed mode (e.g. ?embed=card or ?embed=hero)
+    const urlParams = new URLSearchParams(window.location.search);
+    const isEmbedded = urlParams.has('embed');
+    const embedMode = urlParams.get('embed') || (isEmbedded ? 'card' : '');
+    if (isEmbedded) {
+      document.documentElement.classList.add('is-embedded');
+      document.body.classList.add('is-embedded');
+      if (embedMode) document.body.classList.add('mode-' + embedMode);
+    }
+
+    // Setup Renderer
+    const canvas = document.getElementById('canvas3d');
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance'
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(RENDER_WIDTH, RENDER_HEIGHT, false);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.18;
+
+    // Scene
+    const scene = new THREE.Scene();
+    if (isEmbedded) {
+      scene.background = new THREE.Color(0xEEF3FC);
+    } else {
+      scene.background = new THREE.Color(0xF4F6FA);
+    }
+
+    // Camera: Isometric perspective adjusted for 9:16 portrait video or adaptive embed
+    const camera = new THREE.PerspectiveCamera(31, RENDER_WIDTH / RENDER_HEIGHT, 0.1, 100);
+    if (!isEmbedded) {
+      // Shift diorama below the card using camera view offset
+      camera.setViewOffset(RENDER_WIDTH, RENDER_HEIGHT, 0, -250, RENDER_WIDTH, RENDER_HEIGHT);
+    }
+
+    // Lighting: Directional Sun with soft shadows + Hemisphere bounce
+    const dirSun = new THREE.DirectionalLight(0xFFFFFF, 2.4);
+    dirSun.position.set(13, 24, 11);
+    dirSun.castShadow = true;
+    dirSun.shadow.mapSize.width = 2048;
+    dirSun.shadow.mapSize.height = 2048;
+    dirSun.shadow.camera.near = 5;
+    dirSun.shadow.camera.far = 50;
+    const dSize = 7.5;
+    dirSun.shadow.camera.left = -dSize;
+    dirSun.shadow.camera.right = dSize;
+    dirSun.shadow.camera.top = dSize;
+    dirSun.shadow.camera.bottom = -dSize;
+    dirSun.shadow.bias = -0.0004;
+    dirSun.shadow.normalBias = 0.02;
+    scene.add(dirSun);
+
+    const hemiLight = new THREE.HemisphereLight(0xFFFFFF, 0xCBD5E1, 0.95);
+    hemiLight.position.set(0, 20, 0);
+    scene.add(hemiLight);
+
+    // Subtle blue fill light
+    const fillLight = new THREE.DirectionalLight(0x93C5FD, 0.6);
+    fillLight.position.set(-12, 10, -10);
+    scene.add(fillLight);
+
+    // Post-Processing Pipeline: EffectComposer -> RenderPass -> GTAOPass -> OutputPass
+    let composer = null;
+    try {
+      composer = new EffectComposer(renderer);
+      const renderPass = new RenderPass(scene, camera);
+      composer.addPass(renderPass);
+
+      const gtaoPass = new GTAOPass(scene, camera, RENDER_WIDTH, RENDER_HEIGHT);
+      if (gtaoPass.updateGtaoMaterial) {
+        gtaoPass.updateGtaoMaterial({
+          radius: 0.38,
+          distanceExponent: 1.1,
+          thickness: 1.2,
+          scale: 1.0,
+          samples: 16
+        });
+      }
+      composer.addPass(gtaoPass);
+
+      const outputPass = new OutputPass();
+      composer.addPass(outputPass);
+    } catch (err) {
+      console.warn('GTAOPass fallback to standard render:', err);
+      composer = null;
+    }
+
+    // Shadow Catcher Plane under the floating diorama
+    const shadowGeo = new THREE.PlaneGeometry(35, 35);
+    const shadowMat = new THREE.ShadowMaterial({ opacity: 0.16 });
+    const shadowCatcher = new THREE.Mesh(shadowGeo, shadowMat);
+    shadowCatcher.rotation.x = -Math.PI / 2;
+    shadowCatcher.position.y = -0.95;
+    shadowCatcher.receiveShadow = true;
+    scene.add(shadowCatcher);
+
+    // Root Diorama Group
+    const dioramaGroup = new THREE.Group();
+    scene.add(dioramaGroup);
+
+    // -------------------------------------------------------------
+    // 1. LAYERED ROUNDED SLAB (Floating base)
+    // -------------------------------------------------------------
+    const slabGroup = new THREE.Group();
+    dioramaGroup.add(slabGroup);
+
+    // Base layer: Soft Gray
+    const slabBaseGeo = new RoundedBoxGeometry(7.6, 0.32, 7.6, 3, 0.22);
+    const slabBaseMesh = new THREE.Mesh(slabBaseGeo, matSoftGray);
+    slabBaseMesh.position.y = -0.52;
+    slabBaseMesh.receiveShadow = true;
+    slabBaseMesh.castShadow = true;
+    slabGroup.add(slabBaseMesh);
+
+    // Middle layer: Royal Blue
+    const slabMidGeo = new RoundedBoxGeometry(7.2, 0.28, 7.2, 3, 0.18);
+    const slabMidMesh = new THREE.Mesh(slabMidGeo, matRoyalBlue);
+    slabMidMesh.position.y = -0.22;
+    slabMidMesh.receiveShadow = true;
+    slabMidMesh.castShadow = true;
+    slabGroup.add(slabMidMesh);
+
+    // Top layer: Clean White
+    const slabTopGeo = new RoundedBoxGeometry(6.8, 0.28, 6.8, 3, 0.16);
+    const slabTopMesh = new THREE.Mesh(slabTopGeo, matWhite);
+    slabTopMesh.position.y = 0.06;
+    slabTopMesh.receiveShadow = true;
+    slabTopMesh.castShadow = true;
+    slabGroup.add(slabTopMesh);
+
+    // Slab surface sits at y = 0.20
+
+    // -------------------------------------------------------------
+    // 2. VERIFICATION BOOTH
+    // -------------------------------------------------------------
+    const boothGroup = new THREE.Group();
+    boothGroup.position.set(-0.4, 0.2, -0.9);
+    dioramaGroup.add(boothGroup);
+
+    const postGeo = new RoundedBoxGeometry(0.24, 3.8, 0.24, 2, 0.05);
+    const postLeft = new THREE.Mesh(postGeo, matWhite);
+    postLeft.position.set(-1.45, 1.9, 0);
+    postLeft.castShadow = true;
+    postLeft.receiveShadow = true;
+    boothGroup.add(postLeft);
+
+    const postRight = new THREE.Mesh(postGeo, matWhite);
+    postRight.position.set(1.45, 1.9, 0);
+    postRight.castShadow = true;
+    postRight.receiveShadow = true;
+    boothGroup.add(postRight);
+
+    // Inner Trim (Royal Blue)
+    const trimVertGeo = new RoundedBoxGeometry(0.06, 3.6, 0.26, 2, 0.02);
+    const trimLeft = new THREE.Mesh(trimVertGeo, matRoyalBlue);
+    trimLeft.position.set(-1.31, 1.9, 0);
+    boothGroup.add(trimLeft);
+
+    const trimRight = new THREE.Mesh(trimVertGeo, matRoyalBlue);
+    trimRight.position.set(1.31, 1.9, 0);
+    boothGroup.add(trimRight);
+
+    const trimTopGeo = new RoundedBoxGeometry(2.7, 0.06, 0.26, 2, 0.02);
+    const trimTop = new THREE.Mesh(trimTopGeo, matRoyalBlue);
+    trimTop.position.set(0, 3.68, 0);
+    boothGroup.add(trimTop);
+
+    // Bottom Sill
+    const sillGeo = new RoundedBoxGeometry(3.2, 0.22, 0.36, 2, 0.05);
+    const sillMesh = new THREE.Mesh(sillGeo, matWhite);
+    sillMesh.position.set(0, 0.11, 0);
+    sillMesh.castShadow = true;
+    sillMesh.receiveShadow = true;
+    boothGroup.add(sillMesh);
+
+    // Light Gray Back Panel
+    const backPanelGeo = new RoundedBoxGeometry(2.7, 3.6, 0.08, 2, 0.03);
+    const backPanel = new THREE.Mesh(backPanelGeo, matLightGray);
+    backPanel.position.set(0, 1.9, -0.12);
+    backPanel.receiveShadow = true;
+    boothGroup.add(backPanel);
+
+    // Scan Emitter Bar on top
+    const emitterGeo = new RoundedBoxGeometry(3.3, 0.38, 0.48, 2, 0.07);
+    const emitterBar = new THREE.Mesh(emitterGeo, matWhite);
+    emitterBar.position.set(0, 3.9, 0);
+    emitterBar.castShadow = true;
+    emitterBar.receiveShadow = true;
+    boothGroup.add(emitterBar);
+
+    // Status LEDs on posts
+    const ledMeshes = [];
+    const ledGeo = new RoundedBoxGeometry(0.06, 0.06, 0.06, 2, 0.015);
+    for (let i = 0; i < 4; i++) {
+      const ledL = new THREE.Mesh(ledGeo, matRoyalBlue.clone());
+      ledL.position.set(-1.45, 1.2 + i * 0.65, 0.13);
+      boothGroup.add(ledL);
+      ledMeshes.push(ledL);
+
+      const ledR = new THREE.Mesh(ledGeo, matRoyalBlue.clone());
+      ledR.position.set(1.45, 1.2 + i * 0.65, 0.13);
+      boothGroup.add(ledR);
+      ledMeshes.push(ledR);
+    }
+
+    // -------------------------------------------------------------
+    // 3. VOXEL AVATAR PORTRAIT & SYNTHETIC CLONE LAYER
+    // -------------------------------------------------------------
+    const avatarGroup = new THREE.Group();
+    avatarGroup.position.set(-0.4, 0.2, -0.9);
+    dioramaGroup.add(avatarGroup);
+
+    // Real White Voxel Avatar
+    const voxelUnit = 0.22;
+    const realVoxels = [];
+    const avatarCubeGeo = new RoundedBoxGeometry(voxelUnit, voxelUnit, voxelUnit, 2, 0.035);
+
+    // Rows and columns for head, neck, and shoulders
+    const headGrid = [
+      // yIndex, xOffset, zOffset, isEyeOrMouth
+      // Shoulders (y = 0, 1)
+      [-1, -3, 0], [-1, -2, 0], [-1, -1, 0], [-1, 0, 0], [-1, 1, 0], [-1, 2, 0], [-1, 3, 0],
+      [0, -2, 0], [0, -1, 0], [0, 0, 0], [0, 1, 0], [0, 2, 0],
+      // Neck (y = 1)
+      [1, -1, 0], [1, 0, 0], [1, 1, 0],
+      // Chin (y = 2)
+      [2, -2, 0], [2, -1, 0], [2, 0, 0], [2, 1, 0], [2, 2, 0],
+      // Mouth (y = 3)
+      [3, -2, 0], [3, -1, 0, 'mouth'], [3, 0, 0, 'mouth'], [3, 1, 0, 'mouth'], [3, 2, 0],
+      // Nose / Cheeks (y = 4)
+      [4, -2, 0], [4, -1, 0], [4, 0, 0], [4, 1, 0], [4, 2, 0],
+      // Eyes (y = 5)
+      [5, -2, 0], [5, -1, 0, 'eye'], [5, 0, 0], [5, 1, 0, 'eye'], [5, 2, 0],
+      // Forehead (y = 6)
+      [6, -2, 0], [6, -1, 0], [6, 0, 0], [6, 1, 0], [6, 2, 0],
+      // Crown (y = 7)
+      [7, -1, 0], [7, 0, 0], [7, 1, 0]
+    ];
+
+    const avatarBaseY = 0.85;
+    headGrid.forEach(([row, col, z, type]) => {
+      const mat = (type === 'eye' || type === 'mouth') ? matEyesMouth : matWhite;
+      const mesh = new THREE.Mesh(avatarCubeGeo, mat);
+      const px = col * voxelUnit;
+      const py = avatarBaseY + (row + 1) * voxelUnit;
+      const pz = z * voxelUnit + 0.04;
+      mesh.position.set(px, py, pz);
+      mesh.castShadow = true;
+      mesh.receiveShadow = true;
+      avatarGroup.add(mesh);
+      realVoxels.push({ mesh, baseX: px, baseY: py, baseZ: pz, row });
+    });
+
+    // Synthetic Clone Layer: Gray cubes in front of face with jitter & gaps
+    const cloneVoxels = [];
+    const cloneGrid = [
+      [2, -2], [2, 0], [2, 2],
+      [3, -2], [3, -1], [3, 1], [3, 2],
+      [4, -2], [4, 0], [4, 1], [4, 2],
+      [5, -2], [5, -1], [5, 1], [5, 2],
+      [6, -2], [6, -1], [6, 0], [6, 2],
+      [7, -1], [7, 1]
+    ];
+
+    cloneGrid.forEach(([row, col], idx) => {
+      const s = voxelUnit * (0.85 + (idx % 3) * 0.12);
+      const cGeo = new RoundedBoxGeometry(s, s, s, 2, 0.03);
+      const mesh = new THREE.Mesh(cGeo, matCloneGray);
+      const px = col * voxelUnit + ((idx % 2 === 0) ? 0.03 : -0.03);
+      const py = avatarBaseY + (row + 1) * voxelUnit + ((idx % 3 === 0) ? 0.02 : -0.02);
+      const pz = 0.24 + (idx % 3) * 0.03;
+      mesh.position.set(px, py, pz);
+      mesh.castShadow = true;
+      avatarGroup.add(mesh);
+
+      // Random blast trajectory vector
+      const angle = (idx / cloneGrid.length) * Math.PI * 2 + (Math.random() - 0.5);
+      const blastDir = new THREE.Vector3(
+        Math.cos(angle) * 3.2,
+        Math.sin(angle) * 2.8 + 1.2,
+        2.5 + Math.random() * 2.5
+      );
+
+      cloneVoxels.push({
+        mesh,
+        baseX: px,
+        baseY: py,
+        baseZ: pz,
+        row,
+        blastDir,
+        rotSpeed: new THREE.Vector3((Math.random() - 0.5) * 12, (Math.random() - 0.5) * 12, (Math.random() - 0.5) * 12)
+      });
+    });
+
+    // -------------------------------------------------------------
+    // 4. HOLOGRAPHIC SCAN BEAM
+    // -------------------------------------------------------------
+    const scanBeamGroup = new THREE.Group();
+    scanBeamGroup.position.set(-0.4, 0.2, -0.9);
+    dioramaGroup.add(scanBeamGroup);
+
+    // Bright Blue Scan Line
+    const scanLineGeo = new RoundedBoxGeometry(2.7, 0.05, 0.14, 2, 0.015);
+    const scanLineMesh = new THREE.Mesh(scanLineGeo, matScanLine);
+    scanLineMesh.position.set(0, 3.6, 0.18);
+    scanBeamGroup.add(scanLineMesh);
+
+    // Soft Glow Band
+    const scanGlowGeo = new RoundedBoxGeometry(2.8, 0.24, 0.2, 2, 0.03);
+    const scanGlowMesh = new THREE.Mesh(scanGlowGeo, matScanGlow);
+    scanGlowMesh.position.set(0, 3.6, 0.18);
+    scanBeamGroup.add(scanGlowMesh);
+
+    // Translucent Light Sheet hanging from emitter
+    const sheetGeo = new RoundedBoxGeometry(2.65, 1.0, 0.02, 2, 0.005);
+    const scanSheetMesh = new THREE.Mesh(sheetGeo, matScanSheet);
+    scanSheetMesh.position.set(0, 3.6, 0.18);
+    scanBeamGroup.add(scanSheetMesh);
+
+    // -------------------------------------------------------------
+    // 5. EQUALIZER (12 Vertical Soundwave Bars)
+    // -------------------------------------------------------------
+    const eqGroup = new THREE.Group();
+    eqGroup.position.set(-2.5, 0.2, 1.2);
+    dioramaGroup.add(eqGroup);
+
+    // White base strip
+    const eqBaseGeo = new RoundedBoxGeometry(2.8, 0.1, 0.42, 2, 0.035);
+    const eqBaseMesh = new THREE.Mesh(eqBaseGeo, matWhite);
+    eqBaseMesh.position.set(0, 0.05, 0);
+    eqBaseMesh.castShadow = true;
+    eqBaseMesh.receiveShadow = true;
+    eqGroup.add(eqBaseMesh);
+
+    const eqBars = [];
+    const eqCount = 12;
+    const eqSpacing = 0.22;
+    const startX = -((eqCount - 1) * eqSpacing) / 2;
+
+    const barGeo = new RoundedBoxGeometry(0.12, 1.0, 0.12, 2, 0.03);
+    const capGeo = new RoundedBoxGeometry(0.14, 0.06, 0.14, 2, 0.015);
+
+    for (let i = 0; i < eqCount; i++) {
+      const barStemMat = matSoftGray.clone();
+      const barMesh = new THREE.Mesh(barGeo, barStemMat);
+      barMesh.position.set(startX + i * eqSpacing, 0.5, 0);
+      barMesh.castShadow = true;
+      eqGroup.add(barMesh);
+
+      const capMesh = new THREE.Mesh(capGeo, matWhite);
+      capMesh.position.set(startX + i * eqSpacing, 1.0, 0);
+      capMesh.castShadow = true;
+      eqGroup.add(capMesh);
+
+      eqBars.push({ barMesh, capMesh, barMat: barStemMat, index: i });
+    }
+
+    // -------------------------------------------------------------
+    // 6. STUDIO MICROPHONE ON STAND
+    // -------------------------------------------------------------
+    const micGroup = new THREE.Group();
+    micGroup.position.set(-2.4, 0.2, 0.15);
+    dioramaGroup.add(micGroup);
+
+    // Stand Base Plate
+    const micBaseGeo = new RoundedBoxGeometry(0.55, 0.06, 0.55, 2, 0.03);
+    const micBase = new THREE.Mesh(micBaseGeo, matWhite);
+    micBase.position.set(0, 0.03, 0);
+    micBase.castShadow = true;
+    micGroup.add(micBase);
+
+    // Vertical Stem
+    const micStemGeo = new RoundedBoxGeometry(0.08, 1.3, 0.08, 2, 0.02);
+    const micStem = new THREE.Mesh(micStemGeo, matWhite);
+    micStem.position.set(0, 0.68, 0);
+    micStem.castShadow = true;
+    micGroup.add(micStem);
+
+    // Mount Swivel
+    const micMountGeo = new RoundedBoxGeometry(0.24, 0.12, 0.2, 2, 0.03);
+    const micMount = new THREE.Mesh(micMountGeo, matRoyalBlue);
+    micMount.position.set(0, 1.34, 0);
+    micGroup.add(micMount);
+
+    // Microphone Capsule
+    const micCapGeo = new RoundedBoxGeometry(0.32, 0.72, 0.32, 2, 0.08);
+    const micCapsule = new THREE.Mesh(micCapGeo, matSoftGray);
+    micCapsule.position.set(0, 1.76, 0);
+    micCapsule.castShadow = true;
+    micGroup.add(micCapsule);
+
+    // Blue Grille Bands
+    const bandGeo = new RoundedBoxGeometry(0.34, 0.05, 0.34, 2, 0.015);
+    const bandTop = new THREE.Mesh(bandGeo, matRoyalBlue);
+    bandTop.position.set(0, 1.94, 0);
+    micGroup.add(bandTop);
+
+    const bandBot = new THREE.Mesh(bandGeo, matRoyalBlue);
+    bandBot.position.set(0, 1.62, 0);
+    micGroup.add(bandBot);
+
+    // LED Ring around mic base/neck (Torus allowed for rings)
+    const micLedRingGeo = new THREE.TorusGeometry(0.18, 0.025, 8, 24);
+    const micLedMat = new THREE.MeshStandardMaterial({
+      color: COLOR_ROYAL_BLUE,
+      emissive: COLOR_ROYAL_BLUE,
+      emissiveIntensity: 0.8
+    });
+    const micLedRing = new THREE.Mesh(micLedRingGeo, micLedMat);
+    micLedRing.rotation.x = Math.PI / 2;
+    micLedRing.position.set(0, 1.4, 0);
+    micGroup.add(micLedRing);
+
+    // -------------------------------------------------------------
+    // 7. AI VERIFICATION CHIP
+    // -------------------------------------------------------------
+    const chipGroup = new THREE.Group();
+    chipGroup.position.set(1.7, 0.2, 1.4);
+    dioramaGroup.add(chipGroup);
+
+    // Blue Circuit Board
+    const chipPcbGeo = new RoundedBoxGeometry(1.6, 0.12, 1.6, 2, 0.04);
+    const chipPcb = new THREE.Mesh(chipPcbGeo, matRoyalBlue);
+    chipPcb.position.set(0, 0.06, 0);
+    chipPcb.castShadow = true;
+    chipPcb.receiveShadow = true;
+    chipGroup.add(chipPcb);
+
+    // Soft Gray Package
+    const chipPkgGeo = new RoundedBoxGeometry(1.0, 0.18, 1.0, 2, 0.05);
+    const chipPkg = new THREE.Mesh(chipPkgGeo, matSoftGray);
+    chipPkg.position.set(0, 0.18, 0);
+    chipPkg.castShadow = true;
+    chipPkg.receiveShadow = true;
+    chipGroup.add(chipPkg);
+
+    // Dark Orange Glowing Core (ONLY place vibrant dark orange is used)
+    const chipCoreGeo = new RoundedBoxGeometry(0.44, 0.1, 0.44, 2, 0.03);
+    const chipCore = new THREE.Mesh(chipCoreGeo, matChipCore);
+    chipCore.position.set(0, 0.28, 0);
+    chipGroup.add(chipCore);
+
+    // White Pins around package edges
+    const pinGeo = new RoundedBoxGeometry(0.06, 0.04, 0.14, 2, 0.01);
+    for (let i = -3; i <= 3; i++) {
+      // North & South pins
+      const pinN = new THREE.Mesh(pinGeo, matWhite);
+      pinN.position.set(i * 0.12, 0.12, -0.56);
+      chipGroup.add(pinN);
+
+      const pinS = new THREE.Mesh(pinGeo, matWhite);
+      pinS.position.set(i * 0.12, 0.12, 0.56);
+      chipGroup.add(pinS);
+    }
+    const pinSideGeo = new RoundedBoxGeometry(0.14, 0.04, 0.06, 2, 0.01);
+    for (let i = -3; i <= 3; i++) {
+      // East & West pins
+      const pinW = new THREE.Mesh(pinSideGeo, matWhite);
+      pinW.position.set(-0.56, 0.12, i * 0.12);
+      chipGroup.add(pinW);
+
+      const pinE = new THREE.Mesh(pinSideGeo, matWhite);
+      pinE.position.set(0.56, 0.12, i * 0.12);
+      chipGroup.add(pinE);
+    }
+
+    // White Capacitors on PCB
+    const capBlockGeo = new RoundedBoxGeometry(0.08, 0.1, 0.14, 2, 0.015);
+    const cap1 = new THREE.Mesh(capBlockGeo, matWhite);
+    cap1.position.set(-0.64, 0.14, -0.64);
+    chipGroup.add(cap1);
+    const cap2 = new THREE.Mesh(capBlockGeo, matWhite);
+    cap2.position.set(0.64, 0.14, -0.64);
+    chipGroup.add(cap2);
+
+    // Four White Clamps (snap in at ~4s)
+    const clamps = [];
+    const clampGeo = new RoundedBoxGeometry(0.24, 0.22, 0.28, 2, 0.04);
+    const clampOffsets = [
+      { dir: new THREE.Vector3(0, 0, -1), rotY: 0 },
+      { dir: new THREE.Vector3(0, 0, 1), rotY: Math.PI },
+      { dir: new THREE.Vector3(-1, 0, 0), rotY: Math.PI / 2 },
+      { dir: new THREE.Vector3(1, 0, 0), rotY: -Math.PI / 2 }
+    ];
+
+    clampOffsets.forEach(({ dir, rotY }) => {
+      const clampMesh = new THREE.Mesh(clampGeo, matWhite);
+      clampMesh.rotation.y = rotY;
+      clampMesh.castShadow = true;
+      chipGroup.add(clampMesh);
+      clamps.push({ mesh: clampMesh, dir, openDist: 0.85, closedDist: 0.52 });
+    });
+
+    // -------------------------------------------------------------
+    // 8. HOLOGRAM PROJECTOR & STEPPED SECURITY SHIELD
+    // -------------------------------------------------------------
+    const projectorGroup = new THREE.Group();
+    projectorGroup.position.set(1.65, 0.2, -0.75);
+    dioramaGroup.add(projectorGroup);
+
+    // Projector Base (tiered rounded blocks)
+    const projBaseGeo = new RoundedBoxGeometry(1.0, 0.14, 1.0, 2, 0.04);
+    const projBase = new THREE.Mesh(projBaseGeo, matSoftGray);
+    projBase.position.set(0, 0.07, 0);
+    projBase.castShadow = true;
+    projectorGroup.add(projBase);
+
+    const projMidGeo = new RoundedBoxGeometry(0.76, 0.12, 0.76, 2, 0.035);
+    const projMid = new THREE.Mesh(projMidGeo, matWhite);
+    projMid.position.set(0, 0.2, 0);
+    projMid.castShadow = true;
+    projectorGroup.add(projMid);
+
+    const projLensGeo = new RoundedBoxGeometry(0.5, 0.06, 0.5, 2, 0.02);
+    const projLens = new THREE.Mesh(projLensGeo, matRoyalBlue);
+    projLens.position.set(0, 0.28, 0);
+    projectorGroup.add(projLens);
+
+    // Faint translucent projection beam rising to shield
+    const beamGeo = new RoundedBoxGeometry(0.35, 2.4, 0.35, 2, 0.02);
+    const projBeamMat = new THREE.MeshStandardMaterial({
+      color: COLOR_BLUE_BRIGHT,
+      transparent: true,
+      opacity: 0.12,
+      roughness: 0.1,
+      side: THREE.DoubleSide
+    });
+    const projBeam = new THREE.Mesh(beamGeo, projBeamMat);
+    projBeam.position.set(0, 1.5, 0);
+    projectorGroup.add(projBeam);
+
+    // Floating Stepped Security Shield
+    const shieldGroup = new THREE.Group();
+    shieldGroup.position.set(1.65, 3.05, -0.75);
+    dioramaGroup.add(shieldGroup);
+
+    // Outer Stepped Shield Face (Royal Blue)
+    const shieldOuterGeo = new RoundedBoxGeometry(1.35, 1.55, 0.14, 2, 0.06);
+    const shieldOuter = new THREE.Mesh(shieldOuterGeo, matRoyalBlue);
+    shieldOuter.castShadow = true;
+    shieldGroup.add(shieldOuter);
+
+    // Inner Stepped Face (Clean White)
+    const shieldInnerGeo = new RoundedBoxGeometry(1.1, 1.3, 0.16, 2, 0.04);
+    const shieldInnerMat = matWhite.clone();
+    const shieldInner = new THREE.Mesh(shieldInnerGeo, shieldInnerMat);
+    shieldInner.position.set(0, 0, 0.02);
+    shieldGroup.add(shieldInner);
+
+    // Orbit Rings (Torus allowed for rings)
+    const ring1Geo = new THREE.TorusGeometry(1.15, 0.025, 12, 48);
+    const orbitRing1 = new THREE.Mesh(ring1Geo, matHoloRing);
+    orbitRing1.rotation.set(Math.PI / 3, 0.2, 0.4);
+    shieldGroup.add(orbitRing1);
+
+    const ring2Geo = new THREE.TorusGeometry(1.3, 0.025, 12, 48);
+    const orbitRing2 = new THREE.Mesh(ring2Geo, matHoloRing);
+    orbitRing2.rotation.set(-Math.PI / 3.5, 0.5, -0.3);
+    shieldGroup.add(orbitRing2);
+
+    // Glowing beads traveling on orbit rings
+    const beadGeo = new RoundedBoxGeometry(0.08, 0.08, 0.08, 2, 0.02);
+    const beadsRing1 = [];
+    for (let i = 0; i < 2; i++) {
+      const bead = new THREE.Mesh(beadGeo, matHoloBead);
+      shieldGroup.add(bead);
+      beadsRing1.push(bead);
+    }
+    const beadsRing2 = [];
+    for (let i = 0; i < 2; i++) {
+      const bead = new THREE.Mesh(beadGeo, matHoloBead);
+      shieldGroup.add(bead);
+      beadsRing2.push(bead);
+    }
+
+    // Glowing White Checkmark (built of 2 joined RoundedBoxGeometry segments)
+    const checkmarkGroup = new THREE.Group();
+    dioramaGroup.add(checkmarkGroup);
+
+    const chkShortGeo = new RoundedBoxGeometry(0.1, 0.38, 0.1, 2, 0.025);
+    const chkShort = new THREE.Mesh(chkShortGeo, matCheckmark);
+    chkShort.position.set(-0.16, -0.06, 0);
+    chkShort.rotation.z = -Math.PI / 4;
+    checkmarkGroup.add(chkShort);
+
+    const chkLongGeo = new RoundedBoxGeometry(0.1, 0.72, 0.1, 2, 0.025);
+    const chkLong = new THREE.Mesh(chkLongGeo, matCheckmark);
+    chkLong.position.set(0.16, 0.08, 0);
+    chkLong.rotation.z = Math.PI / 5.2;
+    checkmarkGroup.add(chkLong);
+    checkmarkGroup.scale.set(0, 0, 0); // hidden initially
+
+    // Pulse Ripple Rings (Torus rings expanding on slab/shield)
+    const pulseRingGeo = new THREE.TorusGeometry(1.0, 0.03, 8, 36);
+    const pulseRings = [];
+    const pulseOrigins = [
+      { pos: new THREE.Vector3(1.65, 3.05, -0.75), rot: new THREE.Euler(0, 0, 0) }, // Shield
+      { pos: new THREE.Vector3(1.7, 0.22, 1.4), rot: new THREE.Euler(Math.PI / 2, 0, 0) }, // Chip
+      { pos: new THREE.Vector3(-0.4, 0.22, -0.9), rot: new THREE.Euler(Math.PI / 2, 0, 0) } // Booth base
+    ];
+    pulseOrigins.forEach(({ pos, rot }) => {
+      const ring = new THREE.Mesh(pulseRingGeo, matPulseRing.clone());
+      ring.position.copy(pos);
+      ring.rotation.copy(rot);
+      dioramaGroup.add(ring);
+      pulseRings.push(ring);
+    });
+
+    // -------------------------------------------------------------
+    // 9. BLUE TRACES & DATA PACKETS
+    // -------------------------------------------------------------
+    const tracesGroup = new THREE.Group();
+    dioramaGroup.add(tracesGroup);
+
+    // Three Trace Paths running to the chip at (1.7, 0.21, 1.4)
+    // Trace A: Equalizer (-2.5, 0.21, 1.2) -> Chip
+    // Trace B: Booth (-0.4, 0.21, -0.4) -> Chip
+    // Trace C: Projector (2.1, 0.21, -0.8) -> Chip
+    function createSegment(p1, p2, w = 0.06) {
+      const dx = p2.x - p1.x;
+      const dz = p2.z - p1.z;
+      const len = Math.hypot(dx, dz);
+      const angle = Math.atan2(dx, dz);
+      const geo = new RoundedBoxGeometry(w, 0.02, len, 2, 0.008);
+      const mesh = new THREE.Mesh(geo, matRoyalBlue);
+      mesh.position.set((p1.x + p2.x) / 2, 0.21, (p1.z + p2.z) / 2);
+      mesh.rotation.y = angle;
+      tracesGroup.add(mesh);
+      return mesh;
+    }
+
+    createSegment(new THREE.Vector3(-1.3, 0.21, 1.2), new THREE.Vector3(0.9, 0.21, 1.2));
+    createSegment(new THREE.Vector3(0.9, 0.21, 1.2), new THREE.Vector3(0.9, 0.21, 1.4));
+
+    createSegment(new THREE.Vector3(-0.4, 0.21, -0.2), new THREE.Vector3(0.3, 0.21, 0.6));
+    createSegment(new THREE.Vector3(0.3, 0.21, 0.6), new THREE.Vector3(1.3, 0.21, 0.6));
+    createSegment(new THREE.Vector3(1.3, 0.21, 0.6), new THREE.Vector3(1.3, 0.21, 1.1));
+
+    createSegment(new THREE.Vector3(1.65, 0.21, -0.5), new THREE.Vector3(1.65, 0.21, 0.6));
+    createSegment(new THREE.Vector3(1.65, 0.21, 0.6), new THREE.Vector3(1.7, 0.21, 0.8));
+
+    // Data Packets flowing towards the chip
+    const packetGeo = new RoundedBoxGeometry(0.09, 0.05, 0.09, 2, 0.015);
+    const dataPackets = [];
+    const pathA = [
+      new THREE.Vector3(-1.3, 0.23, 1.2),
+      new THREE.Vector3(0.9, 0.23, 1.2),
+      new THREE.Vector3(0.9, 0.23, 1.4),
+      new THREE.Vector3(1.3, 0.23, 1.4)
+    ];
+    const pathB = [
+      new THREE.Vector3(-0.4, 0.23, -0.2),
+      new THREE.Vector3(0.3, 0.23, 0.6),
+      new THREE.Vector3(1.3, 0.23, 0.6),
+      new THREE.Vector3(1.3, 0.23, 1.2)
+    ];
+    const pathC = [
+      new THREE.Vector3(1.65, 0.23, -0.5),
+      new THREE.Vector3(1.65, 0.23, 0.6),
+      new THREE.Vector3(1.7, 0.23, 0.9)
+    ];
+
+    function createPackets(path, count, speedOffset) {
+      for (let i = 0; i < count; i++) {
+        const mesh = new THREE.Mesh(packetGeo, matWhite);
+        mesh.castShadow = true;
+        tracesGroup.add(mesh);
+        dataPackets.push({ mesh, path, progress: (i / count) + speedOffset });
+      }
+    }
+    createPackets(pathA, 3, 0.1);
+    createPackets(pathB, 3, 0.4);
+    createPackets(pathC, 2, 0.7);
+
+    function samplePolyline(pts, t) {
+      const totalSegs = pts.length - 1;
+      const param = (t % 1) * totalSegs;
+      const idx = Math.min(Math.floor(param), totalSegs - 1);
+      const localT = param - idx;
+      return new THREE.Vector3().lerpVectors(pts[idx], pts[idx + 1], localT);
+    }
+
+    // -------------------------------------------------------------
+    // EASING FUNCTIONS
+    // -------------------------------------------------------------
+    function easeOutBack(x, c1 = 1.70158) {
+      const c3 = c1 + 1;
+      return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+    }
+
+    function easeInBack(x, c1 = 1.70158) {
+      const c3 = c1 + 1;
+      return c3 * x * x * x - c1 * x * x;
+    }
+
+    function easeOutElastic(x) {
+      const c4 = (2 * Math.PI) / 3;
+      return x === 0 ? 0 : x === 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x * 10 - 0.75) * c4) + 1;
+    }
+
+    function clamp(val, min, max) {
+      return Math.min(Math.max(val, min), max);
+    }
+
+    // -------------------------------------------------------------
+    // UI ELEMENTS & OVERLAY STATS
+    // -------------------------------------------------------------
+    const hudCard = document.getElementById('hudCard');
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const valThreshold = document.getElementById('valThreshold');
+    const barThreshold = document.getElementById('barThreshold');
+    const valLosses = document.getElementById('valLosses');
+    const barLosses = document.getElementById('barLosses');
+    const valVerify = document.getElementById('valVerify');
+    const barVerify = document.getElementById('barVerify');
+    const timeReadout = document.getElementById('timeReadout');
+    const loopProgress = document.getElementById('loopProgress');
+    const playBtn = document.getElementById('playBtn');
+
+    let isPlaying = true;
+    let manualTime = 0;
+    playBtn.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      playBtn.textContent = isPlaying ? '⏸' : '▶';
+    });
+
+    // -------------------------------------------------------------
+    // ANIMATION UPDATE (10-Second Loop)
+    // -------------------------------------------------------------
+    const clock = new THREE.Clock();
+    let totalTime = 0;
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const delta = clock.getDelta();
+      if (isPlaying) {
+        totalTime += delta;
+      }
+      const t = totalTime % LOOP_DURATION;
+
+      // Update UI Loop Readouts
+      timeReadout.textContent = t.toFixed(1) + 's';
+      loopProgress.style.width = ((t / LOOP_DURATION) * 100).toFixed(1) + '%';
+
+      // -----------------------------------------------------------
+      // CAMERA CHOREOGRAPHY: Slow sine orbit (±18° around 45°) + push-in
+      // -----------------------------------------------------------
+      const loopPhase = (t / LOOP_DURATION) * Math.PI * 2;
+      const baseAngle = Math.PI / 4; // 45° isometric angle
+      const orbitOffset = Math.sin(loopPhase) * (18 * Math.PI / 180);
+      const camAngle = baseAngle + orbitOffset;
+
+      const camDist = 16.2 - 1.1 * Math.sin(loopPhase);
+      const camElev = 12.0 + 0.6 * Math.sin(loopPhase);
+
+      camera.position.set(
+        Math.cos(camAngle) * camDist,
+        camElev,
+        Math.sin(camAngle) * camDist
+      );
+      camera.lookAt(0, 1.1, 0);
+
+      // -----------------------------------------------------------
+      // HUD OVERLAY TIMELINE
+      // -----------------------------------------------------------
+      // Fade in after build (t >= 0.8s) and fade out before reset (t >= 9.2s)
+      if (t >= 0.8 && t < 9.1) {
+        hudCard.classList.add('visible');
+      } else {
+        hudCard.classList.remove('visible');
+      }
+
+      // Status Indicator and Line
+      if (t < 1.8) {
+        statusDot.style.backgroundColor = '#1D4ED8';
+        statusDot.style.boxShadow = '0 0 8px #1D4ED8';
+        statusText.textContent = 'Listening for a voice';
+      } else if (t < 3.2) {
+        statusDot.style.backgroundColor = '#3B82F6';
+        statusDot.style.boxShadow = '0 0 10px #3B82F6';
+        statusText.textContent = 'Scanning face and voice';
+      } else if (t < 4.2) {
+        statusDot.style.backgroundColor = '#EA580C';
+        statusDot.style.boxShadow = '0 0 10px #EA580C';
+        statusText.textContent = 'Synthetic clone detected';
+      } else {
+        statusDot.style.backgroundColor = '#10B981';
+        statusDot.style.boxShadow = '0 0 10px #10B981';
+        statusText.textContent = 'Clone filtered · identity verified';
+      }
+
+      // Stat 1: Cloning Threshold (0.0s -> 3.0s while voice plays at 1.2–3.8s)
+      let thVal = 0;
+      if (t >= 1.2 && t < 4.0) {
+        thVal = Math.min(3.0, ((t - 1.2) / 2.6) * 3.0);
+      } else if (t >= 4.0 && t < 9.2) {
+        thVal = 3.0;
+      }
+      valThreshold.textContent = thVal.toFixed(1) + 's';
+      barThreshold.style.width = ((thVal / 3.0) * 100) + '%';
+
+      // Stat 2: Losses by 2030 ($0B -> $23B when clone is detected at 2.4–4.2s)
+      let lossVal = 0;
+      if (t >= 2.4 && t < 4.2) {
+        lossVal = Math.min(23, Math.round(((t - 2.4) / 1.8) * 23));
+      } else if (t >= 4.2 && t < 9.2) {
+        lossVal = 23;
+      }
+      valLosses.textContent = `$${lossVal}B`;
+      barLosses.style.width = ((lossVal / 23) * 100) + '%';
+
+      // Stat 3: Verification (types out "Required" once identity is verified at 4.2–5.0s)
+      if (t < 4.2) {
+        valVerify.textContent = 'Pending';
+        valVerify.style.color = '#64748B';
+        barVerify.style.width = '0%';
+      } else {
+        const fullWord = 'Required';
+        const verifyProgress = clamp((t - 4.2) / 0.8, 0, 1);
+        const charCount = Math.floor(verifyProgress * fullWord.length);
+        valVerify.textContent = fullWord.slice(0, Math.max(1, charCount));
+        valVerify.style.color = '#10B981';
+        barVerify.style.width = (verifyProgress * 100) + '%';
+      }
+
+      // -----------------------------------------------------------
+      // 3D MOTION CHOREOGRAPHY (10s LOOP)
+      // -----------------------------------------------------------
+
+      // 0–1 s: BUILD PHASE & 9.2–10 s: DISMANTLE PHASE
+      let masterScale = 1.0;
+      let boothScale = 1.0;
+      let shieldScale = 1.0;
+      let propsScale = 1.0;
+
+      if (t < 1.0) {
+        // Build with stagger & bounce
+        const pSlab = clamp(t / 0.7, 0, 1);
+        masterScale = easeOutBack(pSlab, 1.4);
+
+        const pBooth = clamp((t - 0.15) / 0.7, 0, 1);
+        boothScale = easeOutBack(pBooth, 1.5);
+
+        const pShield = clamp((t - 0.25) / 0.7, 0, 1);
+        shieldScale = easeOutBack(pShield, 1.5);
+
+        const pProps = clamp((t - 0.35) / 0.65, 0, 1);
+        propsScale = easeOutBack(pProps, 1.4);
+      } else if (t > 9.2) {
+        // Reverse shrink away so loop restarts without jump
+        const pOut = clamp((t - 9.2) / 0.8, 0, 1);
+        const shrink = 1.0 - easeInBack(pOut, 1.4);
+        masterScale = shrink;
+        boothScale = shrink;
+        shieldScale = shrink;
+        propsScale = shrink;
+      }
+
+      slabGroup.scale.set(masterScale, masterScale, masterScale);
+      boothGroup.scale.set(boothScale, boothScale, boothScale);
+      avatarGroup.scale.set(boothScale, boothScale, boothScale);
+      shieldGroup.scale.set(shieldScale, shieldScale, shieldScale);
+
+      eqGroup.scale.set(propsScale, propsScale, propsScale);
+      micGroup.scale.set(propsScale, propsScale, propsScale);
+      chipGroup.scale.set(propsScale, propsScale, propsScale);
+      projectorGroup.scale.set(propsScale, propsScale, propsScale);
+      tracesGroup.scale.set(propsScale, propsScale, propsScale);
+
+      // Data Packets Movement
+      const packetSpeedMultiplier = (t >= 1.2 && t <= 4.0) ? 0.35 : 0.18;
+      dataPackets.forEach(pkg => {
+        pkg.progress = (pkg.progress + delta * packetSpeedMultiplier) % 1.0;
+        const pt = samplePolyline(pkg.path, pkg.progress);
+        pkg.mesh.position.copy(pt);
+      });
+
+      // Status LEDs on booth posts: alternating blinking
+      ledMeshes.forEach((led, idx) => {
+        const blinkPhase = Math.sin(t * 12 + idx * 1.5);
+        led.material.emissiveIntensity = blinkPhase > 0 ? 1.5 : 0.1;
+      });
+
+      // 1.2–4 s: EQUALIZER FLUCTUATION & MIC FLICKER
+      eqBars.forEach(({ barMesh, capMesh, barMat, index }) => {
+        let barHeight = 0.2;
+        if (t >= 1.2 && t < 4.0) {
+          // Rapid chaotic fluctuations in soft gray
+          const noise = Math.sin(t * 22 + index * 2.8) * Math.cos(t * 17 - index * 1.4);
+          barHeight = 0.3 + Math.abs(noise) * 1.5;
+          barMat.color.setHex(COLOR_SOFT_GRAY);
+        } else if (t >= 4.0 && t <= 9.2) {
+          // Smooth royal blue sine wave rippling harmoniously
+          const wave = Math.sin((t - 4.0) * 4.5 + index * 0.55);
+          barHeight = 0.5 + (wave * 0.5 + 0.5) * 1.1;
+          barMat.color.setHex(COLOR_ROYAL_BLUE);
+        } else {
+          barHeight = 0.25;
+          barMat.color.setHex(COLOR_SOFT_GRAY);
+        }
+
+        barMesh.scale.y = barHeight;
+        barMesh.position.y = (barHeight * 1.0) / 2 + 0.08;
+        capMesh.position.y = barHeight * 1.0 + 0.1;
+      });
+
+      // Mic LED ring flicker
+      if (t >= 1.2 && t < 4.0) {
+        micLedMat.emissiveIntensity = 0.2 + Math.abs(Math.sin(t * 28)) * 1.8;
+      } else {
+        micLedMat.emissiveIntensity = 0.8;
+      }
+
+      // 1.2–4 s: AVATAR GLITCH & SYNTHETIC CLONE LAYER
+      const isGlitching = (t >= 1.2 && t < 3.8);
+      realVoxels.forEach(vox => {
+        if (isGlitching && Math.sin(t * 18 + vox.row) > 0.6) {
+          vox.mesh.position.x = vox.baseX + (Math.random() - 0.5) * 0.08;
+        } else {
+          vox.mesh.position.x = vox.baseX;
+        }
+      });
+
+      // 2.0–3.6 s: HOLOGRAPHIC SCAN BEAM SWEEPS TOP TO BOTTOM
+      // Second fast scan sweep at 5.3–6.0 s
+      let scanY = -999;
+      let scanVisible = false;
+
+      if (t >= 2.0 && t <= 3.6) {
+        const scanP = (t - 2.0) / 1.6;
+        scanY = 3.6 - scanP * 2.8; // sweeps from 3.6 down to 0.8
+        scanVisible = true;
+      } else if (t >= 5.3 && t <= 6.0) {
+        const scanP = (t - 5.3) / 0.7;
+        scanY = 3.6 - scanP * 2.8;
+        scanVisible = true;
+      }
+
+      if (scanVisible) {
+        scanBeamGroup.visible = true;
+        scanLineMesh.position.y = scanY;
+        scanGlowMesh.position.y = scanY;
+        // Light sheet stretches from top emitter (3.9) down to scanLine
+        const sheetH = Math.max(0.05, 3.9 - scanY);
+        scanSheetMesh.scale.y = sheetH;
+        scanSheetMesh.position.y = 3.9 - sheetH / 2;
+      } else {
+        scanBeamGroup.visible = false;
+      }
+
+      // Clone Cubes Behavior:
+      // - Flickers & jitters during 1.2–2.0s
+      // - When scan line passes cube baseY, locks & pushes forward (caught!)
+      // - At ~4.0s: blasts off and shrinks away to 0!
+      cloneVoxels.forEach(clone => {
+        if (t < 1.2) {
+          clone.mesh.scale.set(1, 1, 1);
+          clone.mesh.position.set(clone.baseX, clone.baseY, clone.baseZ);
+          clone.mesh.rotation.set(0, 0, 0);
+        } else if (t >= 1.2 && t < 2.0) {
+          // Jitter and flicker
+          const jitter = (Math.random() - 0.5) * 0.04;
+          clone.mesh.position.x = clone.baseX + jitter;
+          clone.mesh.position.y = clone.baseY + jitter;
+          clone.mesh.scale.setScalar(Math.sin(t * 25 + clone.row) > -0.6 ? 1 : 0.85);
+        } else if (t >= 2.0 && t < 4.0) {
+          // Caught by scan beam
+          const isCaught = scanY <= (clone.baseY + 0.15);
+          if (isCaught) {
+            // Push forward and stop flickering
+            clone.mesh.position.x = clone.baseX;
+            clone.mesh.position.y = clone.baseY;
+            clone.mesh.position.z = clone.baseZ + 0.22; // caught push forward
+            clone.mesh.scale.set(1, 1, 1);
+          } else {
+            // Still flickering ahead of beam
+            const jitter = (Math.random() - 0.5) * 0.04;
+            clone.mesh.position.x = clone.baseX + jitter;
+            clone.mesh.position.y = clone.baseY + jitter;
+          }
+        } else if (t >= 4.0 && t <= 5.2) {
+          // ~4s: Blast off the face and shrink away!
+          const blastT = (t - 4.0) / 0.8;
+          const blastScale = Math.max(0, 1.0 - blastT);
+          clone.mesh.scale.setScalar(blastScale);
+          clone.mesh.position.x = clone.baseX + clone.blastDir.x * blastT;
+          clone.mesh.position.y = clone.baseY + clone.blastDir.y * blastT;
+          clone.mesh.position.z = (clone.baseZ + 0.22) + clone.blastDir.z * blastT;
+          clone.mesh.rotation.x += clone.rotSpeed.x * delta;
+          clone.mesh.rotation.y += clone.rotSpeed.y * delta;
+        } else {
+          // Gone for the remainder of the verified cycle
+          clone.mesh.scale.set(0, 0, 0);
+        }
+      });
+
+      // ~4s: AI VERIFICATION CHIP SNAP & CORE FLASH
+      // Clamps snap in at ~4.0s (t = 3.95–4.15), release at 8.6–9.1s
+      let clampDist = 0.85;
+      if (t < 3.95) {
+        clampDist = 0.85; // open
+      } else if (t >= 3.95 && t < 4.2) {
+        const snapP = clamp((t - 3.95) / 0.18, 0, 1);
+        clampDist = 0.85 - easeOutBack(snapP, 2.0) * (0.85 - 0.52);
+      } else if (t >= 4.2 && t < 8.6) {
+        clampDist = 0.52; // locked
+      } else if (t >= 8.6 && t < 9.1) {
+        const releaseP = clamp((t - 8.6) / 0.5, 0, 1);
+        clampDist = 0.52 + releaseP * (0.85 - 0.52);
+      } else {
+        clampDist = 0.85;
+      }
+
+      clamps.forEach(({ mesh, dir }) => {
+        mesh.position.set(dir.x * clampDist, 0.2, dir.z * clampDist);
+      });
+
+      // Chip Core Dark Orange Glow & Flash
+      if (t >= 2.0 && t < 3.8) {
+        // Core pulses during scan
+        const pulse = Math.sin(t * 14) * 0.5 + 0.5;
+        matChipCore.emissiveIntensity = 0.8 + pulse * 1.4;
+      } else if (t >= 3.95 && t < 4.25) {
+        // Flash dark orange!
+        matChipCore.emissiveIntensity = 3.8;
+      } else {
+        matChipCore.emissiveIntensity = 0.8;
+      }
+
+      // 4.2–5.0 s: GLOWING WHITE CHECKMARK ARCS INTO SHIELD
+      if (t >= 4.2 && t <= 8.8) {
+        const arcDuration = 0.75;
+        const arcP = clamp((t - 4.2) / arcDuration, 0, 1);
+
+        if (arcP < 1.0) {
+          // Flying parabolic arc from chip (1.7, 0.4, 1.4) to shield (1.65, 3.05, -0.65)
+          const pStart = new THREE.Vector3(1.7, 0.4, 1.4);
+          const pApex = new THREE.Vector3(1.8, 3.9, 0.2);
+          const pEnd = new THREE.Vector3(1.65, 3.05, -0.65);
+
+          // Quadratic Bezier interpolation
+          const oneMinusT = 1 - arcP;
+          const pos = new THREE.Vector3()
+            .addScaledVector(pStart, oneMinusT * oneMinusT)
+            .addScaledVector(pApex, 2 * oneMinusT * arcP)
+            .addScaledVector(pEnd, arcP * arcP);
+
+          checkmarkGroup.position.copy(pos);
+          checkmarkGroup.scale.setScalar(clamp(arcP * 1.4, 0, 1.0));
+          checkmarkGroup.rotation.y = arcP * Math.PI * 4;
+          checkmarkGroup.rotation.z = Math.sin(arcP * Math.PI) * 0.8;
+        } else {
+          // Locked in place with spring bounce
+          const lockP = clamp((t - (4.2 + arcDuration)) / 0.35, 0, 1);
+          const spring = easeOutElastic(lockP);
+          checkmarkGroup.position.set(1.65, 3.05, -0.65);
+          checkmarkGroup.scale.setScalar(spring * 1.05);
+          checkmarkGroup.rotation.set(0, 0, 0);
+
+          // Shield face illumination
+          shieldInnerMat.emissive.setHex(COLOR_ROYAL_BLUE);
+          shieldInnerMat.emissiveIntensity = (1.0 - lockP) * 1.2;
+        }
+
+        if (t >= 8.6) {
+          // Checkmark fades
+          const fadeP = 1.0 - (t - 8.6) / 0.5;
+          checkmarkGroup.scale.setScalar(Math.max(0, fadeP));
+        }
+      } else {
+        checkmarkGroup.scale.set(0, 0, 0);
+        shieldInnerMat.emissiveIntensity = 0;
+      }
+
+      // Orbit Rings & Beads around Shield
+      orbitRing1.rotation.z += delta * 0.8;
+      orbitRing2.rotation.z -= delta * 0.6;
+
+      const beadSpeed1 = t * 1.6;
+      beadsRing1.forEach((b, i) => {
+        const ang = beadSpeed1 + (i * Math.PI);
+        b.position.set(Math.cos(ang) * 1.22, Math.sin(ang) * 1.22, 0).applyEuler(orbitRing1.rotation);
+      });
+
+      const beadSpeed2 = -t * 1.4;
+      beadsRing2.forEach((b, i) => {
+        const ang = beadSpeed2 + (i * Math.PI);
+        b.position.set(Math.cos(ang) * 1.4, Math.sin(ang) * 1.4, 0).applyEuler(orbitRing2.rotation);
+      });
+
+      // Pulse Rings ripple out at 4.95–5.8s
+      if (t >= 4.95 && t < 5.8) {
+        const rippleP = (t - 4.95) / 0.85;
+        const rippleScale = 0.2 + rippleP * 1.8;
+        const rippleAlpha = (1.0 - rippleP) * 0.7;
+
+        pulseRings.forEach(ring => {
+          ring.scale.set(rippleScale, rippleScale, rippleScale);
+          ring.material.opacity = rippleAlpha;
+        });
+      } else {
+        pulseRings.forEach(ring => {
+          ring.material.opacity = 0;
+        });
+      }
+
+      if (isEmbedded) {
+        const embedDist = 18.5;
+        const embedElev = 11.8;
+        camera.position.set(
+          Math.cos(camAngle) * embedDist,
+          embedElev,
+          Math.sin(camAngle) * embedDist
+        );
+        camera.lookAt(0, 1.25, 0);
+      } else {
+        camera.position.set(
+          Math.cos(camAngle) * camDist,
+          camElev,
+          Math.sin(camAngle) * camDist
+        );
+        camera.lookAt(0, 1.1, 0);
+      }
+
+      // Render Scene
+      if (composer) {
+        composer.render();
+      } else {
+        renderer.render(scene, camera);
+      }
+    }
+
+    animate();
+
+    // Responsive Canvas Resize logic preserving 9:16 aspect ratio or adaptive embed
+    function handleResize() {
+      const container = document.getElementById('viewport-stage');
+      const rect = container.getBoundingClientRect();
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+      if (isEmbedded) {
+        const w = Math.floor(rect.width) || 300;
+        const h = Math.floor(rect.height) || 165;
+        camera.aspect = w / h;
+        camera.clearViewOffset();
+        camera.fov = (camera.aspect > 1.3) ? 30 : 33;
+        camera.updateProjectionMatrix();
+        renderer.setPixelRatio(pixelRatio);
+        renderer.setSize(w, h, false);
+        if (composer) {
+          composer.setSize(w, h);
+        }
+      } else {
+        camera.aspect = RENDER_WIDTH / RENDER_HEIGHT;
+        camera.setViewOffset(RENDER_WIDTH, RENDER_HEIGHT, 0, -250, RENDER_WIDTH, RENDER_HEIGHT);
+        camera.updateProjectionMatrix();
+        renderer.setPixelRatio(pixelRatio);
+        renderer.setSize(RENDER_WIDTH, RENDER_HEIGHT, false);
+        if (composer) {
+          composer.setSize(RENDER_WIDTH, RENDER_HEIGHT);
+        }
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    setTimeout(handleResize, 20);
+  </script>
+</body>
+</html>
