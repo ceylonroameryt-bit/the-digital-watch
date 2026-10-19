@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>EP 03 · Triage Playbook — 3D Emergency Phishing Response</title>
+  <meta name="description" content="10-second 3D looping animation of a workstation cursor triggering a phishing lure, followed by 5-minute rapid triage and containment.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #0B111A;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #0F172A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Outer Stage centering the 9:16 vertical viewport */
+    #viewport-stage {
+      position: relative;
+      width: min(100vw, calc(100vh * 9 / 16));
+      height: min(100vh, calc(100vw * 16 / 9));
+      aspect-ratio: 9 / 16;
+      background: linear-gradient(180deg, #F4F6F9 0%, #EAEFF6 50%, #DEE6F2 100%);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 255, 255, 0.15);
+      border-radius: 24px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* 3D Canvas element */
+    #canvas3d {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      z-index: 1;
+      outline: none;
+    }
+
+    /* Frosted-glass Card Overlay (top) */
+    .hud-overlay {
+      position: absolute;
+      top: 24px;
+      left: 20px;
+      right: 20px;
+      z-index: 10;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hud-overlay.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: 18px;
+      padding: 16px 18px;
+      box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.14),
+                  0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+      padding-bottom: 10px;
+    }
+
+    .card-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .card-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #EA580C;
+    }
+
+    .card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.02em;
+    }
+
+    .badge-live {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFFFFF;
+      border: 1px solid rgba(234, 88, 12, 0.25);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #EA580C;
+      box-shadow: 0 2px 6px rgba(234, 88, 12, 0.1);
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #EA580C;
+      box-shadow: 0 0 8px #EA580C;
+      animation: pulse-live 1.2s infinite ease-in-out;
+    }
+
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.35; transform: scale(0.85); }
+    }
+
+    /* Status Bar Row */
+    .status-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      background: rgba(241, 245, 249, 0.85);
+      border-radius: 10px;
+      padding: 8px 12px;
+      margin-bottom: 14px;
+      border: 1px solid rgba(203, 213, 225, 0.5);
+    }
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #EA580C;
+      box-shadow: 0 0 8px #EA580C;
+      transition: background-color 0.35s ease, box-shadow 0.35s ease;
+      flex-shrink: 0;
+    }
+
+    .status-text {
+      font-size: 12px;
+      font-weight: 600;
+      color: #1E293B;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Metric Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(226, 232, 240, 0.85);
+      border-radius: 12px;
+      padding: 9px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748B;
+      line-height: 1.1;
+    }
+
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0F172A;
+      line-height: 1.2;
+    }
+
+    .stat-bar-bg {
+      width: 100%;
+      height: 4px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 2px;
+    }
+
+    .stat-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #EA580C, #F97316);
+      border-radius: 999px;
+      transition: width 0.15s linear;
+    }
+
+    /* Interactive Bottom Bar (Discreet controls) */
+    .hud-bottom {
+      position: absolute;
+      bottom: 16px;
+      left: 20px;
+      right: 20px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      border-radius: 999px;
+      padding: 6px 14px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      opacity: 0.88;
+      transition: opacity 0.2s;
+    }
+
+    .hud-bottom:hover {
+      opacity: 1;
+    }
+
+    .timeline-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .play-btn {
+      background: #EA580C;
+      border: none;
+      color: #FFFFFF;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 11px;
+      transition: transform 0.15s ease, background 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .play-btn:hover {
+      background: #C2410C;
+      transform: scale(1.06);
+    }
+
+    .time-readout {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: #334155;
+      min-width: 44px;
+    }
+
+    .loop-track {
+      flex: 1;
+      height: 4px;
+      background: rgba(148, 163, 184, 0.25);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .loop-progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 0%;
+      background: #EA580C;
+      border-radius: 999px;
+    }
+
+    .hud-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #64748B;
+      white-space: nowrap;
+    }
+
+    /* Top series tag */
+    .top-badge-link {
+      position: absolute;
+      top: 8px;
+      right: 22px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #EA580C;
+      text-decoration: none;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 3px 8px;
+      border-radius: 6px;
+      backdrop-filter: blur(8px);
+      z-index: 11;
+      pointer-events: auto;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    /* Embedded Mode (inside card thumbnail or hero) */
+    html.is-embedded,
+    body.is-embedded {
+      background: #FFF7ED !important;
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    body.is-embedded #viewport-stage {
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      aspect-ratio: auto !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background: #FFF7ED !important;
+    }
+
+    body.is-embedded .top-badge-link,
+    body.is-embedded .hud-bottom,
+    body.is-embedded .hud-overlay {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="viewport-stage">
+    <!-- Link back to Episode 03 Article -->
+    <a href="article-03.html" class="top-badge-link" title="Open Article Ep 03">← Back to Article</a>
+
+    <!-- Frosted-glass Card Overlay -->
+    <div class="hud-overlay" id="hudCard">
+      <div class="glass-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-eyebrow">5-Minute Response Protocol</span>
+            <h1 class="card-title">EP 03 · Triage Playbook</h1>
+          </div>
+          <div class="badge-live">
+            <div class="live-dot" id="liveDot"></div>
+            <span>CONTAINMENT</span>
+          </div>
+        </div>
+
+        <div class="status-row">
+          <div class="status-indicator" id="statusDot"></div>
+          <div class="status-text" id="statusText">A link that looks harmless</div>
+        </div>
+
+        <div class="stats-grid">
+          <!-- Stat 1: Triage Timer -->
+          <div class="stat-card">
+            <span class="stat-label">Triage Timer</span>
+            <span class="stat-value" id="valTimer" style="color:#EA580C;">00:00</span>
+            <div class="stat-bar-bg">
+              <div class="stat-bar-fill" id="barTimer"></div>
+            </div>
+          </div>
+
+          <!-- Stat 2: Sessions Revoked -->
+          <div class="stat-card">
+            <span class="stat-label">Sessions Revoked</span>
+            <span class="stat-value" id="valRevoked">0%</span>
+            <div class="stat-bar-bg">
+              <div class="stat-bar-fill" id="barRevoked"></div>
+            </div>
+          </div>
+
+          <!-- Stat 3: Payload Execution -->
+          <div class="stat-card">
+            <span class="stat-label">Payload Execution</span>
+            <span class="stat-value" id="valPayload">Pending</span>
+            <div class="stat-bar-bg">
+              <div class="stat-bar-fill" id="barPayload"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3D Canvas -->
+    <canvas id="canvas3d"></canvas>
+
+    <!-- Bottom Control Scrub Bar -->
+    <div class="hud-bottom">
+      <button class="play-btn" id="playBtn" aria-label="Toggle Play/Pause">⏸</button>
+      <div class="timeline-wrap">
+        <span class="time-readout" id="timeReadout">0.0s</span>
+        <div class="loop-track">
+          <div class="loop-progress" id="loopProgress"></div>
+        </div>
+        <span class="time-readout">10.0s</span>
+      </div>
+      <span class="hud-tag">9:16 3D</span>
+    </div>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+    import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+    import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
+    import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+    // 10-Second Looping Animation Constants
+    const RENDER_WIDTH = 1080;
+    const RENDER_HEIGHT = 1920;
+    const LOOP_DURATION = 10.0;
+
+    // Palette: Off-white, clean white, cool gray and navy, with vibrant orange used ONLY on cursor outline and timer
+    const COLOR_WHITE = 0xFFFFFF;
+    const COLOR_COOL_GRAY = 0x94A3B8;
+    const COLOR_COOL_GRAY_DARK = 0x64748B;
+    const COLOR_NAVY = 0x1E3A8A;
+    const COLOR_NAVY_DARK = 0x172554;
+    const COLOR_VIBRANT_ORANGE = 0xEA580C;
+    const COLOR_ORANGE_CORE = 0xF97316;
+
+    // URL parameters for embed mode (?embed=card or ?embed=hero)
+    const urlParams = new URLSearchParams(window.location.search);
+    const isEmbedded = urlParams.has('embed');
+    const embedMode = urlParams.get('embed') || (isEmbedded ? 'card' : '');
+    if (isEmbedded) {
+      document.documentElement.classList.add('is-embedded');
+      document.body.classList.add('is-embedded');
+      if (embedMode) document.body.classList.add('mode-' + embedMode);
+    }
+
+    // Materials (MeshStandardMaterial throughout)
+    const matWhite = new THREE.MeshStandardMaterial({
+      color: COLOR_WHITE,
+      roughness: 0.3,
+      metalness: 0.05
+    });
+
+    const matCoolGray = new THREE.MeshStandardMaterial({
+      color: COLOR_COOL_GRAY,
+      roughness: 0.45,
+      metalness: 0.15
+    });
+
+    const matCoolGrayDark = new THREE.MeshStandardMaterial({
+      color: COLOR_COOL_GRAY_DARK,
+      roughness: 0.4,
+      metalness: 0.2
+    });
+
+    const matNavy = new THREE.MeshStandardMaterial({
+      color: COLOR_NAVY,
+      roughness: 0.32,
+      metalness: 0.2
+    });
+
+    const matNavyDark = new THREE.MeshStandardMaterial({
+      color: COLOR_NAVY_DARK,
+      roughness: 0.4,
+      metalness: 0.25
+    });
+
+    // Vibrant Orange ONLY for cursor outline & alert timer
+    const matVividOrange = new THREE.MeshStandardMaterial({
+      color: COLOR_VIBRANT_ORANGE,
+      emissive: COLOR_ORANGE_CORE,
+      emissiveIntensity: 0.8,
+      roughness: 0.25,
+      metalness: 0.15
+    });
+
+    const matAlertBanner = new THREE.MeshStandardMaterial({
+      color: COLOR_VIBRANT_ORANGE,
+      emissive: COLOR_VIBRANT_ORANGE,
+      emissiveIntensity: 0.2,
+      roughness: 0.25
+    });
+
+    const matGlowingBait = new THREE.MeshStandardMaterial({
+      color: COLOR_WHITE,
+      emissive: 0xBFDBFE,
+      emissiveIntensity: 1.5,
+      roughness: 0.2
+    });
+
+    const matMetal = new THREE.MeshStandardMaterial({
+      color: 0xCBD5E1,
+      roughness: 0.2,
+      metalness: 0.85
+    });
+
+    const matRippleRing = new THREE.MeshStandardMaterial({
+      color: COLOR_WHITE,
+      emissive: 0xBFDBFE,
+      emissiveIntensity: 1.8,
+      transparent: true,
+      opacity: 0.0,
+      roughness: 0.2
+    });
+
+    const matSpark = new THREE.MeshStandardMaterial({
+      color: COLOR_WHITE,
+      emissive: 0x93C5FD,
+      emissiveIntensity: 3.5,
+      roughness: 0.1
+    });
+
+    const matVaultLight = new THREE.MeshStandardMaterial({
+      color: 0x38BDF8,
+      emissive: 0x0284C7,
+      emissiveIntensity: 0.5,
+      roughness: 0.2
+    });
+
+    // Setup Renderer
+    const canvas = document.getElementById('canvas3d');
+    const renderer = new THREE.WebGLRenderer({
+      canvas,
+      antialias: true,
+      alpha: true,
+      powerPreference: 'high-performance'
+    });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(RENDER_WIDTH, RENDER_HEIGHT, false);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.16;
+
+    // Scene
+    const scene = new THREE.Scene();
+    if (isEmbedded) {
+      scene.background = new THREE.Color(0xFFF7ED);
+    } else {
+      scene.background = new THREE.Color(0xF4F6F9);
+    }
+
+    // Camera: Isometric perspective
+    const camera = new THREE.PerspectiveCamera(31, RENDER_WIDTH / RENDER_HEIGHT, 0.1, 100);
+    if (!isEmbedded) {
+      camera.setViewOffset(RENDER_WIDTH, RENDER_HEIGHT, 0, -250, RENDER_WIDTH, RENDER_HEIGHT);
+    }
+
+    // Lighting: Directional Sun with soft shadows + Hemisphere bounce
+    const dirSun = new THREE.DirectionalLight(0xFFFFFF, 2.3);
+    dirSun.position.set(13, 24, 11);
+    dirSun.castShadow = true;
+    dirSun.shadow.mapSize.width = 2048;
+    dirSun.shadow.mapSize.height = 2048;
+    dirSun.shadow.camera.near = 5;
+    dirSun.shadow.camera.far = 50;
+    const dSize = 8.0;
+    dirSun.shadow.camera.left = -dSize;
+    dirSun.shadow.camera.right = dSize;
+    dirSun.shadow.camera.top = dSize;
+    dirSun.shadow.camera.bottom = -dSize;
+    dirSun.shadow.bias = -0.0004;
+    dirSun.shadow.normalBias = 0.02;
+    scene.add(dirSun);
+
+    const hemiLight = new THREE.HemisphereLight(0xFFFFFF, 0xCBD5E1, 0.95);
+    hemiLight.position.set(0, 20, 0);
+    scene.add(hemiLight);
+
+    const fillLight = new THREE.DirectionalLight(0x94A3B8, 0.5);
+    fillLight.position.set(-12, 10, -10);
+    scene.add(fillLight);
+
+    // Post-Processing Pipeline: EffectComposer -> RenderPass -> GTAOPass -> OutputPass
+    let composer = null;
+    try {
+      composer = new EffectComposer(renderer);
+      const renderPass = new RenderPass(scene, camera);
+      composer.addPass(renderPass);
+
+      const gtaoPass = new GTAOPass(scene, camera, RENDER_WIDTH, RENDER_HEIGHT);
+      if (gtaoPass.updateGtaoMaterial) {
+        gtaoPass.updateGtaoMaterial({
+          radius: 0.42,
+          distanceExponent: 1.1,
+          thickness: 1.2,
+          scale: 1.0,
+          samples: 16
+        });
+      }
+      composer.addPass(gtaoPass);
+
+      const outputPass = new OutputPass();
+      composer.addPass(outputPass);
+    } catch (err) {
+      console.warn('GTAOPass fallback to standard render:', err);
+      composer = null;
+    }
+
+    // Shadow Catcher Plane under floating diorama
+    const shadowGeo = new THREE.PlaneGeometry(35, 35);
+    const shadowMat = new THREE.ShadowMaterial({ opacity: 0.16 });
+    const shadowCatcher = new THREE.Mesh(shadowGeo, shadowMat);
+    shadowCatcher.rotation.x = -Math.PI / 2;
+    shadowCatcher.position.y = -0.92;
+    shadowCatcher.receiveShadow = true;
+    scene.add(shadowCatcher);
+
+    // Root Diorama Group
+    const dioramaGroup = new THREE.Group();
+    scene.add(dioramaGroup);
+
+    // -------------------------------------------------------------
+    // 1. LAYERED ROUNDED SLAB (White top, Navy middle, Cool Gray base)
+    // -------------------------------------------------------------
+    const slabGroup = new THREE.Group();
+    dioramaGroup.add(slabGroup);
+
+    // Cool Gray Base
+    const slabBaseGeo = new RoundedBoxGeometry(7.8, 0.34, 7.8, 3, 0.22);
+    const slabBase = new THREE.Mesh(slabBaseGeo, matCoolGray);
+    slabBase.position.y = -0.52;
+    slabBase.castShadow = true;
+    slabBase.receiveShadow = true;
+    slabGroup.add(slabBase);
+
+    // Navy Middle Layer
+    const slabMidGeo = new RoundedBoxGeometry(7.4, 0.28, 7.4, 3, 0.18);
+    const slabMid = new THREE.Mesh(slabMidGeo, matNavy);
+    slabMid.position.y = -0.21;
+    slabMid.castShadow = true;
+    slabMid.receiveShadow = true;
+    slabGroup.add(slabMid);
+
+    // Clean White Top Layer
+    const slabTopGeo = new RoundedBoxGeometry(7.0, 0.28, 7.0, 3, 0.16);
+    const slabTop = new THREE.Mesh(slabTopGeo, matWhite);
+    slabTop.position.y = 0.07;
+    slabTop.castShadow = true;
+    slabTop.receiveShadow = true;
+    slabGroup.add(slabTop);
+
+    // Slab surface sits at y = 0.21
+
+    // -------------------------------------------------------------
+    // 2. OVERSIZED PIXEL MOUSE CURSOR (Orange outline, White fill)
+    // -------------------------------------------------------------
+    const cursorGroup = new THREE.Group();
+    cursorGroup.position.set(-0.6, 2.6, 0.7);
+    cursorGroup.rotation.x = Math.PI / 8;
+    cursorGroup.rotation.z = -Math.PI / 12;
+    dioramaGroup.add(cursorGroup);
+
+    // Voxel grid for classic pixel arrow cursor
+    const cursorVoxels = [
+      // row (from tip down), col, isOutline
+      [0, 0, true],
+      [1, 0, true], [1, 1, true],
+      [2, 0, true], [2, 1, false], [2, 2, true],
+      [3, 0, true], [3, 1, false], [3, 2, false], [3, 3, true],
+      [4, 0, true], [4, 1, false], [4, 2, false], [4, 3, false], [4, 4, true],
+      [5, 0, true], [5, 1, false], [5, 2, false], [5, 3, false], [5, 4, false], [5, 5, true],
+      [6, 0, true], [6, 1, false], [6, 2, false], [6, 3, false], [6, 4, true], [6, 5, true],
+      [7, 0, true], [7, 1, false], [7, 2, true], [7, 3, false], [7, 4, true],
+      [8, 0, true], [8, 1, true], [8, 2, false], [8, 3, true], [8, 4, false], [8, 5, true],
+      [9, 0, true], [9, 2, true], [9, 3, false], [9, 4, true], [9, 5, false], [9, 6, true],
+      [10, 3, true], [10, 4, true], [10, 5, true], [10, 6, true]
+    ];
+
+    const vUnit = 0.07;
+    const vGeo = new RoundedBoxGeometry(vUnit, vUnit, 0.08, 2, 0.015);
+    cursorVoxels.forEach(([row, col, isOutline]) => {
+      const vMesh = new THREE.Mesh(vGeo, isOutline ? matVividOrange : matWhite);
+      vMesh.position.set(col * vUnit, -row * vUnit, 0);
+      vMesh.castShadow = true;
+      cursorGroup.add(vMesh);
+    });
+
+    // -------------------------------------------------------------
+    // 3. DIGITAL FISHING LURE & GLOWING PAYLOAD BAIT
+    // -------------------------------------------------------------
+    const lureGroup = new THREE.Group();
+    lureGroup.position.set(-0.8, 0.21, 0.7);
+    dioramaGroup.add(lureGroup);
+
+    // Navy Plinth with White Link Button
+    const plinthGeo = new RoundedBoxGeometry(1.4, 0.16, 1.4, 2, 0.04);
+    const plinth = new THREE.Mesh(plinthGeo, matNavyDark);
+    plinth.position.set(0, 0.08, 0);
+    plinth.castShadow = true;
+    plinth.receiveShadow = true;
+    lureGroup.add(plinth);
+
+    const buttonGeo = new RoundedBoxGeometry(0.9, 0.08, 0.5, 2, 0.02);
+    const linkButton = new THREE.Mesh(buttonGeo, matWhite);
+    linkButton.position.set(0, 0.18, 0);
+    linkButton.castShadow = true;
+    lureGroup.add(linkButton);
+
+    // Lure Line & Bobber
+    const lureLineGeo = new RoundedBoxGeometry(0.015, 1.4, 0.015, 2, 0.003);
+    const lureLine = new THREE.Mesh(lureLineGeo, matMetal);
+    lureLine.position.set(0, 2.3, 0);
+    lureGroup.add(lureLine);
+
+    // White Bobber with Navy Band
+    const bobberBodyGeo = new RoundedBoxGeometry(0.36, 0.6, 0.36, 2, 0.08);
+    const bobber = new THREE.Mesh(bobberBodyGeo, matWhite);
+    bobber.position.set(0, 1.8, 0);
+    bobber.castShadow = true;
+    lureGroup.add(bobber);
+
+    const bobberBandGeo = new RoundedBoxGeometry(0.38, 0.14, 0.38, 2, 0.02);
+    const bobberBand = new THREE.Mesh(bobberBandGeo, matNavy);
+    bobberBand.position.set(0, 1.8, 0);
+    lureGroup.add(bobberBand);
+
+    // Metal Eye Ring at top of bobber (Torus)
+    const eyeRingGeo = new THREE.TorusGeometry(0.08, 0.02, 8, 20);
+    const eyeRing = new THREE.Mesh(eyeRingGeo, matMetal);
+    eyeRing.position.set(0, 2.14, 0);
+    lureGroup.add(eyeRing);
+
+    // Metal Fishing Hook (shank, curved bend using Torus, point and barb)
+    const hookGroup = new THREE.Group();
+    hookGroup.position.set(0, 1.35, 0);
+    lureGroup.add(hookGroup);
+
+    const hookShankGeo = new RoundedBoxGeometry(0.04, 0.45, 0.04, 2, 0.01);
+    const hookShank = new THREE.Mesh(hookShankGeo, matMetal);
+    hookShank.position.set(0, -0.1, 0);
+    hookGroup.add(hookShank);
+
+    // Hook Bend (Torus bend allowed for hook bend)
+    const hookBendGeo = new THREE.TorusGeometry(0.18, 0.025, 8, 24, Math.PI);
+    const hookBend = new THREE.Mesh(hookBendGeo, matMetal);
+    hookBend.position.set(0.18, -0.32, 0);
+    hookBend.rotation.z = -Math.PI / 2;
+    hookGroup.add(hookBend);
+
+    // Point and Barb
+    const hookPointGeo = new RoundedBoxGeometry(0.035, 0.22, 0.035, 2, 0.008);
+    const hookPoint = new THREE.Mesh(hookPointGeo, matMetal);
+    hookPoint.position.set(0.36, -0.22, 0);
+    hookGroup.add(hookPoint);
+
+    const barbGeo = new RoundedBoxGeometry(0.025, 0.08, 0.025, 2, 0.005);
+    const hookBarb = new THREE.Mesh(barbGeo, matMetal);
+    hookBarb.position.set(0.33, -0.25, 0);
+    hookBarb.rotation.z = Math.PI / 5;
+    hookGroup.add(hookBarb);
+
+    // Glowing White "Payload" Bait Block hanging from bend
+    const baitGeo = new RoundedBoxGeometry(0.34, 0.34, 0.34, 2, 0.05);
+    const baitMesh = new THREE.Mesh(baitGeo, matGlowingBait);
+    baitMesh.position.set(0.18, -0.42, 0);
+    baitMesh.castShadow = true;
+    hookGroup.add(baitMesh);
+
+    // White Ripple Rings at bait click
+    const rippleRings = [];
+    const rippleGeo = new THREE.TorusGeometry(0.6, 0.03, 8, 32);
+    for (let i = 0; i < 2; i++) {
+      const ring = new THREE.Mesh(rippleGeo, matRippleRing.clone());
+      ring.rotation.x = Math.PI / 2;
+      ring.position.set(0, 0.2, 0);
+      lureGroup.add(ring);
+      rippleRings.push(ring);
+    }
+
+    // -------------------------------------------------------------
+    // 4. GRAY CONTAINMENT CAGE (Twelve thin edge bars snapping around bait)
+    // -------------------------------------------------------------
+    const cageGroup = new THREE.Group();
+    cageGroup.position.set(-0.62, 1.0, 0.7);
+    cageGroup.scale.set(0, 0, 0); // hidden initially
+    dioramaGroup.add(cageGroup);
+
+    const cageBarGeo = new RoundedBoxGeometry(0.03, 0.6, 0.03, 2, 0.005);
+    const cageBarHGeo = new RoundedBoxGeometry(0.6, 0.03, 0.03, 2, 0.005);
+
+    // 4 Vertical corner bars
+    const cCoords = [-0.3, 0.3];
+    cCoords.forEach(cx => {
+      cCoords.forEach(cz => {
+        const vBar = new THREE.Mesh(cageBarGeo, matCoolGray);
+        vBar.position.set(cx, 0, cz);
+        cageGroup.add(vBar);
+      });
+    });
+
+    // 4 Top & 4 Bottom horizontal bars
+    [-0.3, 0.3].forEach(cy => {
+      cCoords.forEach(cz => {
+        const hBarX = new THREE.Mesh(cageBarHGeo, matCoolGray);
+        hBarX.position.set(0, cy, cz);
+        cageGroup.add(hBarX);
+      });
+      cCoords.forEach(cx => {
+        const hBarZ = new THREE.Mesh(cageBarHGeo, matCoolGray);
+        hBarZ.position.set(cx, cy, 0);
+        hBarZ.rotation.y = Math.PI / 2;
+        cageGroup.add(hBarZ);
+      });
+    });
+
+    // -------------------------------------------------------------
+    // 5. MINIMALIST COUNTDOWN ALARM CLOCK
+    // -------------------------------------------------------------
+    const clockGroup = new THREE.Group();
+    clockGroup.position.set(2.0, 0.21, 1.3);
+    dioramaGroup.add(clockGroup);
+
+    // Gray Feet
+    const footGeo = new RoundedBoxGeometry(0.12, 0.16, 0.12, 2, 0.03);
+    const footL = new THREE.Mesh(footGeo, matCoolGray);
+    footL.position.set(-0.4, 0.08, 0);
+    footL.rotation.z = Math.PI / 7;
+    clockGroup.add(footL);
+
+    const footR = new THREE.Mesh(footGeo, matCoolGray);
+    footR.position.set(0.4, 0.08, 0);
+    footR.rotation.z = -Math.PI / 7;
+    clockGroup.add(footR);
+
+    // Navy Squircle Body
+    const clockBodyGeo = new RoundedBoxGeometry(1.3, 1.3, 0.36, 2, 0.2);
+    const clockBody = new THREE.Mesh(clockBodyGeo, matNavy);
+    clockBody.position.set(0, 0.8, 0);
+    clockBody.castShadow = true;
+    clockGroup.add(clockBody);
+
+    // White Face
+    const clockFaceGeo = new RoundedBoxGeometry(1.05, 1.05, 0.38, 2, 0.16);
+    const clockFace = new THREE.Mesh(clockFaceGeo, matWhite);
+    clockFace.position.set(0, 0.8, 0.01);
+    clockGroup.add(clockFace);
+
+    // 12 Navy Ticks
+    const tickGeo = new RoundedBoxGeometry(0.03, 0.09, 0.02, 2, 0.005);
+    for (let i = 0; i < 12; i++) {
+      const ang = (i / 12) * Math.PI * 2;
+      const tick = new THREE.Mesh(tickGeo, matNavyDark);
+      tick.position.set(Math.sin(ang) * 0.42, 0.8 + Math.cos(ang) * 0.42, 0.21);
+      tick.rotation.z = -ang;
+      clockGroup.add(tick);
+    }
+
+    // Orange Arc marking the 5-minute window (1/12th of face = 30 deg arc)
+    const arcGeo = new THREE.TorusGeometry(0.42, 0.022, 8, 24, Math.PI / 6);
+    const orangeArc = new THREE.Mesh(arcGeo, matVividOrange);
+    orangeArc.position.set(0, 0.8, 0.21);
+    orangeArc.rotation.z = -Math.PI / 6 + Math.PI / 2;
+    clockGroup.add(orangeArc);
+
+    // Clock Hands Root
+    const handsPivot = new THREE.Group();
+    handsPivot.position.set(0, 0.8, 0.22);
+    clockGroup.add(handsPivot);
+
+    // Hour Hand (Navy)
+    const hHandGeo = new RoundedBoxGeometry(0.045, 0.24, 0.02, 2, 0.008);
+    const hourHand = new THREE.Mesh(hHandGeo, matNavyDark);
+    hourHand.position.set(0, 0.1, 0);
+    handsPivot.add(hourHand);
+
+    // Minute Hand (Navy)
+    const mHandPivot = new THREE.Group();
+    handsPivot.add(mHandPivot);
+    const mHandGeo = new RoundedBoxGeometry(0.035, 0.36, 0.02, 2, 0.008);
+    const minHand = new THREE.Mesh(mHandGeo, matNavyDark);
+    minHand.position.set(0, 0.16, 0.005);
+    mHandPivot.add(minHand);
+
+    // Orange Second Hand (Vibrant Orange)
+    const sHandPivot = new THREE.Group();
+    handsPivot.add(sHandPivot);
+    const sHandGeo = new RoundedBoxGeometry(0.022, 0.42, 0.02, 2, 0.005);
+    const secHand = new THREE.Mesh(sHandGeo, matVividOrange);
+    secHand.position.set(0, 0.18, 0.01);
+    sHandPivot.add(secHand);
+
+    // Center Cap
+    const capGeo = new RoundedBoxGeometry(0.08, 0.08, 0.04, 2, 0.02);
+    const centerCap = new THREE.Mesh(capGeo, matNavyDark);
+    centerCap.position.set(0, 0, 0.02);
+    handsPivot.add(centerCap);
+
+    // Twin Gray Bells on top
+    const bellGeo = new RoundedBoxGeometry(0.34, 0.22, 0.22, 2, 0.06);
+    const bellL = new THREE.Mesh(bellGeo, matCoolGray);
+    bellL.position.set(-0.48, 1.5, 0);
+    bellL.rotation.z = Math.PI / 6;
+    bellL.castShadow = true;
+    clockGroup.add(bellL);
+
+    const bellR = new THREE.Mesh(bellGeo, matCoolGray);
+    bellR.position.set(0.48, 1.5, 0);
+    bellR.rotation.z = -Math.PI / 6;
+    bellR.castShadow = true;
+    clockGroup.add(bellR);
+
+    // Vibrating Hammer between bells
+    const hammerPivot = new THREE.Group();
+    hammerPivot.position.set(0, 1.45, 0);
+    clockGroup.add(hammerPivot);
+
+    const hammerStemGeo = new RoundedBoxGeometry(0.03, 0.22, 0.03, 2, 0.005);
+    const hammerStem = new THREE.Mesh(hammerStemGeo, matCoolGrayDark);
+    hammerStem.position.set(0, 0.1, 0);
+    hammerPivot.add(hammerStem);
+
+    const hammerHeadGeo = new RoundedBoxGeometry(0.12, 0.08, 0.08, 2, 0.02);
+    const hammerHead = new THREE.Mesh(hammerHeadGeo, matCoolGrayDark);
+    hammerHead.position.set(0, 0.22, 0);
+    hammerPivot.add(hammerHead);
+
+    // Clock Pulse Ring
+    const clockRingGeo = new THREE.TorusGeometry(0.8, 0.03, 8, 32);
+    const clockPulseRing = new THREE.Mesh(clockRingGeo, matRippleRing.clone());
+    clockPulseRing.position.set(0, 0.8, 0.1);
+    clockGroup.add(clockPulseRing);
+
+    // -------------------------------------------------------------
+    // 6. WORKSTATION (Monitor, Screen, Stand, Keyboard with typing keys)
+    // -------------------------------------------------------------
+    const stationGroup = new THREE.Group();
+    stationGroup.position.set(-0.35, 0.21, -1.2);
+    dioramaGroup.add(stationGroup);
+
+    // Stand & Base
+    const standBaseGeo = new RoundedBoxGeometry(1.0, 0.06, 0.8, 2, 0.02);
+    const standBase = new THREE.Mesh(standBaseGeo, matCoolGray);
+    standBase.position.set(0, 0.03, 0);
+    standBase.castShadow = true;
+    stationGroup.add(standBase);
+
+    const standStemGeo = new RoundedBoxGeometry(0.14, 0.9, 0.14, 2, 0.03);
+    const standStem = new THREE.Mesh(standStemGeo, matCoolGray);
+    standStem.position.set(0, 0.48, -0.1);
+    standStem.castShadow = true;
+    stationGroup.add(standStem);
+
+    // Monitor Outer Body (Clean White)
+    const monitorGeo = new RoundedBoxGeometry(3.0, 1.9, 0.18, 2, 0.05);
+    const monitor = new THREE.Mesh(monitorGeo, matWhite);
+    monitor.position.set(0, 1.6, 0);
+    monitor.castShadow = true;
+    stationGroup.add(monitor);
+
+    // Screen (Navy)
+    const screenGeo = new RoundedBoxGeometry(2.76, 1.66, 0.2, 2, 0.04);
+    const screen = new THREE.Mesh(screenGeo, matNavyDark);
+    screen.position.set(0, 1.6, 0.01);
+    stationGroup.add(screen);
+
+    // Window Bars, Sidebar, Alert Banner on screen
+    const winBarGeo = new RoundedBoxGeometry(2.5, 0.08, 0.02, 2, 0.005);
+    const winBar = new THREE.Mesh(winBarGeo, matNavy);
+    winBar.position.set(0, 2.3, 0.12);
+    stationGroup.add(winBar);
+
+    const sideBarGeo = new RoundedBoxGeometry(0.45, 1.3, 0.02, 2, 0.005);
+    const sideBar = new THREE.Mesh(sideBarGeo, matNavy);
+    sideBar.position.set(-1.0, 1.55, 0.12);
+    stationGroup.add(sideBar);
+
+    // Alert Banner on screen (Vivid Orange flash during alarm)
+    const alertBannerGeo = new RoundedBoxGeometry(1.8, 0.36, 0.03, 2, 0.01);
+    const alertBanner = new THREE.Mesh(alertBannerGeo, matAlertBanner);
+    alertBanner.position.set(0.2, 1.75, 0.12);
+    stationGroup.add(alertBanner);
+
+    // Keyboard (Gray base with 30 small white keys that tap while typing)
+    const kbBaseGeo = new RoundedBoxGeometry(1.8, 0.06, 0.65, 2, 0.02);
+    const kbBase = new THREE.Mesh(kbBaseGeo, matCoolGrayDark);
+    kbBase.position.set(0, 0.03, 0.65);
+    kbBase.castShadow = true;
+    stationGroup.add(kbBase);
+
+    const keys = [];
+    const keyGeo = new RoundedBoxGeometry(0.08, 0.04, 0.08, 2, 0.01);
+    const rows = 3;
+    const cols = 10;
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const key = new THREE.Mesh(keyGeo, matWhite);
+        const kx = (c - (cols - 1) / 2) * 0.15;
+        const kz = 0.65 + (r - (rows - 1) / 2) * 0.15;
+        key.position.set(kx, 0.07, kz);
+        stationGroup.add(key);
+        keys.push({ key, baseY: 0.07, phase: (r * 10 + c) * 0.5 });
+      }
+    }
+
+    // -------------------------------------------------------------
+    // 7. SESSION TOKEN & TETHERED SEGMENTED CABLE
+    // -------------------------------------------------------------
+    const tokenGroup = new THREE.Group();
+    tokenGroup.position.set(1.4, 2.2, -0.2);
+    dioramaGroup.add(tokenGroup);
+
+    // White rounded key card
+    const cardGeo = new RoundedBoxGeometry(0.7, 0.95, 0.08, 2, 0.03);
+    const tokenCard = new THREE.Mesh(cardGeo, matWhite);
+    tokenCard.castShadow = true;
+    tokenGroup.add(tokenCard);
+
+    // Navy chip
+    const chipGeo = new RoundedBoxGeometry(0.22, 0.22, 0.09, 2, 0.02);
+    const tokenChip = new THREE.Mesh(chipGeo, matNavy);
+    tokenChip.position.set(0, 0.15, 0.01);
+    tokenGroup.add(tokenChip);
+
+    // Gray bars
+    const tBarGeo = new RoundedBoxGeometry(0.42, 0.04, 0.09, 2, 0.005);
+    for (let i = 0; i < 3; i++) {
+      const tBar = new THREE.Mesh(tBarGeo, matCoolGray);
+      tBar.position.set(0, -0.1 - i * 0.1, 0.01);
+      tokenGroup.add(tBar);
+    }
+
+    // Tethered cable of alternating navy segments running from monitor to token
+    const cableSegments = [];
+    const segCount = 14;
+    const segGeo = new RoundedBoxGeometry(0.06, 0.06, 0.14, 2, 0.01);
+    const cableStart = new THREE.Vector3(1.0, 1.4, -1.1); // monitor right edge
+    const cableEnd = new THREE.Vector3(1.4, 2.2, -0.2); // token bottom edge
+
+    for (let i = 0; i < segCount; i++) {
+      const isAlt = (i % 2 === 0);
+      const segMesh = new THREE.Mesh(segGeo, isAlt ? matNavy : matNavyDark);
+      segMesh.castShadow = true;
+      dioramaGroup.add(segMesh);
+      cableSegments.push({
+        mesh: segMesh,
+        index: i,
+        ratio: (i + 0.5) / segCount
+      });
+    }
+
+    // Glowing data pulses traveling along cable
+    const pulseGeo = new RoundedBoxGeometry(0.08, 0.08, 0.08, 2, 0.02);
+    const cablePulses = [];
+    for (let i = 0; i < 3; i++) {
+      const pMesh = new THREE.Mesh(pulseGeo, matGlowingBait);
+      dioramaGroup.add(pMesh);
+      cablePulses.push({ mesh: pMesh, offset: i / 3 });
+    }
+
+    // Sparks Burst on Cable Cut at 3.5s
+    const sparks = [];
+    const sparkCount = 16;
+    const sparkGeo = new RoundedBoxGeometry(0.04, 0.04, 0.04, 2, 0.01);
+    for (let i = 0; i < sparkCount; i++) {
+      const sMesh = new THREE.Mesh(sparkGeo, matSpark);
+      dioramaGroup.add(sMesh);
+      const angle = (i / sparkCount) * Math.PI * 2;
+      const vel = new THREE.Vector3(
+        Math.cos(angle) * (1.5 + Math.random()),
+        Math.random() * 2.5 + 0.5,
+        Math.sin(angle) * (1.5 + Math.random())
+      );
+      sparks.push({ mesh: sMesh, vel, active: false });
+    }
+
+    // Spark flash ring at cut point
+    const cutRingGeo = new THREE.TorusGeometry(0.35, 0.025, 8, 24);
+    const cutRing = new THREE.Mesh(cutRingGeo, matRippleRing.clone());
+    dioramaGroup.add(cutRing);
+
+    // -------------------------------------------------------------
+    // 8. QUARANTINE VAULT CUBE (Navy with white posts, hazard band, padlock, sliding lids)
+    // -------------------------------------------------------------
+    const vaultGroup = new THREE.Group();
+    vaultGroup.position.set(1.4, 0.21, -0.2);
+    dioramaGroup.add(vaultGroup);
+
+    // Main Navy Box Body
+    const vaultBodyGeo = new RoundedBoxGeometry(1.5, 1.2, 1.5, 2, 0.06);
+    const vaultBody = new THREE.Mesh(vaultBodyGeo, matNavyDark);
+    vaultBody.position.set(0, 0.6, 0);
+    vaultBody.castShadow = true;
+    vaultBody.receiveShadow = true;
+    vaultGroup.add(vaultBody);
+
+    // White Corner Posts
+    const postGeo = new RoundedBoxGeometry(0.12, 1.25, 0.12, 2, 0.02);
+    const vOffsets = [-0.72, 0.72];
+    vOffsets.forEach(vx => {
+      vOffsets.forEach(vz => {
+        const post = new THREE.Mesh(postGeo, matWhite);
+        post.position.set(vx, 0.62, vz);
+        vaultGroup.add(post);
+      });
+    });
+
+    // Gray-and-white hazard band
+    const hazardGeo = new RoundedBoxGeometry(1.54, 0.14, 1.54, 2, 0.02);
+    const hazardBand = new THREE.Mesh(hazardGeo, matCoolGray);
+    hazardBand.position.set(0, 0.72, 0);
+    vaultGroup.add(hazardBand);
+
+    // White Padlock Emblem on front face
+    const vLockGeo = new RoundedBoxGeometry(0.24, 0.2, 0.04, 2, 0.015);
+    const vLock = new THREE.Mesh(vLockGeo, matWhite);
+    vLock.position.set(0, 0.42, 0.78);
+    vaultGroup.add(vLock);
+
+    const vShackleGeo = new THREE.TorusGeometry(0.08, 0.02, 8, 16);
+    const vShackle = new THREE.Mesh(vShackleGeo, matWhite);
+    vShackle.position.set(0, 0.54, 0.78);
+    vaultGroup.add(vShackle);
+
+    // Glowing Inner Opening
+    const openingGeo = new RoundedBoxGeometry(0.9, 0.06, 0.9, 2, 0.02);
+    const vaultOpening = new THREE.Mesh(openingGeo, matGlowingBait);
+    vaultOpening.position.set(0, 1.18, 0);
+    vaultGroup.add(vaultOpening);
+
+    // Two Sliding White Lids (open at 3.6–4.9s)
+    const lidGeo = new RoundedBoxGeometry(0.5, 0.08, 1.05, 2, 0.02);
+    const lidL = new THREE.Mesh(lidGeo, matWhite);
+    lidL.position.set(-0.25, 1.24, 0);
+    lidL.castShadow = true;
+    vaultGroup.add(lidL);
+
+    const lidR = new THREE.Mesh(lidGeo, matWhite);
+    lidR.position.set(0.25, 1.24, 0);
+    lidR.castShadow = true;
+    vaultGroup.add(lidR);
+
+    // Corner Status Lights
+    const vLights = [];
+    const vLightGeo = new RoundedBoxGeometry(0.08, 0.08, 0.08, 2, 0.015);
+    vOffsets.forEach(vx => {
+      vOffsets.forEach(vz => {
+        const light = new THREE.Mesh(vLightGeo, matVaultLight.clone());
+        light.position.set(vx, 1.26, vz);
+        vaultGroup.add(light);
+        vLights.push(light);
+      });
+    });
+
+    // Vault Lock Pulse Rings
+    const vaultPulseRings = [];
+    const vPulseGeo = new THREE.TorusGeometry(1.2, 0.03, 8, 32);
+    for (let i = 0; i < 2; i++) {
+      const vpr = new THREE.Mesh(vPulseGeo, matRippleRing.clone());
+      vpr.rotation.x = Math.PI / 2;
+      vpr.position.set(0, 0.2, 0);
+      vaultGroup.add(vpr);
+      vaultPulseRings.push(vpr);
+    }
+
+    // -------------------------------------------------------------
+    // EASING HELPERS
+    // -------------------------------------------------------------
+    function easeOutBack(x, c1 = 1.70158) {
+      const c3 = c1 + 1;
+      return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2);
+    }
+
+    function easeInBack(x, c1 = 1.70158) {
+      const c3 = c1 + 1;
+      return c3 * x * x * x - c1 * x * x;
+    }
+
+    function clamp(val, min, max) {
+      return Math.min(Math.max(val, min), max);
+    }
+
+    // -------------------------------------------------------------
+    // UI ELEMENTS & OVERLAY STATS
+    // -------------------------------------------------------------
+    const hudCard = document.getElementById('hudCard');
+    const statusDot = document.getElementById('statusDot');
+    const statusText = document.getElementById('statusText');
+    const valTimer = document.getElementById('valTimer');
+    const barTimer = document.getElementById('barTimer');
+    const valRevoked = document.getElementById('valRevoked');
+    const barRevoked = document.getElementById('barRevoked');
+    const valPayload = document.getElementById('valPayload');
+    const barPayload = document.getElementById('barPayload');
+    const timeReadout = document.getElementById('timeReadout');
+    const loopProgress = document.getElementById('loopProgress');
+    const playBtn = document.getElementById('playBtn');
+
+    let isPlaying = true;
+    playBtn.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      playBtn.textContent = isPlaying ? '⏸' : '▶';
+    });
+
+    // -------------------------------------------------------------
+    // ANIMATION UPDATE (10-Second Loop)
+    // -------------------------------------------------------------
+    const clock = new THREE.Clock();
+    let totalTime = 0;
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const delta = clock.getDelta();
+      if (isPlaying) {
+        totalTime += delta;
+      }
+      const t = totalTime % LOOP_DURATION;
+
+      // Update UI readouts
+      timeReadout.textContent = t.toFixed(1) + 's';
+      loopProgress.style.width = ((t / LOOP_DURATION) * 100).toFixed(1) + '%';
+
+      // -----------------------------------------------------------
+      // CAMERA CHOREOGRAPHY: Slow sine orbit (±18° around 45°) + push-in
+      // -----------------------------------------------------------
+      const loopPhase = (t / LOOP_DURATION) * Math.PI * 2;
+      const baseAngle = Math.PI / 4;
+      const orbitOffset = Math.sin(loopPhase) * (18 * Math.PI / 180);
+      const camAngle = baseAngle + orbitOffset;
+
+      const camDist = 16.5 - 1.1 * Math.sin(loopPhase);
+      const camElev = 12.0 + 0.6 * Math.sin(loopPhase);
+
+      if (isEmbedded) {
+        const embedDist = 18.0;
+        const embedElev = 11.5;
+        camera.position.set(
+          Math.cos(camAngle) * embedDist,
+          embedElev,
+          Math.sin(camAngle) * embedDist
+        );
+        camera.lookAt(0, 1.25, 0);
+      } else {
+        camera.position.set(
+          Math.cos(camAngle) * camDist,
+          camElev,
+          Math.sin(camAngle) * camDist
+        );
+        camera.lookAt(0, 1.1, 0);
+      }
+
+      // -----------------------------------------------------------
+      // HUD OVERLAY TIMELINE
+      // -----------------------------------------------------------
+      if (t >= 0.8 && t < 9.1) {
+        hudCard.classList.add('visible');
+      } else {
+        hudCard.classList.remove('visible');
+      }
+
+      // Status indicator & status line
+      if (t < 1.1) {
+        statusDot.style.backgroundColor = '#EA580C';
+        statusDot.style.boxShadow = '0 0 8px #EA580C';
+        statusText.textContent = 'A link that looks harmless';
+      } else if (t < 3.5) {
+        statusDot.style.backgroundColor = '#EA580C';
+        statusDot.style.boxShadow = '0 0 10px #EA580C';
+        statusText.textContent = 'Lure clicked · triage started';
+      } else if (t < 4.2) {
+        statusDot.style.backgroundColor = '#EA580C';
+        statusDot.style.boxShadow = '0 0 10px #EA580C';
+        statusText.textContent = 'Session link cut';
+      } else if (t < 5.0) {
+        statusDot.style.backgroundColor = '#EA580C';
+        statusDot.style.boxShadow = '0 0 10px #EA580C';
+        statusText.textContent = 'Token quarantined';
+      } else {
+        // Contained!
+        statusDot.style.backgroundColor = '#1E3A8A';
+        statusDot.style.boxShadow = '0 0 8px #1E3A8A';
+        statusText.textContent = 'Contained inside five minutes';
+      }
+
+      // Stat 1: Triage Timer (counts up in orange from 00:00 to 04:59 as clock spins at 1.8–5.2s)
+      let timerSec = 0;
+      if (t >= 1.8 && t < 5.2) {
+        const tp = (t - 1.8) / 3.4;
+        timerSec = Math.floor(tp * 299);
+      } else if (t >= 5.2 && t < 9.2) {
+        timerSec = 299;
+      }
+      const mm = String(Math.floor(timerSec / 60)).padStart(2, '0');
+      const ss = String(timerSec % 60).padStart(2, '0');
+      valTimer.textContent = `${mm}:${ss}`;
+      barTimer.style.width = ((timerSec / 299) * 100) + '%';
+
+      // Stat 2: Sessions Revoked (counts up from 0% to 100% when cable is cut at 3.5–4.3s)
+      let revokedPct = 0;
+      if (t >= 3.5 && t < 4.3) {
+        revokedPct = Math.round(((t - 3.5) / 0.8) * 100);
+      } else if (t >= 4.3 && t < 9.2) {
+        revokedPct = 100;
+      }
+      valRevoked.textContent = `${revokedPct}%`;
+      barRevoked.style.width = `${revokedPct}%`;
+
+      // Stat 3: Payload Execution (types out "Blocked" when cage appears at ~5.0s)
+      if (t < 5.0) {
+        valPayload.textContent = 'Pending';
+        valPayload.style.color = '#64748B';
+        barPayload.style.width = '20%';
+      } else {
+        const fullWord = 'Blocked';
+        const cageP = clamp((t - 5.0) / 0.6, 0, 1);
+        const chars = Math.floor(cageP * fullWord.length);
+        valPayload.textContent = fullWord.slice(0, Math.max(1, chars));
+        valPayload.style.color = '#1E3A8A';
+        barPayload.style.width = (cageP * 100) + '%';
+        barPayload.style.background = '#1E3A8A';
+      }
+
+      // -----------------------------------------------------------
+      // 3D MOTION CHOREOGRAPHY (10s LOOP)
+      // -----------------------------------------------------------
+
+      // 0–1 s: BUILD PHASE & 9.2–10 s: DISMANTLE
+      let masterScale = 1.0;
+      let clockScale = 1.0;
+      let cursorScale = 1.0;
+      let propsScale = 1.0;
+
+      if (t < 1.0) {
+        masterScale = easeOutBack(clamp(t / 0.7, 0, 1), 1.4);
+        clockScale = easeOutBack(clamp((t - 0.15) / 0.7, 0, 1), 1.5);
+        cursorScale = easeOutBack(clamp((t - 0.25) / 0.65, 0, 1), 1.5);
+        propsScale = easeOutBack(clamp((t - 0.35) / 0.65, 0, 1), 1.4);
+      } else if (t > 9.2) {
+        const pOut = clamp((t - 9.2) / 0.8, 0, 1);
+        const shrink = 1.0 - easeInBack(pOut, 1.4);
+        masterScale = shrink;
+        clockScale = shrink;
+        cursorScale = shrink;
+        propsScale = shrink;
+      }
+
+      slabGroup.scale.set(masterScale, masterScale, masterScale);
+      clockGroup.scale.set(clockScale, clockScale, clockScale);
+      cursorGroup.scale.set(cursorScale, cursorScale, cursorScale);
+      lureGroup.scale.set(propsScale, propsScale, propsScale);
+      stationGroup.scale.set(propsScale, propsScale, propsScale);
+      vaultGroup.scale.set(propsScale, propsScale, propsScale);
+
+      // 1.1–2 s: CURSOR GLIDES DOWN ONTO BAIT & CLICKS IT
+      if (t < 1.1) {
+        cursorGroup.position.set(-0.6, 2.6, 0.7);
+        cursorGroup.scale.set(cursorScale, cursorScale, cursorScale);
+        matGlowingBait.emissiveIntensity = 1.5;
+        rippleRings.forEach(r => r.material.opacity = 0);
+      } else if (t >= 1.1 && t <= 1.45) {
+        // Glides down to bait (x: -0.62, y: 1.1, z: 0.7)
+        const glideP = (t - 1.1) / 0.35;
+        const curY = 2.6 - easeOutBack(glideP, 1.2) * (2.6 - 1.08);
+        cursorGroup.position.set(-0.62, curY, 0.7);
+      } else if (t > 1.45 && t <= 1.85) {
+        // Click action: squash & flash
+        const clickP = (t - 1.45) / 0.4;
+        const squash = 1.0 - Math.sin(clickP * Math.PI) * 0.25;
+        cursorGroup.scale.set(cursorScale * (1 / Math.sqrt(squash)), cursorScale * squash, cursorScale);
+        cursorGroup.position.set(-0.62, 1.04, 0.7);
+
+        // Flash and ripple rings
+        matGlowingBait.emissiveIntensity = 3.5;
+        hookGroup.position.y = 1.35 + Math.sin(clickP * Math.PI * 4) * 0.04; // tugs line
+
+        rippleRings.forEach((ring, i) => {
+          const sc = 0.5 + (clickP + i * 0.3) * 2.2;
+          ring.scale.set(sc, sc, sc);
+          ring.material.opacity = Math.max(0, (1.0 - clickP) * 0.85);
+        });
+      } else if (t > 1.85 && t < 9.2) {
+        // Cursor backs off slightly
+        const backP = clamp((t - 1.85) / 0.5, 0, 1);
+        cursorGroup.position.set(-0.62, 1.04 + backP * 0.4, 0.7);
+        cursorGroup.scale.set(cursorScale, cursorScale, cursorScale);
+        matGlowingBait.emissiveIntensity = 1.8;
+        rippleRings.forEach(r => r.material.opacity = 0);
+      }
+
+      // 1.8–5.2 s: ALARM TRIGGERS (Clock rattles, hammer rings, hands spin, monitor alert flashes, keys stop typing)
+      const isAlarmActive = (t >= 1.8 && t <= 5.2);
+      if (isAlarmActive) {
+        // Clock body rattles
+        clockGroup.rotation.z = Math.sin(t * 40) * 0.05;
+        // Hammer vibrates rapidly ringing twin bells
+        hammerPivot.rotation.z = Math.sin(t * 50) * 0.35;
+
+        // Orange second hand spins rapidly five times
+        const alarmProgress = (t - 1.8) / 3.4;
+        sHandPivot.rotation.z = -alarmProgress * (Math.PI * 2 * 5);
+        // Minute hand moves through the 5-minute window (30 degrees)
+        mHandPivot.rotation.z = -alarmProgress * (Math.PI / 6);
+
+        // Monitor flashes alert banner
+        const flash = Math.sin(t * 16) * 0.5 + 0.5;
+        matAlertBanner.emissiveIntensity = 0.5 + flash * 2.5;
+
+        // Keys stop typing during alarm
+        keys.forEach(({ key, baseY }) => { key.position.y = baseY; });
+      } else {
+        clockGroup.rotation.z = 0;
+        hammerPivot.rotation.z = 0;
+        if (t < 1.8) {
+          sHandPivot.rotation.z = -t * 1.5;
+          mHandPivot.rotation.z = 0;
+          matAlertBanner.emissiveIntensity = 0.2;
+          // Keys tap while typing during normal state
+          keys.forEach(({ key, baseY, phase }) => {
+            key.position.y = baseY + Math.abs(Math.sin(t * 22 + phase)) * 0.02;
+          });
+        } else {
+          matAlertBanner.emissiveIntensity = 0.2;
+          keys.forEach(({ key, baseY }) => { key.position.y = baseY; });
+        }
+      }
+
+      // Clock pulse ring at ~5s
+      if (t >= 4.9 && t <= 5.7) {
+        const cp = (t - 4.9) / 0.8;
+        const sc = 0.5 + cp * 1.8;
+        clockPulseRing.scale.set(sc, sc, sc);
+        clockPulseRing.material.opacity = Math.max(0, (1.0 - cp) * 0.8);
+      } else {
+        clockPulseRing.material.opacity = 0;
+      }
+
+      // 3.5 s: ELECTRICAL SPARK SEVERS TOKEN CABLE MID-SPAN
+      const cutPoint = new THREE.Vector3().addVectors(cableStart, cableEnd).multiplyScalar(0.5);
+      cutRing.position.copy(cutPoint);
+
+      if (t < 3.5) {
+        // Cable intact, data pulses flow
+        cableSegments.forEach(({ mesh, ratio }) => {
+          mesh.visible = true;
+          const pos = new THREE.Vector3().lerpVectors(cableStart, cableEnd, ratio);
+          // slight sag curve
+          pos.y -= Math.sin(ratio * Math.PI) * 0.25;
+          mesh.position.copy(pos);
+          mesh.lookAt(cableEnd);
+        });
+
+        cablePulses.forEach(({ mesh, offset }) => {
+          mesh.visible = true;
+          const p = (t * 1.5 + offset) % 1.0;
+          const pos = new THREE.Vector3().lerpVectors(cableStart, cableEnd, p);
+          pos.y -= Math.sin(p * Math.PI) * 0.25;
+          mesh.position.copy(pos);
+        });
+
+        cutRing.material.opacity = 0;
+        sparks.forEach(s => s.mesh.visible = false);
+      } else if (t >= 3.5 && t <= 4.0) {
+        // Cut triggers! Spark burst & burn-back
+        const sparkTime = t - 3.5;
+        cablePulses.forEach(p => p.mesh.visible = false);
+
+        // Flash and ring
+        const ringP = sparkTime / 0.5;
+        cutRing.scale.setScalar(1.0 + ringP * 2.5);
+        cutRing.material.opacity = Math.max(0, (1.0 - ringP) * 0.9);
+
+        // Sparks explode outward and fall
+        sparks.forEach(s => {
+          s.mesh.visible = true;
+          s.mesh.position.copy(cutPoint)
+            .addScaledVector(s.vel, sparkTime)
+            .add(new THREE.Vector3(0, -0.5 * 9.8 * sparkTime * sparkTime, 0));
+        });
+
+        // Both halves burn back from cut
+        cableSegments.forEach(({ mesh, ratio }) => {
+          const distFromCut = Math.abs(ratio - 0.5);
+          if (distFromCut < sparkTime * 0.8) {
+            mesh.visible = false;
+          } else {
+            mesh.visible = true;
+          }
+        });
+      } else {
+        // Cable severed
+        cutRing.material.opacity = 0;
+        sparks.forEach(s => s.mesh.visible = false);
+        cablePulses.forEach(p => p.mesh.visible = false);
+        cableSegments.forEach(({ mesh, ratio }) => {
+          const distFromCut = Math.abs(ratio - 0.5);
+          mesh.visible = distFromCut >= 0.35;
+        });
+      }
+
+      // 3.6–4.9 s: VAULT LIDS OPEN, SESSION TOKEN TUMBLES IN, LIDS CLOSE
+      if (t < 3.6) {
+        // Token floats above vault
+        tokenGroup.position.set(1.4, 2.2 + Math.sin(t * 3) * 0.05, -0.2);
+        tokenGroup.rotation.set(0, 0, 0);
+        tokenGroup.scale.set(propsScale, propsScale, propsScale);
+        lidL.position.x = -0.25;
+        lidR.position.x = 0.25;
+      } else if (t >= 3.6 && t < 4.0) {
+        // Lids slide open
+        const openP = (t - 3.6) / 0.4;
+        lidL.position.x = -0.25 - openP * 0.45;
+        lidR.position.x = 0.25 + openP * 0.45;
+        tokenGroup.position.set(1.4, 2.2, -0.2);
+      } else if (t >= 4.0 && t <= 4.7) {
+        // Token tumbles down into vault opening (y: 2.2 -> 0.8)
+        const fallP = (t - 4.0) / 0.7;
+        tokenGroup.position.y = 2.2 - fallP * (2.2 - 0.8);
+        tokenGroup.rotation.x += delta * 8;
+        tokenGroup.rotation.y += delta * 6;
+        tokenGroup.scale.setScalar(propsScale * Math.max(0.01, 1.0 - fallP * 0.8));
+      } else if (t > 4.7 && t < 5.0) {
+        // Lids close
+        const closeP = (t - 4.7) / 0.3;
+        lidL.position.x = -0.7 + closeP * 0.45;
+        lidR.position.x = 0.7 - closeP * 0.45;
+        tokenGroup.scale.set(0, 0, 0);
+      } else {
+        lidL.position.x = -0.25;
+        lidR.position.x = 0.25;
+        tokenGroup.scale.set(0, 0, 0);
+      }
+
+      // ~5 s: VAULT CORNER LIGHTS LOCK ON WITH PULSE RINGS & CAGE SNAPS AROUND BAIT
+      if (t >= 5.0 && t < 9.2) {
+        // Vault corner lights lock on
+        vLights.forEach(light => {
+          light.material.emissiveIntensity = 2.2;
+          light.material.color.setHex(0x38BDF8);
+        });
+
+        // Vault lock pulse rings
+        if (t >= 5.0 && t <= 5.8) {
+          const vp = (t - 5.0) / 0.8;
+          vaultPulseRings.forEach((vpr, i) => {
+            const sc = 0.5 + (vp + i * 0.3) * 1.8;
+            vpr.scale.set(sc, sc, sc);
+            vpr.material.opacity = Math.max(0, (1.0 - vp) * 0.85);
+          });
+        } else {
+          vaultPulseRings.forEach(vpr => vpr.material.opacity = 0);
+        }
+
+        // Gray containment cage snaps around bait
+        const cageSnapP = clamp((t - 5.0) / 0.25, 0, 1);
+        const cageScale = easeOutBack(cageSnapP, 2.0);
+        cageGroup.scale.setScalar(cageScale);
+      } else {
+        vLights.forEach(light => {
+          light.material.emissiveIntensity = 0.5;
+        });
+        vaultPulseRings.forEach(vpr => vpr.material.opacity = 0);
+        cageGroup.scale.set(0, 0, 0);
+      }
+
+      // Render Scene
+      if (composer) {
+        composer.render();
+      } else {
+        renderer.render(scene, camera);
+      }
+    }
+
+    animate();
+
+    // Responsive Canvas Resize logic preserving 9:16 aspect ratio or adaptive embed
+    function handleResize() {
+      const container = document.getElementById('viewport-stage');
+      const rect = container.getBoundingClientRect();
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+
+      if (isEmbedded) {
+        const w = Math.floor(rect.width) || 300;
+        const h = Math.floor(rect.height) || 165;
+        camera.aspect = w / h;
+        camera.clearViewOffset();
+        camera.fov = (camera.aspect > 1.3) ? 30 : 33;
+        camera.updateProjectionMatrix();
+        renderer.setPixelRatio(pixelRatio);
+        renderer.setSize(w, h, false);
+        if (composer) {
+          composer.setSize(w, h);
+        }
+      } else {
+        camera.aspect = RENDER_WIDTH / RENDER_HEIGHT;
+        camera.setViewOffset(RENDER_WIDTH, RENDER_HEIGHT, 0, -250, RENDER_WIDTH, RENDER_HEIGHT);
+        camera.updateProjectionMatrix();
+        renderer.setPixelRatio(pixelRatio);
+        renderer.setSize(RENDER_WIDTH, RENDER_HEIGHT, false);
+        if (composer) {
+          composer.setSize(RENDER_WIDTH, RENDER_HEIGHT);
+        }
+      }
+    }
+    window.addEventListener('resize', handleResize);
+    setTimeout(handleResize, 20);
+  </script>
+</body>
+</html>
