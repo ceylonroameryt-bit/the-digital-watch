@@ -1820,6 +1820,134 @@ body[data-ep] .series-nav-item:hover, body[data-ep] .series-nav-item.active, bod
 body[data-ep] .series-nav-item.active .series-nav-num,
 body[data-ep] .series-nav-item[aria-current] .series-nav-num { color:var(--ep-ink); }
 
+/* Interactive Tools & Buttons (Pill styling, 44px tap targets, soft shadows) */
+body[data-ep] .art-act-btn {
+  border-radius: 999px !important;
+  min-height: 44px !important;
+  padding: 8px 18px !important;
+  font-family: var(--f-b), system-ui, sans-serif !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s, border-color 0.2s, box-shadow 0.2s !important;
+}
+body[data-ep] .art-act-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(17, 27, 58, 0.1) !important;
+}
+body[data-ep] .art-sim-cta {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 8px 20px !important;
+  border-radius: 999px !important;
+  background: var(--ep-ink) !important;
+  color: #FFFFFF !important;
+  font-family: var(--f-d), system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.84rem !important;
+  box-shadow: 0 4px 16px rgba(17, 27, 58, 0.18) !important;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s !important;
+}
+body[data-ep] .art-sim-cta:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(17, 27, 58, 0.25) !important;
+}
+body[data-ep] .triage-btn, body[data-ep] .threat-btn {
+  border-radius: 999px !important;
+  min-height: 44px !important;
+  padding: 8px 18px !important;
+  font-family: var(--f-d), system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.88rem !important;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.2s, box-shadow 0.2s !important;
+}
+body[data-ep] .triage-btn:hover, body[data-ep] .threat-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 14px rgba(17, 27, 58, 0.12) !important;
+}
+body[data-ep] .triage-btn.active, body[data-ep] .threat-btn.active {
+  background: var(--ep-ink) !important;
+  border-color: var(--ep-ink) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 6px 18px -4px var(--ep-ink) !important;
+}
+
+/* Author card & Feedback Form */
+body[data-ep] .auth-card {
+  border-radius: 28px !important;
+  border: 1px solid #E0E4F5 !important;
+  box-shadow: 0 1px 3px rgba(17, 27, 58, 0.04), 0 14px 34px -14px rgba(30, 50, 140, 0.15) !important;
+}
+[data-theme="dark"] body[data-ep] .auth-card {
+  background: #141D3D !important;
+  border-color: #26305A !important;
+}
+body[data-ep] .au-btn {
+  border-radius: 999px !important;
+  min-height: 44px !important;
+  padding: 0 20px !important;
+  font-family: var(--f-d), system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s !important;
+}
+body[data-ep] .au-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(17, 27, 58, 0.18) !important;
+}
+body[data-ep] .fb-form-box {
+  border-radius: 28px !important;
+  border: 1px solid #E0E4F5 !important;
+  box-shadow: 0 1px 3px rgba(17, 27, 58, 0.04), 0 14px 34px -14px rgba(30, 50, 140, 0.15) !important;
+}
+[data-theme="dark"] body[data-ep] .fb-form-box {
+  background: #141D3D !important;
+  border-color: #26305A !important;
+}
+body[data-ep] .fb-input, body[data-ep] .fb-textarea {
+  border-radius: 14px !important;
+  border: 1.5px solid #E0E4F5 !important;
+  font-family: var(--f-b), system-ui, sans-serif !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+body[data-ep] .fb-input:focus, body[data-ep] .fb-textarea:focus {
+  border-color: var(--ep-ink) !important;
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(42, 82, 238, 0.15) !important;
+}
+[data-theme="dark"] body[data-ep] .fb-input, [data-theme="dark"] body[data-ep] .fb-textarea {
+  background: #10183A !important;
+  border-color: #26305A !important;
+  color: #EEF1FF !important;
+}
+body[data-ep] .fb-submit-btn {
+  border-radius: 999px !important;
+  min-height: 48px !important;
+  padding: 0 26px !important;
+  background: var(--ep-ink) !important;
+  color: #FFFFFF !important;
+  font-family: var(--f-d), system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  box-shadow: 0 8px 20px -8px var(--ep-ink) !important;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s !important;
+}
+body[data-ep] .fb-submit-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 24px -8px var(--ep-ink) !important;
+}
+body[data-ep] .fb-clear-btn {
+  border-radius: 999px !important;
+  min-height: 48px !important;
+  padding: 0 22px !important;
+  font-family: var(--f-d), system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+}
+body[data-ep] .fb-clear-btn:hover {
+  transform: translateY(-2px) !important;
+}
+
 /* Floating dock: solid in both themes */
 body[data-ep] .floating-dock {
   background:#FFFFFF !important; color:#111B3A !important; border:1px solid #E0E4F5 !important;
