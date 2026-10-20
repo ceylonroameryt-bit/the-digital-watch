@@ -1035,11 +1035,36 @@ function initLiveNewsFilter() {
   });
 }
 
+
+/* ── SERIES DROPDOWN TOGGLE ── */
+function initSeriesDropdown() {
+  const wrappers = document.querySelectorAll('.series-dropdown-wrapper');
+  if (!wrappers.length) return;
+  wrappers.forEach(wrapper => {
+    const trigger = wrapper.querySelector('.series-dropdown-trigger');
+    if (!trigger) return;
+    trigger.addEventListener('click', e => {
+      const isOpen = wrapper.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', String(isOpen));
+    });
+  });
+  document.addEventListener('click', e => {
+    wrappers.forEach(wrapper => {
+      if (!wrapper.contains(e.target)) {
+        wrapper.classList.remove('open');
+        const trigger = wrapper.querySelector('.series-dropdown-trigger');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+}
+
 /* ── INIT ────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initProgress();
   initMobileMenu();
+  initSeriesDropdown();
   initLike();
   initClap();
   initToc();
