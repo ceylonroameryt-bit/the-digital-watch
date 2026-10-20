@@ -7,7 +7,7 @@ const { execFileSync } = require('node:child_process');
 const { parseHTML } = require('linkedom');
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
-const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html', 'article-06.html', 'article-07.html', 'article-08.html', 'behind-the-breach-01.html', 'behind-the-breach-02.html'];
+const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html', 'article-06.html', 'article-07.html', 'article-08.html', 'article-09.html', 'behind-the-breach-01.html', 'behind-the-breach-02.html'];
 
 function boot(file, { stored = {}, sessionStored = {}, storageBlocked = false, search = '', hash = '', scripts } = {}) {
   const { document, window: dom } = parseHTML(read(file));
@@ -70,19 +70,19 @@ test('old browser drafts cannot replace deployed article content', () => {
   } });
   assert.match(app.document.title, /I Clicked a Phishing Link/);
   assert.match(app.document.title, /Cyber Insight/);
-  assert.equal(app.context.CI_CMS.getPosts().filter(p => p.status === 'published').length, 8);
+  assert.equal(app.context.CI_CMS.getPosts().filter(p => p.status === 'published').length, 9);
 });
 
 test('progress percentage and released-episode label update independently', () => {
   const { document } = boot('index.html');
-  assert.equal(document.querySelector('#seriesReleased').textContent, 'Episode 08 of 10 Released');
-  assert.equal(document.querySelector('#seriesCompletion').textContent, '80% Complete');
-  assert.equal(document.querySelector('[role="progressbar"]').getAttribute('aria-valuenow'), '80');
+  assert.equal(document.querySelector('#seriesReleased').textContent, 'Episode 09 of 10 Released');
+  assert.equal(document.querySelector('#seriesCompletion').textContent, '90% Complete');
+  assert.equal(document.querySelector('[role="progressbar"]').getAttribute('aria-valuenow'), '90');
 });
 
 test('filters show the right cards and expose their selected state', () => {
   const app = boot('index.html');
-  for (const [filter, count] of [['published', 8], ['upcoming', 2], ['all', 10]]) {
+  for (const [filter, count] of [['published', 9], ['upcoming', 1], ['all', 10]]) {
     const btn = app.document.querySelector(`[data-filter="${filter}"]`);
     app.fire(btn, 'click');
     assert.equal([...app.document.querySelectorAll('.ep-card')].filter(el => el.style.display !== 'none').length, count);
@@ -101,7 +101,8 @@ test('article IDs resolve symmetrically and preserve feedback anchors', () => {
     ['article.html', 'ep05-padlock-doesnt-mean-safe', 'article-05.html#feedback'],
     ['article.html', 'ep06-are-passkeys-killing-passwords', 'article-06.html#feedback'],
     ['article.html', 'ep07-fake-recruiter-linkedin', 'article-07.html#feedback'],
-    ['article.html', 'ep08-what-scammer-learns-in-10-minutes', 'article-08.html#feedback']
+    ['article.html', 'ep08-what-scammer-learns-in-10-minutes', 'article-08.html#feedback'],
+    ['article.html', 'ep09-your-bank-is-calling', 'article-09.html#feedback']
   ];
   for (const [file, id, target] of expected) {
     assert.equal(boot(file, { search: '?id=' + id, hash: '#feedback' }).location.redirect, target);
@@ -200,6 +201,7 @@ test('deployment contains public pages and security policy, excludes the local e
   assert.ok(fs.existsSync(path.join(root, 'dist/article-06.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/article-07.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/article-08.html')));
+  assert.ok(fs.existsSync(path.join(root, 'dist/article-09.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-01.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-02.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/sitemap.xml')));

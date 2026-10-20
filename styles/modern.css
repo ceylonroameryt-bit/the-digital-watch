@@ -1746,6 +1746,7 @@ body[data-ep="5"] { --ep:#FFF6DC; --ep-ink:#8A6200; }
 body[data-ep="6"] { --ep:#E0F6F6; --ep-ink:#0B7372; }
 body[data-ep="7"] { --ep:#FDE9F3; --ep-ink:#B4246E; }
 body[data-ep="8"] { --ep:#FFEEDD; --ep-ink:#B24E00; }
+body[data-ep="9"] { --ep:#EFF6FF; --ep-ink:#1D4ED8; }
 body[data-ep="breach"] { --ep:#FDE8E8; --ep-ink:#C21F1F; }
 
 [data-theme="dark"] body[data-ep="1"] { --ep:#1E1940; --ep-ink:#B4A2FF; }
@@ -1756,6 +1757,7 @@ body[data-ep="breach"] { --ep:#FDE8E8; --ep-ink:#C21F1F; }
 [data-theme="dark"] body[data-ep="6"] { --ep:#0E2A2E; --ep-ink:#5ED8D6; }
 [data-theme="dark"] body[data-ep="7"] { --ep:#2E1527; --ep-ink:#FF8FC6; }
 [data-theme="dark"] body[data-ep="8"] { --ep:#2F1E10; --ep-ink:#FFAA66; }
+[data-theme="dark"] body[data-ep="9"] { --ep:#101D3F; --ep-ink:#60A5FA; }
 [data-theme="dark"] body[data-ep="breach"] { --ep:#331517; --ep-ink:#FF8A8A; }
 
 body[data-ep] { font-family:"Figtree", system-ui, sans-serif; background:#F6F7FF; color:#111B3A; }
