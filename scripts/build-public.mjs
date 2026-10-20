@@ -10,7 +10,7 @@ for (const path of [
   'index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html', 'article-06.html', 'article-07.html', 'article-08.html',
   'behind-the-breach-01.html', 'behind-the-breach-02.html', 'ep1-ai-deepfakes.html', 'ep2-identity-recon.html', 'ep3-triage-playbook.html',
   'CNAME', 'assets', '.well-known', 'security.txt', 'robots.txt', 'sitemap.xml',
-  'styles/main.css', 'js/app.js', 'js/cms.js', 'js/translator.js'
+  'styles/main.css', 'styles/modern.css', 'js/app.js', 'js/cms.js', 'js/translator.js', 'js/three.min.js', 'js/iso-scenes.js'
 ]) await cp(new URL(path, root), new URL(path, output), { recursive: true });
 await writeFile(new URL('.nojekyll', output), '');
 console.log(`Built public site: ${fileURLToPath(output)}`);
