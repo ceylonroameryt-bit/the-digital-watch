@@ -172,18 +172,49 @@
               <div class="art-arole">Writer · Cyber Insight · Digital Literacy</div>
             </div>
           </div>
-          <div style="margin-top: 14px;">
-            <a href="ep3-triage-playbook.html" class="art-sim-cta" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;background:#EA580C;color:#FFFFFF;border-radius:10px;text-decoration:none;font-weight:600;font-size:12px;box-shadow:0 4px 14px rgba(234,88,12,0.25);transition:transform 0.15s ease;" target="_blank" title="Open 3D Triage Playbook Lab (EP 03)">
-              <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#FDBA74;box-shadow:0 0 6px #FB923C;"></span>
-              Launch 3D Triage Lab (EP 03) ↗
-            </a>
-          </div>
         </div>
 
-        <!-- Hero 3D Animation: Phishing Lure & 5-Min Emergency Triage -->
-        <div class="art-hero-svg" style="position: relative; overflow: hidden; background: linear-gradient(135deg, #FEF2F2 0%, #FFF7ED 100%);">
-          <iframe src="ep3-triage-playbook.html?embed=hero" style="width: 100%; height: 100%; border: none; display: block;" title="EP 03 3D Triage Playbook"></iframe>
-          <a href="ep3-triage-playbook.html" target="_blank" style="position: absolute; bottom: 8px; right: 8px; z-index: 5; background: rgba(255,255,255,0.88); backdrop-filter: blur(8px); border: 1px solid rgba(234,88,12,0.25); border-radius: 6px; padding: 4px 9px; font-size: 10px; font-weight: 700; color: #EA580C; text-decoration: none; box-shadow: 0 2px 8px rgba(15,23,42,0.1);" title="Open full 9:16 vertical view">9:16 Full Lab ↗</a>
+        <!-- Hero SVG: Phishing Hook Intercept & Rapid Response Timer -->
+        <div class="art-hero-svg" style="background: linear-gradient(135deg, #FEF2F2 0%, #FFF7ED 100%);">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Phishing link intercept diagram showing containment shield and rapid response triage">
+            <circle cx="160" cy="120" r="100" fill="#FEF2F2" opacity=".6" />
+            <circle cx="160" cy="120" r="72" fill="#FFF7ED" opacity=".5" />
+            <circle cx="160" cy="120" r="44" fill="#FEE2E2" opacity=".4" />
+
+            <!-- Link URL Pill with Hook -->
+            <rect x="55" y="74" width="150" height="42" rx="10" fill="white" stroke="#EF4444" stroke-width="2.2" />
+            <circle cx="78" cy="95" r="7" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.5" />
+            <path d="M78 91 L78 95 L81 95" stroke="#EF4444" stroke-width="1.5" stroke-linecap="round" />
+            <rect x="94" y="88" width="60" height="6" rx="3" fill="#EF4444" opacity=".8" />
+            <rect x="94" y="98" width="85" height="5" rx="2.5" fill="#FED7AA" />
+
+            <!-- Fishing Hook Element dipping into link -->
+            <path d="M168 34 L168 84 Q168 100 152 100 Q138 100 138 88" stroke="#DC2626" stroke-width="2.5" fill="none" stroke-linecap="round" />
+            <polygon points="138,82 134,92 142,90" fill="#DC2626" />
+
+            <!-- Severed / Blocked Pulse -->
+            <line x1="150" y1="58" x2="186" y2="58" stroke="#EF4444" stroke-width="2" stroke-dasharray="3 2" />
+            <text x="194" y="62" fill="#DC2626" font-family="DM Sans,system-ui" font-size="9" font-weight="800">SEVER</text>
+
+            <!-- 5-Minute Triage Stopwatch Badge -->
+            <g transform="translate(196, 120)">
+              <circle cx="36" cy="36" r="32" fill="white" stroke="#F97316" stroke-width="2.5" />
+              <circle cx="36" cy="36" r="26" fill="#FFF7ED" />
+              <!-- Clock hands -->
+              <line x1="36" y1="36" x2="36" y2="18" stroke="#EA580C" stroke-width="2.5" stroke-linecap="round" />
+              <line x1="36" y1="36" x2="48" y2="36" stroke="#EA580C" stroke-width="2" stroke-linecap="round" />
+              <!-- Button on top -->
+              <rect x="32" y="0" width="8" height="5" rx="1.5" fill="#EA580C" />
+              <text x="36" y="52" text-anchor="middle" fill="#C2410C" font-family="DM Sans,system-ui" font-size="7.5" font-weight="800">TRIAGE</text>
+            </g>
+
+            <!-- Defensive Containment Shield -->
+            <g transform="translate(48, 140)">
+              <path d="M26 4 L46 12 L46 32 Q46 50 26 58 Q6 50 6 32 L6 12 Z" fill="#DCFCE7" stroke="#16A34A" stroke-width="2" />
+              <polyline points="18,30 24,36 34,24" stroke="#15803D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            </g>
+          </svg>
         </div>
 
       </div>
