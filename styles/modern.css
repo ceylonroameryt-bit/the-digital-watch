@@ -2326,3 +2326,22 @@ body[data-ep] .site-footer h4, body[data-ep] .site-footer strong { color:#111B3A
     gap: 10px;
   }
 }
+
+
+/* ── Dropdown Specificity Safeguards ── */
+.nav-links .series-dropdown-menu a,
+.series-dropdown-menu a {
+  border-bottom: none !important;
+  width: auto !important;
+  min-height: auto !important;
+}
+.nav-links .series-dropdown-menu a:hover,
+.series-dropdown-menu a:hover {
+  border-bottom: none !important;
+  background: transparent !important;
+}
+.nav-links .series-drop-list li a:hover {
+  background: rgba(29, 78, 216, 0.08) !important;
+  color: #1D4ED8 !important;
+  border-bottom: none !important;
+}
