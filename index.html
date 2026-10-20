@@ -4,16 +4,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cyber Insight — Cybersecurity Research by Poorna Sujampathi</title>
+  <title>Cyber Insight — Plain-English Cybersecurity by Poorna Sujampathi</title>
   <meta name="description"
-    content="In-depth cybersecurity research on AI threats, phishing, identity fraud, and more. Written from the SOC floor by Poorna Sujampathi Rathnayaka.">
+    content="Plain-language cybersecurity for anyone who uses the internet, plus investigative research for security professionals. By Poorna Sujampathi Rathnayaka.">
   <meta name="author" content="Poorna Sujampathi Rathnayaka">
   <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
   <link rel="author" href="https://sujampathirathnayaka.com/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Cyber Insight — Cybersecurity Research">
+  <meta property="og:title" content="Cyber Insight — Plain-English Cybersecurity Research">
   <meta property="og:description"
-    content="Research from the SOC floor. AI fraud, phishing, identity theft, and what security teams actually need to know.">
+    content="See what's actually happening online. Plain-language cybersecurity threats dissected and explained simply.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -30,771 +30,752 @@
       "@type": "Person",
       "name": "Poorna Sujampathi Rathnayaka"
     },
-    "description": "In-depth cybersecurity research on AI threats, phishing, identity fraud, and online safety."
+    "description": "Plain-language cybersecurity for everyday internet users and working security professionals."
   }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=12">
+  <link rel="stylesheet" href="styles/main.css?v=14">
+  <link rel="stylesheet" href="styles/modern.css?v=2">
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232A52EE'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
   <link rel="canonical" href="https://thecyberinsight.online/">
   <meta property="og:url" content="https://thecyberinsight.online/">
 </head>
 
 <body data-page="index">
 
+  <!-- Accessible Skip Link -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
   <div id="toast-container" role="status" aria-live="polite"></div>
 
-  <!-- NAV -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="nav-in">
-      <a href="index.html" class="brand">
-        <div class="brand-mark">CI</div>
+  <!-- FIXED FLAT NAVBAR (HEADER SPEC: ZERO ANIMATION, FLAT BAR, SOLID BG, 1PX BOTTOM BORDER, INSTANT JUMP) -->
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <div class="nav-in">
+        <a href="index.html" class="brand" aria-label="Cyber Insight Home">
+          <div class="brand-mark" aria-hidden="true">CI</div>
+          <div>
+            <div class="brand-name" data-cms="blog-name">Cyber Insight</div>
+            <div class="brand-sub" data-cms="tagline">Cybersecurity research</div>
+          </div>
+        </a>
+
+        <div style="display:flex;align-items:center;gap:8px;">
+          <!-- Far-right Translate Button -->
+          <button class="theme-toggle-btn" id="navTranslateBtn" type="button" aria-label="Translate website" title="Translate website">
+            <span aria-hidden="true">🌐</span>
+            <span class="theme-label">Translate</span>
+          </button>
+
+          <!-- Far-right Light/Dark Toggle -->
+          <button class="theme-toggle-btn" id="themeToggleNav" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+            <span class="theme-icon" aria-hidden="true">🌙</span>
+            <span class="theme-label">Dark</span>
+          </button>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Centre/Right Links Spec: Start here, Episodes, Investigations, About, Suggest a topic -->
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#series">Start here</a></li>
+          <li><a href="#series">Episodes</a></li>
+          <li><a href="#behind-the-breach">Investigations</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#suggest">Suggest a topic</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container" id="main">
+
+    <!-- 1. HERO SECTION (ROUNDED PANEL, DRIFTING BLOBS, COUNT-UP TRUST STRIP, ISOMETRIC 3D DIORAMA, 3 TIP CHIPS) -->
+    <section class="hero-panel" aria-labelledby="hero-heading">
+      <div class="hero-blobs" aria-hidden="true">
+        <div class="hero-blob blob-blue"></div>
+        <div class="hero-blob blob-violet"></div>
+        <div class="hero-blob blob-mint"></div>
+      </div>
+
+      <div class="hero-grid">
         <div>
-          <div class="brand-name">Cyber Insight</div>
-          <div class="brand-sub">Cybersecurity Research</div>
+          <a href="#ep-08" class="hero-pill">
+            <span class="pill-dot" aria-hidden="true"></span>
+            <span>New: Episode 8 is live</span>
+          </a>
+          <h1 class="hero-title" id="hero-heading">
+            See what's actually happening online.
+          </h1>
+          <p class="hero-lede">
+            Plain-language cybersecurity for anyone who uses the internet. Each episode takes one real threat, explains what's going on, and tells you what to do about it.
+          </p>
+
+          <div class="hero-actions">
+            <a href="article.html" class="btn-primary-lg" id="heroStartReadingBtn">
+              <span>Start reading, 7 min</span>
+              <span class="btn-arrow-chip" aria-hidden="true">→</span>
+            </a>
+            <a href="#mind" class="btn-secondary-lg">
+              <span>I need help right now</span>
+              <span aria-hidden="true">⚡</span>
+            </a>
+          </div>
+
+          <!-- Trust strip with animated count-up numbers -->
+          <div class="hero-trust-strip">
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">📚</span>
+              <span><strong class="count-num" data-count="8">8</strong> episodes ready</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">⏱️</span>
+              <span><strong class="count-num" data-count="56">56</strong> min of reading in total</span>
+            </div>
+            <div class="trust-item">
+              <span class="trust-icon" aria-hidden="true">🛡️</span>
+              <span>Written by a <strong>working security professional</strong></span>
+            </div>
+          </div>
         </div>
-      </a>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <button class="theme-toggle-btn" id="themeToggleNav" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
-          <span class="theme-icon" aria-hidden="true">🌙</span>
-          <span class="theme-label">Dark</span>
-        </button>
-        <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="18" x2="21" y2="18" />
+
+        <!-- Hero 3D Stage Visual with 3 Floating Tip Chips -->
+        <div class="hero-stage-card" id="heroVisualStage">
+          <!-- Animated fallback SVG poster -->
+          <svg class="hero-poster-svg" viewBox="0 0 400 320" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="400" height="320" fill="url(#heroGrad)" />
+            <defs>
+              <linearGradient id="heroGrad" x1="0" y1="0" x2="400" y2="320" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EEF2FF"/>
+                <stop offset="1" stop-color="#E0E7FF"/>
+              </linearGradient>
+            </defs>
+            <circle cx="200" cy="160" r="100" fill="#DBEAFE" opacity="0.6"/>
+            <!-- Isometric Console & Shield Radar -->
+            <polygon points="200,100 280,145 200,190 120,145" fill="#2D4F7C"/>
+            <polygon points="200,90 270,130 200,170 130,130" fill="#FFFFFF"/>
+            <circle cx="200" cy="130" r="28" fill="#1E293B"/>
+            <circle cx="200" cy="130" r="18" fill="#38BDF8" opacity="0.8"/>
+            <circle cx="200" cy="130" r="7" fill="#EA580C"/>
+            <circle cx="230" cy="115" r="4" fill="#38BDF8"/>
+            <circle cx="165" cy="140" r="4" fill="#38BDF8"/>
           </svg>
-        </button>
-      </div>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="#series">Curriculum</a></li>
-        <li><a href="#behind-the-breach">Behind the Breach</a></li>
-        <li><a href="article.html#feedback">Feedback</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="article.html" class="cta" id="navStartReadingBtn">Start Reading →</a></li>
-      </ul>
-    </div>
-  </nav>
 
-  <!-- HERO -->
-  <section class="h-hero">
-    <div class="wrap">
-      <div class="h-hero-in">
+          <!-- 3D Diorama Mount for Hero -->
+          <div class="iso-diorama-mount" data-episode="hero"></div>
 
-        <div>
-          <div class="h-eye"><span class="h-dot"></span>Cyber Threat Intelligence · Digital Literacy</div>
-          <h1 class="h-title"><span class="h-line">Clear insight into</span><br><em>the digital world.</em></h1>
-          <p class="h-desc">Everyone talks about cybersecurity in technical terms. <strong>Cyber Insight</strong> breaks
-            down what's actually happening online — simply, honestly, and in plain language. No jargon required.</p>
-          <div class="h-stats">
-            <div>
-              <div class="h-stat-n">10 Parts</div>
-              <div class="h-stat-l">Recurring Series</div>
-            </div>
-            <div>
-              <div class="h-stat-n">Ep 06</div>
-              <div class="h-stat-l">Live Now ✅</div>
-            </div>
+          <!-- Three floating tip chips from prompt spec -->
+          <div class="hero-floating-chip chip-pos-1">
+            🔒 A padlock isn't proof
+          </div>
+          <div class="hero-floating-chip chip-pos-2">
+            ⏳ Urgency is a tactic
+          </div>
+          <div class="hero-floating-chip chip-pos-3">
+            🛡️ Verify, then trust
           </div>
         </div>
-
-        <!-- Creative Hero Visual: Cyber Insight Sentinel -->
-        <div class="h-hero-visual" id="heroVisual">
-          <div class="h-visual-frame">
-            <img src="assets/images/digital_watch_creative_hero.jpg"
-              alt="Cyber Insight - Digital Literacy and Online Safety Lens" class="h-visual-img" loading="eager" />
-            <div class="h-visual-overlay"></div>
-            <div class="h-visual-badge">
-              <span class="h-visual-dot"></span>
-              <span>CYBER INSIGHT ACTIVE</span>
-            </div>
-            <div class="h-visual-tags">
-              <span class="h-vtag">🛡️ Digital Defense</span>
-              <span class="h-vtag">🔍 Plain English</span>
-              <span class="h-vtag">👁️ 10-Part Series</span>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FEATURED ARTICLE -->
-  <section class="feat-section">
-    <div class="wrap">
-      <div class="sec-h">
-        <span class="sec-lbl">Published Research</span>
-        <div class="sec-rule"></div>
-        <span class="sec-meta">September 2026</span>
+    <!-- 2. WHAT'S ON YOUR MIND? (BENTO GRID: 2 WIDE TILES, 2 NORMAL) -->
+    <section class="bento-section" id="mind" aria-labelledby="bento-heading">
+      <div class="sec-header">
+        <div class="sec-tag">Immediate answers</div>
+        <h2 class="sec-title" id="bento-heading">What's on your mind?</h2>
+        <p class="sec-sub">Jump straight to the real-world answer you need today.</p>
       </div>
 
-      <a href="article.html" class="feat-card" id="featCard"
-        aria-label="Read: Can You Still Trust What You See and Hear Online?">
-        <div class="feat-body">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
-            <span class="feat-chip" id="featCategory">Digital Safety</span>
-            <span class="feat-chip" style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;">Series: Episode
-              01 of 10</span>
-          </div>
-          <h2 class="feat-h2" id="featTitle">Can You Still Trust What You See and Hear Online?</h2>
-          <p class="feat-deck" id="featSummary">AI can now clone a voice from 3 seconds of audio and generate a
-            realistic video of someone who never existed. In this episode, we look at what that actually means for
-            ordinary people online — and how to start thinking differently about what you see and hear.</p>
-          <div class="feat-meta">
-            <div class="feat-av" data-cms="author-initials">PS</div>
-            <div>
-              <div class="feat-aname" data-cms="author-name">Poorna Sujampathi Rathnayaka</div>
-              <div class="feat-adate" id="featDate">Episode 01 · 7 min read · Published ✅</div>
+      <div class="bento-grid">
+        <!-- Tile 1 (Wide): I clicked a link I shouldn't have -->
+        <a href="article-03.html" class="bento-card bento-wide" aria-label="I clicked a link I shouldn't have - Episode 3, 6 min">
+          <div>
+            <div class="bento-top">
+              <div class="bento-icon" style="background:#FEE2E2;color:#DC2626;" aria-hidden="true">⚡</div>
+              <span class="bento-badge" style="background:#FEE2E2;color:#DC2626;">Immediate action</span>
             </div>
-            <span class="feat-cta">Read Episode 01 <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2.5">
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg></span>
+            <h3 class="bento-title">I clicked a link I shouldn't have</h3>
+            <p class="bento-desc">A five-minute checklist: check what ran, cut off access, and reset your logins safely.</p>
+          </div>
+          <div class="bento-foot">
+            <span>Episode 3, 6 min</span>
+            <span class="bento-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+
+        <!-- Tile 2 (Normal): A website looks real. How can I tell? -->
+        <a href="article-05.html" class="bento-card" aria-label="A website looks real. How can I tell? - Episode 5, 6 min">
+          <div>
+            <div class="bento-top">
+              <div class="bento-icon" style="background:#FEF3C7;color:#D97706;" aria-hidden="true">🔒</div>
+              <span class="bento-badge" style="background:#FEF3C7;color:#D97706;">Web verification</span>
+            </div>
+            <h3 class="bento-title">A website looks real. How can I tell?</h3>
+            <p class="bento-desc">Why the padlock isn't proof: the padlock means the connection is private, not that the site is real.</p>
+          </div>
+          <div class="bento-foot">
+            <span>Episode 5, 6 min</span>
+            <span class="bento-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+
+        <!-- Tile 3 (Normal): I want safer logins -->
+        <a href="article-06.html" class="bento-card" aria-label="I want safer logins - Episode 6, 7 min">
+          <div>
+            <div class="bento-top">
+              <div class="bento-icon" style="background:#ECFDF5;color:#059669;" aria-hidden="true">🔑</div>
+              <span class="bento-badge" style="background:#ECFDF5;color:#059669;">Authentication</span>
+            </div>
+            <h3 class="bento-title">I want safer logins</h3>
+            <p class="bento-desc">How passkeys work, why they stop password phishing, and what they still can't stop.</p>
+          </div>
+          <div class="bento-foot">
+            <span>Episode 6, 7 min</span>
+            <span class="bento-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+
+        <!-- Tile 4 (Wide): A stranger is offering me a job -->
+        <a href="article-07.html" class="bento-card bento-wide" aria-label="A stranger is offering me a job - Episode 7, 8 min">
+          <div>
+            <div class="bento-top">
+              <div class="bento-icon" style="background:#EFF6FF;color:#2563EB;" aria-hidden="true">💼</div>
+              <span class="bento-badge" style="background:#EFF6FF;color:#2563EB;">Social engineering</span>
+            </div>
+            <h3 class="bento-title">A stranger is offering me a job</h3>
+            <p class="bento-desc">How fake recruiters work: fake interviews and booby-trapped coding tasks aimed at tech professionals.</p>
+          </div>
+          <div class="bento-foot">
+            <span>Episode 7, 8 min</span>
+            <span class="bento-arrow" aria-hidden="true">→</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- 3. READ A SCAM TEXT LIKE AN ANALYST -->
+    <section class="scam-section" id="scam-simulator" aria-labelledby="scam-heading">
+      <div class="sec-header">
+        <div class="sec-tag">Interactive simulation</div>
+        <h2 class="sec-title" id="scam-heading">Read a scam text like an analyst</h2>
+        <p class="sec-sub">Scammers count on panic and speed. Toggle the switch to uncover the 3 deception hooks.</p>
+      </div>
+
+      <div class="scam-grid" id="scamSimWidget">
+        <!-- Phone Mockup -->
+        <div class="phone-mockup">
+          <div class="phone-speaker" aria-hidden="true"></div>
+          <div class="phone-screen">
+            <div class="sms-header">
+              <div class="sms-sender">
+                <span class="sms-flag" data-flag="1"><span class="flag-badge">1</span>07700 900123</span>
+              </div>
+              <div class="sms-sub">SMS Dispatch · Today 14:22</div>
+            </div>
+            <div class="sms-bubble">
+              YourBank alert: your account has been locked. Confirm your details
+              <span class="sms-flag" data-flag="2"><span class="flag-badge">2</span>within 30 minutes</span>
+              or it will be closed.
+              <span class="sms-flag" data-flag="3"><span class="flag-badge">3</span>https://secure-yourbank-verify.com/login</span>
+            </div>
           </div>
         </div>
 
-        <!-- Featured SVG: AI identity shield -->
-        <div class="feat-svg">
-          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true">
-            <circle cx="160" cy="120" r="90" fill="#EEF2FF" opacity=".7" />
-            <path d="M160 40 L202 58 L202 106 Q202 144 160 164 Q118 144 118 106 L118 58 Z" fill="white" stroke="#1D4ED8"
-              stroke-width="2.5" />
-            <!-- Left: real -->
-            <clipPath id="fl">
-              <rect x="118" y="40" width="42" height="124" />
-            </clipPath>
-            <g clip-path="url(#fl)">
-              <circle cx="160" cy="100" r="20" fill="#BFDBFE" />
-              <circle cx="160" cy="91" r="8" fill="#1D4ED8" opacity=".5" />
-              <path d="M143 117 Q160 108 177 117" stroke="#1D4ED8" stroke-width="2" fill="none"
-                stroke-linecap="round" />
-            </g>
-            <!-- Right: synthetic fragments -->
-            <clipPath id="fr">
-              <rect x="160" y="40" width="42" height="124" />
-            </clipPath>
-            <g clip-path="url(#fr)">
-              <rect x="162" y="82" width="9" height="9" rx="2" fill="#93C5FD" opacity=".7" />
-              <rect x="173" y="78" width="7" height="7" rx="2" fill="#F59E0B" opacity=".6" />
-              <rect x="164" y="93" width="10" height="10" rx="2" fill="#1D4ED8" opacity=".4" />
-              <rect x="176" y="90" width="8" height="8" rx="2" fill="#60A5FA" opacity=".5" />
-              <rect x="163" y="105" width="9" height="9" rx="2" fill="#F59E0B" opacity=".4" />
-              <rect x="175" y="102" width="7" height="7" rx="2" fill="#1D4ED8" opacity=".3" />
-              <rect x="165" y="116" width="8" height="8" rx="2" fill="#93C5FD" opacity=".5" />
-            </g>
-            <line x1="160" y1="46" x2="160" y2="158" stroke="#1D4ED8" stroke-width="1.5" stroke-dasharray="4 3"
-              opacity=".35" />
-            <path d="M143 120 L150 127 L177 105" stroke="#1D4ED8" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <!-- Waveform -->
-            <rect x="36" y="112" width="4" height="8" rx="2" fill="#1D4ED8" opacity=".3" />
-            <rect x="43" y="106" width="4" height="20" rx="2" fill="#1D4ED8" opacity=".5" />
-            <rect x="50" y="99" width="4" height="34" rx="2" fill="#1D4ED8" opacity=".7" />
-            <rect x="57" y="106" width="4" height="20" rx="2" fill="#1D4ED8" opacity=".5" />
-            <rect x="64" y="112" width="4" height="8" rx="2" fill="#1D4ED8" opacity=".3" />
-            <!-- AI badge -->
-            <rect x="144" y="18" width="32" height="20" rx="6" fill="#1D4ED8" />
-            <text x="160" y="32" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="10"
-              font-weight="800">AI</text>
-          </svg>
+        <!-- Controls & Analyst Breakdown -->
+        <div class="scam-controls">
+          <button class="scam-toggle-btn" id="scamToggleBtn" type="button" role="switch" aria-checked="false">
+            <span class="scam-switch-track"><span class="scam-switch-thumb"></span></span>
+            <span id="scamBtnLabel">Show what's really happening</span>
+          </button>
+
+          <!-- Pop-in Reward Banner from Spec -->
+          <div class="scam-reward-box" id="scamRewardBox" role="status">
+            <div class="scam-reward-title" style="color:#065F46;font-weight:800;font-size:1.1rem;margin-bottom:6px;">
+              You spotted 3 red flags 🎯
+            </div>
+            <div class="scam-reward-sub" style="color:#047857;font-size:0.92rem;line-height:1.5;">
+              Attackers rely on artificial panic, spoofed numbers, and lookalike links. A real bank will never send a generic panic deadline or demand credentials over unsolicited SMS.
+            </div>
+          </div>
+
+          <div class="analyst-flags-list">
+            <div class="flag-card" data-target="1">
+              <strong>🚩 Red flag 1: Sender proves nothing</strong><br>
+              "07700 900123" is an unverified mobile number. Anyone can spoof sender headers or register disposable SIMs. A phone number never proves identity.
+            </div>
+            <div class="flag-card" data-target="2">
+              <strong>🚩 Red flag 2: The deadline is the hook</strong><br>
+              "Within 30 minutes" creates artificial urgency — a psychological trigger designed to force panic action before you can verify with your bank.
+            </div>
+            <div class="flag-card" data-target="3">
+              <strong>🚩 Red flag 3: The domain isn't your bank's and a padlock only means the connection is encrypted</strong><br>
+              <code>secure-yourbank-verify.com</code> is a fake lookalike. The browser padlock only means your connection to the scammer's server is encrypted, not that the site is real.
+            </div>
+          </div>
         </div>
-      </a>
-    </div>
-  </section>
+      </div>
+    </section>
 
-  <!-- CYBERSECURITY FOR EVERYONE SERIES SECTION -->
-  <section class="series-section" id="series">
-    <div class="wrap">
+    <!-- 4. PICK AN EPISODE (CURRICULUM SECTION) -->
+    <section class="section-wrap" id="series" aria-labelledby="series-heading">
 
-      <!-- Series Hero Banner Card -->
+      <!-- Progress Card with Dual Meters -->
       <div class="series-hero-card">
-        <div class="series-badge">
-          <span class="pulse-dot"></span>
-          Recurring Editorial Series · 10 Episodes
+        <div class="glass-badge" style="margin-bottom:12px;">
+          <span class="live-pulse-dot" aria-hidden="true"></span>
+          <span>Recurring editorial series · 10 episodes</span>
         </div>
-        <h2 class="series-title">Cybersecurity for Everyone</h2>
-        <p class="series-desc">
-          A 10-part series that cuts through the technical noise. Each episode takes one real topic — phishing, data
-          breaches, fake recruiters, deepfakes — and explains what's actually going on, why it matters, and what you can
-          do about it. Written for anyone who uses the internet.
+        <h2 class="sec-title" id="series-heading" data-cms="series-name">Pick an episode</h2>
+        <p class="sec-sub" data-cms="series-desc">
+          A 10-part series that cuts through the technical noise. Each episode takes one real threat, explains what's going on, and tells you what to do about it.
         </p>
 
-        <!-- Progress Tracker -->
-        <div class="series-tracker">
-          <div class="series-tracker-top">
-            <span>Series Progress: <span class="stat" id="seriesReleased">Episode 08 of 10 Released</span></span>
-            <span class="stat" id="seriesCompletion">80% Complete</span>
+        <!-- Dual Progress Tracker -->
+        <div class="dual-tracker-grid">
+          <!-- Meter 1: Series Released (Spec Contract) -->
+          <div class="tracker-panel">
+            <div class="tracker-meta">
+              <span>Series progress: <strong id="seriesReleased">Episode 08 of 10 Released</strong></span>
+              <strong id="seriesCompletion">80% Complete</strong>
+            </div>
+            <div class="series-progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+              <div class="series-progress-fill" style="width:80%;"></div>
+            </div>
           </div>
-          <div class="series-progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
-            <div class="series-progress-fill" style="width:80%;"></div>
+
+          <!-- Meter 2: User Reading Progress (Local Storage) -->
+          <div class="tracker-panel">
+            <div class="tracker-meta">
+              <span>Your reading: <strong id="userReadingSummary">0 of 8 visited</strong></span>
+              <span id="userRemainingCount" style="color:var(--ink-4);font-size:0.86rem;">8 to go. You're 0% of the way there</span>
+            </div>
+            <div class="user-progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="8">
+              <div class="user-progress-fill" id="userProgressFill" style="width:0%;"></div>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Controls & Filter Tabs -->
+      <!-- Filter Controls: All episodes (10) / Ready to read (8) / Coming soon (2) -->
       <div class="series-controls">
-        <div class="sec-h" style="margin:0;">
-          <span class="sec-lbl">Curriculum Syllabus</span>
-          <div class="sec-rule" style="width:60px;"></div>
-          <span class="sec-meta">10 Planned Installments</span>
-        </div>
-        <div class="series-tabs" role="tablist" aria-label="Filter series episodes">
-          <button class="series-tab-btn active" data-filter="all" role="tab" aria-selected="true">All Episodes
-            (10)</button>
-          <button class="series-tab-btn" data-filter="published" role="tab" aria-selected="false">Published (8)</button>
-          <button class="series-tab-btn" data-filter="upcoming" role="tab" aria-selected="false">Upcoming (2)</button>
+        <div class="sec-tag" style="margin:0;">10 planned installments</div>
+        <div class="series-tabs" role="tablist" aria-label="Filter episodes">
+          <button class="series-tab-btn active" data-filter="all" role="tab" aria-selected="true" aria-pressed="true">All episodes (10)</button>
+          <button class="series-tab-btn" data-filter="published" role="tab" aria-selected="false" aria-pressed="false">Ready to read (8)</button>
+          <button class="series-tab-btn" data-filter="upcoming" role="tab" aria-selected="false" aria-pressed="false">Coming soon (2)</button>
         </div>
       </div>
 
       <!-- 10-Episode Grid -->
       <div class="series-grid">
 
-        <!-- Episode 01: Published ✅ -->
-        <a href="article.html" class="ep-card is-published"
-          aria-label="Read Episode 01: Can You Still Trust What You See and Hear Online?">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #EEF2FF 0%, #DBEAFE 100%);">
-            <iframe src="ep1-ai-deepfakes.html?embed=card" style="width: 100%; height: 100%; border: none; display: block; pointer-events: none;" loading="lazy" title="EP 01 3D Biometric Verification Booth"></iframe>
-            <span class="ep-badge-pill" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">✅ Ep 01 · Live</span>
+        <!-- Wide Featured Card for Episode 8 (Newest, Gradient Border, Rotating Sticker) -->
+        <a href="article-08.html" class="ep-card is-published ep-card-featured" id="ep-08"
+          aria-label="Read Episode 08: How Much Can a Scammer Learn About You in 10 Minutes?">
+          <div class="ep-svg-thumb" style="background:#FFF7ED;">
+            <span class="badge-sticker">★ New: Episode 8 is live</span>
+            <!-- Fallback SVG Poster -->
+            <svg viewBox="0 0 320 180" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="320" height="180" fill="#FFF7ED"/>
+              <circle cx="160" cy="90" r="50" fill="#FFEDD5" stroke="#EA580C" stroke-width="2"/>
+              <circle cx="160" cy="90" r="32" stroke="#FDBA74" stroke-width="1.5"/>
+              <circle cx="160" cy="90" r="10" fill="#EA580C"/>
+              <circle cx="120" cy="70" r="5" fill="#1E293B"/>
+              <circle cx="200" cy="110" r="5" fill="#1E293B"/>
+              <line x1="120" y1="70" x2="160" y2="90" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <line x1="200" y1="110" x2="160" y2="90" stroke="#CBD5E1" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <line x1="160" y1="58" x2="160" y2="48" stroke="#EA580C" stroke-width="3" stroke-linecap="round"/>
+              <text x="160" y="125" text-anchor="middle" fill="#9A3412" font-family="sans-serif" font-size="10" font-weight="800">10-MIN AUDIT</text>
+            </svg>
+            <!-- 3D Isometric Diorama Mount for Ep 8 -->
+            <div class="iso-diorama-mount" data-episode="8"></div>
+          </div>
+          <div class="ep-body">
+            <div>
+              <div class="ep-header-meta">
+                <span class="ep-num">Episode 08 · Featured</span>
+                <span class="ep-topic">Your online footprint</span>
+              </div>
+              <h3 class="ep-title">How Much Can a Scammer Learn About You in 10 Minutes?</h3>
+              <p class="ep-summary">
+                What a stranger can find out about you in 10 minutes, plus a 10-minute privacy self-audit.
+              </p>
+            </div>
+            <div class="ep-foot">
+              <span class="ep-badge-pill badge-live" style="position:static;">
+                <span class="live-pulse-dot" aria-hidden="true"></span>
+                <span>Live · 8 min</span>
+              </span>
+              <span class="ep-read-btn" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Episode 01: Deepfakes and voice cloning (Violet Accent) -->
+        <a href="article.html" class="ep-card is-published" aria-label="Read Episode 01: Can You Still Trust What You See and Hear Online?">
+          <div class="ep-svg-thumb" style="background:#F5F3FF;">
+            <span class="ep-badge-pill badge-live">
+              <span class="live-pulse-dot" aria-hidden="true"></span>
+              <span>EP 01 · Live</span>
+            </span>
+            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="280" height="155" fill="#F5F3FF"/>
+              <rect x="70" y="35" width="140" height="85" rx="12" fill="#FFFFFF" stroke="#7B5CFF" stroke-width="2"/>
+              <circle cx="140" cy="70" r="16" fill="#DDD6FE" stroke="#7B5CFF" stroke-width="1.5"/>
+              <path d="M100 102 Q140 85 180 102" stroke="#7B5CFF" stroke-width="2" fill="none"/>
+              <circle cx="140" cy="70" r="7" fill="#7B5CFF"/>
+            </svg>
+            <div class="iso-diorama-mount" data-episode="1"></div>
           </div>
           <div class="ep-body">
             <div class="ep-header-meta">
               <span class="ep-num">Episode 01</span>
-              <span class="ep-topic">Threat Intel · AI Deepfakes</span>
+              <span class="ep-topic">Deepfakes and voice cloning</span>
             </div>
             <h3 class="ep-title">Can You Still Trust What You See and Hear Online?</h3>
-            <p class="ep-summary">Voice cloning takes 3 seconds of audio. Synthetic identities are projected to cause
-              $23B in losses by 2030. When appearance can no longer be trusted, verification protocols must take over.
-            </p>
+            <p class="ep-summary">Voice cloning needs about three seconds of audio. Here's how to check what you see and hear.</p>
             <div class="ep-foot">
-              <span class="ep-status-tag published">✅ Published · 7 min</span>
-              <span class="ep-read-btn">Read Episode →</span>
+              <span>7 min</span>
+              <span class="ep-read-btn" aria-hidden="true">→</span>
             </div>
           </div>
         </a>
 
-        <!-- Episode 02: Published ✅ -->
-        <a href="article-02.html" class="ep-card is-published"
-          aria-label="Read Episode 02: Someone Has Your Email Address. Now What?">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);">
-            <iframe src="ep2-identity-recon.html?embed=card" style="width: 100%; height: 100%; border: none; display: block; pointer-events: none;" loading="lazy" title="EP 02 3D Identity Recon"></iframe>
-            <span class="ep-badge-pill" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">✅ Ep 02 · Live</span>
+        <!-- Episode 02: Your email address (Blue Accent) -->
+        <a href="article-02.html" class="ep-card is-published" aria-label="Read Episode 02: Someone Has Your Email Address. Now What?">
+          <div class="ep-svg-thumb" style="background:#EFF6FF;">
+            <span class="ep-badge-pill badge-live">
+              <span class="live-pulse-dot" aria-hidden="true"></span>
+              <span>EP 02 · Live</span>
+            </span>
+            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="280" height="155" fill="#EFF6FF"/>
+              <rect x="70" y="45" width="140" height="70" rx="10" fill="#FFFFFF" stroke="#2A52EE" stroke-width="2"/>
+              <path d="M70 54 L140 95 L210 54" stroke="#2A52EE" stroke-width="2" stroke-linecap="round" fill="none"/>
+              <circle cx="140" cy="95" r="5" fill="#38B6FF"/>
+            </svg>
+            <div class="iso-diorama-mount" data-episode="2"></div>
           </div>
           <div class="ep-body">
             <div class="ep-header-meta">
               <span class="ep-num">Episode 02</span>
-              <span class="ep-topic">Identity Recon · OSINT</span>
+              <span class="ep-topic">Your email address</span>
             </div>
             <h3 class="ep-title">Someone Has Your Email Address. Now What?</h3>
-            <p class="ep-summary">Your email address is the primary anchor of your digital footprint. What automated
-              crawlers, credential stuffing bots, and spear-phishers do once it leaks, and how to lockdown your
-              perimeter.</p>
+            <p class="ep-summary">What happens once your email address leaks, and how to lock down your accounts.</p>
             <div class="ep-foot">
-              <span class="ep-status-tag published">✅ Published · 7 min</span>
-              <span class="ep-read-btn">Read Episode →</span>
+              <span>7 min</span>
+              <span class="ep-read-btn" aria-hidden="true">→</span>
             </div>
           </div>
         </a>
 
-        <!-- Episode 03: Published ✅ -->
-        <a href="article-03.html" class="ep-card is-published"
-          aria-label="Read Episode 03: I Clicked a Phishing Link. What Should I Do?">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #FEF2F2 0%, #FFF7ED 100%);">
-            <iframe src="ep3-triage-playbook.html?embed=card" style="width: 100%; height: 100%; border: none; display: block; pointer-events: none;" loading="lazy" title="EP 03 3D Triage Playbook"></iframe>
-            <span class="ep-badge-pill" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">✅ Ep 03 ·
-              Live</span>
+        <!-- Episode 03: If you clicked a bad link (Coral Accent) -->
+        <a href="article-03.html" class="ep-card is-published" aria-label="Read Episode 03: I Clicked a Phishing Link. What Should I Do?">
+          <div class="ep-svg-thumb" style="background:#FFF1F2;">
+            <span class="ep-badge-pill badge-live">
+              <span class="live-pulse-dot" aria-hidden="true"></span>
+              <span>EP 03 · Live</span>
+            </span>
+            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="280" height="155" fill="#FFF1F2"/>
+              <circle cx="140" cy="74" r="30" fill="#FFFFFF" stroke="#FF6B5B" stroke-width="2"/>
+              <polyline points="140,56 140,74 154,74" stroke="#FF6B5B" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="140" cy="74" r="5" fill="#FF6B5B"/>
+            </svg>
+            <div class="iso-diorama-mount" data-episode="3"></div>
           </div>
           <div class="ep-body">
             <div class="ep-header-meta">
               <span class="ep-num">Episode 03</span>
-              <span class="ep-topic">Incident Response · Triage</span>
+              <span class="ep-topic">If you clicked a bad link</span>
             </div>
             <h3 class="ep-title">I Clicked a Phishing Link. What Should I Do?</h3>
-            <p class="ep-summary">Don't panic. A step-by-step 5-minute triage playbook for suspicious clicks: assessing
-              whether code executed, severing session tokens, revoking OAuth grants, and flushing credentials safely.
-            </p>
+            <p class="ep-summary">A five-minute checklist: check what ran, cut off access, and reset your logins safely.</p>
             <div class="ep-foot">
-              <span class="ep-status-tag published">✅ Published · 6 min</span>
-              <span class="ep-read-btn">Read Episode →</span>
+              <span>6 min</span>
+              <span class="ep-read-btn" aria-hidden="true">→</span>
             </div>
           </div>
         </a>
 
-        <!-- Episode 04: Published ✅ -->
-        <a href="article-04.html" class="ep-card is-published"
-          aria-label="Read Episode 04: Your Password Wasn't Hacked. Your Session Was Stolen.">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);">
-            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <circle cx="106" cy="80" r="34" fill="#FDE68A" stroke="#D97706" stroke-width="2" />
-              <circle cx="95" cy="70" r="5" fill="#92400E" />
-              <circle cx="118" cy="68" r="4.5" fill="#92400E" />
-              <circle cx="104" cy="88" r="4" fill="#92400E" />
-              <circle cx="120" cy="86" r="3.5" fill="#92400E" />
-              <circle cx="90" cy="85" r="3" fill="#92400E" />
-              <text x="106" y="124" text-anchor="middle" fill="#7C3AED" font-family="DM Sans,system-ui" font-size="8.5"
-                font-weight="700">session_token</text>
-              <path d="M142 80 Q168 80 186 64" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="4 3" />
-              <rect x="188" y="52" width="46" height="40" rx="8" fill="white" stroke="#7C3AED" stroke-width="1.8" />
-              <path d="M198 52 L198 42 Q198 32 211 32 Q224 32 224 42" stroke="#7C3AED" stroke-width="2" fill="none" />
-              <circle cx="211" cy="68" r="5" fill="#C4B5FD" />
-              <rect x="176" y="104" width="68" height="18" rx="5" fill="#EDE9FE" stroke="#8B5CF6" stroke-width="1" />
-              <text x="210" y="116" text-anchor="middle" fill="#6D28D9" font-family="DM Sans,system-ui" font-size="8"
-                font-weight="700">Session Replayed</text>
+        <!-- Episode 04: Stolen logins and sessions (Mint Accent) -->
+        <a href="article-04.html" class="ep-card is-published" aria-label="Read Episode 04: Your Password Wasn't Hacked. Your Session Was Stolen.">
+          <div class="ep-svg-thumb" style="background:#ECFDF5;">
+            <span class="ep-badge-pill badge-live">
+              <span class="live-pulse-dot" aria-hidden="true"></span>
+              <span>EP 04 · Live</span>
+            </span>
+            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="280" height="155" fill="#ECFDF5"/>
+              <circle cx="110" cy="78" r="28" fill="#FEF3C7" stroke="#D97706" stroke-width="2"/>
+              <rect x="170" y="55" width="48" height="42" rx="8" fill="#FFFFFF" stroke="#1FC48D" stroke-width="2"/>
+              <circle cx="194" cy="76" r="6" fill="#1FC48D"/>
             </svg>
-            <span class="ep-badge-pill" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">✅ Ep 04 ·
-              Live</span>
+            <div class="iso-diorama-mount" data-episode="4"></div>
           </div>
           <div class="ep-body">
             <div class="ep-header-meta">
               <span class="ep-num">Episode 04</span>
-              <span class="ep-topic">Session Hijacking · Cookie Security</span>
+              <span class="ep-topic">Stolen logins and sessions</span>
             </div>
             <h3 class="ep-title">Your Password Wasn't Hacked. Your Session Was Stolen.</h3>
-            <p class="ep-summary">You did everything right: strong password, MFA, passkeys. So why was your account
-              compromised? How attackers bypass logins by stealing authenticated sessions, and what to do next.
-            </p>
+            <p class="ep-summary">Strong password, MFA, and the account was still taken. How a stolen session skips the login.</p>
             <div class="ep-foot">
-              <span class="ep-status-tag published">✅ Published · 7 min</span>
-              <span class="ep-read-btn">Read Episode →</span>
+              <span>7 min</span>
+              <span class="ep-read-btn" aria-hidden="true">→</span>
             </div>
           </div>
         </a>
 
-        <!-- Episode 05: Published ✅ -->
-        <a href="article-05.html" class="ep-card is-published"
-          aria-label="Read Episode 05: Why the Padlock Doesn't Mean a Website Is Safe">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #ECFDF5 0%, #FEF3C7 100%);">
-            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <!-- Padlock -->
-              <rect x="68" y="60" width="52" height="44" rx="8" fill="white" stroke="#10B981" stroke-width="2.2" />
-              <path d="M78 60 L78 44 Q78 30 94 30 Q110 30 110 44 L110 60" stroke="#10B981" stroke-width="2.2"
-                fill="none" />
-              <circle cx="94" cy="78" r="6" fill="#10B981" />
-              <rect x="92" y="81" width="4" height="9" rx="2" fill="#10B981" />
-              <!-- Green HTTPS tag -->
-              <rect x="64" y="112" width="60" height="18" rx="5" fill="#D1FAE5" stroke="#10B981" stroke-width="1" />
-              <text x="94" y="124" text-anchor="middle" fill="#047857" font-family="DM Sans,system-ui" font-size="8"
-                font-weight="700">HTTPS Valid</text>
-              <!-- Magnifying glass examining spoofed URL -->
-              <circle cx="180" cy="70" r="26" fill="rgba(245,158,11,.08)" stroke="#F59E0B" stroke-width="2" />
-              <line x1="198" y1="88" x2="214" y2="104" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" />
-              <!-- Fake URL bar -->
-              <rect x="146" y="58" width="68" height="22" rx="4" fill="white" stroke="#EF4444" stroke-width="1.2" />
-              <text x="180" y="72" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="8"
-                font-weight="700">paypa1-login.com</text>
-              <text x="180" y="124" text-anchor="middle" fill="#B45309" font-family="DM Sans,system-ui" font-size="8"
-                font-weight="600">Encrypted ≠ Legitimate</text>
+        <!-- Episode 05: Fake websites (Yellow Accent) -->
+        <a href="article-05.html" class="ep-card is-published" aria-label="Read Episode 05: Why the Padlock Doesn't Mean a Website Is Safe">
+          <div class="ep-svg-thumb" style="background:#FFFBEB;">
+            <span class="ep-badge-pill badge-live">
+              <span class="live-pulse-dot" aria-hidden="true"></span>
+              <span>EP 05 · Live</span>
+            </span>
+            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="280" height="155" fill="#FFFBEB"/>
+              <rect x="75" y="60" width="48" height="42" rx="8" fill="#FFFFFF" stroke="#FFC933" stroke-width="2"/>
+              <path d="M87 60 V48 A12 12 0 0 1 111 48 V60" stroke="#FFC933" stroke-width="2" fill="none"/>
+              <circle cx="170" cy="75" r="24" stroke="#EA580C" stroke-width="2" fill="none"/>
+              <line x1="187" y1="92" x2="205" y2="110" stroke="#EA580C" stroke-width="3" stroke-linecap="round"/>
             </svg>
-            <span class="ep-badge-pill" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">✅ Ep 05 ·
-              Live</span>
+            <div class="iso-diorama-mount" data-episode="5"></div>
           </div>
           <div class="ep-body">
             <div class="ep-header-meta">
               <span class="ep-num">Episode 05</span>
-              <span class="ep-topic">Web Security · SSL/TLS Myth</span>
+              <span class="ep-topic">Fake websites</span>
             </div>
             <h3 class="ep-title">Why the Padlock Doesn't Mean a Website Is Safe</h3>
-            <p class="ep-summary">The padlock means the wire is encrypted, not that the website is trustworthy. Why over
-              80% of phishing sites use HTTPS, the armoured van analogy, and how to verify your real destination.</p>
+            <p class="ep-summary">The padlock means the connection is private, not that the site is real. How to check where you've landed.</p>
             <div class="ep-foot">
-              <span class="ep-status-tag published">✅ Published · 6 min</span>
-              <span class="ep-read-btn">Read Episode →</span>
+              <span>6 min</span>
+              <span class="ep-read-btn" aria-hidden="true">→</span>
             </div>
           </div>
         </a>
 
-        <!-- Episode 06: Published ✅ -->
-        <a href="article-06.html" class="ep-card is-published"
-          aria-label="Read Episode 06: Are Passkeys Finally Going to Kill Passwords?">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%);">
-            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <!-- Passkey hardware / FIDO2 key -->
-              <rect x="68" y="52" width="64" height="42" rx="8" fill="white" stroke="#0D9488" stroke-width="2" />
-              <rect x="52" y="62" width="16" height="22" rx="3" fill="#99F6E4" stroke="#0D9488" stroke-width="1.5" />
-              <circle cx="100" cy="73" r="10" stroke="#0D9488" stroke-width="1.5" fill="#F0FDFA" />
-              <!-- Fingerprint ridges inside key -->
-              <path d="M96 73 Q100 67 104 73" stroke="#0D9488" stroke-width="1.2" fill="none" />
-              <path d="M93 75 Q100 64 107 75" stroke="#0D9488" stroke-width="1.2" fill="none" />
-              <!-- Struck through password box -->
-              <rect x="156" y="60" width="76" height="28" rx="6" fill="white" stroke="#94A3B8" stroke-width="1.5" />
-              <text x="194" y="78" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="12"
-                font-weight="700">••••••••</text>
-              <line x1="152" y1="74" x2="236" y2="74" stroke="#EF4444" stroke-width="2.2" stroke-linecap="round" />
-              <!-- FIDO2 badge -->
-              <rect x="68" y="106" width="64" height="18" rx="5" fill="#CCFBF1" stroke="#0D9488" stroke-width="1" />
-              <text x="100" y="118" text-anchor="middle" fill="#0F766E" font-family="DM Sans,system-ui" font-size="8"
-                font-weight="700">FIDO2 / WebAuthn</text>
+        <!-- Episode 06: Passkeys and passwords (Teal Accent) -->
+        <a href="article-06.html" class="ep-card is-published" aria-label="Read Episode 06: Are Passkeys Finally Going to Kill Passwords?">
+          <div class="ep-svg-thumb" style="background:#F0FDFA;">
+            <span class="ep-badge-pill badge-live">
+              <span class="live-pulse-dot" aria-hidden="true"></span>
+              <span>EP 06 · Live</span>
+            </span>
+            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="280" height="155" fill="#F0FDFA"/>
+              <rect x="70" y="55" width="60" height="40" rx="8" fill="#FFFFFF" stroke="#0D9488" stroke-width="2"/>
+              <circle cx="100" cy="75" r="8" fill="#99F6E4"/>
+              <line x1="160" y1="75" x2="210" y2="75" stroke="#94A3B8" stroke-width="3" stroke-linecap="round"/>
+              <line x1="175" y1="62" x2="195" y2="88" stroke="#EA580C" stroke-width="2"/>
             </svg>
-            <span class="ep-badge-pill" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">✅ Ep 06 ·
-              Live</span>
+            <div class="iso-diorama-mount" data-episode="6"></div>
           </div>
           <div class="ep-body">
             <div class="ep-header-meta">
               <span class="ep-num">Episode 06</span>
-              <span class="ep-topic">Authentication · FIDO2</span>
+              <span class="ep-topic">Passkeys and passwords</span>
             </div>
             <h3 class="ep-title">Are Passkeys Finally Going to Kill Passwords?</h3>
-            <p class="ep-summary">Passkeys replace shared passwords with asymmetric public-key cryptography. How they
-              make credential phishing virtually impossible, why they don't stop session theft, and whether passwords
-              will ever truly disappear.</p>
+            <p class="ep-summary">How passkeys work, why they stop password phishing, and what they still can't stop.</p>
             <div class="ep-foot">
-              <span class="ep-status-tag published">✅ Published · 7 min</span>
-              <span class="ep-read-btn">Read Episode →</span>
+              <span>7 min</span>
+              <span class="ep-read-btn" aria-hidden="true">→</span>
             </div>
           </div>
         </a>
 
-        <!-- Episode 07: Published ✅ -->
-        <a href="article-07.html" class="ep-card is-published"
-          aria-label="Read Episode 07: The Fake Recruiter in Your LinkedIn Inbox">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);">
-            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <!-- LinkedIn speech bubble -->
-              <path
-                d="M60 40 L160 40 Q172 40 172 52 L172 90 Q172 102 160 102 L92 102 L70 118 L76 102 L60 102 Q48 102 48 90 L48 52 Q48 40 60 40 Z"
-                fill="white" stroke="#0284C7" stroke-width="2" />
-              <!-- Recruiter Avatar -->
-              <circle cx="76" cy="65" r="14" fill="#BAE6FD" />
-              <text x="76" y="70" text-anchor="middle" fill="#0369A1" font-family="DM Sans,system-ui" font-size="10"
-                font-weight="800">HR</text>
-              <rect x="100" y="58" width="54" height="6" rx="3" fill="#0284C7" />
-              <rect x="100" y="69" width="40" height="5" rx="2.5" fill="#BAE6FD" />
-              <!-- Weaponized Resume/Test Document -->
-              <rect x="178" y="48" width="54" height="70" rx="6" fill="white" stroke="#EF4444" stroke-width="1.8" />
-              <path d="M198 48 L232 72 L198 72 Z" fill="#FEE2E2" />
-              <!-- Trojan bug / gear indicator on file -->
-              <circle cx="205" cy="85" r="10" fill="#FEE2E2" />
-              <text x="205" y="89" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="9"
-                font-weight="800">exe</text>
-              <!-- LinkedIn tag -->
-              <rect x="48" y="118" width="52" height="16" rx="4" fill="#0A66C2" />
-              <text x="74" y="129" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8"
-                font-weight="700">LinkedIn Lure</text>
+        <!-- Episode 07: Job scams (Pink Accent) -->
+        <a href="article-07.html" class="ep-card is-published" aria-label="Read Episode 07: The Fake Recruiter in Your LinkedIn Inbox">
+          <div class="ep-svg-thumb" style="background:#FDF2F8;">
+            <span class="ep-badge-pill badge-live">
+              <span class="live-pulse-dot" aria-hidden="true"></span>
+              <span>EP 07 · Live</span>
+            </span>
+            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="280" height="155" fill="#FDF2F8"/>
+              <rect x="70" y="45" width="70" height="55" rx="8" fill="#FFFFFF" stroke="#DB2777" stroke-width="2"/>
+              <rect x="160" y="55" width="50" height="60" rx="6" fill="#FEE2E2" stroke="#EA580C" stroke-width="1.8"/>
+              <circle cx="185" cy="85" r="8" fill="#EA580C"/>
             </svg>
-            <span class="ep-badge-pill" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">✅ Ep 07 ·
-              Live</span>
+            <div class="iso-diorama-mount" data-episode="7"></div>
           </div>
           <div class="ep-body">
             <div class="ep-header-meta">
               <span class="ep-num">Episode 07</span>
-              <span class="ep-topic">Social Engineering · Job Scams</span>
+              <span class="ep-topic">Job scams</span>
             </div>
             <h3 class="ep-title">The Fake Recruiter in Your LinkedIn Inbox</h3>
-            <p class="ep-summary">State-sponsored actors and financial cybercrime syndicates target tech professionals
-              with fake interviews, weaponized coding assignments, and backdoored npm/git repositories.</p>
+            <p class="ep-summary">Fake interviews and booby-trapped coding tasks aimed at tech professionals.</p>
             <div class="ep-foot">
-              <span class="ep-status-tag published">✅ Published · 8 min</span>
-              <span class="ep-read-btn">Read Episode →</span>
+              <span>8 min</span>
+              <span class="ep-read-btn" aria-hidden="true">→</span>
             </div>
           </div>
         </a>
 
-        <!-- Episode 08: Published ✅ -->
-        <a href="article-08.html" class="ep-card is-published"
-          aria-label="Read Episode 08: How Much Can a Scammer Learn About You in 10 Minutes?">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);">
-            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <!-- 10 min stopwatch -->
-              <circle cx="96" cy="78" r="32" fill="white" stroke="#F59E0B" stroke-width="2.2" />
-              <circle cx="96" cy="78" r="22" stroke="#FDE68A" stroke-width="1.5" />
-              <line x1="96" y1="46" x2="96" y2="40" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" />
-              <polyline points="96,62 96,78 108,78" stroke="#D97706" stroke-width="2.2" stroke-linecap="round" />
-              <text x="96" y="93" text-anchor="middle" fill="#B45309" font-family="DM Sans,system-ui" font-size="8"
-                font-weight="700">10 MIN</text>
-              <!-- Target profile nodes -->
-              <line x1="128" y1="65" x2="162" y2="52" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 2" />
-              <line x1="128" y1="78" x2="162" y2="78" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 2" />
-              <line x1="128" y1="91" x2="162" y2="104" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="3 2" />
-              <rect x="162" y="44" width="58" height="16" rx="5" fill="white" stroke="#F59E0B" stroke-width="1.2" />
-              <text x="191" y="55" text-anchor="middle" fill="#92400E" font-family="DM Sans,system-ui" font-size="7.5"
-                font-weight="700">📍 Geo Location</text>
-              <rect x="162" y="70" width="58" height="16" rx="5" fill="white" stroke="#F59E0B" stroke-width="1.2" />
-              <text x="191" y="81" text-anchor="middle" fill="#92400E" font-family="DM Sans,system-ui" font-size="7.5"
-                font-weight="700">🏢 Employer Tree</text>
-              <rect x="162" y="96" width="58" height="16" rx="5" fill="white" stroke="#F59E0B" stroke-width="1.2" />
-              <text x="191" y="107" text-anchor="middle" fill="#92400E" font-family="DM Sans,system-ui" font-size="7.5"
-                font-weight="700">📞 Breach Combolist</text>
+        <!-- Episode 09: Phone scams (Slate-Blue Accent, Coming soon, Next up) -->
+        <div class="ep-card ep-card-upcoming" aria-label="Episode 09: Coming soon">
+          <div class="ep-svg-thumb" style="background:#F1F5F9;">
+            <span class="ep-badge-pill badge-upcoming">Next up · EP 09</span>
+            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="280" height="155" fill="#F1F5F9"/>
+              <rect x="95" y="40" width="55" height="85" rx="8" fill="#FFFFFF" stroke="#475569" stroke-width="2"/>
+              <circle cx="180" cy="75" r="20" stroke="#475569" stroke-width="1.5" stroke-dasharray="3 3" fill="none"/>
             </svg>
-            <span class="ep-badge-pill" style="background:#DCFCE7;color:#15803D;border-color:#BBF7D0;">✅ Ep 08 ·
-              Live</span>
-          </div>
-          <div class="ep-body">
-            <div class="ep-header-meta">
-              <span class="ep-num">Episode 08</span>
-              <span class="ep-topic">Online Privacy · OSINT</span>
-            </div>
-            <h3 class="ep-title">How Much Can a Scammer Learn About You in 10 Minutes?</h3>
-            <p class="ep-summary">A stranger knows where you work, who your friends are, and where you spent your weekend — without hacking your phone. How OSINT and digital footprints enable precision social engineering, plus a 10-minute privacy self-audit.</p>
-            <div class="ep-foot">
-              <span class="ep-status-tag published">✅ Published · 8 min</span>
-              <span class="ep-read-btn">Read Episode →</span>
-            </div>
-          </div>
-        </a>
-
-        <!-- Episode 09 -->
-        <div class="ep-card">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%);">
-            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <!-- Smartphone -->
-              <rect x="85" y="32" width="60" height="96" rx="10" fill="white" stroke="#E11D48" stroke-width="2" />
-              <circle cx="115" cy="40" r="2.5" fill="#94A3B8" />
-              <rect x="94" y="48" width="42" height="64" rx="5" fill="#FFF1F2" />
-              <!-- Caller ID text -->
-              <text x="115" y="64" text-anchor="middle" fill="#BE123C" font-family="DM Sans,system-ui" font-size="7"
-                font-weight="800">BANK FRAUD</text>
-              <text x="115" y="73" text-anchor="middle" fill="#881337" font-family="DM Sans,system-ui"
-                font-size="6">Incoming Call…</text>
-              <!-- Call buttons -->
-              <circle cx="104" cy="98" r="6" fill="#10B981" />
-              <circle cx="126" cy="98" r="6" fill="#EF4444" />
-              <!-- Sound rings -->
-              <path d="M62 60 Q52 78 62 96" stroke="#E11D48" stroke-width="1.8" stroke-linecap="round" fill="none" />
-              <path d="M52 52 Q38 78 52 104" stroke="#E11D48" stroke-width="1.4" stroke-linecap="round" fill="none"
-                opacity=".5" />
-              <!-- Spoof alert badge -->
-              <circle cx="188" cy="74" r="24" fill="white" stroke="#E11D48" stroke-width="1.8" />
-              <path d="M188 60 L198 80 L178 80 Z" fill="#E11D48" />
-              <text x="188" y="76" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="10"
-                font-weight="800">!</text>
-              <text x="188" y="112" text-anchor="middle" fill="#BE123C" font-family="DM Sans,system-ui" font-size="8"
-                font-weight="700">Spoofed Caller ID</text>
-            </svg>
-            <span class="ep-badge-pill">Episode 09</span>
+            <div class="iso-diorama-mount" data-episode="9"></div>
           </div>
           <div class="ep-body">
             <div class="ep-header-meta">
               <span class="ep-num">Episode 09</span>
-              <span class="ep-topic">Vishing · Caller ID Spoofing</span>
+              <span class="ep-topic">Phone scams</span>
             </div>
             <h3 class="ep-title">Your Bank Is Calling. Or Is It?</h3>
-            <p class="ep-summary">Caller ID spoofing meets panic-inducing scripts and conversational AI audio. Inside
-              the mechanics of modern vishing rings that bypass fraud systems by coercing real-time victim action.</p>
+            <p class="ep-summary">How scammers fake caller ID and use panic to get you to act during a call.</p>
             <div class="ep-foot">
-              <span class="ep-status-tag upcoming">Coming Soon</span>
-              <span>Voice Social Engineering</span>
+              <span>Coming soon</span>
+              <span class="badge-upcoming" style="padding:2px 8px;border-radius:9999px;">Next up</span>
             </div>
           </div>
         </div>
 
-        <!-- Episode 10 -->
-        <div class="ep-card">
-          <div class="ep-svg-thumb" style="background: linear-gradient(135deg, #F8FAFC 0%, #E2E8F0 100%);">
-            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <!-- Database cylinder -->
-              <ellipse cx="92" cy="48" rx="30" ry="12" fill="#E2E8F0" stroke="#475569" stroke-width="1.8" />
-              <path d="M62 48 L62 96 Q92 108 122 96 L122 48" fill="white" stroke="#475569" stroke-width="1.8" />
-              <ellipse cx="92" cy="72" rx="30" ry="10" fill="none" stroke="#94A3B8" stroke-width="1.2"
-                stroke-dasharray="3 2" />
-              <ellipse cx="92" cy="96" rx="30" ry="10" fill="none" stroke="#475569" stroke-width="1.8" />
-              <!-- Exfiltration crack -->
-              <path d="M86 64 L96 76 L90 88" stroke="#EF4444" stroke-width="2" stroke-linecap="round" />
-              <!-- Dark web nodes & telegram broker flow -->
-              <path d="M122 72 Q150 72 170 82" stroke="#EF4444" stroke-width="1.5" stroke-dasharray="3 2" />
-              <rect x="170" y="64" width="68" height="42" rx="6" fill="#1E293B" stroke="#0F172A" stroke-width="1.5" />
-              <text x="204" y="80" text-anchor="middle" fill="#38BDF8" font-family="DM Sans,system-ui" font-size="8"
-                font-weight="700">Dark Web Auction</text>
-              <text x="204" y="93" text-anchor="middle" fill="#94A3B8" font-family="DM Sans,system-ui"
-                font-size="7.5">Combolists · $250</text>
-              <circle cx="140" cy="116" r="3" fill="#EF4444" />
-              <circle cx="150" cy="120" r="2.5" fill="#EF4444" opacity=".6" />
-              <circle cx="160" cy="122" r="2" fill="#EF4444" opacity=".3" />
+        <!-- Episode 10: Data breaches (Navy Accent, Coming soon, Series finale) -->
+        <div class="ep-card ep-card-upcoming" aria-label="Episode 10: Coming soon">
+          <div class="ep-svg-thumb" style="background:#F8FAFC;">
+            <span class="ep-badge-pill badge-upcoming">Series finale · EP 10</span>
+            <svg viewBox="0 0 280 155" width="280" height="155" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <rect width="280" height="155" fill="#F8FAFC"/>
+              <ellipse cx="100" cy="60" rx="30" ry="12" fill="#E2E8F0" stroke="#1E293B" stroke-width="2"/>
+              <path d="M70 60 L70 100 Q100 112 130 100 L130 60" fill="#FFFFFF" stroke="#1E293B" stroke-width="2"/>
+              <line x1="160" y1="80" x2="200" y2="80" stroke="#EA580C" stroke-width="2" stroke-dasharray="4 4"/>
             </svg>
-            <span class="ep-badge-pill">Episode 10</span>
+            <div class="iso-diorama-mount" data-episode="10"></div>
           </div>
           <div class="ep-body">
             <div class="ep-header-meta">
               <span class="ep-num">Episode 10</span>
-              <span class="ep-topic">Breach Lifecycle · Dark Web</span>
+              <span class="ep-topic">Data breaches</span>
             </div>
             <h3 class="ep-title">What Happens to Your Information After a Data Breach?</h3>
-            <p class="ep-summary">The forensic afterlife of stolen records: from initial ransomware exfiltration to
-              Telegram broker auctions, combolist aggregation, credential stuffing, and synthetic identity fraud.</p>
+            <p class="ep-summary">Where stolen records go after a breach, and how they end up used against you.</p>
             <div class="ep-foot">
-              <span class="ep-status-tag upcoming">Coming Soon</span>
-              <span>Series Finale</span>
+              <span>Coming soon</span>
+              <span class="badge-upcoming" style="padding:2px 8px;border-radius:9999px;">Series finale</span>
             </div>
           </div>
         </div>
 
-      </div><!-- /series-grid -->
+      </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- BEHIND THE BREACH INVESTIGATIVE SERIES SECTION -->
-  <section class="series-section" id="behind-the-breach" style="background:#FEF2F2;border-top:1px solid #FECACA;border-bottom:1px solid #FECACA;padding:64px 0;">
-    <div class="wrap">
-
-      <!-- Series Hero Banner Card -->
-      <div class="series-hero-card" style="background:linear-gradient(135deg,#991B1B 0%,#7F1D1D 100%);color:white;border-color:#DC2626;">
-        <div class="series-badge" style="background:rgba(255,255,255,.15);color:#FEE2E2;border-color:rgba(255,255,255,.25);">
-          <span class="pulse-dot" style="background:#EF4444;"></span>
-          Investigative Threat Autopsy Series · New Launch
-        </div>
-        <h2 class="series-title" style="color:white;">Behind the Breach</h2>
-        <p class="series-desc" style="color:#FEE2E2;font-size:1.05rem;">
-          <strong>You saw the headline. Here’s what actually happened.</strong><br>
-          We investigate very recent, high-interest cybersecurity incidents. Each article breaks down what actually occurred in clear language, dissects the technical attack path, separates verified facts from claims, and explains what security teams and everyday people must learn from it.
+    <!-- 5. BEHIND THE BREACH: DARK ROUNDED PANEL (#0F1740) -->
+    <section class="btb-panel" id="behind-the-breach" aria-labelledby="btb-heading">
+      <div class="btb-header">
+        <div class="btb-tag">Investigative threat autopsies</div>
+        <h2 class="btb-title" id="btb-heading">Behind the Breach</h2>
+        <p class="btb-desc">
+          You saw the headline. Here's what actually happened: how each attack worked, what's confirmed and what's only claimed, and what everyone can learn from it.
         </p>
-
-        <!-- Series Status -->
-        <div class="series-tracker" style="background:rgba(0,0,0,.25);border-color:rgba(255,255,255,.15);">
-          <div class="series-tracker-top">
-            <span style="color:#FEE2E2;">Investigation Status: <strong style="color:white;">Cases 01 &amp; 02 Live Now ✅</strong></span>
-            <span class="stat" style="color:#FEF08A;">Fresh Field Intel · October 2026</span>
-          </div>
-        </div>
       </div>
 
-      <!-- Feature Grid: Behind the Breach Episodes -->
-      <div style="margin-top:32px;display:flex;flex-direction:column;gap:24px;">
-
-        <!-- Feature Card: ASOS Data Breach (Episode 02) -->
-        <a href="behind-the-breach-02.html" class="feat-card" style="border:1.5px solid #FCA5A5;box-shadow:var(--sh-md);"
-          aria-label="Read: ASOS Data Breach: How One Stolen Employee Login Opened the Door to Customer Data">
-          <div class="feat-body">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
-              <span class="feat-chip" style="background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;">Episode 02 · Retail &amp; E-commerce</span>
-              <span class="feat-chip" style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;">Social Engineering · Stolen Credentials · 3rd-Party SaaS</span>
-              <span class="feat-chip" style="background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;"><span class="news-pulse-dot" style="display:inline-block;width:6px;height:6px;margin-right:3px;vertical-align:middle;"></span>Live Feed Active</span>
+      <div class="btb-grid">
+        <!-- Case 01: Manchester Airports Group -->
+        <article class="btb-card" aria-label="Read Manchester Airports Group data breach investigation">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <span class="bento-badge" style="background:rgba(239,68,68,0.25);color:#FCA5A5;">Case 01 · Aviation</span>
+              <span class="bento-badge" style="background:rgba(59,130,246,0.25);color:#93C5FD;">Client-side JavaScript</span>
             </div>
-            <h2 class="feat-h2" style="color:var(--ink);">ASOS Data Breach: How One Stolen Employee Login Opened the Door to Customer Data</h2>
-            <p class="feat-deck">
-              An attacker impersonated a trusted contact to persuade an employee to share their login. Those credentials unlocked third-party platforms holding customer names and contact details. Here is what happened, the security implications, and how a SOC investigates.
+            <h3 class="btb-card-title">Manchester Airports Group Data Breach: What Actually Happened, and Why It Matters</h3>
+            <p class="btb-card-deck">
+              Server-side API keys in client-side JavaScript exposed for four years, affecting 8.8 million customers.
             </p>
-            <div class="feat-meta">
-              <div class="feat-av" style="background:#DC2626;">PS</div>
-              <div>
-                <div class="feat-aname">Poorna Sujampathi Rathnayaka</div>
-                <div class="feat-adate">Episode 02 · 9 min read · Published ✅</div>
+            <!-- Numbered Attack Path revealing step by step -->
+            <div class="attack-path">
+              <div class="path-step">
+                <span class="step-num">1</span>
+                <span>Server-side API key hardcoded into front-end production JavaScript</span>
               </div>
-              <span class="feat-cta" style="background:#DC2626;color:white;">Read Investigation <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.5">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg></span>
+              <div class="path-step">
+                <span class="step-num">2</span>
+                <span>Exposed unmonitored for four consecutive years</span>
+              </div>
+              <div class="path-step">
+                <span class="step-num">3</span>
+                <span>8.8 million customer records affected and accessible without authentication</span>
+              </div>
             </div>
           </div>
+          <a href="behind-the-breach-01.html" class="btb-read-btn">Read investigation →</a>
+        </article>
 
-          <!-- Feature SVG: Impersonation to SaaS Records -->
-          <div class="feat-svg" style="background:linear-gradient(135deg,#FEF2F2 0%,#FEE2E2 100%);">
-            <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <circle cx="160" cy="120" r="85" fill="#FECACA" opacity=".4" />
-              <!-- Impersonator / Stolen Login Box -->
-              <rect x="35" y="55" width="110" height="130" rx="10" fill="white" stroke="#DC2626" stroke-width="2" />
-              <rect x="35" y="55" width="110" height="26" rx="10" fill="#DC2626" />
-              <text x="90" y="72" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">STOLEN LOGIN</text>
-              <circle cx="90" cy="108" r="16" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5" />
-              <text x="90" y="112" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="12" font-weight="800">🔑</text>
-              <rect x="45" y="138" width="90" height="18" rx="4" fill="#1E293B" />
-              <text x="90" y="150" text-anchor="middle" fill="#38BDF8" font-family="monospace" font-size="7" font-weight="700">T1078 Valid Account</text>
-              <text x="90" y="172" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="7" font-weight="800">Impersonation Lure</text>
-
-              <!-- Connection Arrow -->
-              <path d="M148 120 L175 120" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="4 3" />
-              <polygon points="175,120 167,115 167,125" fill="#DC2626" />
-
-              <!-- Third Party Cloud Box -->
-              <rect x="175" y="55" width="110" height="130" rx="10" fill="white" stroke="#2563EB" stroke-width="2" />
-              <rect x="175" y="55" width="110" height="26" rx="10" fill="#2563EB" />
-              <text x="230" y="72" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">3RD-PARTY SAAS</text>
-              <circle cx="230" cy="108" r="18" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5" />
-              <text x="230" y="106" text-anchor="middle" fill="#1D4ED8" font-family="DM Sans,system-ui" font-size="9" font-weight="800">DATA</text>
-              <text x="230" y="117" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="6.5" font-weight="700">EXPOSED</text>
-              <rect x="185" y="138" width="90" height="18" rx="4" fill="#FEE2E2" stroke="#EF4444" stroke-width="1" />
-              <text x="230" y="150" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="7" font-weight="700">Names &amp; Contacts</text>
-              <text x="230" y="172" text-anchor="middle" fill="#16A34A" font-family="DM Sans,system-ui" font-size="7" font-weight="800">Cards/Passwords Safe</text>
-            </svg>
-          </div>
-        </a>
-
-        <!-- Feature Card: Manchester Airports Group Breach (Episode 01) -->
-        <a href="behind-the-breach-01.html" class="feat-card" style="border:1.5px solid #FCA5A5;box-shadow:var(--sh-md);"
-          aria-label="Read: Manchester Airports Group Data Breach: What Actually Happened, and Why It Matters">
-          <div class="feat-body">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap;">
-              <span class="feat-chip" style="background:#FEF2F2;color:#DC2626;border:1px solid #FCA5A5;">Episode 01 · Aviation &amp; Transport</span>
-              <span class="feat-chip" style="background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;">Exposed API Keys in JavaScript · 4-Year Exposure</span>
+        <!-- Case 02: ASOS Data Breach -->
+        <article class="btb-card" aria-label="Read ASOS data breach investigation">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+              <span class="bento-badge" style="background:rgba(239,68,68,0.25);color:#FCA5A5;">Case 02 · E-Commerce</span>
+              <span class="bento-badge" style="background:rgba(59,130,246,0.25);color:#93C5FD;">Social engineering</span>
             </div>
-            <h2 class="feat-h2" style="color:var(--ink);">Manchester Airports Group Data Breach: What Actually Happened, and Why It Matters</h2>
-            <p class="feat-deck">
-              No flights were cancelled. No radar systems failed. But 8.8 million customers had parking, lounge, and vehicle registration data exposed because server-side API keys sat in client-side JavaScript for four years. Here is the technical autopsy.
+            <h3 class="btb-card-title">ASOS Data Breach: How One Stolen Employee Login Opened the Door to Customer Data</h3>
+            <p class="btb-card-deck">
+              Attacker impersonates a trusted contact, employee shares login, third-party platforms open up, names and contact details exposed (cards and passwords were not).
             </p>
-            <div class="feat-meta">
-              <div class="feat-av" style="background:#DC2626;">PS</div>
-              <div>
-                <div class="feat-aname">Poorna Sujampathi Rathnayaka</div>
-                <div class="feat-adate">Episode 01 · 9 min read · Published ✅</div>
+            <!-- Numbered Attack Path revealing step by step -->
+            <div class="attack-path">
+              <div class="path-step">
+                <span class="step-num">1</span>
+                <span>Attacker impersonates a trusted contact via voice phishing</span>
               </div>
-              <span class="feat-cta" style="background:#DC2626;color:white;">Read Investigation <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.5">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg></span>
+              <div class="path-step">
+                <span class="step-num">2</span>
+                <span>Employee shares login credentials (MITRE T1078)</span>
+              </div>
+              <div class="path-step">
+                <span class="step-num">3</span>
+                <span>Third-party customer service SaaS platforms open up</span>
+              </div>
+              <div class="path-step">
+                <span class="step-num">4</span>
+                <span>Names and contact details exposed; payment cards and passwords were not</span>
+              </div>
             </div>
           </div>
-
-          <!-- Feature SVG: Airport API Key Delivery -->
-          <div class="feat-svg" style="background:linear-gradient(135deg,#FEF2F2 0%,#FEE2E2 100%);">
-            <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true">
-              <circle cx="160" cy="120" r="85" fill="#FECACA" opacity=".4" />
-              <rect x="90" y="45" width="140" height="150" rx="12" fill="white" stroke="#DC2626" stroke-width="2.2" />
-              <rect x="90" y="45" width="140" height="32" rx="12" fill="#DC2626" />
-              <text x="160" y="66" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="10"
-                font-weight="800">AIRPORT JAVASCRIPT</text>
-              <circle cx="160" cy="115" r="26" fill="#FEF2F2" stroke="#DC2626" stroke-width="1.8" />
-              <text x="160" y="112" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="12"
-                font-weight="800">8.8M</text>
-              <text x="160" y="124" text-anchor="middle" fill="#64748B" font-family="DM Sans,system-ui" font-size="8"
-                font-weight="700">AFFECTED</text>
-              <!-- API Key in JS badge -->
-              <rect x="98" y="155" width="124" height="22" rx="6" fill="#FEE2E2" stroke="#EF4444" stroke-width="1.2" />
-              <text x="160" y="169" text-anchor="middle" fill="#B91C1C" font-family="DM Sans,system-ui" font-size="7.5"
-                font-weight="700">Iterable Key in JS (4 Yrs)</text>
-            </svg>
-          </div>
-        </a>
-
+          <a href="behind-the-breach-02.html" class="btb-read-btn">Read investigation →</a>
+        </article>
       </div>
+    </section>
 
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="about-strip" id="about">
-    <div class="wrap">
+    <!-- 6. ABOUT THE AUTHOR -->
+    <section class="about-strip" id="about" aria-labelledby="about-heading">
       <div class="about-in">
-        <div class="about-av">PS</div>
+        <div class="about-av" data-cms="author-initials" aria-hidden="true">PS</div>
         <div class="about-info">
-          <h2 class="about-title">Poorna Sujampathi Rathnayaka</h2>
-          <p class="about-desc">I started this blog because everywhere online people only talk about cybersecurity in
-            technical terms — and most people are left with no real idea of how the digital world actually works. This
-            is my attempt to fix that. I work in cybersecurity, but I write here for everyone.</p>
+          <h2 class="about-title" id="about-heading" data-cms="author-name">Written by Poorna Sujampathi Rathnayaka</h2>
+          <p class="about-desc" data-cms="author-bio">
+            "I started this blog because everywhere online people only talk about cybersecurity in technical terms, and most people are left with no real idea of how the digital world actually works. This is my attempt to fix that. I work in cybersecurity, but I write here for everyone."
+          </p>
         </div>
         <div class="about-btns">
-          <a href="https://sujampathirathnayaka.com/" class="about-btn w" target="_blank" rel="noopener noreferrer">🌐
-            Portfolio</a>
+          <a href="https://sujampathirathnayaka.com/" class="about-btn w" target="_blank" rel="noopener noreferrer">
+            <span>🌐</span> Portfolio
+          </a>
           <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" class="about-btn li" target="_blank" rel="noopener noreferrer">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
               <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
               <rect x="2" y="9" width="4" height="12" />
               <circle cx="4" cy="4" r="2" />
@@ -803,25 +784,38 @@
           </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
+    <!-- 7. BAND: BLUE ROUNDED PANEL + YELLOW BUTTON -->
+    <section class="suggest-band" id="suggest" aria-labelledby="suggest-heading">
+      <div class="suggest-text">
+        <h2 id="suggest-heading" style="font-size:1.65rem;font-weight:800;color:#FFFFFF;margin-bottom:8px;">
+          Something confusing, or a topic you want explained?
+        </h2>
+        <p>Tell me what to explain next.</p>
+      </div>
+      <a href="mailto:sujampathirathnayaka@gmail.com?subject=Topic%20Suggestion%20for%20Cyber%20Insight" class="btn-yellow-pill">
+        Suggest a topic ✉️
+      </a>
+    </section>
+
+  </main>
+
+  <!-- 8. FOOTER: BRAND, 3 LINK COLUMNS, EDUCATIONAL DISCLAIMER & COPYRIGHT 2026 -->
   <footer class="site-footer">
     <div class="wrap">
       <div class="foot-top">
         <div class="foot-brand-col">
           <a href="index.html" class="foot-brand">
-            <div class="foot-brand-mark">CI</div>
+            <div class="foot-brand-mark" aria-hidden="true">CI</div>
             <span class="foot-brand-text">Cyber Insight</span>
           </a>
           <p class="foot-desc">
-            An independent research publication cutting through technical jargon to deliver clarity on identity threats,
-            voice cloning, Adversary-in-the-Middle attacks, and digital literacy for everyone.
+            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, and digital literacy for everyone.
           </p>
           <div style="display:flex;align-items:center;gap:10px;">
             <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                 <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
               </svg>
               RFC 9116 Security Policy
@@ -830,31 +824,39 @@
         </div>
 
         <div class="foot-nav-cols">
+          <!-- Column 1: Episodes -->
           <div>
-            <div class="foot-col-title">Editorial Series</div>
+            <div class="foot-col-title">Episodes</div>
             <ul class="foot-nav-list">
-              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
-              <li><a href="article-02.html">Ep 02: Email OSINT &amp; Perimeter Defense</a></li>
-              <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
-              <li><a href="article-04.html">Ep 04: Session Theft &amp; Cookie Hijacking</a></li>
-              <li><a href="article-05.html">Ep 05: The Padlock Myth &amp; TLS Security</a></li>
-              <li><a href="article-06.html">Ep 06: Passkeys vs. Passwords &amp; FIDO2</a></li>
-              <li><a href="article-07.html">Ep 07: Fake Recruiters &amp; Trojan Assessments</a></li>
-              <li><a href="article-08.html">Ep 08: OSINT &amp; 10-Minute Scammer Recon</a></li>
-              <li><a href="behind-the-breach-01.html">Behind the Breach Ep 01: Manchester Airports Group</a></li>
-              <li><a href="behind-the-breach-02.html">Behind the Breach Ep 02: ASOS Customer Data Breach</a></li>
-              <li><a href="#series">View 10-Part Curriculum</a></li>
-              <li><a href="article-08.html#feedback">Submit Reader Feedback</a></li>
+              <li><a href="article.html">Ep 01: Deepfakes and Voice Cloning</a></li>
+              <li><a href="article-02.html">Ep 02: Your Email Address</a></li>
+              <li><a href="article-03.html">Ep 03: If You Clicked a Bad Link</a></li>
+              <li><a href="article-04.html">Ep 04: Stolen Logins and Sessions</a></li>
+              <li><a href="article-05.html">Ep 05: Fake Websites</a></li>
+              <li><a href="article-06.html">Ep 06: Passkeys and Passwords</a></li>
+              <li><a href="article-07.html">Ep 07: Job Scams</a></li>
+              <li><a href="article-08.html">Ep 08: Your Online Footprint</a></li>
             </ul>
           </div>
+
+          <!-- Column 2: Investigations -->
           <div>
-            <div class="foot-col-title">Author & Contact</div>
+            <div class="foot-col-title">Investigations</div>
             <ul class="foot-nav-list">
-              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Portfolio ↗</a>
-              </li>
-              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank"
-                  rel="noopener noreferrer">LinkedIn Profile ↗</a></li>
+              <li><a href="behind-the-breach-01.html">Manchester Airports Group Breach</a></li>
+              <li><a href="behind-the-breach-02.html">ASOS Customer Data Breach</a></li>
+              <li><a href="#series">10-Part Curriculum</a></li>
+              <li><a href="article-08.html#feedback">Submit Feedback</a></li>
+            </ul>
+          </div>
+
+          <!-- Column 3: About & Connect -->
+          <div>
+            <div class="foot-col-title">About &amp; Connect</div>
+            <ul class="foot-nav-list">
               <li><a href="#about">About the Author</a></li>
+              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Portfolio ↗</a></li>
+              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></li>
               <li><a href="mailto:sujampathirathnayaka@gmail.com">Contact Editorial Desk</a></li>
             </ul>
           </div>
@@ -863,11 +865,7 @@
 
       <!-- Legal & Research Disclaimer -->
       <div class="foot-disclaimer">
-        <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is authored by Poorna
-        Sujampathi Rathnayaka for non-commercial educational, threat awareness, and digital literacy purposes. All
-        third-party trademarks, company names, CVE IDs, and security advisories referenced are the property of their
-        respective copyright holders. Fair use citations for educational security awareness are permitted with direct
-        attribution and canonical link.
+        <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is authored by Poorna Sujampathi Rathnayaka for non-commercial educational, threat awareness, and digital literacy purposes. All third-party trademarks, company names, CVE IDs, and security advisories referenced are the property of their respective copyright holders.
       </div>
 
       <div class="foot-bottom">
@@ -879,17 +877,214 @@
           <span>·</span>
           <a href="#about">Ethics &amp; Methodology</a>
           <span>·</span>
-          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
+          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Poorna Sujampathi</a>
         </div>
       </div>
     </div>
   </footer>
 
   <div id="google_translate_element"></div>
+
+  <!-- SCRIPTS -->
   <script src="js/cms.js?v=14"></script>
   <script src="js/app.js?v=14"></script>
   <script src="js/translator.js?v=14"></script>
+  <script src="js/three.min.js"></script>
+  <script src="js/iso-scenes.js"></script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- INTERACTIVE LOGIC & ACCESSIBILITY SCRIPTS -->
+  <script>
+    (function () {
+      'use strict';
+
+      // 1. Header Spec: ZERO animation, instant jump when header links are clicked
+      document.querySelectorAll('.navbar a').forEach(function (link) {
+        link.addEventListener('click', function () {
+          document.documentElement.style.scrollBehavior = 'auto';
+          setTimeout(function () {
+            document.documentElement.style.scrollBehavior = '';
+          }, 150);
+        });
+      });
+
+      // 2. Translate button trigger
+      var navTransBtn = document.getElementById('navTranslateBtn');
+      if (navTransBtn) {
+        navTransBtn.addEventListener('click', function () {
+          if (window.CITranslator && typeof window.CITranslator.openModal === 'function') {
+            window.CITranslator.openModal();
+          } else {
+            var fl = document.getElementById('ciFloatingTranslateBtn');
+            if (fl) fl.click();
+          }
+        });
+      }
+
+      // 3. Count-up numbers for Hero Trust Strip
+      var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var trustStrip = document.querySelector('.hero-trust-strip');
+      if (trustStrip && !prefersReduced && 'IntersectionObserver' in window) {
+        var counted = false;
+        var countObs = new IntersectionObserver(function (entries) {
+          if (entries[0] && entries[0].isIntersecting && !counted) {
+            counted = true;
+            document.querySelectorAll('.count-num').forEach(function (el) {
+              var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+              var start = performance.now();
+              var duration = 1200;
+              function updateCount(now) {
+                var progress = Math.min((now - start) / duration, 1);
+                var ease = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.round(target * ease);
+                if (progress < 1) {
+                  requestAnimationFrame(updateCount);
+                } else {
+                  el.textContent = target;
+                }
+              }
+              requestAnimationFrame(updateCount);
+            });
+            countObs.disconnect();
+          }
+        }, { threshold: 0.2 });
+        countObs.observe(trustStrip);
+      }
+
+      // 4. Scam Text Analyst Simulator
+      var scamBtn = document.getElementById('scamToggleBtn');
+      var scamWidget = document.getElementById('scamSimWidget');
+      var scamLabel = document.getElementById('scamBtnLabel');
+      if (scamBtn && scamWidget) {
+        scamBtn.addEventListener('click', function () {
+          var isActive = scamWidget.classList.toggle('scam-active');
+          scamBtn.setAttribute('aria-checked', String(isActive));
+          if (scamLabel) {
+            scamLabel.textContent = isActive ? "Hide what's really happening" : "Show what's really happening";
+          }
+        });
+      }
+
+      // 5. User Reading Progress Tracker (Endowed progress, Zeigarnik effect & Visited Checks)
+      function updateReadingProgress() {
+        var visited = [];
+        try {
+          var raw = localStorage.getItem('ci_visited_episodes');
+          if (raw) visited = JSON.parse(raw);
+        } catch (_) {}
+        if (!Array.isArray(visited)) visited = [];
+
+        var count = Math.min(visited.length, 8);
+        var remaining = 8 - count;
+        var pct = Math.round((count / 8) * 100);
+
+        var summaryEl = document.getElementById('userReadingSummary');
+        var remainingEl = document.getElementById('userRemainingCount');
+        var fillEl = document.getElementById('userProgressFill');
+
+        if (summaryEl) summaryEl.textContent = count + ' of 8 visited';
+        if (remainingEl) {
+          if (count === 8) {
+            remainingEl.textContent = '🎉 All 8 completed! You are 100% fortified';
+          } else if (count > 0) {
+            remainingEl.textContent = remaining + " to go. You're " + pct + "% of the way there";
+          } else {
+            remainingEl.textContent = "8 to go. You're 0% of the way there";
+          }
+        }
+        if (fillEl) {
+          fillEl.style.width = pct + '%';
+        }
+
+        // Update card badges to mint "Visited" check icon
+        document.querySelectorAll('.ep-card.is-published').forEach(function (card) {
+          var href = card.getAttribute('href') || '';
+          var match = href.match(/article(?:-0?(\d+))?\.html/);
+          if (match) {
+            var epNum = parseInt(match[1] || '1', 10);
+            if (visited.includes(epNum)) {
+              var badgePill = card.querySelector('.badge-live');
+              if (badgePill && !badgePill.classList.contains('badge-visited')) {
+                badgePill.className = 'badge-visited';
+                badgePill.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> <span>Visited</span>';
+              }
+            }
+          }
+        });
+      }
+
+      // 6. Record episode visit on click
+      document.querySelectorAll('.ep-card.is-published').forEach(function (card) {
+        card.addEventListener('click', function () {
+          var href = card.getAttribute('href') || '';
+          var match = href.match(/article(?:-0?(\d+))?\.html/);
+          if (match) {
+            var epNum = parseInt(match[1] || '1', 10);
+            try {
+              var visited = JSON.parse(localStorage.getItem('ci_visited_episodes') || '[]');
+              if (!visited.includes(epNum)) {
+                visited.push(epNum);
+                localStorage.setItem('ci_visited_episodes', JSON.stringify(visited));
+              }
+            } catch (_) {}
+          }
+        });
+      });
+
+      // 7. Filter Pills Pop Animation
+      var tabs = document.querySelectorAll('.series-tab-btn');
+      var cards = document.querySelectorAll('.ep-card');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+            t.setAttribute('aria-pressed', 'false');
+          });
+          tab.classList.add('active');
+          tab.setAttribute('aria-selected', 'true');
+          tab.setAttribute('aria-pressed', 'true');
+
+          var filter = tab.getAttribute('data-filter');
+          cards.forEach(function (card) {
+            var isPublished = card.classList.contains('is-published');
+            var show = (filter === 'all') || (filter === 'published' && isPublished) || (filter === 'upcoming' && !isPublished);
+            if (show) {
+              card.style.display = 'flex';
+              if (!prefersReduced) {
+                card.classList.remove('pop-in');
+                void card.offsetWidth; // Trigger reflow for animation restart
+                card.classList.add('pop-in');
+              }
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
+      });
+
+      // 8. Pointer Tilt on Cards (Respects reduced motion)
+      if (!prefersReduced) {
+        document.querySelectorAll('.ep-card, .bento-card, .btb-card').forEach(function (card) {
+          card.addEventListener('pointermove', function (e) {
+            var rect = card.getBoundingClientRect();
+            var x = e.clientX - rect.left - rect.width / 2;
+            var y = e.clientY - rect.top - rect.height / 2;
+            var rx = -(y / (rect.height / 2)) * 5;
+            var ry = (x / (rect.width / 2)) * 5;
+            card.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-8px)';
+          });
+          card.addEventListener('pointerleave', function () {
+            card.style.transform = '';
+          });
+        });
+      }
+
+      // 9. Initialise state
+      updateReadingProgress();
+    })();
+  </script>
+
 </body>
 
 </html>
