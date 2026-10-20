@@ -78,8 +78,51 @@
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">Home</a></li>
-        <li><a href="index.html#series">Series</a></li>
-        <li><a href="article-06.html" class="active">Research</a></li>
+        <li class="series-dropdown-wrapper">
+          <a href="index.html#series" class="series-dropdown-trigger" id="seriesDropdownTrigger" aria-haspopup="true" aria-expanded="false">
+            <span>Series</span>
+            <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="series-dropdown-menu" id="seriesDropdownMenu" role="menu" aria-labelledby="seriesDropdownTrigger">
+            <div class="series-dropdown-grid">
+              <div class="series-drop-card">
+                <div class="series-drop-header">
+                  <span class="series-drop-pill">10-Part Curriculum</span>
+                  <h4 class="series-drop-name">Cybersecurity for Everyone</h4>
+                  <p class="series-drop-desc">Plain-language guides cutting through the technical jargon to explain real-world threats.</p>
+                </div>
+                <ul class="series-drop-list">
+                  <li><a href="article.html"><span class="ep-num-pill">01</span> Can You Still Trust What You See &amp; Hear?</a></li>
+                  <li><a href="article-02.html"><span class="ep-num-pill">02</span> Someone Has Your Email. Now What?</a></li>
+                  <li><a href="article-03.html"><span class="ep-num-pill">03</span> I Clicked a Phishing Link. What to Do?</a></li>
+                  <li><a href="article-04.html"><span class="ep-num-pill">04</span> Your Session Was Stolen.</a></li>
+                  <li><a href="article-05.html"><span class="ep-num-pill">05</span> Why the Padlock Doesn't Mean Safe</a></li>
+                  <li><a href="article-06.html"><span class="ep-num-pill">06</span> Are Passkeys Killing Passwords?</a></li>
+                  <li><a href="article-07.html"><span class="ep-num-pill">07</span> The Fake Recruiter in Your LinkedIn</a></li>
+                  <li><a href="article-08.html"><span class="ep-num-pill">08</span> What a Scammer Learns in 10 Minutes</a></li>
+                  <li><a href="article-09.html"><span class="ep-num-pill">09</span> Your Bank Is Calling. Or Is It?</a></li>
+                </ul>
+                <div class="series-drop-footer">
+                  <a href="index.html#series" class="series-drop-hub-link">View Full 10-Episode Hub →</a>
+                </div>
+              </div>
+              <div class="series-drop-card accent">
+                <div class="series-drop-header">
+                  <span class="series-drop-pill green">Zero-Trust Cases</span>
+                  <h4 class="series-drop-name">Behind the Breach</h4>
+                  <p class="series-drop-desc">Technical post-mortems investigating real enterprise intrusions and token theft.</p>
+                </div>
+                <ul class="series-drop-list">
+                  <li><a href="behind-the-breach-01.html"><span class="ep-num-pill red">MAG</span> Manchester Airports Group</a></li>
+                  <li><a href="behind-the-breach-02.html"><span class="ep-num-pill red">ASOS</span> ASOS Customer Data Breach</a></li>
+                </ul>
+                <div class="series-drop-footer">
+                  <a href="index.html#behind-the-breach" class="series-drop-hub-link">View Investigations Archive →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
         <li><a href="#feedback">Feedback</a></li>
         <li><a href="index.html#about">About</a></li>
         <li><a href="article-07.html" class="cta">Next: Ep 07 →</a></li>
