@@ -115,7 +115,7 @@
   .b2 { width: 440px; height: 440px; background: var(--violet); right: -130px; top: 30px; opacity: .32; animation-delay: -4s; }
   .b3 { width: 340px; height: 340px; background: var(--sky); bottom: -130px; left: 38%; opacity: .32; animation-delay: -8s; }
   @keyframes drift { to { transform: translate(44px, 30px) scale(1.12); } }
-  .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 40px; align-items: center; padding: 64px 24px 88px; }
+  .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr; max-width: 860px; gap: 40px; align-items: center; padding: 64px 24px 88px; }
   .announce { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px 8px 14px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line2); box-shadow: var(--shadow); font: 600 .9375rem var(--body); text-decoration: none; color: var(--ink); transition: transform .25s; }
   .announce:hover { transform: translateY(-2px); }
   .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--mint); position: relative; flex: none; }
@@ -827,17 +827,6 @@ iframe.goog-te-banner-frame {
           <li><b><span class="count" data-count="56">56</span> min</b>of reading in total</li>
           <li>Written by a working security professional</li>
         </ul>
-      </div>
-      <div class="hero-3d" id="heroVisual">
-        <div class="scene-frame"><div class="art" aria-hidden="true"><svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="An email address linked to shops, banks and accounts, with bots circling" preserveAspectRatio="xMidYMid meet"><title>An email address linked to shops, banks and accounts, with bots circling</title><circle cx="240" cy="190" r="150" fill="#fff" fill-opacity=".55"/><path class="a-dash" d="M240 200L82 82" stroke="#1D4ED8" stroke-width="3" stroke-dasharray="7 8" stroke-linecap="round"/><path class="a-dash" d="M240 200L400 72" stroke="#1D4ED8" stroke-width="3" stroke-dasharray="7 8" stroke-linecap="round"/><path class="a-dash" d="M240 200L72 290" stroke="#1D4ED8" stroke-width="3" stroke-dasharray="7 8" stroke-linecap="round"/><path class="a-dash" d="M240 200L410 286" stroke="#1D4ED8" stroke-width="3" stroke-dasharray="7 8" stroke-linecap="round"/><circle cx="82" cy="82" r="34" fill="#fff" stroke="#0F1B3A" stroke-width="3.5"/><circle cx="82" cy="74" r="8" fill="#0F1B3A"/><path d="M66 98Q82 76 98 98Z" fill="#0F1B3A"/><circle cx="400" cy="72" r="34" fill="#fff" stroke="#0F1B3A" stroke-width="3.5"/><path d="M384 62h7l5 20h20l5-14h-28" stroke="#0F1B3A" stroke-width="3.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/><circle cx="398" cy="90" r="3.5" fill="#0F1B3A"/><circle cx="415" cy="90" r="3.5" fill="#0F1B3A"/><circle cx="72" cy="290" r="34" fill="#fff" stroke="#0F1B3A" stroke-width="3.5"/><rect x="58" y="288" width="28" height="20" rx="4" fill="#0F1B3A"/><path d="M63 288v-7a9 9 0 0 1 18 0v7" stroke="#0F1B3A" stroke-width="3.5" fill="none"/><circle cx="410" cy="286" r="34" fill="#fff" stroke="#0F1B3A" stroke-width="3.5"/><path d="M393 280L410 267L427 280Z" fill="#0F1B3A"/><rect x="396" y="283" width="5" height="15" fill="#0F1B3A"/><rect x="407.5" y="283" width="5" height="15" fill="#0F1B3A"/><rect x="419" y="283" width="5" height="15" fill="#0F1B3A"/><rect x="392" y="299" width="36" height="5" fill="#0F1B3A"/>
-<rect x="148" y="142" width="184" height="124" rx="14" fill="#fff" stroke="#0F1B3A" stroke-width="4.5"/>
-<path d="M150 152L240 218L330 152" stroke="#0F1B3A" stroke-width="4.5" fill="none" stroke-linejoin="round"/>
-<circle cx="332" cy="146" r="30" fill="#FFE066" stroke="#0F1B3A" stroke-width="4.5"/>
-<text x="332" y="158" text-anchor="middle" font-family="Bricolage Grotesque, system-ui, sans-serif" font-size="36" font-weight="700" fill="#0F1B3A">@</text>
-<g transform="translate(150 318)"><g class="a-bob"><path d="M-8 -14L-12 -22M8 -14L12 -22" stroke="#0F1B3A" stroke-width="3" stroke-linecap="round"/><rect x="-18" y="-14" width="36" height="26" rx="8" fill="#E5483B" stroke="#0F1B3A" stroke-width="3"/><circle cx="-7" cy="-2" r="4" fill="#fff"/><circle cx="7" cy="-2" r="4" fill="#fff"/></g></g><g transform="translate(330 322)"><g class="a-bob"><path d="M-8 -14L-12 -22M8 -14L12 -22" stroke="#0F1B3A" stroke-width="3" stroke-linecap="round"/><rect x="-18" y="-14" width="36" height="26" rx="8" fill="#E5483B" stroke="#0F1B3A" stroke-width="3"/><circle cx="-7" cy="-2" r="4" fill="#fff"/><circle cx="7" cy="-2" r="4" fill="#fff"/></g></g></svg><iframe class="scene" data-embed="ep2-identity-recon.html?embed=hero" title="3D scene: crawlers probing an email inbox" tabindex="-1"></iframe></div></div>
-        <span class="chip chip1" aria-hidden="true">A padlock isn’t proof</span>
-        <span class="chip chip2" aria-hidden="true">Urgency is a tactic</span>
-        <span class="chip chip3" aria-hidden="true">Verify, then trust</span>
       </div>
     </div>
   </section>
