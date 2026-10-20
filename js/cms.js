@@ -25,6 +25,8 @@ const DEFAULT_SETTINGS = {
   authorBio:   'I started Cyber Insight because everywhere online people only talk about cybersecurity in technical terms — and most people are left without a proper understanding of how the digital world works. I work in cybersecurity, but I write here for everyone. No jargon. Just clear, honest explanations.',
   portfolioUrl: 'https://sujampathirathnayaka.com/',
   linkedinUrl:  'https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/',
+  youtubeUrl:   'https://www.youtube.com/@CyberPocket26',
+  youtubeShortUrl: 'https://youtube.com/shorts/EFdDXYefjqA',
   seriesName:   'Cybersecurity for Everyone',
   seriesDesc:   'A 10-part series that cuts through the technical noise. Each episode takes one real topic — phishing, data breaches, fake recruiters, deepfakes — and explains what\'s actually going on, why it matters, and what you can do about it. Written for anyone who uses the internet.',
 };
