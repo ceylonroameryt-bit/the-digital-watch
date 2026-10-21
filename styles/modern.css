@@ -2150,19 +2150,34 @@ body[data-ep] .site-footer h4, body[data-ep] .site-footer strong { color:#111B3A
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
-[data-theme="dark"] .series-drop-card {
+[data-theme="dark"] .series-drop-card,
+:root[data-theme="dark"] .series-drop-card {
   background: #16203D;
   border-color: #263354;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .series-drop-card {
+    background: #16203D;
+    border-color: #263354;
+  }
 }
 
 .series-drop-card.accent {
   background: #F0FDF4;
   border-color: #BBF7D0;
 }
-[data-theme="dark"] .series-drop-card.accent {
-  background: #0B251F;
-  border-color: #174E3F;
+[data-theme="dark"] .series-drop-card.accent,
+:root[data-theme="dark"] .series-drop-card.accent {
+  background: #0B251F !important;
+  border-color: #174E3F !important;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .series-drop-card.accent {
+    background: #0B251F !important;
+    border-color: #174E3F !important;
+  }
 }
 
 .series-drop-pill {
@@ -2218,8 +2233,34 @@ body[data-ep] .site-footer h4, body[data-ep] .site-footer strong { color:#111B3A
   display: flex;
   flex-direction: column;
   gap: 3px;
-  max-height: 200px;
-  overflow-y: auto;
+  max-height: none;
+  overflow-y: visible;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(91, 123, 250, 0.35) transparent;
+}
+.series-drop-list::-webkit-scrollbar {
+  width: 5px;
+}
+.series-drop-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.series-drop-list::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+}
+:root[data-theme="dark"] .series-drop-list::-webkit-scrollbar-thumb {
+  background: rgba(91, 123, 250, 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .series-drop-list::-webkit-scrollbar-thumb {
+    background: rgba(91, 123, 250, 0.35);
+  }
+}
+@media (max-height: 680px) {
+  .series-drop-list {
+    max-height: 240px;
+    overflow-y: auto;
+  }
 }
 .series-drop-list li a {
   display: flex !important;
@@ -2273,8 +2314,8 @@ body[data-ep] .site-footer h4, body[data-ep] .site-footer strong { color:#111B3A
 }
 
 .series-drop-footer {
-  margin-top: 10px;
-  padding-top: 8px;
+  margin-top: auto;
+  padding-top: 10px;
   border-top: 1px dashed var(--border, #E2E8F0);
 }
 [data-theme="dark"] .series-drop-footer {
@@ -2344,4 +2385,139 @@ body[data-ep] .site-footer h4, body[data-ep] .site-footer strong { color:#111B3A
   background: rgba(29, 78, 216, 0.08) !important;
   color: #1D4ED8 !important;
   border-bottom: none !important;
+}
+
+/* ── CYBER POCKET YOUTUBE SHORTS INTEGRATION ── */
+.btn-yt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FF0000;
+  color: #FFFFFF !important;
+  font-family: var(--f-d, 'Bricolage Grotesque', system-ui, sans-serif);
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 9px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(255, 0, 0, 0.28);
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s, background-color 0.2s;
+  border: none;
+}
+.btn-yt:hover {
+  background: #DC2626;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(255, 0, 0, 0.38);
+  color: #FFFFFF !important;
+}
+.btn-yt-solid {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #FF0000;
+  color: #FFFFFF !important;
+  font-family: var(--f-d, 'Bricolage Grotesque', system-ui, sans-serif);
+  font-weight: 700;
+  font-size: 0.95rem;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px -6px rgba(255, 0, 0, 0.4);
+  transition: transform 0.25s, box-shadow 0.25s, background-color 0.2s;
+}
+.btn-yt-solid:hover {
+  background: #DC2626;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -6px rgba(255, 0, 0, 0.5);
+  color: #FFFFFF !important;
+}
+
+.shorts-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 0, 0, 0.08);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  color: #DC2626;
+  font-family: var(--f-d, 'Bricolage Grotesque', system-ui, sans-serif);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 6px 14px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+:root[data-theme="dark"] .shorts-badge-pill {
+  background: rgba(239, 68, 68, 0.16);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #FCA5A5;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .shorts-badge-pill {
+    background: rgba(239, 68, 68, 0.16);
+    border-color: rgba(239, 68, 68, 0.35);
+    color: #FCA5A5;
+  }
+}
+
+.short-companion-card {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  background: var(--surface, #FFFFFF);
+  border: 2px solid #BFDBFE;
+  border-radius: 20px;
+  padding: 24px;
+  margin: 34px 0;
+  box-shadow: 0 12px 32px -12px rgba(29, 78, 216, 0.15);
+  align-items: center;
+  flex-wrap: wrap;
+}
+:root[data-theme="dark"] .short-companion-card {
+  background: #111A36;
+  border-color: #253358;
+  box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.5);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .short-companion-card {
+    background: #111A36;
+    border-color: #253358;
+    box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.series-drop-banner {
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: rgba(255, 0, 0, 0.05);
+  border: 1px solid rgba(255, 0, 0, 0.18);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.series-drop-banner:hover {
+  background: rgba(255, 0, 0, 0.09);
+  border-color: rgba(255, 0, 0, 0.32);
+}
+:root[data-theme="dark"] .series-drop-banner {
+  background: rgba(239, 68, 68, 0.1);
+  border-color: rgba(239, 68, 68, 0.25);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .series-drop-banner {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.25);
+  }
+}
+:root[data-theme="dark"] .series-drop-banner a {
+  color: #F87171 !important;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .series-drop-banner a {
+    color: #F87171 !important;
+  }
 }

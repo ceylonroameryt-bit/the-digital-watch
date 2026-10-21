@@ -1678,6 +1678,8 @@ body {
 .au-btn.li:hover { background: #084b8a; }
 .au-btn.gh { background: var(--bg); border: 1px solid var(--border-2); color: var(--ink); }
 .au-btn.gh:hover { border-color: var(--blue); color: var(--blue); }
+.au-btn.yt { background: #FF0000; color: #fff; }
+.au-btn.yt:hover { background: #CC0000; color: #fff; }
 
 /* ────────────────────────────────────
    FEEDBACK & DISCUSSION SECTION
