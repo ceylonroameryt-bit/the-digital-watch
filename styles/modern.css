@@ -2150,6 +2150,7 @@ body[data-ep] .site-footer h4, body[data-ep] .site-footer strong { color:#111B3A
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 [data-theme="dark"] .series-drop-card,
 :root[data-theme="dark"] .series-drop-card {
@@ -2232,8 +2233,34 @@ body[data-ep] .site-footer h4, body[data-ep] .site-footer strong { color:#111B3A
   display: flex;
   flex-direction: column;
   gap: 3px;
-  max-height: 200px;
-  overflow-y: auto;
+  max-height: none;
+  overflow-y: visible;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(91, 123, 250, 0.35) transparent;
+}
+.series-drop-list::-webkit-scrollbar {
+  width: 5px;
+}
+.series-drop-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.series-drop-list::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+}
+:root[data-theme="dark"] .series-drop-list::-webkit-scrollbar-thumb {
+  background: rgba(91, 123, 250, 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .series-drop-list::-webkit-scrollbar-thumb {
+    background: rgba(91, 123, 250, 0.35);
+  }
+}
+@media (max-height: 680px) {
+  .series-drop-list {
+    max-height: 240px;
+    overflow-y: auto;
+  }
 }
 .series-drop-list li a {
   display: flex !important;
@@ -2287,8 +2314,8 @@ body[data-ep] .site-footer h4, body[data-ep] .site-footer strong { color:#111B3A
 }
 
 .series-drop-footer {
-  margin-top: 10px;
-  padding-top: 8px;
+  margin-top: auto;
+  padding-top: 10px;
   border-top: 1px dashed var(--border, #E2E8F0);
 }
 [data-theme="dark"] .series-drop-footer {

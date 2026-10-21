@@ -856,6 +856,7 @@ iframe.goog-te-banner-frame {
   padding: 14px 16px;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 :root[data-theme="dark"] .series-drop-card {
   background: #16203D;
@@ -961,8 +962,34 @@ iframe.goog-te-banner-frame {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  max-height: 200px;
-  overflow-y: auto;
+  max-height: none;
+  overflow-y: visible;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(91, 123, 250, 0.35) transparent;
+}
+.nav .series-drop-list::-webkit-scrollbar {
+  width: 5px;
+}
+.nav .series-drop-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.nav .series-drop-list::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.35);
+  border-radius: 999px;
+}
+:root[data-theme="dark"] .nav .series-drop-list::-webkit-scrollbar-thumb {
+  background: rgba(91, 123, 250, 0.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .nav .series-drop-list::-webkit-scrollbar-thumb {
+    background: rgba(91, 123, 250, 0.35);
+  }
+}
+@media (max-height: 680px) {
+  .nav .series-drop-list {
+    max-height: 240px;
+    overflow-y: auto;
+  }
 }
 .nav .series-drop-list li {
   margin: 0;
@@ -1059,7 +1086,7 @@ iframe.goog-te-banner-frame {
 }
 
 .nav .series-drop-footer {
-  margin-top: 10px;
+  margin-top: auto;
   padding-top: 8px;
   border-top: 1px dashed var(--line2, #CCD3ED);
 }
