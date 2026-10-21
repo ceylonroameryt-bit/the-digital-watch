@@ -266,6 +266,8 @@ function renderSettings() {
   _val('setAuthorBio',   s.authorBio);
   _val('setPortfolio',   s.portfolioUrl);
   _val('setLinkedin',    s.linkedinUrl);
+  _val('setYoutube',     s.youtubeUrl);
+  _val('setYoutubeShort', s.youtubeShortUrl);
 }
 
 function saveSettings_() {
@@ -281,6 +283,8 @@ function saveSettings_() {
     authorBio:      _getVal('setAuthorBio'),
     portfolioUrl:   _getVal('setPortfolio'),
     linkedinUrl:    _getVal('setLinkedin'),
+    youtubeUrl:     _getVal('setYoutube'),
+    youtubeShortUrl: _getVal('setYoutubeShort'),
   };
   if (!s.blogName) { toast('Blog name is required', 'error'); return; }
   saveSettings(s);
