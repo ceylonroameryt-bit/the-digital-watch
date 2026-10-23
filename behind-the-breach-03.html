@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Behind the Breach: PHP2Shell — Millions of Hacking Attempts and a Race to Protect the Internet — Cyber Insight</title>
+  <meta name="description"
+    content="Behind the Breach Episode 03: Critical vulnerabilities CVE-2026-109618 and CVE-2026-109619 in PHP triggered millions of exploitation attempts worldwide. An investigative autopsy into the timeline, memory corruption mechanics, SOC detection, and defender checklist.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Behind the Breach: PHP2Shell — Millions of Hacking Attempts and a Race to Protect the Internet">
+  <meta property="og:description"
+    content="Within hours of disclosure, millions of exploitation attempts hit the internet. But Amazon detected an attempt 4 days earlier. An investigative autopsy into the critical PHP vulnerabilities, remote code execution risks, and SOC response.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Behind the Breach: PHP2Shell — Millions of Hacking Attempts and a Race to Protect the Internet",
+    "description": "An investigative breakdown of the PHP2Shell vulnerabilities (CVE-2026-109618 & CVE-2026-109619), examining memory corruption during out-of-memory handling, use-after-free worker state, pre-disclosure activity detected on 17 October, and SOC incident triage.",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cyber Insight",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "datePublished": "2026-10-23",
+    "dateModified": "2026-10-23",
+    "copyrightYear": 2026,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/modern.css?v=16">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23DC2626'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>BB</text></svg>">
+  <link rel="canonical" href="https://thecyberinsight.online/behind-the-breach-03.html">
+  <meta property="og:url" content="https://thecyberinsight.online/behind-the-breach-03.html">
+</head>
+
+<body data-page="behind-the-breach" data-ep="breach" data-article-id="breach03">
+
+  <div id="reading-progress"></div>
+  <div id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark" style="background:#DC2626;">CI</div>
+        <div>
+          <div class="brand-name">Cyber Insight</div>
+          <div class="brand-sub">Behind the Breach Series</div>
+        </div>
+      </a>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <button class="theme-toggle-btn" id="themeToggleNav" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+          <span class="theme-icon" aria-hidden="true">🌙</span>
+          <span class="theme-label">Dark</span>
+        </button>
+        <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li class="series-dropdown-wrapper">
+          <a href="index.html#series" class="series-dropdown-trigger" id="seriesDropdownTrigger" aria-haspopup="true" aria-expanded="false">
+            <span>Series</span>
+            <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="series-dropdown-menu" id="seriesDropdownMenu" role="menu" aria-labelledby="seriesDropdownTrigger">
+            <div class="series-dropdown-grid">
+              <div class="series-drop-card">
+                <div class="series-drop-header">
+                  <span class="series-drop-pill">10-Part Curriculum</span>
+                  <h4 class="series-drop-name">Cybersecurity for Everyone</h4>
+                  <p class="series-drop-desc">Plain-language guides cutting through the technical jargon to explain real-world threats.</p>
+                </div>
+                <ul class="series-drop-list">
+                  <li><a href="article.html"><span class="ep-num-pill">01</span> Can You Still Trust What You See &amp; Hear?</a></li>
+                  <li><a href="article-02.html"><span class="ep-num-pill">02</span> Someone Has Your Email. Now What?</a></li>
+                  <li><a href="article-03.html"><span class="ep-num-pill">03</span> I Clicked a Phishing Link. What to Do?</a></li>
+                  <li><a href="article-04.html"><span class="ep-num-pill">04</span> Your Session Was Stolen.</a></li>
+                  <li><a href="article-05.html"><span class="ep-num-pill">05</span> Why the Padlock Doesn't Mean Safe</a></li>
+                  <li><a href="article-06.html"><span class="ep-num-pill">06</span> Are Passkeys Killing Passwords?</a></li>
+                  <li><a href="article-07.html"><span class="ep-num-pill">07</span> The Fake Recruiter in Your LinkedIn</a></li>
+                  <li><a href="article-08.html"><span class="ep-num-pill">08</span> What a Scammer Learns in 10 Minutes</a></li>
+                  <li><a href="article-09.html"><span class="ep-num-pill">09</span> Your Bank Is Calling. Or Is It?</a></li>
+                </ul>
+                <div class="series-drop-footer">
+                  <a href="index.html#series" class="series-drop-hub-link">View Full 10-Episode Hub →</a>
+                </div>
+              </div>
+              <div class="series-drop-card accent">
+                <div class="series-drop-header">
+                  <span class="series-drop-pill green">Zero-Trust Cases</span>
+                  <h4 class="series-drop-name">Behind the Breach</h4>
+                  <p class="series-drop-desc">Technical post-mortems investigating real enterprise intrusions and token theft.</p>
+                </div>
+                <ul class="series-drop-list">
+                  <li><a href="behind-the-breach-01.html"><span class="ep-num-pill red">MAG</span> Manchester Airports Group</a></li>
+                  <li><a href="behind-the-breach-02.html"><span class="ep-num-pill red">ASOS</span> ASOS Customer Data Breach</a></li>
+                  <li><a href="behind-the-breach-03.html"><span class="ep-num-pill red">PHP</span> PHP2Shell RCE Vulnerabilities</a></li>
+                </ul>
+                <div class="series-drop-footer">
+                  <a href="index.html#behind-the-breach" class="series-drop-hub-link">View Investigations Archive →</a>
+                </div>
+              </div>
+            </div>
+            <div class="series-drop-banner">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF0000" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <span style="font-size:.82rem;font-weight:700;color:var(--ink);"><strong>Cyber Pocket:</strong> 30-Second Security Shorts on YouTube</span>
+              </div>
+              <a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="font-size:.8rem;font-weight:800;color:#DC2626;text-decoration:none;white-space:nowrap;">Watch Shorts →</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="color:#DC2626;display:inline-flex;align-items:center;gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>Shorts</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#behind-the-breach" class="cta">Series Index →</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <!-- Series Callout Banner -->
+          <div class="art-series-banner" style="background:#FEF2F2;border-color:#FCA5A5;">
+            <div class="art-series-info">
+              <span class="art-series-tag" style="background:#DC2626;">Behind the Breach</span>
+              <span style="color:#991B1B;">Investigative Autopsy · <strong>Episode 03</strong></span>
+            </div>
+            <a href="index.html#behind-the-breach" class="art-series-link" style="color:#DC2626;">Series Hub →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="index.html#behind-the-breach">Behind the Breach</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Episode 03: PHP2Shell Vulnerabilities</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat" style="color:#DC2626;">Web Infrastructure &amp; Runtime</span>
+            <span class="art-dot">·</span>
+            <span>Remote Code Execution</span>
+            <span class="art-dot">·</span>
+            <span>Memory Corruption</span>
+            <span class="art-dot">·</span>
+            <span>23 October 2026</span>
+            <span class="art-dot">·</span>
+            <span>10 min read</span>
+          </div>
+
+          <h1 class="art-h1">Behind the Breach: PHP2Shell — Millions of Hacking Attempts and a Race to Protect the Internet</h1>
+          <p class="h-desc" style="margin-top:12px;font-size:1.15rem;color:var(--ink-3);">
+            When critical vulnerabilities in the engine powering millions of websites became public, the internet faced an immediate wave of automated exploitation. But evidence shows attackers were testing the flaw four days before disclosure. What happened, how does the memory flaw work, and what must SOC teams do right now?
+          </p>
+
+          <div class="art-byline">
+            <div class="art-av" style="background:#DC2626;">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Investigative Technology Writer · Cyber Insight</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero SVG: PHP Memory Space & Exploitation Race -->
+        <div class="art-hero-svg" style="background: linear-gradient(135deg, #FEF2F2 0%, #FEE2E2 100%);">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg"
+            aria-label="Illustration depicting millions of automated incoming web requests hitting vulnerable PHP worker memory, triggering out-of-memory longjmp aborts and use-after-free conditions">
+            <!-- Background pulse circles -->
+            <circle cx="160" cy="120" r="105" fill="#FECACA" opacity=".35" />
+            <circle cx="160" cy="120" r="75" fill="#FEE2E2" opacity=".6" />
+
+            <!-- Exploitation traffic stream (Left) -->
+            <rect x="20" y="44" width="118" height="152" rx="10" fill="white" stroke="#DC2626" stroke-width="2" />
+            <rect x="20" y="44" width="118" height="26" rx="10" fill="#DC2626" />
+            <text x="79" y="61" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">MILLIONS OF SCANS</text>
+
+            <circle cx="79" cy="95" r="18" fill="#FEE2E2" stroke="#DC2626" stroke-width="1.5" />
+            <!-- Radar / Scan icon -->
+            <path d="M68 95 A11 11 0 0 1 90 95" stroke="#DC2626" stroke-width="2" stroke-linecap="round" fill="none" />
+            <path d="M63 95 A16 16 0 0 1 95 95" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="2 2" fill="none" />
+            <circle cx="79" cy="95" r="3" fill="#DC2626" />
+
+            <rect x="30" y="122" width="98" height="18" rx="4" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1" />
+            <text x="79" y="134" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="7" font-weight="700">MadPot: 17 Oct Early Hit</text>
+
+            <rect x="30" y="146" width="98" height="22" rx="4" fill="#1E293B" stroke="#0F172A" stroke-width="1" />
+            <text x="79" y="160" text-anchor="middle" fill="#F87171" font-family="monospace" font-size="7" font-weight="700">CVE-2026-109618/19</text>
+            <text x="79" y="186" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="7.5" font-weight="800">CVSS v4.0: 9.2 (CRITICAL)</text>
+
+            <!-- Arrow showing exploit payload targeting PHP runtime -->
+            <path d="M142 120 L176 120" stroke="#DC2626" stroke-width="2.5" stroke-dasharray="4 3" />
+            <polygon points="176,120 168,115 168,125" fill="#DC2626" />
+
+            <!-- Vulnerable PHP Engine Runtime (Right) -->
+            <rect x="180" y="44" width="120" height="152" rx="10" fill="white" stroke="#7C3AED" stroke-width="2" />
+            <rect x="180" y="44" width="120" height="26" rx="10" fill="#7C3AED" />
+            <text x="240" y="61" text-anchor="middle" fill="white" font-family="DM Sans,system-ui" font-size="8.5" font-weight="800">PHP RUNTIME WORKER</text>
+
+            <circle cx="240" cy="100" r="22" fill="#F5F3FF" stroke="#8B5CF6" stroke-width="1.5" />
+            <text x="240" y="98" text-anchor="middle" fill="#6D28D9" font-family="DM Sans,system-ui" font-size="9" font-weight="800">MEMORY</text>
+            <text x="240" y="109" text-anchor="middle" fill="#DC2626" font-family="DM Sans,system-ui" font-size="7" font-weight="700">CORRUPTION</text>
+
+            <rect x="190" y="130" width="100" height="16" rx="4" fill="#FEE2E2" stroke="#EF4444" stroke-width="1" />
+            <text x="240" y="141" text-anchor="middle" fill="#991B1B" font-family="DM Sans,system-ui" font-size="6.5" font-weight="700">OOM longjmp() Abort</text>
+
+            <rect x="190" y="152" width="100" height="16" rx="4" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1" />
+            <text x="240" y="163" text-anchor="middle" fill="#B45309" font-family="DM Sans,system-ui" font-size="6.5" font-weight="700">Use-After-Free Stale State</text>
+
+            <text x="240" y="186" text-anchor="middle" fill="#7C3AED" font-family="DM Sans,system-ui" font-size="7" font-weight="800">Remote Code Execution (RCE)</text>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE MAIN LAYOUT -->
+  <div class="art-layout">
+
+    <!-- ARTICLE MAIN CONTENT -->
+    <main class="art-center" id="articleBody">
+
+      <!-- Horizontal Action & Metadata Strip -->
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#FEF2F2;color:#DC2626;border-color:#FCA5A5;font-weight:700;">Behind the Breach</span>
+          <span class="chip">Episode 03</span>
+          <span class="chip">PHP2Shell</span>
+          <span class="chip">Remote Code Execution</span>
+          <span class="chip">Memory Safety</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 10 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" onclick="toggleLike()" title="Like this research" aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" onclick="addClap()" title="Applaud this research" aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">9.2 CVSS</div>
+          <div class="stat-l">Critical Severity</div>
+          <div class="stat-s">CVSS v4.0 rating across both CVE-2026-109618 and CVE-2026-109619 flaws</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">4 Days Prior</div>
+          <div class="stat-l">Pre-Disclosure Activity</div>
+          <div class="stat-s">Amazon MadPot telemetry detected exploit activity on 17 Oct, 4 days before announcement</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">Millions</div>
+          <div class="stat-l">Exploitation Attempts</div>
+          <div class="stat-s">Cloudflare reported an immediate global surge in automated scanning and exploit traffic</div>
+        </div>
+      </div>
+
+      <article class="art-body art-text">
+
+        <!-- INTRO NOTE -->
+        <p>
+          On 21 October 2026, a critical security issue affecting PHP became public. Within hours, security teams worldwide were dealing with an unprecedented flood of attempts to exploit it. But the story didn't start on disclosure day: threat telemetry reveals exploitation attempts began days before defenders even knew the vulnerability existed.
+        </p>
+
+        <!-- INCIDENT AT A GLANCE CARD -->
+        <div class="news-alert-card" id="incident-at-a-glance">
+          <div class="news-alert-header">
+            <span class="news-badge breaking">
+              <span class="news-pulse-dot"></span> Incident at a Glance · 23 October 2026
+            </span>
+            <div class="news-sources-strip" style="margin:0;padding:0;border:none;">
+              <a href="#live-news-updates" class="src-cite" style="background:#FEF2F2;color:#DC2626;border-color:#FCA5A5;font-weight:700;"><span class="news-pulse-dot" style="display:inline-block;width:6px;height:6px;margin-right:2px;vertical-align:middle;"></span> Live Intel Feed (5 Dispatches) ↓</a>
+              <a href="#src-php-foundation" class="src-cite">📄 PHP Advisory [Src #2] ↗</a>
+              <a href="#src-amazon" class="src-cite">☁️ Amazon Threat Intel [Src #3] ↗</a>
+              <a href="#src-cloudflare" class="src-cite">🛡️ Cloudflare WAF [Src #4] ↗</a>
+              <a href="#src-ncsc" class="src-cite">🇬🇧 UK NCSC [Src #1] ↗</a>
+              <a href="#src-nhs" class="src-cite">🏥 NHS Digital [Src #5] ↗</a>
+            </div>
+          </div>
+
+          <div class="news-headline">
+            PHP2Shell: Critical Remote Code Execution Vulnerabilities in PHP Runtime Trigger Global Exploitation Race
+          </div>
+
+          <div class="news-quote-lead">
+            <strong>Incident Scope Summary:</strong> On 21 October 2026, the PHP security team published emergency updates addressing two critical memory management flaws: CVE-2026-109618 (out-of-memory error handling corruption) and CVE-2026-109619 (use-after-free stale state) <a href="#src-php-foundation" class="src-cite">PHP Advisory [Src #2] ↗</a>. Both vulnerabilities carry a CVSS v4.0 score of 9.2, allowing unauthenticated attackers to execute arbitrary code remotely. Telemetry from Amazon Threat Intelligence revealed active honeypot exploitation on 17 October — four days before public disclosure <a href="#src-amazon" class="src-cite">Amazon Report [Src #3] ↗</a>.
+          </div>
+
+          <div class="news-meta-grid">
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Incident Name</span>
+              <span class="news-meta-val" style="color:#DC2626;">PHP2Shell Security Vulnerabilities</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">CVE Identifiers</span>
+              <span class="news-meta-val">CVE-2026-109618 &amp; CVE-2026-109619</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Severity Rating</span>
+              <span class="news-meta-val" style="color:#DC2626;">Critical — CVSS v4.0 Score 9.2</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">First Public Disclosure</span>
+              <span class="news-meta-val">21 October 2026 <a href="#src-ncsc" class="src-cite" style="font-size:0.68rem;padding:1px 5px;">#1</a></span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Earliest Detected Activity</span>
+              <span class="news-meta-val" style="color:#D97706;">17 October 2026 (MadPot Telemetry) <a href="#src-amazon" class="src-cite" style="font-size:0.68rem;padding:1px 5px;">#3</a></span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Primary Risk</span>
+              <span class="news-meta-val" style="color:#DC2626;">Remote Code Execution (Unauthenticated)</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Affected Software</span>
+              <span class="news-meta-val">PHP versions 5.4 and later (Fixes in 8.2–8.5)</span>
+            </div>
+            <div class="news-meta-cell">
+              <span class="news-meta-label">Observed Activity Scale</span>
+              <span class="news-meta-val">Millions of automated requests worldwide <a href="#src-cloudflare" class="src-cite" style="font-size:0.68rem;padding:1px 5px;">#4</a></span>
+            </div>
+          </div>
+          <p style="font-size:0.82rem;color:var(--ink-4);margin-top:12px;margin-bottom:0;font-style:italic;">
+            Editorial notice: Reported exploitation attempts, automated honeypot probes, and confirmed breaches are distinct. Millions of scanning attempts do not represent millions of compromised enterprise networks.
+          </p>
+        </div>
+
+        <!-- SECTION 1 -->
+        <section id="what-is-php">
+          <h2>1. First, What is PHP?</h2>
+
+          <h3 style="font-family:var(--f-d);font-size:1.15rem;margin-top:18px;color:var(--ink);">The Silent Engine of the Modern Web</h3>
+          <p>
+            PHP is a server-side programming language used to build websites and web applications. It allows servers to process incoming HTTP requests, interact with backend relational databases, manage user sessions, and generate dynamic content.
+          </p>
+          <p>
+            When you log into a website, submit an online form, or access an account dashboard containing personalized records, PHP is frequently involved behind the scenes in interpreting and processing that request.
+          </p>
+          <p>
+            It is also the foundational runtime for major content management systems (CMS) and web frameworks. Platforms such as WordPress, Drupal, and Joomla run predominantly on PHP-based environments. WordPress alone powers over 40% of the top 10 million websites globally.
+          </p>
+
+          <p style="font-weight:600;color:var(--ink);">
+            That widespread, ubiquitous deployment is exactly why a core vulnerability in PHP creates an instant global shockwave.
+          </p>
+
+          <div style="background:var(--bg-2);border-left:4px solid #DC2626;padding:16px 20px;border-radius:0 var(--r) var(--r) 0;margin:22px 0;">
+            <p style="font-size:1.05rem;font-weight:700;color:var(--ink);margin:0 0 8px;">
+              The Asset Visibility Dilemma
+            </p>
+            <p style="margin:0;color:var(--ink-3);font-size:0.95rem;line-height:1.6;">
+              A single enterprise may operate dozens of applications that depend on PHP. Its public web properties may run on modern, managed clusters, while older internal portals, container base images, developer staging systems, or third-party appliance VMs quietly run unmonitored PHP runtimes. A team might patch its primary commercial site in minutes while overlooking an internal tool or container image that remains completely exposed.
+            </p>
+            <p style="margin:8px 0 0;font-weight:700;color:#DC2626;font-size:0.95rem;">
+              You cannot protect a system you do not know exists.
+            </p>
+          </div>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section id="what-was-php2shell">
+          <h2>2. What Exactly Was PHP2Shell?</h2>
+          <p>
+            The moniker <strong>PHP2Shell</strong> refers to two critical vulnerabilities disclosed on 21 October 2026:
+          </p>
+          <ul style="margin-left:20px;line-height:1.8;font-size:0.95rem;color:var(--ink-2);margin-bottom:18px;">
+            <li><strong>CVE-2026-109618:</strong> A memory corruption flaw triggered during out-of-memory error handling.</li>
+            <li><strong>CVE-2026-109619:</strong> A use-after-free defect involving stale internal state retained after memory has been freed.</li>
+          </ul>
+          <p>
+            Both vulnerabilities received a <strong>CVSS v4.0 score of 9.2</strong>. While their low-level mechanics differ, their defensive impact is identical: under specific execution conditions, an unauthenticated remote attacker could trigger unsafe memory states in PHP that lead directly to arbitrary remote code execution.
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:18px;margin:24px 0;">
+            <!-- Flaw 1 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:18px 20px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+                <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);">CVE-2026-109618: When PHP Runs Out of Memory</h3>
+                <span class="am-badge am-badge-confirmed" style="background:#FEE2E2;color:#991B1B;">CVSS 9.2 · Memory Corruption</span>
+              </div>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Applications require dynamic memory to process web requests, deserialize payloads, and store runtime variables. When an allocation fails because system limits are reached, the application runtime must handle the out-of-memory (OOM) exception cleanly, without corrupting state.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                According to the official security advisory <a href="#src-php-foundation" class="src-cite">PHP Foundation [Src #2] ↗</a>, PHP utilizes <code>longjmp()</code> in certain out-of-memory error-handling routines to immediately escape execution context and abort request processing. However, when an allocation failure occurred while internal request data structures were only partially initialized, the jump bypassed proper initialization safeguards.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Subsequent cleanup code executed during worker termination then treated incomplete, invalid memory structures as valid objects. This memory corruption can be weaponized by an attacker to influence memory layout and achieve arbitrary remote code execution.
+              </p>
+              <p style="margin:0;font-size:0.84rem;color:var(--ink-4);font-style:italic;">
+                Technical Source: <a href="#src-nhs" class="src-cite">NHS England Digital Cyber Alert CC-4875 [Src #5] ↗</a>.
+              </p>
+            </div>
+
+            <!-- Flaw 2 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #D97706;border-radius:var(--r);padding:18px 20px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;">
+                <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0;color:var(--ink);">CVE-2026-109619: When Freed Memory Is Still Referenced</h3>
+                <span class="am-badge am-badge-confirmed" style="background:#FEF3C7;color:#92400E;">CVSS 9.2 · Use-After-Free</span>
+              </div>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                The second vulnerability belongs to the dangerous class of software defects known as <strong>use-after-free (UAF)</strong> flaws. When a chunk of dynamic heap memory is released back to the system, software must ensure that no active internal pointers continue referencing that freed address.
+              </p>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                In the PHP2Shell case, request-owned internal state survived after its backing memory was released. In multi-request execution models (such as PHP-FPM or Apache worker pools), a subsequent HTTP request handled by that same worker thread could encounter that dangling, stale state before routine initialization reset it.
+              </p>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                By carefully structuring sequential incoming requests, an attacker could manipulate the recycled heap data, leading to memory control and remote code execution.
+              </p>
+            </div>
+          </div>
+
+          <!-- SYSTEM ARCHITECTURE DIAGRAM -->
+          <div class="art-diagram-card">
+            <div class="art-diagram-header">
+              <span class="art-diagram-title">System Architecture: PHP Worker Lifecycle vs Memory Exploitation</span>
+              <span class="news-badge verified">Technical Mechanics</span>
+            </div>
+
+            <div style="background: linear-gradient(135deg, #F8FAFC 0%, #EEF2FF 100%); border-radius: 12px; padding: 16px; display: flex; justify-content: center; overflow-x: auto;">
+              <svg viewBox="0 0 680 260" width="680" height="260" fill="none" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto;"
+                aria-label="Architecture diagram showing attacker requests triggering memory corruption via OOM longjmp or Use-After-Free worker recycling, leading to Remote Code Execution within host process constraints">
+                <defs>
+                  <linearGradient id="redZonePhp" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FEF2F2" />
+                    <stop offset="100%" stop-color="#FEE2E2" />
+                  </linearGradient>
+                  <linearGradient id="amberZonePhp" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FFFBEB" />
+                    <stop offset="100%" stop-color="#FEF3C7" />
+                  </linearGradient>
+                  <linearGradient id="purpleZonePhp" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#F5F3FF" />
+                    <stop offset="100%" stop-color="#EDE9FE" />
+                  </linearGradient>
+                  <linearGradient id="greenZonePhp" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#F0FDF4" />
+                    <stop offset="100%" stop-color="#DCFCE7" />
+                  </linearGradient>
+                </defs>
+
+                <!-- ZONE 1: INCOMING ATTACK TRAFFIC -->
+                <rect x="15" y="20" width="195" height="140" rx="10" fill="url(#redZonePhp)" stroke="#DC2626" stroke-width="1.8" />
+                <rect x="25" y="28" width="175" height="24" rx="5" fill="#DC2626" />
+                <text x="112" y="44" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="9" font-weight="800">1. EXPLOIT REQUEST STREAM</text>
+                <rect x="25" y="58" width="175" height="18" rx="4" fill="#FEE2E2" stroke="#FCA5A5" stroke-width="1" />
+                <text x="112" y="70" text-anchor="middle" fill="#B91C1C" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">T1190: Public App Exploit</text>
+                <text x="112" y="94" text-anchor="middle" fill="#0F172A" font-family="DM Sans, system-ui" font-size="8" font-weight="700">Unauthenticated Web Traffic</text>
+                <text x="112" y="108" text-anchor="middle" fill="#475569" font-family="DM Sans, system-ui" font-size="7.2">Crafted Memory Pressure Payloads</text>
+                <rect x="30" y="122" width="165" height="24" rx="4" fill="#7F1D1D" stroke="#DC2626" stroke-width="1" />
+                <text x="112" y="138" text-anchor="middle" fill="#FEF08A" font-family="monospace" font-size="7.5" font-weight="700">Millions of Global Scans</text>
+
+                <!-- Arrow 1 to 2 -->
+                <path d="M210 90 L235 90" stroke="#DC2626" stroke-width="2.2" stroke-dasharray="4 3" />
+                <polygon points="235,90 227,85 227,95" fill="#DC2626" />
+
+                <!-- ZONE 2: PHP WORKER MEMORY CORRUPTION -->
+                <rect x="240" y="20" width="195" height="140" rx="10" fill="url(#amberZonePhp)" stroke="#D97706" stroke-width="1.8" />
+                <rect x="250" y="28" width="175" height="24" rx="5" fill="#D97706" />
+                <text x="337" y="44" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="9" font-weight="800">2. RUNTIME MEMORY FLAW</text>
+                <rect x="250" y="58" width="175" height="18" rx="4" fill="#FEF3C7" stroke="#FDE68A" stroke-width="1" />
+                <text x="337" y="70" text-anchor="middle" fill="#92400E" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">OOM longjmp() / Use-After-Free</text>
+                <text x="337" y="94" text-anchor="middle" fill="#0F172A" font-family="DM Sans, system-ui" font-size="8" font-weight="700">Corrupted Internal Request Data</text>
+                <text x="337" y="108" text-anchor="middle" fill="#475569" font-family="DM Sans, system-ui" font-size="7.2">Stale Pointers in Recycled Worker</text>
+                <rect x="255" y="122" width="165" height="24" rx="4" fill="#1E293B" stroke="#334155" stroke-width="1" />
+                <text x="337" y="138" text-anchor="middle" fill="#38BDF8" font-family="monospace" font-size="7.2" font-weight="700">Unsafe Execution State</text>
+
+                <!-- Arrow 2 to 3 -->
+                <path d="M435 90 L460 90" stroke="#7C3AED" stroke-width="2.2" stroke-dasharray="4 3" />
+                <polygon points="460,90 452,85 452,95" fill="#7C3AED" />
+
+                <!-- ZONE 3: REMOTE CODE EXECUTION (RCE) -->
+                <rect x="465" y="20" width="200" height="140" rx="10" fill="url(#purpleZonePhp)" stroke="#7C3AED" stroke-width="1.8" />
+                <rect x="475" y="28" width="180" height="24" rx="5" fill="#7C3AED" />
+                <text x="565" y="44" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="9" font-weight="800">3. REMOTE CODE EXECUTION</text>
+                <rect x="475" y="58" width="180" height="18" rx="4" fill="#EDE9FE" stroke="#C4B5FD" stroke-width="1" />
+                <text x="565" y="70" text-anchor="middle" fill="#5B21B6" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">Arbitrary Command Execution</text>
+                <circle cx="565" cy="100" r="14" fill="#FFFFFF" stroke="#8B5CF6" stroke-width="1.5" />
+                <text x="565" y="104" text-anchor="middle" fill="#7C3AED" font-family="DM Sans, system-ui" font-size="10" font-weight="800">RCE</text>
+                <rect x="480" y="122" width="170" height="24" rx="4" fill="#FEE2E2" stroke="#EF4444" stroke-width="1" />
+                <text x="565" y="137" text-anchor="middle" fill="#991B1B" font-family="DM Sans, system-ui" font-size="7" font-weight="700">www-data Process Control</text>
+
+                <!-- ZONE 4: HOST ISOLATION & SOC DEFENSE (BOTTOM) -->
+                <rect x="15" y="180" width="650" height="66" rx="10" fill="url(#greenZonePhp)" stroke="#16A34A" stroke-width="1.8" />
+                <rect x="25" y="190" width="240" height="20" rx="4" fill="#16A34A" />
+                <text x="145" y="204" text-anchor="middle" fill="#FFFFFF" font-family="DM Sans, system-ui" font-size="8.5" font-weight="800">DEFENSE &amp; CONTAINMENT BOUNDARIES</text>
+                
+                <g transform="translate(280, 192)">
+                  <rect x="0" y="0" width="115" height="42" rx="5" fill="#FFFFFF" stroke="#16A34A" stroke-width="1" />
+                  <text x="57" y="18" text-anchor="middle" fill="#15803D" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">Least Privilege</text>
+                  <text x="57" y="32" text-anchor="middle" fill="#16A34A" font-family="DM Sans, system-ui" font-size="7" font-weight="800">No Root Access</text>
+                </g>
+
+                <g transform="translate(410, 192)">
+                  <rect x="0" y="0" width="120" height="42" rx="5" fill="#FFFFFF" stroke="#16A34A" stroke-width="1" />
+                  <text x="60" y="18" text-anchor="middle" fill="#15803D" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">Container Sandboxing</text>
+                  <text x="60" y="32" text-anchor="middle" fill="#16A34A" font-family="DM Sans, system-ui" font-size="7" font-weight="800">Read-Only FS</text>
+                </g>
+
+                <g transform="translate(545, 192)">
+                  <rect x="0" y="0" width="110" height="42" rx="5" fill="#FFFFFF" stroke="#16A34A" stroke-width="1" />
+                  <text x="55" y="18" text-anchor="middle" fill="#15803D" font-family="DM Sans, system-ui" font-size="7.5" font-weight="700">SOC Telemetry</text>
+                  <text x="55" y="32" text-anchor="middle" fill="#16A34A" font-family="DM Sans, system-ui" font-size="7" font-weight="800">Child Process Alerts</text>
+                </g>
+              </svg>
+            </div>
+            <div class="art-diagram-caption">
+              <strong>Figure 3.1 — PHP2Shell Execution Flow:</strong> How incoming untrusted requests trigger out-of-memory longjmp aborts or recycle stale worker pointers, leading to unauthenticated RCE within host process privilege boundaries.
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section id="why-rce-changes-risk">
+          <h2>3. Why Remote Code Execution Changes the Risk</h2>
+          <p>
+            Not every software bug poses the same degree of threat. Some vulnerabilities leak diagnostic data. Others cause denial of service (DoS), rendering an application temporarily unavailable.
+          </p>
+          <p>
+            PHP2Shell caused acute panic because successful exploitation results in <strong>unauthenticated remote code execution</strong>. Each term in that classification defines a severe threat profile:
+          </p>
+          <ul style="margin-left:20px;line-height:1.8;font-size:0.95rem;color:var(--ink-2);">
+            <li><strong>Unauthenticated:</strong> The adversary requires no login credentials, user sessions, or prior access to invoke the vulnerable code path.</li>
+            <li><strong>Remote:</strong> The attack is delivered entirely over public TCP/IP network channels (HTTP/HTTPS).</li>
+            <li><strong>Code Execution:</strong> The affected PHP process executes arbitrary shellcode or commands supplied by the attacker.</li>
+          </ul>
+
+          <p>
+            If exploitation succeeds, the adversary assumes the execution privileges of the web service process (typically <code>www-data</code>, <code>apache</code>, or <code>nobody</code>). From that foothold, attackers can read application configurations (such as database credentials in <code>wp-config.php</code> or <code>.env</code>), download secondary payloads, establish reverse shells, or attempt local privilege escalation.
+          </p>
+
+          <div style="background:var(--bg-2);border-left:4px solid #16A34A;padding:14px 18px;margin:20px 0;border-radius:0 var(--r) var(--r) 0;">
+            <p style="margin:0;font-weight:700;color:var(--ink);font-size:0.95rem;">
+              Crucial SOC Distinction: RCE Does Not Mean Root by Default
+            </p>
+            <p style="margin:6px 0 0;font-size:0.9rem;color:var(--ink-2);line-height:1.6;">
+              Gaining code execution inside a PHP worker does not automatically give an adversary root-level control over the server. The actual impact is strictly governed by operating system hardening, container isolation, file system permissions, and egress network filtering. That is why a professional SOC investigation must establish what actually occurred rather than assume the worst possible outcome.
+            </p>
+          </div>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section id="the-timeline">
+          <h2>4. The Timeline: What Happened, and When?</h2>
+          <p>
+            The official public disclosure date was not the beginning of adversarial activity. The following chronological timeline synthesizes telemetry confirmed by leading global threat intelligence teams.
+          </p>
+
+          <div class="t-wrap">
+            <table class="t">
+              <thead>
+                <tr>
+                  <th style="width:28%;">Date &amp; Time</th>
+                  <th>Observed Intelligence &amp; Defensive Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>17 October 2026</strong><br><span style="font-size:0.75rem;color:#DC2626;font-weight:700;">Pre-Disclosure</span></td>
+                  <td><strong>Amazon Detects Pre-Disclosure Attack:</strong> Amazon Threat Intelligence detects an attempted exploitation against its MadPot honeypot fleet originating from a commercial anonymization service — 4 days prior to public disclosure <a href="#src-amazon" class="src-cite">Amazon [Src #3] ↗</a>.</td>
+                </tr>
+                <tr>
+                  <td><strong>21 October 2026</strong><br><span style="font-size:0.75rem;color:#2563EB;font-weight:700;">Public Disclosure</span></td>
+                  <td><strong>PHP Foundation Releases Fixes:</strong> Upstream PHP team publishes advisories and releases corrected branches (PHP 8.5.12, 8.4.27, 8.3.36, 8.2.35). Proof-of-concept exploits begin circulating <a href="#src-php-foundation" class="src-cite">PHP Advisory [Src #2] ↗</a>.</td>
+                </tr>
+                <tr>
+                  <td><strong>21 October 2026</strong><br><span style="font-size:0.75rem;color:#D97706;font-weight:700;">Hours Later</span></td>
+                  <td><strong>Exploitation Activity Explodes:</strong> Cloudflare reports millions of automated scanning and exploitation attempts within hours. Multiple distinct payloads and botnet clusters observed <a href="#src-cloudflare" class="src-cite">Cloudflare [Src #4] ↗</a>.</td>
+                </tr>
+                <tr>
+                  <td><strong>21–22 October 2026</strong><br><span style="font-size:0.75rem;color:#7C3AED;font-weight:700;">Emergency Mitigation</span></td>
+                  <td><strong>Emergency Patching &amp; Service Shutdowns:</strong> UK NCSC, ENISA, and NHS Digital issue urgent directives urging teams to prioritize internet-facing servers. Some organizations temporarily disconnect services to patch safely <a href="#src-ncsc" class="src-cite">NCSC [Src #1] ↗</a> <a href="#src-enisa" class="src-cite">ENISA [Src #6] ↗</a>.</td>
+                </tr>
+                <tr>
+                  <td><strong>22–23 October 2026</strong><br><span style="font-size:0.75rem;color:#16A34A;font-weight:700;">Active Triage</span></td>
+                  <td><strong>Compromise Assessment Phase:</strong> SOC teams transition from emergency updating to retrospective forensic log analysis, searching for evidence of pre-patch intrusion across web logs and endpoint telemetry.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- LIVE NEWS & INCIDENT UPDATE FEED -->
+        <section id="live-news-updates" class="live-news-feed" aria-label="Live incident updates">
+          <div class="live-feed-header">
+            <div class="live-feed-badge">
+              <span class="news-pulse-dot"></span> LIVE NEWS &amp; INTELLIGENCE DESK
+            </div>
+            <div class="live-feed-timestamp">
+              <span>Telemetry Feed · 23 October 2026 · Cyber Insight Continuous Verification</span>
+            </div>
+          </div>
+
+          <h2 style="font-family:var(--f-d);font-size:1.4rem;font-weight:800;color:var(--ink);margin:0 0 8px;line-height:1.3;">
+            PHP2Shell: Live Developing Threat Intelligence &amp; Telemetry
+          </h2>
+          <p style="font-size:0.94rem;color:var(--ink-2);margin:0 0 18px;line-height:1.6;">
+            Chronological field dispatches documenting honeypot observations, automated scanner activity, WAF rules, and security agency advisories.
+          </p>
+
+          <!-- Interactive Filter Tabs -->
+          <div class="live-feed-filter-bar" role="tablist" aria-label="Filter live updates">
+            <span style="font-family:var(--f-d);font-size:0.75rem;font-weight:800;text-transform:uppercase;color:var(--ink-4);letter-spacing:0.05em;margin-right:4px;">Filter Feed:</span>
+            <button type="button" class="live-feed-filter-btn" data-filter="all" aria-pressed="true">All Dispatches (5)</button>
+            <button type="button" class="live-feed-filter-btn" data-filter="intel" aria-pressed="false">Threat Intel &amp; Honeypots (2)</button>
+            <button type="button" class="live-feed-filter-btn" data-filter="official" aria-pressed="false">Vendor &amp; AI Research (1)</button>
+            <button type="button" class="live-feed-filter-btn" data-filter="regulatory" aria-pressed="false">Government Advisories (1)</button>
+            <button type="button" class="live-feed-filter-btn" data-filter="defense" aria-pressed="false">WAF &amp; SOC Defense (1)</button>
+          </div>
+
+          <!-- Chronological Timeline Dispatches -->
+          <div class="live-feed-timeline">
+
+            <!-- Dispatch 01 (Latest) -->
+            <article class="live-feed-item type-intel" data-category="intel">
+              <div class="live-feed-item-top">
+                <span class="live-feed-item-pill" style="background:#FEE2E2;color:#991B1B;border:1px solid #FCA5A5;">
+                  🚨 Threat Intelligence · Pre-Disclosure Activity
+                </span>
+                <span class="live-feed-item-time">23 October 2026 · Telemetry Analysis</span>
+              </div>
+              <h3 class="live-feed-item-title">
+                Amazon Threat Intelligence Confirms MadPot Honeypot Hit on 17 October
+              </h3>
+              <p class="live-feed-item-desc">
+                Amazon Threat Intelligence published findings confirming that an exploitation attempt matching PHP2Shell mechanics was logged in its global MadPot honeypot sensors four days before public disclosure. The traffic routed through a commercial anonymizer. This discovery highlights that advanced adversaries may identify or acquire vulnerability details prior to public patching, making zero-day readiness essential.
+              </p>
+              <div class="live-feed-item-foot">
+                <div>
+                  <strong style="color:var(--ink);">Forensic Takeaway:</strong> Defender log reviews must cover dates prior to 21 October, not just post-disclosure traffic.
+                </div>
+                <div>
+                  <a href="#src-amazon" class="src-cite">Amazon Blog [Src #3] ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Dispatch 02 -->
+            <article class="live-feed-item type-defense" data-category="defense">
+              <div class="live-feed-item-top">
+                <span class="live-feed-item-pill" style="background:#EFF6FF;color:#1E40AF;border:1px solid #BFDBFE;">
+                  🛡️ Cloudflare WAF · Edge Telemetry
+                </span>
+                <span class="live-feed-item-time">22 October 2026 · Global Traffic Analysis</span>
+              </div>
+              <h3 class="live-feed-item-title">
+                Cloudflare Logs Millions of Exploitation Attempts Following Patch Drop
+              </h3>
+              <p class="live-feed-item-desc">
+                Edge telemetry recorded a massive spike in scanning requests targeting PHP endpoints within three hours of public disclosure. Cloudflare emphasized that effective WAF defense required inspecting both the inbound request structures and the upstream server response status codes, warning that simple static regex matching alone cannot guarantee full protection.
+              </p>
+              <div class="live-feed-item-foot">
+                <div>
+                  <strong style="color:var(--ink);">Key Defense Takeaway:</strong> WAF mitigation slows attackers down, but installing corrected PHP packages remains non-negotiable.
+                </div>
+                <div>
+                  <a href="#src-cloudflare" class="src-cite">Cloudflare Blog [Src #4] ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Dispatch 03 -->
+            <article class="live-feed-item type-regulatory" data-category="regulatory">
+              <div class="live-feed-item-top">
+                <span class="live-feed-item-pill" style="background:#F3E8FF;color:#7E22CE;border:1px solid #D8B4FE;">
+                  🏛️ UK NCSC &amp; ENISA · Emergency Directives
+                </span>
+                <span class="live-feed-item-time">22 October 2026 · National Alerts</span>
+              </div>
+              <h3 class="live-feed-item-title">
+                UK NCSC and European Cyber Agencies Issue Critical PHP Directives
+              </h3>
+              <p class="live-feed-item-desc">
+                The UK National Cyber Security Centre and the European Union Agency for Cybersecurity (ENISA) issued joint emergency advisories instructing public and private sector IT administrators to audit all PHP-FPM, Apache mod_php, and container runtimes. The agencies urged organizations to temporarily isolate vulnerable endpoints where immediate patching was blocked by regression testing.
+              </p>
+              <div class="live-feed-item-foot">
+                <div>
+                  <strong style="color:var(--ink);">Operational Takeaway:</strong> Prioritize perimeter web servers first, followed by internal container base images.
+                </div>
+                <div>
+                  <a href="#src-ncsc" class="src-cite">UK NCSC Notice [Src #1] ↗</a>
+                  <a href="#src-enisa" class="src-cite">ENISA Guidance [Src #6] ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Dispatch 04 -->
+            <article class="live-feed-item type-official" data-category="official">
+              <div class="live-feed-item-top">
+                <span class="live-feed-item-pill" style="background:#FEF3C7;color:#92400E;border:1px solid #FDE68A;">
+                  🤖 AI Vulnerability Discovery · Google Cloud &amp; Wiz
+                </span>
+                <span class="live-feed-item-time">21 October 2026 · Research Brief</span>
+              </div>
+              <h3 class="live-feed-item-title">
+                Google Cloud Details Role of AI in Identifying Complex Memory Defect
+              </h3>
+              <p class="live-feed-item-desc">
+                Google Cloud and Wiz confirmed that advanced artificial intelligence research models (specifically referencing contributions from Gemini 4 Argon) assisted in discovering and analyzing the memory corruption pathways. AI systems proved adept at mapping atypical execution states that traditional static analysis often overlooks.
+              </p>
+              <div class="live-feed-item-foot">
+                <div>
+                  <strong style="color:var(--ink);">Research Takeaway:</strong> AI will accelerate both defender patch discovery and attacker exploit generation velocity.
+                </div>
+                <div>
+                  <a href="#src-google-cloud" class="src-cite">Google Cloud Advisory [Src #7] ↗</a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Dispatch 05 -->
+            <article class="live-feed-item type-intel" data-category="intel">
+              <div class="live-feed-item-top">
+                <span class="live-feed-item-pill" style="background:#FEE2E2;color:#991B1B;border:1px solid #FCA5A5;">
+                  🏥 NHS England Digital · Healthcare Triage
+                </span>
+                <span class="live-feed-item-time">21 October 2026 · Critical Alert</span>
+              </div>
+              <h3 class="live-feed-item-title">
+                NHS England Digital Releases Alert CC-4875 for Healthcare Providers
+              </h3>
+              <p class="live-feed-item-desc">
+                NHS England Digital issued Cyber Alert CC-4875 detailing the specific memory safety implications for healthcare web portals, appointment scheduling engines, and electronic patient record frontends built on PHP, mandating expedited maintenance cycles across all regional trusts.
+              </p>
+              <div class="live-feed-item-foot">
+                <div>
+                  <strong style="color:var(--ink);">Compliance Notice:</strong> Mandates version verification across all NHS medical portal supply chains.
+                </div>
+                <div>
+                  <a href="#src-nhs" class="src-cite">NHS Digital Alert [Src #5] ↗</a>
+                </div>
+              </div>
+            </article>
+
+          </div>
+        </section>
+
+        <!-- SECTION 5 -->
+        <section id="why-activity-surged">
+          <h2>5. Millions of Attempts: Why Did Activity Surge So Quickly?</h2>
+          <p>
+            The sheer volume of exploitation traffic observed immediately after disclosure is one of the most striking aspects of PHP2Shell. Several compounding factors drive this rapid acceleration:
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:14px;margin:20px 0;">
+            <div style="background:var(--bg-2);border-left:4px solid #2563EB;padding:14px 18px;border-radius:0 var(--r) var(--r) 0;">
+              <strong style="color:var(--ink);font-size:0.95rem;">1. Public Disclosure Drastically Lowers Research Cost</strong>
+              <p style="margin:4px 0 0;font-size:0.9rem;color:var(--ink-2);line-height:1.6;">
+                Before disclosure, an attacker must find a software bug and develop a stable trigger mechanism from scratch. Once public advisories and proof-of-concept scripts appear online, that legwork is largely completed. Attackers can quickly repurpose existing public payloads.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border-left:4px solid #D97706;padding:14px 18px;border-radius:0 var(--r) var(--r) 0;">
+              <strong style="color:var(--ink);font-size:0.95rem;">2. Mass Automation Enables Broad, Indiscriminate Targeting</strong>
+              <p style="margin:4px 0 0;font-size:0.9rem;color:var(--ink-2);line-height:1.6;">
+                Threat actors do not investigate websites manually. High-speed scanning engines (such as Masscan or customized botnets) can spray millions of web IP addresses per hour, testing for HTTP responses and triggering out-of-memory payloads indiscriminately.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border-left:4px solid #7C3AED;padding:14px 18px;border-radius:0 var(--r) var(--r) 0;">
+              <strong style="color:var(--ink);font-size:0.95rem;">3. Patch Diffing Reveals Exactly What Changed</strong>
+              <p style="margin:4px 0 0;font-size:0.9rem;color:var(--ink-2);line-height:1.6;">
+                When the PHP Foundation commits fixes to GitHub, researchers and adversaries immediately compare the before-and-after source code (patch diffing). By examining where <code>longjmp()</code> calls were removed or memory pointers re-initialized, attackers gain a precise blueprint for weaponization.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border-left:4px solid #DC2626;padding:14px 18px;border-radius:0 var(--r) var(--r) 0;">
+              <strong style="color:var(--ink);font-size:0.95rem;">4. Simultaneous Global Competition Between Multiple Actors</strong>
+              <p style="margin:4px 0 0;font-size:0.9rem;color:var(--ink-2);line-height:1.6;">
+                A spike in traffic does not represent a single coordinated cartel. Red teams, academic scanners, ransomware affiliates, cryptominers, and state-backed actors all test the vulnerability concurrently, each generating separate scanning waves.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section id="were-systems-compromised">
+          <h2>6. Were Systems Actually Compromised?</h2>
+          <p>
+            This is where rigorous threat intelligence and clear reporting are essential.
+          </p>
+          <p>
+            <strong>Millions of exploitation attempts do NOT equal millions of breached servers.</strong> A web request can be blocked by edge routing, dropped by a firewall, fail to allocate enough memory to trigger the bug, or arrive at a host running a patched PHP version.
+          </p>
+
+          <p>
+            To understand the situation accurately, security analysts use a five-stage progression:
+          </p>
+
+          <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin:20px 0;">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(130px, 1fr));gap:12px;text-align:center;">
+              <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 8px;">
+                <span style="font-size:0.75rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;">Stage 1</span>
+                <div style="font-weight:800;color:#2563EB;margin-top:4px;">Vulnerability</div>
+                <p style="font-size:0.78rem;color:var(--ink-3);margin:4px 0 0;">A flaw exists in the software codebase.</p>
+              </div>
+              <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 8px;">
+                <span style="font-size:0.75rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;">Stage 2</span>
+                <div style="font-weight:800;color:#D97706;margin-top:4px;">Attempt</div>
+                <p style="font-size:0.78rem;color:var(--ink-3);margin:4px 0 0;">Someone transmits traffic to trigger it.</p>
+              </div>
+              <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 8px;">
+                <span style="font-size:0.75rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;">Stage 3</span>
+                <div style="font-weight:800;color:#DC2626;margin-top:4px;">Exploitation</div>
+                <p style="font-size:0.78rem;color:var(--ink-3);margin:4px 0 0;">The application triggers memory corruption.</p>
+              </div>
+              <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 8px;">
+                <span style="font-size:0.75rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;">Stage 4</span>
+                <div style="font-weight:800;color:#7C3AED;margin-top:4px;">Compromise</div>
+                <p style="font-size:0.78rem;color:var(--ink-3);margin:4px 0 0;">The attacker gains an unauthorized effect.</p>
+              </div>
+              <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 8px;">
+                <span style="font-size:0.75rem;font-weight:700;color:var(--ink-4);text-transform:uppercase;">Stage 5</span>
+                <div style="font-weight:800;color:#991B1B;margin-top:4px;">Impact</div>
+                <p style="font-size:0.78rem;color:var(--ink-3);margin:4px 0 0;">Sensitive data, operations, or secrets lost.</p>
+              </div>
+            </div>
+          </div>
+
+          <p>
+            An alert on an edge honeypot or an access log showing a malformed request is only Stage 2. To confirm Stage 4 (compromise), forensic investigators must locate definitive evidence on the target system: unexpected child processes, modified files, altered timestamps, or unauthorized outbound network connections.
+          </p>
+        </section>
+
+        <!-- SECTION 7 -->
+        <section id="why-services-offline">
+          <h2>7. Why Did Organisations Take Services Offline?</h2>
+          <p>
+            During the initial 24–48 hours, several public agencies and online enterprises took affected services temporarily offline. While an outage impacts users and operations, keeping an exposed, unpatched service online carries far higher catastrophic risk.
+          </p>
+          <p>
+            If an application is reachable by anyone on the internet, defenders are in an active race against automated scanning scripts. If testing and applying updates requires hours of regression verification, severing internet connectivity temporarily eliminates the threat window while patches are deployed safely.
+          </p>
+          <p>
+            Mature organizations incorporate emergency shutdown authorizations into their incident response playbooks, ensuring decisions are driven by calculated risk rather than panic.
+          </p>
+        </section>
+
+        <!-- SECTION 8 -->
+        <section id="inside-the-soc">
+          <h2>8. Inside the SOC: What Should Analysts Do First?</h2>
+          <p>
+            For a Security Operations Centre (SOC), PHP2Shell is not simply a routine patch ticket. It is an intensive asset discovery, threat monitoring, and retrospective compromise assessment challenge.
+          </p>
+          <p>
+            A disciplined response follows five operational steps:
+          </p>
+
+          <div style="display:flex;flex-direction:column;gap:18px;margin:24px 0;">
+            <!-- Step 1 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #2563EB;border-radius:var(--r);padding:18px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0 0 8px;color:var(--ink);">Step 1 — Identify All Affected Assets Across the Environment</h3>
+              <p style="margin:0 0 10px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                The SOC and infrastructure teams must enumerate every running PHP instance across cloud and on-premise networks. This inventory must capture:
+              </p>
+              <ul style="margin-left:20px;font-size:0.9rem;line-height:1.6;color:var(--ink-2);margin-bottom:0;">
+                <li>Public-facing web applications and backend API gateways</li>
+                <li>PHP-FPM worker pools and Apache instances using <code>mod_php</code></li>
+                <li>Docker container base images and Kubernetes pods running web applications</li>
+                <li>Staging, QA, and development environments that mirror production architecture</li>
+                <li>Commercial off-the-shelf (COTS) and vendor-managed virtual appliances bundling PHP</li>
+              </ul>
+            </div>
+
+            <!-- Step 2 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #D97706;border-radius:var(--r);padding:18px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0 0 8px;color:var(--ink);">Step 2 — Prioritise Internet-Facing Systems</h3>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Internet-exposed systems must be patched first because adversaries can reach them directly without prior network penetration. Internal web applications and microservices should follow immediately to prevent lateral movement from compromised developer workstations.
+              </p>
+            </div>
+
+            <!-- Step 3 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #16A34A;border-radius:var(--r);padding:18px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0 0 8px;color:var(--ink);">Step 3 — Patch and Verify Runtime Versions</h3>
+              <p style="margin:0 0 12px;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Update to the official upstream releases published by the PHP Foundation <a href="#src-php-foundation" class="src-cite">Advisory [Src #2] ↗</a>:
+              </p>
+
+              <!-- Patch Matrix Table -->
+              <div class="t-wrap" style="margin:12px 0;">
+                <table class="t" style="margin:0;">
+                  <thead>
+                    <tr>
+                      <th>PHP Release Branch</th>
+                      <th>Secure Fixed Version</th>
+                      <th>Status &amp; Notes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>PHP 8.5</strong></td>
+                      <td><span style="color:#16A34A;font-weight:700;">8.5.12</span></td>
+                      <td>Current active development release</td>
+                    </tr>
+                    <tr>
+                      <td><strong>PHP 8.4</strong></td>
+                      <td><span style="color:#16A34A;font-weight:700;">8.4.27</span></td>
+                      <td>Supported stable release</td>
+                    </tr>
+                    <tr>
+                      <td><strong>PHP 8.3</strong></td>
+                      <td><span style="color:#16A34A;font-weight:700;">8.3.36</span></td>
+                      <td>Supported stable release</td>
+                    </tr>
+                    <tr>
+                      <td><strong>PHP 8.2</strong></td>
+                      <td><span style="color:#16A34A;font-weight:700;">8.2.35</span></td>
+                      <td>Supported stable release</td>
+                    </tr>
+                    <tr>
+                      <td><strong>PHP 8.1 and earlier</strong></td>
+                      <td><span style="color:#DC2626;font-weight:700;">End of Life (EOL)</span></td>
+                      <td>No upstream patches. Requires backported vendor packages or immediate migration.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p style="margin:8px 0 0;font-size:0.86rem;color:var(--ink-3);">
+                <em>Critical verification reminder:</em> Running <code>apt update</code> on a host server does not automatically update PHP inside running Docker containers or Kubernetes pods. Always verify the active version using <code>php -v</code> inside the exact execution container.
+              </p>
+            </div>
+
+            <!-- Step 4 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #7C3AED;border-radius:var(--r);padding:18px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0 0 8px;color:var(--ink);">Step 4 — Review Logs for Pre-Patch Compromise Evidence</h3>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                Patching only protects against future requests. SOC analysts must retrospectively inspect server logs and host telemetry covering the days leading up to the patch (back to 17 October or earlier) to verify that no malicious code was executed prior to updating.
+              </p>
+            </div>
+
+            <!-- Step 5 -->
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #64748B;border-radius:var(--r);padding:18px 20px;">
+              <h3 style="font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin:0 0 8px;color:var(--ink);">Step 5 — Explicitly Document Telemetry Gaps</h3>
+              <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+                If certain servers lack detailed access logs, process creation tracking, or command-line auditing, document those blind spots in the incident debrief. Acknowledge investigative uncertainty rather than making assumptions without evidence.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 9 -->
+        <section id="detection-engineering">
+          <h2>9. Detection Engineering: What Should Defenders Look For?</h2>
+          <p>
+            Detection engineers should construct high-fidelity hunting rules across multiple telemetry layers:
+          </p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px;margin:20px 0;">
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px;">
+              <h3 style="font-family:var(--f-d);font-size:0.98rem;font-weight:800;color:#2563EB;margin:0 0 6px;">🌐 Web Server Logs</h3>
+              <p style="font-size:0.88rem;color:var(--ink-2);line-height:1.5;margin:0;">
+                Look for anomalous HTTP requests: unexpected payload sizes, repeated malformed POST parameters directed at endpoints that normally receive light traffic, and bursts of HTTP 500 (Internal Server Error) responses indicating worker crashes.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px;">
+              <h3 style="font-family:var(--f-d);font-size:0.98rem;font-weight:800;color:#DC2626;margin:0 0 6px;">⚙️ Abnormal Process Creation</h3>
+              <p style="font-size:0.88rem;color:var(--ink-2);line-height:1.5;margin:0;">
+                The most reliable host indicator: PHP worker processes (<code>php-fpm</code>, <code>httpd</code>, <code>nginx</code>) unexpectedly spawning command shells (<code>/bin/sh</code>, <code>/bin/bash</code>, <code>cmd.exe</code>, <code>powershell.exe</code>) or download utilities (<code>curl</code>, <code>wget</code>, <code>certutil</code>).
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px;">
+              <h3 style="font-family:var(--f-d);font-size:0.98rem;font-weight:800;color:#D97706;margin:0 0 6px;">📁 File System Integrity</h3>
+              <p style="font-size:0.88rem;color:var(--ink-2);line-height:1.5;margin:0;">
+                Monitor for newly created executable scripts, webshells, or modified timestamps in web-accessible directories, temporary locations (<code>/tmp</code>, <code>/dev/shm</code>, <code>C:\Windows\Temp</code>), and upload folders.
+              </p>
+            </div>
+
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:16px;">
+              <h3 style="font-family:var(--f-d);font-size:0.98rem;font-weight:800;color:#7C3AED;margin:0 0 6px;">📡 Outbound Network Connections</h3>
+              <p style="font-size:0.88rem;color:var(--ink-2);line-height:1.5;margin:0;">
+                Web servers rarely initiate outbound connections to arbitrary public IP addresses. Detect unexpected outbound TCP/UDP traffic originating from the <code>www-data</code> user or web daemon, indicating reverse shells or beaconing.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 10 -->
+        <section id="mitre-attck">
+          <h2>10. MITRE ATT&amp;CK: Mapping PHP2Shell for SOC Reporting</h2>
+          <p>
+            The MITRE ATT&amp;CK framework establishes a shared vocabulary for communicating adversary techniques across incident reports:
+          </p>
+
+          <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:18px 20px;margin:20px 0;">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:6px;">
+              <span style="font-family:var(--f-d);font-size:1.05rem;font-weight:800;color:var(--ink);">
+                T1190 — Exploit Public-Facing Application
+              </span>
+              <a href="#src-mitre" class="src-cite">MITRE T1190 [Src #8] ↗</a>
+            </div>
+            <p style="margin:0;font-size:0.92rem;color:var(--ink-2);line-height:1.6;">
+              This primary technique applies when an adversary takes advantage of a software weakness in an internet-accessible program or service to execute malicious commands or gain access.
+            </p>
+          </div>
+
+          <p>
+            A disciplined SOC incident report distinguishes three categories of activity:
+          </p>
+          <ol style="margin-left:20px;line-height:1.8;font-size:0.95rem;color:var(--ink-2);">
+            <li><strong>Confirmed Activity:</strong> Events supported by immutable host logs (e.g., an HTTP request with specific payloads and a child process spawned).</li>
+            <li><strong>Consistent Activity:</strong> Anomalous patterns (such as server crash logs) that align with vulnerability triggers but lack definitive post-exploitation proof.</li>
+            <li><strong>Potential Follow-On Behaviour:</strong> Scenarios to investigate (such as credential harvesting or lateral movement) that must not be declared as confirmed facts without evidence.</li>
+          </ol>
+        </section>
+
+        <!-- SECTION 11 -->
+        <section id="could-waf-stop-it">
+          <h2>11. Could a Web Application Firewall Stop PHP2Shell?</h2>
+          <p>
+            A Web Application Firewall (WAF) inspects incoming HTTP/HTTPS traffic and blocks requests matching recognized exploit signatures.
+          </p>
+          <p>
+            Cloudflare reported deploying protective rules prior to public disclosure <a href="#src-cloudflare" class="src-cite">Cloudflare Advisory [Src #4] ↗</a>. However, its research highlighted why relying entirely on a WAF is inadequate:
+          </p>
+          <ul style="margin-left:20px;line-height:1.8;font-size:0.95rem;color:var(--ink-2);">
+            <li>Because PHP2Shell exploits memory handling under exceptional conditions, payloads can be modified and obfuscated to evade simple regex pattern matching.</li>
+            <li>Effective detection required correlating inbound request characteristics with server response dynamics.</li>
+            <li>WAFs reduce exploit traffic at the edge, but they are a temporary mitigation barrier — not a substitute for updating the underlying PHP runtime.</li>
+          </ul>
+        </section>
+
+        <!-- SECTION 12 -->
+        <section id="if-server-compromised">
+          <h2>12. What if a Vulnerable Server May Already Have Been Compromised?</h2>
+          <p>
+            If historical telemetry reveals evidence that an attacker successfully triggered remote code execution, patching the software is no longer sufficient. Teams should execute standard incident response procedures:
+          </p>
+
+          <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:14px;margin:20px 0;">
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:14px;">
+              <strong style="color:var(--ink);">1. Containment</strong>
+              <p style="margin:4px 0 0;font-size:0.86rem;color:var(--ink-3);">Isolate the affected VM or container from the network to halt lateral movement while preserving volatile memory.</p>
+            </div>
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:14px;">
+              <strong style="color:var(--ink);">2. Evidence Preservation</strong>
+              <p style="margin:4px 0 0;font-size:0.86rem;color:var(--ink-3);">Capture memory dumps, web access logs, shell histories, and disk forensic images before applying updates or rebooting.</p>
+            </div>
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:14px;">
+              <strong style="color:var(--ink);">3. Investigation</strong>
+              <p style="margin:4px 0 0;font-size:0.86rem;color:var(--ink-3);">Establish the exact entry timestamp, identify commands executed by the PHP worker, and determine whether lateral accounts were accessed.</p>
+            </div>
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:14px;">
+              <strong style="color:var(--ink);">4. Eradication &amp; Rebuild</strong>
+              <p style="margin:4px 0 0;font-size:0.86rem;color:var(--ink-3);">Do not simply delete webshells. Rebuild the affected system from a known-clean immutable image or deployment pipeline.</p>
+            </div>
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:14px;">
+              <strong style="color:var(--ink);">5. Recovery &amp; Validation</strong>
+              <p style="margin:4px 0 0;font-size:0.86rem;color:var(--ink-3);">Restore the service using patched PHP versions, rotate all stored application database credentials, and confirm enhanced logging.</p>
+            </div>
+            <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:14px;">
+              <strong style="color:var(--ink);">6. Lessons Learned</strong>
+              <p style="margin:4px 0 0;font-size:0.86rem;color:var(--ink-3);">Document missed detection signals, patch lead-time bottlenecks, and telemetry gaps to harden emergency playbooks.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 13 -->
+        <section id="role-of-ai">
+          <h2>13. The Role of AI in Finding Vulnerabilities</h2>
+          <p>
+            PHP2Shell also highlighted the transformative impact of artificial intelligence on vulnerability research. Google Cloud and Wiz reported that AI-assisted analysis contributed directly to discovering and validating the vulnerabilities <a href="#src-google-cloud" class="src-cite">Google Cloud Advisory [Src #7] ↗</a>.
+          </p>
+          <p>
+            Modern AI systems can parse vast C/C++ language codebases, simulate unusual memory error-handling branches, and detect use-after-free conditions that human code reviews and standard fuzzers miss.
+          </p>
+          <p>
+            However, this rapid advancement cuts both ways: as AI empowers defensive researchers to find and patch zero-days, it also compresses the timeline between public bug disclosure and automated weaponization by adversaries. Organizations must adapt to a reality where patch reaction windows are measured in hours, not weeks.
+          </p>
+        </section>
+
+        <!-- SECTION 14 -->
+        <section id="strategic-lessons">
+          <h2>14. What Organisations Should Learn From This Incident</h2>
+          <p>
+            The PHP2Shell response reveals core strategic lessons for technology leadership:
+          </p>
+          <ul style="margin-left:20px;line-height:1.8;font-size:0.95rem;color:var(--ink-2);">
+            <li><strong>Continuous Asset Visibility:</strong> Security teams cannot defend software they do not track. Software Bill of Materials (SBOM) and automated discovery must encompass containers, staging sites, and virtual appliances.</li>
+            <li><strong>Tested Emergency Patch Workflows:</strong> Organizations require pre-authorized governance to deploy zero-day security patches outside standard monthly maintenance cycles.</li>
+            <li><strong>Third-Party Dependency Governance:</strong> Commercial vendors and managed hosting providers must be held to strict SLA standards for emergency security patching.</li>
+            <li><strong>Monitoring Must Continue After Patching:</strong> Updating a runtime fixes future risk; it does not clear existing infections that occurred prior to updating.</li>
+            <li><strong>Retire Unsupported Software:</strong> Runtimes like PHP 8.1 and earlier that have passed End-of-Life pose compounding risk during major vulnerabilities. Upgrading to supported branches is fundamental risk management.</li>
+          </ul>
+        </section>
+
+        <!-- SECTION 15 -->
+        <section id="defender-checklist">
+          <h2>15. A Practical Checklist for Defenders</h2>
+          <p>
+            Use this interactive operational checklist to guide your team's PHP2Shell remediation and validation:
+          </p>
+
+          <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:22px;margin:20px 0;">
+            <div style="display:flex;flex-direction:column;gap:12px;" id="chkListContainer">
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>1. Identify every PHP installation, container base image, and bundled appliance across your enterprise estate.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>2. Review official security advisories for CVE-2026-109618 and CVE-2026-109619.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>3. Prioritise internet-facing web portals, APIs, and customer endpoints for immediate remediation.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>4. Apply official fixed releases (PHP 8.5.12, 8.4.27, 8.3.36, 8.2.35) or vendor-provided backported packages.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>5. Confirm the active running application runtime using <code>php -v</code> inside production pods and web containers.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>6. Temporarily isolate systems that cannot be patched immediately while emergency testing is completed.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>7. Review web server access logs covering dates back to 17 October 2026 for anomalous request patterns.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>8. Investigate host process creation for shells or utilities spawned as child processes of PHP-FPM or Apache.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>9. Inspect web directories and temporary storage folders (<code>/tmp</code>) for newly created files or webshells.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>10. Document all telemetry and logging gaps discovered during the investigation to guide future monitoring upgrades.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>11. Audit and verify remediation across test environments, staging clusters, and third-party SaaS appliances.</span>
+              </label>
+              <label style="display:flex;align-items:flex-start;gap:10px;font-size:0.92rem;color:var(--ink-2);cursor:pointer;">
+                <input type="checkbox" style="margin-top:3px;accent-color:#DC2626;">
+                <span>12. Review emergency patching protocols and continue monitoring vendor security advisories for follow-up patches.</span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- FINAL THOUGHTS -->
+        <section id="final-thoughts">
+          <h2>Final Thoughts: The Race Begins Before the Headlines</h2>
+          <p>
+            PHP2Shell is a sobering reminder that a critical software vulnerability can become an urgent global crisis in a matter of hours.
+          </p>
+          <p>
+            The public announcement on 21 October was a turning point, but Amazon's telemetry of an exploit attempt on 17 October demonstrates why defenders can never assume disclosure day is day zero. Attackers test, adapt, and automate at machine speed.
+          </p>
+          <p>
+            The millions of scanning attempts logged across the internet highlight the unprecedented scale of the defense required. Yet for security teams, the mission remains clear and methodical: identify all running assets, patch ruthlessly, investigate pre-patch telemetry, and verify containment based on evidence.
+          </p>
+          <p>
+            A vulnerability can be discovered in seconds, but protecting every affected system takes planning, visibility, and decisive action.
+          </p>
+        </section>
+
+        <!-- SOURCES & REFERENCES SECTION -->
+        <section id="sources-and-references" style="margin-top:40px;border-top:1px solid var(--border);padding-top:24px;">
+          <h2>Sources &amp; Further Reading</h2>
+          <p style="font-size:0.92rem;color:var(--ink-3);">
+            This investigative autopsy is grounded in verified public disclosures, technical security bulletins, and threat intelligence reports:
+          </p>
+
+          <ul style="margin-left:20px;line-height:1.8;font-size:0.92rem;color:var(--ink-2);">
+            <li id="src-ncsc" style="margin-top:10px;">
+              <strong>UK National Cyber Security Centre (NCSC) — <em>Critical security issue affecting PHP</em> (October 2026):</strong><br>
+              Technical overview of affected branches, threat vector assessment, and urgent mitigation directives.<br>
+              <a href="https://www.ncsc.gov.uk/news/critical-security-issue-affecting-php" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">View UK NCSC Advisory ↗</a>
+            </li>
+
+            <li id="src-php-foundation" style="margin-top:14px;">
+              <strong>PHP Foundation / PHP Project Security Team — <em>Official Security Advisories (CVE-2026-109618 &amp; CVE-2026-109619)</em>:</strong><br>
+              Authoritative technical release notes, patch diffs, and corrected release branches (8.5.12, 8.4.27, 8.3.36, 8.2.35).<br>
+              <a href="https://github.com/php/php-src/security/advisories/GHSA-6wmf-4rv5-p3rp" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">View PHP Foundation GitHub Advisory ↗</a>
+            </li>
+
+            <li id="src-amazon" style="margin-top:14px;">
+              <strong>Amazon Threat Intelligence — <em>PHP2Shell Exploitation Detected Prior to Public Disclosure in MadPot</em> (October 2026):</strong><br>
+              Detailed forensic telemetry documenting honeypot exploitation on 17 October, anonymization infrastructure, and early payload variations.<br>
+              <a href="https://aws.amazon.com/blogs/security/amazon-threat-intelligence-identifies-php2shell-exploitation-prior-to-public-disclosure-in-madpot/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">Read Amazon Threat Intelligence Report ↗</a>
+            </li>
+
+            <li id="src-cloudflare" style="margin-top:14px;">
+              <strong>Cloudflare — <em>Protections Against PHP Vulnerabilities (PHP2Shell)</em> (October 2026):</strong><br>
+              Global edge telemetry on millions of exploitation attempts, WAF heuristic rules, and request-and-response inspection challenges.<br>
+              <a href="https://blog.cloudflare.com/php-vulnerabilities-waf-protection/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">Read Cloudflare Edge Analysis ↗</a>
+            </li>
+
+            <li id="src-nhs" style="margin-top:14px;">
+              <strong>NHS England Digital — <em>Critical Vulnerabilities in PHP (PHP2Shell)</em> (Cyber Alert CC-4875):</strong><br>
+              Severity scoring, memory safety technical mechanisms, and healthcare clinical systems triage protocols.<br>
+              <a href="https://digital.nhs.uk/cyber-alerts/2026/cc-4875" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">View NHS Digital Alert CC-4875 ↗</a>
+            </li>
+
+            <li id="src-enisa" style="margin-top:14px;">
+              <strong>ENISA — <em>Joint Statement on Critical PHP Vulnerabilities</em> (October 2026):</strong><br>
+              European cybersecurity mitigation guidance and emergency vulnerability coordination.<br>
+              <a href="https://www.enisa.europa.eu/news/joint-statement-on-critical-php-vulnerabilities" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">Read ENISA Joint Statement ↗</a>
+            </li>
+
+            <li id="src-google-cloud" style="margin-top:14px;">
+              <strong>Google Cloud &amp; Wiz — <em>Responding to Core PHP Vulnerabilities</em> (October 2026):</strong><br>
+              Analysis of AI-assisted vulnerability research (specifically citing Gemini 4 Argon) and defensive cloud mitigation.<br>
+              <a href="https://cloud.google.com/blog/products/identity-security/responding-to-core-php-vulnerabilities-cve-2026-109618-cve-2026-109619/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">Read Google Cloud Technical Brief ↗</a>
+            </li>
+
+            <li id="src-mitre" style="margin-top:14px;">
+              <strong>MITRE ATT&amp;CK — <em>T1190: Exploit Public-Facing Application</em>:</strong><br>
+              Adversary behavioral framework mapping initial access techniques across exposed enterprise software.<br>
+              <a href="https://attack.mitre.org/techniques/T1190/" target="_blank" rel="noopener noreferrer" style="font-weight:700;color:#1D4ED8;">View MITRE ATT&amp;CK T1190 Specification ↗</a>
+            </li>
+          </ul>
+
+          <div style="background:var(--bg-2);border:1px solid var(--border);border-left:4px solid #DC2626;border-radius:var(--r);padding:18px 22px;margin-top:32px;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+              <span style="font-family:var(--f-d);font-size:0.78rem;font-weight:800;color:#DC2626;background:#FEE2E2;padding:3px 8px;border-radius:4px;text-transform:uppercase;">
+                Methodology &amp; Evidence Standard
+              </span>
+            </div>
+            <strong style="color:var(--ink);font-size:0.95rem;">Editorial &amp; Verification Note:</strong>
+            <p style="margin:8px 0 0;font-size:0.88rem;color:var(--ink-2);line-height:1.6;">
+              This article reflects technical intelligence and disclosures available as of 23 October 2026. Reported exploitation attempts, automated honeypot activity, and confirmed enterprise breaches are strictly distinguished. This analysis does not claim that every scanned server was compromised or that worst-case post-exploitation actions took place without forensic corroboration.
+            </p>
+            <p style="margin:8px 0 0;font-size:0.84rem;color:var(--ink-3);font-weight:700;">
+              Cyber Insight — Behind the Breach · Real incidents. Clear explanations. Practical security lessons.
+            </p>
+          </div>
+        </section>
+
+        <!-- EPISODE NAVIGATION CARD -->
+        <div style="background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r);padding:24px;margin:36px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+          <div>
+            <span style="font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-4);">Previous Investigation</span>
+            <div style="font-family:var(--f-d);font-size:1.05rem;font-weight:800;color:var(--ink);margin-top:4px;">
+              <a href="behind-the-breach-02.html" style="color:var(--ink);text-decoration:none;">← Episode 02: ASOS Customer Data Breach</a>
+            </div>
+            <p style="margin:4px 0 0;font-size:0.84rem;color:var(--ink-3);">How impersonation and compromised employee logins exposed customer records on third-party SaaS platforms.</p>
+          </div>
+          <div>
+            <a href="index.html#behind-the-breach" class="cta" style="background:#DC2626;color:white;padding:10px 18px;border-radius:var(--r-sm);font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">
+              Series Hub &amp; Archive →
+            </a>
+          </div>
+        </div>
+
+        <!-- READER INTERACTION & FEEDBACK SECTION -->
+        <section class="feedback-section" id="feedback" aria-label="Reader feedback">
+          <div class="fb-header">
+            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:10px;">
+              <div class="fb-badge"><span>💬</span> Reader Discussion</div>
+              <button type="button" class="fb-theme-toggle" id="fbThemeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                <span class="fb-theme-icon">🌙</span> <span class="fb-theme-text">Dark mode</span>
+              </button>
+            </div>
+            <h2 class="fb-title">Reader Feedback &amp; Discussion</h2>
+            <p class="fb-sub">Have an insight, question, or SOC perspective on memory safety, PHP runtime patching, or early honeypot detection? Submit a response below. Feedback prepares a private email draft directly to the author.</p>
+
+            <p style="font-size:0.86rem;color:var(--ink-3);margin-bottom:6px;">You can also <a href="mailto:sujampathirathnayaka@gmail.com" style="color:var(--ink);font-weight:600;text-decoration:underline;">email Poorna directly</a>.</p>
+            <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
+
+            <form id="fbForm" class="feedback-form">
+              <div class="fb-form-grid">
+                <div>
+                  <label for="fbName" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Your Name / Handle (optional)</label>
+                  <input type="text" id="fbName" class="fb-input" maxlength="100" autocomplete="name" placeholder="Security Professional / Reader" aria-describedby="fbDraftNote">
+                </div>
+                <div>
+                  <label for="fbCategory" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Topic</label>
+                  <select id="fbCategory" class="fb-input">
+                    <option value="PHP2Shell Vulnerabilities">PHP2Shell Vulnerabilities</option>
+                    <option value="Memory Safety & RCE">Memory Safety &amp; RCE</option>
+                    <option value="SOC Detection & Telemetry">SOC Detection &amp; Telemetry</option>
+                    <option value="Pre-Disclosure Threat Intel">Pre-Disclosure Threat Intel</option>
+                    <option value="Emergency Patching">Emergency Patching</option>
+                    <option value="Question">Question</option>
+                  </select>
+                </div>
+              </div>
+
+              <div style="margin-bottom:16px;">
+                <label for="fbMessage" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Your Thoughts / Feedback</label>
+                <textarea id="fbMessage" class="fb-textarea" rows="4" required maxlength="2000" placeholder="What are your thoughts on PHP2Shell, memory corruption in web engines, and zero-day patch velocity?" aria-describedby="fbDraftNote fbLimit"></textarea>
+                <p id="fbLimit" class="fb-draft-note" style="margin:4px 0 0;font-size:0.75rem;">Maximum 2,000 characters.</p>
+              </div>
+
+              <div class="fb-form-foot">
+                <button type="submit" class="fb-submit-btn">Submit Feedback →</button>
+                <button type="button" id="fbClear" class="fb-clear-btn">Clear Form</button>
+              </div>
+            </form>
+
+            <p id="fbStatus" role="status" aria-live="polite" style="font-size:0.88rem;color:var(--ink-2);margin:16px 0 10px;"></p>
+
+            <div id="fbEmailPreview" hidden style="margin-top:16px;padding:16px;background:var(--bg-2);border:1px solid var(--border);border-radius:var(--r-sm);">
+              <label for="fbEmailBody" style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:6px;">Email draft</label>
+              <textarea id="fbEmailBody" class="fb-textarea" readonly rows="8" style="margin-bottom:12px;"></textarea>
+              <div class="fb-form-foot">
+                <a id="fbEmailLink" class="au-btn pf" href="#">Open email app</a>
+                <button type="button" id="fbCopy" class="fb-submit-btn">Copy feedback</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </main>
+  </div>
+
+  <!-- ABOUT STRIP -->
+  <section class="about-strip" id="about">
+    <div class="wrap">
+      <div class="about-in">
+        <div class="about-av" style="background:#DC2626;">PS</div>
+        <div class="about-info">
+          <h2 class="about-title">Poorna Sujampathi Rathnayaka</h2>
+          <p class="about-desc">
+            Investigative cybersecurity researcher and creator of <strong>Cyber Insight</strong>. 
+            I dissect real-world threat campaigns, runtime vulnerabilities, supply-chain failures, and identity attacks to explain what actually happened behind the headlines.
+          </p>
+        </div>
+        <div class="about-btns">
+          <a href="https://sujampathirathnayaka.com/" class="about-btn w" target="_blank" rel="noopener noreferrer">🌐 Portfolio</a>
+          <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" class="about-btn li" target="_blank" rel="noopener noreferrer">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            LinkedIn
+          </a>
+          <a href="https://www.youtube.com/@CyberPocket26" class="about-btn yt" target="_blank" rel="noopener noreferrer" style="background:#FF0000;color:#fff;border-color:#FF0000;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            Cyber Pocket Shorts
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark" style="background:#DC2626;">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            Behind the Breach is an investigative autopsy series covering major cybersecurity incidents and software vulnerabilities in plain, evidence-backed language.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Behind the Breach</div>
+            <ul class="foot-nav-list">
+              <li><a href="behind-the-breach-01.html">Episode 01: Manchester Airports Group</a></li>
+              <li><a href="behind-the-breach-02.html">Episode 02: ASOS Customer Data Breach</a></li>
+              <li><a href="behind-the-breach-03.html">Episode 03: PHP2Shell RCE Vulnerabilities</a></li>
+              <li><a href="index.html#behind-the-breach">Series Hub &amp; Archive</a></li>
+              <li><a href="#feedback">Submit Incident Tips</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Curriculum Series</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
+              <li><a href="article-07.html">Ep 07: Fake Recruiters in LinkedIn</a></li>
+              <li><a href="article-08.html">Ep 08: OSINT &amp; 10-Minute Scammer Recon</a></li>
+              <li><a href="article-09.html">Ep 09: Bank Impersonation &amp; Vishing</a></li>
+              <li><a href="index.html#series">10-Part Core Curriculum</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot-disclaimer">
+        <strong>Research Disclaimer:</strong> Content published in Behind the Breach is compiled for non-commercial educational, threat awareness, and digital literacy purposes. All trademarks and registered names belong to their respective holders.
+      </div>
+
+      <div class="foot-bottom">
+        <div>&copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.</div>
+        <div class="foot-bottom-links">
+          <a href=".well-known/security.txt" target="_blank" rel="noopener noreferrer">Security Policy</a>
+          <span>·</span>
+          <a href="index.html#about">Ethics &amp; Methodology</a>
+          <span>·</span>
+          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element"></div>
+  <script src="js/cms.js?v=14"></script>
+  <script src="js/app.js?v=14"></script>
+  <script src="js/translator.js?v=14"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>
