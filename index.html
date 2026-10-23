@@ -1584,6 +1584,7 @@ iframe.goog-te-banner-frame {
               <ul class="series-drop-list">
                 <li><a href="behind-the-breach-01.html"><span class="ep-num-pill red">MAG</span> Manchester Airports Group</a></li>
                 <li><a href="behind-the-breach-02.html"><span class="ep-num-pill red">ASOS</span> ASOS Customer Data Breach</a></li>
+                <li><a href="behind-the-breach-03.html"><span class="ep-num-pill red">PHP</span> PHP2Shell RCE Vulnerabilities</a></li>
               </ul>
               <div class="series-drop-footer">
                 <a href="#behind-the-breach" class="series-drop-hub-link">View Investigations Archive →</a>
@@ -2046,6 +2047,34 @@ iframe.goog-te-banner-frame {
       <h2 id="bb-title">Behind the Breach</h2>
       <p class="intro">You saw the headline. Here’s what actually happened: how each attack worked, what’s confirmed and what’s only claimed, and what everyone can learn from it.</p>
       <div class="cases" data-stagger>
+        <article class="case reveal">
+          <div class="case-art" style="--cbg:#2E1065"><svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A server worker runtime surrounded by automated scanning waves, memory pressure, and zero-day alert shields" preserveAspectRatio="xMidYMid slice"><title>PHP2Shell remote code execution and automated scanning race</title><circle cx="240" cy="180" r="130" fill="#fff" fill-opacity=".04"/>
+<rect x="70" y="80" width="340" height="200" rx="16" fill="#0F172A" stroke="#A855F7" stroke-width="3"/>
+<rect x="70" y="80" width="340" height="32" rx="16" fill="#1E1B4B"/>
+<circle cx="95" cy="96" r="5" fill="#EF4444"/><circle cx="112" cy="96" r="5" fill="#F59E0B"/><circle cx="129" cy="96" r="5" fill="#10B981"/>
+<text x="240" y="101" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#C4B5FD">php-fpm: worker-pool-01</text>
+<g class="a-bob"><rect x="100" y="130" width="130" height="60" rx="8" fill="#3B0764" stroke="#C084FC" stroke-width="1.5"/>
+<text x="165" y="154" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#F43F5E">longjmp() OOM</text>
+<text x="165" y="172" text-anchor="middle" font-family="DM Sans, system-ui" font-size="9" fill="#E9D5FF">CVE-2026-109618</text></g>
+<g class="a-bob" style="animation-delay:-1.2s"><rect x="250" y="130" width="130" height="60" rx="8" fill="#1E1B4B" stroke="#818CF8" stroke-width="1.5"/>
+<text x="315" y="154" text-anchor="middle" font-family="ui-monospace, monospace" font-size="11" font-weight="700" fill="#FBBF24">Use-After-Free</text>
+<text x="315" y="172" text-anchor="middle" font-family="DM Sans, system-ui" font-size="9" fill="#E0E7FF">CVE-2026-109619</text></g>
+<rect x="100" y="210" width="280" height="44" rx="8" fill="#1E293B" stroke="#475569" stroke-width="1"/>
+<text x="240" y="234" text-anchor="middle" font-family="Bricolage Grotesque, system-ui" font-size="13" font-weight="800" fill="#F87171">CVSS 9.2 · Unauthenticated RCE</text>
+<g class="a-pulse"><rect x="310" y="44" width="120" height="28" rx="14" fill="#DC2626"/><text x="370" y="62" text-anchor="middle" font-family="Bricolage Grotesque, system-ui" font-size="12" font-weight="800" fill="#fff">4 days prior</text></g></svg></div>
+          <div class="case-body">
+            <p class="case-sector">Case 03, web infrastructure and runtime</p>
+            <h3><a href="behind-the-breach-03.html">Behind the Breach: PHP2Shell — Millions of Hacking Attempts and a Race to Protect the Internet</a></h3>
+            <p class="case-sum">A critical vulnerability in the web’s core runtime triggered millions of exploit attempts immediately after disclosure. But honeypot telemetry shows attackers were already testing it four days earlier.</p>
+            <ol class="steps">
+              <li><span>Attackers test exploit against honeypots on 17 October</span></li>
+              <li><span>PHP security team discloses two CVSS 9.2 memory flaws</span></li>
+              <li><span>Millions of automated scanning requests flood the web</span></li>
+              <li><span>Teams race to patch runtimes before unauthenticated RCE succeeds</span></li>
+            </ol>
+            <a class="btn btn-sun" href="behind-the-breach-03.html">Read the investigation, 10 min <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+          </div>
+        </article>
         <article class="case reveal">
           <div class="case-art" style="--cbg:#1B2B55"><svg viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A shopping bag and a key, with a message asking to share a login" preserveAspectRatio="xMidYMid slice"><title>A shopping bag and a key, with a message asking to share a login</title><circle cx="130" cy="180" r="130" fill="#fff" fill-opacity=".05"/>
 <path d="M90 110H210L224 300H76Z" fill="#fff"/>
