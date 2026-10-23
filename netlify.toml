@@ -44,6 +44,36 @@
   to = "/index.html"
   status = 404
 
+[[redirects]]
+  from = "/*.mjs"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/*.cjs"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/scripts/*"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/tests/*"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/*.yml"
+  to = "/index.html"
+  status = 404
+
+[[redirects]]
+  from = "/*.yaml"
+  to = "/index.html"
+  status = 404
+
 [[headers]]
   for = "/*"
   [headers.values]
@@ -55,7 +85,7 @@
     Cross-Origin-Opener-Policy = "same-origin"
     Cross-Origin-Resource-Policy = "same-origin"
     X-Permitted-Cross-Domain-Policies = "none"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=(), accelerometer=(), gyroscope=(), magnetometer=(), display-capture=(), browsing-topics=()"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=(), accelerometer=(), gyroscope=(), magnetometer=(), display-capture=(), browsing-topics=(), clipboard-read=(), clipboard-write=(self)"
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://translate.google.com https://translate.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://translate.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://translate.googleapis.com; frame-src https://translate.google.com; frame-ancestors 'none'; form-action 'self' mailto:; object-src 'none'; base-uri 'self'; upgrade-insecure-requests;"
     Cache-Control = "public, max-age=3600"
 

@@ -1,6 +1,10 @@
 User-agent: *
 Disallow: /admin.html
+Disallow: /scripts/
+Disallow: /tests/
 Disallow: /*.bak$
+Disallow: /*.mjs$
+Disallow: /*.cjs$
 Allow: /
 Allow: /index.html
 Allow: /article.html
@@ -11,6 +15,10 @@ Allow: /article-05.html
 Allow: /article-06.html
 Allow: /article-07.html
 Allow: /article-08.html
+Allow: /article-09.html
+Allow: /behind-the-breach-01.html
+Allow: /behind-the-breach-02.html
+Allow: /behind-the-breach-03.html
 Allow: /assets/
 Allow: /styles/
 Allow: /js/
@@ -18,5 +26,5 @@ Allow: /js/
 Sitemap: https://thecyberinsight.online/sitemap.xml
 
 # Security Vulnerability Reporting (RFC 9116)
-Contact: mailto:security@sujampathirathnayaka.com
-Security: https://sujampathirathnayaka.com/.well-known/security.txt
+Contact: mailto:sujampathirathnayaka@gmail.com
+Security: https://thecyberinsight.online/.well-known/security.txt

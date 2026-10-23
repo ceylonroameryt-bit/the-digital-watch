@@ -133,6 +133,17 @@ async function copyLink() {
 
 /* ── STORAGE HELPERS ─────────────────────────────────────────── */
 const sessionData = new Map();
+function sanitizeStorage(obj) {
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return {};
+  const clean = Object.create(null);
+  for (const [k, v] of Object.entries(obj)) {
+    if (k === '__proto__' || k === 'constructor' || k === 'prototype') continue;
+    if (typeof v === 'string' || typeof v === 'number' || typeof v === 'boolean') {
+      clean[k] = v;
+    }
+  }
+  return clean;
+}
 function getData() {
   try {
     const key = getArticleKey();
@@ -141,8 +152,8 @@ function getData() {
       raw = localStorage.getItem('threatbrief_ai_scams_v3') || localStorage.getItem('threatbrief_ep01');
       if (raw) localStorage.setItem(key, raw);
     }
-    const saved = JSON.parse(raw || '{}');
-    return sessionData.get(key) || (saved && typeof saved === 'object' && !Array.isArray(saved) ? saved : {});
+    const saved = sanitizeStorage(JSON.parse(raw || '{}'));
+    return sessionData.get(key) || saved;
   } catch (e) {
     return sessionData.get(getArticleKey()) || {};
   }
@@ -906,6 +917,17 @@ function initAttackMap() {
 
 /* ── SECURITY ENFORCEMENT & OUTBOUND LINKS ────────────────────── */
 function initSecurityDefenses() {
+  // Anti-Clickjacking: prevent malicious framing across origins
+  try {
+    if (window.top && window.top !== window.self) {
+      if (window.top.location.hostname !== window.self.location.hostname) {
+        window.top.location.href = window.self.location.href;
+      }
+    }
+  } catch (_) {
+    try { window.top.location.href = window.self.location.href; } catch (__) {}
+  }
+
   // Ensure all outbound links explicitly enforce rel="noopener noreferrer"
   document.querySelectorAll('a[target="_blank"]').forEach(a => {
     const rel = (a.getAttribute('rel') || '').toLowerCase();
