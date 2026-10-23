@@ -341,4 +341,15 @@ test('live news update feed renders dispatches and filters by category', () => {
   assert.equal(visibleAll.length, 5);
 });
 
+test('all public pages enforce nosniff and strict-origin referrer security policies', () => {
+  for (const file of pages) {
+    const { document } = parseHTML(read(file));
+    const referrer = document.querySelector('meta[name="referrer"]');
+    assert.ok(referrer, `${file} missing meta[name="referrer"]`);
+    assert.equal(referrer.getAttribute('content'), 'strict-origin-when-cross-origin');
 
+    const nosniff = document.querySelector('meta[http-equiv="X-Content-Type-Options"]');
+    assert.ok(nosniff, `${file} missing meta[http-equiv="X-Content-Type-Options"]`);
+    assert.equal(nosniff.getAttribute('content'), 'nosniff');
+  }
+});
