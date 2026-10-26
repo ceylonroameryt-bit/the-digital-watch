@@ -7,7 +7,7 @@ const { execFileSync } = require('node:child_process');
 const { parseHTML } = require('linkedom');
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
-const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html', 'article-06.html', 'article-07.html', 'article-08.html', 'article-09.html', 'behind-the-breach-01.html', 'behind-the-breach-02.html', 'behind-the-breach-03.html'];
+const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html', 'article-06.html', 'article-07.html', 'article-08.html', 'article-09.html', 'behind-the-breach-01.html', 'behind-the-breach-02.html', 'behind-the-breach-03.html', 'behind-the-breach-04.html'];
 
 function boot(file, { stored = {}, sessionStored = {}, storageBlocked = false, search = '', hash = '', scripts } = {}) {
   const { document, window: dom } = parseHTML(read(file));
@@ -205,6 +205,7 @@ test('deployment contains public pages and security policy, excludes the local e
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-01.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-02.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-03.html')));
+  assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-04.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/sitemap.xml')));
   assert.ok(fs.existsSync(path.join(root, 'dist/CNAME')));
   for (const file of ['admin.html', 'js/admin.js', 'node_modules', 'tests', '.git']) {
@@ -353,3 +354,33 @@ test('all public pages enforce nosniff and strict-origin referrer security polic
     assert.equal(nosniff.getAttribute('content'), 'nosniff');
   }
 });
+
+test('behind-the-breach-04 renders Anthropic incident details, live dispatches, and defender checklist', () => {
+  const app = boot('behind-the-breach-04.html');
+  assert.equal(app.document.body.dataset.articleId, 'breach04');
+
+  const card = app.document.querySelector('#incident-at-a-glance');
+  assert.ok(card, 'incident-at-a-glance card exists');
+  assert.match(card.textContent, /Cathedral/);
+  assert.match(card.textContent, /Anthropic/);
+
+  const stats = app.document.querySelectorAll('.stat-c');
+  assert.equal(stats.length, 3, 'renders 3 key statistics');
+  assert.match(stats[0].textContent, /< 12 Hours/);
+
+  const feed = app.document.querySelector('#live-news-updates');
+  assert.ok(feed, 'live-news-updates feed exists');
+  const items = app.document.querySelectorAll('.live-feed-item');
+  assert.equal(items.length, 5, 'renders 5 live dispatches');
+
+  const anthropicBtn = app.document.querySelector('.live-feed-filter-btn[data-filter="anthropic"]');
+  assert.ok(anthropicBtn, 'anthropic filter button exists');
+  app.fire(anthropicBtn, 'click');
+  assert.equal(anthropicBtn.getAttribute('aria-pressed'), 'true');
+  const visibleAnthropic = [...app.document.querySelectorAll('.live-feed-item')].filter(el => el.style.display !== 'none');
+  assert.equal(visibleAnthropic.length, 1);
+
+  const checklist = app.document.querySelectorAll('#chkListContainer input[type="checkbox"]');
+  assert.equal(checklist.length, 10, 'renders 10 defender checklist items');
+});
+

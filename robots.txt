@@ -19,6 +19,7 @@ Allow: /article-09.html
 Allow: /behind-the-breach-01.html
 Allow: /behind-the-breach-02.html
 Allow: /behind-the-breach-03.html
+Allow: /behind-the-breach-04.html
 Allow: /assets/
 Allow: /styles/
 Allow: /js/
