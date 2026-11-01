@@ -1,9 +1,13 @@
 # Monday article queue
 
 The Monday routine takes the first topic not marked `[x]`, writes it as an article in the named series (put the series name in the article's kicker/label), then marks it used.
-Series are interleaved on purpose. Add new topics at the bottom.
+Five series x 10 topics, interleaved in rotation. Add new topics at the bottom.
 
-Series: **Security in 5 Minutes** (how-to) · **Threat of the Week** (technique + ATT&CK + detection) · **Playbook Monday** (defender checklist) · **Myth vs Reality** · **Tool Spotlight** (free/open-source tool; only describe documented features, no unverified claims)
+- **Security in 5 Minutes**: practical how-to
+- **Threat of the Week**: technique, MITRE ATT&CK mapping, detection tips
+- **Playbook Monday**: defender checklist
+- **Myth vs Reality**: fact-checked myth busting
+- **Tool Spotlight**: free/open-source tool; describe only documented features, no unverified claims
 
 - [ ] [Security in 5 Minutes] Passkeys vs. SMS and authenticator codes: what to switch to first
 - [ ] [Threat of the Week] MFA fatigue (push bombing): how it works and how to detect it
@@ -29,4 +33,29 @@ Series: **Security in 5 Minutes** (how-to) · **Threat of the Week** (technique 
 - [ ] [Threat of the Week] Software supply-chain attacks: typosquatting and dependency confusion
 - [ ] [Playbook Monday] Vendor breach notification: what to do when a supplier is hit
 - [ ] [Myth vs Reality] "I'm too small to be a target"
-- [ ] [Tool Spotlight] YARA and Sigma rules: a first detection
+- [ ] [Tool Spotlight] YARA and Sigma rules: writing a first detection
+- [ ] [Security in 5 Minutes] Locking down your Google or Microsoft account
+- [ ] [Threat of the Week] Business email compromise
+- [ ] [Playbook Monday] A secret or API key leaked in a public repository
+- [ ] [Myth vs Reality] "A VPN makes me secure"
+- [ ] [Tool Spotlight] CyberChef for decoding and analysing data
+- [ ] [Security in 5 Minutes] Protecting your phone number from SIM swapping
+- [ ] [Threat of the Week] Infostealer malware and stolen browser sessions
+- [ ] [Playbook Monday] Employee offboarding without leaving access behind
+- [ ] [Myth vs Reality] "Antivirus is all I need"
+- [ ] [Tool Spotlight] VirusTotal: using it well and its limits
+- [ ] [Security in 5 Minutes] Turning on automatic updates everywhere (and what to check)
+- [ ] [Threat of the Week] Living off the land: attackers using your own tools
+- [ ] [Playbook Monday] Isolating an infected endpoint
+- [ ] [Myth vs Reality] "The HTTPS padlock means a site is safe"
+- [ ] [Tool Spotlight] Process Explorer and Autoruns for finding persistence
+- [ ] [Security in 5 Minutes] After a breach: the first five things to change
+- [ ] [Threat of the Week] Deepfake voice and video scams
+- [ ] [Playbook Monday] Responding to a DDoS attack
+- [ ] [Myth vs Reality] "Deleting a file erases it"
+- [ ] [Tool Spotlight] OWASP ZAP for testing your own web app
+- [ ] [Security in 5 Minutes] Safe travel: laptops, phones and hotel Wi-Fi
+- [ ] [Threat of the Week] Credential stuffing
+- [ ] [Playbook Monday] A one-page tabletop exercise for small teams
+- [ ] [Myth vs Reality] "Change your password every 90 days"
+- [ ] [Tool Spotlight] Wazuh: open-source monitoring for a small network
