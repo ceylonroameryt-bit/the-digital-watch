@@ -1626,6 +1626,21 @@ iframe.goog-te-banner-frame {
 @keyframes uiScan { 0% { transform: scaleX(0); } 70%, 90% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
 @media (max-width: 680px) { .ui-body { grid-template-columns: 72px 1fr; padding: 20px 16px; } .ui-shield { width: 72px; height: 72px; } .ui-shield svg { width: 48px; height: 48px; } }
 
+/* Episode cards: one consistent footer, no wrapping, no orphan card under the featured one. */
+.card-foot { flex-wrap: wrap; }
+.time { white-space: nowrap; }
+.read-btn { white-space: nowrap; }
+.card.featured::before { display: none; }
+.grid { grid-auto-flow: dense; }
+
+.announce, .lang-floating-btn { min-height: 44px; }
+@media (min-width: 681px) and (max-width: 1000px) {
+  #ep-10 { grid-column: 1 / -1; }
+  #ep-10 .card { flex-direction: row; }
+  #ep-10 .card-art { flex: 0 0 46%; aspect-ratio: auto; min-height: 260px; }
+  #ep-10 .card-body { justify-content: center; }
+}
+
 /* Shorts: same rounded block treatment as the other full-width sections. */
 .shorts-section { margin: 24px 16px; border: 1px solid var(--line); border-radius: 44px; }
 .short-card.featured-short, .short-channel-info-card { border-width: 1px; border-radius: 32px; }
@@ -1663,7 +1678,6 @@ iframe.goog-te-banner-frame {
       <a href="#behind-the-breach">Investigations</a>
       <a href="#shorts">Shorts</a>
       <a href="#about">About</a>
-      <a href="article.html#feedback">Suggest a topic</a>
     </nav>
     <div class="tools">
       <a class="icon-btn yt-btn" href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" aria-label="Cyber Pocket on YouTube Shorts" title="Watch Cyber Pocket on YouTube Shorts">
@@ -1931,7 +1945,7 @@ iframe.goog-te-banner-frame {
               <p class="topic">Your online footprint</p>
               <h3><a class="stretch" data-ep="8" href="article-08.html">How Much Can a Scammer Learn About You in 10 Minutes?</a></h3>
               <p class="sum">What a stranger can find out about you in 10 minutes, plus a 10-minute privacy self-audit.</p>
-              <div class="card-foot"><span class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min read</span><span class="read-btn">Read episode 8<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></div>
+              <div class="card-foot"><span class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min read</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></div>
             </div>
           </article>
         </li>
@@ -1959,7 +1973,7 @@ iframe.goog-te-banner-frame {
                   30-Sec Short Available
                 </span>
               </div>
-              <div class="card-foot"><span class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 min read</span><span class="read">Read episode →</span></div>
+              <div class="card-foot"><span class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 min read</span><span class="read-btn">Read episode <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></div>
             </div>
           </article>
         </li>
@@ -1981,7 +1995,7 @@ iframe.goog-te-banner-frame {
               <span class="sticker">Series Finale</span><p class="topic">Data Breaches</p>
               <h3><a class="stretch" data-ep="10" href="article-10.html">What Happens to Your Information After a Data Breach?</a></h3>
               <p class="sum">Where stolen records go after a breach, how they end up used against you, and what steps to take.</p>
-              <div class="card-foot"><span class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min read</span><span class="read">Read episode →</span></div>
+              <div class="card-foot"><span class="time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min read</span><span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></div>
             </div>
           </article>
         </li>
@@ -2283,16 +2297,6 @@ iframe.goog-te-banner-frame {
       </div>
     </div>
   </section>
-
-  <section class="band" aria-labelledby="band-title">
-    <div class="wrap band-in">
-      <div>
-        <h2 id="band-title">Something confusing, or a topic you want explained?</h2>
-        <p>Tell me what to explain next.</p>
-      </div>
-      <a class="btn btn-sun btn-lg" href="article.html#feedback">Suggest a topic <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
-    </div>
-  </section>
 </main>
 
 <footer class="site-footer">
@@ -2317,7 +2321,6 @@ iframe.goog-te-banner-frame {
       <div>
         <p class="foot-title">Get in touch</p>
         <ul class="foot-list">
-          <li><a href="article.html#feedback">Suggest a topic or give feedback</a></li>
           <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer">Cyber Pocket (YouTube Shorts) ↗</a></li>
           <li><a href="https://sujampathirathnayaka.com/" rel="noopener">Portfolio</a></li>
           <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" rel="noopener">LinkedIn</a></li>
