@@ -1553,26 +1553,12 @@ iframe.goog-te-banner-frame {
 
 /* Visual refresh: same palette, type and structure; richer hero, calmer cards. */
 .hero-stage { position: relative; min-width: 0; padding: 8px 0 44px 28px; }
-.stage-main { position: relative; display: block; aspect-ratio: 4 / 5; max-height: 540px; border-radius: 36px; overflow: hidden; border: 6px solid var(--surface); box-shadow: var(--shadow-lg); transform: rotate(2.5deg); transition: transform .45s cubic-bezier(.2,.8,.2,1); text-decoration: none; background: #DDE4F7; }
-.stage-main:hover { transform: rotate(0) translateY(-6px); }
-.stage-main svg { width: 100%; height: 100%; display: block; }
-.stage-pill { position: absolute; top: 16px; left: 16px; padding: 7px 14px; border-radius: 999px; background: var(--sun); color: #1A1500; font: 800 .8125rem var(--display); }
-.stage-cap { position: absolute; inset: auto 0 0 0; display: grid; gap: 4px; padding: 22px; color: #0F1B3A; background: rgba(255, 255, 255, .85); }
-.stage-cap b { font: 800 1.375rem/1.15 var(--display); letter-spacing: -.02em; }
-.stage-cap i { font: 600 .875rem var(--body); font-style: normal; opacity: .85; }
-.stage-card { position: absolute; left: -4px; bottom: 0; z-index: 3; display: flex; align-items: center; gap: 12px; width: min(280px, 80%); padding: 10px 16px 10px 10px; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-lg); text-decoration: none; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
-.stage-card:hover { transform: translateY(-4px); }
-.stage-dot { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: #FFE6CC; color: #B34F00; font: 800 1.25rem var(--display); flex: none; }
-.stage-card i { display: block; font: 600 .8125rem var(--body); font-style: normal; color: var(--muted); }
-.stage-card b { display: block; font: 700 .9375rem/1.25 var(--display); letter-spacing: -.01em; }
-.hero-stage .chip1 { top: 22%; left: 0; }
-.hero-stage .chip3 { top: 52%; right: -10px; bottom: auto; left: auto; }
 @media (min-width: 1001px) {
   .hero-grid { max-width: none; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; }
   .hero-grid h1 { font-size: clamp(2.6rem, 4.7vw, 4.4rem); }
 }
 @media (max-width: 1000px) { .hero-stage { max-width: 440px; padding-left: 0; } }
-@media (max-width: 680px) { .stage-card, .hero-stage .chip { display: none; } .hero-stage { padding-bottom: 0; } }
+@media (max-width: 680px) { .ui-toast { display: none; } }
 
 .trust li { padding: 10px 18px; border-radius: 18px; background: var(--bg); border: 1px solid var(--line); }
 .trust li:last-child { flex-basis: 100%; background: none; border: 0; padding-left: 4px; }
@@ -1584,7 +1570,6 @@ iframe.goog-te-banner-frame {
 .progress-card { background: var(--bg2); box-shadow: none; border-color: transparent; }
 .section > .wrap > h2 { max-width: 14em; }
 .btn-primary:hover { box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 18px 32px -12px var(--blue); }
-@media (prefers-reduced-motion: reduce) { .stage-main, .stage-main:hover { transform: none; } }
 
 
 /* New series: one row per series, each in its own colour. */
@@ -1603,6 +1588,43 @@ iframe.goog-te-banner-frame {
 .ns-eps .ep-num-pill { display: grid; place-items: center; width: 30px; height: 24px; border-radius: 8px; background: var(--tone); color: #111B3A; font: 800 .75rem var(--display); }
 @media (max-width: 1000px) { .ns-row { grid-template-columns: minmax(0, 1fr); } }
 @media (max-width: 680px) { .ns-eps { grid-template-columns: minmax(0, 1fr); padding: 22px; } .ns-head { padding: 24px; } }
+
+/* Hero: a generic animated security UI, then the latest update beneath it. */
+.hero-stage { display: grid; gap: 16px; align-content: center; }
+.ui-win { position: relative; border-radius: 28px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-lg); }
+.ui-top { display: flex; align-items: center; gap: 7px; padding: 14px 18px; background: var(--bg2); border-radius: 28px 28px 0 0; }
+.ui-top i { width: 11px; height: 11px; border-radius: 50%; background: var(--line2); }
+.ui-top i:nth-child(1) { background: var(--coral); } .ui-top i:nth-child(2) { background: var(--sun); } .ui-top i:nth-child(3) { background: var(--mint); }
+.ui-top span { margin-left: 10px; font: 600 .8125rem var(--body); color: var(--muted); }
+.ui-body { display: grid; grid-template-columns: 96px 1fr; gap: 8px 22px; align-items: center; padding: 26px 24px 24px; }
+.ui-shield { position: relative; display: grid; place-items: center; width: 96px; height: 96px; color: var(--blue); }
+.ui-shield svg { position: relative; width: 64px; height: 64px; }
+.ui-ring { position: absolute; inset: 4px; border-radius: 50%; border: 3px solid var(--blue); opacity: .35; animation: uiPing 2.6s ease-out infinite; }
+.ui-check { stroke-dasharray: 40; animation: uiDraw 3.6s ease-in-out infinite; }
+.ui-rows { display: grid; gap: 10px; }
+.ui-rows li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; border-radius: 14px; background: var(--bg2); font: 600 .9375rem var(--body); }
+.ui-sw { position: relative; flex: none; width: 42px; height: 24px; border-radius: 999px; background: var(--mint); animation: uiSwBg 3.6s ease-in-out infinite; }
+.ui-sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transform: translateX(18px); animation: uiSwKnob 3.6s ease-in-out infinite; }
+.ui-tag { padding: 4px 12px; border-radius: 999px; background: #FFD9D3; color: #8A1F14; font: 800 .8125rem var(--display); animation: uiPop 3.6s ease-in-out infinite; }
+.ui-tag.ok { background: #CFF5E7; color: #05452F; animation-delay: .5s; }
+.ui-scan { grid-column: 1 / -1; display: grid; gap: 8px; margin-top: 10px; font: 600 .875rem var(--body); color: var(--muted); }
+.ui-bar { height: 10px; border-radius: 999px; background: var(--line); overflow: hidden; }
+.ui-bar i { display: block; height: 100%; border-radius: 999px; background: var(--blue); transform-origin: left; animation: uiScan 3.6s ease-in-out infinite; }
+.ui-toast { position: absolute; padding: 9px 16px; border-radius: 14px; background: var(--ink); color: var(--bg); font: 700 .8125rem var(--display); box-shadow: var(--shadow-lg); animation: bob 5s ease-in-out infinite; }
+.ui-toast.t1 { top: -14px; right: -12px; background: var(--sun); color: #1A1500; }
+.ui-toast.t2 { bottom: 58px; left: -16px; background: var(--mint); color: #05281C; animation-delay: -2s; }
+.stage-update { display: grid; gap: 4px; padding: 18px 22px; border-radius: 24px; background: var(--ink); color: var(--bg); text-decoration: none; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.stage-update:hover { transform: translateY(-4px); }
+.su-pill { justify-self: start; padding: 4px 12px; border-radius: 999px; background: var(--sun); color: #1A1500; font: 800 .8125rem var(--display); }
+.stage-update b { font: 800 1.125rem/1.25 var(--display); letter-spacing: -.015em; margin-top: 6px; }
+.stage-update i { font: 500 .875rem var(--body); font-style: normal; opacity: .75; }
+@keyframes uiPing { from { transform: scale(.75); opacity: .5; } to { transform: scale(1.35); opacity: 0; } }
+@keyframes uiDraw { 0% { stroke-dashoffset: 40; } 25%, 85% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 40; } }
+@keyframes uiSwKnob { 0%, 12% { transform: translateX(0); } 28%, 88% { transform: translateX(18px); } 100% { transform: translateX(0); } }
+@keyframes uiSwBg { 0%, 12% { background: var(--line2); } 28%, 88% { background: var(--mint); } 100% { background: var(--line2); } }
+@keyframes uiPop { 0%, 20% { opacity: 0; transform: scale(.7); } 35%, 88% { opacity: 1; transform: none; } 100% { opacity: 0; transform: scale(.7); } }
+@keyframes uiScan { 0% { transform: scaleX(0); } 70%, 90% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+@media (max-width: 680px) { .ui-body { grid-template-columns: 72px 1fr; padding: 20px 16px; } .ui-shield { width: 72px; height: 72px; } .ui-shield svg { width: 48px; height: 48px; } }
 
 /* Shorts: same rounded block treatment as the other full-width sections. */
 .shorts-section { margin: 24px 16px; border: 1px solid var(--line); border-radius: 44px; }
@@ -1663,7 +1685,7 @@ iframe.goog-te-banner-frame {
     <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span><span class="blob b3" aria-hidden="true"></span>
     <div class="wrap hero-grid">
       <div>
-        <a class="announce" href="#ep-9"><span class="dot" aria-hidden="true"></span>New: Episode 9 is live</a>
+        <a class="announce" href="#ep-10"><span class="dot" aria-hidden="true"></span>New: Episode 10 is live</a>
         <h1 id="hero-title">See what’s actually happening online.</h1>
         <p class="lede">Plain-language cybersecurity for anyone who uses the internet. Each episode takes one real threat, explains what’s going on, and tells you what to do about it.</p>
         <div class="cta-row">
@@ -1671,26 +1693,27 @@ iframe.goog-te-banner-frame {
           <a class="btn btn-soft btn-lg" href="#series">Browse all episodes</a>
         </div>
         <ul class="trust">
-          <li><b><span class="count" data-count="9">9</span></b>episodes ready</li>
-          <li><b><span class="count" data-count="63">63</span> min</b>of reading in total</li>
+          <li><b><span class="count" data-count="10">10</span></b>episodes ready</li>
+          <li><b><span class="count" data-count="71">71</span> min</b>of reading in total</li>
           <li>Written by a working security professional</li>
         </ul>
       </div>
-      <aside class="hero-stage" aria-label="Latest episode">
-        <a class="stage-main" href="article-09.html"><svg aria-hidden="true" viewBox="0 0 480 360" xmlns="http://www.w3.org/2000/svg" aria-label="A phone ringing with a masked caller pretending to be a bank" preserveAspectRatio="xMidYMid slice"><circle cx="240" cy="185" r="150" fill="#fff" fill-opacity=".55"/><path class="a-ring" style="--i:0" d="M150 124A26 26 0 0 0 150 176" stroke="#1D4ED8" stroke-width="5" fill="none" stroke-linecap="round" opacity="1"/><path class="a-ring" style="--i:0" d="M330 124A26 26 0 0 1 330 176" stroke="#1D4ED8" stroke-width="5" fill="none" stroke-linecap="round" opacity="1"/><path class="a-ring" style="--i:1" d="M142 104A46 46 0 0 0 142 196" stroke="#1D4ED8" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/><path class="a-ring" style="--i:1" d="M338 104A46 46 0 0 1 338 196" stroke="#1D4ED8" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/><path class="a-ring" style="--i:2" d="M134 84A66 66 0 0 0 134 216" stroke="#1D4ED8" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.3"/><path class="a-ring" style="--i:2" d="M346 84A66 66 0 0 1 346 216" stroke="#1D4ED8" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.3"/>
-<g class="a-shake"><rect x="170" y="44" width="140" height="272" rx="28" fill="#0F1B3A"/>
-<rect x="181" y="68" width="118" height="224" rx="14" fill="#fff"/>
-<circle cx="240" cy="128" r="30" fill="#F2C9A5" stroke="#0F1B3A" stroke-width="3.5"/>
-<rect x="212" y="118" width="56" height="15" rx="7.5" fill="#0F1B3A"/><circle cx="226" cy="125.5" r="2.6" fill="#fff"/><circle cx="254" cy="125.5" r="2.6" fill="#fff"/>
-<path d="M229 144Q240 152 251 144" stroke="#0F1B3A" stroke-width="3" fill="none" stroke-linecap="round"/>
-<text x="240" y="188" text-anchor="middle" font-family="Bricolage Grotesque, system-ui, sans-serif" font-size="18" font-weight="700" fill="#0F1B3A">YourBank</text>
-<rect x="197" y="200" width="86" height="26" rx="13" fill="#E5483B"/>
-<text x="240" y="218" text-anchor="middle" font-family="Bricolage Grotesque, system-ui, sans-serif" font-size="13" font-weight="700" fill="#fff">spoofed ID</text>
-<circle cx="208" cy="262" r="17" fill="#1BA37A"/><path d="M200 266Q208 252 216 258" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-<circle cx="272" cy="262" r="17" fill="#E5483B"/><path d="M264 262H280" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/></g></svg><span class="stage-pill">Episode 9 · Scam calls</span><span class="stage-cap"><b>Your Bank Is Calling. Or Is It?</b><i>7 min read</i></span></a>
-        <a class="stage-card" href="article-08.html"><span class="stage-dot" aria-hidden="true">8</span><span><i>Episode 8</i><b>How much can a scammer learn about you?</b></span></a>
-        <span class="chip chip1" aria-hidden="true">Phishing</span>
-        <span class="chip chip3" aria-hidden="true">Passkeys</span>
+      <aside class="hero-stage" aria-label="Latest update">
+        <div class="ui-win" aria-hidden="true">
+          <div class="ui-top"><i></i><i></i><i></i><span>Your account · Security check</span></div>
+          <div class="ui-body">
+            <div class="ui-shield"><span class="ui-ring"></span><svg viewBox="0 0 64 64" fill="none"><path d="M32 6l20 8v16c0 14-8.5 23.5-20 28C20.500 53.500 12 44 12 30V14z" fill="currentColor"/><path class="ui-check" d="M22 32l7 7 13-14" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <ul class="ui-rows">
+              <li><span>Passkey sign-in</span><b class="ui-sw"></b></li>
+              <li><span>Phishing link</span><b class="ui-tag">Blocked</b></li>
+              <li><span>Session check</span><b class="ui-tag ok">Safe</b></li>
+            </ul>
+            <div class="ui-scan"><span>Scanning for threats</span><div class="ui-bar"><i></i></div></div>
+          </div>
+          <span class="ui-toast t1">New login alert</span>
+          <span class="ui-toast t2">2-step on</span>
+        </div>
+        <a class="stage-update" href="article-10.html"><span class="su-pill">Latest update · Nov 2</span><b>Episode 10: What happens to your information after a data breach?</b><i>The series finale · 8 min read</i></a>
       </aside>
     </div>
   </section>
