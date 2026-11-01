@@ -2521,3 +2521,17 @@ body[data-ep] .site-footer h4, body[data-ep] .site-footer strong { color:#111B3A
     color: #F87171 !important;
   }
 }
+
+/* ── SEASON 1 SERIES STRIP IN SERIES DROPDOWN ── */
+.series-drop-season { margin-top: 14px; padding: 12px 14px; border: 1px solid var(--line, #E0E4F5); border-radius: 12px; background: var(--bg, #F6F7FF); }
+.series-drop-season-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 8px; }
+.series-dropdown-menu a.series-drop-season-all { font-size: .8rem; font-weight: 800; color: var(--blue, #2A52EE); text-decoration: none; padding: 0; }
+.series-dropdown-menu .series-drop-season-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.series-dropdown-menu .series-drop-season-list a { display: inline-block; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line2, #CCD3ED); font-size: .78rem; font-weight: 700; color: var(--ink, #111B3A); text-decoration: none; background: transparent; }
+.series-dropdown-menu .series-drop-season-list a:hover { border-color: var(--blue, #2A52EE); color: var(--blue, #2A52EE); }
+:root[data-theme="dark"] .series-drop-season { background: #16203D; border-color: #263354; }
+:root[data-theme="dark"] .series-dropdown-menu .series-drop-season-list a { color: #E6EBFA; border-color: #263354; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .series-drop-season { background: #16203D; border-color: #263354; }
+  :root:not([data-theme="light"]) .series-dropdown-menu .series-drop-season-list a { color: #E6EBFA; border-color: #263354; }
+}

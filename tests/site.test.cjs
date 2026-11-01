@@ -7,7 +7,7 @@ const { execFileSync } = require('node:child_process');
 const { parseHTML } = require('linkedom');
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
-const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html', 'article-06.html', 'article-07.html', 'article-08.html', 'article-09.html', 'behind-the-breach-01.html', 'behind-the-breach-02.html', 'behind-the-breach-03.html', 'behind-the-breach-04.html'];
+const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html', 'article-06.html', 'article-07.html', 'article-08.html', 'article-09.html', 'behind-the-breach-01.html', 'behind-the-breach-02.html', 'behind-the-breach-03.html', 'behind-the-breach-04.html', 'series.html'];
 
 function boot(file, { stored = {}, sessionStored = {}, storageBlocked = false, search = '', hash = '', scripts } = {}) {
   const { document, window: dom } = parseHTML(read(file));
@@ -206,6 +206,7 @@ test('deployment contains public pages and security policy, excludes the local e
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-02.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-03.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-04.html')));
+  assert.ok(fs.existsSync(path.join(root, 'dist/series.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/sitemap.xml')));
   assert.ok(fs.existsSync(path.join(root, 'dist/CNAME')));
   for (const file of ['admin.html', 'js/admin.js', 'node_modules', 'tests', '.git']) {
@@ -384,3 +385,16 @@ test('behind-the-breach-04 renders Anthropic incident details, live dispatches, 
   assert.equal(checklist.length, 10, 'renders 10 defender checklist items');
 });
 
+
+test('series hub lists 5 Season 1 series of 10 episodes and every dropdown links to it', () => {
+  const app = boot('series.html');
+  const cards = app.document.querySelectorAll('.sh-card');
+  assert.equal(cards.length, 5);
+  for (const card of cards) assert.equal(card.querySelectorAll('.sh-eps li').length, 10, card.id);
+  for (const file of pages.filter(p => p !== 'series.html')) {
+    const { document } = parseHTML(read(file));
+    const links = [...document.querySelectorAll('.series-drop-season-list a')].map(a => a.getAttribute('href'));
+    assert.equal(links.length, 5, file);
+    for (const href of links) assert.ok(app.document.getElementById(href.split('#')[1]), href);
+  }
+});
