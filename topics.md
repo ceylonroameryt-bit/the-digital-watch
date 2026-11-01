@@ -1,32 +1,70 @@
 # Monday article queue
 
-The Monday routine takes the first topic not marked `[x]`, writes it as an article in the named series (put the series name in the article's kicker/label), then marks it used.
-Series are interleaved on purpose. Add new topics at the bottom.
+The Monday routine takes the first topic not marked `[x]`, writes it as an article labelled "Series | Season | Episode" (e.g. "Security in 5 Minutes | Season 1 | Episode 3"), then marks it used.
+Five series, each with Season 1 = 10 episodes, played one series after another (50 Mondays). Add Season 2 of any series at the bottom.
 
-Series: **Security in 5 Minutes** (how-to) · **Threat of the Week** (technique + ATT&CK + detection) · **Playbook Monday** (defender checklist) · **Myth vs Reality** · **Tool Spotlight** (free/open-source tool; only describe documented features, no unverified claims)
 
-- [ ] [Security in 5 Minutes] Passkeys vs. SMS and authenticator codes: what to switch to first
-- [ ] [Threat of the Week] MFA fatigue (push bombing): how it works and how to detect it
-- [ ] [Playbook Monday] Phishing triage: the first 15 minutes
-- [ ] [Myth vs Reality] "Incognito mode makes me anonymous"
-- [ ] [Tool Spotlight] Wireshark basics for spotting suspicious traffic
-- [ ] [Security in 5 Minutes] Securing your home router
-- [ ] [Threat of the Week] OAuth consent phishing
-- [ ] [Playbook Monday] Account takeover response checklist
-- [ ] [Myth vs Reality] "Macs and phones don't get malware"
-- [ ] [Tool Spotlight] Have I Been Pwned and breach-monitoring tools
-- [ ] [Security in 5 Minutes] Password managers: choosing one and migrating safely
-- [ ] [Threat of the Week] QR-code phishing (quishing)
-- [ ] [Playbook Monday] Ransomware first-hour checklist for small teams
-- [ ] [Myth vs Reality] "A strong password is enough"
-- [ ] [Tool Spotlight] Sysmon for endpoint visibility on Windows
-- [ ] [Security in 5 Minutes] Backups that survive ransomware (3-2-1-1-0)
-- [ ] [Threat of the Week] Adversary-in-the-middle phishing kits and session theft
-- [ ] [Playbook Monday] Lost or stolen laptop response
-- [ ] [Myth vs Reality] "Public Wi-Fi is always dangerous" (and when it actually is)
-- [ ] [Tool Spotlight] Nmap for checking your own network exposure
-- [ ] [Security in 5 Minutes] Reading a suspicious email: headers, links, attachments
-- [ ] [Threat of the Week] Software supply-chain attacks: typosquatting and dependency confusion
-- [ ] [Playbook Monday] Vendor breach notification: what to do when a supplier is hit
-- [ ] [Myth vs Reality] "I'm too small to be a target"
-- [ ] [Tool Spotlight] YARA and Sigma rules: a first detection
+## Series: Security in 5 Minutes (Season 1)
+
+- [ ] [Security in 5 Minutes | Season 1 | Episode 1] Passkeys vs. SMS and authenticator codes: what to switch to first
+- [ ] [Security in 5 Minutes | Season 1 | Episode 2] Securing your home router
+- [ ] [Security in 5 Minutes | Season 1 | Episode 3] Password managers: choosing one and migrating safely
+- [ ] [Security in 5 Minutes | Season 1 | Episode 4] Backups that survive ransomware (3-2-1-1-0)
+- [ ] [Security in 5 Minutes | Season 1 | Episode 5] Reading a suspicious email: headers, links, attachments
+- [ ] [Security in 5 Minutes | Season 1 | Episode 6] Locking down your Google or Microsoft account
+- [ ] [Security in 5 Minutes | Season 1 | Episode 7] Protecting your phone number from SIM swapping
+- [ ] [Security in 5 Minutes | Season 1 | Episode 8] Turning on automatic updates everywhere (and what to check)
+- [ ] [Security in 5 Minutes | Season 1 | Episode 9] After a breach: the first five things to change
+- [ ] [Security in 5 Minutes | Season 1 | Episode 10] Safe travel: laptops, phones and hotel Wi-Fi
+
+## Series: Threat of the Week (Season 1)
+
+- [ ] [Threat of the Week | Season 1 | Episode 1] MFA fatigue (push bombing): how it works and how to detect it
+- [ ] [Threat of the Week | Season 1 | Episode 2] OAuth consent phishing
+- [ ] [Threat of the Week | Season 1 | Episode 3] QR-code phishing (quishing)
+- [ ] [Threat of the Week | Season 1 | Episode 4] Adversary-in-the-middle phishing kits and session theft
+- [ ] [Threat of the Week | Season 1 | Episode 5] Software supply-chain attacks: typosquatting and dependency confusion
+- [ ] [Threat of the Week | Season 1 | Episode 6] Business email compromise
+- [ ] [Threat of the Week | Season 1 | Episode 7] Infostealer malware and stolen browser sessions
+- [ ] [Threat of the Week | Season 1 | Episode 8] Living off the land: attackers using your own tools
+- [ ] [Threat of the Week | Season 1 | Episode 9] Deepfake voice and video scams
+- [ ] [Threat of the Week | Season 1 | Episode 10] Credential stuffing
+
+## Series: Playbook Monday (Season 1)
+
+- [ ] [Playbook Monday | Season 1 | Episode 1] Phishing triage: the first 15 minutes
+- [ ] [Playbook Monday | Season 1 | Episode 2] Account takeover response checklist
+- [ ] [Playbook Monday | Season 1 | Episode 3] Ransomware first-hour checklist for small teams
+- [ ] [Playbook Monday | Season 1 | Episode 4] Lost or stolen laptop response
+- [ ] [Playbook Monday | Season 1 | Episode 5] Vendor breach notification: what to do when a supplier is hit
+- [ ] [Playbook Monday | Season 1 | Episode 6] A secret or API key leaked in a public repository
+- [ ] [Playbook Monday | Season 1 | Episode 7] Employee offboarding without leaving access behind
+- [ ] [Playbook Monday | Season 1 | Episode 8] Isolating an infected endpoint
+- [ ] [Playbook Monday | Season 1 | Episode 9] Responding to a DDoS attack
+- [ ] [Playbook Monday | Season 1 | Episode 10] A one-page tabletop exercise for small teams
+
+## Series: Myth vs Reality (Season 1)
+
+- [ ] [Myth vs Reality | Season 1 | Episode 1] "Incognito mode makes me anonymous"
+- [ ] [Myth vs Reality | Season 1 | Episode 2] "Macs and phones don't get malware"
+- [ ] [Myth vs Reality | Season 1 | Episode 3] "A strong password is enough"
+- [ ] [Myth vs Reality | Season 1 | Episode 4] "Public Wi-Fi is always dangerous" (and when it actually is)
+- [ ] [Myth vs Reality | Season 1 | Episode 5] "I'm too small to be a target"
+- [ ] [Myth vs Reality | Season 1 | Episode 6] "A VPN makes me secure"
+- [ ] [Myth vs Reality | Season 1 | Episode 7] "Antivirus is all I need"
+- [ ] [Myth vs Reality | Season 1 | Episode 8] "The HTTPS padlock means a site is safe"
+- [ ] [Myth vs Reality | Season 1 | Episode 9] "Deleting a file erases it"
+- [ ] [Myth vs Reality | Season 1 | Episode 10] "Change your password every 90 days"
+
+## Series: Tool Spotlight (Season 1)
+
+- [ ] [Tool Spotlight | Season 1 | Episode 1] Wireshark basics for spotting suspicious traffic
+- [ ] [Tool Spotlight | Season 1 | Episode 2] Have I Been Pwned and breach-monitoring tools
+- [ ] [Tool Spotlight | Season 1 | Episode 3] Sysmon for endpoint visibility on Windows
+- [ ] [Tool Spotlight | Season 1 | Episode 4] Nmap for checking your own network exposure
+- [ ] [Tool Spotlight | Season 1 | Episode 5] YARA and Sigma rules: writing a first detection
+- [ ] [Tool Spotlight | Season 1 | Episode 6] CyberChef for decoding and analysing data
+- [ ] [Tool Spotlight | Season 1 | Episode 7] VirusTotal: using it well and its limits
+- [ ] [Tool Spotlight | Season 1 | Episode 8] Process Explorer and Autoruns for finding persistence
+- [ ] [Tool Spotlight | Season 1 | Episode 9] OWASP ZAP for testing your own web app
+- [ ] [Tool Spotlight | Season 1 | Episode 10] Wazuh: open-source monitoring for a small network
