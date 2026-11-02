@@ -35,7 +35,7 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Playbook Monday | Season 1 | Episode 1] Phishing triage: the first 15 minutes
 - [x] [Playbook Monday | Season 1 | Episode 2] Account takeover response checklist
 - [x] [Playbook Monday | Season 1 | Episode 3] Ransomware first-hour checklist for small teams
-- [ ] [Playbook Monday | Season 1 | Episode 4] Lost or stolen laptop response
+- [x] [Playbook Monday | Season 1 | Episode 4] Lost or stolen laptop response
 - [ ] [Playbook Monday | Season 1 | Episode 5] Vendor breach notification: what to do when a supplier is hit
 - [ ] [Playbook Monday | Season 1 | Episode 6] A secret or API key leaked in a public repository
 - [ ] [Playbook Monday | Season 1 | Episode 7] Employee offboarding without leaving access behind
