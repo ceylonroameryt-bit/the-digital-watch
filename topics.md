@@ -25,10 +25,10 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Threat of the Week | Season 1 | Episode 4] Adversary-in-the-middle phishing kits and session theft
 - [x] [Threat of the Week | Season 1 | Episode 5] Software supply-chain attacks: typosquatting and dependency confusion
 - [x] [Threat of the Week | Season 1 | Episode 6] Business email compromise
-- [ ] [Threat of the Week | Season 1 | Episode 7] Infostealer malware and stolen browser sessions
-- [ ] [Threat of the Week | Season 1 | Episode 8] Living off the land: attackers using your own tools
-- [ ] [Threat of the Week | Season 1 | Episode 9] Deepfake voice and video scams
-- [ ] [Threat of the Week | Season 1 | Episode 10] Credential stuffing
+- [x] [Threat of the Week | Season 1 | Episode 7] Infostealer malware and stolen browser sessions
+- [x] [Threat of the Week | Season 1 | Episode 8] Living off the land: attackers using your own tools
+- [x] [Threat of the Week | Season 1 | Episode 9] Deepfake voice and video scams
+- [x] [Threat of the Week | Season 1 | Episode 10] Credential stuffing
 
 ## Series: Playbook Monday (Season 1)
 
