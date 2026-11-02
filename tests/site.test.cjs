@@ -7,7 +7,7 @@ const { execFileSync } = require('node:child_process');
 const { parseHTML } = require('linkedom');
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
-const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html', 'article-06.html', 'article-07.html', 'article-08.html', 'article-09.html', 'article-10.html', 'behind-the-breach-01.html', 'behind-the-breach-02.html', 'behind-the-breach-03.html', 'behind-the-breach-04.html', 'series.html', 'security-in-5-minutes-01.html', 'security-in-5-minutes-02.html'];
+const pages = ['index.html', 'article.html', 'article-02.html', 'article-03.html', 'article-04.html', 'article-05.html', 'article-06.html', 'article-07.html', 'article-08.html', 'article-09.html', 'article-10.html', 'behind-the-breach-01.html', 'behind-the-breach-02.html', 'behind-the-breach-03.html', 'behind-the-breach-04.html', 'series.html', 'security-in-5-minutes-01.html', 'security-in-5-minutes-02.html', 'security-in-5-minutes-03.html'];
 
 function boot(file, { stored = {}, sessionStored = {}, storageBlocked = false, search = '', hash = '', scripts } = {}) {
   const { document, window: dom } = parseHTML(read(file));
@@ -209,6 +209,7 @@ test('deployment contains public pages and security policy, excludes the local e
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-03.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/behind-the-breach-04.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/series.html')));
+  assert.ok(fs.existsSync(path.join(root, 'dist/security-in-5-minutes-03.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/security-in-5-minutes-02.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/security-in-5-minutes-01.html')));
   assert.ok(fs.existsSync(path.join(root, 'dist/sitemap.xml')));
