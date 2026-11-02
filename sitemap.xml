@@ -174,4 +174,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://thecyberinsight.online/threat-of-the-week-04.html</loc>
+    <lastmod>2027-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>
