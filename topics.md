@@ -21,7 +21,7 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 
 - [x] [Threat of the Week | Season 1 | Episode 1] MFA fatigue (push bombing): how it works and how to detect it
 - [x] [Threat of the Week | Season 1 | Episode 2] OAuth consent phishing
-- [ ] [Threat of the Week | Season 1 | Episode 3] QR-code phishing (quishing)
+- [x] [Threat of the Week | Season 1 | Episode 3] QR-code phishing (quishing)
 - [ ] [Threat of the Week | Season 1 | Episode 4] Adversary-in-the-middle phishing kits and session theft
 - [ ] [Threat of the Week | Season 1 | Episode 5] Software supply-chain attacks: typosquatting and dependency confusion
 - [ ] [Threat of the Week | Season 1 | Episode 6] Business email compromise
