@@ -13,7 +13,7 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Security in 5 Minutes | Season 1 | Episode 5] Reading a suspicious email: headers, links, attachments
 - [x] [Security in 5 Minutes | Season 1 | Episode 6] Locking down your Google or Microsoft account
 - [x] [Security in 5 Minutes | Season 1 | Episode 7] Protecting your phone number from SIM swapping
-- [ ] [Security in 5 Minutes | Season 1 | Episode 8] Turning on automatic updates everywhere (and what to check)
+- [x] [Security in 5 Minutes | Season 1 | Episode 8] Turning on automatic updates everywhere (and what to check)
 - [ ] [Security in 5 Minutes | Season 1 | Episode 9] After a breach: the first five things to change
 - [ ] [Security in 5 Minutes | Season 1 | Episode 10] Safe travel: laptops, phones and hotel Wi-Fi
 

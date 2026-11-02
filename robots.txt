@@ -21,6 +21,7 @@ Allow: /behind-the-breach-02.html
 Allow: /behind-the-breach-03.html
 Allow: /behind-the-breach-04.html
 Allow: /series.html
+Allow: /security-in-5-minutes-08.html
 Allow: /security-in-5-minutes-07.html
 Allow: /security-in-5-minutes-06.html
 Allow: /security-in-5-minutes-05.html
