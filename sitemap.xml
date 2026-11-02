@@ -114,4 +114,46 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://thecyberinsight.online/security-in-5-minutes-04.html</loc>
+    <lastmod>2026-11-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/security-in-5-minutes-05.html</loc>
+    <lastmod>2026-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/security-in-5-minutes-06.html</loc>
+    <lastmod>2026-12-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/security-in-5-minutes-07.html</loc>
+    <lastmod>2026-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/security-in-5-minutes-08.html</loc>
+    <lastmod>2026-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/security-in-5-minutes-09.html</loc>
+    <lastmod>2027-01-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/security-in-5-minutes-10.html</loc>
+    <lastmod>2027-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>
