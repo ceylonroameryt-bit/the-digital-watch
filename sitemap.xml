@@ -150,4 +150,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://thecyberinsight.online/security-in-5-minutes-10.html</loc>
+    <lastmod>2027-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>
