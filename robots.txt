@@ -21,6 +21,12 @@ Allow: /behind-the-breach-02.html
 Allow: /behind-the-breach-03.html
 Allow: /behind-the-breach-04.html
 Allow: /series.html
+Allow: /threat-of-the-week-06.html
+Allow: /threat-of-the-week-05.html
+Allow: /threat-of-the-week-04.html
+Allow: /threat-of-the-week-03.html
+Allow: /threat-of-the-week-02.html
+Allow: /threat-of-the-week-01.html
 Allow: /security-in-5-minutes-10.html
 Allow: /security-in-5-minutes-09.html
 Allow: /security-in-5-minutes-08.html

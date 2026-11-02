@@ -156,4 +156,40 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://thecyberinsight.online/threat-of-the-week-01.html</loc>
+    <lastmod>2027-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/threat-of-the-week-02.html</loc>
+    <lastmod>2027-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/threat-of-the-week-03.html</loc>
+    <lastmod>2027-02-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/threat-of-the-week-04.html</loc>
+    <lastmod>2027-02-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/threat-of-the-week-05.html</loc>
+    <lastmod>2027-02-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://thecyberinsight.online/threat-of-the-week-06.html</loc>
+    <lastmod>2027-02-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>
