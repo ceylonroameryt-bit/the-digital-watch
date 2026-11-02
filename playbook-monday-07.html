@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>Employee Offboarding: Closing Every Door When Someone Leaves — Cyber Insight</title>
+  <meta name="description"
+    content="When someone leaves, their access often stays behind: a forgotten SaaS account, a shared password, a personal phone still syncing email. This playbook sets out a practical leaver checklist for IT, HR and managers, with a real case where a former employee&#x27;s access exposed data on 8.2 million customers.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Employee Offboarding: Closing Every Door When Someone Leaves — Cyber Insight">
+  <meta property="og:description"
+    content="When someone leaves, their access often stays behind: a forgotten SaaS account, a shared password, a personal phone still syncing email. This playbook sets out a practical leaver checklist for IT, HR and managers, with a real case where a former employee&#x27;s access exposed data on 8.2 million customers.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Employee Offboarding: Closing Every Door When Someone Leaves",
+    "description": "When someone leaves, their access often stays behind: a forgotten SaaS account, a shared password, a personal phone still syncing email. This playbook sets out a practical leaver checklist for IT, HR and managers, with a real case where a former employee's access exposed data on 8.2 million customers.",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cyber Insight",
+      "url": "https://thecyberinsight.online/"
+    },
+    "datePublished": "2027-05-10",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Playbook Monday",
+      "url": "https://thecyberinsight.online/series.html#playbook-monday"
+    },
+    "copyrightYear": 2027,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=16">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/modern.css?v=16">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
+  <link rel="canonical" href="https://thecyberinsight.online/playbook-monday-07.html">
+  <meta property="og:url" content="https://thecyberinsight.online/playbook-monday-07.html">
+</head>
+
+<body data-page="series-article" data-ep="7" data-article-id="pbm-07">
+
+  <div id="reading-progress"></div>
+  <div id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark" style="background:#1D4ED8;">CI</div>
+        <div>
+          <div class="brand-name">Cyber Insight</div>
+          <div class="brand-sub">Cybersecurity Research</div>
+        </div>
+      </a>
+      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li class="series-dropdown-wrapper">
+          <a href="index.html#series" class="series-dropdown-trigger" id="seriesDropdownTrigger" aria-haspopup="true" aria-expanded="false">
+            <span>Series</span>
+            <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="series-dropdown-menu" id="seriesDropdownMenu" role="menu" aria-labelledby="seriesDropdownTrigger">
+            <div class="series-dropdown-grid">
+              <div class="series-drop-card">
+                <div class="series-drop-header">
+                  <span class="series-drop-pill">10-Part Curriculum</span>
+                  <h4 class="series-drop-name">Cybersecurity for Everyone</h4>
+                  <p class="series-drop-desc">Plain-language guides cutting through technical jargon to explain real-world threats.</p>
+                </div>
+                <ul class="series-drop-list">
+                  <li><a href="article.html"><span class="ep-num-pill">01</span> Can You Still Trust What You See &amp; Hear?</a></li>
+                  <li><a href="article-02.html"><span class="ep-num-pill">02</span> Someone Has Your Email. Now What?</a></li>
+                  <li><a href="article-03.html"><span class="ep-num-pill">03</span> I Clicked a Phishing Link. What to Do?</a></li>
+                  <li><a href="article-04.html"><span class="ep-num-pill">04</span> Your Session Was Stolen.</a></li>
+                  <li><a href="article-05.html"><span class="ep-num-pill">05</span> Why the Padlock Doesn't Mean Safe</a></li>
+                  <li><a href="article-06.html"><span class="ep-num-pill">06</span> Are Passkeys Killing Passwords?</a></li>
+                  <li><a href="article-07.html"><span class="ep-num-pill">07</span> The Fake Recruiter in Your LinkedIn</a></li>
+                  <li><a href="article-08.html"><span class="ep-num-pill">08</span> What a Scammer Learns in 10 Minutes</a></li>
+                  <li><a href="article-09.html"><span class="ep-num-pill">09</span> Your Bank Is Calling. Or Is It?</a></li>
+                  <li><a href="playbook-monday-07.html"><span class="ep-num-pill">10</span> What Happens to Your Information After a Breach?</a></li>
+                </ul>
+                <div class="series-drop-footer">
+                  <a href="index.html#series" class="series-drop-hub-link">View Full 10-Episode Hub →</a>
+                </div>
+              </div>
+              <div class="series-drop-card accent">
+                <div class="series-drop-header">
+                  <span class="series-drop-pill green">Zero-Trust Cases</span>
+                  <h4 class="series-drop-name">Behind the Breach</h4>
+                  <p class="series-drop-desc">Technical post-mortems investigating real enterprise intrusions and token theft.</p>
+                </div>
+                <ul class="series-drop-list">
+                  <li><a href="behind-the-breach-01.html"><span class="ep-num-pill red">MAG</span> Manchester Airports Group</a></li>
+                  <li><a href="behind-the-breach-02.html"><span class="ep-num-pill red">ASOS</span> ASOS Customer Data Breach</a></li>
+                  <li><a href="behind-the-breach-03.html"><span class="ep-num-pill red">PHP</span> PHP2Shell RCE Vulnerabilities</a></li>
+                  <li><a href="behind-the-breach-04.html"><span class="ep-num-pill red">ANTH</span> Anthropic Third-Party Breach</a></li>
+                </ul>
+                <div class="series-drop-footer">
+                  <a href="index.html#behind-the-breach" class="series-drop-hub-link">View Investigations Archive →</a>
+                </div>
+              </div>
+            </div>
+            <div class="series-drop-season"><div class="series-drop-season-head"><span class="series-drop-pill">New · Season 1</span><a href="series.html" class="series-drop-season-all">All 5 series →</a></div><ul class="series-drop-season-list"><li><a href="series.html#security-in-5-minutes">Security in 5 Minutes</a></li><li><a href="series.html#threat-of-the-week">Threat of the Week</a></li><li><a href="series.html#playbook-monday">Playbook Monday</a></li><li><a href="series.html#myth-vs-reality">Myth vs Reality</a></li><li><a href="series.html#tool-spotlight">Tool Spotlight</a></li></ul></div>
+            <div class="series-drop-banner">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF0000" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <span style="font-size:.82rem;font-weight:700;color:var(--ink);"><strong>Cyber Pocket:</strong> 30-Second Security Shorts on YouTube</span>
+              </div>
+              <a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="font-size:.8rem;font-weight:800;color:#DC2626;text-decoration:none;white-space:nowrap;">Watch Shorts →</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="color:#DC2626;display:inline-flex;align-items:center;gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>Shorts</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="article-09.html" class="cta">← Ep 09</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <div class="art-series-banner">
+            <div class="art-series-info">
+              <span class="art-series-tag" style="background:#0B7A55;">Season 1</span>
+              <span>Part of <strong>Playbook Monday</strong> · Episode 07 of 10</span>
+            </div>
+            <a href="series.html#playbook-monday" class="art-series-link">View all 10 episodes →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="series.html#playbook-monday">Series: Playbook Monday</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Season 1 · Episode 07</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat" style="color:#0B7A55;">Playbook Monday · Episode 07</span>
+            <span class="art-dot">·</span>
+            <span>Offboarding · Access Management · Insider Risk · Playbook</span>
+            <span class="art-dot">·</span>
+            <span>May 10, 2027</span>
+            <span class="art-dot">·</span>
+            <span>9 min read</span>
+          </div>
+
+          <h1 class="art-h1">Employee Offboarding: Closing Every Door When Someone Leaves</h1>
+
+          <div class="art-byline">
+            <div class="art-av" style="background:#0B7A55;">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Writer · Cyber Insight · Playbook Monday</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="art-hero-svg" style="background:#D8F5E9;">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="262" cy="101" r="72" fill="#0B7A55" opacity=".10" />
+            <circle cx="262" cy="101" r="48" fill="#0B7A55" opacity=".14" />
+            <rect x="26" y="43" width="179" height="149" rx="14" fill="#FFFFFF" stroke="#0B7A55" stroke-width="2" />
+            <text x="42" y="86" fill="#0B7A55" font-family="Space Grotesk, system-ui, sans-serif" font-size="11.0" font-weight="700" letter-spacing=".06em">PLAYBOOK MONDAY</text>
+            <text x="42" y="144" fill="#111B3A" font-family="Space Grotesk, system-ui, sans-serif" font-size="40.8" font-weight="800">Leavers</text>
+            <text x="42" y="173" fill="#5F6A8C" font-family="system-ui, sans-serif" font-size="12.0" font-weight="700">SEASON 1 · EPISODE 07</text>
+            <text x="262" y="120" text-anchor="middle" fill="#0B7A55" font-family="Space Grotesk, system-ui, sans-serif" font-size="38.4" font-weight="800">07</text>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <div class="art-layout">
+
+    <div class="art-center">
+
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#D8F5E9;color:#0B7A55;border-color:#0B7A55;font-weight:700;">Playbook Monday · Ep 07</span>
+          <span class="chip">Offboarding</span>
+          <span class="chip">Access Management</span>
+          <span class="chip">Insider Risk</span>
+          <span class="chip">Playbook</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 9 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" title="Like this article" aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" title="Applaud this article" aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">8.2m</div>
+          <div class="stat-l">Customers contacted after a leaver incident</div>
+          <div class="stat-s">Block said a former Cash App Investing employee downloaded reports after their employment ended</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">Day 0</div>
+          <div class="stat-l">When access should end</div>
+          <div class="stat-s">Revoke on the last day, or earlier for difficult departures, not when IT gets round to it</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">JML</div>
+          <div class="stat-l">Joiners, movers and leavers</div>
+          <div class="stat-s">The NCSC advises every organisation to have a policy so access can be revoked when no longer needed</div>
+        </div>
+      </div>
+
+      <div class="art-text">
+        <p class="lead-p">
+          <em>An employee leaves on Friday. Their main account is disabled on Monday. But their login to the marketing platform still works, the shared finance password has not changed, and their personal phone is still syncing company email. Offboarding is where good access control most often quietly fails.</em>
+        </p>
+
+        <p>
+          Most leavers are not a threat. But every account left active after someone leaves is a door nobody is watching: it can be used by the former employee, by anyone who later gets hold of their password, or by an attacker who finds an account that will never complain about strange sign-ins.
+        </p>
+
+        <p>
+          The UK National Cyber Security Centre's guidance is simple: make sure account management includes a joiners, movers and leavers policy, so access can be revoked when it is no longer needed. Doing that thoroughly is harder than it sounds.
+        </p>
+
+        <div class="pq">
+          Disabling someone's email is not offboarding. It is the first item on a much longer list.
+        </div>
+
+        <!-- CASE -->
+        <h2 id="sec-case">A Real Case: Access That Outlived the Job</h2>
+
+        <p>
+          In April 2022, Block, the company behind Cash App, filed a report with the US Securities and Exchange Commission about an incident involving a former employee. According to the filing, on 10 December 2021, the former employee downloaded certain reports of its Cash App Investing subsidiary. The employee had regular access to those reports in their past job, but the reports were accessed without permission after their employment had ended.
+        </p>
+
+        <p>
+          The reports included customer names and brokerage account numbers, and for some customers, portfolio values, holdings or trading activity. Block said Cash App Investing was contacting approximately 8.2 million current and former customers.
+        </p>
+
+        <!-- AT A GLANCE -->
+        <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid #0B7A55;border-radius:10px;padding:18px 22px;margin:24px 0;">
+          <strong style="color:#0B7A55;font-size:1.02rem;display:block;margin-bottom:8px;">At a glance</strong>
+          <span style="display:block;color:var(--ink-2);line-height:1.7;">
+            <strong>Before the last day:</strong> HR tells IT, access is listed, data is handed over<br>
+            <strong>On the last day:</strong> identity disabled, sessions revoked, devices returned<br>
+            <strong>Within a week:</strong> shared secrets changed, SaaS and third-party accounts closed<br>
+            <strong>Afterwards:</strong> mailbox and files handled, accounts deleted on schedule, process reviewed
+          </span>
+        </div>
+
+        <!-- BEFORE -->
+        <h2 id="sec-before">Before the Last Day</h2>
+
+        <ul>
+          <li><strong>HR tells IT as soon as a leaving date is known.</strong> Late notice is the single biggest cause of lingering access. Make it an automatic step in your HR system, not an email someone remembers to send.</li>
+          <li><strong>List everything the person can access.</strong> Not just the main account: SaaS applications, admin consoles, social media accounts, domain registrars, cloud accounts, building access, and anything using a shared login.</li>
+          <li><strong>Hand over work and data.</strong> Transfer ownership of files, shared mailboxes, calendars, scheduled jobs, and anything registered in the person's name, such as software licences, certificates or vendor accounts.</li>
+          <li><strong>Agree the timing for higher-risk departures.</strong> For people leaving on bad terms, for a competitor, or with privileged access, consider revoking access at the moment they are told, and paying notice without access. Be alert to unusual data downloads during the notice period.</li>
+        </ul>
+
+        <!-- LAST DAY -->
+        <h2 id="sec-last-day">On the Last Day</h2>
+
+        <ol>
+          <li><strong>Disable the main identity</strong> (for example in Microsoft Entra ID or Google Workspace) at an agreed time. The NCSC notes that single sign-on helps revoke access to connected applications along with the work account.</li>
+          <li><strong>Revoke all sessions and tokens</strong>, so signed-in browsers and apps stop working immediately, as in <a href="playbook-monday-02.html">Episode 02</a>.</li>
+          <li><strong>Remove MFA methods and registered devices</strong>, and disable VPN and remote access.</li>
+          <li><strong>Wipe company data from personal devices</strong> using your mobile device management, and collect company laptops, phones, security keys and badges.</li>
+          <li><strong>Remove admin roles and group memberships</strong>, especially privileged ones.</li>
+        </ol>
+
+        <!-- WEEK -->
+        <h2 id="sec-week">Within the First Week</h2>
+
+        <ul>
+          <li><strong>Close accounts that are not connected to single sign-on.</strong> These are the ones most often forgotten: marketing tools, design platforms, analytics, supplier portals, developer tools.</li>
+          <li><strong>Change shared passwords and secrets</strong> the person knew, such as social media logins, Wi-Fi passwords, shared admin accounts and API keys. The NCSC notes that changing shared passwords needs to be carefully managed as part of the leavers process.</li>
+          <li><strong>Revoke personal access tokens and SSH keys</strong> on code platforms and servers.</li>
+          <li><strong>Remove them from third-party systems</strong> where they were your contact, such as banks, suppliers and domain registrars.</li>
+          <li><strong>Check for forwarding rules</strong> on their mailbox that send copies of email elsewhere.</li>
+        </ul>
+
+        <!-- AFTER -->
+        <h2 id="sec-after">Afterwards</h2>
+
+        <ul>
+          <li><strong>Handle the mailbox properly.</strong> Convert it to a shared mailbox or set an auto-reply, with a defined retention period, rather than leaving the account active.</li>
+          <li><strong>Delete accounts on a schedule</strong> once data has been retained as your policy requires.</li>
+          <li><strong>Review sign-in logs</strong> for any attempt to use the account after the leaving date.</li>
+          <li><strong>Record that every step was completed</strong>, and by whom.</li>
+        </ul>
+
+        <!-- MOVERS -->
+        <h2 id="sec-movers">Do Not Forget Movers</h2>
+
+        <p>
+          People who change role inside the organisation often keep their old access as well as gaining new access. Over the years, long-serving staff can accumulate far more access than any single role needs. The NCSC's guidance covers movers as well as leavers, and recommends reviewing accounts regularly for unnecessary privileges and revoking privileged access when it is no longer required.
+        </p>
+
+        <!-- IMPROVE -->
+        <h2 id="sec-improve">Making It Reliable</h2>
+
+        <ul>
+          <li><strong>Connect HR and identity systems</strong> so a leaving date automatically schedules account changes.</li>
+          <li><strong>Put as many applications as possible behind single sign-on</strong>, and use automated provisioning where available, so disabling one account closes the rest.</li>
+          <li><strong>Keep an application inventory</strong> with an owner for each system who confirms leavers have been removed.</li>
+          <li><strong>Run a quarterly access review</strong>: compare active accounts in each system against current staff lists.</li>
+          <li><strong>Eliminate shared accounts</strong> wherever possible, so you do not have to change a password every time someone leaves.</li>
+        </ul>
+
+        <!-- FINAL THOUGHTS -->
+        <h2 id="sec-final-thoughts">Final Thoughts</h2>
+
+        <p>
+          Good offboarding is not about distrust. It is about making sure that when someone's job ends, their access ends with it, everywhere, on time. The organisations that get it right treat it as a process with a checklist and an owner, not as a favour IT does when the email arrives.
+        </p>
+
+        <div class="pq">
+          Access should end when the job ends. Not on Monday, not when someone remembers. On the day.
+        </div>
+
+        <!-- SOURCES -->
+        <h2 id="sec-resources">Sources and Further Reading</h2>
+
+        <ul>
+          <li><a href="https://www.sec.gov/Archives/edgar/data/1512673/000119312522095215/d343042d8k.htm" target="_blank" rel="noopener noreferrer">Block, Inc.: Form 8-K (April 2022)</a></li>
+          <li><a href="https://www.ncsc.gov.uk/collection/10-steps/identity-and-access-management" target="_blank" rel="noopener noreferrer">NCSC: 10 Steps to Cyber Security, identity and access management</a></li>
+          <li><a href="https://www.ncsc.gov.uk/guidance/introduction-identity-and-access-management" target="_blank" rel="noopener noreferrer">NCSC: Introduction to identity and access management</a></li>
+          <li><a href="https://www.ncsc.gov.uk/guidance/social-media-protect-what-you-publish" target="_blank" rel="noopener noreferrer">NCSC: Social media, protecting what you publish</a></li>
+        </ul>
+
+        <div style="text-align:center;margin:32px 0 16px;font-style:italic;color:var(--ink-3);font-size:.95rem;">
+          <p style="margin:0 0 4px;font-weight:700;">Cyber Insight | Playbook Monday · Season 1</p>
+          <p style="margin:0;">Making cybersecurity easier to understand, one issue at a time.</p>
+        </div>
+
+      </div><!-- /art-text -->
+
+      <div class="series-curriculum-box" id="series-curriculum">
+        <div class="series-curriculum-header">
+          <span class="series-curriculum-tag" style="background:#0B7A55;">Season 1</span>
+          <h3 class="series-curriculum-title">Playbook Monday · All 10 Episodes</h3>
+          <p class="series-curriculum-desc">Step-by-step defender checklists for when something goes wrong.</p>
+        </div>
+        <div class="series-nav-grid">
+          <a href="playbook-monday-01.html" class="series-nav-item">
+            <span class="series-nav-num">01</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Phishing triage: the first 15 minutes</span>
+              <span class="series-nav-tag">Episode 01 · Published</span>
+            </div>
+          </a>
+          <a href="playbook-monday-02.html" class="series-nav-item">
+            <span class="series-nav-num">02</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Account takeover response checklist</span>
+              <span class="series-nav-tag">Episode 02 · Published</span>
+            </div>
+          </a>
+          <a href="playbook-monday-03.html" class="series-nav-item">
+            <span class="series-nav-num">03</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Ransomware first-hour checklist for small teams</span>
+              <span class="series-nav-tag">Episode 03 · Published</span>
+            </div>
+          </a>
+          <a href="playbook-monday-04.html" class="series-nav-item">
+            <span class="series-nav-num">04</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Lost or stolen laptop response</span>
+              <span class="series-nav-tag">Episode 04 · Published</span>
+            </div>
+          </a>
+          <a href="playbook-monday-05.html" class="series-nav-item">
+            <span class="series-nav-num">05</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Vendor breach notification: what to do when a supplier is hit</span>
+              <span class="series-nav-tag">Episode 05 · Published</span>
+            </div>
+          </a>
+          <a href="playbook-monday-06.html" class="series-nav-item">
+            <span class="series-nav-num">06</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">A secret or API key leaked in a public repository</span>
+              <span class="series-nav-tag">Episode 06 · Published</span>
+            </div>
+          </a>
+          <div class="series-nav-item active" aria-current="page">
+            <span class="series-nav-num">07</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Employee offboarding without leaving access behind</span>
+              <span class="series-nav-tag">Episode 07 · Now reading</span>
+            </div>
+          </div>
+          <div class="series-nav-item" style="opacity:.6;">
+            <span class="series-nav-num">08</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Isolating an infected endpoint</span>
+              <span class="series-nav-tag">Episode 08 · Coming soon</span>
+            </div>
+          </div>
+          <div class="series-nav-item" style="opacity:.6;">
+            <span class="series-nav-num">09</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Responding to a DDoS attack</span>
+              <span class="series-nav-tag">Episode 09 · Coming soon</span>
+            </div>
+          </div>
+          <div class="series-nav-item" style="opacity:.6;">
+            <span class="series-nav-num">10</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">A one-page tabletop exercise for small teams</span>
+              <span class="series-nav-tag">Episode 10 · Coming soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="related">
+        <div class="sec-h" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <span class="sec-lbl" style="color:#0B7A55;">Playbook Monday</span>
+            <div style="font-family:var(--f-d);font-size:1.15rem;font-weight:800;color:var(--ink);margin-top:4px;">Keep reading</div>
+          </div>
+          <a href="series.html#playbook-monday" style="font-size:.82rem;font-weight:700;color:#0B7A55;text-decoration:none;">View all 10 episodes →</a>
+        </div>
+        <div class="rel-grid">
+          <a href="playbook-monday-06.html" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
+            <div class="card-svg" style="background:#D8F5E9;">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="197" cy="59" r="42" fill="#0B7A55" opacity=".10" />
+            <circle cx="197" cy="59" r="28" fill="#0B7A55" opacity=".14" />
+            <rect x="19" y="25" width="134" height="87" rx="14" fill="#FFFFFF" stroke="#0B7A55" stroke-width="2" />
+            <text x="31" y="50" fill="#0B7A55" font-family="Space Grotesk, system-ui, sans-serif" font-size="6.4" font-weight="700" letter-spacing=".06em">PLAYBOOK MONDAY</text>
+            <text x="31" y="84" fill="#111B3A" font-family="Space Grotesk, system-ui, sans-serif" font-size="23.8" font-weight="800">Ep 06</text>
+            <text x="31" y="101" fill="#5F6A8C" font-family="system-ui, sans-serif" font-size="7.0" font-weight="700">SEASON 1 · EPISODE 06</text>
+            <text x="197" y="70" text-anchor="middle" fill="#0B7A55" font-family="Space Grotesk, system-ui, sans-serif" font-size="22.4" font-weight="800">06</text>
+          </svg>
+              <span class="card-svg-label" style="background:#FFFFFF;color:#0B7A55;border-color:#0B7A55;">← Previous · Ep 06</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">A secret or API key leaked in a public repository</h3>
+              <div class="card-foot"><span>Playbook Monday</span><span style="color:#0B7A55;font-weight:700;">Read Ep 06 →</span></div>
+            </div>
+          </a>
+          <a href="series.html#playbook-monday" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
+            <div class="card-svg" style="background:#D8F5E9;">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="197" cy="59" r="42" fill="#0B7A55" opacity=".10" />
+            <circle cx="197" cy="59" r="28" fill="#0B7A55" opacity=".14" />
+            <rect x="19" y="25" width="134" height="87" rx="14" fill="#FFFFFF" stroke="#0B7A55" stroke-width="2" />
+            <text x="31" y="50" fill="#0B7A55" font-family="Space Grotesk, system-ui, sans-serif" font-size="6.4" font-weight="700" letter-spacing=".06em">PLAYBOOK MONDAY</text>
+            <text x="31" y="84" fill="#111B3A" font-family="Space Grotesk, system-ui, sans-serif" font-size="23.8" font-weight="800">Season 1</text>
+            <text x="31" y="101" fill="#5F6A8C" font-family="system-ui, sans-serif" font-size="7.0" font-weight="700">SEASON 1 · EPISODE 07</text>
+            <text x="197" y="70" text-anchor="middle" fill="#0B7A55" font-family="Space Grotesk, system-ui, sans-serif" font-size="22.4" font-weight="800">07</text>
+          </svg>
+              <span class="card-svg-label" style="background:#FFFFFF;color:#0B7A55;border-color:#0B7A55;">All 10 episodes</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Playbook Monday: Season 1</h3>
+              <p class="card-ex">Step-by-step defender checklists for when something goes wrong.</p>
+              <div class="card-foot"><span>Series hub</span><span style="color:#0B7A55;font-weight:700;">See all →</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- FEEDBACK SECTION -->
+      <section class="feedback-section" id="feedback" aria-label="Reader feedback">
+        <div class="fb-header">
+          <h2 class="fb-title">Send feedback to Poorna</h2>
+          <p class="fb-sub">Have a question or a suggestion? Prepare an email below. Feedback is private and is sent only when you press Send in your email app.</p>
+          <p class="fb-sub">Likes and claps are your personal reactions on this device.</p>
+        </div>
+        <div class="fb-form-box">
+          <p>You can also <a href="mailto:sujampathirathnayaka@gmail.com">email Poorna directly</a>.</p>
+          <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
+          <form id="fbForm" hidden>
+            <label for="fbName">Name (optional)</label>
+            <input class="fb-input" id="fbName" maxlength="100" autocomplete="name" aria-describedby="fbDraftNote">
+            <label for="fbCategory">Feedback category</label>
+            <select class="fb-input" id="fbCategory">
+              <option>General feedback</option><option>Question</option><option>Correction</option><option>Topic suggestion</option>
+            </select>
+            <label for="fbMessage">Your feedback</label>
+            <textarea class="fb-textarea" id="fbMessage" aria-describedby="fbDraftNote fbLimit" required maxlength="2000" placeholder="Share your question or suggestion..."></textarea>
+            <p id="fbLimit" class="fb-draft-note">Maximum 2,000 characters.</p>
+            <div class="fb-form-foot">
+              <button type="submit" class="fb-submit-btn">Prepare email</button>
+              <button type="button" class="fb-clear-btn" id="fbClear">Clear draft</button>
+            </div>
+          </form>
+          <div id="fbEmailPreview" class="fb-preview" hidden>
+            <p id="fbStatus" class="fb-status" role="status">Prepared. Review and send:</p>
+            <a id="fbEmailLink" class="fb-email-link" href="#" target="_blank" rel="noopener noreferrer">Open email app</a>
+            <div class="fb-preview-field">
+              <label for="fbEmailTo">To</label>
+              <input id="fbEmailTo" class="fb-input" readonly value="sujampathirathnayaka@gmail.com">
+            </div>
+            <div class="fb-preview-field">
+              <label for="fbEmailSubject">Subject</label>
+              <input id="fbEmailSubject" class="fb-input" readonly>
+            </div>
+            <div class="fb-preview-field">
+              <label for="fbEmailBody">Body</label>
+              <textarea id="fbEmailBody" class="fb-textarea" readonly rows="8"></textarea>
+            </div>
+            <button type="button" class="fb-copy-btn" id="fbCopy">Copy feedback</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Author card -->
+      <div class="auth-card" id="about">
+        <div class="auth-top">
+          <div class="auth-av">PS</div>
+          <div>
+            <div class="auth-name">Poorna Sujampathi Rathnayaka</div>
+            <div class="auth-role">Writer · Cyber Insight · Digital Literacy</div>
+          </div>
+        </div>
+        <div class="auth-body">
+          <p class="auth-desc">I started Cyber Insight because everywhere online people only talk about cybersecurity in technical terms — and most people are left without a proper understanding of how the digital world works. I work in cybersecurity, but I write here for everyone. No jargon. Just clear, honest explanations.</p>
+          <div class="auth-links">
+            <a href="https://sujampathirathnayaka.com/" class="au-btn pf" target="_blank" rel="noopener noreferrer">🌐 Portfolio</a>
+            <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" class="au-btn li" target="_blank" rel="noopener noreferrer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/sujampathi" class="au-btn gh" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.youtube.com/@CyberPocket26" class="au-btn yt" target="_blank" rel="noopener noreferrer" title="Subscribe to Cyber Pocket on YouTube Shorts">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              Cyber Pocket
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      </div><!-- /art-center -->
+
+  </div><!-- /art-layout -->
+
+  <!-- FLOATING BOTTOM DOCK -->
+  <aside class="floating-dock" aria-label="Reading Controls">
+    <button class="dock-btn btn-like" aria-label="Like article">
+      <span class="dock-emoji like-heart">🤍</span>
+      <span class="dock-count like-count">0</span>
+    </button>
+    <button class="dock-btn btn-clap" aria-label="Applaud research">
+      <span class="dock-emoji">👏</span>
+      <span class="dock-count clap-count">0</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#feedback" class="dock-btn" aria-label="Jump to discussion">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+      <span class="dock-label">Feedback</span>
+    </a>
+    <button class="dock-btn btn-share" onclick="copyLink()" aria-label="Copy link">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+      <span class="dock-label">Share</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#series-curriculum" class="dock-series-pill" title="Series: Playbook Monday">
+      <span class="dock-pulse"></span>
+      Ep 07 of 10
+    </a>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark" style="background:#1D4ED8;">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, SSL/TLS misconceptions, passkey cryptography, recruitment fraud, OSINT reconnaissance, bank impersonation, and digital literacy for everyone.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Series Navigation</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
+              <li><a href="article-02.html">Ep 02: Email OSINT &amp; Perimeter Defense</a></li>
+              <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
+              <li><a href="article-04.html">Ep 04: Session Theft &amp; Cookie Hijacking</a></li>
+              <li><a href="article-05.html">Ep 05: The Padlock Myth &amp; TLS Security</a></li>
+              <li><a href="article-06.html">Ep 06: Passkeys vs. Passwords &amp; FIDO2</a></li>
+              <li><a href="article-07.html">Ep 07: Fake Recruiters &amp; Trojan Assessments</a></li>
+              <li><a href="article-08.html">Ep 08: OSINT &amp; 10-Minute Scammer Recon</a></li>
+              <li><a href="article-09.html">Ep 09: Bank Impersonation &amp; Vishing</a></li>
+              <li><a href="article-10.html">Ep 10: After a Data Breach</a></li>
+              <li><a href="index.html#series">View Full Curriculum (10 Episodes)</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Independent Research</div>
+            <ul class="foot-nav-list">
+              <li><a href="behind-the-breach-01.html">Behind the Breach: Zero-Trust Anatomy</a></li>
+              <li><a href="behind-the-breach-02.html">Behind the Breach: Infostealer Infiltration</a></li>
+              <li><a href="behind-the-breach-03.html">Behind the Breach: PHP2Shell RCE</a></li>
+              <li><a href="behind-the-breach-04.html">Behind the Breach: Anthropic Third-Party Breach</a></li>
+              <li><a href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Have I Been Pwned Portal</a></li>
+              <li><a href="https://ico.org.uk/" target="_blank" rel="noopener noreferrer">Information Commissioner's Office</a></li>
+              <li><a href="https://www.ncsc.gov.uk/" target="_blank" rel="noopener noreferrer">NCSC Data Breach Guidance</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Editorial &amp; Author</div>
+            <ul class="foot-nav-list">
+              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Poorna Sujampathi Rathnayaka</a></li>
+              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></li>
+              <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="color:#DC2626;">Cyber Pocket (YouTube Shorts) ↗</a></li>
+              <li><a href="index.html#about">About the Publication</a></li>
+              <li><a href="#feedback">Submit Technical Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot-bot">
+        <div class="foot-disclaimer">
+          <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is designed for technical literacy, incident response guidance, and defensive awareness.
+        </div>
+        <div class="foot-copy">
+          &copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element"></div>
+
+  <!-- Interactive Simulator Script -->
+  <script>
+    (function () {
+      let currentTab = 'lifecycle';
+      let selectedDataType = 'credentials';
+
+      const dataTypes = {
+        'credentials': {
+          title: 'Email Address & Passwords',
+          badge: 'High Credential Stuffing Risk',
+          badgeColor: '#DC2626',
+          destination: 'Combo lists compiled on cybercrime forums (BreachForums, Telegram channels).',
+          exploitVector: 'Attackers deploy automated bots (OpenBullet, SilverBullet) testing your username/password against hundreds of websites (banking, Amazon, Netflix, corporate VPNs) within minutes.',
+          countermeasure: 'Immediately change repeated passwords; implement unique generated passwords via a password manager and turn on hardware or app-based MFA on your email account.'
+        },
+        'contact': {
+          title: 'Full Name, Phone Number & Home Address',
+          badge: 'Precision Social Engineering',
+          badgeColor: '#D97706',
+          destination: 'Data broker aggregation dumps and lead generation packs sold to scam call centres.',
+          exploitVector: 'Scammers craft tailored SMS messages (fake parcel delivery, unpaid toll fees) or initiate bank impersonation phone calls quoting your exact street name and full legal name to build trust.',
+          countermeasure: 'Treat any unexpected message or call with heightened skepticism, never click embedded verification links, and verify callers independently via published numbers or 159.'
+        },
+        'dob_id': {
+          title: 'Date of Birth & National Identification / NI Numbers',
+          badge: 'Permanent Identity Aggregation',
+          badgeColor: '#7C3AED',
+          destination: 'Permanent underground identity dossiers (Fullz dossiers).',
+          exploitVector: 'Unlike passwords, your date of birth and National Insurance details cannot be reset. Criminals aggregate this with financial records to attempt credit applications, fraudulent loans, or bypass tier-1 identity verification over the phone.',
+          countermeasure: 'Register for protective registration services (such as CIFAS in the UK), regularly inspect credit reports (Experian, Equifax, TransUnion), and monitor notice of applications.'
+        },
+        'financial': {
+          title: 'Payment Cards & Bank Account Records',
+          badge: 'Direct Financial Fraud',
+          badgeColor: '#DC2626',
+          destination: 'Specialized carding shops and instant money mule networks.',
+          exploitVector: 'Stolen card numbers are tested via small automated micro-transactions, followed by rapid online purchases or wallet provisioning before fraud detection algorithms freeze the account.',
+          countermeasure: 'Notify your bank immediately to cancel and re-issue compromised cards; review statements weekly and enable push-notification authorizations for all transactions.'
+        }
+      };
+
+      const actionSteps = [
+        {
+          id: 'step_understand',
+          stepNum: '01',
+          title: 'Understand What Was Exposed',
+          desc: 'Carefully read the official breach notification letter to confirm whether passwords, contact details, or financial accounts were involved.',
+          tip: 'Categorise your risk: credential risk vs identity/financial risk.'
+        },
+        {
+          id: 'step_passwords',
+          stepNum: '02',
+          title: 'Change Passwords & Sever Reuse',
+          desc: 'Reset the breached password immediately. If you reused it on other portals (especially email, banking, or cloud drives), update them with unique passwords.',
+          tip: 'Use a password manager to generate 16+ character distinct passwords.'
+        },
+        {
+          id: 'step_mfa',
+          stepNum: '03',
+          title: 'Enable Multi-Factor Authentication',
+          desc: 'Activate MFA using an authenticator app (TOTP) or passkeys on all core accounts so a leaked password alone cannot grant access.',
+          tip: 'Avoid SMS codes where possible; favor hardware keys or authenticator apps.'
+        },
+        {
+          id: 'step_audit',
+          stepNum: '04',
+          title: 'Audit Connected Account Activity',
+          desc: 'Review recent sign-ins, registered devices, and forwarding rules on your primary email and cloud services for anomalies.',
+          tip: 'Check your email inbox forwarding settings for silent attacker rules.'
+        },
+        {
+          id: 'step_phishing_vigilance',
+          stepNum: '05',
+          title: 'Heighten Scrutiny on Incoming Messages',
+          desc: 'Expect follow-up phishing emails, fake customer support calls, or urgent SMS alerts exploiting the incident itself.',
+          tip: 'Never click verification links in emails; navigate to the real website independently.'
+        },
+        {
+          id: 'step_financial_monitor',
+          stepNum: '06',
+          title: 'Monitor Financial Accounts & Credit Reports',
+          desc: 'Set up transaction alerts on bank cards and check your credit file with national credit reference agencies for unauthorized queries.',
+          tip: 'In the UK, consult Action Fraud and consider CIFAS protective registration.'
+        }
+      ];
+
+      const completedSteps = {};
+
+      function renderLifecycle() {
+        const cur = dataTypes[selectedDataType];
+
+        let buttonsHtml = '';
+        for (const [key, dt] of Object.entries(dataTypes)) {
+          const isActive = key === selectedDataType;
+          buttonsHtml += '<button type="button" class="dt-choice-btn" data-dt="' + key + '" style="background:' + (isActive ? '#EFF6FF' : '#FFFFFF') + ';border:1.5px solid ' + (isActive ? '#1D4ED8' : 'var(--border-2)') + ';border-radius:8px;padding:12px 14px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:3px;transition:all .15s ease;">' +
+            '<div style="font-size:.85rem;font-weight:700;color:' + (isActive ? '#1D4ED8' : 'var(--ink)') + ';">' + dt.title + '</div>' +
+            '<div style="font-size:.72rem;color:' + (isActive ? '#1E40AF' : 'var(--ink-4)') + ';font-weight:600;">' + dt.badge + '</div>' +
+          '</button>';
+        }
+
+        return '<div style="display:grid;grid-template-columns:1fr;gap:20px;">' +
+          '<div>' +
+            '<div style="font-size:.82rem;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;">' +
+              'Select Exposed Data Type to Track Its Lifecycle:' +
+            '</div>' +
+            '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;">' +
+              buttonsHtml +
+            '</div>' +
+          '</div>' +
+          '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:20px;">' +
+            '<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">' +
+              '<span style="background:' + cur.badgeColor + ';color:white;font-size:.72rem;font-weight:800;padding:3px 8px;border-radius:4px;text-transform:uppercase;">Threat Analysis</span>' +
+              '<span style="font-weight:800;color:#0F172A;font-size:1.02rem;">' + cur.title + '</span>' +
+            '</div>' +
+            '<div style="background:#FFF1F2;border-left:4px solid #E11D48;border-radius:6px;padding:12px 16px;margin-bottom:14px;">' +
+              '<div style="font-size:.75rem;font-weight:800;color:#9F1239;text-transform:uppercase;margin-bottom:4px;">Where It Goes (Illicit Distribution):</div>' +
+              '<div style="color:#881337;font-size:.92rem;line-height:1.5;">' + cur.destination + '</div>' +
+            '</div>' +
+            '<div style="background:#FEFCE8;border-left:4px solid #CA8A04;border-radius:6px;padding:12px 16px;margin-bottom:14px;">' +
+              '<div style="font-size:.75rem;font-weight:800;color:#854D0E;text-transform:uppercase;margin-bottom:4px;">How Criminals Weaponize It:</div>' +
+              '<div style="color:#713F12;font-size:.9rem;line-height:1.5;">' + cur.exploitVector + '</div>' +
+            '</div>' +
+            '<div style="background:#EFF6FF;border-left:4px solid #1D4ED8;border-radius:6px;padding:12px 16px;">' +
+              '<div style="font-size:.75rem;font-weight:800;color:#1E40AF;text-transform:uppercase;margin-bottom:4px;">Defensive Countermeasure:</div>' +
+              '<div style="color:#1E3A8A;font-weight:700;font-size:.92rem;line-height:1.5;">' + cur.countermeasure + '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }
+
+      function renderChecklist() {
+        const total = actionSteps.length;
+        const count = Object.values(completedSteps).filter(Boolean).length;
+        const pct = Math.round((count / total) * 100);
+
+        let stepsHtml = '';
+        for (const s of actionSteps) {
+          const checked = !!completedSteps[s.id];
+          stepsHtml += '<div style="display:flex;gap:14px;background:' + (checked ? '#F0FDF4' : '#fff') + ';border:1.5px solid ' + (checked ? '#86EFAC' : 'var(--border)') + ';border-radius:10px;padding:14px 18px;transition:all .2s ease;">' +
+            '<input type="checkbox" id="chk_' + s.id + '" data-step-id="' + s.id + '" ' + (checked ? 'checked' : '') + ' style="margin-top:4px;width:20px;height:20px;cursor:pointer;accent-color:#16A34A;">' +
+            '<div style="flex:1;">' +
+              '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:4px;">' +
+                '<label for="chk_' + s.id + '" style="font-weight:800;font-size:.95rem;color:' + (checked ? '#15803D' : 'var(--ink)') + ';cursor:pointer;">' +
+                  'Step ' + s.stepNum + ': ' + s.title +
+                '</label>' +
+                (checked ? '<span style="font-size:.72rem;background:#DCFCE7;color:#166534;font-weight:700;padding:2px 8px;border-radius:999px;">Protected ✓</span>' : '') +
+              '</div>' +
+              '<p style="margin:0 0 6px;font-size:.88rem;color:var(--ink-2);line-height:1.5;">' + s.desc + '</p>' +
+              '<div style="font-size:.8rem;color:' + (checked ? '#166534' : '#64748B') + ';background:' + (checked ? '#DCFCE7' : '#F1F5F9') + ';padding:4px 10px;border-radius:4px;display:inline-block;">' +
+                '💡 <strong>Defensive Tip:</strong> ' + s.tip +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }
+
+        return '<div>' +
+          '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:12px 18px;margin-bottom:18px;">' +
+            '<div>' +
+              '<span style="font-size:.78rem;font-weight:800;color:#1D4ED8;text-transform:uppercase;">Breach Response Readiness</span>' +
+              '<div style="font-size:.96rem;font-weight:800;color:var(--ink);">' + count + ' of ' + total + ' response actions completed</div>' +
+            '</div>' +
+            '<div style="display:flex;align-items:center;gap:10px;">' +
+              '<div style="width:120px;height:8px;background:#E2E8F0;border-radius:999px;overflow:hidden;">' +
+                '<div style="width:' + pct + '%;height:100%;background:#1D4ED8;transition:width .3s ease;"></div>' +
+              '</div>' +
+              '<span style="font-weight:800;font-size:.88rem;color:#1D4ED8;">' + pct + '%</span>' +
+            '</div>' +
+          '</div>' +
+          '<div style="display:grid;grid-template-columns:1fr;gap:12px;">' +
+            stepsHtml +
+          '</div>' +
+        '</div>';
+      }
+
+      function updateView() {
+        const container = document.getElementById('breachInteractiveContainer');
+        if (!container) return;
+
+        if (currentTab === 'lifecycle') {
+          container.innerHTML = renderLifecycle();
+          container.querySelectorAll('.dt-choice-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              selectedDataType = btn.getAttribute('data-dt');
+              updateView();
+            });
+          });
+        } else {
+          container.innerHTML = renderChecklist();
+          container.querySelectorAll('input[type="checkbox"]').forEach(chk => {
+            chk.addEventListener('change', () => {
+              const id = chk.getAttribute('data-step-id');
+              completedSteps[id] = chk.checked;
+              updateView();
+            });
+          });
+        }
+      }
+
+      // Tab switcher
+      document.querySelectorAll('#breachTabs .sim-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#breachTabs .sim-tab-btn').forEach(b => {
+            b.classList.remove('active');
+            b.style.background = 'white';
+            b.style.color = 'var(--ink-3)';
+            b.style.borderColor = 'var(--border-2)';
+          });
+          btn.classList.add('active');
+          btn.style.background = '#1D4ED8';
+          btn.style.color = 'white';
+          btn.style.borderColor = '#1D4ED8';
+          currentTab = btn.getAttribute('data-tab');
+          updateView();
+        });
+      });
+
+      // Initial render
+      updateView();
+    })();
+  </script>
+
+  <script src="js/cms.js?v=16"></script>
+  <script src="js/app.js?v=16"></script>
+  <script src="js/translator.js?v=16"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>
+
