@@ -21,6 +21,8 @@ Allow: /behind-the-breach-02.html
 Allow: /behind-the-breach-03.html
 Allow: /behind-the-breach-04.html
 Allow: /series.html
+Allow: /playbook-monday-10.html
+Allow: /playbook-monday-09.html
 Allow: /playbook-monday-08.html
 Allow: /playbook-monday-07.html
 Allow: /playbook-monday-06.html
