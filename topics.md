@@ -10,7 +10,7 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Security in 5 Minutes | Season 1 | Episode 2] Securing your home router
 - [x] [Security in 5 Minutes | Season 1 | Episode 3] Password managers: choosing one and migrating safely
 - [x] [Security in 5 Minutes | Season 1 | Episode 4] Backups that survive ransomware (3-2-1-1-0)
-- [ ] [Security in 5 Minutes | Season 1 | Episode 5] Reading a suspicious email: headers, links, attachments
+- [x] [Security in 5 Minutes | Season 1 | Episode 5] Reading a suspicious email: headers, links, attachments
 - [ ] [Security in 5 Minutes | Season 1 | Episode 6] Locking down your Google or Microsoft account
 - [ ] [Security in 5 Minutes | Season 1 | Episode 7] Protecting your phone number from SIM swapping
 - [ ] [Security in 5 Minutes | Season 1 | Episode 8] Turning on automatic updates everywhere (and what to check)
