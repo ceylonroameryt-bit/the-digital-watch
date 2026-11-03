@@ -50,7 +50,7 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Myth vs Reality | Season 1 | Episode 3] "A strong password is enough"
 - [x] [Myth vs Reality | Season 1 | Episode 4] "Public Wi-Fi is always dangerous" (and when it actually is)
 - [x] [Myth vs Reality | Season 1 | Episode 5] "I'm too small to be a target"
-- [ ] [Myth vs Reality | Season 1 | Episode 6] "A VPN makes me secure"
+- [x] [Myth vs Reality | Season 1 | Episode 6] "A VPN makes me secure"
 - [ ] [Myth vs Reality | Season 1 | Episode 7] "Antivirus is all I need"
 - [ ] [Myth vs Reality | Season 1 | Episode 8] "The HTTPS padlock means a site is safe"
 - [ ] [Myth vs Reality | Season 1 | Episode 9] "Deleting a file erases it"
