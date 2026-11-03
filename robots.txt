@@ -21,6 +21,7 @@ Allow: /behind-the-breach-02.html
 Allow: /behind-the-breach-03.html
 Allow: /behind-the-breach-04.html
 Allow: /series.html
+Allow: /tool-spotlight-02.html
 Allow: /tool-spotlight-01.html
 Allow: /myth-vs-reality-10.html
 Allow: /myth-vs-reality-09.html
