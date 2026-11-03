@@ -48,7 +48,7 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Myth vs Reality | Season 1 | Episode 1] "Incognito mode makes me anonymous"
 - [x] [Myth vs Reality | Season 1 | Episode 2] "Macs and phones don't get malware"
 - [x] [Myth vs Reality | Season 1 | Episode 3] "A strong password is enough"
-- [ ] [Myth vs Reality | Season 1 | Episode 4] "Public Wi-Fi is always dangerous" (and when it actually is)
+- [x] [Myth vs Reality | Season 1 | Episode 4] "Public Wi-Fi is always dangerous" (and when it actually is)
 - [ ] [Myth vs Reality | Season 1 | Episode 5] "I'm too small to be a target"
 - [ ] [Myth vs Reality | Season 1 | Episode 6] "A VPN makes me secure"
 - [ ] [Myth vs Reality | Season 1 | Episode 7] "Antivirus is all I need"

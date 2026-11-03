@@ -63,3 +63,4 @@ Sitemap: https://thecyberinsight.online/sitemap.xml
 # Security Vulnerability Reporting (RFC 9116)
 Contact: mailto:sujampathirathnayaka@gmail.com
 Security: https://thecyberinsight.online/.well-known/security.txt
+Allow: /myth-vs-reality-04.html
