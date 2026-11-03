@@ -67,4 +67,4 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Tool Spotlight | Season 1 | Episode 7] VirusTotal: using it well and its limits
 - [x] [Tool Spotlight | Season 1 | Episode 8] Process Explorer and Autoruns for finding persistence
 - [x] [Tool Spotlight | Season 1 | Episode 9] OWASP ZAP for testing your own web app
-- [ ] [Tool Spotlight | Season 1 | Episode 10] Wazuh: open-source monitoring for a small network
+- [x] [Tool Spotlight | Season 1 | Episode 10] Wazuh: open-source monitoring for a small network
