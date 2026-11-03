@@ -62,7 +62,7 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Tool Spotlight | Season 1 | Episode 2] Have I Been Pwned and breach-monitoring tools
 - [x] [Tool Spotlight | Season 1 | Episode 3] Sysmon for endpoint visibility on Windows
 - [x] [Tool Spotlight | Season 1 | Episode 4] Nmap for checking your own network exposure
-- [ ] [Tool Spotlight | Season 1 | Episode 5] YARA and Sigma rules: writing a first detection
+- [x] [Tool Spotlight | Season 1 | Episode 5] YARA and Sigma rules: writing a first detection
 - [ ] [Tool Spotlight | Season 1 | Episode 6] CyberChef for decoding and analysing data
 - [ ] [Tool Spotlight | Season 1 | Episode 7] VirusTotal: using it well and its limits
 - [ ] [Tool Spotlight | Season 1 | Episode 8] Process Explorer and Autoruns for finding persistence

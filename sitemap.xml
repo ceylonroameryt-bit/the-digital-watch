@@ -360,4 +360,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://thecyberinsight.online/tool-spotlight-05.html</loc>
+    <lastmod>2027-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
 </urlset>
