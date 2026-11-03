@@ -8,20 +8,20 @@
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <title>Myth: &quot;A Strong Password Is Enough&quot; — Cyber Insight</title>
   <meta name="description"
-    content="A long, unique password is still worth having, but it does nothing if it is phished, stolen by malware or reused somewhere that gets breached. Here is why strength alone is not enough, what the official guidance now says, and the two habits that actually protect your accounts.">
+    content="A long, complex password protects you against one kind of attack: guessing. It does nothing when the password is reused, typed into a fake page or copied off your computer by malware. Here is what a strong password really protects, and the extra layers that stop the attacks it cannot.">
   <meta name="author" content="Poorna Sujampathi Rathnayaka">
   <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
   <link rel="author" href="https://sujampathirathnayaka.com/">
   <meta property="og:type" content="article">
   <meta property="og:title" content="Myth: &quot;A Strong Password Is Enough&quot; — Cyber Insight">
   <meta property="og:description"
-    content="A long, unique password is still worth having, but it does nothing if it is phished, stolen by malware or reused somewhere that gets breached. Here is why strength alone is not enough, what the official guidance now says, and the two habits that actually protect your accounts.">
+    content="A long, complex password protects you against one kind of attack: guessing. It does nothing when the password is reused, typed into a fake page or copied off your computer by malware. Here is what a strong password really protects, and the extra layers that stop the attacks it cannot.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "Myth: \"A Strong Password Is Enough\"",
-    "description": "A long, unique password is still worth having, but it does nothing if it is phished, stolen by malware or reused somewhere that gets breached. Here is why strength alone is not enough, what the official guidance now says, and the two habits that actually protect your accounts.",
+    "description": "A long, complex password protects you against one kind of attack: guessing. It does nothing when the password is reused, typed into a fake page or copied off your computer by malware. Here is what a strong password really protects, and the extra layers that stop the attacks it cannot.",
     "author": {
       "@type": "Person",
       "name": "Poorna Sujampathi Rathnayaka",
@@ -174,11 +174,11 @@
           <div class="art-meta">
             <span class="art-cat" style="color:#8A5A00;">Myth vs Reality · Episode 03</span>
             <span class="art-dot">·</span>
-            <span>Passwords · Multi-Factor Authentication · Account Security · Passkeys</span>
+            <span>Passwords · MFA · Passkeys · Account Security</span>
             <span class="art-dot">·</span>
             <span>June 21, 2027</span>
             <span class="art-dot">·</span>
-            <span>7 min read</span>
+            <span>8 min read</span>
           </div>
 
           <h1 class="art-h1">Myth: &quot;A Strong Password Is Enough&quot;</h1>
@@ -217,10 +217,10 @@
         <div class="art-act-left">
           <span class="chip" style="background:#FFF0BF;color:#8A5A00;border-color:#8A5A00;font-weight:700;">Myth vs Reality · Ep 03</span>
           <span class="chip">Passwords</span>
-          <span class="chip">Multi-Factor Authentication</span>
-          <span class="chip">Account Security</span>
+          <span class="chip">MFA</span>
           <span class="chip">Passkeys</span>
-          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 7 min read</span>
+          <span class="chip">Account Security</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 8 min read</span>
         </div>
         <div class="art-act-right">
           <button class="art-act-btn btn-like" title="Like this article" aria-label="Like article">
@@ -244,100 +244,115 @@
 
       <div class="stats-row" aria-label="Key statistics">
         <div class="stat-c">
-          <div class="stat-n">99.9%</div>
-          <div class="stat-l">Of account compromise attacks MFA can block</div>
-          <div class="stat-s">Microsoft&#x27;s figure for accounts protected by multi-factor authentication</div>
+          <div class="stat-n">22%</div>
+          <div class="stat-l">Of breaches began with credential abuse</div>
+          <div class="stat-s">The most common way in, according to Verizon&#x27;s 2025 Data Breach Investigations Report</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">99.22%</div>
+          <div class="stat-l">Lower risk of compromise with MFA</div>
+          <div class="stat-s">Microsoft Research, studying Azure AD accounts that showed suspicious activity</div>
         </div>
         <div class="stat-c">
           <div class="stat-n">15 chars</div>
-          <div class="stat-l">NIST&#x27;s new minimum for password-only logins</div>
-          <div class="stat-s">With no forced complexity rules and no forced periodic changes</div>
-        </div>
-        <div class="stat-c">
-          <div class="stat-n">3 words</div>
-          <div class="stat-l">The NCSC&#x27;s recipe for a strong password</div>
-          <div class="stat-s">Three random words: long enough and strong enough, and easy to remember</div>
+          <div class="stat-l">NIST minimum for a password used on its own</div>
+          <div class="stat-s">With no forced mixtures of symbols and no forced regular changes</div>
         </div>
       </div>
 
       <div class="art-text">
         <p class="lead-p">
-          <em>Twenty characters, upper and lower case, numbers, symbols, nothing from the dictionary. A password like that would take a computer an absurdly long time to guess. So surely the account behind it is safe? Not quite. Attackers very rarely guess passwords any more. They collect them.</em>
+          <em>Twelve characters, a capital letter, a number, a symbol and nothing from the dictionary. The strength meter turns green and it feels like the job is done. But most stolen accounts were not lost to someone guessing the password. They were lost in ways where strength never came into it.</em>
         </p>
 
         <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid #8A5A00;border-radius:10px;padding:18px 22px;margin:24px 0;">
           <strong style="color:#8A5A00;font-size:1.02rem;display:block;margin-bottom:6px;">The myth</strong>
           <span style="color:var(--ink-2);line-height:1.6;">
-            "My password is long and complicated, so nobody can get into my account. I don't need anything else."
+            "My password is long and complicated. Nobody could crack it, so my account is safe and I do not need anything else."
           </span>
         </div>
 
-        <!-- WHAT STRENGTH PROTECTS -->
-        <h2 id="sec-strength">What a Strong Password Actually Protects Against</h2>
+        <!-- WHERE IT CAME FROM -->
+        <h2 id="sec-origin">Where the Myth Came From</h2>
 
         <p>
-          Password strength matters against one kind of attack: guessing. That includes someone trying common passwords against your account, and attackers who steal a database of scrambled (hashed) passwords and try to crack them offline. A long, random password makes both of these slow enough to be pointless.
+          For years, password advice was almost entirely about strength. Websites demanded a mix of upper case, lower case, numbers and symbols. Strength meters rewarded complexity. Workplaces forced changes every few months. The message people absorbed was simple: make the password hard enough and you are protected.
         </p>
 
         <p>
-          That protection is real, and you should keep it. The problem is that guessing is only one of the ways passwords are lost, and these days it is not the main one.
+          Strength does matter. A short or common password can be guessed in seconds, and a stolen database of weak passwords can be cracked quickly. But guessing is only one way attackers get into accounts, and these days it is rarely the main one.
         </p>
 
-        <!-- HOW PASSWORDS ARE LOST -->
-        <h2 id="sec-lost">How Strong Passwords Get Stolen Anyway</h2>
-
-        <ul>
-          <li><strong>Phishing.</strong> A convincing fake login page does not care how complicated your password is. You type it in, and the attacker has it. Modern phishing kits can even capture your session as you sign in, as covered in <a href="threat-of-the-week-04.html">Threat of the Week, Episode 04</a>.</li>
-          <li><strong>Infostealer malware.</strong> Malware on your device can read passwords saved in your browser and steal logged-in sessions, whatever the passwords look like. See <a href="threat-of-the-week-07.html">Threat of the Week, Episode 07</a>.</li>
-          <li><strong>Breaches at other sites.</strong> If you use the same password in more than one place, a breach at a small forum or shop hands attackers the key to your email or bank. They test leaked username and password pairs against other services automatically, a technique called credential stuffing, explained in <a href="threat-of-the-week-10.html">Threat of the Week, Episode 10</a>.</li>
-          <li><strong>Being tricked into handing it over.</strong> A phone call from "IT support" or "your bank" asking you to confirm your details works on strong passwords just as well as weak ones.</li>
-        </ul>
+        <!-- REALITY -->
+        <h2 id="sec-reality">The Reality: Most Attacks Never Have to Guess</h2>
 
         <p>
-          Stolen credentials remain one of the most common ways attackers get in. Verizon's 2026 Data Breach Investigations Report lists them among the leading causes of breaches, alongside phishing and social engineering. In every one of these cases, the strength of the password made no difference.
+          Verizon's 2025 Data Breach Investigations Report found that credential abuse, meaning attackers simply logging in with real usernames and passwords, was the most common way into breached organisations, at 22%, ahead of exploiting software vulnerabilities at 20%. Verizon also noted a significant overlap between credential abuse and social engineering. Here is how those passwords get into the wrong hands, however strong they are.
+        </p>
+
+        <p>
+          <strong>1. Reuse.</strong> If you use the same password on more than one site, a breach at the weakest of those sites hands it to criminals, who then try it everywhere else. This is called credential stuffing. As the UK National Cyber Security Centre puts it, if you reuse passwords, criminals only need one password to access all your accounts. A 20-character password used on ten sites is only as safe as the worst-run of the ten.
+        </p>
+
+        <p>
+          <strong>2. Phishing.</strong> A convincing fake login page does not need to crack anything. You type the password in yourself. Its length and complexity make no difference at all. Modern phishing kits can even capture the session after you sign in, as we covered in <a href="threat-of-the-week-04.html">Threat of the Week, Episode 04</a>.
+        </p>
+
+        <p>
+          <strong>3. Infostealer malware.</strong> Malware on your computer can copy saved passwords and browser cookies directly, as described in <a href="threat-of-the-week-07.html">Threat of the Week, Episode 07</a>. Again, strength is irrelevant: the malware takes the password exactly as it is.
+        </p>
+
+        <p>
+          <strong>4. Breaches of the service itself.</strong> If a company stores passwords badly and is breached, your password may be exposed no matter how good it was. A strong password buys time here, because it is harder to crack from a properly protected database, but you are relying on the company having done its part.
         </p>
 
         <div class="pq">
-          A strong password stops people guessing it. It does nothing once someone has simply been given it.
+          A strong password protects you from being guessed. It does not protect you from being tricked, reused or robbed.
         </div>
 
-        <!-- WHAT GUIDANCE SAYS -->
-        <h2 id="sec-guidance">What the Official Guidance Says Now</h2>
+        <!-- WHAT STRENGTH DOES -->
+        <h2 id="sec-strength">So Is Strength Pointless? No.</h2>
 
         <p>
-          Password advice has changed a lot, and it is worth knowing where it has landed.
+          A strong password still matters. It stops simple guessing and makes stolen password databases far harder to crack. But "strong" no longer means what many people think.
         </p>
 
         <p>
-          <strong>Length beats complexity.</strong> The US National Institute of Standards and Technology (NIST), in the current version of its digital identity guidelines, requires passwords used on their own to be at least 15 characters long. It also tells organisations not to impose composition rules, such as demanding a mix of character types, and not to force people to change passwords on a schedule. Instead, new passwords should be checked against lists of common, expected or previously breached passwords, and password managers and autofill should be allowed.
+          The latest version of the US National Institute of Standards and Technology's digital identity guidelines, NIST SP 800-63B-4, says passwords used as the only way to sign in must be at least 15 characters long. It also says services <strong>must not</strong> impose composition rules, such as requiring mixtures of character types, and <strong>must not</strong> force people to change passwords periodically, only when there is evidence of compromise. Instead, new passwords must be checked against lists of common, expected or compromised passwords.
         </p>
 
         <p>
-          <strong>Three random words.</strong> The UK National Cyber Security Centre (NCSC) recommends combining three random words to make a password that is "long enough and strong enough", while still being memorable. It also points to password managers, which can create strong passwords for you and remember them.
-        </p>
-
-        <p>
-          <strong>Add a second step.</strong> Both organisations are equally clear that a password should not stand alone. The NCSC says 2-step verification helps keep criminals out of your accounts even if they know your password, and that even accounts protected with strong passwords benefit from it. Microsoft says multi-factor authentication can block over 99.9% of account compromise attacks.
+          In other words, length beats complexity. The NCSC's advice for passwords you need to remember is to combine three random words, which makes a password long enough and strong enough while still being easy to recall. For everything else, it suggests a password manager, which can create strong passwords and remember them for you.
         </p>
 
         <!-- WHAT TO DO -->
-        <h2 id="sec-what-to-do">What Actually Protects Your Accounts</h2>
+        <h2 id="sec-what-to-do">What Actually Keeps Accounts Safe</h2>
 
         <ul>
-          <li><strong>Use a different password for every account.</strong> Uniqueness matters more than complexity, because it stops one breach unlocking everything. A password manager makes this realistic; see <a href="security-in-5-minutes-03.html">Security in 5 Minutes, Episode 03</a>.</li>
-          <li><strong>Make passwords long rather than complicated.</strong> Three random words, or a long random password generated by your password manager.</li>
-          <li><strong>Turn on 2-step verification</strong>, starting with your email account, because email is used to reset everything else. Authenticator apps and security keys are stronger than text messages.</li>
-          <li><strong>Switch to passkeys where you can.</strong> A passkey cannot be typed into a fake website or reused across services, which removes phishing and credential stuffing from the picture. See <a href="security-in-5-minutes-01.html">Security in 5 Minutes, Episode 01</a>.</li>
-          <li><strong>Check whether your details have leaked</strong> using a breach notification service, and change any password that appears, along with anywhere else you used it.</li>
-          <li><strong>Never type a password after following a link</strong> in an unexpected email or message. Go to the site yourself.</li>
-          <li><strong>If an account is compromised</strong>, follow <a href="security-in-5-minutes-09.html">Security in 5 Minutes, Episode 09</a>: change the password, sign out other sessions and check recovery details.</li>
+          <li><strong>Use a different password for every account.</strong> This one habit defeats credential stuffing. A password manager makes it painless; see <a href="security-in-5-minutes-03.html">Security in 5 Minutes, Episode 03</a>.</li>
+          <li><strong>Give your email its own password</strong>, used nowhere else. Whoever controls your email can reset everything else.</li>
+          <li><strong>Turn on multi-factor authentication</strong>, which the NCSC calls 2-step verification, on every account that offers it, starting with email, banking and social media.</li>
+          <li><strong>Prefer passkeys or an authenticator app over text messages</strong> where you can; see <a href="security-in-5-minutes-01.html">Security in 5 Minutes, Episode 01</a>.</li>
+          <li><strong>Never type a password after clicking a link</strong> in an unexpected email or text. Go to the site yourself. See <a href="security-in-5-minutes-05.html">Security in 5 Minutes, Episode 05</a>.</li>
+          <li><strong>Check whether your details have been in a breach</strong>, and change any password that was exposed or reused; see <a href="security-in-5-minutes-09.html">Security in 5 Minutes, Episode 09</a>.</li>
         </ul>
+
+        <!-- MFA AND PASSKEYS -->
+        <h2 id="sec-layers">Why the Extra Layer Matters So Much</h2>
+
+        <p>
+          Multi-factor authentication works because a stolen password is no longer enough on its own. A Microsoft Research study of Azure Active Directory accounts showing suspicious activity estimated that MFA reduced the risk of compromise by 99.22% across the population studied, and by 98.56% even where the password had already been leaked.
+        </p>
+
+        <p>
+          Not all MFA is equal. Codes sent by text or typed from an app can still be captured by a sophisticated phishing page, and people can be pestered into approving a sign-in, as covered in <a href="threat-of-the-week-01.html">Threat of the Week, Episode 01</a>. Passkeys go further. The FIDO Alliance describes them as credentials designed so that there are no shared secrets: there is no password to type into a fake site, and a breach of the service's database does not expose anything an attacker can reuse.
+        </p>
 
         <!-- VERDICT -->
         <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid #C2352A;border-radius:10px;padding:18px 22px;margin:28px 0;">
           <strong style="color:#C2352A;font-size:1.02rem;display:block;margin-bottom:6px;">Verdict: Myth</strong>
           <span style="color:var(--ink-2);line-height:1.6;">
-            A strong password protects you against guessing and cracking, and you should still use one. But most account takeovers involve passwords that were phished, stolen by malware or reused after a breach. A unique password plus a second factor, or better still a passkey, is what keeps attackers out.
+            A strong password is necessary but not sufficient. It stops guessing, not reuse, phishing or malware, which is how most accounts are actually taken over. Make every password unique, and add MFA or a passkey wherever you can.
           </span>
         </div>
 
@@ -345,22 +360,23 @@
         <h2 id="sec-final-thoughts">Final Thoughts</h2>
 
         <p>
-          The obsession with complex passwords gave us years of "P@ssw0rd1!" and sticky notes on monitors, while attackers simply went around the problem. Strength is the easy part. Make each password unique, let a password manager remember them, and put a second lock on every account that matters.
+          The old advice made passwords harder to remember without making accounts much safer. The better approach is simpler: long and unique rather than complicated, stored in a password manager, and backed by a second layer that still protects you on the day the password gets out.
         </p>
 
         <div class="pq">
-          Unique beats complicated, and two locks beat one. Strong is only the start.
+          Assume your password will leak one day. Then make sure it is not enough on its own.
         </div>
 
         <!-- SOURCES -->
         <h2 id="sec-resources">Sources and Further Reading</h2>
 
         <ul>
-          <li><a href="https://pages.nist.gov/800-63-4/sp800-63b.html" target="_blank" rel="noopener noreferrer">NIST SP 800-63B-4: Digital Identity Guidelines, Authentication and Authenticator Management</a></li>
+          <li><a href="https://www.verizon.com/about/news/2025-data-breach-investigations-report" target="_blank" rel="noopener noreferrer">Verizon: 2025 Data Breach Investigations Report news release</a></li>
+          <li><a href="https://www.microsoft.com/research/publication/how-effective-is-multifactor-authentication-at-deterring-cyberattacks/" target="_blank" rel="noopener noreferrer">Microsoft Research: How effective is multifactor authentication at deterring cyberattacks?</a></li>
+          <li><a href="https://pages.nist.gov/800-63-4/sp800-63b.html" target="_blank" rel="noopener noreferrer">NIST SP 800-63B-4: Authentication and Authenticator Management</a></li>
           <li><a href="https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/three-random-words" target="_blank" rel="noopener noreferrer">NCSC: Use three random words</a></li>
-          <li><a href="https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/activate-2-step-verification-on-your-email" target="_blank" rel="noopener noreferrer">NCSC: Turn on 2-step verification on your email</a></li>
-          <li><a href="https://www.microsoft.com/en-us/security/blog/2019/08/20/one-simple-action-you-can-take-to-prevent-99-9-percent-of-account-attacks/" target="_blank" rel="noopener noreferrer">Microsoft Security Blog: One simple action you can take to prevent 99.9 percent of attacks on your accounts</a></li>
-          <li><a href="https://www.verizon.com/business/resources/reports/dbir/" target="_blank" rel="noopener noreferrer">Verizon: 2026 Data Breach Investigations Report</a></li>
+          <li><a href="https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online/use-a-strong-and-separate-password-for-email" target="_blank" rel="noopener noreferrer">NCSC: Use a strong and separate password for your email</a></li>
+          <li><a href="https://fidoalliance.org/passkeys/" target="_blank" rel="noopener noreferrer">FIDO Alliance: Passkeys</a></li>
         </ul>
 
         <div style="text-align:center;margin:32px 0 16px;font-style:italic;color:var(--ink-3);font-size:.95rem;">
