@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <title>Sysmon for Endpoint Visibility on Windows — Cyber Insight</title>
+  <meta name="description"
+    content="Windows logs a lot, but not the things that matter most during an investigation: which program started which, with what command line, talking to where. Sysmon fills that gap for free. Here is what it records, how to install it with a sensible configuration, and which events to look at first.">
+  <meta name="author" content="Poorna Sujampathi Rathnayaka">
+  <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
+  <link rel="author" href="https://sujampathirathnayaka.com/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Sysmon for Endpoint Visibility on Windows — Cyber Insight">
+  <meta property="og:description"
+    content="Windows logs a lot, but not the things that matter most during an investigation: which program started which, with what command line, talking to where. Sysmon fills that gap for free. Here is what it records, how to install it with a sensible configuration, and which events to look at first.">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Sysmon for Endpoint Visibility on Windows",
+    "description": "Windows logs a lot, but not the things that matter most during an investigation: which program started which, with what command line, talking to where. Sysmon fills that gap for free. Here is what it records, how to install it with a sensible configuration, and which events to look at first.",
+    "author": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka",
+      "url": "https://sujampathirathnayaka.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cyber Insight",
+      "url": "https://thecyberinsight.online/"
+    },
+    "datePublished": "2027-08-30",
+    "isPartOf": {
+      "@type": "CreativeWorkSeries",
+      "name": "Tool Spotlight",
+      "url": "https://thecyberinsight.online/series.html#tool-spotlight"
+    },
+    "copyrightYear": 2027,
+    "copyrightHolder": {
+      "@type": "Person",
+      "name": "Poorna Sujampathi Rathnayaka"
+    }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/main.css?v=16">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles/modern.css?v=16">
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
+  <link rel="canonical" href="https://thecyberinsight.online/tool-spotlight-03.html">
+  <meta property="og:url" content="https://thecyberinsight.online/tool-spotlight-03.html">
+</head>
+
+<body data-page="series-article" data-ep="3" data-article-id="ts-03">
+
+  <div id="reading-progress"></div>
+  <div id="toast-container" role="status" aria-live="polite"></div>
+
+  <!-- NAV -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav-in">
+      <a href="index.html" class="brand">
+        <div class="brand-mark" style="background:#1D4ED8;">CI</div>
+        <div>
+          <div class="brand-name">Cyber Insight</div>
+          <div class="brand-sub">Cybersecurity Research</div>
+        </div>
+      </a>
+      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="3" y1="18" x2="21" y2="18" />
+        </svg>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li class="series-dropdown-wrapper">
+          <a href="index.html#series" class="series-dropdown-trigger" id="seriesDropdownTrigger" aria-haspopup="true" aria-expanded="false">
+            <span>Series</span>
+            <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </a>
+          <div class="series-dropdown-menu" id="seriesDropdownMenu" role="menu" aria-labelledby="seriesDropdownTrigger">
+            <div class="series-dropdown-grid">
+              <div class="series-drop-card">
+                <div class="series-drop-header">
+                  <span class="series-drop-pill">10-Part Curriculum</span>
+                  <h4 class="series-drop-name">Cybersecurity for Everyone</h4>
+                  <p class="series-drop-desc">Plain-language guides cutting through technical jargon to explain real-world threats.</p>
+                </div>
+                <ul class="series-drop-list">
+                  <li><a href="article.html"><span class="ep-num-pill">01</span> Can You Still Trust What You See &amp; Hear?</a></li>
+                  <li><a href="article-02.html"><span class="ep-num-pill">02</span> Someone Has Your Email. Now What?</a></li>
+                  <li><a href="article-03.html"><span class="ep-num-pill">03</span> I Clicked a Phishing Link. What to Do?</a></li>
+                  <li><a href="article-04.html"><span class="ep-num-pill">04</span> Your Session Was Stolen.</a></li>
+                  <li><a href="article-05.html"><span class="ep-num-pill">05</span> Why the Padlock Doesn't Mean Safe</a></li>
+                  <li><a href="article-06.html"><span class="ep-num-pill">06</span> Are Passkeys Killing Passwords?</a></li>
+                  <li><a href="article-07.html"><span class="ep-num-pill">07</span> The Fake Recruiter in Your LinkedIn</a></li>
+                  <li><a href="article-08.html"><span class="ep-num-pill">08</span> What a Scammer Learns in 10 Minutes</a></li>
+                  <li><a href="article-09.html"><span class="ep-num-pill">09</span> Your Bank Is Calling. Or Is It?</a></li>
+                  <li><a href="tool-spotlight-03.html"><span class="ep-num-pill">10</span> What Happens to Your Information After a Breach?</a></li>
+                </ul>
+                <div class="series-drop-footer">
+                  <a href="index.html#series" class="series-drop-hub-link">View Full 10-Episode Hub →</a>
+                </div>
+              </div>
+              <div class="series-drop-card accent">
+                <div class="series-drop-header">
+                  <span class="series-drop-pill green">Zero-Trust Cases</span>
+                  <h4 class="series-drop-name">Behind the Breach</h4>
+                  <p class="series-drop-desc">Technical post-mortems investigating real enterprise intrusions and token theft.</p>
+                </div>
+                <ul class="series-drop-list">
+                  <li><a href="behind-the-breach-01.html"><span class="ep-num-pill red">MAG</span> Manchester Airports Group</a></li>
+                  <li><a href="behind-the-breach-02.html"><span class="ep-num-pill red">ASOS</span> ASOS Customer Data Breach</a></li>
+                  <li><a href="behind-the-breach-03.html"><span class="ep-num-pill red">PHP</span> PHP2Shell RCE Vulnerabilities</a></li>
+                  <li><a href="behind-the-breach-04.html"><span class="ep-num-pill red">ANTH</span> Anthropic Third-Party Breach</a></li>
+                </ul>
+                <div class="series-drop-footer">
+                  <a href="index.html#behind-the-breach" class="series-drop-hub-link">View Investigations Archive →</a>
+                </div>
+              </div>
+            </div>
+            <div class="series-drop-season"><div class="series-drop-season-head"><span class="series-drop-pill">New · Season 1</span><a href="series.html" class="series-drop-season-all">All 5 series →</a></div><ul class="series-drop-season-list"><li><a href="series.html#security-in-5-minutes">Security in 5 Minutes</a></li><li><a href="series.html#threat-of-the-week">Threat of the Week</a></li><li><a href="series.html#playbook-monday">Playbook Monday</a></li><li><a href="series.html#myth-vs-reality">Myth vs Reality</a></li><li><a href="series.html#tool-spotlight">Tool Spotlight</a></li></ul></div>
+            <div class="series-drop-banner">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF0000" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <span style="font-size:.82rem;font-weight:700;color:var(--ink);"><strong>Cyber Pocket:</strong> 30-Second Security Shorts on YouTube</span>
+              </div>
+              <a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="font-size:.8rem;font-weight:800;color:#DC2626;text-decoration:none;white-space:nowrap;">Watch Shorts →</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="#feedback">Feedback</a></li>
+        <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="color:#DC2626;display:inline-flex;align-items:center;gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>Shorts</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="article-09.html" class="cta">← Ep 09</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ARTICLE HERO -->
+  <div class="art-hero">
+    <div class="wrap">
+      <div class="art-hero-in">
+
+        <div>
+          <div class="art-series-banner">
+            <div class="art-series-info">
+              <span class="art-series-tag" style="background:#5B3FD0;">Season 1</span>
+              <span>Part of <strong>Tool Spotlight</strong> · Episode 03 of 10</span>
+            </div>
+            <a href="series.html#tool-spotlight" class="art-series-link">View all 10 episodes →</a>
+          </div>
+
+          <nav class="bc" aria-label="Breadcrumb">
+            <a href="index.html">Home</a>
+            <span class="bc-sep">›</span>
+            <a href="series.html#tool-spotlight">Series: Tool Spotlight</a>
+            <span class="bc-sep">›</span>
+            <span aria-current="page">Season 1 · Episode 03</span>
+          </nav>
+
+          <div class="art-meta">
+            <span class="art-cat" style="color:#5B3FD0;">Tool Spotlight · Episode 03</span>
+            <span class="art-dot">·</span>
+            <span>Sysmon · Windows · Logging · Threat Hunting</span>
+            <span class="art-dot">·</span>
+            <span>August 30, 2027</span>
+            <span class="art-dot">·</span>
+            <span>9 min read</span>
+          </div>
+
+          <h1 class="art-h1">Sysmon for Endpoint Visibility on Windows</h1>
+
+          <div class="art-byline">
+            <div class="art-av" style="background:#5B3FD0;">PS</div>
+            <div>
+              <div class="art-aname">Poorna Sujampathi Rathnayaka</div>
+              <div class="art-arole">Writer · Cyber Insight · Tool Spotlight</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="art-hero-svg" style="background:#E8E0FF;">
+          <svg viewBox="0 0 320 240" width="320" height="240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="262" cy="101" r="72" fill="#5B3FD0" opacity=".10" />
+            <circle cx="262" cy="101" r="48" fill="#5B3FD0" opacity=".14" />
+            <rect x="26" y="43" width="179" height="149" rx="14" fill="#FFFFFF" stroke="#5B3FD0" stroke-width="2" />
+            <text x="42" y="86" fill="#5B3FD0" font-family="Space Grotesk, system-ui, sans-serif" font-size="11.0" font-weight="700" letter-spacing=".06em">TOOL SPOTLIGHT</text>
+            <text x="42" y="144" fill="#111B3A" font-family="Space Grotesk, system-ui, sans-serif" font-size="40.8" font-weight="800">Sysmon</text>
+            <text x="42" y="173" fill="#5F6A8C" font-family="system-ui, sans-serif" font-size="12.0" font-weight="700">SEASON 1 · EPISODE 03</text>
+            <text x="262" y="120" text-anchor="middle" fill="#5B3FD0" font-family="Space Grotesk, system-ui, sans-serif" font-size="38.4" font-weight="800">03</text>
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ARTICLE BODY -->
+  <div class="art-layout">
+
+    <div class="art-center">
+
+      <div class="art-action-strip">
+        <div class="art-act-left">
+          <span class="chip" style="background:#E8E0FF;color:#5B3FD0;border-color:#5B3FD0;font-weight:700;">Tool Spotlight · Ep 03</span>
+          <span class="chip">Sysmon</span>
+          <span class="chip">Windows</span>
+          <span class="chip">Logging</span>
+          <span class="chip">Threat Hunting</span>
+          <span style="font-size:.78rem;color:var(--ink-4);margin-left:4px;">· 9 min read</span>
+        </div>
+        <div class="art-act-right">
+          <button class="art-act-btn btn-like" title="Like this article" aria-label="Like article">
+            <span class="like-heart">🤍</span> Like <span class="art-act-cnt like-count">0</span>
+          </button>
+          <button class="art-act-btn btn-clap" title="Applaud this article" aria-label="Clap for article">
+            <span>👏</span> Clap <span class="art-act-cnt clap-count">0</span>
+          </button>
+          <a href="#feedback" class="art-act-btn" title="Jump to Feedback">
+            <span>💬</span> Feedback
+          </a>
+          <button class="art-act-btn" onclick="copyLink()" title="Copy article link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+              <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+            </svg>
+            Share
+          </button>
+        </div>
+      </div>
+
+      <div class="stats-row" aria-label="Key statistics">
+        <div class="stat-c">
+          <div class="stat-n">29</div>
+          <div class="stat-l">Event types Sysmon can record</div>
+          <div class="stat-s">From process creation and network connections to DNS queries and file deletions</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">Free</div>
+          <div class="stat-l">Part of Microsoft Sysinternals</div>
+          <div class="stat-s">Written by Mark Russinovich and Thomas Garnier</div>
+        </div>
+        <div class="stat-c">
+          <div class="stat-n">Built in</div>
+          <div class="stat-l">Now coming to Windows 11 itself</div>
+          <div class="stat-s">As an optional feature, first tested in Insider builds in early 2026</div>
+        </div>
+      </div>
+
+      <div class="art-text">
+        <p class="lead-p">
+          <em>Something suspicious happened on a Windows laptop yesterday. You open the event logs and find... very little. A logon, a service start, an update. What you really want to know is which program ran, what launched it, what command line it used, and where it connected. By default, Windows mostly does not record that. Sysmon does.</em>
+        </p>
+
+        <div style="background:var(--surface);border:1.5px solid var(--border);border-left:4px solid #5B3FD0;border-radius:10px;padding:18px 22px;margin:24px 0;">
+          <strong style="color:#5B3FD0;font-size:1.02rem;display:block;margin-bottom:8px;">Tool card</strong>
+          <span style="display:block;color:var(--ink-2);line-height:1.7;">
+            <strong>What it is:</strong> a Windows service and driver that logs detailed system activity to the Windows event log<br>
+            <strong>Cost:</strong> free, from Microsoft Sysinternals<br>
+            <strong>Runs on:</strong> Windows 11 and Windows Server 2019 or later (a Linux version also exists)<br>
+            <strong>Works with:</strong> Event Viewer, Windows Event Forwarding, and SIEM tools such as Wazuh<br>
+            <strong>Good for:</strong> investigating incidents, hunting for threats, writing detections<br>
+            <strong>Skill level:</strong> intermediate
+          </span>
+        </div>
+
+        <!-- WHAT IT IS -->
+        <h2 id="sec-what">What Sysmon Does</h2>
+
+        <p>
+          System Monitor, or Sysmon, is part of Microsoft's free Sysinternals suite, written by Mark Russinovich and Thomas Garnier. Microsoft's documentation describes it as a Windows system service and device driver that stays resident across reboots to monitor and log system activity to the Windows event log.
+        </p>
+
+        <p>
+          Among the things it records, according to Microsoft:
+        </p>
+
+        <ul>
+          <li><strong>Every process that starts</strong>, with its full command line, its parent process and a hash of the program file.</li>
+          <li><strong>Network connections</strong>, linked to the process that made them, with addresses, ports and host names.</li>
+          <li><strong>Drivers and DLLs loaded</strong>, with their signatures and hashes.</li>
+          <li><strong>Files created</strong>, useful for watching download folders and startup locations.</li>
+          <li><strong>Registry changes</strong>, including the autostart keys malware uses to survive reboots.</li>
+          <li><strong>DNS queries</strong>, showing which process looked up which domain.</li>
+          <li><strong>Attempts to read another process's memory</strong>, such as credential-stealing tools targeting LSASS.</li>
+        </ul>
+
+        <p>
+          It also starts logging early in the boot process, and runs as a protected process to resist tampering.
+        </p>
+
+        <p>
+          Microsoft is equally clear about what Sysmon does not do: it does not analyse the events it generates, and it does not try to hide itself from attackers. Sysmon is a camera, not a guard. Someone, or something, still has to watch the footage.
+        </p>
+
+        <div class="pq">
+          Antivirus asks "is this file bad?" Sysmon answers "what actually happened?"
+        </div>
+
+        <!-- INSTALL -->
+        <h2 id="sec-install">Installing It Sensibly</h2>
+
+        <ol>
+          <li><strong>Download Sysmon from Microsoft's Sysinternals site</strong>, or use the built-in version if your Windows build has it (see below).</li>
+          <li><strong>Start from a community configuration, not the defaults.</strong> Without a configuration file, Sysmon logs process creation with SHA1 hashes but no network activity. Logging everything, on the other hand, produces an unmanageable flood. Well-maintained starting points include SwiftOnSecurity's <em>sysmon-config</em>, described as a configuration template with high-quality event tracing, and Olaf Hartong's more exhaustive <em>sysmon-modular</em>.</li>
+          <li><strong>Install from an administrator command prompt</strong>, for example: <code>sysmon64 -accepteula -i sysmonconfig-export.xml</code>. No reboot is needed.</li>
+          <li><strong>Find the logs</strong> in Event Viewer under Applications and Services Logs → Microsoft → Windows → Sysmon → Operational.</li>
+          <li><strong>Update the configuration</strong> later with <code>sysmon64 -c newconfig.xml</code>, and test changes on one machine before rolling them out.</li>
+        </ol>
+
+        <p>
+          <strong>Sysmon is coming into Windows itself.</strong> Microsoft began testing Sysmon as a built-in optional feature in Windows 11 Insider builds in February 2026. BleepingComputer reported that it is disabled by default, is enabled through Settings → System → Optional features → More Windows features (or with DISM), and requires any standalone Sysmon to be uninstalled first. Check whether your version of Windows includes it before downloading the standalone tool.
+        </p>
+
+        <!-- EVENTS -->
+        <h2 id="sec-events">The Events Worth Learning First</h2>
+
+        <ul>
+          <li><strong>Event ID 1, process creation.</strong> The most valuable event. Look for unusual parent-child pairs, such as Word or Excel starting PowerShell, or a command line full of encoded text.</li>
+          <li><strong>Event ID 3, network connection.</strong> Which process is talking to the internet? A document viewer or a process in a temporary folder connecting out is worth a look.</li>
+          <li><strong>Event ID 11, file created.</strong> New executables appearing in Downloads, Temp or Startup folders.</li>
+          <li><strong>Event IDs 12 and 13, registry changes.</strong> New entries in Run keys and other autostart locations, a classic persistence technique.</li>
+          <li><strong>Event ID 22, DNS query.</strong> Which process looked up which domain, ideal for tying strange lookups to a specific program.</li>
+          <li><strong>Event ID 10, process access.</strong> Tools opening the LSASS process to steal credentials. Microsoft warns this can be noisy, so it should be filtered carefully.</li>
+          <li><strong>Event ID 8, CreateRemoteThread.</strong> One process creating a thread inside another, a technique malware uses to inject code and hide.</li>
+        </ul>
+
+        <p>
+          Many of these are exactly the signals of "living off the land" attacks, where intruders use built-in Windows tools rather than malware, as covered in <a href="threat-of-the-week-08.html">Threat of the Week, Episode 08</a>.
+        </p>
+
+        <!-- USING IT -->
+        <h2 id="sec-using">Turning Logs Into Detection</h2>
+
+        <p>
+          On a single machine, Event Viewer and PowerShell's <code>Get-WinEvent</code> are enough to investigate. Across an organisation, you need the events in one place:
+        </p>
+
+        <ul>
+          <li><strong>Collect centrally</strong> with Windows Event Forwarding or a SIEM agent. Logs that stay on a compromised machine can be deleted.</li>
+          <li><strong>Write detections</strong> for the patterns that matter to you. Sigma rules, covered later this season, are a common way to describe Sysmon-based detections in a portable format.</li>
+          <li><strong>Use it during incidents.</strong> When you isolate an infected machine, as in <a href="playbook-monday-08.html">Playbook Monday, Episode 08</a>, Sysmon's process and network history is often what tells you how it happened and what else it touched.</li>
+          <li><strong>Combine it with network evidence.</strong> Sysmon tells you which process made a connection; a packet capture, as in <a href="tool-spotlight-01.html">Tool Spotlight, Episode 01</a>, tells you what was in it.</li>
+        </ul>
+
+        <!-- LIMITS -->
+        <h2 id="sec-limits">Limits to Keep in Mind</h2>
+
+        <ul>
+          <li><strong>Configuration is everything.</strong> Too little and you miss what matters; too much and the logs are ignored or overwhelm storage.</li>
+          <li><strong>It does not alert or block</strong> on its own. You need something to read the logs.</li>
+          <li><strong>A local administrator can stop or remove it.</strong> Forward logs off the machine, and alert when Sysmon stops reporting.</li>
+          <li><strong>It is not a replacement</strong> for endpoint protection or EDR. It complements them, and many security teams use it alongside commercial tools.</li>
+        </ul>
+
+        <!-- FINAL THOUGHTS -->
+        <h2 id="sec-final-thoughts">Final Thoughts</h2>
+
+        <p>
+          Every incident investigation eventually asks the same questions: what ran, who started it, and where did it connect? Sysmon answers them, for free, on every Windows machine you install it on. Install it with a good community configuration on one machine this week, open the Operational log, and see what your computer has been doing.
+        </p>
+
+        <div class="pq">
+          You cannot investigate what you never recorded. Turn the camera on before you need the footage.
+        </div>
+
+        <!-- SOURCES -->
+        <h2 id="sec-resources">Sources and Further Reading</h2>
+
+        <ul>
+          <li><a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon" target="_blank" rel="noopener noreferrer">Microsoft Learn: Sysmon (Sysinternals)</a></li>
+          <li><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-rolls-out-native-windows-11-sysmon-security-monitoring/" target="_blank" rel="noopener noreferrer">BleepingComputer: Microsoft rolls out native Sysmon monitoring in Windows 11 (February 2026)</a></li>
+          <li><a href="https://github.com/SwiftOnSecurity/sysmon-config" target="_blank" rel="noopener noreferrer">SwiftOnSecurity: sysmon-config</a></li>
+          <li><a href="https://github.com/olafhartong/sysmon-modular" target="_blank" rel="noopener noreferrer">Olaf Hartong: sysmon-modular</a></li>
+        </ul>
+
+        <div style="text-align:center;margin:32px 0 16px;font-style:italic;color:var(--ink-3);font-size:.95rem;">
+          <p style="margin:0 0 4px;font-weight:700;">Cyber Insight | Tool Spotlight · Season 1</p>
+          <p style="margin:0;">Making cybersecurity easier to understand, one issue at a time.</p>
+        </div>
+
+      </div><!-- /art-text -->
+
+      <div class="series-curriculum-box" id="series-curriculum">
+        <div class="series-curriculum-header">
+          <span class="series-curriculum-tag" style="background:#5B3FD0;">Season 1</span>
+          <h3 class="series-curriculum-title">Tool Spotlight · All 10 Episodes</h3>
+          <p class="series-curriculum-desc">Free and open-source security tools: what they do and where they fall short.</p>
+        </div>
+        <div class="series-nav-grid">
+          <a href="tool-spotlight-01.html" class="series-nav-item">
+            <span class="series-nav-num">01</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Wireshark basics for spotting suspicious traffic</span>
+              <span class="series-nav-tag">Episode 01 · Published</span>
+            </div>
+          </a>
+          <a href="tool-spotlight-02.html" class="series-nav-item">
+            <span class="series-nav-num">02</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Have I Been Pwned and breach-monitoring tools</span>
+              <span class="series-nav-tag">Episode 02 · Published</span>
+            </div>
+          </a>
+          <div class="series-nav-item active" aria-current="page">
+            <span class="series-nav-num">03</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Sysmon for endpoint visibility on Windows</span>
+              <span class="series-nav-tag">Episode 03 · Now reading</span>
+            </div>
+          </div>
+          <a href="tool-spotlight-04.html" class="series-nav-item">
+            <span class="series-nav-num">04</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Nmap for checking your own network exposure</span>
+              <span class="series-nav-tag">Episode 04 · Published</span>
+            </div>
+          </a>
+          <div class="series-nav-item" style="opacity:.6;">
+            <span class="series-nav-num">05</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">YARA and Sigma rules: writing a first detection</span>
+              <span class="series-nav-tag">Episode 05 · Coming soon</span>
+            </div>
+          </div>
+          <div class="series-nav-item" style="opacity:.6;">
+            <span class="series-nav-num">06</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">CyberChef for decoding and analysing data</span>
+              <span class="series-nav-tag">Episode 06 · Coming soon</span>
+            </div>
+          </div>
+          <div class="series-nav-item" style="opacity:.6;">
+            <span class="series-nav-num">07</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">VirusTotal: using it well and its limits</span>
+              <span class="series-nav-tag">Episode 07 · Coming soon</span>
+            </div>
+          </div>
+          <div class="series-nav-item" style="opacity:.6;">
+            <span class="series-nav-num">08</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Process Explorer and Autoruns for finding persistence</span>
+              <span class="series-nav-tag">Episode 08 · Coming soon</span>
+            </div>
+          </div>
+          <div class="series-nav-item" style="opacity:.6;">
+            <span class="series-nav-num">09</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">OWASP ZAP for testing your own web app</span>
+              <span class="series-nav-tag">Episode 09 · Coming soon</span>
+            </div>
+          </div>
+          <div class="series-nav-item" style="opacity:.6;">
+            <span class="series-nav-num">10</span>
+            <div class="series-nav-info">
+              <span class="series-nav-item-title">Wazuh: open-source monitoring for a small network</span>
+              <span class="series-nav-tag">Episode 10 · Coming soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="related">
+        <div class="sec-h" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+          <div>
+            <span class="sec-lbl" style="color:#5B3FD0;">Tool Spotlight</span>
+            <div style="font-family:var(--f-d);font-size:1.15rem;font-weight:800;color:var(--ink);margin-top:4px;">Keep reading</div>
+          </div>
+          <a href="series.html#tool-spotlight" style="font-size:.82rem;font-weight:700;color:#5B3FD0;text-decoration:none;">View all 10 episodes →</a>
+        </div>
+        <div class="rel-grid">
+          <a href="tool-spotlight-02.html" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
+            <div class="card-svg" style="background:#E8E0FF;">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="197" cy="59" r="42" fill="#5B3FD0" opacity=".10" />
+            <circle cx="197" cy="59" r="28" fill="#5B3FD0" opacity=".14" />
+            <rect x="19" y="25" width="134" height="87" rx="14" fill="#FFFFFF" stroke="#5B3FD0" stroke-width="2" />
+            <text x="31" y="50" fill="#5B3FD0" font-family="Space Grotesk, system-ui, sans-serif" font-size="6.4" font-weight="700" letter-spacing=".06em">TOOL SPOTLIGHT</text>
+            <text x="31" y="84" fill="#111B3A" font-family="Space Grotesk, system-ui, sans-serif" font-size="23.8" font-weight="800">Ep 02</text>
+            <text x="31" y="101" fill="#5F6A8C" font-family="system-ui, sans-serif" font-size="7.0" font-weight="700">SEASON 1 · EPISODE 02</text>
+            <text x="197" y="70" text-anchor="middle" fill="#5B3FD0" font-family="Space Grotesk, system-ui, sans-serif" font-size="22.4" font-weight="800">02</text>
+          </svg>
+              <span class="card-svg-label" style="background:#FFFFFF;color:#5B3FD0;border-color:#5B3FD0;">← Previous · Ep 02</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Have I Been Pwned and breach-monitoring tools</h3>
+              <div class="card-foot"><span>Tool Spotlight</span><span style="color:#5B3FD0;font-weight:700;">Read Ep 02 →</span></div>
+            </div>
+          </a>
+          <a href="tool-spotlight-04.html" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
+            <div class="card-svg" style="background:#E8E0FF;">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="197" cy="59" r="42" fill="#5B3FD0" opacity=".10" />
+            <circle cx="197" cy="59" r="28" fill="#5B3FD0" opacity=".14" />
+            <rect x="19" y="25" width="134" height="87" rx="14" fill="#FFFFFF" stroke="#5B3FD0" stroke-width="2" />
+            <text x="31" y="50" fill="#5B3FD0" font-family="Space Grotesk, system-ui, sans-serif" font-size="6.4" font-weight="700" letter-spacing=".06em">TOOL SPOTLIGHT</text>
+            <text x="31" y="84" fill="#111B3A" font-family="Space Grotesk, system-ui, sans-serif" font-size="23.8" font-weight="800">Ep 04</text>
+            <text x="31" y="101" fill="#5F6A8C" font-family="system-ui, sans-serif" font-size="7.0" font-weight="700">SEASON 1 · EPISODE 04</text>
+            <text x="197" y="70" text-anchor="middle" fill="#5B3FD0" font-family="Space Grotesk, system-ui, sans-serif" font-size="22.4" font-weight="800">04</text>
+          </svg>
+              <span class="card-svg-label" style="background:#FFFFFF;color:#5B3FD0;border-color:#5B3FD0;">Next · Ep 04 →</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Nmap for checking your own network exposure</h3>
+              <div class="card-foot"><span>Tool Spotlight</span><span style="color:#5B3FD0;font-weight:700;">Read Ep 04 →</span></div>
+            </div>
+          </a>
+          <a href="series.html#tool-spotlight" class="art-card" style="text-decoration:none;display:flex;flex-direction:column;">
+            <div class="card-svg" style="background:#E8E0FF;">
+              <svg viewBox="0 0 240 140" width="240" height="140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="197" cy="59" r="42" fill="#5B3FD0" opacity=".10" />
+            <circle cx="197" cy="59" r="28" fill="#5B3FD0" opacity=".14" />
+            <rect x="19" y="25" width="134" height="87" rx="14" fill="#FFFFFF" stroke="#5B3FD0" stroke-width="2" />
+            <text x="31" y="50" fill="#5B3FD0" font-family="Space Grotesk, system-ui, sans-serif" font-size="6.4" font-weight="700" letter-spacing=".06em">TOOL SPOTLIGHT</text>
+            <text x="31" y="84" fill="#111B3A" font-family="Space Grotesk, system-ui, sans-serif" font-size="23.8" font-weight="800">Season 1</text>
+            <text x="31" y="101" fill="#5F6A8C" font-family="system-ui, sans-serif" font-size="7.0" font-weight="700">SEASON 1 · EPISODE 03</text>
+            <text x="197" y="70" text-anchor="middle" fill="#5B3FD0" font-family="Space Grotesk, system-ui, sans-serif" font-size="22.4" font-weight="800">03</text>
+          </svg>
+              <span class="card-svg-label" style="background:#FFFFFF;color:#5B3FD0;border-color:#5B3FD0;">All 10 episodes</span>
+            </div>
+            <div class="card-body">
+              <h3 class="card-h3">Tool Spotlight: Season 1</h3>
+              <p class="card-ex">Free and open-source security tools: what they do and where they fall short.</p>
+              <div class="card-foot"><span>Series hub</span><span style="color:#5B3FD0;font-weight:700;">See all →</span></div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- FEEDBACK SECTION -->
+      <section class="feedback-section" id="feedback" aria-label="Reader feedback">
+        <div class="fb-header">
+          <h2 class="fb-title">Send feedback to Poorna</h2>
+          <p class="fb-sub">Have a question or a suggestion? Prepare an email below. Feedback is private and is sent only when you press Send in your email app.</p>
+          <p class="fb-sub">Likes and claps are your personal reactions on this device.</p>
+        </div>
+        <div class="fb-form-box">
+          <p>You can also <a href="mailto:sujampathirathnayaka@gmail.com">email Poorna directly</a>.</p>
+          <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
+          <form id="fbForm" hidden>
+            <label for="fbName">Name (optional)</label>
+            <input class="fb-input" id="fbName" maxlength="100" autocomplete="name" aria-describedby="fbDraftNote">
+            <label for="fbCategory">Feedback category</label>
+            <select class="fb-input" id="fbCategory">
+              <option>General feedback</option><option>Question</option><option>Correction</option><option>Topic suggestion</option>
+            </select>
+            <label for="fbMessage">Your feedback</label>
+            <textarea class="fb-textarea" id="fbMessage" aria-describedby="fbDraftNote fbLimit" required maxlength="2000" placeholder="Share your question or suggestion..."></textarea>
+            <p id="fbLimit" class="fb-draft-note">Maximum 2,000 characters.</p>
+            <div class="fb-form-foot">
+              <button type="submit" class="fb-submit-btn">Prepare email</button>
+              <button type="button" class="fb-clear-btn" id="fbClear">Clear draft</button>
+            </div>
+          </form>
+          <div id="fbEmailPreview" class="fb-preview" hidden>
+            <p id="fbStatus" class="fb-status" role="status">Prepared. Review and send:</p>
+            <a id="fbEmailLink" class="fb-email-link" href="#" target="_blank" rel="noopener noreferrer">Open email app</a>
+            <div class="fb-preview-field">
+              <label for="fbEmailTo">To</label>
+              <input id="fbEmailTo" class="fb-input" readonly value="sujampathirathnayaka@gmail.com">
+            </div>
+            <div class="fb-preview-field">
+              <label for="fbEmailSubject">Subject</label>
+              <input id="fbEmailSubject" class="fb-input" readonly>
+            </div>
+            <div class="fb-preview-field">
+              <label for="fbEmailBody">Body</label>
+              <textarea id="fbEmailBody" class="fb-textarea" readonly rows="8"></textarea>
+            </div>
+            <button type="button" class="fb-copy-btn" id="fbCopy">Copy feedback</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Author card -->
+      <div class="auth-card" id="about">
+        <div class="auth-top">
+          <div class="auth-av">PS</div>
+          <div>
+            <div class="auth-name">Poorna Sujampathi Rathnayaka</div>
+            <div class="auth-role">Writer · Cyber Insight · Digital Literacy</div>
+          </div>
+        </div>
+        <div class="auth-body">
+          <p class="auth-desc">I started Cyber Insight because everywhere online people only talk about cybersecurity in technical terms — and most people are left without a proper understanding of how the digital world works. I work in cybersecurity, but I write here for everyone. No jargon. Just clear, honest explanations.</p>
+          <div class="auth-links">
+            <a href="https://sujampathirathnayaka.com/" class="au-btn pf" target="_blank" rel="noopener noreferrer">🌐 Portfolio</a>
+            <a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" class="au-btn li" target="_blank" rel="noopener noreferrer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect x="2" y="9" width="4" height="12" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://github.com/sujampathi" class="au-btn gh" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.youtube.com/@CyberPocket26" class="au-btn yt" target="_blank" rel="noopener noreferrer" title="Subscribe to Cyber Pocket on YouTube Shorts">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              Cyber Pocket
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      </div><!-- /art-center -->
+
+  </div><!-- /art-layout -->
+
+  <!-- FLOATING BOTTOM DOCK -->
+  <aside class="floating-dock" aria-label="Reading Controls">
+    <button class="dock-btn btn-like" aria-label="Like article">
+      <span class="dock-emoji like-heart">🤍</span>
+      <span class="dock-count like-count">0</span>
+    </button>
+    <button class="dock-btn btn-clap" aria-label="Applaud research">
+      <span class="dock-emoji">👏</span>
+      <span class="dock-count clap-count">0</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#feedback" class="dock-btn" aria-label="Jump to discussion">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+      <span class="dock-label">Feedback</span>
+    </a>
+    <button class="dock-btn btn-share" onclick="copyLink()" aria-label="Copy link">
+      <svg class="dock-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+        stroke-width="2">
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+      </svg>
+      <span class="dock-label">Share</span>
+    </button>
+    <div class="dock-sep"></div>
+    <a href="#series-curriculum" class="dock-series-pill" title="Series: Tool Spotlight">
+      <span class="dock-pulse"></span>
+      Ep 03 of 10
+    </a>
+  </aside>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-top">
+        <div class="foot-brand-col">
+          <a href="index.html" class="foot-brand">
+            <div class="foot-brand-mark" style="background:#1D4ED8;">CI</div>
+            <span class="foot-brand-text">Cyber Insight</span>
+          </a>
+          <p class="foot-desc">
+            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, SSL/TLS misconceptions, passkey cryptography, recruitment fraud, OSINT reconnaissance, bank impersonation, and digital literacy for everyone.
+          </p>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              RFC 9116 Security Policy
+            </a>
+          </div>
+        </div>
+
+        <div class="foot-nav-cols">
+          <div>
+            <div class="foot-col-title">Series Navigation</div>
+            <ul class="foot-nav-list">
+              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
+              <li><a href="article-02.html">Ep 02: Email OSINT &amp; Perimeter Defense</a></li>
+              <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
+              <li><a href="article-04.html">Ep 04: Session Theft &amp; Cookie Hijacking</a></li>
+              <li><a href="article-05.html">Ep 05: The Padlock Myth &amp; TLS Security</a></li>
+              <li><a href="article-06.html">Ep 06: Passkeys vs. Passwords &amp; FIDO2</a></li>
+              <li><a href="article-07.html">Ep 07: Fake Recruiters &amp; Trojan Assessments</a></li>
+              <li><a href="article-08.html">Ep 08: OSINT &amp; 10-Minute Scammer Recon</a></li>
+              <li><a href="article-09.html">Ep 09: Bank Impersonation &amp; Vishing</a></li>
+              <li><a href="article-10.html">Ep 10: After a Data Breach</a></li>
+              <li><a href="index.html#series">View Full Curriculum (10 Episodes)</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Independent Research</div>
+            <ul class="foot-nav-list">
+              <li><a href="behind-the-breach-01.html">Behind the Breach: Zero-Trust Anatomy</a></li>
+              <li><a href="behind-the-breach-02.html">Behind the Breach: Infostealer Infiltration</a></li>
+              <li><a href="behind-the-breach-03.html">Behind the Breach: PHP2Shell RCE</a></li>
+              <li><a href="behind-the-breach-04.html">Behind the Breach: Anthropic Third-Party Breach</a></li>
+              <li><a href="https://haveibeenpwned.com/" target="_blank" rel="noopener noreferrer">Have I Been Pwned Portal</a></li>
+              <li><a href="https://ico.org.uk/" target="_blank" rel="noopener noreferrer">Information Commissioner's Office</a></li>
+              <li><a href="https://www.ncsc.gov.uk/" target="_blank" rel="noopener noreferrer">NCSC Data Breach Guidance</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="foot-col-title">Editorial &amp; Author</div>
+            <ul class="foot-nav-list">
+              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Poorna Sujampathi Rathnayaka</a></li>
+              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></li>
+              <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="color:#DC2626;">Cyber Pocket (YouTube Shorts) ↗</a></li>
+              <li><a href="index.html#about">About the Publication</a></li>
+              <li><a href="#feedback">Submit Technical Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="foot-bot">
+        <div class="foot-disclaimer">
+          <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is designed for technical literacy, incident response guidance, and defensive awareness.
+        </div>
+        <div class="foot-copy">
+          &copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="google_translate_element"></div>
+
+  <!-- Interactive Simulator Script -->
+  <script>
+    (function () {
+      let currentTab = 'lifecycle';
+      let selectedDataType = 'credentials';
+
+      const dataTypes = {
+        'credentials': {
+          title: 'Email Address & Passwords',
+          badge: 'High Credential Stuffing Risk',
+          badgeColor: '#DC2626',
+          destination: 'Combo lists compiled on cybercrime forums (BreachForums, Telegram channels).',
+          exploitVector: 'Attackers deploy automated bots (OpenBullet, SilverBullet) testing your username/password against hundreds of websites (banking, Amazon, Netflix, corporate VPNs) within minutes.',
+          countermeasure: 'Immediately change repeated passwords; implement unique generated passwords via a password manager and turn on hardware or app-based MFA on your email account.'
+        },
+        'contact': {
+          title: 'Full Name, Phone Number & Home Address',
+          badge: 'Precision Social Engineering',
+          badgeColor: '#D97706',
+          destination: 'Data broker aggregation dumps and lead generation packs sold to scam call centres.',
+          exploitVector: 'Scammers craft tailored SMS messages (fake parcel delivery, unpaid toll fees) or initiate bank impersonation phone calls quoting your exact street name and full legal name to build trust.',
+          countermeasure: 'Treat any unexpected message or call with heightened skepticism, never click embedded verification links, and verify callers independently via published numbers or 159.'
+        },
+        'dob_id': {
+          title: 'Date of Birth & National Identification / NI Numbers',
+          badge: 'Permanent Identity Aggregation',
+          badgeColor: '#7C3AED',
+          destination: 'Permanent underground identity dossiers (Fullz dossiers).',
+          exploitVector: 'Unlike passwords, your date of birth and National Insurance details cannot be reset. Criminals aggregate this with financial records to attempt credit applications, fraudulent loans, or bypass tier-1 identity verification over the phone.',
+          countermeasure: 'Register for protective registration services (such as CIFAS in the UK), regularly inspect credit reports (Experian, Equifax, TransUnion), and monitor notice of applications.'
+        },
+        'financial': {
+          title: 'Payment Cards & Bank Account Records',
+          badge: 'Direct Financial Fraud',
+          badgeColor: '#DC2626',
+          destination: 'Specialized carding shops and instant money mule networks.',
+          exploitVector: 'Stolen card numbers are tested via small automated micro-transactions, followed by rapid online purchases or wallet provisioning before fraud detection algorithms freeze the account.',
+          countermeasure: 'Notify your bank immediately to cancel and re-issue compromised cards; review statements weekly and enable push-notification authorizations for all transactions.'
+        }
+      };
+
+      const actionSteps = [
+        {
+          id: 'step_understand',
+          stepNum: '01',
+          title: 'Understand What Was Exposed',
+          desc: 'Carefully read the official breach notification letter to confirm whether passwords, contact details, or financial accounts were involved.',
+          tip: 'Categorise your risk: credential risk vs identity/financial risk.'
+        },
+        {
+          id: 'step_passwords',
+          stepNum: '02',
+          title: 'Change Passwords & Sever Reuse',
+          desc: 'Reset the breached password immediately. If you reused it on other portals (especially email, banking, or cloud drives), update them with unique passwords.',
+          tip: 'Use a password manager to generate 16+ character distinct passwords.'
+        },
+        {
+          id: 'step_mfa',
+          stepNum: '03',
+          title: 'Enable Multi-Factor Authentication',
+          desc: 'Activate MFA using an authenticator app (TOTP) or passkeys on all core accounts so a leaked password alone cannot grant access.',
+          tip: 'Avoid SMS codes where possible; favor hardware keys or authenticator apps.'
+        },
+        {
+          id: 'step_audit',
+          stepNum: '04',
+          title: 'Audit Connected Account Activity',
+          desc: 'Review recent sign-ins, registered devices, and forwarding rules on your primary email and cloud services for anomalies.',
+          tip: 'Check your email inbox forwarding settings for silent attacker rules.'
+        },
+        {
+          id: 'step_phishing_vigilance',
+          stepNum: '05',
+          title: 'Heighten Scrutiny on Incoming Messages',
+          desc: 'Expect follow-up phishing emails, fake customer support calls, or urgent SMS alerts exploiting the incident itself.',
+          tip: 'Never click verification links in emails; navigate to the real website independently.'
+        },
+        {
+          id: 'step_financial_monitor',
+          stepNum: '06',
+          title: 'Monitor Financial Accounts & Credit Reports',
+          desc: 'Set up transaction alerts on bank cards and check your credit file with national credit reference agencies for unauthorized queries.',
+          tip: 'In the UK, consult Action Fraud and consider CIFAS protective registration.'
+        }
+      ];
+
+      const completedSteps = {};
+
+      function renderLifecycle() {
+        const cur = dataTypes[selectedDataType];
+
+        let buttonsHtml = '';
+        for (const [key, dt] of Object.entries(dataTypes)) {
+          const isActive = key === selectedDataType;
+          buttonsHtml += '<button type="button" class="dt-choice-btn" data-dt="' + key + '" style="background:' + (isActive ? '#EFF6FF' : '#FFFFFF') + ';border:1.5px solid ' + (isActive ? '#1D4ED8' : 'var(--border-2)') + ';border-radius:8px;padding:12px 14px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:3px;transition:all .15s ease;">' +
+            '<div style="font-size:.85rem;font-weight:700;color:' + (isActive ? '#1D4ED8' : 'var(--ink)') + ';">' + dt.title + '</div>' +
+            '<div style="font-size:.72rem;color:' + (isActive ? '#1E40AF' : 'var(--ink-4)') + ';font-weight:600;">' + dt.badge + '</div>' +
+          '</button>';
+        }
+
+        return '<div style="display:grid;grid-template-columns:1fr;gap:20px;">' +
+          '<div>' +
+            '<div style="font-size:.82rem;font-weight:700;color:var(--ink-3);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;">' +
+              'Select Exposed Data Type to Track Its Lifecycle:' +
+            '</div>' +
+            '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;">' +
+              buttonsHtml +
+            '</div>' +
+          '</div>' +
+          '<div style="background:#F8FAFC;border:1px solid #E2E8F0;border-radius:12px;padding:20px;">' +
+            '<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">' +
+              '<span style="background:' + cur.badgeColor + ';color:white;font-size:.72rem;font-weight:800;padding:3px 8px;border-radius:4px;text-transform:uppercase;">Threat Analysis</span>' +
+              '<span style="font-weight:800;color:#0F172A;font-size:1.02rem;">' + cur.title + '</span>' +
+            '</div>' +
+            '<div style="background:#FFF1F2;border-left:4px solid #E11D48;border-radius:6px;padding:12px 16px;margin-bottom:14px;">' +
+              '<div style="font-size:.75rem;font-weight:800;color:#9F1239;text-transform:uppercase;margin-bottom:4px;">Where It Goes (Illicit Distribution):</div>' +
+              '<div style="color:#881337;font-size:.92rem;line-height:1.5;">' + cur.destination + '</div>' +
+            '</div>' +
+            '<div style="background:#FEFCE8;border-left:4px solid #CA8A04;border-radius:6px;padding:12px 16px;margin-bottom:14px;">' +
+              '<div style="font-size:.75rem;font-weight:800;color:#854D0E;text-transform:uppercase;margin-bottom:4px;">How Criminals Weaponize It:</div>' +
+              '<div style="color:#713F12;font-size:.9rem;line-height:1.5;">' + cur.exploitVector + '</div>' +
+            '</div>' +
+            '<div style="background:#EFF6FF;border-left:4px solid #1D4ED8;border-radius:6px;padding:12px 16px;">' +
+              '<div style="font-size:.75rem;font-weight:800;color:#1E40AF;text-transform:uppercase;margin-bottom:4px;">Defensive Countermeasure:</div>' +
+              '<div style="color:#1E3A8A;font-weight:700;font-size:.92rem;line-height:1.5;">' + cur.countermeasure + '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }
+
+      function renderChecklist() {
+        const total = actionSteps.length;
+        const count = Object.values(completedSteps).filter(Boolean).length;
+        const pct = Math.round((count / total) * 100);
+
+        let stepsHtml = '';
+        for (const s of actionSteps) {
+          const checked = !!completedSteps[s.id];
+          stepsHtml += '<div style="display:flex;gap:14px;background:' + (checked ? '#F0FDF4' : '#fff') + ';border:1.5px solid ' + (checked ? '#86EFAC' : 'var(--border)') + ';border-radius:10px;padding:14px 18px;transition:all .2s ease;">' +
+            '<input type="checkbox" id="chk_' + s.id + '" data-step-id="' + s.id + '" ' + (checked ? 'checked' : '') + ' style="margin-top:4px;width:20px;height:20px;cursor:pointer;accent-color:#16A34A;">' +
+            '<div style="flex:1;">' +
+              '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;margin-bottom:4px;">' +
+                '<label for="chk_' + s.id + '" style="font-weight:800;font-size:.95rem;color:' + (checked ? '#15803D' : 'var(--ink)') + ';cursor:pointer;">' +
+                  'Step ' + s.stepNum + ': ' + s.title +
+                '</label>' +
+                (checked ? '<span style="font-size:.72rem;background:#DCFCE7;color:#166534;font-weight:700;padding:2px 8px;border-radius:999px;">Protected ✓</span>' : '') +
+              '</div>' +
+              '<p style="margin:0 0 6px;font-size:.88rem;color:var(--ink-2);line-height:1.5;">' + s.desc + '</p>' +
+              '<div style="font-size:.8rem;color:' + (checked ? '#166534' : '#64748B') + ';background:' + (checked ? '#DCFCE7' : '#F1F5F9') + ';padding:4px 10px;border-radius:4px;display:inline-block;">' +
+                '💡 <strong>Defensive Tip:</strong> ' + s.tip +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }
+
+        return '<div>' +
+          '<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;background:#F8FAFC;border:1px solid #E2E8F0;border-radius:10px;padding:12px 18px;margin-bottom:18px;">' +
+            '<div>' +
+              '<span style="font-size:.78rem;font-weight:800;color:#1D4ED8;text-transform:uppercase;">Breach Response Readiness</span>' +
+              '<div style="font-size:.96rem;font-weight:800;color:var(--ink);">' + count + ' of ' + total + ' response actions completed</div>' +
+            '</div>' +
+            '<div style="display:flex;align-items:center;gap:10px;">' +
+              '<div style="width:120px;height:8px;background:#E2E8F0;border-radius:999px;overflow:hidden;">' +
+                '<div style="width:' + pct + '%;height:100%;background:#1D4ED8;transition:width .3s ease;"></div>' +
+              '</div>' +
+              '<span style="font-weight:800;font-size:.88rem;color:#1D4ED8;">' + pct + '%</span>' +
+            '</div>' +
+          '</div>' +
+          '<div style="display:grid;grid-template-columns:1fr;gap:12px;">' +
+            stepsHtml +
+          '</div>' +
+        '</div>';
+      }
+
+      function updateView() {
+        const container = document.getElementById('breachInteractiveContainer');
+        if (!container) return;
+
+        if (currentTab === 'lifecycle') {
+          container.innerHTML = renderLifecycle();
+          container.querySelectorAll('.dt-choice-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+              selectedDataType = btn.getAttribute('data-dt');
+              updateView();
+            });
+          });
+        } else {
+          container.innerHTML = renderChecklist();
+          container.querySelectorAll('input[type="checkbox"]').forEach(chk => {
+            chk.addEventListener('change', () => {
+              const id = chk.getAttribute('data-step-id');
+              completedSteps[id] = chk.checked;
+              updateView();
+            });
+          });
+        }
+      }
+
+      // Tab switcher
+      document.querySelectorAll('#breachTabs .sim-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#breachTabs .sim-tab-btn').forEach(b => {
+            b.classList.remove('active');
+            b.style.background = 'white';
+            b.style.color = 'var(--ink-3)';
+            b.style.borderColor = 'var(--border-2)';
+          });
+          btn.classList.add('active');
+          btn.style.background = '#1D4ED8';
+          btn.style.color = 'white';
+          btn.style.borderColor = '#1D4ED8';
+          currentTab = btn.getAttribute('data-tab');
+          updateView();
+        });
+      });
+
+      // Initial render
+      updateView();
+    })();
+  </script>
+
+  <script src="js/cms.js?v=16"></script>
+  <script src="js/app.js?v=16"></script>
+  <script src="js/translator.js?v=16"></script>
+  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+
+</html>
+
