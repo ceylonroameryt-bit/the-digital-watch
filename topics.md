@@ -54,7 +54,7 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Myth vs Reality | Season 1 | Episode 7] "Antivirus is all I need"
 - [x] [Myth vs Reality | Season 1 | Episode 8] "The HTTPS padlock means a site is safe"
 - [x] [Myth vs Reality | Season 1 | Episode 9] "Deleting a file erases it"
-- [ ] [Myth vs Reality | Season 1 | Episode 10] "Change your password every 90 days"
+- [x] [Myth vs Reality | Season 1 | Episode 10] "Change your password every 90 days"
 
 ## Series: Tool Spotlight (Season 1)
 
