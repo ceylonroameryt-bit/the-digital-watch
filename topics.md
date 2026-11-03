@@ -49,16 +49,16 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Myth vs Reality | Season 1 | Episode 2] "Macs and phones don't get malware"
 - [x] [Myth vs Reality | Season 1 | Episode 3] "A strong password is enough"
 - [x] [Myth vs Reality | Season 1 | Episode 4] "Public Wi-Fi is always dangerous" (and when it actually is)
-- [ ] [Myth vs Reality | Season 1 | Episode 5] "I'm too small to be a target"
-- [ ] [Myth vs Reality | Season 1 | Episode 6] "A VPN makes me secure"
-- [ ] [Myth vs Reality | Season 1 | Episode 7] "Antivirus is all I need"
-- [ ] [Myth vs Reality | Season 1 | Episode 8] "The HTTPS padlock means a site is safe"
-- [ ] [Myth vs Reality | Season 1 | Episode 9] "Deleting a file erases it"
-- [ ] [Myth vs Reality | Season 1 | Episode 10] "Change your password every 90 days"
+- [x] [Myth vs Reality | Season 1 | Episode 5] "I'm too small to be a target"
+- [x] [Myth vs Reality | Season 1 | Episode 6] "A VPN makes me secure"
+- [x] [Myth vs Reality | Season 1 | Episode 7] "Antivirus is all I need"
+- [x] [Myth vs Reality | Season 1 | Episode 8] "The HTTPS padlock means a site is safe"
+- [x] [Myth vs Reality | Season 1 | Episode 9] "Deleting a file erases it"
+- [x] [Myth vs Reality | Season 1 | Episode 10] "Change your password every 90 days"
 
 ## Series: Tool Spotlight (Season 1)
 
-- [ ] [Tool Spotlight | Season 1 | Episode 1] Wireshark basics for spotting suspicious traffic
+- [x] [Tool Spotlight | Season 1 | Episode 1] Wireshark basics for spotting suspicious traffic
 - [ ] [Tool Spotlight | Season 1 | Episode 2] Have I Been Pwned and breach-monitoring tools
 - [ ] [Tool Spotlight | Season 1 | Episode 3] Sysmon for endpoint visibility on Windows
 - [ ] [Tool Spotlight | Season 1 | Episode 4] Nmap for checking your own network exposure
