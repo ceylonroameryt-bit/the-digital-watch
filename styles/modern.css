@@ -1762,8 +1762,45 @@ body[data-ep="breach"] { --ep:#FDE8E8; --ep-ink:#C21F1F; }
 [data-theme="dark"] body[data-ep="10"] { --ep:#2D2210; --ep-ink:#FFC933; }
 [data-theme="dark"] body[data-ep="breach"] { --ep:#331517; --ep-ink:#FF8A8A; }
 
-body[data-ep] { font-family:"Figtree", system-ui, sans-serif; background:#F6F7FF; color:#111B3A; }
-[data-theme="dark"] body[data-ep] { background:#0B1022; color:#EEF1FF; }
+body[data-ep] {
+  font-family: var(--f-b, "Figtree", system-ui, sans-serif) !important;
+  background: radial-gradient(circle at 10% 12%, rgba(42, 82, 238, 0.07) 0%, transparent 45%),
+              radial-gradient(circle at 90% 18%, rgba(123, 92, 255, 0.07) 0%, transparent 45%),
+              radial-gradient(circle at 50% 85%, rgba(31, 196, 141, 0.05) 0%, transparent 40%),
+              #F6F7FF !important;
+  color: var(--ink, #111B3A) !important;
+  min-height: 100vh;
+  position: relative;
+}
+[data-theme="dark"] body[data-ep] {
+  background: radial-gradient(circle at 10% 12%, rgba(124, 149, 255, 0.1) 0%, transparent 45%),
+              radial-gradient(circle at 90% 18%, rgba(148, 122, 255, 0.09) 0%, transparent 45%),
+              radial-gradient(circle at 50% 85%, rgba(52, 211, 153, 0.07) 0%, transparent 40%),
+              #0B1022 !important;
+  color: #EEF1FF !important;
+}
+
+body[data-ep]::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(var(--line2, #C5CCE8) 1.2px, transparent 1.4px);
+  background-size: 26px 26px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+[data-theme="dark"] body[data-ep]::before {
+  background-image: radial-gradient(var(--line2, #3A4A80) 1.2px, transparent 1.4px);
+  opacity: 0.25;
+}
+
+body[data-ep] .art-hero,
+body[data-ep] .art-layout,
+body[data-ep] .site-footer {
+  position: relative;
+  z-index: 1;
+}
 
 /* Logo always blue, even where investigation markup inlines red */
 .brand-mark, .foot-brand-mark { background:#2A52EE !important; color:#fff !important; border-radius:12px !important; }
@@ -1774,13 +1811,28 @@ body[data-ep] #reading-progress { background:var(--ep-ink) !important; }
 /* Hero inset panel (Homepage Modern Aesthetic) */
 body[data-ep] .art-hero {
   max-width: 1200px;
-  margin: 16px auto 28px;
+  margin: 20px auto 32px;
   border-radius: 44px;
   border: 1px solid #E0E4F5;
   background: var(--surface, #FFFFFF);
-  box-shadow: 0 1px 3px rgba(17, 27, 58, .04), 0 20px 48px -18px rgba(17, 27, 58, .16);
+  box-shadow: 0 2px 8px rgba(17, 27, 58, .04), 0 24px 54px -16px rgba(17, 27, 58, .14);
   position: relative;
   overflow: hidden;
+  z-index: 1;
+}
+body[data-ep] .art-hero::after {
+  content: "";
+  position: absolute;
+  top: -60px;
+  right: -40px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: var(--ep, #EFF6FF);
+  filter: blur(64px);
+  opacity: 0.65;
+  pointer-events: none;
+  z-index: 0;
 }
 [data-theme="dark"] body[data-ep] .art-hero {
   border-color: #26305A;
@@ -2894,4 +2946,11 @@ body[data-ep] .site-footer h4, body[data-ep] .site-footer strong { color:#111B3A
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) .series-drop-season { background: #16203D; border-color: #263354; }
   :root:not([data-theme="light"]) .series-dropdown-menu .series-drop-season-list a { color: #E6EBFA; border-color: #263354; }
+}
+
+/* ── Mobile Floating Dock Safeguard ── */
+@media (max-width: 640px) {
+  body[data-ep] .art-layout {
+    padding-bottom: 96px; /* art-layout-mobile-dock-pad */
+  }
 }

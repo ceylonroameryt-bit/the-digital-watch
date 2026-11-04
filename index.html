@@ -388,6 +388,14 @@
     .foot-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
     .foot-grid > :first-child { grid-column: 1 / -1; }
   }
+
+  /* ── Balance 10-episode grid on 2-col tablet: Ep 09 & 10 form clean pair in Row 5 (balance-tablet-episode-grid) ── */
+  @media (max-width: 1000px) and (min-width: 681px) {
+    .cell.featured { grid-column: span 1; }
+    .card.featured { flex-direction: column; }
+    .card.featured .card-art { flex: none; aspect-ratio: 5 / 4; min-height: 0; }
+    .card.featured .card-body { padding: 28px; }
+  }
   @media (max-width: 680px) {
     .section { padding: 60px 0; }
     .grid { grid-template-columns: minmax(0, 1fr); }
@@ -2476,7 +2484,7 @@ iframe.goog-te-banner-frame {
         <h2 id="band-title">Something confusing, or a topic you want explained?</h2>
         <p>Tell me what to explain next.</p>
       </div>
-      <a class="btn btn-sun btn-lg" href="article.html#feedback">Suggest a topic <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-sun btn-lg" href="article.html#feedback">Send feedback <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
     </div>
   </section>
 </main>
@@ -2503,7 +2511,7 @@ iframe.goog-te-banner-frame {
       <div>
         <p class="foot-title">Get in touch</p>
         <ul class="foot-list">
-          <li><a href="article.html#feedback">Suggest a topic or give feedback</a></li>
+          <li><a href="article.html#feedback">Send feedback or questions</a></li>
           <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer">Cyber Pocket (YouTube Shorts) ↗</a></li>
           <li><a href="https://sujampathirathnayaka.com/" rel="noopener">Portfolio</a></li>
           <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" rel="noopener">LinkedIn</a></li>
