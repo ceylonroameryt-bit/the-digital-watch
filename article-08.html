@@ -50,7 +50,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Inter:wght@400..700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles/modern.css?v=17">
-  <link rel="stylesheet" href="styles/insight-article.css?v=1">
+  <link rel="stylesheet" href="styles/insight-article.css?v=2">
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23D97706'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
   <link rel="canonical" href="https://thecyberinsight.online/article-08.html">
@@ -1103,69 +1103,38 @@
   </aside>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="foot-top">
-        <div class="foot-brand-col">
-          <a href="index.html" class="foot-brand">
-            <div class="foot-brand-mark" style="background:#D97706;">CI</div>
-            <span class="foot-brand-text">Cyber Insight</span>
-          </a>
-          <p class="foot-desc">
-            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, SSL/TLS misconceptions, passkey cryptography, recruitment fraud, OSINT reconnaissance, and digital privacy for everyone.
-          </p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              RFC 9116 Security Policy
-            </a>
-          </div>
-        </div>
-
-        <div class="foot-nav-cols">
-          <div>
-            <div class="foot-col-title">Series Navigation</div>
-            <ul class="foot-nav-list">
-              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
-              <li><a href="article-02.html">Ep 02: Email OSINT &amp; Perimeter Defense</a></li>
-              <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
-              <li><a href="article-04.html">Ep 04: Session Theft &amp; Cookie Hijacking</a></li>
-              <li><a href="article-05.html">Ep 05: The Padlock Myth &amp; TLS Security</a></li>
-              <li><a href="article-06.html">Ep 06: Passkeys vs. Passwords &amp; FIDO2</a></li>
-              <li><a href="article-07.html">Ep 07: Fake Recruiters &amp; Trojan Assessments</a></li>
-              <li><a href="article-08.html">Ep 08: OSINT &amp; 10-Minute Scammer Recon</a></li>
-              <li><a href="series.html#cybersecurity-for-everyone">View Full Curriculum (10 Episodes)</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="foot-col-title">Author &amp; Verification</div>
-            <ul class="foot-nav-list">
-              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Poorna's Portfolio ↗</a></li>
-              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn Research ↗</a></li>
-              <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="color:#DC2626;">Cyber Pocket (YouTube Shorts) ↗</a></li>
-              <li><a href="#sources">Citations &amp; Methodology</a></li>
-              <li><a href="mailto:sujampathirathnayaka@gmail.com">Contact Editorial Desk</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Legal & Research Disclaimer -->
-      <div class="foot-disclaimer">
-        <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is authored by Poorna Sujampathi Rathnayaka for non-commercial educational, threat awareness, and digital literacy purposes. All third-party trademarks, company names, CVE IDs, and security advisories referenced are the property of their respective copyright holders. Fair use citations for educational security awareness are permitted with direct attribution and canonical link.
-      </div>
-
-      <div class="foot-bottom">
+  <footer class="ci-footer">
+    <div class="ci-wrap">
+      <div class="ci-foot-grid">
         <div>
-          &copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.
+          <a class="brand" href="index.html" aria-label="Cyber Insight home"><svg class="brand-logo" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3l12 4.500v8.200c0 8-5 14.200-12 17.300C11 29.900 6 23.700 6 15.700V7.500L18 3z" stroke="currentColor" stroke-width="2.600" stroke-linejoin="round"/><path d="M12.500 17.500l4 4 7.500-8.500" stroke="#2563EB" stroke-width="2.800" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="brand-name">Cyber Insight</span><span class="brand-sub">Cybersecurity in Plain English</span></span></a>
+          <p class="ci-foot-desc">An independent publication that explains online threats in plain language, for everyone.</p>
         </div>
-        <div class="foot-bottom-links">
-          <a href=".well-known/security.txt" target="_blank" rel="noopener noreferrer">Vulnerability Disclosure</a>
-          <span>·</span>
-          <a href="about.html">Ethics &amp; Methodology</a>
-          <span>·</span>
-          <a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Author</a>
+        <div>
+          <p class="ci-foot-title">Explore</p>
+          <ul class="ci-foot-list">
+            <li><a href="series.html">All series</a></li>
+            <li><a href="episodes.html">Episode archive</a></li>
+            <li><a href="investigations.html">Investigations</a></li>
+            <li><a href="grc.html">Governance, risk and compliance</a></li>
+            <li><a href="shorts.html">Cyber Pocket Shorts</a></li>
+            <li><a href="about.html">About the author</a></li>
+          </ul>
         </div>
+        <div>
+          <p class="ci-foot-title">Get in touch</p>
+          <ul class="ci-foot-list">
+            <li><a href="#feedback">Send feedback or questions</a></li>
+            <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer">Cyber Pocket (YouTube Shorts) ↗</a></li>
+            <li><a href="https://sujampathirathnayaka.com/" rel="noopener">Portfolio</a></li>
+            <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" rel="noopener">LinkedIn</a></li>
+            <li><a href=".well-known/security.txt">Report a vulnerability</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ci-foot-base">
+        <p class="ci-legal">Research and educational disclaimer: content published on Cyber Insight is written by Poorna Sujampathi Rathnayaka for non-commercial educational, threat-awareness, and digital literacy purposes. All third-party trademarks, company names, CVE IDs, and security advisories referenced belong to their respective owners. Fair-use citations for educational security awareness are permitted with direct attribution and a canonical link. © 2026 Poorna Sujampathi Rathnayaka. All rights reserved.</p>
+        <button class="theme-toggle-btn" type="button" aria-label="Switch colour theme">Light / dark</button>
       </div>
     </div>
   </footer>
