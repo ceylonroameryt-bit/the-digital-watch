@@ -9,7 +9,7 @@ const content = JSON.parse(await readFile(new URL('scripts/site-content.json', r
 const { series, investigations, shorts } = content;
 const SITE = 'https://thecyberinsight.online/';
 const YT = 'https://www.youtube.com/@CyberPocket26';
-const V = '1';
+const V = '2';
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const pad = n => String(n).padStart(2, '0');
