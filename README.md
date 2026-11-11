@@ -23,7 +23,19 @@ The single GitHub Pages workflow validates pull requests and publishes `dist/` a
 
 For Netlify, the configured build command produces `dist/`. For a manual upload, run `npm run build` and upload the contents of `dist/`, not the repository root.
 
-Public article metadata comes from the deployed `DEFAULT_POSTS` and `DEFAULT_SETTINGS` in `js/cms.js`; article bodies and the illustrated homepage cards are static HTML. Update both when publishing a new episode, add its route in `articleHref`, and add the new HTML file to `scripts/build-public.mjs`.
+Public article metadata comes from the deployed `DEFAULT_POSTS` and `DEFAULT_SETTINGS` in `js/cms.js`; article bodies are static HTML. When publishing a new episode, update both, add its route in `articleHref`, and add the new HTML file to `scripts/build-public.mjs`.
+
+## Hub pages and design system
+
+The home page, `series.html`, `episodes.html`, `grc.html`, `investigations.html`, `shorts.html`, `about.html` and `search.html` are generated, so their listings, header and footer stay in step. Do not edit them by hand: edit `scripts/site-content.json` (series, episodes, investigations, shorts) or `scripts/generate-hub-pages.mjs` (layout), then run:
+
+```sh
+node scripts/generate-hub-pages.mjs
+```
+
+A test fails if the committed pages differ from what the generator produces. These pages use `styles/insight.css` (the design system: navy `#0B2D5B`, accent `#2563EB`, Inter) and `js/site.js` (reading progress, filters, search). Article pages keep `main.css` and `modern.css` and take the shared header and tokens from `styles/insight-article.css`.
+
+Reading progress on the series pages records which episodes a reader opened from a hub page, on their device only.
 
 ## Feedback and reactions
 

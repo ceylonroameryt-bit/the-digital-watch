@@ -1,0 +1,37 @@
+/* Shared Cyber Insight look for article pages. Loaded after main.css and
+   modern.css: it swaps the tokens and the header treatment so articles match
+   the hub pages (styles/insight.css) without rewriting the article layout. */
+:root {
+  --f-d: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --navy: #0B2D5B;
+  --blue: #2563EB;
+  --blue-2: #2563EB;
+  --blue-bg: rgba(37, 99, 235, .07);
+  --blue-bdr: rgba(37, 99, 235, .22);
+  --bg-3: #F5F7FA;
+  --tinted: #F5F7FA;
+  --r: 12px; --r-card: 12px; --r-panel: 16px; --r-sm: 8px;
+}
+[data-theme="dark"] { --navy: #DCE8FF; }
+
+h1, h2, h3, h4,
+.h-title, .hero-title, .brand-name, .series-title, .about-title, .feat-h2, .ep-title {
+  font-weight: 700 !important;
+  letter-spacing: -.02em;
+}
+h1, .h-title { font-weight: 800 !important; letter-spacing: -.03em; color: var(--navy); }
+
+/* Header */
+.navbar .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand-logo { width: 36px; height: 36px; flex: none; color: var(--navy); }
+.navbar .brand-name { font-size: 1.125rem !important; font-weight: 800 !important; line-height: 1.15; color: var(--navy) !important; }
+.navbar .brand-sub { font-size: .75rem !important; font-weight: 500 !important; letter-spacing: 0 !important; text-transform: none !important; color: var(--ink-4) !important; }
+.nav-links a { font-weight: 600 !important; border-radius: 8px !important; border-bottom: 0 !important; }
+.nav-links a:hover { color: var(--navy) !important; background: var(--bg-3) !important; border-bottom: 0 !important; }
+.nav-links .nav-search { padding: 10px 12px !important; }
+.nav-links .nav-search svg { width: 20px; height: 20px; }
+.nav-links .cta, [data-theme="dark"] .nav-links .cta { background: #0B2D5B !important; color: #fff !important; border-radius: 8px !important; padding: 8px 16px !important; min-height: 40px; font-weight: 700 !important; }
+.nav-links .cta:hover { background: #123B74 !important; color: #fff !important; }
+[data-theme="dark"] .nav-links .cta { background: #2563EB !important; }
+.brand-mark, .foot-brand-mark { background: #0B2D5B !important; border-radius: 8px !important; }
+@media (min-width: 1081px) { .nav-links .nav-search span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } }

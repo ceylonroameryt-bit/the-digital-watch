@@ -1,0 +1,633 @@
+{
+  "series": [
+    {
+      "id": "cybersecurity-for-everyone",
+      "name": "Cybersecurity for Everyone",
+      "kind": "Awareness",
+      "icon": "shield",
+      "tone": "navy",
+      "desc": "The original ten-part series: real online threats explained without the jargon.",
+      "eps": [
+        {
+          "n": 1,
+          "file": "article.html",
+          "title": "Can You Still Trust What You See and Hear Online?",
+          "desc": "An in-depth cybersecurity analysis on how generative AI, voice cloning, synthetic identities, and deepfakes are dismantling traditional authenticity signals online.",
+          "min": 7,
+          "date": "2026-09-18",
+          "topic": "Digital Safety"
+        },
+        {
+          "n": 2,
+          "file": "article-02.html",
+          "title": "Someone Has Your Email Address. Now What?",
+          "desc": "An exposed email address isn't just a leak—it's the starting point for OSINT reconnaissance, adversary-in-the-middle phishing, consent phishing, and credential stuffing. What attackers do next, and how to defend.",
+          "min": 7,
+          "date": "2026-09-18",
+          "topic": "Identity Recon"
+        },
+        {
+          "n": 3,
+          "file": "article-03.html",
+          "title": "I Clicked a Phishing Link. What Should I Do?",
+          "desc": "Clicked a suspicious link? Don't panic. What really matters is what happened after the click: credentials, downloads, MFA tokens, or session cookies. Here is the step-by-step triage playbook.",
+          "min": 6,
+          "date": "2026-09-21",
+          "topic": "Phishing"
+        },
+        {
+          "n": 4,
+          "file": "article-04.html",
+          "title": "Your Password Wasn't Hacked. Your Session Was Stolen.",
+          "desc": "You did everything right: strong password, MFA, passkeys. So why was your account compromised? How attackers bypass logins by stealing authenticated sessions, and what to do next.",
+          "min": 7,
+          "date": "2026-09-26",
+          "topic": "Account Security"
+        },
+        {
+          "n": 5,
+          "file": "article-05.html",
+          "title": "Why the Padlock Doesn't Mean a Website Is Safe",
+          "desc": "The padlock icon in your browser means the connection is encrypted, not that the website is trustworthy. Why over 80% of phishing sites use HTTPS, and how to verify where you actually are.",
+          "min": 6,
+          "date": "2026-09-28",
+          "topic": "Web Security"
+        },
+        {
+          "n": 6,
+          "file": "article-06.html",
+          "title": "Are Passkeys Finally Going to Kill Passwords?",
+          "desc": "Passkeys replace shared secrets with asymmetric public-key cryptography. How they make credential phishing virtually impossible, why they don't stop session theft, and whether passwords will ever truly disappear.",
+          "min": 7,
+          "date": "2026-10-01",
+          "topic": "Authentication"
+        },
+        {
+          "n": 7,
+          "file": "article-07.html",
+          "title": "The Fake Recruiter in Your LinkedIn Inbox",
+          "desc": "Professional photos, tailored CV questions, and genuine job discussions can disguise malicious intent. How state-sponsored operators and cybercrime syndicates weaponize recruitment lures, Trojanize technical assessments, and why contact is not verification.",
+          "min": 8,
+          "date": "2026-10-03",
+          "topic": "Social Engineering"
+        },
+        {
+          "n": 8,
+          "file": "article-08.html",
+          "title": "How Much Can a Scammer Learn About You in 10 Minutes?",
+          "desc": "Imagine a stranger knowing where you work, who your friends are, and where you spent your weekend without hacking your accounts. How OSINT and digital footprints enable precision social engineering, plus a 10-minute privacy self-audit.",
+          "min": 8,
+          "date": "2026-10-15",
+          "topic": "Online Privacy"
+        },
+        {
+          "n": 9,
+          "file": "article-09.html",
+          "title": "Your Bank Is Calling. Or Is It?",
+          "desc": "How criminals impersonate banks, exploit trust, and convince ordinary people to hand over their money. Discover how voice phishing (vishing) and caller ID spoofing work, the 6 critical red flags, and how to verify calls independently.",
+          "min": 7,
+          "date": "2026-10-20",
+          "topic": "Scam Calls"
+        },
+        {
+          "n": 10,
+          "file": "article-10.html",
+          "title": "What Happens to Your Information After a Data Breach?",
+          "desc": "Your personal information has been exposed. But what happens next? Where does it go, who gets access to it, and how can a single security incident affect your life months or even years later?",
+          "min": 8,
+          "date": "2026-11-02",
+          "topic": "Data Breaches"
+        }
+      ]
+    },
+    {
+      "id": "security-in-5-minutes",
+      "name": "Security in 5 Minutes",
+      "kind": "How-to",
+      "icon": "lock",
+      "tone": "blue",
+      "desc": "Practical how-tos you can finish in one sitting.",
+      "eps": [
+        {
+          "n": 1,
+          "file": "security-in-5-minutes-01.html",
+          "title": "Passkeys, Text Codes or an Authenticator App: Which Should You Switch To First?",
+          "desc": "Text message codes, authenticator apps and passkeys all add a second lock to your accounts, but they are not equally strong. Here is what each one actually protects you from, and the order to switch your accounts in.",
+          "min": 9,
+          "date": "2026-11-09"
+        },
+        {
+          "n": 2,
+          "file": "security-in-5-minutes-02.html",
+          "title": "The Box Under Your TV: How to Secure Your Home Router in Ten Minutes",
+          "desc": "Your home router sees everything your family does online, yet most people never open its settings. Here is why criminals and even state hackers want old routers, and the ten-minute checklist that keeps yours out of their hands.",
+          "min": 8,
+          "date": "2026-11-16"
+        },
+        {
+          "n": 3,
+          "file": "security-in-5-minutes-03.html",
+          "title": "Password Managers: How to Choose One and Move Your Passwords Across Safely",
+          "desc": "A password manager is the simplest way to stop reusing passwords. Here is how to choose between the one built into your phone or browser and a standalone app, what the LastPass breach taught us, and how to move your passwords without leaving a copy lying around.",
+          "min": 9,
+          "date": "2026-11-23"
+        },
+        {
+          "n": 4,
+          "file": "security-in-5-minutes-04.html",
+          "title": "Backups That Survive Ransomware: The 3-2-1-1-0 Rule Made Simple",
+          "desc": "Ransomware goes after your backups as well as your files. Here is what the 3-2-1-1-0 rule means in plain language, why cloud sync is not a backup, and a simple setup that keeps at least one copy out of an attacker's reach.",
+          "min": 8,
+          "date": "2026-11-30"
+        },
+        {
+          "n": 5,
+          "file": "security-in-5-minutes-05.html",
+          "title": "How to Read a Suspicious Email: The Sender, the Links and the Attachments",
+          "desc": "A practical, step-by-step way to check a suspicious email in under five minutes: who really sent it, where the links actually go, which attachments are dangerous, and what to do with it afterwards.",
+          "min": 9,
+          "date": "2026-12-07"
+        },
+        {
+          "n": 6,
+          "file": "security-in-5-minutes-06.html",
+          "title": "Lock Down Your Google or Microsoft Account: A Fifteen-Minute Check-Up",
+          "desc": "Your Google or Microsoft account holds your email, photos, files and saved passwords, and it can reset almost everything else you use. Here is a step-by-step check-up that closes the gaps attackers rely on.",
+          "min": 9,
+          "date": "2026-12-14"
+        },
+        {
+          "n": 7,
+          "file": "security-in-5-minutes-07.html",
+          "title": "Someone Could Steal Your Phone Number. Here Is How to Stop a SIM Swap",
+          "desc": "In a SIM swap, a criminal moves your phone number onto their own SIM card and starts receiving your calls and security codes. Here is how it happens, the warning signs, and the steps that make your number much harder to take.",
+          "min": 8,
+          "date": "2026-12-21"
+        },
+        {
+          "n": 8,
+          "file": "security-in-5-minutes-08.html",
+          "title": "Turn On Automatic Updates Everywhere (and Check They Are Actually Working)",
+          "desc": "Updates are the single quickest way to close the holes attackers use. Here is a device-by-device guide to switching on automatic updates, why they sometimes silently fail, and what to do when a device stops getting them.",
+          "min": 8,
+          "date": "2026-12-28"
+        },
+        {
+          "n": 9,
+          "file": "security-in-5-minutes-09.html",
+          "title": "Your Data Was in a Breach. The First Five Things to Change",
+          "desc": "A company has told you your data was exposed. Here is what to do in the first hour and the first week: which passwords to change, which scams to expect next, and how to make it harder for anyone to open accounts in your name.",
+          "min": 8,
+          "date": "2027-01-04"
+        },
+        {
+          "n": 10,
+          "file": "security-in-5-minutes-10.html",
+          "title": "Safe Travel: Your Phone, Laptop and Hotel Wi-Fi, Before You Leave and While You Are Away",
+          "desc": "Travel is when devices get lost, stolen and connected to networks you know nothing about. Here is a realistic checklist for before you leave, at the airport and in the hotel, including what the public charging and hotel Wi-Fi warnings really mean.",
+          "min": 8,
+          "date": "2027-01-11"
+        }
+      ]
+    },
+    {
+      "id": "threat-of-the-week",
+      "name": "Threat of the Week",
+      "kind": "Threats",
+      "icon": "target",
+      "tone": "red",
+      "desc": "One attack technique explained, mapped to MITRE ATT&CK, with detection tips.",
+      "eps": [
+        {
+          "n": 1,
+          "file": "threat-of-the-week-01.html",
+          "title": "MFA Fatigue: How Attackers Spam Your Phone Until You Tap Approve",
+          "desc": "MFA fatigue, or push bombing, floods a victim with sign-in approval requests until they accept one. This episode explains how the attack works, how it was used against Uber in 2022, how it maps to MITRE ATT&CK, and how defenders can detect and stop it.",
+          "min": 9,
+          "date": "2027-01-18"
+        },
+        {
+          "n": 2,
+          "file": "threat-of-the-week-02.html",
+          "title": "OAuth Consent Phishing: When You Hand Over Access Without Giving Up a Password",
+          "desc": "Consent phishing tricks people into granting a malicious app access to their email and files through a genuine Microsoft or Google permission screen. No password is stolen, so MFA does not help. This episode covers how it works, a real campaign, the ATT&CK mapping and how to detect it.",
+          "min": 9,
+          "date": "2027-01-25"
+        },
+        {
+          "n": 3,
+          "file": "threat-of-the-week-03.html",
+          "title": "Quishing: How a Square of Black and White Dots Gets Past Your Defences",
+          "desc": "QR-code phishing hides a malicious link inside an image, on a parking meter, in an email or on a letter. It moves the victim from a protected computer to a personal phone. This episode covers how quishing works, real warnings from the FBI, FTC and Action Fraud, the ATT&CK mapping, and how to defend against it.",
+          "min": 8,
+          "date": "2027-02-01"
+        },
+        {
+          "n": 4,
+          "file": "threat-of-the-week-04.html",
+          "title": "Adversary-in-the-Middle Phishing: How Kits Steal Your Session and Skip MFA Entirely",
+          "desc": "Adversary-in-the-middle phishing kits sit between the victim and the real sign-in page, relaying everything and stealing the session cookie at the end. This episode explains how kits such as Evilginx and Tycoon 2FA work, a Microsoft-documented campaign against more than 10,000 organisations, the ATT&CK mapping, and how to detect and stop it.",
+          "min": 10,
+          "date": "2027-02-08"
+        },
+        {
+          "n": 5,
+          "file": "threat-of-the-week-05.html",
+          "title": "Software Supply-Chain Attacks: Typosquatting, Dependency Confusion and Self-Spreading Packages",
+          "desc": "Modern software is built from thousands of open-source packages, and attackers have learned to hide inside them. This episode explains typosquatting, dependency confusion and the 2025 npm worm, maps them to MITRE ATT&CK, and sets out what development and security teams can do.",
+          "min": 10,
+          "date": "2027-02-15"
+        },
+        {
+          "n": 6,
+          "file": "threat-of-the-week-06.html",
+          "title": "Business Email Compromise: The Quiet Fraud Behind Billions in Losses",
+          "desc": "Business email compromise rarely uses malware. It uses a trusted email address, a believable request and a change of bank details. This episode explains how BEC works, why it is one of the costliest crimes reported to the FBI, the ATT&CK techniques behind it, and the controls that stop the money leaving.",
+          "min": 10,
+          "date": "2027-02-22"
+        },
+        {
+          "n": 7,
+          "file": "threat-of-the-week-07.html",
+          "title": "Infostealers: The Malware That Empties Your Browser and Sells the Keys",
+          "desc": "Infostealer malware grabs saved passwords, cookies and crypto wallets from a single infected computer and sells them on. This episode explains how infostealers spread, how stolen logins from personal devices led to the 2024 Snowflake customer breaches, the ATT&CK mapping, and how to detect and contain them.",
+          "min": 10,
+          "date": "2027-03-01"
+        },
+        {
+          "n": 8,
+          "file": "threat-of-the-week-08.html",
+          "title": "Living Off the Land: When Attackers Use Your Own Tools Against You",
+          "desc": "Living-off-the-land attackers bring little or no malware. They use PowerShell, WMI and other built-in admin tools that are already on every Windows network, so they blend in with normal IT work. This episode explains how it works, how Volt Typhoon used it to stay hidden in critical infrastructure, and how to detect it.",
+          "min": 10,
+          "date": "2027-03-08"
+        },
+        {
+          "n": 9,
+          "file": "threat-of-the-week-09.html",
+          "title": "Deepfake Voice and Video Scams: When the Boss on the Call Is Not Real",
+          "desc": "Cloned voices and deepfake video calls have moved from novelty to fraud tool. This episode explains how the scams work, the Hong Kong video call that cost Arup around $25 million, how they map to MITRE ATT&CK, and the verification habits that stop them regardless of how real the fake looks.",
+          "min": 9,
+          "date": "2027-03-15"
+        },
+        {
+          "n": 10,
+          "file": "threat-of-the-week-10.html",
+          "title": "Credential Stuffing: How One Old Breach Unlocks Accounts Everywhere",
+          "desc": "Credential stuffing takes usernames and passwords leaked from one site and tries them automatically on thousands of others. This season finale explains how it works, how it led to the 23andMe breach and a £2.31 million UK fine, the ATT&CK mapping, and the defences that make leaked passwords worthless.",
+          "min": 9,
+          "date": "2027-03-22"
+        }
+      ]
+    },
+    {
+      "id": "playbook-monday",
+      "name": "Playbook Monday",
+      "kind": "How-to",
+      "icon": "book",
+      "tone": "green",
+      "desc": "Step-by-step defender checklists for when something goes wrong.",
+      "eps": [
+        {
+          "n": 1,
+          "file": "playbook-monday-01.html",
+          "title": "Phishing Triage: A Playbook for the First 15 Minutes",
+          "desc": "Someone has reported a phishing email, or admitted they clicked. This playbook sets out what a small security or IT team should do minute by minute: confirm, contain, scope and protect accounts, with the checks that matter most and the mistakes that cost time.",
+          "min": 10,
+          "date": "2027-03-29"
+        },
+        {
+          "n": 2,
+          "file": "playbook-monday-02.html",
+          "title": "Account Takeover Response: A Checklist That Closes Every Back Door",
+          "desc": "When an account is taken over, changing the password is the start, not the end. This playbook walks through securing a compromised Microsoft 365 account step by step, every persistence route an attacker uses, how to investigate, and a shorter version for personal accounts.",
+          "min": 10,
+          "date": "2027-04-05"
+        },
+        {
+          "n": 3,
+          "file": "playbook-monday-03.html",
+          "title": "Ransomware: A First-Hour Checklist for Small Teams",
+          "desc": "Screens are showing a ransom note and files will not open. This playbook sets out what a small organisation should do in the first sixty minutes: isolate without destroying evidence, protect backups, call the right people and avoid the mistakes that make recovery harder.",
+          "min": 10,
+          "date": "2027-04-12"
+        },
+        {
+          "n": 4,
+          "file": "playbook-monday-04.html",
+          "title": "Lost or Stolen Laptop: A Response Playbook for IT and the Person Who Lost It",
+          "desc": "A work laptop has been left on a train or stolen from a car. This playbook covers the first hour for both the employee and IT: locking and wiping the device, cutting off account access, deciding whether it is a reportable data breach, and why encryption makes all the difference.",
+          "min": 9,
+          "date": "2027-04-19"
+        },
+        {
+          "n": 5,
+          "file": "playbook-monday-05.html",
+          "title": "Your Supplier Has Been Breached: A Playbook for When It Is Not Your Network",
+          "desc": "A payroll provider, software vendor or IT supplier tells you it has been hit. Your data and access may be involved even though your own systems are fine. This playbook covers how to verify the notice, find your exposure, cut off risky connections, meet your legal duties and protect staff and customers.",
+          "min": 10,
+          "date": "2027-04-26"
+        },
+        {
+          "n": 6,
+          "file": "playbook-monday-06.html",
+          "title": "A Secret Leaked in a Public Repository: Rotate First, Clean Up Second",
+          "desc": "An API key, password or token has been pushed to a public GitHub repository. Bots will find it within minutes. This playbook explains the right order of response: revoke and rotate, check for misuse, then clean the history, and how to stop it happening again.",
+          "min": 9,
+          "date": "2027-05-03"
+        },
+        {
+          "n": 7,
+          "file": "playbook-monday-07.html",
+          "title": "Employee Offboarding: Closing Every Door When Someone Leaves",
+          "desc": "When someone leaves, their access often stays behind: a forgotten SaaS account, a shared password, a personal phone still syncing email. This playbook sets out a practical leaver checklist for IT, HR and managers, with a real case where a former employee's access exposed data on 8.2 million customers.",
+          "min": 9,
+          "date": "2027-05-10"
+        },
+        {
+          "n": 8,
+          "file": "playbook-monday-08.html",
+          "title": "Isolating an Infected Endpoint: Contain It Without Destroying the Evidence",
+          "desc": "An alert says a laptop may be infected. This playbook covers how to decide whether to isolate it, how to isolate it properly with or without an EDR tool, what evidence to collect first, and the release criteria that stop you reconnecting a machine that is still compromised.",
+          "min": 9,
+          "date": "2027-05-17"
+        },
+        {
+          "n": 9,
+          "file": "playbook-monday-09.html",
+          "title": "Responding to a DDoS Attack: Keeping Your Website Up When Someone Wants It Down",
+          "desc": "Your website is slow or offline and traffic is spiking. This playbook explains how to tell a DDoS attack from an ordinary outage, who to call first, what to switch on while it is happening, how to communicate, and the preparation that makes most attacks a non-event.",
+          "min": 9,
+          "date": "2027-05-24"
+        },
+        {
+          "n": 10,
+          "file": "playbook-monday-10.html",
+          "title": "A One-Page Tabletop Exercise for Small Teams (Run It in an Hour)",
+          "desc": "Every playbook in this season only works if people have practised it. This finale gives small teams a ready-to-run, one-hour tabletop exercise: who to invite, a realistic ransomware scenario in three stages, the questions to ask, and how to turn the answers into fixes.",
+          "min": 9,
+          "date": "2027-05-31"
+        }
+      ]
+    },
+    {
+      "id": "myth-vs-reality",
+      "name": "Myth vs Reality",
+      "kind": "Awareness",
+      "icon": "scales",
+      "tone": "amber",
+      "desc": "Common security beliefs, fact-checked.",
+      "eps": [
+        {
+          "n": 1,
+          "file": "myth-vs-reality-01.html",
+          "title": "Myth: \"Incognito Mode Makes Me Anonymous\"",
+          "desc": "Private or incognito browsing is useful, but not for what most people think. It hides your browsing from other people using the same device, not from websites, your employer, your internet provider or Google. Here is what it actually does, what a major lawsuit revealed, and what to use instead.",
+          "min": 7,
+          "date": "2027-06-07"
+        },
+        {
+          "n": 2,
+          "file": "myth-vs-reality-02.html",
+          "title": "Myth: \"Macs and Phones Don't Get Malware\"",
+          "desc": "Macs, iPhones and Android phones are well protected, but they are not immune. Criminals now build malware specifically for macOS, slip bad apps into app stores, and spyware firms target phones. Here is the real risk for most people, and the habits that keep it low.",
+          "min": 8,
+          "date": "2027-06-14"
+        },
+        {
+          "n": 3,
+          "file": "myth-vs-reality-03.html",
+          "title": "Myth: \"A Strong Password Is Enough\"",
+          "desc": "A long, complex password protects you against one kind of attack: guessing. It does nothing when the password is reused, typed into a fake page or copied off your computer by malware. Here is what a strong password really protects, and the extra layers that stop the attacks it cannot.",
+          "min": 8,
+          "date": "2027-06-21"
+        },
+        {
+          "n": 4,
+          "file": "myth-vs-reality-04.html",
+          "title": "Myth: \"Public Wi-Fi Is Always Dangerous\" (and When It Actually Is)",
+          "desc": "The old fear that someone at the next coffee shop table is reading your passwords off the airwaves is largely obsolete thanks to HTTPS and TLS 1.3. Here is what modern public Wi-Fi actually exposes, and the real attacks you still need to avoid.",
+          "min": 7,
+          "date": "2027-06-28"
+        },
+        {
+          "n": 5,
+          "file": "myth-vs-reality-05.html",
+          "title": "Myth: \"I'm Too Small to Be a Target\"",
+          "desc": "Small businesses, charities and individuals often assume attackers only go after big names. The figures say otherwise. Most attacks are automated and opportunistic, and small organisations are often hit hardest. Here is why, and the low-cost basics that make you a much harder target.",
+          "min": 7,
+          "date": "2027-07-05"
+        },
+        {
+          "n": 6,
+          "file": "myth-vs-reality-06.html",
+          "title": "Myth: \"A VPN Makes Me Secure\"",
+          "desc": "VPN adverts promise total security and anonymity at the press of a button. A VPN is a useful tool, but it does one specific job: it moves trust from your local network and internet provider to the VPN company. Here is what it protects, what it does not, and how to choose one if you need it.",
+          "min": 7,
+          "date": "2027-07-12"
+        },
+        {
+          "n": 7,
+          "file": "myth-vs-reality-07.html",
+          "title": "Myth: \"Antivirus Is All I Need\"",
+          "desc": "Antivirus is worth having, and most computers now come with a good one built in. But many of today's attacks involve no malware at all: stolen passwords, fake invoices, unpatched software and attackers using your own tools. Here is what antivirus catches, what it misses, and the layers that cover the gaps.",
+          "min": 7,
+          "date": "2027-07-19"
+        },
+        {
+          "n": 8,
+          "file": "myth-vs-reality-08.html",
+          "title": "Myth: \"The HTTPS Padlock Means a Site Is Safe\"",
+          "desc": "For years we were told to look for the padlock before entering anything on a website. Today almost every site has one, including most phishing sites. The padlock means your connection is encrypted, not that the site is honest. Here is what it actually tells you and how to check a site properly.",
+          "min": 7,
+          "date": "2027-07-26"
+        },
+        {
+          "n": 9,
+          "file": "myth-vs-reality-09.html",
+          "title": "Myth: \"Deleting a File Erases It\"",
+          "desc": "Pressing Delete, emptying the bin or even formatting a drive often leaves your data recoverable. Studies of second-hand drives and memory cards keep finding previous owners' photos and documents. Here is what deletion really does, where copies linger, and how to wipe a device properly before you sell it.",
+          "min": 7,
+          "date": "2027-08-02"
+        },
+        {
+          "n": 10,
+          "file": "myth-vs-reality-10.html",
+          "title": "Myth: \"Change Your Password Every 90 Days\"",
+          "desc": "For decades, forced password changes were standard practice. Today NIST, the UK's NCSC and Microsoft all advise against them, because people respond with predictable tweaks that attackers can guess. This season finale explains why the rule existed, why it was dropped, and what replaced it.",
+          "min": 8,
+          "date": "2027-08-09"
+        }
+      ]
+    },
+    {
+      "id": "tool-spotlight",
+      "name": "Tool Spotlight",
+      "kind": "Tools",
+      "icon": "wrench",
+      "tone": "violet",
+      "desc": "Free and open-source security tools: what they do and where they fall short.",
+      "eps": [
+        {
+          "n": 1,
+          "file": "tool-spotlight-01.html",
+          "title": "Wireshark Basics for Spotting Suspicious Traffic",
+          "desc": "Wireshark shows you exactly what is travelling across a network, packet by packet. This first Tool Spotlight explains what it is, how to capture safely and legally, the display filters and statistics views that matter most, and how to use them to spot traffic that does not belong.",
+          "min": 9,
+          "date": "2027-08-16"
+        },
+        {
+          "n": 2,
+          "file": "tool-spotlight-02.html",
+          "title": "Have I Been Pwned and Breach-Monitoring Tools",
+          "desc": "Your email address is almost certainly in at least one data breach. Have I Been Pwned tells you which ones, alerts you to new ones and checks passwords without ever seeing them. Here is how to use it and similar tools well, what the results actually mean, and what to do next.",
+          "min": 8,
+          "date": "2027-08-23"
+        },
+        {
+          "n": 3,
+          "file": "tool-spotlight-03.html",
+          "title": "Sysmon for Endpoint Visibility on Windows",
+          "desc": "Windows logs a lot, but not the things that matter most during an investigation: which program started which, with what command line, talking to where. Sysmon fills that gap for free. Here is what it records, how to install it with a sensible configuration, and which events to look at first.",
+          "min": 9,
+          "date": "2027-08-30"
+        },
+        {
+          "n": 4,
+          "file": "tool-spotlight-04.html",
+          "title": "Nmap for Checking Your Own Network Exposure",
+          "desc": "Attackers scan the internet constantly to find open doors. Nmap lets you find yours first. This Tool Spotlight explains what Nmap is, the rules for using it legally, the handful of scans that answer the important questions, how to read the results, and what to close.",
+          "min": 9,
+          "date": "2027-09-06"
+        },
+        {
+          "n": 5,
+          "file": "tool-spotlight-05.html",
+          "title": "YARA and Sigma Rules: Writing a First Detection",
+          "desc": "YARA finds suspicious files; Sigma finds suspicious behaviour in logs. Together they let defenders describe threats once and hunt for them anywhere. This Tool Spotlight explains what each one is, walks through a simple first rule for both, and shows how to test and use them without drowning in false alarms.",
+          "min": 10,
+          "date": "2027-09-13"
+        },
+        {
+          "n": 6,
+          "file": "tool-spotlight-06.html",
+          "title": "CyberChef for Decoding and Analysing Data",
+          "desc": "Encoded PowerShell, scrambled URLs, hex dumps, odd timestamps: security work is full of data that needs unwrapping before you can read it. CyberChef, a free browser tool from GCHQ, does it with drag-and-drop recipes. Here is how it works, five recipes worth knowing, and how to use it safely.",
+          "min": 8,
+          "date": "2027-09-20"
+        },
+        {
+          "n": 7,
+          "file": "tool-spotlight-07.html",
+          "title": "VirusTotal: Using It Well, and Its Limits",
+          "desc": "VirusTotal checks a file, link, domain or IP address against more than 70 security engines in seconds. It is one of the most useful free tools in security, and one of the most misread. Here is how to use it well, how to interpret the results, and the privacy mistake that catches people out.",
+          "min": 8,
+          "date": "2027-09-27"
+        },
+        {
+          "n": 8,
+          "file": "tool-spotlight-08.html",
+          "title": "Process Explorer and Autoruns for Finding Persistence",
+          "desc": "Malware wants two things on a Windows machine: to run, and to come back after a reboot. Two free Sysinternals tools show you both. Process Explorer reveals what is running and why; Autoruns lists everything set to start automatically. Here is how to use them together to find what does not belong.",
+          "min": 9,
+          "date": "2027-10-04"
+        },
+        {
+          "n": 9,
+          "file": "tool-spotlight-09.html",
+          "title": "OWASP ZAP for Testing Your Own Web App",
+          "desc": "If you build or run a website, someone will test its security eventually. ZAP lets you do it first, for free. This Tool Spotlight explains how ZAP works, the difference between safe passive scanning and real active attacks, how to run a first scan and a CI baseline, and how to read the results.",
+          "min": 9,
+          "date": "2027-10-11"
+        },
+        {
+          "n": 10,
+          "file": "tool-spotlight-10.html",
+          "title": "Wazuh: Open-Source Monitoring for a Small Network",
+          "desc": "Every tool this season answers a question when you ask it. Wazuh keeps asking, all day, on every machine. This season finale explains what this free security platform does, what a small setup needs, how it pulls together Sysmon, rules and alerts, and how to avoid drowning in its output.",
+          "min": 10,
+          "date": "2027-10-18"
+        }
+      ]
+    }
+  ],
+  "investigations": [
+    {
+      "n": 1,
+      "file": "behind-the-breach-01.html",
+      "title": "Manchester Airports Group Data Breach: What Actually Happened, and Why It Matters",
+      "desc": "Behind the Breach: Manchester Airports Group confirmed a cyber security incident affecting 8.8M customers. How API credentials exposed in website JavaScript for four years led to data theft without hacking operational systems.",
+      "min": 9,
+      "date": "2026-09-08",
+      "sector": "Aviation and transport",
+      "tags": [
+        "data-breach"
+      ],
+      "icon": "plane",
+      "summary": "No flights were cancelled and no radar systems failed. But 8.8 million customers had data exposed because server-side API keys sat in client-side JavaScript for four years."
+    },
+    {
+      "n": 2,
+      "file": "behind-the-breach-02.html",
+      "title": "ASOS Data Breach: How One Stolen Employee Login Opened the Door to Customer Data",
+      "desc": "Behind the Breach Episode 02: How British online retailer ASOS disclosed a customer data breach after an attacker impersonated a trusted contact to obtain employee credentials, accessing third-party platforms.",
+      "min": 9,
+      "date": "2026-10-08",
+      "sector": "Retail and e-commerce",
+      "tags": [
+        "data-breach",
+        "third-party"
+      ],
+      "icon": "bag",
+      "summary": "An attacker impersonated a trusted contact to persuade an employee to share their login. That unlocked third-party platforms holding customer names and contact details."
+    },
+    {
+      "n": 3,
+      "file": "behind-the-breach-03.html",
+      "title": "PHP2Shell — Millions of Hacking Attempts and a Race to Protect the Internet",
+      "desc": "Behind the Breach Episode 03: Critical vulnerabilities CVE-2026-109618 and CVE-2026-109619 in PHP triggered millions of exploitation attempts worldwide. An investigative autopsy into the timeline, memory corruption mechanics, SOC detection, and defender checklist.",
+      "min": 10,
+      "date": "2026-10-23",
+      "sector": "Web infrastructure and runtime",
+      "tags": [
+        "vulnerability"
+      ],
+      "icon": "code",
+      "summary": "A critical vulnerability in the web’s core runtime triggered millions of exploit attempts immediately after disclosure. But honeypot telemetry shows attackers were already testing it four days earlier."
+    },
+    {
+      "n": 4,
+      "file": "behind-the-breach-04.html",
+      "title": "How Researchers Got Inside Anthropic in Less Than 12 Hours",
+      "desc": "Behind the Breach Episode 04: How researchers from cybersecurity start-up Cathedral used AI agents to access sensitive internal Anthropic systems in less than 12 hours via third-party business software vulnerabilities, while Claude model weights and customer chats remained untouched.",
+      "min": 10,
+      "date": "2026-10-26",
+      "sector": "Artificial intelligence and third-party SaaS",
+      "tags": [
+        "third-party"
+      ],
+      "icon": "cpu",
+      "summary": "The incident reveals how vulnerabilities in everyday business software can expose sensitive information inside even the world's leading AI companies."
+    }
+  ],
+  "shorts": [
+    {
+      "id": "BW_DuLPvdhk",
+      "title": "One Leaked Password Can Hack 10 Accounts",
+      "desc": "How a single password leak lets hackers hijack your email, banking, and socials via credential stuffing.",
+      "companion": {
+        "file": "article-02.html",
+        "label": "Episode 02: Someone Has Your Email Address. Now What?"
+      }
+    },
+    {
+      "id": "EFdDXYefjqA",
+      "title": "Your Bank Is Calling? Hang Up Now",
+      "desc": "How fraudsters spoof official bank caller IDs and manufacture fake panic to move funds.",
+      "companion": {
+        "file": "article-09.html",
+        "label": "Episode 09: Your Bank Is Calling. Or Is It?"
+      }
+    }
+  ]
+}

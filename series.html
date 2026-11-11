@@ -1,1699 +1,832 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <title>Season 1: Five New Series — Cyber Insight</title>
-  <meta name="description" content="Five weekly cybersecurity series, each with a 10-episode Season 1: Security in 5 Minutes, Threat of the Week, Playbook Monday, Myth vs Reality and Tool Spotlight.">
+  <title>New Series — Cyber Insight</title>
+  <meta name="description" content="Structured cybersecurity series of ten episodes each: Security in 5 Minutes, Threat of the Week, Playbook Monday, Myth vs Reality and Tool Spotlight.">
   <meta name="author" content="Poorna Sujampathi Rathnayaka">
   <meta name="copyright" content="© 2026 Poorna Sujampathi Rathnayaka. All rights reserved.">
   <link rel="author" href="https://sujampathirathnayaka.com/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Season 1: Five New Series — Cyber Insight">
-  <meta property="og:description" content="Five weekly cybersecurity series, each with a 10-episode Season 1: Security in 5 Minutes, Threat of the Week, Playbook Monday, Myth vs Reality and Tool Spotlight.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="styles/main.css?v=17">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&family=Inter:wght@400..700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles/modern.css?v=17">
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%231D4ED8'/><text x='16' y='22' text-anchor='middle' fill='white' font-family='system-ui' font-weight='800' font-size='12'>CI</text></svg>">
   <link rel="canonical" href="https://thecyberinsight.online/series.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="New Series — Cyber Insight">
+  <meta property="og:description" content="Structured cybersecurity series of ten episodes each: Security in 5 Minutes, Threat of the Week, Playbook Monday, Myth vs Reality and Tool Spotlight.">
   <meta property="og:url" content="https://thecyberinsight.online/series.html">
-
-  <style>
-    /* ── BASE & PAGE LAYOUT ────────────────────────────────────────── */
-    :root {
-      --sh-blue-bg: #EEF2FF;
-      --sh-blue-accent: #2563EB;
-      --sh-blue-bdr: #C7D2FE;
-      --sh-blue-tag: #1D4ED8;
-
-      --sh-coral-bg: #FFF1F2;
-      --sh-coral-accent: #E11D48;
-      --sh-coral-bdr: #FECDD3;
-      --sh-coral-tag: #BE123C;
-
-      --sh-green-bg: #ECFDF5;
-      --sh-green-accent: #059669;
-      --sh-green-bdr: #A7F3D0;
-      --sh-green-tag: #047857;
-
-      --sh-amber-bg: #FFFBEB;
-      --sh-amber-accent: #D97706;
-      --sh-amber-bdr: #FDE68A;
-      --sh-amber-tag: #B45309;
-
-      --sh-violet-bg: #F5F3FF;
-      --sh-violet-accent: #7C3AED;
-      --sh-violet-bdr: #DDD6FE;
-      --sh-violet-tag: #6D28D9;
-    }
-
-    body {
-      background: radial-gradient(circle at 10% 12%, rgba(29, 78, 216, 0.08) 0%, transparent 45%),
-                  radial-gradient(circle at 90% 18%, rgba(123, 92, 255, 0.07) 0%, transparent 45%),
-                  radial-gradient(circle at 50% 85%, rgba(31, 196, 141, 0.06) 0%, transparent 40%),
-                  #FFFFFF;
-      color: var(--ink, #0F172A);
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      background-image: radial-gradient(var(--line2, #C5CCE8) 1.2px, transparent 1.4px);
-      background-size: 26px 26px;
-      opacity: 0.4;
-      pointer-events: none;
-    }
-    :root[data-theme="dark"] body {
-      background: radial-gradient(circle at 10% 12%, rgba(124, 149, 255, 0.1) 0%, transparent 45%),
-                  radial-gradient(circle at 90% 18%, rgba(148, 122, 255, 0.09) 0%, transparent 45%),
-                  radial-gradient(circle at 50% 85%, rgba(52, 211, 153, 0.07) 0%, transparent 40%),
-                  #0B1022;
-    }
-    :root[data-theme="dark"] body::before {
-      background-image: radial-gradient(var(--line2, #3A4A80) 1.2px, transparent 1.4px);
-      opacity: 0.25;
-    }
-    .navbar, .sh-hero, .sh-grid, .site-footer {
-      position: relative;
-      z-index: 1;
-    }
-
-    .sh-hero {
-      position: relative;
-      padding: 64px 20px 40px;
-      text-align: center;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-    .sh-hero::before {
-      content: "";
-      position: absolute;
-      top: -30px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 540px;
-      height: 280px;
-      background: radial-gradient(ellipse at center, rgba(29, 78, 216, 0.12) 0%, rgba(123, 92, 255, 0.08) 45%, transparent 70%);
-      filter: blur(48px);
-      border-radius: 50%;
-      z-index: -1;
-      pointer-events: none;
-      animation: shFloatGlow 8s ease-in-out infinite alternate;
-    }
-    @keyframes shFloatGlow {
-      0% { transform: translateX(-50%) translateY(0) scale(1); opacity: 0.7; }
-      100% { transform: translateX(-50%) translateY(14px) scale(1.08); opacity: 0.95; }
-    }
-
-    .sh-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: .78rem;
-      font-weight: 800;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      color: #1D4ED8;
-      background: #EFF6FF;
-      border: 1.5px solid #BFDBFE;
-      padding: 5px 14px;
-      border-radius: 999px;
-      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.08);
-      animation: shPulseGlow 3s ease-in-out infinite;
-    }
-
-    .sh-kicker-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #1D4ED8;
-      display: inline-block;
-    }
-
-    .sh-h1 {
-      font-family: var(--f-d, 'Source Serif 4', sans-serif);
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      line-height: 1.08;
-      margin: 18px 0 14px;
-      color: var(--ink, #0F172A);
-    }
-
-    .sh-lead {
-      color: var(--ink-3, #475569);
-      font-size: 1.12rem;
-      line-height: 1.65;
-      margin: 0 auto;
-      max-width: 64ch;
-    }
-
-    .sh-toc {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 28px;
-      padding: 0;
-      list-style: none;
-    }
-
-    .sh-toc a {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 8px 16px;
-      background: var(--surface, #FFFFFF);
-      border: 1.5px solid var(--border-2, #E2E8F0);
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: .88rem;
-      color: var(--ink-2, #334155);
-      text-decoration: none;
-      transition: all .2s cubic-bezier(.2,.8,.2,1);
-      box-shadow: 0 1px 3px rgba(0,0,0,.04);
-    }
-
-    .sh-toc a:hover {
-      border-color: #2563EB;
-      color: #2563EB;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px rgba(37, 99, 235, 0.12);
-    }
-
-    /* ── SERIES SECTIONS & MASTER CARDS ───────────────────────────── */
-    .sh-grid {
-      display: grid;
-      gap: 48px;
-      padding-bottom: 80px;
-      max-width: 1160px;
-      margin: 0 auto;
-    }
-
-    .sh-card {
-      background: var(--surface, #FFFFFF);
-      border: 1px solid var(--line, #E2E8F0);
-      border-radius: 28px;
-      padding: 24px;
-      box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
-      scroll-margin-top: 96px;
-      transition: border-color .3s, box-shadow .3s;
-      position: relative;
-    }
-
-    /* Top master overview banner */
-    .sh-overview-card {
-      display: grid;
-      grid-template-columns: 340px 1fr;
-      border-radius: 22px;
-      border: 1.5px solid var(--series-bdr, #E2E8F0);
-      background: #FFFFFF;
-      overflow: hidden;
-      margin-bottom: 24px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
-      transition: transform .25s ease, box-shadow .25s ease;
-    }
-
-    .sh-overview-card:hover {
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    }
-
-    .sh-overview-left {
-      background: var(--series-bg, #F8FAFC);
-      padding: 32px 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-right: 1.5px solid var(--series-bdr, #E2E8F0);
-      position: relative;
-    }
-
-    .sh-overview-meta {
-      display: inline-block;
-      font-size: .74rem;
-      font-weight: 800;
-      color: var(--series-tag, #1D4ED8);
-      background: rgba(255, 255, 255, 0.8);
-      border: 1px solid var(--series-bdr, #BFDBFE);
-      padding: 4px 10px;
-      border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      margin-bottom: 14px;
-      align-self: flex-start;
-    }
-
-    .sh-overview-title {
-      font-family: var(--f-d, 'Source Serif 4', sans-serif);
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: var(--ink, #0F172A);
-      letter-spacing: -.02em;
-      margin: 0 0 10px;
-      line-height: 1.18;
-    }
-
-    .sh-overview-desc {
-      font-size: .95rem;
-      color: var(--ink-3, #475569);
-      line-height: 1.55;
-      margin: 0 0 20px;
-    }
-
-    .sh-see-all-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: .86rem;
-      font-weight: 800;
-      color: var(--series-tag, #1D4ED8);
-      text-decoration: none;
-      transition: gap .2s ease;
-      margin-top: auto;
-    }
-
-    .sh-see-all-link:hover {
-      gap: 10px;
-      text-decoration: underline;
-    }
-
-    .sh-overview-right {
-      padding: 24px 28px;
-      background: #FFFFFF;
-      display: flex;
-      align-items: center;
-    }
-
-    /* 2-column episode list */
-    .sh-eps {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px 24px;
-      width: 100%;
-    }
-
-    .sh-eps li {
-      display: flex;
-      gap: 9px;
-      align-items: center;
-      font-size: .88rem;
-      color: var(--ink-2, #334155);
-      min-width: 0;
-      padding: 6px 10px;
-      border-radius: 10px;
-      transition: background-color .2s ease, transform .2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow .2s ease;
-    }
-
-    .sh-eps li:hover {
-      background-color: var(--series-bg, #F8FAFC);
-      transform: translateX(4px);
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-    }
-    .sh-eps li:hover .ep-num-pill {
-      background: var(--series-accent, #2563EB);
-      color: #FFFFFF;
-      border-color: var(--series-accent, #2563EB);
-      transform: scale(1.06);
-    }
-
-    .sh-eps .ep-num-pill {
-      flex: none;
-      font-family: var(--f-mono, monospace);
-      font-size: .72rem;
-      font-weight: 800;
-      background: #F1F5F9;
-      color: var(--ink-3, #475569);
-      border: 1px solid #CBD5E1;
-      padding: 2px 7px;
-      border-radius: 6px;
-      letter-spacing: .02em;
-    }
-
-    .sh-eps a {
-      color: var(--ink, #0F172A);
-      font-weight: 600;
-      text-decoration: none;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      transition: color .15s ease;
-    }
-
-    .sh-eps a:hover {
-      color: var(--series-tag, #1D4ED8);
-      text-decoration: underline;
-    }
-
-    .sh-eps span:not(.ep-num-pill) {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      color: var(--ink-4, #94A3B8);
-    }
-
-    .sh-soon {
-      margin-left: auto;
-      flex: none;
-      font-size: .7rem;
-      font-weight: 700;
-      color: #94A3B8;
-      background: #F8FAFC;
-      border: 1px solid #E2E8F0;
-      padding: 1px 7px;
-      border-radius: 999px;
-      white-space: nowrap;
-    }
-
-    /* ── 3-CARD PREVIEW ROW (MOBILE-FIRST POLISHED) ───────────────── */
-    .sh-previews-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 22px;
-    }
-
-    .sh-preview-card {
-      background: #FFFFFF;
-      border: 1.5px solid var(--series-bdr, #E2E8F0);
-      border-radius: 22px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      color: inherit;
-      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
-      transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s cubic-bezier(.2,.8,.2,1), border-color .3s ease;
-      position: relative;
-    }
-
-    .sh-preview-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 22px 44px -12px rgba(15, 23, 42, 0.16), 0 6px 16px rgba(15, 23, 42, 0.05);
-      border-color: var(--series-accent, #2563EB);
-    }
-    .sh-preview-card:hover .sh-p-art-svg {
-      transform: scale(1.08) rotate(4deg);
-      filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.08));
-    }
-    .sh-preview-card:hover .sh-p-tag-box {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-      border-color: var(--series-accent, #2563EB);
-    }
-    .sh-preview-card:hover .sh-p-btn {
-      transform: scale(1.12);
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
-    }
-    .sh-preview-card:hover .sh-p-btn svg {
-      transform: translateX(3px);
-    }
-
-    /* Card Art / Header */
-    .sh-p-art {
-      background: linear-gradient(135deg, var(--series-bg, #EEF2FF) 0%, #FFFFFF 100%);
-      padding: 18px 20px 24px;
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid var(--series-bdr, #E2E8F0);
-      display: flex;
-      flex-direction: column;
-      min-height: 175px;
-      justify-content: space-between;
-    }
-
-    .sh-p-art-svg {
-      position: absolute;
-      top: -20px;
-      right: -20px;
-      width: 190px;
-      height: 190px;
-      pointer-events: none;
-      opacity: .85;
-      transition: transform .4s ease;
-    }
-
-    .sh-preview-card:hover .sh-p-art-svg {
-      transform: scale(1.06) rotate(3deg);
-    }
-
-    .sh-p-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .sh-p-ep-badge {
-      font-family: var(--f-mono, monospace);
-      font-size: .74rem;
-      font-weight: 800;
-      color: var(--series-tag, #1D4ED8);
-      background: rgba(255, 255, 255, 0.85);
-      border: 1px solid var(--series-bdr, #C7D2FE);
-      padding: 3px 9px;
-      border-radius: 6px;
-      letter-spacing: .04em;
-    }
-
-    .sh-p-live-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: .7rem;
-      font-weight: 800;
-      color: #059669;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid #A7F3D0;
-      padding: 3px 8px;
-      border-radius: 999px;
-      letter-spacing: .03em;
-    }
-
-    .sh-p-live-badge .live-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #10B981;
-      display: inline-block;
-      animation: livePulse 2s infinite ease-in-out;
-    }
-
-    /* Floating Framed Title Box inside the art */
-    .sh-p-tag-box {
-      background: #FFFFFF;
-      border: 1.5px solid var(--ink, #0F172A);
-      border-radius: 14px;
-      padding: 10px 16px;
-      margin-top: 24px;
-      position: relative;
-      z-index: 2;
-      align-self: flex-start;
-      max-width: 82%;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: transform .25s ease;
-    }
-
-    .sh-preview-card:hover .sh-p-tag-box {
-      transform: translateY(-2px);
-    }
-
-    .sh-p-tag-sub {
-      font-size: .62rem;
-      font-weight: 800;
-      color: var(--series-tag, #1D4ED8);
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      display: block;
-      margin-bottom: 2px;
-    }
-
-    .sh-p-tag-main {
-      font-family: var(--f-d, 'Source Serif 4', sans-serif);
-      font-size: 1.32rem;
-      font-weight: 800;
-      color: var(--ink, #0F172A);
-      letter-spacing: -.02em;
-      line-height: 1.1;
-      display: block;
-    }
-
-    /* Card Body */
-    .sh-p-body {
-      padding: 20px 22px 22px;
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      justify-content: space-between;
-    }
-
-    .sh-p-cat-pill {
-      display: inline-block;
-      font-size: .72rem;
-      font-weight: 700;
-      color: var(--series-tag, #1D4ED8);
-      background: var(--series-bg, #EEF2FF);
-      padding: 3px 8px;
-      border-radius: 5px;
-      margin-bottom: 10px;
-      align-self: flex-start;
-    }
-
-    .sh-p-title {
-      font-family: var(--f-d, 'Source Serif 4', sans-serif);
-      font-size: 1.05rem;
-      font-weight: 800;
-      line-height: 1.35;
-      color: var(--ink, #0F172A);
-      margin: 0 0 8px;
-      letter-spacing: -.01em;
-      transition: color .2s ease;
-    }
-
-    .sh-preview-card:hover .sh-p-title {
-      color: var(--series-accent, #2563EB);
-    }
-
-    .sh-p-excerpt {
-      font-size: .88rem;
-      color: var(--ink-3, #475569);
-      line-height: 1.5;
-      margin: 0 0 18px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .sh-p-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-top: 1px solid #F1F5F9;
-      padding-top: 14px;
-      margin-top: auto;
-    }
-
-    .sh-p-time {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      font-size: .8rem;
-      font-weight: 600;
-      color: var(--ink-4, #94A3B8);
-    }
-
-    .sh-p-time svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    .sh-p-btn {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: var(--series-btn, #1D4ED8);
-      color: #FFFFFF;
-      display: grid;
-      place-items: center;
-      transition: transform .25s ease, background-color .2s ease, box-shadow .25s ease;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .sh-p-btn svg {
-      width: 16px;
-      height: 16px;
-      transition: transform .2s ease;
-    }
-
-    .sh-preview-card:hover .sh-p-btn {
-      transform: scale(1.08);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-    }
-
-    .sh-preview-card:hover .sh-p-btn svg {
-      transform: translateX(2px);
-    }
-
-    /* ── ANIMATIONS ───────────────────────────────────────────────── */
-    @keyframes livePulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.35); opacity: .6; }
-    }
-
-    @keyframes shPulseGlow {
-      0%, 100% { box-shadow: 0 2px 6px rgba(37, 99, 235, 0.08); }
-      50% { box-shadow: 0 2px 14px rgba(37, 99, 235, 0.22); }
-    }
-
-    @keyframes ripplePulse {
-      0% { transform: scale(0.96); opacity: 0.35; }
-      50% { transform: scale(1.04); opacity: 0.75; }
-      100% { transform: scale(0.96); opacity: 0.35; }
-    }
-
-    .ripple-ring-1 {
-      animation: ripplePulse 4s ease-in-out infinite;
-      transform-origin: center;
-    }
-
-    .ripple-ring-2 {
-      animation: ripplePulse 4s ease-in-out 1s infinite;
-      transform-origin: center;
-    }
-
-    /* ── SERIES THEME OVERRIDES ────────────────────────────────────── */
-    .theme-blue {
-      --series-bg: var(--sh-blue-bg);
-      --series-accent: var(--sh-blue-accent);
-      --series-bdr: var(--sh-blue-bdr);
-      --series-tag: var(--sh-blue-tag);
-      --series-btn: var(--sh-blue-accent);
-    }
-
-    .theme-coral {
-      --series-bg: var(--sh-coral-bg);
-      --series-accent: var(--sh-coral-accent);
-      --series-bdr: var(--sh-coral-bdr);
-      --series-tag: var(--sh-coral-tag);
-      --series-btn: var(--sh-coral-accent);
-    }
-
-    .theme-green {
-      --series-bg: var(--sh-green-bg);
-      --series-accent: var(--sh-green-accent);
-      --series-bdr: var(--sh-green-bdr);
-      --series-tag: var(--sh-green-tag);
-      --series-btn: var(--sh-green-accent);
-    }
-
-    .theme-amber {
-      --series-bg: var(--sh-amber-bg);
-      --series-accent: var(--sh-amber-accent);
-      --series-bdr: var(--sh-amber-bdr);
-      --series-tag: var(--sh-amber-tag);
-      --series-btn: var(--sh-amber-accent);
-    }
-
-    .theme-violet {
-      --series-bg: var(--sh-violet-bg);
-      --series-accent: var(--sh-violet-accent);
-      --series-bdr: var(--sh-violet-bdr);
-      --series-tag: var(--sh-violet-tag);
-      --series-btn: var(--sh-violet-accent);
-    }
-
-    /* ── RESPONSIVE RULES ─────────────────────────────────────────── */
-    @media (max-width: 1024px) {
-      .sh-overview-card {
-        grid-template-columns: 280px 1fr;
-      }
-      .sh-previews-grid {
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      }
-    }
-
-    @media (max-width: 820px) {
-      .sh-overview-card {
-        grid-template-columns: 1fr;
-      }
-      .sh-overview-left {
-        border-right: none;
-        border-bottom: 1.5px solid var(--series-bdr, #E2E8F0);
-        padding: 24px 20px;
-      }
-      .sh-overview-right {
-        padding: 20px;
-      }
-      .sh-eps {
-        grid-template-columns: 1fr;
-      }
-      .sh-previews-grid {
-        grid-template-columns: 1fr;
-      }
-      .sh-card {
-        padding: 16px;
-        border-radius: 20px;
-      }
-    }
-
-    /* ── DARK THEME REFINEMENT ────────────────────────────────────── */
-    :root[data-theme="dark"] body {
-      background: #0B1022;
-      color: #EEF2FF;
-    }
-
-    :root[data-theme="dark"] .sh-card {
-      background: #111833;
-      border-color: #212D55;
-      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.4);
-    }
-
-    :root[data-theme="dark"] .sh-overview-card {
-      background: #151F40;
-      border-color: #263668;
-    }
-
-    :root[data-theme="dark"] .sh-overview-left {
-      background: #101835;
-      border-color: #263668;
-    }
-
-    :root[data-theme="dark"] .sh-overview-right {
-      background: #151F40;
-    }
-
-    :root[data-theme="dark"] .sh-eps a {
-      color: #E2E8F0;
-    }
-
-    :root[data-theme="dark"] .sh-eps a:hover {
-      color: #93C5FD;
-    }
-
-    :root[data-theme="dark"] .sh-eps .ep-num-pill {
-      background: #1E293B;
-      border-color: #334155;
-      color: #94A3B8;
-    }
-
-    :root[data-theme="dark"] .sh-preview-card {
-      background: #151F40;
-      border-color: #263668;
-    }
-
-    :root[data-theme="dark"] .sh-p-art {
-      background: linear-gradient(135deg, #101835 0%, #151F40 100%);
-      border-color: #263668;
-    }
-
-    :root[data-theme="dark"] .sh-p-tag-box {
-      background: #0B1022;
-      border-color: #475569;
-    }
-
-    :root[data-theme="dark"] .sh-p-tag-main {
-      color: #F8FAFC;
-    }
-
-    :root[data-theme="dark"] .sh-p-title {
-      color: #F8FAFC;
-    }
-
-    :root[data-theme="dark"] .sh-p-footer {
-      border-color: #263668;
-    }
-
-    :root[data-theme="dark"] .sh-toc a {
-      background: #151F40;
-      border-color: #263668;
-      color: #CBD5E1;
-    }
-
-    :root[data-theme="dark"] .sh-toc a:hover {
-      border-color: #60A5FA;
-      color: #60A5FA;
-    }
-  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='none'><path d='M18 3l12 4.500v8.200c0 8-5 14.200-12 17.300C11 29.900 6 23.700 6 15.700V7.500L18 3z' fill='%230B2D5B'/><path d='M12.500 17.500l4 4 7.500-8.500' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/></svg>">
+  <script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('ci_theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}</script>
+  <link rel="stylesheet" href="styles/insight.css?v=1">
+  <link rel="stylesheet" href="styles/translate.css?v=1">
 </head>
-
 <body data-page="series">
-
-  <div id="reading-progress"></div>
-  <div id="toast-container" role="status" aria-live="polite"></div>
-
-  <!-- NAV -->
-  <nav class="navbar" role="navigation" aria-label="Main navigation">
-    <div class="nav-in">
-      <a href="index.html" class="brand">
-        <div class="brand-mark" style="background:#1D4ED8;">CI</div>
-        <div>
-          <div class="brand-name">Cyber Insight</div>
-          <div class="brand-sub">Cybersecurity Research</div>
+<svg class="sprite" aria-hidden="true"><symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 12l9 5 9-5"/><path d="M3 16l9 5 9-5"/></symbol><symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></symbol><symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol><symbol id="i-lock" viewBox="0 0 24 24"><path d="M6 11h12v9H6z"/><path d="M8.5 11V8a3.5 3.5 0 0 1 7 0v3"/><path d="M12 15v2"/></symbol><symbol id="i-target" viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"/><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/><path d="M12 11.9v.2"/></symbol><symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5h6a2 2 0 0 1 2 2v12a2 2 0 0 0-2-2H4z"/><path d="M20 5h-6a2 2 0 0 0-2 2v12a2 2 0 0 1 2-2h6z"/></symbol><symbol id="i-scales" viewBox="0 0 24 24"><path d="M12 4v16"/><path d="M7 20h10"/><path d="M5 7h14"/><path d="M5 7l-3 7a3 3 0 0 0 6 0z"/><path d="M19 7l-3 7a3 3 0 0 0 6 0z"/></symbol><symbol id="i-wrench" viewBox="0 0 24 24"><path d="M15 5a4 4 0 0 0-4.6 5.4L4 16.8V20h3.2l6.4-6.4A4 4 0 0 0 19 9l-2.5 2.5-2.5-.5-.5-2.5L16 6z"/></symbol><symbol id="i-chevron" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol><symbol id="i-play" viewBox="0 0 24 24"><path d="M9 7l8 5-8 5z"/></symbol><symbol id="i-star" viewBox="0 0 24 24"><path d="M12 4l2.5 5 5.5.8-4 3.9.9 5.5-4.9-2.6-4.9 2.6.9-5.5-4-3.9 5.5-.8z"/></symbol><symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 0 0 16 8 8 0 0 0 0-16z"/><path d="M12 8v4l3 2"/></symbol><symbol id="i-database" viewBox="0 0 24 24"><path d="M5 6c0-1.7 3-3 7-3s7 1.3 7 3-3 3-7 3-7-1.3-7-3z"/><path d="M5 6v6c0 1.7 3 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3 3 7 3s7-1.3 7-3v-6"/></symbol><symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol><symbol id="i-phone" viewBox="0 0 24 24"><path d="M8 3h8a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M11 18h2"/></symbol><symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><path d="M12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></symbol><symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></symbol><symbol id="i-key" viewBox="0 0 24 24"><path d="M8 15a4 4 0 1 1 3.9-5H21v3h-2v2h-3v-2h-4.1A4 4 0 0 1 8 15z"/><path d="M8 11v.1"/></symbol><symbol id="i-wifi" viewBox="0 0 24 24"><path d="M4 10a12 12 0 0 1 16 0"/><path d="M7 13.5a7.5 7.5 0 0 1 10 0"/><path d="M10 17a3 3 0 0 1 4 0"/><path d="M12 20v.1"/></symbol><symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19 8a8 8 0 1 0 1 6"/><path d="M19 4v4h-4"/></symbol><symbol id="i-code" viewBox="0 0 24 24"><path d="M8 8l-4 4 4 4"/><path d="M16 8l4 4-4 4"/><path d="M13 5l-2 14"/></symbol><symbol id="i-doc" viewBox="0 0 24 24"><path d="M7 3h10v18H7z"/><path d="M10 8h4"/><path d="M10 12h4"/><path d="M10 16h2"/></symbol><symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4"/><path d="M12 17v.1"/></symbol><symbol id="i-search" viewBox="0 0 24 24"><path d="M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"/><path d="M20 20l-4-4"/></symbol><symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></symbol><symbol id="i-sun" viewBox="0 0 24 24"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M4.9 4.9l1.4 1.4"/><path d="M17.7 17.7l1.4 1.4"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.9 19.1l1.4-1.4"/><path d="M17.7 6.3l1.4-1.4"/></symbol></svg>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header" id="top-bar">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="Cyber Insight home"><svg class="brand-logo" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3l12 4.5v8.2c0 8-5 14.2-12 17.3C11 29.900 6 23.700 6 15.700V7.500L18 3z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M12.500 17.500l4 4 7.500-8.500" stroke="#2563EB" stroke-width="2.800" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="brand-name">Cyber Insight</span><span class="brand-sub">Cybersecurity in Plain English</span></span></a>
+    <nav class="nav" id="navLinks" aria-label="Main">
+      <a href="index.html">Home</a>
+      <div class="nav-dd series-dropdown-wrapper current">
+        <button type="button" class="series-dropdown-trigger" aria-haspopup="true" aria-expanded="false">New Series <svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+        <div class="dd-menu">
+          <a href="series.html#cybersecurity-for-everyone"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg>Cybersecurity for Everyone</a>
+          <a href="series.html#security-in-5-minutes"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>Security in 5 Minutes</a>
+          <a href="series.html#threat-of-the-week"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>Threat of the Week</a>
+          <a href="series.html#playbook-monday"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg>Playbook Monday</a>
+          <a href="series.html#myth-vs-reality"><svg class="ic" aria-hidden="true"><use href="#i-scales"/></svg>Myth vs Reality</a>
+          <a href="series.html#tool-spotlight"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg>Tool Spotlight</a>
+          <a class="dd-all" href="series.html">All series <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a href="episodes.html">All episodes <svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
-      </a>
-      <button class="m-btn" id="mBtn" aria-label="Menu" aria-expanded="false">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="3" y1="6" x2="21" y2="6" />
-          <line x1="3" y1="12" x2="21" y2="12" />
-          <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-      </button>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">Home</a></li>
-        <li class="series-dropdown-wrapper">
-          <a href="index.html#series" class="series-dropdown-trigger" id="seriesDropdownTrigger" aria-haspopup="true" aria-expanded="false">
-            <span>Series</span>
-            <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-          </a>
-          <div class="series-dropdown-menu" id="seriesDropdownMenu" role="menu" aria-labelledby="seriesDropdownTrigger">
-            <div class="series-dropdown-grid">
-              <div class="series-drop-card">
-                <div class="series-drop-header">
-                  <span class="series-drop-pill">10-Part Curriculum</span>
-                  <h4 class="series-drop-name">Cybersecurity for Everyone</h4>
-                  <p class="series-drop-desc">Plain-language guides cutting through the technical jargon to explain real-world threats.</p>
-                </div>
-                <ul class="series-drop-list">
-                  <li><a href="article.html"><span class="ep-num-pill">01</span> Can You Still Trust What You See &amp; Hear?</a></li>
-                  <li><a href="article-02.html"><span class="ep-num-pill">02</span> Someone Has Your Email. Now What?</a></li>
-                  <li><a href="article-03.html"><span class="ep-num-pill">03</span> I Clicked a Phishing Link. What to Do?</a></li>
-                  <li><a href="article-04.html"><span class="ep-num-pill">04</span> Your Session Was Stolen.</a></li>
-                  <li><a href="article-05.html"><span class="ep-num-pill">05</span> Why the Padlock Doesn't Mean Safe</a></li>
-                  <li><a href="article-06.html"><span class="ep-num-pill">06</span> Are Passkeys Killing Passwords?</a></li>
-                  <li><a href="article-07.html"><span class="ep-num-pill">07</span> The Fake Recruiter in Your LinkedIn</a></li>
-                  <li><a href="article-08.html"><span class="ep-num-pill">08</span> What a Scammer Learns in 10 Minutes</a></li>
-                  <li><a href="article-09.html"><span class="ep-num-pill">09</span> Your Bank Is Calling. Or Is It?</a></li>
-                  <li><a href="article-10.html"><span class="ep-num-pill">10</span> What Happens to Your Information After a Breach?</a></li>
-                </ul>
-                <div class="series-drop-footer">
-                  <a href="index.html#series" class="series-drop-hub-link">View Full 10-Episode Hub →</a>
-                </div>
-              </div>
-              <div class="series-drop-card accent">
-                <div class="series-drop-header">
-                  <span class="series-drop-pill green">Zero-Trust Cases</span>
-                  <h4 class="series-drop-name">Behind the Breach</h4>
-                  <p class="series-drop-desc">Technical post-mortems investigating real enterprise intrusions and token theft.</p>
-                </div>
-                <ul class="series-drop-list">
-                  <li><a href="behind-the-breach-01.html"><span class="ep-num-pill red">MAG</span> Manchester Airports Group</a></li>
-                  <li><a href="behind-the-breach-02.html"><span class="ep-num-pill red">ASOS</span> ASOS Customer Data Breach</a></li>
-                  <li><a href="behind-the-breach-03.html"><span class="ep-num-pill red">PHP</span> PHP2Shell RCE Vulnerabilities</a></li>
-                  <li><a href="behind-the-breach-04.html"><span class="ep-num-pill red">ANTH</span> Anthropic Third-Party Breach</a></li>
-                </ul>
-                <div class="series-drop-footer">
-                  <a href="index.html#behind-the-breach" class="series-drop-hub-link">View Investigations Archive →</a>
-                </div>
-              </div>
+      </div>
+      <a href="grc.html">GRC</a>
+      <a href="investigations.html">Investigations</a>
+      <a href="shorts.html">Shorts</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="tools">
+      <a class="icon-btn" href="search.html" aria-label="Search Cyber Insight"><svg class="ic" aria-hidden="true"><use href="#i-search"/></svg></a>
+      <a class="btn btn-primary btn-sm sub-btn" href="https://www.youtube.com/@CyberPocket26?sub_confirmation=1" target="_blank" rel="noopener noreferrer">Subscribe</a>
+      <button class="icon-btn menu-btn" id="mBtn" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Menu"><svg class="ic" aria-hidden="true"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap" id="seriesHub">
+    <div class="series-index" data-filter-scope>
+      <header class="page-hero">
+        <div class="ph-row">
+          <div>
+            <h1>New Series</h1>
+            <p>Explore our core series — structured content that turns complex cybersecurity topics into practical, real-world knowledge.</p>
+          </div>
+          <div class="ph-art" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg></div>
+        </div>
+      </header>
+      <div class="chips" role="group" aria-label="Filter series" style="margin:22px 0 18px">
+        <button class="chip" type="button" data-chip="all" aria-pressed="true">All Series (6)</button>
+        <button class="chip" type="button" data-chip="awareness" aria-pressed="false">Awareness</button>
+        <button class="chip" type="button" data-chip="how-to" aria-pressed="false">How-to</button>
+        <button class="chip" type="button" data-chip="threats" aria-pressed="false">Threats</button>
+        <button class="chip" type="button" data-chip="tools" aria-pressed="false">Tools</button>
+      </div>
+      <ul class="rows">
+        <li class="row" data-tags="awareness" data-progress-for="cybersecurity-for-everyone">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></div>
+          <div>
+            <h3><a href="#cybersecurity-for-everyone">Cybersecurity for Everyone</a></h3>
+            <p>The original ten-part series: real online threats explained without the jargon.</p>
+          </div>
+          <div class="row-side">
+            <div class="progress">
+              <b>10 Episodes</b>
+              <div class="p-line"><span class="p-bar" role="progressbar" aria-label="Episodes of Cybersecurity for Everyone you have opened" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><i></i></span><span class="p-text">0 / 10 read</span></div>
             </div>
-            <div class="series-drop-season"><div class="series-drop-season-head"><span class="series-drop-pill">New · Season 1</span><a href="series.html" class="series-drop-season-all">All 5 series →</a></div><ul class="series-drop-season-list"><li><a href="series.html#security-in-5-minutes">Security in 5 Minutes</a></li><li><a href="series.html#threat-of-the-week">Threat of the Week</a></li><li><a href="series.html#playbook-monday">Playbook Monday</a></li><li><a href="series.html#myth-vs-reality">Myth vs Reality</a></li><li><a href="series.html#tool-spotlight">Tool Spotlight</a></li></ul></div>
-            <div class="series-drop-banner">
-              <div style="display:flex;align-items:center;gap:8px;">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="#FF0000" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                <span style="font-size:.82rem;font-weight:700;color:var(--ink);"><strong>Cyber Pocket:</strong> 30-Second Security Shorts on YouTube</span>
-              </div>
-              <a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="font-size:.8rem;font-weight:800;color:#DC2626;text-decoration:none;white-space:nowrap;">Watch Shorts →</a>
-            </div>
+            <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
           </div>
         </li>
-        <li><a href="#feedback">Feedback</a></li>
-        <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="color:#DC2626;display:inline-flex;align-items:center;gap:4px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>Shorts</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="article-10.html" class="cta">← Ep 10</a></li>
+        <li class="row" data-tags="how-to" data-progress-for="security-in-5-minutes">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></div>
+          <div>
+            <h3><a href="#security-in-5-minutes">Security in 5 Minutes</a></h3>
+            <p>Practical how-tos you can finish in one sitting.</p>
+          </div>
+          <div class="row-side">
+            <div class="progress">
+              <b>10 Episodes</b>
+              <div class="p-line"><span class="p-bar" role="progressbar" aria-label="Episodes of Security in 5 Minutes you have opened" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><i></i></span><span class="p-text">0 / 10 read</span></div>
+            </div>
+            <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </div>
+        </li>
+        <li class="row" data-tags="threats" data-progress-for="threat-of-the-week">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></div>
+          <div>
+            <h3><a href="#threat-of-the-week">Threat of the Week</a></h3>
+            <p>One attack technique explained, mapped to MITRE ATT&amp;CK, with detection tips.</p>
+          </div>
+          <div class="row-side">
+            <div class="progress">
+              <b>10 Episodes</b>
+              <div class="p-line"><span class="p-bar" role="progressbar" aria-label="Episodes of Threat of the Week you have opened" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><i></i></span><span class="p-text">0 / 10 read</span></div>
+            </div>
+            <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </div>
+        </li>
+        <li class="row" data-tags="how-to" data-progress-for="playbook-monday">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg></div>
+          <div>
+            <h3><a href="#playbook-monday">Playbook Monday</a></h3>
+            <p>Step-by-step defender checklists for when something goes wrong.</p>
+          </div>
+          <div class="row-side">
+            <div class="progress">
+              <b>10 Episodes</b>
+              <div class="p-line"><span class="p-bar" role="progressbar" aria-label="Episodes of Playbook Monday you have opened" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><i></i></span><span class="p-text">0 / 10 read</span></div>
+            </div>
+            <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </div>
+        </li>
+        <li class="row" data-tags="awareness" data-progress-for="myth-vs-reality">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-scales"/></svg></div>
+          <div>
+            <h3><a href="#myth-vs-reality">Myth vs Reality</a></h3>
+            <p>Common security beliefs, fact-checked.</p>
+          </div>
+          <div class="row-side">
+            <div class="progress">
+              <b>10 Episodes</b>
+              <div class="p-line"><span class="p-bar" role="progressbar" aria-label="Episodes of Myth vs Reality you have opened" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><i></i></span><span class="p-text">0 / 10 read</span></div>
+            </div>
+            <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </div>
+        </li>
+        <li class="row" data-tags="tools" data-progress-for="tool-spotlight">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg></div>
+          <div>
+            <h3><a href="#tool-spotlight">Tool Spotlight</a></h3>
+            <p>Free and open-source security tools: what they do and where they fall short.</p>
+          </div>
+          <div class="row-side">
+            <div class="progress">
+              <b>10 Episodes</b>
+              <div class="p-line"><span class="p-bar" role="progressbar" aria-label="Episodes of Tool Spotlight you have opened" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0"><i></i></span><span class="p-text">0 / 10 read</span></div>
+            </div>
+            <svg class="ic go" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </div>
+        </li>
       </ul>
+      <p class="empty" data-empty hidden><b>No series in this group yet</b>Choose another filter to see the rest.</p>
     </div>
-  </nav>
 
-  <main id="main">
-    <div class="wrap">
-      <!-- HERO -->
-      <header class="sh-hero">
-        <span class="sh-kicker">
-          <span class="sh-kicker-dot"></span>
-          Season 1
-        </span>
-        <h1 class="sh-h1">Five new series, every Monday</h1>
-        <p class="sh-lead">
-          One new article lands each Monday, rotating through five series of ten episodes. Each series has its own job, so you can follow the one you need.
-        </p>
-        <ul class="sh-toc">
-          <li><a href="#security-in-5-minutes">Security in 5 Minutes</a></li>
-          <li><a href="#threat-of-the-week">Threat of the Week</a></li>
-          <li><a href="#playbook-monday">Playbook Monday</a></li>
-          <li><a href="#myth-vs-reality">Myth vs Reality</a></li>
-          <li><a href="#tool-spotlight">Tool Spotlight</a></li>
+    <section class="series-detail" id="cybersecurity-for-everyone" aria-labelledby="cybersecurity-for-everyone-h">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><a href="series.html">Series</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><span>Cybersecurity for Everyone</span></nav>
+      <div class="sd-head">
+        <div>
+          <h2 id="cybersecurity-for-everyone-h"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg>Cybersecurity for Everyone</h2>
+          <p>The original ten-part series: real online threats explained without the jargon.</p>
+        </div>
+        <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-shield"/></svg></div>
+      </div>
+      <ul class="sd-stats">
+        <li><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg>10 Episodes</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg>Plain English</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>6–8 min each</li>
+      </ul>
+      <div class="sd-list-head">
+        <h3>Episodes in This Series</h3>
+        <span class="tag done" data-progress-label="cybersecurity-for-everyone">0 / 10 read</span>
+      </div>
+      <ol class="sh-eps">
+        <li class="row" data-episode="10">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-database"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 10</p>
+            <h3><a href="article-10.html" data-read>What Happens to Your Information After a Data Breach?</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="9">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 09</p>
+            <h3><a href="article-09.html" data-read>Your Bank Is Calling. Or Is It?</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="8">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 08</p>
+            <h3><a href="article-08.html" data-read>How Much Can a Scammer Learn About You in 10 Minutes?</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="7">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 07</p>
+            <h3><a href="article-07.html" data-read>The Fake Recruiter in Your LinkedIn Inbox</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="6">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 06</p>
+            <h3><a href="article-06.html" data-read>Are Passkeys Finally Going to Kill Passwords?</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="5">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 05</p>
+            <h3><a href="article-05.html" data-read>Why the Padlock Doesn't Mean a Website Is Safe</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">6 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="4">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 04</p>
+            <h3><a href="article-04.html" data-read>Your Password Wasn't Hacked. Your Session Was Stolen.</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="3">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 03</p>
+            <h3><a href="article-03.html" data-read>I Clicked a Phishing Link. What Should I Do?</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">6 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="2">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 02</p>
+            <h3><a href="article-02.html" data-read>Someone Has Your Email Address. Now What?</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="1">
+          <div class="thumb tone-navy" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 01</p>
+            <h3><a href="article.html" data-read>Can You Still Trust What You See and Hear Online?</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+      </ol>
+      <p style="margin-top:22px"><a class="link-more" href="series.html"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>All series</a></p>
+    </section>
+
+    <section class="series-detail sh-card" id="security-in-5-minutes" aria-labelledby="security-in-5-minutes-h">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><a href="series.html">Series</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><span>Security in 5 Minutes</span></nav>
+      <div class="sd-head">
+        <div>
+          <h2 id="security-in-5-minutes-h"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg>Security in 5 Minutes</h2>
+          <p>Practical how-tos you can finish in one sitting.</p>
+        </div>
+        <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></div>
+      </div>
+      <ul class="sd-stats">
+        <li><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg>10 Episodes</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg>Plain English</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>8–9 min each</li>
+      </ul>
+      <div class="sd-list-head">
+        <h3>Episodes in This Series</h3>
+        <span class="tag done" data-progress-label="security-in-5-minutes">0 / 10 read</span>
+      </div>
+      <ol class="sh-eps">
+        <li class="row" data-episode="10">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wifi"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 10</p>
+            <h3><a href="security-in-5-minutes-10.html" data-read>Safe Travel: Your Phone, Laptop and Hotel Wi-Fi, Before You Leave and While You Are Away</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="9">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-database"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 09</p>
+            <h3><a href="security-in-5-minutes-09.html" data-read>Your Data Was in a Breach. The First Five Things to Change</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="8">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-refresh"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 08</p>
+            <h3><a href="security-in-5-minutes-08.html" data-read>Turn On Automatic Updates Everywhere (and Check They Are Actually Working)</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="7">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 07</p>
+            <h3><a href="security-in-5-minutes-07.html" data-read>Someone Could Steal Your Phone Number. Here Is How to Stop a SIM Swap</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="6">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 06</p>
+            <h3><a href="security-in-5-minutes-06.html" data-read>Lock Down Your Google or Microsoft Account: A Fifteen-Minute Check-Up</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="5">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 05</p>
+            <h3><a href="security-in-5-minutes-05.html" data-read>How to Read a Suspicious Email: The Sender, the Links and the Attachments</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="4">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-database"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 04</p>
+            <h3><a href="security-in-5-minutes-04.html" data-read>Backups That Survive Ransomware: The 3-2-1-1-0 Rule Made Simple</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="3">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 03</p>
+            <h3><a href="security-in-5-minutes-03.html" data-read>Password Managers: How to Choose One and Move Your Passwords Across Safely</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="2">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wifi"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 02</p>
+            <h3><a href="security-in-5-minutes-02.html" data-read>The Box Under Your TV: How to Secure Your Home Router in Ten Minutes</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="1">
+          <div class="thumb tone-blue" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 01</p>
+            <h3><a href="security-in-5-minutes-01.html" data-read>Passkeys, Text Codes or an Authenticator App: Which Should You Switch To First?</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+      </ol>
+      <p style="margin-top:22px"><a class="link-more" href="series.html"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>All series</a></p>
+    </section>
+
+    <section class="series-detail sh-card" id="threat-of-the-week" aria-labelledby="threat-of-the-week-h">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><a href="series.html">Series</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><span>Threat of the Week</span></nav>
+      <div class="sd-head">
+        <div>
+          <h2 id="threat-of-the-week-h"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>Threat of the Week</h2>
+          <p>One attack technique explained, mapped to MITRE ATT&amp;CK, with detection tips.</p>
+        </div>
+        <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg></div>
+      </div>
+      <ul class="sd-stats">
+        <li><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg>10 Episodes</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg>Plain English</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>8–10 min each</li>
+      </ul>
+      <div class="sd-list-head">
+        <h3>Episodes in This Series</h3>
+        <span class="tag done" data-progress-label="threat-of-the-week">0 / 10 read</span>
+      </div>
+      <ol class="sh-eps">
+        <li class="row" data-episode="10">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 10</p>
+            <h3><a href="threat-of-the-week-10.html" data-read>Credential Stuffing: How One Old Breach Unlocks Accounts Everywhere</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="9">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 09</p>
+            <h3><a href="threat-of-the-week-09.html" data-read>Deepfake Voice and Video Scams: When the Boss on the Call Is Not Real</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="8">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 08</p>
+            <h3><a href="threat-of-the-week-08.html" data-read>Living Off the Land: When Attackers Use Your Own Tools Against You</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="7">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 07</p>
+            <h3><a href="threat-of-the-week-07.html" data-read>Infostealers: The Malware That Empties Your Browser and Sells the Keys</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="6">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 06</p>
+            <h3><a href="threat-of-the-week-06.html" data-read>Business Email Compromise: The Quiet Fraud Behind Billions in Losses</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="5">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 05</p>
+            <h3><a href="threat-of-the-week-05.html" data-read>Software Supply-Chain Attacks: Typosquatting, Dependency Confusion and Self-Spreading Packages</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="4">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 04</p>
+            <h3><a href="threat-of-the-week-04.html" data-read>Adversary-in-the-Middle Phishing: How Kits Steal Your Session and Skip MFA Entirely</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="3">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 03</p>
+            <h3><a href="threat-of-the-week-03.html" data-read>Quishing: How a Square of Black and White Dots Gets Past Your Defences</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="2">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 02</p>
+            <h3><a href="threat-of-the-week-02.html" data-read>OAuth Consent Phishing: When You Hand Over Access Without Giving Up a Password</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="1">
+          <div class="thumb tone-red" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 01</p>
+            <h3><a href="threat-of-the-week-01.html" data-read>MFA Fatigue: How Attackers Spam Your Phone Until You Tap Approve</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+      </ol>
+      <p style="margin-top:22px"><a class="link-more" href="series.html"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>All series</a></p>
+    </section>
+
+    <section class="series-detail sh-card" id="playbook-monday" aria-labelledby="playbook-monday-h">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><a href="series.html">Series</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><span>Playbook Monday</span></nav>
+      <div class="sd-head">
+        <div>
+          <h2 id="playbook-monday-h"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg>Playbook Monday</h2>
+          <p>Step-by-step defender checklists for when something goes wrong.</p>
+        </div>
+        <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-book"/></svg></div>
+      </div>
+      <ul class="sd-stats">
+        <li><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg>10 Episodes</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg>Plain English</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>9–10 min each</li>
+      </ul>
+      <div class="sd-list-head">
+        <h3>Episodes in This Series</h3>
+        <span class="tag done" data-progress-label="playbook-monday">0 / 10 read</span>
+      </div>
+      <ol class="sh-eps">
+        <li class="row" data-episode="10">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 10</p>
+            <h3><a href="playbook-monday-10.html" data-read>A One-Page Tabletop Exercise for Small Teams (Run It in an Hour)</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="9">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wifi"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 09</p>
+            <h3><a href="playbook-monday-09.html" data-read>Responding to a DDoS Attack: Keeping Your Website Up When Someone Wants It Down</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="8">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 08</p>
+            <h3><a href="playbook-monday-08.html" data-read>Isolating an Infected Endpoint: Contain It Without Destroying the Evidence</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="7">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-refresh"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 07</p>
+            <h3><a href="playbook-monday-07.html" data-read>Employee Offboarding: Closing Every Door When Someone Leaves</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="6">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 06</p>
+            <h3><a href="playbook-monday-06.html" data-read>A Secret Leaked in a Public Repository: Rotate First, Clean Up Second</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="5">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wifi"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 05</p>
+            <h3><a href="playbook-monday-05.html" data-read>Your Supplier Has Been Breached: A Playbook for When It Is Not Your Network</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="4">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 04</p>
+            <h3><a href="playbook-monday-04.html" data-read>Lost or Stolen Laptop: A Response Playbook for IT and the Person Who Lost It</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="3">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-database"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 03</p>
+            <h3><a href="playbook-monday-03.html" data-read>Ransomware: A First-Hour Checklist for Small Teams</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="2">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-doc"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 02</p>
+            <h3><a href="playbook-monday-02.html" data-read>Account Takeover Response: A Checklist That Closes Every Back Door</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="1">
+          <div class="thumb tone-green" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 01</p>
+            <h3><a href="playbook-monday-01.html" data-read>Phishing Triage: A Playbook for the First 15 Minutes</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+      </ol>
+      <p style="margin-top:22px"><a class="link-more" href="series.html"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>All series</a></p>
+    </section>
+
+    <section class="series-detail sh-card" id="myth-vs-reality" aria-labelledby="myth-vs-reality-h">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><a href="series.html">Series</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><span>Myth vs Reality</span></nav>
+      <div class="sd-head">
+        <div>
+          <h2 id="myth-vs-reality-h"><svg class="ic" aria-hidden="true"><use href="#i-scales"/></svg>Myth vs Reality</h2>
+          <p>Common security beliefs, fact-checked.</p>
+        </div>
+        <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-scales"/></svg></div>
+      </div>
+      <ul class="sd-stats">
+        <li><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg>10 Episodes</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg>Plain English</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>7–8 min each</li>
+      </ul>
+      <div class="sd-list-head">
+        <h3>Episodes in This Series</h3>
+        <span class="tag done" data-progress-label="myth-vs-reality">0 / 10 read</span>
+      </div>
+      <ol class="sh-eps">
+        <li class="row" data-episode="10">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 10</p>
+            <h3><a href="myth-vs-reality-10.html" data-read>Myth: &quot;Change Your Password Every 90 Days&quot;</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="9">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-database"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 09</p>
+            <h3><a href="myth-vs-reality-09.html" data-read>Myth: &quot;Deleting a File Erases It&quot;</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="8">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 08</p>
+            <h3><a href="myth-vs-reality-08.html" data-read>Myth: &quot;The HTTPS Padlock Means a Site Is Safe&quot;</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="7">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 07</p>
+            <h3><a href="myth-vs-reality-07.html" data-read>Myth: &quot;Antivirus Is All I Need&quot;</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="6">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-lock"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 06</p>
+            <h3><a href="myth-vs-reality-06.html" data-read>Myth: &quot;A VPN Makes Me Secure&quot;</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="5">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-scales"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 05</p>
+            <h3><a href="myth-vs-reality-05.html" data-read>Myth: &quot;I'm Too Small to Be a Target&quot;</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="4">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wifi"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 04</p>
+            <h3><a href="myth-vs-reality-04.html" data-read>Myth: &quot;Public Wi-Fi Is Always Dangerous&quot; (and When It Actually Is)</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="3">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-key"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 03</p>
+            <h3><a href="myth-vs-reality-03.html" data-read>Myth: &quot;A Strong Password Is Enough&quot;</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="2">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-phone"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 02</p>
+            <h3><a href="myth-vs-reality-02.html" data-read>Myth: &quot;Macs and Phones Don't Get Malware&quot;</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="1">
+          <div class="thumb tone-amber" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-eye"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 01</p>
+            <h3><a href="myth-vs-reality-01.html" data-read>Myth: &quot;Incognito Mode Makes Me Anonymous&quot;</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">7 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+      </ol>
+      <p style="margin-top:22px"><a class="link-more" href="series.html"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>All series</a></p>
+    </section>
+
+    <section class="series-detail sh-card" id="tool-spotlight" aria-labelledby="tool-spotlight-h">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><a href="series.html">Series</a><svg class="ic" aria-hidden="true"><use href="#i-chevron"/></svg><span>Tool Spotlight</span></nav>
+      <div class="sd-head">
+        <div>
+          <h2 id="tool-spotlight-h"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg>Tool Spotlight</h2>
+          <p>Free and open-source security tools: what they do and where they fall short.</p>
+        </div>
+        <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg></div>
+      </div>
+      <ul class="sd-stats">
+        <li><svg class="ic" aria-hidden="true"><use href="#i-play"/></svg>10 Episodes</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg>Plain English</li>
+        <li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>8–10 min each</li>
+      </ul>
+      <div class="sd-list-head">
+        <h3>Episodes in This Series</h3>
+        <span class="tag done" data-progress-label="tool-spotlight">0 / 10 read</span>
+      </div>
+      <ol class="sh-eps">
+        <li class="row" data-episode="10">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wifi"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 10</p>
+            <h3><a href="tool-spotlight-10.html" data-read>Wazuh: Open-Source Monitoring for a Small Network</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="9">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 09</p>
+            <h3><a href="tool-spotlight-09.html" data-read>OWASP ZAP for Testing Your Own Web App</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="8">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 08</p>
+            <h3><a href="tool-spotlight-08.html" data-read>Process Explorer and Autoruns for Finding Persistence</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="7">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 07</p>
+            <h3><a href="tool-spotlight-07.html" data-read>VirusTotal: Using It Well, and Its Limits</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="6">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-database"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 06</p>
+            <h3><a href="tool-spotlight-06.html" data-read>CyberChef for Decoding and Analysing Data</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="5">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 05</p>
+            <h3><a href="tool-spotlight-05.html" data-read>YARA and Sigma Rules: Writing a First Detection</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">10 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="4">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wifi"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 04</p>
+            <h3><a href="tool-spotlight-04.html" data-read>Nmap for Checking Your Own Network Exposure</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="3">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-alert"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 03</p>
+            <h3><a href="tool-spotlight-03.html" data-read>Sysmon for Endpoint Visibility on Windows</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="2">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-database"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 02</p>
+            <h3><a href="tool-spotlight-02.html" data-read>Have I Been Pwned and Breach-Monitoring Tools</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">8 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+        <li class="row" data-episode="1">
+          <div class="thumb tone-violet" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-wifi"/></svg></div>
+          <div>
+            <p class="ep-line">Episode 01</p>
+            <h3><a href="tool-spotlight-01.html" data-read>Wireshark Basics for Spotting Suspicious Traffic</a></h3>
+          </div>
+          <div class="row-side"><span class="row-min">9 min</span><span class="read-mark" aria-hidden="true"><svg class="ic" aria-hidden="true"><use href="#i-check"/></svg></span></div>
+        </li>
+      </ol>
+      <p style="margin-top:22px"><a class="link-more" href="series.html"><svg class="ic" aria-hidden="true"><use href="#i-arrow"/></svg>All series</a></p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html" aria-label="Cyber Insight home"><svg class="brand-logo" viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M18 3l12 4.5v8.2c0 8-5 14.2-12 17.3C11 29.900 6 23.700 6 15.700V7.500L18 3z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/><path d="M12.500 17.500l4 4 7.500-8.500" stroke="#2563EB" stroke-width="2.800" stroke-linecap="round" stroke-linejoin="round"/></svg><span><span class="brand-name">Cyber Insight</span><span class="brand-sub">Cybersecurity in Plain English</span></span></a>
+        <p class="foot-desc">An independent publication that explains online threats in plain language, for everyone.</p>
+      </div>
+      <div>
+        <p class="foot-title">Explore</p>
+        <ul class="foot-list">
+          <li><a href="series.html">All series</a></li>
+          <li><a href="episodes.html">Episode archive</a></li>
+          <li><a href="investigations.html">Investigations</a></li>
+          <li><a href="grc.html">Governance, risk and compliance</a></li>
+          <li><a href="shorts.html">Cyber Pocket Shorts</a></li>
+          <li><a href="about.html">About the author</a></li>
         </ul>
-      </header>
-
-      <div class="sh-grid">
-
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- SERIES 1: SECURITY IN 5 MINUTES                             -->
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <section class="sh-card theme-blue" id="security-in-5-minutes" aria-labelledby="security-in-5-minutes-h">
-          
-          <!-- Master Overview Card -->
-          <div class="sh-overview-card">
-            <div class="sh-overview-left">
-              <div>
-                <span class="sh-overview-meta">Series 1</span>
-                <h2 id="security-in-5-minutes-h" class="sh-overview-title">Security in 5 Minutes</h2>
-                <p class="sh-overview-desc">Practical how-tos you can finish in one sitting.</p>
-              </div>
-              <a href="#security-in-5-minutes" class="sh-see-all-link">See all 10 episodes →</a>
-            </div>
-
-            <div class="sh-overview-right">
-              <ol class="sh-eps">
-                <li data-episode="1"><span class="ep-num-pill">01</span> <a href="security-in-5-minutes-01.html">Passkeys vs. SMS and authenticator codes: what to switch to first</a></li>
-                <li data-episode="2"><span class="ep-num-pill">02</span> <a href="security-in-5-minutes-02.html">Securing your home router</a></li>
-                <li data-episode="3"><span class="ep-num-pill">03</span> <a href="security-in-5-minutes-03.html">Password managers: choosing one and migrating safely</a></li>
-                <li data-episode="4"><span class="ep-num-pill">04</span> <a href="security-in-5-minutes-04.html">Backups that survive ransomware (3-2-1-1-0)</a></li>
-                <li data-episode="5"><span class="ep-num-pill">05</span> <a href="security-in-5-minutes-05.html">Reading a suspicious email: headers, links, attachments</a></li>
-                <li data-episode="6"><span class="ep-num-pill">06</span> <a href="security-in-5-minutes-06.html">Locking down your Google or Microsoft account</a></li>
-                <li data-episode="7"><span class="ep-num-pill">07</span> <a href="security-in-5-minutes-07.html">Protecting your phone number from SIM swapping</a></li>
-                <li data-episode="8"><span class="ep-num-pill">08</span> <a href="security-in-5-minutes-08.html">Turning on automatic updates everywhere (and what to check)</a></li>
-                <li data-episode="9"><span class="ep-num-pill">09</span> <a href="security-in-5-minutes-09.html">After a breach: the first five things to change</a></li>
-                <li data-episode="10"><span class="ep-num-pill">10</span> <a href="security-in-5-minutes-10.html">Safe travel: laptops, phones and hotel Wi-Fi</a></li>
-              </ol>
-            </div>
-          </div>
-
-          <!-- 3-Card Visual Previews Row -->
-          <div class="sh-previews-grid">
-
-            <!-- EP 10 -->
-            <a href="security-in-5-minutes-10.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#3B82F6" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#3B82F6" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#2563EB" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">10</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 10</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">SECURITY IN 5 MINUTES</span>
-                  <span class="sh-p-tag-main">Travel</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Travel Security</span>
-                  <h3 class="sh-p-title">Safe Travel: Your Phone, Laptop and Hotel Wi-Fi, Before You Leave and While You Are Away</h3>
-                  <p class="sh-p-excerpt">Travel is when devices get lost, stolen and connected to networks you know nothing about.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-            <!-- EP 09 -->
-            <a href="security-in-5-minutes-09.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#3B82F6" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#3B82F6" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#2563EB" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">09</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 09</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">SECURITY IN 5 MINUTES</span>
-                  <span class="sh-p-tag-main">Breach</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Data Breaches</span>
-                  <h3 class="sh-p-title">Your Data Was in a Breach. The First Five Things to Change</h3>
-                  <p class="sh-p-excerpt">A company has told you your data was exposed. What to change first to prevent account takeover.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-            <!-- EP 08 -->
-            <a href="security-in-5-minutes-08.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#3B82F6" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#3B82F6" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#2563EB" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">08</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 08</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">SECURITY IN 5 MINUTES</span>
-                  <span class="sh-p-tag-main">Updates</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Software Updates</span>
-                  <h3 class="sh-p-title">Turn On Automatic Updates Everywhere (and Check They Are Actually Working)</h3>
-                  <p class="sh-p-excerpt">Updates are the single quickest way to close the holes attackers use.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-          </div>
-        </section>
-
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- SERIES 2: THREAT OF THE WEEK                                -->
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <section class="sh-card theme-coral" id="threat-of-the-week" aria-labelledby="threat-of-the-week-h">
-          
-          <!-- Master Overview Card -->
-          <div class="sh-overview-card">
-            <div class="sh-overview-left">
-              <div>
-                <span class="sh-overview-meta">Series 2</span>
-                <h2 id="threat-of-the-week-h" class="sh-overview-title">Threat of the Week</h2>
-                <p class="sh-overview-desc">One attack technique explained, mapped to MITRE ATT&amp;CK, with detection tips.</p>
-              </div>
-              <a href="#threat-of-the-week" class="sh-see-all-link">See all 10 episodes →</a>
-            </div>
-
-            <div class="sh-overview-right">
-              <ol class="sh-eps">
-                <li data-episode="1"><span class="ep-num-pill">01</span> <a href="threat-of-the-week-01.html">MFA fatigue (push bombing): how it works and how to detect it</a></li>
-                <li data-episode="2"><span class="ep-num-pill">02</span> <a href="threat-of-the-week-02.html">OAuth consent phishing</a></li>
-                <li data-episode="3"><span class="ep-num-pill">03</span> <a href="threat-of-the-week-03.html">QR-code phishing (quishing)</a></li>
-                <li data-episode="4"><span class="ep-num-pill">04</span> <a href="threat-of-the-week-04.html">Adversary-in-the-middle phishing kits and session theft</a></li>
-                <li data-episode="5"><span class="ep-num-pill">05</span> <a href="threat-of-the-week-05.html">Software supply-chain attacks: typosquatting and dependency confusion</a></li>
-                <li data-episode="6"><span class="ep-num-pill">06</span> <a href="threat-of-the-week-06.html">Business email compromise</a></li>
-                <li data-episode="7"><span class="ep-num-pill">07</span> <a href="threat-of-the-week-07.html">Infostealer malware and stolen browser sessions</a></li>
-                <li data-episode="8"><span class="ep-num-pill">08</span> <a href="threat-of-the-week-08.html">Living off the land: attackers using your own tools</a></li>
-                <li data-episode="9"><span class="ep-num-pill">09</span> <a href="threat-of-the-week-09.html">Deepfake voice and video scams</a></li>
-                <li data-episode="10"><span class="ep-num-pill">10</span> <a href="threat-of-the-week-10.html">Credential stuffing</a></li>
-              </ol>
-            </div>
-          </div>
-
-          <!-- 3-Card Visual Previews Row -->
-          <div class="sh-previews-grid">
-
-            <!-- EP 10 -->
-            <a href="threat-of-the-week-10.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#F43F5E" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#F43F5E" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#E11D48" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">10</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 10</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">THREAT OF THE WEEK</span>
-                  <span class="sh-p-tag-main">Stuffing</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Credential Stuffing</span>
-                  <h3 class="sh-p-title">Credential Stuffing: How One Old Breach Unlocks Accounts Everywhere</h3>
-                  <p class="sh-p-excerpt">Credential stuffing takes usernames and passwords leaked from one site and tries them automatically on thousands of others.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>9 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-            <!-- EP 09 -->
-            <a href="threat-of-the-week-09.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#F43F5E" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#F43F5E" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#E11D48" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">09</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 09</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">THREAT OF THE WEEK</span>
-                  <span class="sh-p-tag-main">Deepfake</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Deepfakes</span>
-                  <h3 class="sh-p-title">Deepfake Voice and Video Scams: When the Boss on the Call Is Not Real</h3>
-                  <p class="sh-p-excerpt">Cloned voices and deepfake video calls have moved from novelty to fraud tool.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>9 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-            <!-- EP 08 -->
-            <a href="threat-of-the-week-08.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#F43F5E" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#F43F5E" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#E11D48" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">08</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 08</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">THREAT OF THE WEEK</span>
-                  <span class="sh-p-tag-main">LOTL</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Living Off the Land</span>
-                  <h3 class="sh-p-title">Living Off the Land: When Attackers Use Your Own Tools Against You</h3>
-                  <p class="sh-p-excerpt">Living-off-the-land attackers bring little or no malware to evade endpoint detection.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>10 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-          </div>
-        </section>
-
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- SERIES 3: PLAYBOOK MONDAY                                   -->
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <section class="sh-card theme-green" id="playbook-monday" aria-labelledby="playbook-monday-h">
-          
-          <!-- Master Overview Card -->
-          <div class="sh-overview-card">
-            <div class="sh-overview-left">
-              <div>
-                <span class="sh-overview-meta">Series 3</span>
-                <h2 id="playbook-monday-h" class="sh-overview-title">Playbook Monday</h2>
-                <p class="sh-overview-desc">Step-by-step defender checklists for when something goes wrong.</p>
-              </div>
-              <a href="#playbook-monday" class="sh-see-all-link">See all 10 episodes →</a>
-            </div>
-
-            <div class="sh-overview-right">
-              <ol class="sh-eps">
-                <li data-episode="1"><span class="ep-num-pill">01</span> <a href="playbook-monday-01.html">Phishing triage: the first 15 minutes</a></li>
-                <li data-episode="2"><span class="ep-num-pill">02</span> <a href="playbook-monday-02.html">Account takeover response checklist</a></li>
-                <li data-episode="3"><span class="ep-num-pill">03</span> <a href="playbook-monday-03.html">Ransomware first-hour checklist for small teams</a></li>
-                <li data-episode="4"><span class="ep-num-pill">04</span> <a href="playbook-monday-04.html">Lost or stolen laptop response</a></li>
-                <li data-episode="5"><span class="ep-num-pill">05</span> <a href="playbook-monday-05.html">Vendor breach notification: what to do when a supplier is hit</a></li>
-                <li data-episode="6"><span class="ep-num-pill">06</span> <a href="playbook-monday-06.html">A secret or API key leaked in a public repository</a></li>
-                <li data-episode="7"><span class="ep-num-pill">07</span> <a href="playbook-monday-07.html">Employee offboarding without leaving access behind</a></li>
-                <li data-episode="8"><span class="ep-num-pill">08</span> <a href="playbook-monday-08.html">Isolating an infected endpoint</a></li>
-                <li data-episode="9"><span class="ep-num-pill">09</span> <a href="playbook-monday-09.html">Responding to a DDoS attack</a></li>
-                <li data-episode="10"><span class="ep-num-pill">10</span> <a href="playbook-monday-10.html">A one-page tabletop exercise for small teams</a></li>
-              </ol>
-            </div>
-          </div>
-
-          <!-- 3-Card Visual Previews Row -->
-          <div class="sh-previews-grid">
-
-            <!-- EP 10 -->
-            <a href="playbook-monday-10.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#10B981" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#10B981" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#059669" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">10</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 10</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">PLAYBOOK MONDAY</span>
-                  <span class="sh-p-tag-main">Tabletop</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Incident Readiness</span>
-                  <h3 class="sh-p-title">A One-Page Tabletop Exercise for Small Teams (Run It in an Hour)</h3>
-                  <p class="sh-p-excerpt">Run a realistic cyber crisis tabletop exercise in 60 minutes without hiring external consultants.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>8 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-            <!-- EP 09 -->
-            <a href="playbook-monday-09.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#10B981" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#10B981" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#059669" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">09</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 09</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">PLAYBOOK MONDAY</span>
-                  <span class="sh-p-tag-main">DDoS</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Availability Defense</span>
-                  <h3 class="sh-p-title">Responding to a DDoS Attack: Keeping Your Website Up When Someone Wants It Down</h3>
-                  <p class="sh-p-excerpt">Distinguish volumetric floods from application layer denial-of-service and mitigate them fast.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-            <!-- EP 08 -->
-            <a href="playbook-monday-08.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#10B981" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#10B981" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#059669" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">08</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 08</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">PLAYBOOK MONDAY</span>
-                  <span class="sh-p-tag-main">Isolate</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Forensic Triage</span>
-                  <h3 class="sh-p-title">Isolating an Infected Endpoint: Contain It Without Destroying the Evidence</h3>
-                  <p class="sh-p-excerpt">How to sever network access cleanly while preserving volatile RAM and forensic artifacts.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-          </div>
-        </section>
-
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- SERIES 4: MYTH VS REALITY                                   -->
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <section class="sh-card theme-amber" id="myth-vs-reality" aria-labelledby="myth-vs-reality-h">
-          
-          <!-- Master Overview Card -->
-          <div class="sh-overview-card">
-            <div class="sh-overview-left">
-              <div>
-                <span class="sh-overview-meta">Series 4</span>
-                <h2 id="myth-vs-reality-h" class="sh-overview-title">Myth vs Reality</h2>
-                <p class="sh-overview-desc">Common security beliefs, fact-checked.</p>
-              </div>
-              <a href="#myth-vs-reality" class="sh-see-all-link">See all 10 episodes →</a>
-            </div>
-
-            <div class="sh-overview-right">
-              <ol class="sh-eps">
-                <li data-episode="1"><span class="ep-num-pill">01</span> <a href="myth-vs-reality-01.html">&quot;Incognito mode makes me anonymous&quot;</a></li>
-                <li data-episode="2"><span class="ep-num-pill">02</span> <a href="myth-vs-reality-02.html">&quot;Macs and phones don&#x27;t get malware&quot;</a></li>
-                <li data-episode="3"><span class="ep-num-pill">03</span> <a href="myth-vs-reality-03.html">&quot;A strong password is enough&quot;</a></li>
-                <li data-episode="4"><span class="ep-num-pill">04</span> <a href="myth-vs-reality-04.html">&quot;Public Wi-Fi is always dangerous&quot; (and when it actually is)</a></li>
-                <li data-episode="5"><span class="ep-num-pill">05</span> <a href="myth-vs-reality-05.html">&quot;I&#x27;m too small to be a target&quot;</a></li>
-                <li data-episode="6"><span class="ep-num-pill">06</span> <a href="myth-vs-reality-06.html">&quot;A VPN makes me secure&quot;</a></li>
-                <li data-episode="7"><span class="ep-num-pill">07</span> <a href="myth-vs-reality-07.html">&quot;Antivirus is all I need&quot;</a></li>
-                <li data-episode="8"><span class="ep-num-pill">08</span> <a href="myth-vs-reality-08.html">&quot;The HTTPS padlock means a site is safe&quot;</a></li>
-                <li data-episode="9"><span class="ep-num-pill">09</span> <a href="myth-vs-reality-09.html">&quot;Deleting a file erases it&quot;</a></li>
-                <li data-episode="10"><span class="ep-num-pill">10</span> <a href="myth-vs-reality-10.html">&quot;Change your password every 90 days&quot;</a></li>
-              </ol>
-            </div>
-          </div>
-
-          <!-- 3-Card Visual Previews Row -->
-          <div class="sh-previews-grid">
-
-            <!-- EP 01 -->
-            <a href="myth-vs-reality-01.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#F59E0B" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#F59E0B" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#D97706" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">01</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 01</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">MYTH VS REALITY</span>
-                  <span class="sh-p-tag-main">Incognito</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Browser Privacy</span>
-                  <h3 class="sh-p-title">&quot;Incognito Mode Makes Me Anonymous&quot;: What It Hides and What Stays Exposed</h3>
-                  <p class="sh-p-excerpt">Private browsing stops local history from saving, but your ISP, employer, and visited sites still track you.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>6 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-            <!-- EP 02 -->
-            <a href="myth-vs-reality-02.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#F59E0B" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#F59E0B" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#D97706" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">02</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 02</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">MYTH VS REALITY</span>
-                  <span class="sh-p-tag-main">Malware</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">OS Security</span>
-                  <h3 class="sh-p-title">&quot;Macs and Phones Don&#x27;t Get Malware&quot;: The Modern Mobile Threat Reality</h3>
-                  <p class="sh-p-excerpt">Infostealers and trojanized apps regularly target macOS and iOS. Security through obscurity is not defense.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-            <!-- EP 03 -->
-            <a href="myth-vs-reality-03.html" class="sh-preview-card">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#F59E0B" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#F59E0B" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#D97706" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">03</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 03</span>
-                  <span class="sh-p-live-badge"><span class="live-dot"></span> Live</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">MYTH VS REALITY</span>
-                  <span class="sh-p-tag-main">Passwords</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Authentication</span>
-                  <h3 class="sh-p-title">&quot;A Strong Password Is Enough&quot;: Why Complexity Fails Against Session Theft</h3>
-                  <p class="sh-p-excerpt">Even a 30-character password is bypassed by adversary-in-the-middle kits and stolen cookies.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>7 min read</span>
-                  <div class="sh-p-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </a>
-
-          </div>
-        </section>
-
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <!-- SERIES 5: TOOL SPOTLIGHT                                    -->
-        <!-- ═══════════════════════════════════════════════════════════ -->
-        <section class="sh-card theme-violet" id="tool-spotlight" aria-labelledby="tool-spotlight-h">
-          
-          <!-- Master Overview Card -->
-          <div class="sh-overview-card">
-            <div class="sh-overview-left">
-              <div>
-                <span class="sh-overview-meta">Series 5</span>
-                <h2 id="tool-spotlight-h" class="sh-overview-title">Tool Spotlight</h2>
-                <p class="sh-overview-desc">Free and open-source security tools: what they do and where they fall short.</p>
-              </div>
-              <a href="#tool-spotlight" class="sh-see-all-link">See all 10 episodes →</a>
-            </div>
-
-            <div class="sh-overview-right">
-              <ol class="sh-eps">
-                <li data-episode="1"><span class="ep-num-pill">01</span> <a href="tool-spotlight-01.html">Wireshark basics for spotting suspicious traffic</a></li>
-                <li data-episode="2"><span class="ep-num-pill">02</span> <a href="tool-spotlight-02.html">Have I Been Pwned and breach-monitoring tools</a></li>
-                <li data-episode="3"><span class="ep-num-pill">03</span> <a href="tool-spotlight-03.html">Sysmon for endpoint visibility on Windows</a></li>
-                <li data-episode="4"><span class="ep-num-pill">04</span> <a href="tool-spotlight-04.html">Nmap for checking your own network exposure</a></li>
-                <li data-episode="5"><span class="ep-num-pill">05</span> <a href="tool-spotlight-05.html">YARA and Sigma rules: writing a first detection</a></li>
-                <li data-episode="6"><span class="ep-num-pill">06</span> <a href="tool-spotlight-06.html">CyberChef for decoding and analysing data</a></li>
-                <li data-episode="7"><span class="ep-num-pill">07</span> <a href="tool-spotlight-07.html">VirusTotal: using it well and its limits</a></li>
-                <li data-episode="8"><span class="ep-num-pill">08</span> <a href="tool-spotlight-08.html">Process Explorer and Autoruns for finding persistence</a></li>
-                <li data-episode="9"><span class="ep-num-pill">09</span> <a href="tool-spotlight-09.html">OWASP ZAP for testing your own web app</a></li>
-                <li data-episode="10"><span class="ep-num-pill">10</span> <a href="tool-spotlight-10.html">Wazuh: open-source monitoring for a small network</a></li>
-              </ol>
-            </div>
-          </div>
-
-          <!-- 3-Card Visual Previews Row -->
-          <div class="sh-previews-grid">
-
-            <!-- EP 01 Preview (Coming Soon) -->
-            <div class="sh-preview-card" style="opacity:.92;">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#8B5CF6" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#8B5CF6" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#7C3AED" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">01</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 01</span>
-                  <span style="font-size:.7rem;font-weight:700;color:#94A3B8;background:#F8FAFC;border:1px solid #CBD5E1;padding:3px 8px;border-radius:999px;">Coming Soon</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">TOOL SPOTLIGHT</span>
-                  <span class="sh-p-tag-main">Wireshark</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Packet Analysis</span>
-                  <h3 class="sh-p-title">Wireshark Basics: Spotting Suspicious Traffic and Cleartext Tokens</h3>
-                  <p class="sh-p-excerpt">Inspect real PCAP files, filter for DNS anomalies, and detect malicious callbacks.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Season 1</span>
-                  <div class="sh-p-btn" style="background:#CBD5E1;color:#475569;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- EP 02 Preview (Coming Soon) -->
-            <div class="sh-preview-card" style="opacity:.92;">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#8B5CF6" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#8B5CF6" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#7C3AED" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">02</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 02</span>
-                  <span style="font-size:.7rem;font-weight:700;color:#94A3B8;background:#F8FAFC;border:1px solid #CBD5E1;padding:3px 8px;border-radius:999px;">Coming Soon</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">TOOL SPOTLIGHT</span>
-                  <span class="sh-p-tag-main">HIBP</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Breach Monitoring</span>
-                  <h3 class="sh-p-title">Have I Been Pwned &amp; Breach Monitors: How to Track Your Attack Surface</h3>
-                  <p class="sh-p-excerpt">Using breach APIs, password hash lookups, and domain alerts to stay ahead of credential stuffing.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Season 1</span>
-                  <div class="sh-p-btn" style="background:#CBD5E1;color:#475569;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- EP 03 Preview (Coming Soon) -->
-            <div class="sh-preview-card" style="opacity:.92;">
-              <div class="sh-p-art">
-                <svg class="sh-p-art-svg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                  <circle class="ripple-ring-1" cx="130" cy="70" r="60" stroke="#8B5CF6" stroke-width="2" stroke-opacity=".25" />
-                  <circle class="ripple-ring-2" cx="130" cy="70" r="90" stroke="#8B5CF6" stroke-width="1.5" stroke-opacity=".15" />
-                  <text x="175" y="95" text-anchor="end" fill="#7C3AED" fill-opacity=".12" font-family="Space Grotesk, sans-serif" font-size="78" font-weight="800">03</text>
-                </svg>
-                <div class="sh-p-top-row">
-                  <span class="sh-p-ep-badge">EP 03</span>
-                  <span style="font-size:.7rem;font-weight:700;color:#94A3B8;background:#F8FAFC;border:1px solid #CBD5E1;padding:3px 8px;border-radius:999px;">Coming Soon</span>
-                </div>
-                <div class="sh-p-tag-box">
-                  <span class="sh-p-tag-sub">TOOL SPOTLIGHT</span>
-                  <span class="sh-p-tag-main">Sysmon</span>
-                </div>
-              </div>
-              <div class="sh-p-body">
-                <div>
-                  <span class="sh-p-cat-pill">Endpoint Telemetry</span>
-                  <h3 class="sh-p-title">Sysmon for Windows: Deep Process &amp; Network Visibility on a Budget</h3>
-                  <p class="sh-p-excerpt">Logging process creation, LSASS access, and command lines for proactive threat hunting.</p>
-                </div>
-                <div class="sh-p-footer">
-                  <span class="sh-p-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Season 1</span>
-                  <div class="sh-p-btn" style="background:#CBD5E1;color:#475569;"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-      </div><!-- /sh-grid -->
-
-      <!-- FEEDBACK SECTION -->
-      <section class="feedback-section" id="feedback" aria-label="Reader feedback">
-        <div class="fb-header">
-          <h2 class="fb-title">Send feedback to Poorna</h2>
-          <p class="fb-sub">Have a question or a suggestion? Prepare an email below. Feedback is private and is sent only when you press Send in your email app.</p>
-          <p class="fb-sub">Likes and claps are your personal reactions on this device.</p>
-        </div>
-        <div class="fb-form-box">
-          <p>You can also <a href="mailto:sujampathirathnayaka@gmail.com">email Poorna directly</a>.</p>
-          <p id="fbDraftNote" class="fb-draft-note">Your feedback stays private. Nothing is sent from this page automatically.</p>
-          <form id="fbForm" hidden>
-            <label for="fbName">Name (optional)</label>
-            <input class="fb-input" id="fbName" maxlength="100" autocomplete="name" aria-describedby="fbDraftNote">
-            <label for="fbCategory">Feedback category</label>
-            <select class="fb-input" id="fbCategory">
-              <option>General feedback</option><option>Question</option><option>Correction</option><option>Topic suggestion</option>
-            </select>
-            <label for="fbMessage">Your feedback</label>
-            <textarea class="fb-textarea" id="fbMessage" aria-describedby="fbDraftNote fbLimit" required maxlength="2000" placeholder="Share your question or suggestion..."></textarea>
-            <p id="fbLimit" class="fb-draft-note">Maximum 2,000 characters.</p>
-            <div class="fb-form-foot">
-              <button type="submit" class="fb-submit-btn">Prepare email</button>
-              <button type="button" class="fb-clear-btn" id="fbClear">Clear draft</button>
-            </div>
-          </form>
-          <div id="fbEmailPreview" class="fb-preview" hidden>
-            <p id="fbStatus" class="fb-status" role="status">Prepared. Review and send:</p>
-            <a id="fbEmailLink" class="fb-email-link" href="#" target="_blank" rel="noopener noreferrer">Open email app</a>
-            <div class="fb-preview-field">
-              <label for="fbEmailTo">To</label>
-              <input id="fbEmailTo" class="fb-input" readonly value="sujampathirathnayaka@gmail.com">
-            </div>
-            <div class="fb-preview-field">
-              <label for="fbEmailSubject">Subject</label>
-              <input id="fbEmailSubject" class="fb-input" readonly>
-            </div>
-            <div class="fb-preview-field">
-              <label for="fbEmailBody">Body</label>
-              <textarea id="fbEmailBody" class="fb-textarea" readonly rows="8"></textarea>
-            </div>
-            <button type="button" class="fb-copy-btn" id="fbCopy">Copy feedback</button>
-          </div>
-        </div>
-      </section>
-
-    </div><!-- /wrap -->
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="foot-top">
-        <div class="foot-brand-col">
-          <a href="index.html" class="foot-brand">
-            <div class="foot-brand-mark" style="background:#1D4ED8;">CI</div>
-            <span class="foot-brand-text">Cyber Insight</span>
-          </a>
-          <p class="foot-desc">
-            An independent research publication cutting through technical jargon to deliver clarity on identity threats, voice cloning, Adversary-in-the-Middle attacks, SSL/TLS misconceptions, passkey cryptography, recruitment fraud, OSINT reconnaissance, bank impersonation, and digital literacy for everyone.
-          </p>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <a href=".well-known/security.txt" class="foot-security-badge" target="_blank" rel="noopener noreferrer">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              RFC 9116 Security Policy
-            </a>
-          </div>
-        </div>
-
-        <div class="foot-nav-cols">
-          <div>
-            <div class="foot-col-title">Series Navigation</div>
-            <ul class="foot-nav-list">
-              <li><a href="article.html">Ep 01: Synthetic Audio &amp; AI Trust</a></li>
-              <li><a href="article-02.html">Ep 02: Email OSINT &amp; Perimeter Defense</a></li>
-              <li><a href="article-03.html">Ep 03: Post-Phishing Rapid Triage</a></li>
-              <li><a href="article-04.html">Ep 04: Session Theft &amp; Cookie Hijacking</a></li>
-              <li><a href="article-05.html">Ep 05: The Padlock Myth &amp; TLS Security</a></li>
-              <li><a href="article-06.html">Ep 06: Passkeys vs. Passwords &amp; FIDO2</a></li>
-              <li><a href="article-07.html">Ep 07: Fake Recruiters &amp; Trojan Assessments</a></li>
-              <li><a href="article-08.html">Ep 08: OSINT &amp; 10-Minute Scammer Recon</a></li>
-              <li><a href="article-09.html">Ep 09: Bank Impersonation &amp; Vishing</a></li>
-              <li><a href="article-10.html">Ep 10: After a Data Breach</a></li>
-              <li><a href="index.html#series">View Full Curriculum (10 Episodes)</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="foot-col-title">Independent Research</div>
-            <ul class="foot-nav-list">
-              <li><a href="behind-the-breach-01.html">Behind the Breach: Zero-Trust Anatomy</a></li>
-              <li><a href="behind-the-breach-02.html">Behind the Breach: Infostealer Infiltration</a></li>
-              <li><a href="behind-the-breach-03.html">Behind the Breach: PHP2Shell RCE</a></li>
-              <li><a href="behind-the-breach-04.html">Behind the Breach: Anthropic Third-Party Breach</a></li>
-              <li><a href="https://www.fca.org.uk/consumers/banking-online-account-scams" target="_blank" rel="noopener noreferrer">FCA Consumer Scams Reference</a></li>
-              <li><a href="https://stopthinkfraud.campaign.gov.uk/how-to-spot-fraud/how-to-spot-phone-fraud/" target="_blank" rel="noopener noreferrer">Stop! Think Fraud UK Portal</a></li>
-              <li><a href="https://www.ncsc.gov.uk/collection/phishing-scams/spot-scams" target="_blank" rel="noopener noreferrer">NCSC Phishing Identification</a></li>
-            </ul>
-          </div>
-          <div>
-            <div class="foot-col-title">Editorial &amp; Author</div>
-            <ul class="foot-nav-list">
-              <li><a href="https://sujampathirathnayaka.com/" target="_blank" rel="noopener noreferrer">Poorna Sujampathi Rathnayaka</a></li>
-              <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></li>
-              <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer" style="color:#DC2626;">Cyber Pocket (YouTube Shorts) ↗</a></li>
-              <li><a href="index.html#about">About the Publication</a></li>
-              <li><a href="#feedback">Submit Technical Feedback</a></li>
-            </ul>
-          </div>
-        </div>
       </div>
-
-      <div class="foot-bot">
-        <div class="foot-disclaimer">
-          <strong>Research &amp; Educational Disclaimer:</strong> Content published on Cyber Insight is designed for technical literacy, incident response guidance, and defensive awareness.
-        </div>
-        <div class="foot-copy">
-          &copy; 2026 Poorna Sujampathi Rathnayaka. All rights reserved.
-        </div>
+      <div>
+        <p class="foot-title">Get in touch</p>
+        <ul class="foot-list">
+          <li><a href="about.html#feedback">Send feedback or questions</a></li>
+          <li><a href="https://www.youtube.com/@CyberPocket26" target="_blank" rel="noopener noreferrer">Cyber Pocket (YouTube Shorts) ↗</a></li>
+          <li><a href="https://sujampathirathnayaka.com/" rel="noopener">Portfolio</a></li>
+          <li><a href="https://www.linkedin.com/in/sujampathi-rathnayaka-304a752a9/" rel="noopener">LinkedIn</a></li>
+          <li><a href=".well-known/security.txt">Report a vulnerability</a></li>
+        </ul>
       </div>
     </div>
-  </footer>
+    <div class="foot-base">
+      <p class="legal">Research and educational disclaimer: content published on Cyber Insight is written by Poorna Sujampathi Rathnayaka for non-commercial educational, threat-awareness, and digital literacy purposes. All third-party trademarks, company names, CVE IDs, and security advisories referenced belong to their respective owners. Fair-use citations for educational security awareness are permitted with direct attribution and a canonical link. © 2026 Poorna Sujampathi Rathnayaka. All rights reserved.</p>
+      <button class="theme-toggle-btn" type="button" aria-label="Switch colour theme"><svg class="ic" aria-hidden="true"><use href="#i-sun"/></svg>Light / dark</button>
+    </div>
+  </div>
+</footer>
 
-  <div id="google_translate_element"></div>
-
-  <script src="js/cms.js?v=16"></script>
-  <script src="js/app.js?v=16"></script>
-  <script src="js/translator.js?v=16"></script>
-  <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div id="toast-container" role="status" aria-live="polite"></div>
+<div id="google_translate_element"></div>
+<script src="js/cms.js?v=17"></script>
+<script src="js/app.js?v=17"></script>
+<script src="js/site.js?v=1"></script>
+<script src="js/translator.js?v=17"></script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
-
 </html>
