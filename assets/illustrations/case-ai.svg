@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-hidden="true">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#143A73"/><stop offset="1" stop-color="#06162F"/></linearGradient>
+<pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#fff" stroke-opacity=".07"/></pattern>
+<radialGradient id="glow"><stop offset="0" stop-color="#2DD4BF" stop-opacity=".55"/><stop offset="1" stop-color="#2DD4BF" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="640" height="400" fill="url(#bg)"/><rect width="640" height="400" fill="url(#grid)"/>
+<circle cx="320" cy="200" r="248" fill="url(#glow)"/>
+
+<g stroke="#2DD4BF" stroke-width="5" stroke-linecap="round" opacity=".8"><path d="M262 112V84M262 288V316"/><path d="M302 112V84M302 288V316"/><path d="M342 112V84M342 288V316"/><path d="M382 112V84M382 288V316"/><path d="M236 138H208M404 138H432"/><path d="M236 178H208M404 178H432"/><path d="M236 218H208M404 218H432"/><path d="M236 258H208M404 258H432"/></g>
+<rect x="236" y="112" width="168" height="176" rx="24" fill="#06162F" stroke="#fff" stroke-width="6"/><rect x="262" y="138" width="116" height="124" rx="14" fill="#2DD4BF" fill-opacity=".14" stroke="#2DD4BF" stroke-width="3"/>
+<text x="320" y="224" text-anchor="middle" font-family="Inter, 'Segoe UI', system-ui, sans-serif" font-weight="800" font-size="56" fill="#fff">AI</text>
+<g stroke="#fff" stroke-opacity=".5" stroke-width="3"><path d="M432 178 L506 130"/><path d="M432 258 L520 280"/><path d="M208 178 L132 130"/><path d="M208 258 L120 288"/></g>
+<g fill="#2DD4BF"><circle cx="506" cy="130" r="12"/><circle cx="132" cy="130" r="12"/><circle cx="120" cy="288" r="10"/></g><circle cx="520" cy="280" r="14" fill="#EF4444"/><path d="M514 274 l12 12 M526 274 l-12 12" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
+</svg>

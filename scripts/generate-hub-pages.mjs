@@ -9,7 +9,7 @@ const content = JSON.parse(await readFile(new URL('scripts/site-content.json', r
 const { series, investigations, shorts } = content;
 const SITE = 'https://thecyberinsight.online/';
 const YT = 'https://www.youtube.com/@CyberPocket26';
-const V = '1';
+const V = '3';
 
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const pad = n => String(n).padStart(2, '0');
@@ -191,6 +191,8 @@ ${foot}
 }
 
 /* ── Pieces ── */
+const art = (name, lazy = true) => `<div class="art" aria-hidden="true"><img src="assets/illustrations/${name}.svg" alt="" width="640" height="400"${lazy ? ' loading="lazy"' : ''} decoding="async"></div>`;
+const CASE_ART = { 1: 'case-mag', 2: 'case-asos', 3: 'case-php', 4: 'case-ai' };
 const thumb = (icon, tone, extra = '') => `<div class="thumb tone-${tone}" aria-hidden="true">${ic(icon)}${extra}</div>`;
 const metaLine = (e, withDate) => `<p class="meta">${withDate ? `<span>${ic('calendar')}${fmtDate(e.date)}</span>` : ''}<span>${ic('clock')}${e.min} min read</span></p>`;
 const searchText = (...parts) => esc(parts.join(' ').toLowerCase());
@@ -206,7 +208,7 @@ const epCard = e => `<li class="ep-card ep-item" data-series="${e.series.id}" da
         </li>`;
 
 const invRow = (c, type = '') => `<li class="row${type ? ' result' : ''}" data-tags="${c.tags.join(' ')}"${type ? ` data-type="investigations" data-text="${searchText(c.title, c.sector, c.summary, c.desc, 'behind the breach investigation')}"` : ''}>
-          ${thumb(c.icon, 'navy')}
+          ${art(CASE_ART[c.n])}
           <div>
             <p class="ep-line">Case ${pad(c.n)} · ${esc(c.sector)}</p>
             <h3><a href="${c.file}" data-read>${esc(c.title)}</a></h3>
@@ -234,7 +236,7 @@ const home = () => page({
           </div>
         </div>
         <div class="hero-visual">
-          <div class="thumb hero-art tone-blue" aria-hidden="true">${ic('lock')}</div>
+          <div class="hero-art" aria-hidden="true"><img src="assets/illustrations/hero.svg" alt="" width="720" height="480" decoding="async"></div>
           <article class="latest">
             <span class="tag">Latest Episode</span>
             <p class="ep-line">Episode ${pad(latest.n)} · ${esc(series[0].name)}</p>
@@ -260,10 +262,12 @@ const home = () => page({
       </div>
       <ul class="series-cards">
         ${series.map(s => `<li class="s-card tone-${s.tone}">
-          ${ic(s.icon)}
-          <h3><a href="series.html#${s.id}">${esc(s.name)}</a></h3>
-          <p>${esc(s.desc)}</p>
-          <div class="s-foot"><span class="tag">${s.eps.length} Episodes</span>${ic('arrow')}</div>
+          ${art('series-' + s.id)}
+          <div class="s-body">
+            <h3><a href="series.html#${s.id}">${esc(s.name)}</a></h3>
+            <p>${esc(s.desc)}</p>
+            <div class="s-foot"><span class="tag">${s.eps.length} Episodes</span>${ic('arrow')}</div>
+          </div>
         </li>`).join('\n        ')}
       </ul>
     </section>
@@ -311,7 +315,7 @@ const seriesPage = () => page({
       </div>
       <ul class="rows">
         ${series.map(s => `<li class="row" data-tags="${s.kind.toLowerCase()}" data-progress-for="${s.id}">
-          ${thumb(s.icon, s.tone)}
+          ${art('series-' + s.id)}
           <div>
             <h3><a href="#${s.id}">${esc(s.name)}</a></h3>
             <p>${esc(s.desc)}</p>
@@ -335,7 +339,7 @@ const seriesPage = () => page({
           <h2 id="${s.id}-h">${ic(s.icon)}${esc(s.name)}</h2>
           <p>${esc(s.desc)}</p>
         </div>
-        ${thumb(s.icon, s.tone)}
+        ${art('series-' + s.id, false)}
       </div>
       <ul class="sd-stats">
         <li>${ic('play')}${s.eps.length} Episodes</li>

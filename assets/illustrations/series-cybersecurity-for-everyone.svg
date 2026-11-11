@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-hidden="true">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8F1FF"/><stop offset="1" stop-color="#C9DDFB"/></linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.4" fill="#2563EB" opacity=".28"/></pattern>
+</defs>
+<rect width="640" height="400" fill="url(#bg)"/><rect width="640" height="400" fill="url(#dots)"/>
+<circle cx="320" cy="205" r="152" fill="#fff" opacity=".6"/><circle cx="320" cy="205" r="104" fill="#2563EB" opacity=".13"/>
+
+<path d="M320 78 L414 114 V208 C414 272 374 318 320 340 C266 318 226 272 226 208 V114 Z" fill="#fff" stroke="#0B2D5B" stroke-width="7" stroke-linejoin="round"/>
+<path d="M320 78 L414 114 V208 C414 272 374 318 320 340 Z" fill="#2563EB" opacity=".14"/>
+<path d="M274 206 l33 33 l60 -68" fill="none" stroke="#2563EB" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="96" y="190" width="9" height="20" rx="4.5" fill="#2563EB" opacity="0.3"/><rect x="113" y="176" width="9" height="48" rx="4.5" fill="#2563EB" opacity="0.5"/><rect x="130" y="162" width="9" height="76" rx="4.5" fill="#2563EB" opacity="0.8"/><rect x="147" y="176" width="9" height="48" rx="4.5" fill="#2563EB" opacity="0.5"/><rect x="164" y="190" width="9" height="20" rx="4.5" fill="#2563EB" opacity="0.3"/>
+<rect x="448" y="116" width="120" height="70" rx="12" fill="#fff" stroke="#0B2D5B" stroke-opacity=".14" /><rect x="464" y="134" width="64" height="6" rx="3" fill="#0B2D5B" opacity="0.55"/><rect x="464" y="148" width="88" height="6" rx="3" fill="#0B2D5B" opacity="0.25"/><rect x="464" y="162" width="52" height="6" rx="3" fill="#0B2D5B" opacity="0.25"/><circle cx="548" cy="132" r="9" fill="#22C55E"/><path d="M543 132 l4.05 4.05 l7.65 -8.55" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="542.5,275.0 520.0,288.0 497.5,275.0 497.5,249.0 520.0,236.0 542.5,249.0" fill="#93C5FD" opacity="0.7"/><polygon points="569.9,308.0 556.0,316.0 542.1,308.0 542.1,292.0 556.0,284.0 569.9,292.0" fill="#2563EB" opacity="0.35"/><polygon points="492.4,310.0 482.0,316.0 471.6,310.0 471.6,298.0 482.0,292.0 492.4,298.0" fill="#93C5FD" opacity="0.6"/>
+</svg>
