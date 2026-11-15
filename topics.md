@@ -68,3 +68,7 @@ Five series, each with Season 1 = 10 episodes, played one series after another (
 - [x] [Tool Spotlight | Season 1 | Episode 8] Process Explorer and Autoruns for finding persistence
 - [x] [Tool Spotlight | Season 1 | Episode 9] OWASP ZAP for testing your own web app
 - [x] [Tool Spotlight | Season 1 | Episode 10] Wazuh: open-source monitoring for a small network
+
+## Note (Monday 2026-11-16)
+
+All queued topics were used. The Monday routine wrote a one-off seasonal piece (article-11.html, Black Friday scams). Add Season 2 topics above this note.
