@@ -16,6 +16,8 @@ Allow: /article-06.html
 Allow: /article-07.html
 Allow: /article-08.html
 Allow: /article-09.html
+Allow: /article-10.html
+Allow: /article-11.html
 Allow: /behind-the-breach-01.html
 Allow: /behind-the-breach-02.html
 Allow: /behind-the-breach-03.html
